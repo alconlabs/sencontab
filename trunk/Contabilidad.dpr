@@ -33,7 +33,7 @@ uses
   UBorradoDiario in 'Fuentes\UBorradoDiario.pas' {WBorradoDiario},
   UPunteoDiario in 'Fuentes\UPunteoDiario.pas' {WPunteoDiario},
   UCarteraEfectos in 'Fuentes\UCarteraEfectos.pas' {WCarteraEfectos},
-  UAmortizaciones in 'Fuentes\UAmortizaciones.pas' {WAmortizaciones},     
+  UAmortizaciones in 'Fuentes\UAmortizaciones.pas' {WAmortizaciones},
   UFormasPago in 'Fuentes\UFormasPago.pas' {WFormasPago},
   UEmpresas in 'Fuentes\UEmpresas.pas' {WEmpresas},
   UDetalleIVA in 'Fuentes\UDetalleIVA.pas' {WDetalleIVA},
@@ -80,7 +80,8 @@ uses
   InfBalanceSumasSaldos in 'Fuentes\InfBalanceSumasSaldos.pas',
   InfBalanceSituacion in 'Fuentes\InfBalanceSituacion.pas',
   ccChildForm in 'Fuentes\ccChildForm.pas' {ccFormChild},
-  ccDBIntegrity in 'Fuentes\ccDBIntegrity.pas';
+  ccDBIntegrity in 'Fuentes\ccDBIntegrity.pas',
+  FormHandler in 'Fuentes\FormHandler.pas';
 
 {$R *.RES}
 
