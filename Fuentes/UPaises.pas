@@ -1,75 +1,54 @@
 unit UPaises;
 interface
-uses Buttons, DBClient, IBDatabase, DB, IBCustomDataSet, IBTableSet, Wwdatsrc, ovcbase, Forms,
-     navegadorNotarios, fcButton, fcImgBtn, ovcef, ovcpb, ovcpf, ovcdbpf, StdCtrls, Grids, Wwdbigrd,
-     Wwdbgrid, Controls, windows, ExtCtrls, Graphics, fcImage, fcimageform, Classes, SysUtils, Messages;
-     
+uses Buttons, DBClient, IBDatabase, IBCustomDataSet, IBTableSet, Forms,
+     StdCtrls, Grids, Controls, windows, ExtCtrls, Graphics, Classes,
+     SysUtils, Messages, DB, Mask, DBCtrls, DBGrids, ComCtrls,
+     FormHandler;
+
 type
    TWPaises = class(TForm)
-      OvcController1:  TOvcController;
-      SFichero:        TwwDataSource;
-      QFichero:        TIBTableSet;
-      Transaccion:     TIBTransaction;
-      Datos:           TGroupBox;
-      Label1:          TLabel;
-      Label2:          TLabel;
-      eNombre:         TOvcDbPictureField;
-      Shape1:          TShape;
-      Label3:          TLabel;
-      Panel1:          TPanel;
-      BtnNavAniadir:   TfcImageBtn;
-      BtnNavBorrar:    TfcImageBtn;
-      BtnNavCerrar:    TfcImageBtn;
-      BtnEdtGuardar:   TfcImageBtn;
-      BtnEdtCancelar:  TfcImageBtn;
-      FiltroBuscar:    TGroupBox;
-      Label10:         TLabel;
-      Label11:         TLabel;
-      FiltroBNombre:   TOvcDbPictureField;
-      TbFiltro:        TClientDataSet;
-      sFiltro:         TDataSource;
-      fcIBCerrar:      TfcImageBtn;
-      fcImageBtnMinimizar: TfcImageBtn;
-      PanelSombra:     TPanel;
-      Navegador:       TDBNavegadorNotarios;
-      BtnNavFiltro:    TfcImageBtn;
-      Panel3:          TPanel;
-      Panel4:          TPanel;
-      Panel5:          TPanel;
-      BtnNavImprimir:  TfcImageBtn;
-      BtnNavModificar: TfcImageBtn;
-      QFicheroPAIS:    TIBStringField;
-      QFicheroNOMBRE:  TIBStringField;
-      FiltroBPais:     TOvcDbPictureField;
-      ePais:           TOvcDbPictureField;
-      Rejilla:         TwwDBGrid;
-      Panel2:          TPanel;
-      Formulario:      TfcImageForm;
-      procedure BtnNavAniadirClick(Sender: TObject);
-      procedure BtnNavBorrarClick(Sender: TObject);
-      procedure BtnEdtGuardarClick(Sender: TObject);
-      procedure BtnEdtCancelarClick(Sender: TObject);
-      procedure RejillaDblClick(Sender: TObject);
-      procedure FormKeyPress(Sender: TObject; var Key: Char);
-      procedure FormShow(Sender: TObject);
-      procedure FormCreate(Sender: TObject);
-      procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-      procedure RejillaTitleButtonClick(Sender: TObject; AFieldName: String);
-      procedure RejillaCalcTitleAttributes(Sender: TObject; AFieldName: String;
-         AFont: TFont; ABrush: TBrush; var ATitleAlignment: TAlignment);
-      procedure BtnNavCerrarClick(Sender: TObject);
-      procedure FormClose(Sender: TObject; var Action: TCloseAction);
-      procedure fcImageBtnMinimizarClick(Sender: TObject);
-      procedure fcImageBtnMouseEnter(Sender: TObject);
-      procedure fcImageBtnMouseLeave(Sender: TObject);
-      procedure LimpiarFiltro(Sender: TObject);
-      procedure VerTabla(Sender: TObject);
-      procedure BtnNavImprimirClick(Sender: TObject);
+    SFichero: TDataSource;
+    QFichero: TIBTableSet;
+    Transaccion: TIBTransaction;
+    Datos: TGroupBox;
+    Label1: TLabel;
+    Label2: TLabel;
+    EditDS_PAIS: TDBEdit;
+    TbFiltro: TClientDataSet;
+    sFiltro: TDataSource;
+    QFicheroPAIS: TIBStringField;
+    QFicheroNOMBRE: TIBStringField;
+    EditCD_PAIS: TDBEdit;
+    StatusBar1: TStatusBar;
+    PanelFondo: TPanel;
+    DataGrid: TDBGrid;
+    PanelButtons: TPanel;
+    BtnAdd: TSpeedButton;
+    BtnDelete: TSpeedButton;
+    BtnSave: TSpeedButton;
+    BtnCancel: TSpeedButton;
+    BtnReport: TSpeedButton;
+    BtnModify: TSpeedButton;
+    procedure BtnAddClick(Sender: TObject);
+    procedure BtnDeleteClick(Sender: TObject);
+    procedure BtnSaveClick(Sender: TObject);
+    procedure BtnCancelClick(Sender: TObject);
+    procedure DataGridDblClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure RejillaTitleButtonClick(Sender: TObject; AFieldName: String);
+    procedure RejillaCalcTitleAttributes(Sender: TObject; AFieldName: String;
+       AFont: TFont; ABrush: TBrush; var ATitleAlignment: TAlignment);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure LimpiarFiltro(Sender: TObject);
+    procedure BtnReportClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
    private
-      FCampoOrden: String;
-      procedure CrearFiltro;
-      procedure PrepararQuery;
-      procedure RefrescarBD;
+    FormManager :TccFormHandler;
+    FCampoOrden: String;
+    procedure CrearFiltro;
+    procedure PrepararQuery;
+    procedure RefrescarBD;
    public
    end;
 
@@ -149,23 +128,23 @@ begin
    FIbQueryRefresh(DmRef.QPaisNom);
 end;
 
-procedure TWPaises.BtnNavAniadirClick(Sender: TObject);
+procedure TWPaises.BtnAddClick(Sender: TObject);
 begin
    if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), ANIADIR) then begin
       Exit;
    end;
 
-   Rejilla.SetFocus;
+   DataGrid.SetFocus;
    try
-      ePais.SetFocus;
+      EditCD_PAIS.SetFocus;
       QFichero.Insert;
    except
       DatabaseError('No se ha podido insertar un nuevo país.' + #13 + CADENA_MANUAL);
    end;
-   Modo(Self, Edita);
+   FormManager.Mode := fmEdit;
 end;
 
-procedure TWPaises.BtnNavBorrarClick(Sender: TObject);
+procedure TWPaises.BtnDeleteClick(Sender: TObject);
 begin
    if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), BORRAR) then begin
       Exit;
@@ -181,7 +160,7 @@ begin
    end;
 end;
 
-procedure TWPaises.BtnNavImprimirClick(Sender: TObject);
+procedure TWPaises.BtnReportClick(Sender: TObject);
 begin
    if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), IMPRESION) then begin
       Exit;
@@ -190,7 +169,7 @@ begin
    FormPrincipal.LanzarListado('LPaises.rtm', SFichero);
 end;
 
-procedure TWPaises.BtnEdtGuardarClick(Sender: TObject);
+procedure TWPaises.BtnSaveClick(Sender: TObject);
 var
    ha_insertado: Boolean;
    Msg:          String;
@@ -215,7 +194,7 @@ begin
 
    if Trim(Msg) <> '' then  begin
       Msg := Msg + 'Por favor, revise los datos de entrada.';
-      ePais.SetFocus;
+      EditCD_PAIS.SetFocus;
       DatabaseError(Msg);
    end;
 
@@ -223,9 +202,9 @@ begin
    QFichero.Transaction.CommitRetaining;
 
    RefrescarBD;
-   Navegador.Visible := True;
-   Modo(Self, Naveg);
-   Rejilla.SetFocus;
+
+   FormManager.Mode := fmBrowse;
+   DataGrid.SetFocus;
    if ha_insertado then  begin
       if not (TbFiltro.State in dsEditModes) then begin
          TbFiltro.Edit;
@@ -237,22 +216,30 @@ begin
 
 end;
 
-procedure TWPaises.BtnEdtCancelarClick(Sender: TObject);
+procedure TWPaises.BtnCancelClick(Sender: TObject);
+var Canceled :Boolean;
 begin
-   Perform(wm_NextDlgCtl, 0, 0);
+   Perform(WM_NextDlgCtl, 0, 0);
 
-   if not QFichero.Modified then Exit;
-   
-   if MessageDlg('¿Quiere anular las modificaciones realizadas a este país?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
-      try QFichero.Cancel;
-      except DatabaseError('No se ha podido cancelar la operación.' + #13 + CADENA_MANUAL);
+   if not QFichero.Modified then Canceled := True
+   else Canceled := MessageDlg('¿Quiere anular las modificaciones realizadas a este país?',
+                               mtConfirmation, [mbYes, mbNo], 0) = mrYes;
+
+   if Canceled then begin
+      try    QFichero.Cancel;
+      except Canceled := False;
+             DatabaseError('No se ha podido cancelar la operación.' + #13 + CADENA_MANUAL);
       end;
-      Modo(Self, Naveg);
-      Rejilla.SetFocus;
+   end
+   else Canceled := False;
+
+   if Canceled then begin
+      FormManager.Mode := fmBrowse;
+      DataGrid.SetFocus;
    end;
 end;
 
-procedure TWPaises.RejillaDblClick(Sender: TObject);
+procedure TWPaises.DataGridDblClick(Sender: TObject);
 begin
    if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), MODIFICAR) then begin
       Exit;
@@ -262,107 +249,57 @@ begin
       try QFichero.Edit;
       except MessageDlg('No se puede editar el registro seleccionado.' + #13 + CADENA_MANUAL, mtInformation, [mbOK], 0);
       end;
-      Modo(Self, Edita);
-      ePais.SetFocus;
+      FormManager.Mode := fmEdit;
+      EditCD_PAIS.SetFocus;
    end;
-end;
-
-procedure TWPaises.FormKeyPress(Sender: TObject; var Key: Char);
-begin
-   // Si pulsamos enter y el control actual no es un grid pasamos al siguiente
-   // control
-   if (Key = Chr(VK_RETURN)) then  begin
-      // Comprobación del filtro por código de país
-      if (FiltroBPais.Focused) and (FiltroBPais.AsString <> '') then   begin
-         key := #0;
-         if TbFiltro.State in dsEditModes then   begin
-            TbFiltro.Post;
-         end;
-         PrepararQuery;
-      end
-
-      // Comprobación del filtro por nombre
-      else
-      if (FiltroBNombre.Focused) and (Trim(FiltroBNombre.Text) <> '') then   begin
-         key := #0;
-         if TbFiltro.State in dsEditModes then   begin
-            TbFiltro.Post;
-         end;
-         PrepararQuery;
-      end
-
-      //Si no es ninguno de los otros, dos pasamos al siguiente control
-      else
-      if (not (ActiveControl is TwwDBGrid)) then   begin
-         Key := #0;
-         SelectNext(ActiveControl, GetKeyState(vk_Shift) and $80 = 0, True);
-      end;
-   end;
-end;
-
-procedure TWPaises.FormShow(Sender: TObject);
-begin
-   SetBounds(0, FormPrincipal.Panel1.Top + FormPrincipal.Panel1.Height + 1, Width, Height);
-   FiltroBPais.SetFocus;
 end;
 
 procedure TWPaises.FormCreate(Sender: TObject);
 begin
+   FormManager := TccFormHandler.Create(Self);
+
+   FormManager.AddComp(EditCD_PAIS.Name , fmEdit );
+   FormManager.AddComp(EditDS_PAIS.Name , fmEdit );
+
+   FormManager.AddComp(DataGrid.Name        , fmBrowse);
+   //FormManager.AddComp(BtnCopy.Name         , fmBrowse);
+   //FormManager.AddComp(BtnPaste.Name        , fmBrowse);
+
+   FormManager.AddComp(BtnAdd.Name          , fmBrowse);
+   //FormManager.AddComp(BtnDuplicate.Name    , fmBrowse);
+   FormManager.AddComp(BtnModify.Name       , fmBrowse);
+   FormManager.AddComp(BtnDelete.Name       , fmBrowse);
+   //FormManager.AddComp(BtnReload.Name       , fmBrowse);
+   FormManager.AddComp(BtnReport.Name       , fmBrowse);
+
+   FormManager.AddComp(BtnSave.Name         , fmEdit  );
+   FormManager.AddComp(BtnCancel.Name       , fmEdit  );
+
+
    ActivarTransacciones(Self);
    CrearFiltro;
    FCampoOrden := 'PAIS';
    PrepararQuery;
-   Modo(Self, Naveg);
+   FormManager.Mode := fmBrowse;
 end;
 
 procedure TWPaises.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
-   case key of
+   case Key of
       VK_ESCAPE: begin
          key := 0;
-         if QFichero.State in dsEditModes then   begin
-            BtnEdtCancelar.Click;
-         end
-         else begin
-            BtnNavCerrar.Click;
-         end;
-      end;
-      VK_SPACE: begin
-         if (ActiveControl <> FiltroBPais) and (ActiveControl <>
-            FiltroBNombre) and not (QFichero.State in dsEditModes) then   begin
-            //Anulamos el evento de la tecla
-            Key := 0;
-            RejillaDblClick(Self);
-         end;
-      end;
-      VK_F2: begin
-         if not (QFichero.State in dsEditModes) then   begin
-            BtnNavAniadir.Click;
-         end;
-      end;
-      VK_F3: begin
-         if QFichero.State in dsEditModes then   begin
-            BtnEdtGuardar.Click;
-         end;
-      end;
-      VK_F4: begin
-         if not (QFichero.State in dsEditModes) then begin
-            RejillaDblClick(Self);
+         if QFichero.State in dsEditModes then begin
+            BtnCancel.Click;
          end;
       end;
       VK_UP: begin
-         if not (ActiveControl is TwwDBGrid) then   begin
+         if not (ActiveControl is TDBGrid) then   begin
             SelectNext(ActiveControl, not (GetKeyState(VK_SHIFT) and $80 = 0), True);
          end;
       end;
       VK_DOWN: begin
-         if not (ActiveControl is TwwDBGrid) then   begin
+         if not (ActiveControl is TDBGrid) then   begin
             SelectNext(ActiveControl, GetKeyState(VK_SHIFT) and $80 = 0, True);
-         end;
-      end;
-      VK_F12: begin
-         if not (QFichero.State in dsEditModes) then   begin
-            VerTabla(Sender);
          end;
       end;
    end;
@@ -374,7 +311,7 @@ begin
       FCampoOrden := UpperCase(AFieldName);
       PrepararQuery;
    end;
-   Rejilla.SetFocus;
+   DataGrid.SetFocus;
 end;
 
 procedure TWPaises.RejillaCalcTitleAttributes(Sender: TObject; AFieldName: String;
@@ -387,59 +324,35 @@ begin
    end;
 end;
 
-procedure TWPaises.BtnNavCerrarClick(Sender: TObject);
-begin
-   Close;
-end;
-
 procedure TWPaises.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
    if QFichero.State = dsBrowse then  begin
       Action := caFree;
-      Formulario.Free;
-      Formulario := nil;
+      //Formulario.Free;
+      //Formulario := nil;
+      FormManager.Free;
       WPaises    := nil;
    end
    else begin
       MessageBeep(0);
       Abort;
    end;
-end;
 
-procedure TWPaises.fcImageBtnMinimizarClick(Sender: TObject);
-begin
-   windowState := wsminimized;
-end;
-
-procedure TWPaises.fcImageBtnMouseEnter(Sender: TObject);
-begin
-   (Sender as TfcImageBtn).Image.LoadFromFile(gvDirImagenes + gcBtnBlanco);
-end;
-
-procedure TWPaises.fcImageBtnMouseLeave(Sender: TObject);
-begin
-   (Sender as TfcImageBtn).Image.LoadFromFile(gvDirImagenes + gcBtn);
 end;
 
 procedure TWPaises.LimpiarFiltro(Sender: TObject);
 begin
-   if not (TbFiltro.state in dseditmodes) then   begin
+   if not (TbFiltro.state in dsEditModes) then begin
       TbFiltro.edit;
    end;
    TbFiltro.FieldByName('BPAIS').AsString   := '';
    TbFiltro.FieldByName('BNombre').AsString := '';
 end;
 
-procedure TWPaises.VerTabla(Sender: TObject);
+procedure TWPaises.FormShow(Sender: TObject);
 begin
-   {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-   with TbFiltro do begin
-      Edit;
-      FieldByName('BPAIS').AsString   := '';
-      FieldByName('BNOMBRE').AsString := '';
-      Post;
-   end;
-   PrepararQuery;
+   FormManager.Mode := fmEdit;
+   FormManager.Mode := fmBrowse;
 end;
 
 end.
