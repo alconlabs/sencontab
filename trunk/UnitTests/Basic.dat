@@ -1,0 +1,178 @@
+MADERAS
+CD_MADERA	DS_MADERA
+CHAR	CHAR
+SP 	SAPELLY
+PI 	PINO
+AJ 	AJOUX
+RB 	ROBLE
+HV 	HAYA VAPORIZADA
+PM 	PINO MELIX
+CD 	CEDRO
+MS 	MANSONIA
+NG 	NOGAL
+UK 	UKOLA
+IR 	IROKO
+HB 	HAYA BLANCA
+CZ 	CEREZO
+ET 	ETIMOE
+BU 	BUBINGA
+WE1	WENGE ST 2V/46V
+WE2	WENGE 2P 120/X3
+MDF	MDF
+MDH	MDF HIDROFUGO
+MDI	MDF IGNIFUGO
+MK 	MUKALY
+SPF	SAPELLY FAJEADO
+RBF	ROBLE FAJEADO
+PMF	PINO MELIX FAJEADO
+HVF	HAYA VAPORIZADA FAJEADA
+SPR	SAPELLY RAMEADO
+SP1	SAPELLY RAMEADO FAJEADO
+GO
+
+TIPOUSUARIO
+CD_TIPOUSUARIO	DS_TIPOUSUARIO	ROLUSUARIO
+CHAR	CHAR	CHAR
+ADM	ADMINISTRATIVO           	XXXXX---------------------------------------------
+AGE	AGENTE COMERCIAL         	XXX-----------------------------------------------
+CEO	DIRECTOR GENERAL         	X-------------------------------------------------
+DEL	DELEGADO COMERCIAL       	XXX-----------------------------------------------
+DEP	JEFE DE DEPARTAMENTO     	XXX-----------------------------------------------
+DIR	DIRECTOR                 	XX------------------------------------------------
+ENC	ENCARGADO                	XXXX----------------------------------------------
+RES	RESPONSABLE              	XXXX----------------------------------------------
+SUB	SUBALTERNO               	XXXXX---------------------------------------------
+GO
+
+FAMILIAS
+CD_FAMILIA	DS_FAMILIA
+CHAR	CHAR
+PLS	PUERTAS LISAS SIN MOLDURA
+PLC	PUERTAS LISAS CON MOLDURA
+PPL	PUERTAS PLAFONADAS PLAFON LISO
+PPM	PUERTAS PLAFONADAS PLAFON MOLDADO
+PAA	PUERTAS DE ARMARIO DE AGLOMERADO
+AMD	ARMARIOS MODULARES (MODULOS)
+JMB	JAMBAS
+CRC	CERCOS
+RDP	RODAPIES
+PLT	PLINTOS
+RST	ROSETONES
+HRJ	HERRAJES
+POC	PUERTA LISA CANTO OCULTO CON MOLDURA
+POS	PUERTA LISA CANTO OCULTO SIN MOLDURA
+LAC	LACADO
+PTC	PUERTAS PANTOGRAFIADAS Y PANTOGRAFIC
+OTR	OTROS
+AL 	ARMARIO LISO
+APM	ARMARIO PLAFONADO PLAFON MOLDADO
+GO
+
+DELEGACIONES
+CD_DELEGACION	DS_DELEGACION	DIRECCION1	DIRECCION2	CODIGO_POSTAL	POBLACION	PROVINCIA	TELEFONO1	FAX	EMAIL
+CHAR	 CHAR	CHAR	CHAR	CHAR	CHAR	CHAR	CHAR	CHAR	CHAR
+08	CATALUÑA                                          	TRAVESERA DE GRACIA, 45                           	NULL	08021     	BARCELONA                                         	BARCELONA                                         	93 241 32 02   	93 241 32 15   	dbarcelona@jher.com
+28	CENTRO                                            	FERRAZ, 13                                        	NULL	28008     	MADRID                                            	MADRID                                            	91 758 94 00   	91 758 94 09   	madrid@jher.com
+29	ANDALUCIA                                         	POL. INDS DE ALAURIN DE LA TORRE                  	2ª FASE PARC. 29 OFICINA 4                        	29130     	ALAHURIN DE LA TORRE                              	MALAGA                                            	95 217 62 43   	95 217 66 52   	malaga@jher.com
+46	LEVANTE                                           	AVDA. DE LES CORTS VALENCIANS, 10                 	NULL	46015     	VALENCIA                                          	VALENCIA                                          	93 317 34 40   	93 317 34 44   	valencia@jher.com
+47	NOROESTE                                          	AVDA. PUENTE BLANCA, S/N                          	NULL	47420     	ISCAR                                             	VALLADOLID                                        	983 612 940    	983 612 959    	noroeste@jher.com
+50	ARAGON                                            	AVDA. DUQUESA DE VILLAHERMOSA, 131                	NULL	50009     	ZARAGOZA                                          	ZARAGOZA                                          	976 30 61 32   	976 30 61 82   	zaragoza@jher.com
+FG	FAGOR                                             	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL
+EX	DIVISION INTERNACIONAL                            	ISCAR                                             	DELEGACION                                        	47420     	ISCAR                                             	VALLADOLID                                        	TELEFONO       	FAX            	email
+FB	FABRICA                                           	AVDA. PUENTE BLANCA S/N                           	NULL	47420     	ISCAR                                             	VALLADOLID                                        	983 612 940    	983 612 959    	jher@jher.com
+AV	AVANTI PORTE                                      	C/ DE LA RESINA S/N                               	NULL	47420     	ISCAR                                             	VALLADOLID                                        	NULL	NULL	avanti@avantiporte.com
+GO
+
+DEPARTAMENTOS
+CD_DEPARTAMENTO	DS_DEPARTAMENTO
+CHAR	 CHAR
+COMERCIAL 	DELEGACIONES COMERCIALES
+DIRECCION 	DIRECCION
+ADMIN     	ADMINISTRACION
+CALIDAD   	CALIDAD
+EXTERIOR  	DIVISION INTERNACIONAL
+FABRICA   	FABRICA
+LOGISTICA 	LOGISTICA
+COMPRAS   	COMPRAS
+INFORMATIC	INFORMATICA
+GO
+
+
+
+USUARIOS
+CD_USUARIO	DS_USUARIO	EMAIL	CD_TIPOUSUARIO	PASSWORD	TELEFONO_MOVIL	TELEFONO_DIRECTO	CD_DEPARTAMENTO	CD_DELEGACION	TELEFONO_MEMORIA	 TELEFONO_EXTENSION	 ROLUSUARIO
+CHAR	CHAR	CHAR	CHAR	CHAR	CHAR	CHAR	CHAR	CHAR	CHAR	CHAR	CHAR
+amartin                  	Armando Martín                                    	amartin@jher.com                                                                                    	DEP	X{}{6;8x%                	NULL	NULL	NULL	47	NULL	NULL	NULL
+ccabrejas                	Carlos Cabrejas                                   	ccabrejas@jher.com                                                                                  	DEP	#ii/7w)vc/b              	NULL	NULL	NULL	47	NULL	NULL	NULL
+ccalle                   	Cristina Calle                                    	ccalle@jher.com                                                                                     	ADM	jJ))iyyZ                 	NULL	NULL	NULL	47	NULL	NULL	NULL
+ccatalina                	Cruz Catalina                                     	ccatalina@jher.com                                                                                  	ADM	X44;fR;j]<;              	NULL	NULL	NULL	47	NULL	NULL	NULL
+cgamarra                 	Carlos Gamarra                                    	cgamarra@jher.com                                                                                   	DEP	j<>&%z%77%               	NULL	NULL	FABRICA   	FB	NULL	NULL	NULL
+cherrero                 	Cándido Herrero                                   	cherrero@jher.com                                                                                   	ADM	<V-(m\\m\_               	NULL	NULL	LOGISTICA 	FB	NULL	NULL	NULL
+sgarcia                  	Santiago García                                   	compras@jher.com                                                                                    	DEP	<v#{jV<ej                	NULL	NULL	COMPRAS   	FB	NULL	NULL	NULL
+csanz                    	Carmen Sanz                                       	csanz@jher.com                                                                                      	ADM	j;k&{%@                  	NULL	NULL	ADMIN     	FB	NULL	NULL	NULL
+dbarcelona               	Delegación de Barcelona                           	dbarcelona@jher.com                                                                                 	RES	fd])nZj+bf-)             	NULL	NULL	ADMIN     	08	NULL	NULL	NULL
+direccion                	Dirección                                         	direccion@jher.com                                                                                  	ADM	+idf577dV#X              	NULL	NULL	ADMIN     	FB	NULL	NULL	NULL
+ecalle                   	Estibaliz de la Calle                             	ecalle@jher.com                                                                                     	ADM	y574<<V5                 	NULL	NULL	ADMIN     	FB	NULL	NULL	NULL
+exterior                 	División Internacional                            	exterior@jher.com                                                                                   	ADM	j<ñd5ñ73$7               	NULL	NULL	ADMIN     	EX	NULL	NULL	NULL
+fgarcía                  	Fernando García                                   	fgarcia@jher.com                                                                                    	DIR	cJ(qR\VÑR                	NULL	NULL	FABRICA   	FB	NULL	NULL	NULL
+jgonzalez                	José Antonio González                             	fabrica@jher.com                                                                                    	RES	jlafVRkrn+k              	NULL	NULL	ADMIN     	FB	NULL	NULL	NULL
+ifernandez               	Israel Fernandez                                  	ifernandez@jher.com                                                                                 	ADM	jvj])wy/y5)V             	NULL	NULL	FABRICA   	FB	NULL	NULL	NULL
+iroman                   	Ivan Román                                        	iroman@jher.com                                                                                     	ADM	Xx6>};{%                 	NULL	NULL	LOGISTICA 	FB	NULL	NULL	NULL
+jalderete                	Jesús Alderete                                    	jalderete@jher.com                                                                                  	ADM	XZ;j/R7+7f7              	NULL	NULL	LOGISTICA 	FB	NULL	NULL	NULL
+jarroyo                  	José Arroyo                                       	jarroyo@jher.com                                                                                    	DIR	r48jfj]+]                	NULL	NULL	ADMIN     	FB	NULL	NULL	NULL
+jcilleruelo              	Juan Carlos Cilleruelo                            	jcilleruelo@jher.com                                                                                	DEP	y}sg22/\31\26            	NULL	NULL	INFORMATIC	FB	NULL	NULL	NULL
+GO
+
+APLICACIONES
+CD_APLICACION  	DS_APLICACION
+CHAR  	CHAR
+ADJUDICA  	ADJUDICACIONES
+TAREAS    	GESTIÓN DE TAREAS
+SOPORTE   	SOPORTE TECNICO
+PRESTO    	IMPLANTACION DE PRESTO
+ROOT      	PROGRAMA ADMINISTRADOR DE JHERP
+AUXILIARES	GESTION DE RECURSOS Y ADMINISTRACION
+INVENT PT 	INVENTARIO DE PRODUCTO TERMINADO
+GO
+
+APL_VERSIONES
+CD_APLICACION  	DBVERSION
+CHAR  	CHAR
+ADJUDICA  	00.00
+ADJUDICA  	00.02
+GO
+
+ESTADOSADJ
+CD_ESTADO	DS_ESTADO	ORDEN
+CHAR	CHAR	INT
+PDC	PENDIENTE DE CONTRATO         	1
+CNF	CONFIRMADA                    	2
+TER	TERMINADA                     	7
+NUL	ANULADA                       	9
+CRE	CERCOS DE RECIBIR ENTREGADOS  	3
+CLC	COLOCANDO CARPINTERÍA         	4
+REP	REPASOS Y POSTVENTA           	5
+GO
+
+FORMA_PAGO
+CD_FORMAPAGO	DS_FORMAPAGO
+CHAR	CHAR
+CO 	CONTADO
+90 	90 DIAS
+120	120 DIAS
+150	150 DIAS
+180	180 DIAS
+CNF	CONFIRMING
+OTR	OTRA
+GO
+
+CONCEPTOS_OBRA
+CD_CONCEPTO	DS_CONCEPTO	PRC_MERMAS	PRC_REPASOS	PROD_COMERCIAL
+CHAR	CHAR	FLOAT	FLOAT	CHAR
+CAR	CARPINTERIA                   	10.00	15.00	N
+PQT	PARQUET                       	5.00	15.00	N
+OTR	OTROS                         	5.00	15.00	S
+GO
+
+
+
