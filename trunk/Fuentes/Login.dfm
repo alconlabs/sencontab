@@ -1,6 +1,6 @@
 object FormLogin: TFormLogin
-  Left = 549
-  Top = 257
+  Left = 472
+  Top = 239
   BorderIcons = []
   BorderStyle = bsToolWindow
   ClientHeight = 250
@@ -2050,7 +2050,7 @@ object FormLogin: TFormLogin
     Width = 110
     Height = 14
     Alignment = taCenter
-    Caption = 'Versi'#243'n 5 (1997-2007)'
+    Caption = 'Versi'#243'n 5 (1997-2012)'
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
