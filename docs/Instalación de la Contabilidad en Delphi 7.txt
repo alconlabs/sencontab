@@ -1,0 +1,74 @@
+.- Instalamos Delphi 7.0 en la Carpeta C:\Borland
+.- Instalamos Tortoise SVN en su versión más actual.
+.- Creamos una carpeta llamada cviews
+.- Dentro de cViews creamos una carpeta llamada "Ejecutables Instaladores"
+.- con Tortoise, sobre dicha carpeta recuperamos el contenido del siguiente repositorio:
+	http://80.32.254.39/svn/Componentes   (Usuario y clave cilleruelo)
+
+
+.- Con Delphi Cerrado, instalamos desde el directorio cviews\Ejecutables Instaladores los siguientes componentes:
+	- 1stclass4000StdVcl7.exe    lo instalamos     en C:\cviews\libs\1stclass4000vcl7
+	- infoPower4000Std_Vcl7.exe  lo instalamos     en C:\cviews\libs\ip4000vcl7
+	- rbpro7 V.10.5.exe	     lo instalamos     en C:\cviews\libs\RBuilder
+
+.- Desde el directorio Orpheus400    lo instalamos     en c:\cviews\libs\Orpheus
+.- Desde el directorio SysTools7     lo instalamos     en c:\cviews\libs\SysTools
+
+
+-+-+-+-+-+-+-+-+-+
+ESTA BIBLIOTECA DE COMPONENTES YA NO ES NECESARIA.
+.- am2000_d7.exe                     lo instalamos     en c:\cviews\libs\Animated Menus
+-+-+-+-+-+-+-+-+-+
+
+
+Copiamos las siguientes carpetas desde el directorio de "Ejecutables Instaladores" a cviews\Libs:
+	===>>> OnGuard, OPartner7, Componentes7 y EXTRA <<<====
+
+
+		¡¡¡ ATENCIÓN CON LO SIGUIENTE, PRIMERO EL r Y LUEGO EL d !!!
+
+Abrimos Delphi 7 y Opción de Menú File => Open Project.
+En la ventana seleccionamos el tipo de archivo "Delphi Package (*.dpk; *.dpkw)"
+
+Buscamos el directorio C:\cviews\libs\OnGuard e instalamos G113_r70.dpk
+Lo Abrimos, lo compilamos y los instalamos (nos dirá que no se puede, es normal).
+
+A continuación hacemos lo mismo con el archivo G113_d70.dpk
+Al instalar nos informará de que ha instalado una serie de componentes.
+
+	Cerramos Delphi sin guardar ningún cambio.
+
+Hacemos lo Mismo con c:\cviews\libs\Opartner7\P164_r70.dpk y
+    	             c:\cviews\libs\Opartner7\P164_d70.dpk y 
+
+
+
+
+
+
+En el Menú Tools>Environment Options => Pestaña Library, campo Library Path, hay que pegar la
+siguiente cadena:
+C:\cviews\Libs\ip4000vcl7\LIB;C:\cviews\Libs\1stclass4000vcl7\LIB;$(DELPHI)\Lib;$(DELPHI)\Bin;$(DELPHI)\Imports;$(DELPHI)\Projects\Bpl;C:\cviews\libs\OnGuard;C:\cviews\Libs\RBuilder\Lib;C:\cviews\Libs\Orpheus;C:\cviews\Libs\SysTools;C:\cviews\Libs\OPartner7;C:\cviews\Libs\Componentes7\PaqueteBaseDatos\IBTableSet;C:\cviews\Libs\Componentes7\PaqueteSiam\Mensaje;C:\cviews\Libs\Componentes7\PaqueteBaseDatos\NavegadorNotarios;C:\cviews\Libs\Animated Menus;C:\cviews\Libs\EXTRA\SOURCE;C:\cviews\Libs\siamlib7;C:\cviews\Libs\ShellShock;C:\cviews\Libs\Componentes7\PaqueteSiam\Registro
+
+
+
+
+  
+
+Hacemos lo mismo con C:\cviews\libs\Componentes7\PaqueteSiam\Siam.dpk
+
+Hacemos lo mismo con C:\cviews\libs\EXTRA\SOURCE\xFormat7.dpk y
+		     C:\cviews\libs\EXTRA\SOURCE\xDevice7.dpk
+
+Hacemos lo mismo con  C:\cviews\libs\Componentes7\PaqueteBaseDatos\BaseDatos.dpk
+
+
+
+	Ya podremos abrir el proyecto Contabilidad y compilarlo. 
+
+
+    Para controlar los cambios en el directorio Libs, se puede obetener una copia desde
+el repositorio http://80.32.254.39/svn/Libs_Contab   (Usuario y clave cilleruelo)
+
+
+

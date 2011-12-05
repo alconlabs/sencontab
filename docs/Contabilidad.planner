@@ -1,0 +1,681 @@
+<?xml version="1.0"?>
+<project name="Contabilidad" company="cilleruelo.com" manager="Juan C.Cilleruelo" phase="" project-start="20080422T000000Z" mrproject-version="2" calendar="1">
+  <properties/>
+  <phases/>
+  <calendars>
+    <day-types>
+      <day-type id="0" name="Jornada laboral" description="Un d&#xED;a de trabajo predeterminado"/>
+      <day-type id="1" name="Jornada de descanso" description="Un d&#xED;a de descanso predeterminado"/>
+      <day-type id="2" name="Usar base" description="Usar d&#xED;a del calendario base"/>
+    </day-types>
+    <calendar id="1" name="Calendario Cilleruelo">
+      <default-week mon="0" tue="0" wed="0" thu="0" fri="0" sat="0" sun="0"/>
+      <overridden-day-types>
+        <overridden-day-type id="0">
+          <interval start="0800" end="1330"/>
+          <interval start="1530" end="1830"/>
+        </overridden-day-type>
+      </overridden-day-types>
+      <days>
+        <day date="20080423" type="day-type" id="1"/>
+      </days>
+    </calendar>
+    <calendar id="2" name="Predeterminado">
+      <default-week mon="0" tue="0" wed="0" thu="0" fri="0" sat="1" sun="1"/>
+      <overridden-day-types>
+        <overridden-day-type id="0">
+          <interval start="0800" end="1200"/>
+          <interval start="1300" end="1700"/>
+        </overridden-day-type>
+      </overridden-day-types>
+      <days/>
+    </calendar>
+  </calendars>
+  <tasks>
+    <task id="1" name="ICE-NET 7 (Crear Versi&#xF3;n Simple de los Componentes de Delphi)" note="" work="4500" start="20080422T000000Z" end="20080422T091500Z" work-start="20080422T080000Z" percent-complete="100" priority="0" type="normal" scheduling="fixed-work"/>
+    <task id="2" name="Login.pas" note="" work="14400" start="20080422T000000Z" end="20080422T120000Z" work-start="20080422T080000Z" percent-complete="100" priority="0" type="normal" scheduling="fixed-work"/>
+    <task id="3" name="Splash.pas" note="" work="28800" start="20080422T000000Z" end="20080422T180000Z" work-start="20080422T080000Z" percent-complete="100" priority="0" type="normal" scheduling="fixed-work"/>
+    <task id="4" name="MANTENIMIENTOS SENCILLOS" note="" work="183600" start="20080422T000000Z" end="20080428T183000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="5" name="Quitar Men&#xFA;s Especiales y sus Componentes" note="" work="25200" start="20080422T000000Z" end="20080422T170000Z" work-start="20080422T080000Z" percent-complete="100" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="6" name="Provincias.pas" note="" work="57600" start="20080422T170000Z" end="20080425T160000Z" work-start="20080422T170000Z" percent-complete="100" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="5" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="7" name="Paises.pas" note="" work="14400" start="20080425T160000Z" end="20080426T093000Z" work-start="20080425T160000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="6" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="8" name="TiposDiario.pas" note="" work="14400" start="20080426T093000Z" end="20080426T133000Z" work-start="20080426T093000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="7" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="9" name="Comerciales.pas" note="" work="14400" start="20080426T133000Z" end="20080427T090000Z" work-start="20080426T133000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="8" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="10" name="Delegaciones.pas" note="" work="14400" start="20080427T090000Z" end="20080427T130000Z" work-start="20080427T090000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="9" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="11" name="Departamentos.pas" note="" work="14400" start="20080427T130000Z" end="20080428T083000Z" work-start="20080427T130000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="10" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="12" name="Secciones.pas" note="" work="14400" start="20080428T083000Z" end="20080428T123000Z" work-start="20080428T083000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="11" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="13" name="Proyectos.pas" note="" work="14400" start="20080428T123000Z" end="20080428T183000Z" work-start="20080428T123000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="12" type="FS"/>
+        </predecessors>
+      </task>
+    </task>
+    <task id="14" name="MANTENIMIENTOS COMPLEJOS" note="" work="172800" start="20080422T000000Z" end="20080428T133000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="15" name="FormasPago.pas" note="" work="21600" start="20080422T000000Z" end="20080422T160000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="16" name="Usuarios.pas" note="" work="21600" start="20080422T160000Z" end="20080424T113000Z" work-start="20080422T160000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="15" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="17" name="Conceptos.pas" note="" work="21600" start="20080424T113000Z" end="20080425T090000Z" work-start="20080424T113000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="16" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="18" name="Titulos.pas" note="" work="21600" start="20080425T090000Z" end="20080425T170000Z" work-start="20080425T090000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="17" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="19" name="Grupos.pas" note="" work="21600" start="20080425T170000Z" end="20080426T123000Z" work-start="20080425T170000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="18" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="20" name="Cuentas.pas" note="" work="21600" start="20080426T123000Z" end="20080427T100000Z" work-start="20080426T123000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="19" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="21" name="SubCuentas.pas" note="" work="21600" start="20080427T100000Z" end="20080427T180000Z" work-start="20080427T100000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="20" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="22" name="Analiticas.pas" note="" work="21600" start="20080427T180000Z" end="20080428T133000Z" work-start="20080427T180000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="21" type="FS"/>
+        </predecessors>
+      </task>
+    </task>
+    <task id="23" name="LANZADORES DE INFORMES" note="" work="433800" start="20080422T000000Z" end="20080506T100000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="24" name="PlanContable.pas" note="" work="28800" start="20080422T000000Z" end="20080422T180000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="25" name="PlanAnalitico.pas" note="" work="28800" start="20080422T180000Z" end="20080424T173000Z" work-start="20080422T180000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="24" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="26" name="FiltroListadoAsientos.pas" note="" work="28800" start="20080424T173000Z" end="20080425T170000Z" work-start="20080424T173000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="25" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="27" name="FiltroListadosMayor.pas" note="" work="28800" start="20080425T170000Z" end="20080426T163000Z" work-start="20080425T170000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="26" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="28" name="FiltroBalances.pas" note="" work="28800" start="20080426T163000Z" end="20080427T160000Z" work-start="20080426T163000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="27" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="29" name="FiltroSitPgCg.pas" note="" work="28800" start="20080427T160000Z" end="20080428T133000Z" work-start="20080427T160000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="28" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="30" name="BalAcumulados.pas" note="" work="28800" start="20080428T133000Z" end="20080429T130000Z" work-start="20080428T133000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="29" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="31" name="BalExplotacion.pas" note="" work="28800" start="20080429T130000Z" end="20080430T123000Z" work-start="20080429T130000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="30" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="32" name="Filtro Libro Facturas Emitidas" note="" work="59400" start="20080430T123000Z" end="20080501T123000Z" work-start="20080430T123000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="31" type="FS"/>
+        </predecessors>
+        <task id="33" name="FiltroLibroFacturasEmitidad.pas" note="" work="30600" start="20080430T123000Z" end="20080501T123000Z" work-start="20080430T123000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+        <task id="34" name="IVA300.pas" note="" work="28800" start="20080430T123000Z" end="20080501T120000Z" work-start="20080430T123000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+          <predecessors>
+            <predecessor id="1" predecessor-id="33" type="SS"/>
+          </predecessors>
+        </task>
+      </task>
+      <task id="35" name="Filtro347.pas" note="" work="28800" start="20080501T123000Z" end="20080502T120000Z" work-start="20080501T123000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="32" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="36" name="IRPF110.pas" note="" work="28800" start="20080502T120000Z" end="20080503T113000Z" work-start="20080502T120000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="35" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="37" name="IRPF115.pas" note="" work="28800" start="20080503T113000Z" end="20080504T110000Z" work-start="20080503T113000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="36" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="38" name="ISoc202.pas" note="" work="28800" start="20080504T110000Z" end="20080505T103000Z" work-start="20080504T110000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="37" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="39" name="Amortizaciones.pas" note="" work="28800" start="20080505T103000Z" end="20080506T100000Z" work-start="20080505T103000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="38" type="FS"/>
+        </predecessors>
+      </task>
+    </task>
+    <task id="40" name="LANZADOR DE UTILIDADES" note="" work="201600" start="20080422T000000Z" end="20080429T130000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="41" name="RecalculoSaldos.pas" note="" work="28800" start="20080422T000000Z" end="20080422T180000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="42" name="BorradoDiario.pas" note="" work="28800" start="20080422T180000Z" end="20080424T173000Z" work-start="20080422T180000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="41" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="43" name="TraspasoApuntes.pas" note="" work="28800" start="20080424T173000Z" end="20080425T170000Z" work-start="20080424T173000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="42" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="44" name="CopiaAsientos.pas" note="" work="28800" start="20080425T170000Z" end="20080426T163000Z" work-start="20080425T170000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="43" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="45" name="PunteoDiario.pas" note="" work="28800" start="20080426T163000Z" end="20080427T160000Z" work-start="20080426T163000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="44" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="46" name="CierreEjercicio.pas" note="" work="28800" start="20080427T160000Z" end="20080428T133000Z" work-start="20080427T160000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="45" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="47" name="EnlaceContable.pas" note="" work="28800" start="20080428T133000Z" end="20080429T130000Z" work-start="20080428T133000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="46" type="FS"/>
+        </predecessors>
+      </task>
+    </task>
+    <task id="48" name="DATAMODULOS" note="" work="86400" start="20080422T000000Z" end="20080425T170000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="49" name="DM.pas" note="" work="28800" start="20080422T000000Z" end="20080422T180000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="50" name="DMControl.pas" note="" work="28800" start="20080422T180000Z" end="20080424T173000Z" work-start="20080422T180000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="49" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="51" name="DMConta.pas" note="" work="28800" start="20080424T173000Z" end="20080425T170000Z" work-start="20080424T173000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="50" type="FS"/>
+        </predecessors>
+      </task>
+    </task>
+    <task id="52" name="MODULOS PRINCIPALES" note="" work="205200" start="20080422T000000Z" end="20080425T180000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="53" name="Diario.pas (Carga Asientos)" note="" work="28800" start="20080422T000000Z" end="20080422T180000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="54" name="Cartera de Efectos" note="" work="117000" start="20080422T180000Z" end="20080424T180000Z" work-start="20080422T180000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="53" type="FS"/>
+        </predecessors>
+        <task id="55" name="CarteraEfectos.pas" note="" work="30600" start="20080422T180000Z" end="20080424T180000Z" work-start="20080422T180000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+        <task id="56" name="EfectosComerciales.pas" note="" work="28800" start="20080422T180000Z" end="20080424T173000Z" work-start="20080422T180000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+          <predecessors>
+            <predecessor id="1" predecessor-id="55" type="SS"/>
+          </predecessors>
+        </task>
+        <task id="57" name="SituacionEfecto.pas" note="" work="28800" start="20080422T180000Z" end="20080424T173000Z" work-start="20080422T180000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+          <predecessors>
+            <predecessor id="1" predecessor-id="55" type="SS"/>
+          </predecessors>
+        </task>
+        <task id="58" name="GeneracionAsiento.pas" note="" work="28800" start="20080422T180000Z" end="20080424T173000Z" work-start="20080422T180000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+          <predecessors>
+            <predecessor id="1" predecessor-id="55" type="SS"/>
+          </predecessors>
+        </task>
+      </task>
+      <task id="59" name="Empresas" note="" work="59400" start="20080424T180000Z" end="20080425T180000Z" work-start="20080424T180000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="54" type="FS"/>
+        </predecessors>
+        <task id="60" name="Empresas.pas" note="" work="30600" start="20080424T180000Z" end="20080425T180000Z" work-start="20080424T180000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+        <task id="61" name="UtilEmpresas.pas" note="" work="28800" start="20080424T180000Z" end="20080425T173000Z" work-start="20080424T180000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+          <predecessors>
+            <predecessor id="1" predecessor-id="60" type="SS"/>
+          </predecessors>
+        </task>
+      </task>
+    </task>
+    <task id="62" name="CARGAS R&#xC1;PIDAS DE APUNTES" note="" work="145800" start="20080422T000000Z" end="20080426T170000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="63" name="Carga R&#xE1;pida Facturas" note="" work="59400" start="20080422T000000Z" end="20080422T183000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <task id="64" name="CargaRapidaFacturas.pas" note="" work="30600" start="20080422T000000Z" end="20080422T183000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+        <task id="65" name="Vencimientos.pas" note="" work="28800" start="20080422T000000Z" end="20080422T180000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+          <predecessors>
+            <predecessor id="1" predecessor-id="64" type="SS"/>
+          </predecessors>
+        </task>
+      </task>
+      <task id="66" name="CargaApuntes.pas" note="" work="28800" start="20080422T183000Z" end="20080424T180000Z" work-start="20080424T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="63" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="67" name="CargaRapidaNominas.pas" note="" work="28800" start="20080424T180000Z" end="20080425T173000Z" work-start="20080424T180000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="66" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="68" name="CargaCobrosPagos.pas" note="" work="28800" start="20080425T173000Z" end="20080426T170000Z" work-start="20080425T173000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="67" type="FS"/>
+        </predecessors>
+      </task>
+    </task>
+    <task id="69" name="UTILIDADES DEL SISTEMA" note="" work="201600" start="20080422T000000Z" end="20080429T130000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="70" name="ActualizacionDB.pas" note="" work="28800" start="20080422T000000Z" end="20080422T180000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="71" name="Importacion.pas" note="" work="28800" start="20080422T180000Z" end="20080424T173000Z" work-start="20080422T180000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="70" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="72" name="TraspasoDatos.pas" note="" work="28800" start="20080424T173000Z" end="20080425T170000Z" work-start="20080424T173000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="71" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="73" name="Parametrizacion.pas" note="" work="28800" start="20080425T170000Z" end="20080426T163000Z" work-start="20080425T170000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="72" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="74" name="ParametrizacionFacturacion.pas" note="" work="28800" start="20080426T163000Z" end="20080427T160000Z" work-start="20080426T163000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="73" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="75" name="Calculadora.pas" note="" work="28800" start="20080427T160000Z" end="20080428T133000Z" work-start="20080427T160000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="74" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="76" name="PreviewForm.pas (Formulario Especial Informes)" note="" work="28800" start="20080428T133000Z" end="20080429T130000Z" work-start="20080428T133000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="75" type="FS"/>
+        </predecessors>
+      </task>
+    </task>
+    <task id="77" name="UTILIDADES VARIAS" note="" work="117000" start="20080422T000000Z" end="20080425T173000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="78" name="FiltroMayorSubcuenta.pas" note="" work="28800" start="20080422T000000Z" end="20080422T180000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="79" name="NuevaSubcuenta.pas" note="" work="28800" start="20080422T180000Z" end="20080424T173000Z" work-start="20080422T180000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="78" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="80" name="Carga Asiento" note="" work="59400" start="20080424T173000Z" end="20080425T173000Z" work-start="20080424T173000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="79" type="FS"/>
+        </predecessors>
+        <task id="81" name="CargaAsiento.pas" note="" work="30600" start="20080424T173000Z" end="20080425T173000Z" work-start="20080424T173000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+        <task id="82" name="DetalleIVA.pas" note="" work="28800" start="20080424T173000Z" end="20080425T170000Z" work-start="20080424T173000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+          <predecessors>
+            <predecessor id="1" predecessor-id="81" type="SS"/>
+          </predecessors>
+        </task>
+      </task>
+    </task>
+    <task id="83" name="UNITS SIN FORM" note="" work="230400" start="20080422T000000Z" end="20080430T123000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="84" name="Globales.pas" note="" work="28800" start="20080422T000000Z" end="20080422T180000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="85" name="General.pas" note="" work="28800" start="20080422T180000Z" end="20080424T173000Z" work-start="20080422T180000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="84" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="86" name="InfAsientos.pas" note="" work="28800" start="20080424T173000Z" end="20080425T170000Z" work-start="20080424T173000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="85" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="87" name="InfMayor.pas" note="" work="28800" start="20080425T170000Z" end="20080426T163000Z" work-start="20080425T170000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="86" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="88" name="InfLibroIVA.pas" note="" work="28800" start="20080426T163000Z" end="20080427T160000Z" work-start="20080426T163000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="87" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="89" name="InfMod347.pas" note="" work="28800" start="20080427T160000Z" end="20080428T133000Z" work-start="20080427T160000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="88" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="90" name="InfBalanceSumasSaldos.pas" note="" work="28800" start="20080428T133000Z" end="20080429T130000Z" work-start="20080428T133000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="89" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="91" name="InfBalanceSituacion.pas" note="" work="28800" start="20080429T130000Z" end="20080430T123000Z" work-start="20080429T130000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="90" type="FS"/>
+        </predecessors>
+      </task>
+    </task>
+    <task id="92" name="ELIMINACI&#xD3;N DE COMPONENTES DE TERCEROS" note="" work="309600" start="20080422T000000Z" end="20080422T183000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="93" name="Erradicar el BDE" note="" work="19800" start="20080422T000000Z" end="20080422T133000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="94" name="First Class 4000 Std Vcl 7 Erradicar estos componentes." note="" work="28800" start="20080422T000000Z" end="20080422T180000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="95" name="Quitar el Componente UEspere." note="Este es un componente muy sencillo pero bastante &#xFA;til, que se&#10;encuentra integrado en los componentes de SIAM. &#10;&#10;Consiste en darle un aspecto m&#xE1;s actual, ponerlo como parte &#10;del programa. &#10;" work="30600" start="20080422T000000Z" end="20080422T183000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="96" name="InfoPower 4000 Std_VCL 7 Erradicar estos Componentes." note="" work="28800" start="20080422T000000Z" end="20080422T180000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="97" name="Orpheus400  Erradicar estos componentes" note="" work="28800" start="20080422T000000Z" end="20080422T180000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="98" name="SysTools7 erradicar estos Componentes" note="" work="28800" start="20080422T000000Z" end="20080422T180000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="99" name="am2000_d7  (Animated Menus)" note="" work="28800" start="20080422T000000Z" end="20080422T180000Z" work-start="20080422T080000Z" percent-complete="100" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="100" name="OnGuard Erradicar estos componentes." note="" work="28800" start="20080422T000000Z" end="20080422T180000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="101" name="OPartner7 Erradicar estos componentes." note="" work="28800" start="20080422T000000Z" end="20080422T180000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="102" name="Siam.dpk.  Erradicar estos componentes." note="" work="28800" start="20080422T000000Z" end="20080422T180000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="103" name="BaseDatos.dpk Erradicar estos componentes" note="" work="28800" start="20080422T000000Z" end="20080422T180000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+    </task>
+    <task id="104" name="NUEVO FORMATO DE LOS INFORMES" note="" work="1555200" start="20080422T000000Z" end="20080612T170000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="105" name="CarteraBanco.rtm" note="" work="28800" start="20080422T000000Z" end="20080422T180000Z" work-start="20080422T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="106" name="Cartera Comercial.rtm" note="" work="28800" start="20080422T180000Z" end="20080424T173000Z" work-start="20080422T180000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="105" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="107" name="CarteraFVenc.rtm" note="" work="28800" start="20080424T173000Z" end="20080425T170000Z" work-start="20080424T173000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="106" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="108" name="CarteraSituacion.rtm" note="" work="28800" start="20080425T170000Z" end="20080426T163000Z" work-start="20080425T170000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="107" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="109" name="CarteraSubCta.rtm" note="" work="28800" start="20080426T163000Z" end="20080427T160000Z" work-start="20080426T163000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="108" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="110" name="LAmortizacion.rtm" note="" work="28800" start="20080427T160000Z" end="20080428T133000Z" work-start="20080427T160000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="109" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="111" name="LAnal&#xED;ticas.rtm" note="" work="28800" start="20080428T133000Z" end="20080429T130000Z" work-start="20080428T133000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="110" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="112" name="LAsientos.rtm" note="" work="28800" start="20080429T130000Z" end="20080430T123000Z" work-start="20080429T130000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="111" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="113" name="LAsientosExpandido.rtm" note="" work="28800" start="20080430T123000Z" end="20080501T120000Z" work-start="20080430T123000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="112" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="114" name="LBalanceAcumulados.rtm" note="" work="28800" start="20080501T120000Z" end="20080502T113000Z" work-start="20080501T120000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="113" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="115" name="LBalanceExplotacion.rtm" note="" work="28800" start="20080502T113000Z" end="20080503T110000Z" work-start="20080502T113000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="114" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="116" name="LBlanceExplotacion_Analitica.rtm" note="" work="28800" start="20080503T110000Z" end="20080504T103000Z" work-start="20080503T110000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="115" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="117" name="LBalanceSituacion.rtm" note="" work="28800" start="20080504T103000Z" end="20080505T100000Z" work-start="20080504T103000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="116" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="118" name="LBalanceSituacionAnterior.rtm" note="" work="28800" start="20080505T100000Z" end="20080506T093000Z" work-start="20080505T100000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="117" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="119" name="LComerciales.rtm" note="" work="28800" start="20080506T093000Z" end="20080507T090000Z" work-start="20080506T093000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="118" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="120" name="LConceptos.rtm" note="" work="28800" start="20080507T090000Z" end="20080508T083000Z" work-start="20080507T090000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="119" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="121" name="LCuentaPPGG.rtm" note="" work="28800" start="20080508T083000Z" end="20080508T183000Z" work-start="20080508T083000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="120" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="122" name="LCuentaPPGGAnterior.rtm" note="" work="28800" start="20080508T183000Z" end="20080509T180000Z" work-start="20080509T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="121" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="123" name="LCuentas.rtm" note="" work="28800" start="20080509T180000Z" end="20080510T173000Z" work-start="20080509T180000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="122" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="124" name="LDelegaciones.rtm" note="" work="28800" start="20080510T173000Z" end="20080511T170000Z" work-start="20080510T173000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="123" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="125" name="LDepartamentos.rtm" note="" work="28800" start="20080511T170000Z" end="20080512T163000Z" work-start="20080511T170000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="124" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="126" name="LDetalleInmobilizado.rtm" note="" work="28800" start="20080512T163000Z" end="20080513T160000Z" work-start="20080512T163000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="125" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="127" name="LDetalleSubcuentas.rtm" note="" work="28800" start="20080513T160000Z" end="20080514T133000Z" work-start="20080513T160000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="126" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="128" name="LEmpresas.rtm" note="" work="28800" start="20080514T133000Z" end="20080515T130000Z" work-start="20080514T133000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="127" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="129" name="LFormasPago.rtm" note="" work="28800" start="20080515T130000Z" end="20080516T123000Z" work-start="20080515T130000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="128" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="130" name="LGastos.rtm" note="" work="28800" start="20080516T123000Z" end="20080517T120000Z" work-start="20080516T123000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="129" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="131" name="LGastosConcepto.rtm" note="" work="28800" start="20080517T120000Z" end="20080518T113000Z" work-start="20080517T120000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="130" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="132" name="LGastosExpandido.rtm" note="" work="28800" start="20080518T113000Z" end="20080519T110000Z" work-start="20080518T113000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="131" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="133" name="LGastosSubcuenta.rtm" note="" work="28800" start="20080519T110000Z" end="20080520T103000Z" work-start="20080519T110000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="132" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="134" name="LGrupos.rtm" note="" work="28800" start="20080520T103000Z" end="20080521T100000Z" work-start="20080520T103000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="133" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="135" name="LIncidenciasTraspaso.rtm" note="" work="28800" start="20080521T100000Z" end="20080522T093000Z" work-start="20080521T100000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="134" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="136" name="LIngresoGastos.rtm" note="" work="28800" start="20080522T093000Z" end="20080523T090000Z" work-start="20080522T093000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="135" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="137" name="LLibroFacturasEmitidas2.rtm" note="" work="28800" start="20080523T090000Z" end="20080524T083000Z" work-start="20080523T090000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="136" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="138" name="LLbroFacturasEmitidas.rtm" note="" work="28800" start="20080524T083000Z" end="20080524T183000Z" work-start="20080524T083000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="137" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="139" name="LLibroFacturasEmitidasSubcta.rtm" note="" work="28800" start="20080524T183000Z" end="20080525T180000Z" work-start="20080525T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="138" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="140" name="LLibroFacturasRecibidas.rtm" note="" work="28800" start="20080525T180000Z" end="20080526T173000Z" work-start="20080525T180000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="139" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="141" name="LLibroFacturasRecibidasSubcta.rtm" note="" work="28800" start="20080526T173000Z" end="20080527T170000Z" work-start="20080526T173000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="140" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="142" name="LLibroFacturasTipoIVA.rtm" note="" work="28800" start="20080527T170000Z" end="20080528T163000Z" work-start="20080527T170000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="141" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="143" name="LMayor3.rtm" note="" work="28800" start="20080528T163000Z" end="20080529T160000Z" work-start="20080528T163000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="142" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="144" name="LMayor.rtm" note="" work="28800" start="20080529T160000Z" end="20080530T133000Z" work-start="20080529T160000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="143" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="145" name="LModelo300.rtm" note="" work="28800" start="20080530T133000Z" end="20080531T130000Z" work-start="20080530T133000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="144" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="146" name="LOperaTer347.rtm" note="" work="28800" start="20080531T130000Z" end="20080601T123000Z" work-start="20080531T130000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="145" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="147" name="LOperaTer349.rtm" note="" work="28800" start="20080601T123000Z" end="20080602T120000Z" work-start="20080601T123000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="146" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="148" name="LPaises.rtm" note="" work="28800" start="20080602T120000Z" end="20080603T113000Z" work-start="20080602T120000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="147" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="149" name="LPlanAnalitico.rtm" note="" work="28800" start="20080603T113000Z" end="20080604T110000Z" work-start="20080603T113000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="148" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="150" name="LPlanContable.rtm" note="" work="28800" start="20080604T110000Z" end="20080605T103000Z" work-start="20080604T110000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="149" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="151" name="LProvincias.rtm" note="" work="28800" start="20080605T103000Z" end="20080606T100000Z" work-start="20080605T103000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="150" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="152" name="LProyectos.rtm" note="" work="28800" start="20080606T100000Z" end="20080607T093000Z" work-start="20080606T100000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="151" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="153" name="LSecciones.rtm" note="" work="28800" start="20080607T093000Z" end="20080608T090000Z" work-start="20080607T093000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="152" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="154" name="LSubCuentas.rtm" note="" work="28800" start="20080608T090000Z" end="20080609T083000Z" work-start="20080608T090000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="153" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="155" name="LSumasSaldos.rtm" note="" work="28800" start="20080609T083000Z" end="20080609T183000Z" work-start="20080609T083000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="154" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="156" name="LSumasSaldosSaldo.rtm" note="" work="28800" start="20080609T183000Z" end="20080610T180000Z" work-start="20080610T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="155" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="157" name="LtiposDiario.rtm" note="" work="28800" start="20080610T180000Z" end="20080611T173000Z" work-start="20080610T180000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="156" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="158" name="LTitulos.rtm" note="" work="28800" start="20080611T173000Z" end="20080612T170000Z" work-start="20080611T173000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="157" type="FS"/>
+        </predecessors>
+      </task>
+    </task>
+  </tasks>
+  <resource-groups/>
+  <resources>
+    <resource id="1" name="Juan C.Cilleruelo" short-name="CCILL" type="1" units="0" email="juanc.cilleruelo@mac.com" note="" std-rate="0" calendar="1"/>
+  </resources>
+  <allocations>
+    <allocation task-id="95" resource-id="1" units="100"/>
+    <allocation task-id="6" resource-id="1" units="100"/>
+    <allocation task-id="5" resource-id="1" units="100"/>
+    <allocation task-id="1" resource-id="1" units="100"/>
+  </allocations>
+</project>
