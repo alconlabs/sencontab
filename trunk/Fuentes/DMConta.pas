@@ -1,7 +1,8 @@
 unit DMConta;
 interface
-uses Classes, Controls, Dialogs, Forms, Graphics, Messages, SysUtils, Windows, IBQuery, IBDatabase, IBSQL,
-     IBTableSet, wwclient, Wwtable, IBCustomDataSet, DB, DBTables, DBClient,
+uses Classes, Controls, Dialogs, Forms, Graphics, Messages, SysUtils, Windows,
+     IBQuery, IBDatabase, IBSQL, IBTableSet,
+     wwclient, Wwtable, IBCustomDataSet, DB, DBTables, DBClient,
      ccMemTable;
 type
    TDMContaRef = class(TDataModule)

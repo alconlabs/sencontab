@@ -19,7 +19,6 @@ type
       BtnEdtAceptar:    TfcImageBtn;
       BtnEdtCancelar:   TfcImageBtn;
       GroupBox13:       TGroupBox;
-      StBrowser1:       TStBrowser;
       GroupBox7:        TGroupBox;
       Label37:          TLabel;
       Label38:          TLabel;
@@ -351,8 +350,9 @@ begin
    SetBounds(0, FormPrincipal.Panel1.Top + FormPrincipal.Panel1.Height + 1, Width, Height);
 
    DMRef.QParametros.Close;
-   DMRef.QParametros.Regenerar := True;
-   FIbQueryRefresh(DMRef.QParametros);
+   DMRef.QParametros.Open;
+   //DMRef.QParametros.Regenerar := True;
+   //FIbQueryRefresh(DMRef.QParametros);
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with DMRef.QParametros do begin
       if not (state in dseditmodes) then begin

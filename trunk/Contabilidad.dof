@@ -31,14 +31,14 @@ ShowHints=1
 ShowWarnings=1
 UnitAliases=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;
 NamespacePrefix=
-SymbolDeprecated=0
+SymbolDeprecated=1
 SymbolLibrary=1
 SymbolPlatform=1
 UnitLibrary=1
 UnitPlatform=1
-UnitDeprecated=0
+UnitDeprecated=1
 HResultCompat=1
-HidingMember=1
+HidingMember=0
 HiddenVirtual=1
 Garbage=1
 BoundsError=1
@@ -77,8 +77,8 @@ ImagebaseMultiple=1
 SuspiciousTypecast=1
 PrivatePropAccessor=1
 UnsafeType=0
-UnsafeCode=1
-UnsafeCast=1
+UnsafeCode=0
+UnsafeCast=0
 [Linker]
 MapFile=0
 OutputObjs=0
@@ -126,24 +126,13 @@ CodePage=1252
 [Version Info Keys]
 FileVersion=1.0.0.0
 [Excluded Packages]
-c:\borland\borland\delphi7\Bin\dclite70.bpl=Borland Integrated Translation Environment
-C:\cviews\Libs\RBuilder\Lib\dclRBC107.bpl=ReportBuilder TeeChart 4.04 Components
-C:\views\FastReport\LibD7\dclfs7.bpl=FastScript 1.7 Components
-C:\views\FastReport\LibD7\dclfrx7.bpl=FastReport 3.01 Components
-C:\views\FastReport\LibD7\dclfrxDB7.bpl=FastReport 3.01 DB Components
-C:\views\FastReport\LibD7\dclfsDB7.bpl=FastScript 1.7 DB Components
-C:\views\FastReport\LibD7\dclfrxado7.bpl=FastReport 3.01 ADO Components
-C:\views\FastReport\LibD7\dclfsado7.bpl=FastScript 1.7 ADO Components
-C:\views\FastReport\LibD7\dclfrxdbx7.bpl=FastReport 3.01 DBX Components
-C:\views\FastReport\LibD7\dclfrxibx7.bpl=FastReport 3.01 IBX Components
-C:\views\FastReport\LibD7\dclfsibx7.bpl=FastScript 1.7 IBX Components
-C:\views\FastReport\LibD7\dclfrxe7.bpl=FastReport 3.01 Exports
+C:\cviews\libs\RBuilder\Lib\dclRBC107.bpl=ReportBuilder TeeChart 4.04 Components
 [HistoryLists\hlUnitAliases]
 Count=1
 Item0=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;
 [HistoryLists\hlSearchPath]
 Count=4
-Item0=..\dunit\src;..\Componentes7\PaqueteBaseDatos\IBTableSet;..\Componentes7\PaqueteBaseDatos\NavegadorNotarios;..\Componentes7\PaqueteSiam\Mensaje;..\Componentes7\PaqueteSiam\Registro;..\OnGuard;..\OPartner7;..\Animated Menus;..\Extra\Source;..\IbScript\source\vcl;..\Siamlib7;..\ShellShock;.\Fuentes
-Item1=..\dunit\src;..\Componentes7\PaqueteBaseDatos\IBTableSet;..\Componentes7\PaqueteBaseDatos\NavegadorNotarios;..\Componentes7\PaqueteSiam\Mensaje;..\Componentes7\PaqueteSiam\Registro;..\OnGuard;..\OPartner7;..\Animated Menus;..\Extra\Source;..\IbScript\source\vcl;..\Siamlib7;..\ShellShock
-Item2=..\Componentes7\PaqueteBaseDatos\IBTableSet;..\Componentes7\PaqueteBaseDatos\NavegadorNotarios;..\Componentes7\PaqueteSiam\Mensaje;..\Componentes7\PaqueteSiam\Registro;..\OnGuard;..\OPartner7;..\Animated Menus;..\Extra\Source;..\IbScript\source\vcl;..\Siamlib7;..\ShellShock
+Item0=..\Componentes7\PaqueteBaseDatos\IBTableSet;..\Componentes7\PaqueteBaseDatos\NavegadorNotarios;..\Componentes7\PaqueteSiam\Mensaje;..\Componentes7\PaqueteSiam\Registro;..\OnGuard;..\OPartner7;..\Animated Menus;..\Extra\Source;..\IbScript\source\vcl;..\Siamlib7;..\ShellShock
+Item1=..\dunit\src;..\Componentes7\PaqueteBaseDatos\IBTableSet;..\Componentes7\PaqueteBaseDatos\NavegadorNotarios;..\Componentes7\PaqueteSiam\Mensaje;..\Componentes7\PaqueteSiam\Registro;..\OnGuard;..\OPartner7;..\Animated Menus;..\Extra\Source;..\IbScript\source\vcl;..\Siamlib7;..\ShellShock;.\Fuentes
+Item2=..\dunit\src;..\Componentes7\PaqueteBaseDatos\IBTableSet;..\Componentes7\PaqueteBaseDatos\NavegadorNotarios;..\Componentes7\PaqueteSiam\Mensaje;..\Componentes7\PaqueteSiam\Registro;..\OnGuard;..\OPartner7;..\Animated Menus;..\Extra\Source;..\IbScript\source\vcl;..\Siamlib7;..\ShellShock
 Item3=..\Componentes7\PaqueteBaseDatos\IBTableSet;..\Componentes7\PaqueteBaseDatos\NavegadorNotarios;..\Componentes7\PaqueteSiam\Mensaje;..\Componentes7\PaqueteSiam\Registro;..\OnGuard;..\OPartner7;..\Animated Menus;..\Extra\Source;C:\cviews\IbScript\source\vcl

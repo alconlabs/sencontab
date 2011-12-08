@@ -23,7 +23,7 @@ type
     BtnCargaFacturasVenta: TSpeedButton;
     BtnCargaSimplificada: TSpeedButton;
     BtnCargaCobrosPagos: TSpeedButton;
-    Enlace2:      TppBDEPipeline;
+    Enlace2: TppBDEPipeline;
     ppParameterList1: TppParameterList;
     MenuPrincipal: TMainMenu;
     MenuItemMaestros: TMenuItem;
@@ -39,7 +39,6 @@ type
     MenuItemTraspasoDatos: TMenuItem;
     MenuItemActualizacionDB: TMenuItem;
     MenuItemVentana: TMenuItem;
-    Image2: TImage;
     ppHeaderBand1: TppHeaderBand;
     LineaCabecera1: TppLabel;
     ppShape4: TppShape;
@@ -597,7 +596,7 @@ end;
 procedure TFormPrincipal.PonerTituloMenu;
 begin
    Self.Caption := Space(15) + gvNombreEmpresaMenu + Space(15) + '-' + space(5) +
-      'GESTION CONTABLE PYMES  Versión 5.0 (1997-2007)';
+      'GESTION CONTABLE PYMES  Versión 5.0 (1997-2012)';
 end;
 
 procedure TFormPrincipal.MenuItemGruposClick(Sender: TObject);
@@ -698,13 +697,16 @@ begin
 end;
 
 procedure TFormPrincipal.MenuItemFacturacionClick(Sender: TObject);
+var ParametersFact :TWParametrizacionFacturacion;
 begin
    {$Message Warn '12ª Ventana para Test}
    if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WPARAMETRIZACION') then Exit;
-   if not Assigned(WParametrizacionFacturacion) then WParametrizacionFacturacion := TWParametrizacionFacturacion.Create(nil);
-   WParametrizacionFacturacion.ShowModal;
-   WParametrizacionFacturacion.Free;
-   WParametrizacionFacturacion := nil;
+   ParametersFact := TWParametrizacionFacturacion.Create(Application);
+   try
+      ParametersFact.ShowModal;
+   finally
+      ParametersFact.Free;
+   end;
 end;
 
 procedure TFormPrincipal.MenuItemRecalculoSaldosClick(Sender: TObject);
