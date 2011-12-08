@@ -1534,7 +1534,7 @@ begin
                QDiario.parambyname('importe').AsFloat  :=
                   RoundToDecimal(FieldByName('cuotaiva').AsFloat, 2, True);
 
-               // Hacer : Usar en los enlaces del siamgest
+               // Hacer : Usar en los enlaces de gestión
                // Solo si no es diarsa o parametro recargo independiente
                if (DmRef.QParametros.FieldByName('Recargo').AsString <> 'S') then   begin
                   QDiario.parambyname('cuotaRecargo').AsFloat :=

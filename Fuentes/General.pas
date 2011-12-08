@@ -11,7 +11,6 @@ var MascaraImportes, MascaraImportesORPHEUS: String;
 procedure PonerTipoConta(TipoConcepto: String);
 procedure ActivarTransacciones(Ventana: TForm);
 procedure CargaImagenesMensaje(Mensaje: TMensaje);
-procedure CentrarPara1024(Ventana: TForm);
 procedure FibQueryOpen(Query: TIBTableSet; select: String);
 procedure FIbQueryRefresh(Query: TIBTableSet);
 procedure Modo(Formulario: TForm; Modo: TModo);
@@ -61,11 +60,6 @@ begin
    Mensaje.Imagenes.Si_Arriba := gvDirImagenes + gcMnsBtnSi_Arriba;
    Mensaje.Imagenes.No_Arriba := gvDirImagenes + gcMnsBtnNo_Arriba;
    Mensaje.Imagenes.Ok_Arriba := gvDirImagenes + gcMnsBtnOk_Arriba;
-end;
-
-procedure CentrarPara1024;
-begin
-   Ventana.SetBounds(100, 125, Ventana.Width, Ventana.Height);
 end;
 
 procedure FibQueryOpen(Query :TibTableSet; Select :String);
@@ -637,15 +631,14 @@ begin
    end;
 end;
 
-procedure QueryOpen(Query: TIBTableSet; select: String);
+procedure QueryOpen(Query :TIBTableSet; Select :String);
 begin
-   {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-   with Query, SelectSql do begin
-      Close;
-      Clear;
-      Add(select);
-      Open;
+   Query.Close;
+   if Trim(Select) <> '' then begin
+      Query.SelectSQL.Clear;
+      Query.SelectSQL.Add(Select);
    end;
+   Query.Open;
 end;
 
 function ConversionImporte(Importe: Double;

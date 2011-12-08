@@ -824,7 +824,7 @@ begin
       ParamByName('ID_PARAMETROS').AsInteger := DMRef.QParametros.FieldByName('ID_PARAMETROS').AsInteger;
       ExecQuery;
       Transaction.CommitRetaining;
-      FIbQueryRefresh(DMRef.QParametros);
+      //FIbQueryRefresh(DMRef.QParametros);
 
       Close;
       Free;

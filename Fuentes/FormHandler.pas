@@ -79,7 +79,7 @@ const SC_ccHELPMENUITEM = WM_USER + 1;
       
       Fields_Navigating_BorderStyle = bsSingle; //bsNone;
       Fields_Navigating_Ctl3D       = False;
-      Fields_Navigating_Color       = $00FFFFDD; //clBtnFace;
+      Fields_Navigating_Color       = $00D9D1C0; //$00FFFFDD; //clBtnFace;
 
 procedure ccMakeModal(Modal :Boolean);
 var i :Integer;
