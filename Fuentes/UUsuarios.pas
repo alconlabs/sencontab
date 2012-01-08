@@ -6,110 +6,85 @@ uses Buttons, Forms, Windows, Messages, DBClient, IBDatabase, DB, SysUtils, IBCu
      fcimageform, Classes, DBCtrls, wwDBComb, wwDBSpin;
 
 type
-   TWUsuarios = class(TForm)
-      OvcController1: TOvcController;
-      SUsuarios:     TwwDataSource;
-      QUsuarios:     TIBTableSet;
-      TransUsuarios: TIBTransaction;
-      Shape1:        TShape;
-      Label8:        TLabel;
-      FiltroBuscar:  TGroupBox;
-      Label10:       TLabel;
-      FiltroBUsuario: TOvcDbPictureField;
-      TFiltro:       TClientDataSet;
-      dsFiltro:      TDataSource;
-      Aux:           TfcImageBtn;
-      fcIBCerrar:    TfcImageBtn;
-      PanelSombra:   TPanel;
-      Panel3:        TPanel;
-      Panel4:        TPanel;
-      Panel5:        TPanel;
-      QUsuariosID_USUARIO: TIntegerField;
-      QUsuariosID_EMPRESA: TIntegerField;
-      QUsuariosCLAVE: TIBStringField;
-      QUsuariosNOMBRE: TIBStringField;
-      Paginas:       TOvcNotebook;
-      DatosProvincias: TGroupBox;
-      Label9:        TLabel;
-      Label25:       TLabel;
-      Label27:       TLabel;
-      eUsuario:      TOvcDbPictureField;
-      eClave:        TOvcDbPictureField;
-      Permisos:      TfcTreeView;
-      QModulos:      TIBTableSet;
-      SModulos:      TwwDataSource;
-      QMantenimientos: TIBTableSet;
-      SMantenimientos: TwwDataSource;
-      QPermisos:     TIBTableSet;
-      TransPermisos: TIBTransaction;
-      SPermisos:     TwwDataSource;
-      wwDBLookupCombo1: TwwDBLookupCombo;
-      QModulosIDMODULO: TIntegerField;
-      QModulosDESCRIPCION: TIBStringField;
-      QMantenimientosIDMODULO: TIntegerField;
-      QMantenimientosIDMANTENIMIENTO: TIntegerField;
-      QMantenimientosDESCRIPCION: TIBStringField;
-      QMantenimientosWINDOWNAME: TIBStringField;
-      QMantenimientosPERMISOSESCRITURA: TIBStringField;
-      QMantenimientosPERMISOIMPRESION: TIBStringField;
-      QPermisosIDUSUARIO: TIntegerField;
-      QPermisosIDMANTENIMIENTO: TIntegerField;
-      QPermisosIDMODULO: TIntegerField;
-      QPermisosANIADIR: TIBStringField;
-      QPermisosMODIFICAR: TIBStringField;
-      QPermisosBORRAR: TIBStringField;
-      QPermisosIMPRESION: TIBStringField;
-      Panel1:        TPanel;
-      BtnNavFiltro:  TfcImageBtn;
-      BtnEdtGuardar: TfcImageBtn;
-      BtnEdtCancelar: TfcImageBtn;
-      Navegador:     TDBNavegadorNotarios;
-      BtnNavCerrar:  TfcImageBtn;
-      BtnNavAnadir:  TfcImageBtn;
-      BtnEdtDesmarcar: TfcImageBtn;
-      BtnEdtMarcar:  TfcImageBtn;
-      BtnNavBorrar:  TfcImageBtn;
-      BtnNavModificar: TfcImageBtn;
-      Rejilla:       TwwDBGrid;
-      Panel2:        TPanel;
-      Formulario:    TfcImageForm;
-      procedure BtnNavAniadirClick(Sender: TObject);
-      procedure BtnNavBorrarClick(Sender: TObject);
-      procedure BtnEdtGuardarClick(Sender: TObject);
-      procedure BtnEdtCancelarClick(Sender: TObject);
-      procedure FormKeyPress(Sender: TObject; var Key: Char);
-      procedure FormCreate(Sender: TObject);
-      procedure FormShow(Sender: TObject);
-      procedure BtnNavCerrarClick(Sender: TObject);
-      procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-      procedure FormClose(Sender: TObject; var Action: TCloseAction);
-      procedure RejillaCalcTitleAttributes(Sender: TObject; AFieldName: String; AFont: TFont; ABrush: TBrush; var ATitleAlignment: TAlignment);
-      procedure RejillaTitleButtonClick(Sender: TObject; AFieldName: String);
-      procedure RejillaDblClick(Sender: TObject);
-      procedure fcImageBtnMouseEnter(Sender: TObject);
-      procedure fcImageBtnMouseLeave(Sender: TObject);
-      procedure PermisosCalcNodeAttributes(TreeView: TfcCustomTreeView; Node: TfcTreeNode; State: TfcItemStates);
-      procedure PBorraBuscar(Sender: TObject);
-      procedure BuscaTecla(Sender: TObject);
-      procedure BtnNavFiltroClick(Sender: TObject);
-      procedure PermisosToggleCheckbox(TreeView: TfcCustomTreeView; Node: TfcTreeNode);
-      procedure PaginasPageChanged(Sender: TObject; Index: Integer);
-      procedure QUsuariosAfterScroll(DataSet: TDataSet);
-      procedure BtnEdtMarcarClick(Sender: TObject);
-      procedure BtnEdtDesmarcarClick(Sender: TObject);
-   private
-      FCampoOrden: String;
-      x:           Integer;
-      procedure CrearFiltro;
-      procedure InicializarFiltro;
-      procedure GuardarPermisos;
-      procedure MostrarPermisos;
-      procedure PrepararQuery;
-      procedure RefrescarBD;
-      function Acceso_usuarios(codigo: String): Boolean;
+  TWUsuarios = class(TForm)
+    OvcController1: TOvcController;
+    SUsuarios:     TwwDataSource;
+    QUsuarios:     TIBTableSet;
+    TransUsuarios: TIBTransaction;
+    Aux: TBitBtn;
+    QUsuariosID_USUARIO: TIntegerField;
+    QUsuariosID_EMPRESA: TIntegerField;
+    QUsuariosCLAVE: TIBStringField;
+    QUsuariosNOMBRE: TIBStringField;
+    Paginas:       TOvcNotebook;
+    DatosProvincias: TGroupBox;
+    Label9:        TLabel;
+    Label25:       TLabel;
+    Label27:       TLabel;
+    eUsuario:      TOvcDbPictureField;
+    eClave:        TOvcDbPictureField;
+    Permisos:      TfcTreeView;
+    QModulos:      TIBTableSet;
+    SModulos:      TwwDataSource;
+    QMantenimientos: TIBTableSet;
+    SMantenimientos: TwwDataSource;
+    QPermisos:     TIBTableSet;
+    TransPermisos: TIBTransaction;
+    SPermisos:     TwwDataSource;
+    wwDBLookupCombo1: TwwDBLookupCombo;
+    QModulosIDMODULO: TIntegerField;
+    QModulosDESCRIPCION: TIBStringField;
+    QMantenimientosIDMODULO: TIntegerField;
+    QMantenimientosIDMANTENIMIENTO: TIntegerField;
+    QMantenimientosDESCRIPCION: TIBStringField;
+    QMantenimientosWINDOWNAME: TIBStringField;
+    QMantenimientosPERMISOSESCRITURA: TIBStringField;
+    QMantenimientosPERMISOIMPRESION: TIBStringField;
+    QPermisosIDUSUARIO: TIntegerField;
+    QPermisosIDMANTENIMIENTO: TIntegerField;
+    QPermisosIDMODULO: TIntegerField;
+    QPermisosANIADIR: TIBStringField;
+    QPermisosMODIFICAR: TIBStringField;
+    QPermisosBORRAR: TIBStringField;
+    QPermisosIMPRESION: TIBStringField;
+    Panel1:        TPanel;
+    BtnEdtGuardar: TBitBtn;
+    BtnCancel: TBitBtn;
+    BtnNavAnadir: TBitBtn;
+    BtnEdtDesmarcar: TBitBtn;
+    BtnEdtMarcar: TBitBtn;
+    BtnNavBorrar: TBitBtn;
+    BtnNavModificar: TBitBtn;
+    Rejilla: TwwDBGrid;
+    procedure BtnNavAniadirClick(Sender: TObject);
+    procedure BtnNavBorrarClick(Sender: TObject);
+    procedure BtnEdtGuardarClick(Sender: TObject);
+    procedure BtnCancelClick(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure RejillaCalcTitleAttributes(Sender: TObject; AFieldName: String; AFont: TFont; ABrush: TBrush; var ATitleAlignment: TAlignment);
+    procedure RejillaTitleButtonClick(Sender: TObject; AFieldName: String);
+    procedure RejillaDblClick(Sender: TObject);
+    procedure PermisosCalcNodeAttributes(TreeView: TfcCustomTreeView; Node: TfcTreeNode; State: TfcItemStates);
+    procedure PermisosToggleCheckbox(TreeView: TfcCustomTreeView; Node: TfcTreeNode);
+    procedure PaginasPageChanged(Sender: TObject; Index: Integer);
+    procedure QUsuariosAfterScroll(DataSet: TDataSet);
+    procedure BtnEdtMarcarClick(Sender: TObject);
+    procedure BtnEdtDesmarcarClick(Sender: TObject);
+  private
+    FCampoOrden: String;
+    x:           Integer;
+    procedure GuardarPermisos;
+    procedure MostrarPermisos;
+    procedure PrepararQuery;
+    procedure RefrescarBD;
+    function Acceso_usuarios(codigo: String): Boolean;
    public
    protected
-      procedure CreateParams(var Params: TCreateParams); override;
+     procedure CreateParams(var Params: TCreateParams); override;
    end;
 
 var WUsuarios: TWUsuarios;
@@ -124,31 +99,6 @@ uses Dialogs, General, Globales, DMControl, MenuPrincipal;
 function TWUsuarios.Acceso_Usuarios(codigo: String): Boolean;
 begin
    Acceso_Usuarios := True;
-end;
-
-procedure TWUsuarios.CrearFiltro;
-begin
-   {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-   with TFiltro do begin
-      active := False;
-      {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-      with FieldDefs do begin
-         Clear;
-         Add('BUsuario', ftstring, 10, False);
-      end;
-
-      CreateDataSet;
-      active := True;
-      append;
-   end;
-end;
-
-procedure TWUsuarios.InicializarFiltro;
-begin
-   {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-   with TFiltro do begin
-      FieldByName('BUsuario').AsString := '';
-   end;
 end;
 
 procedure TWUsuarios.GuardarPermisos;
@@ -306,18 +256,7 @@ begin
       Clear;
       Add('SELECT * FROM USUARIOS');
 
-      if TFiltro.FieldByName('BUsuario').AsString <> '' then   begin
-         add('WHERE UPPER(NOMBRE) LIKE UPPER(:Nombre)');
-      end;
-
       Add('ORDER BY NOMBRE');
-
-      // PARÁMETROS
-      if TFiltro.FieldByName('BUsuario').AsString <> '' then   begin
-         params.byname('Nombre').AsString :=
-            Copy(TFiltro.FieldByName('BUsuario').AsString + '%', 1,
-            TFiltro.FieldByName('BUsuario').Size);
-      end;
 
       Prepare;
       EnableControls;
@@ -366,9 +305,6 @@ begin
    end;
 
    Modo(Self, Naveg);
-
-   CrearFiltro;
-   InicializarFiltro;
 
    FCampoOrden := 'NOMBRE';
    PrepararQuery;
@@ -420,84 +356,14 @@ begin
 end;
 
 procedure TWUsuarios.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-var
-   Anterior: Boolean;
-   Salir:    Boolean;
+var Anterior :Boolean;
+    Salir    :Boolean;
 begin
    case Key of
-      VK_ESCAPE: begin
-         Salir := True;
-         if (ActiveControl is TwwDBLookupCombo) then begin
-            if TwwDBLookupCombo(ActiveControl).Grid.Visible then begin
-               Salir := False;
-            end;
-         end
-         else
-         if (ActiveControl is TwwDBComboBox) then begin
-            if TwwDBComboBox(ActiveControl).DroppedDown then begin
-               Salir := False;
-            end;
-         end;
-         if Salir then begin
-            if TDataSet(Navegador.DataSource.DataSet).State in
-               dsEditModes then begin
-               BtnEdtCancelar.Click;
-            end
-            else begin
-               BtnNavCerrar.Click;
-            end;
-         end;
-      end;
-      VK_SPACE: begin
-         if Copy(Trim(UpperCase(ActiveControl.Name)), 1, 6) <> 'FILTRO' then   begin
-            if not (TDataSet(Navegador.DataSource.DataSet).State in dsEditModes) then begin
-               Key := 0;
-               RejillaDblClick(Self);
-            end;
-         end;
-      end;
-      VK_F3: begin
-         if TDataSet(Navegador.DataSource.DataSet).State in dsEditModes then begin
-            BtnEdtGuardar.Click;
-         end;
-      end;
-      VK_F5: begin
-         if (ActiveControl is TwwDBLookupCombo) then begin
-            TwwDBLookupCombo(ActiveControl).DropDown;
-         end
-         else
-         if (ActiveControl is TwwDBComboBox) then begin
-            TwwDBComboBox(ActiveControl).DropDown;
-         end;
-      end;
-      VK_UP: begin
-         Anterior := True;
-         if (ActiveControl is TwwDBSpinEdit) then begin
-            if TwwDBSpinEdit(ActiveControl).SelLength =
-               Length(TwwDBSpinEdit(ActiveControl).Text) then begin
-               Key := 0;
-               SelectNext(ActiveControl, not (GetKeyState(VK_SHIFT) and $80 = 0), True);
-            end;
-         end
-         else
-         if (ActiveControl is TwwDBLookupCombo) then begin
-            if TwwDBLookupCombo(ActiveControl).Grid.Visible then begin
-               Anterior := False;
-            end;
-         end
-         else
-         if (ActiveControl is TwwDBComboBox) then begin
-            if TwwDBComboBox(ActiveControl).DroppedDown then begin
-               Anterior := False;
-            end;
-         end
-         else
-         if (ActiveControl is TwwDBGrid) then begin
-            Anterior := False;
-         end;
-
-         if Anterior then begin
-            SelectNext(ActiveControl, not (GetKeyState(VK_SHIFT) and $80 = 0), True);
+      VK_ESCAPE :begin
+         Key := 0;
+         if QUsuarios.State in dsEditModes then begin
+            BtnCancel.Click;
          end;
       end;
    end;
@@ -551,7 +417,6 @@ begin
    RefrescarBD;
    Modo(self, Naveg);
    Paginas.PageIndex := TabDatos;
-   FiltroBUsuario.SetFocus;
 end;
 
 procedure TWUsuarios.BtnNavBorrarClick(Sender: TObject);
@@ -580,7 +445,7 @@ begin
    eUsuario.Visible := True;
 end;
 
-procedure TWUsuarios.BtnEdtCancelarClick(Sender: TObject);
+procedure TWUsuarios.BtnCancelClick(Sender: TObject);
 var Cancelar: Boolean;
 begin
    Cancelar := True;
@@ -590,7 +455,7 @@ begin
       eUsuario.Repaint;
    end;
 
-   if cancelar then  begin
+   if Cancelar then  begin
       try
          QUsuarios.Cancel;
          MostrarPermisos;
@@ -600,11 +465,7 @@ begin
       end;
       Modo(Self, Naveg);
       Paginas.PageIndex := TabDatos;
-      FiltroBUsuario.SetFocus;
-
-      //Aitor: Activo el Edit del nombre porque si no desaparece
       eUsuario.SetFocus;
-      //FiltroBUsuario.SetFocus;
    end;
 
 end;
@@ -613,9 +474,6 @@ procedure TWUsuarios.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
    if QUsuarios.State = dsBrowse then  begin
       Action := caFree;
-      Formulario.Free;
-      Formulario := nil;
-      WUsuarios  := nil;
    end
    else begin
       MessageBeep(0);
@@ -626,11 +484,6 @@ end;
 procedure TWUsuarios.FormShow(Sender: TObject);
 begin
    SetBounds(0, FormPrincipal.Panel1.Top + FormPrincipal.Panel1.Height + 1, Width, Height);
-end;
-
-procedure TWUsuarios.BtnNavCerrarClick(Sender: TObject);
-begin
-   Close;
 end;
 
 procedure TWUsuarios.RejillaTitleButtonClick(Sender: TObject; AFieldName: String);
@@ -672,16 +525,6 @@ begin
    end;
 end;
 
-procedure TWUsuarios.fcImageBtnMouseEnter(Sender: TObject);
-begin
-   (Sender as TfcImageBtn).Image.LoadFromFile(gvDirImagenes + gcBtnBlanco);
-end;
-
-procedure TWUsuarios.fcImageBtnMouseLeave(Sender: TObject);
-begin
-   (Sender as TfcImageBtn).Image.LoadFromFile(gvDirImagenes + gcBtn);
-end;
-
 procedure TWUsuarios.PermisosCalcNodeAttributes(TreeView: TfcCustomTreeView;
    Node: TfcTreeNode; State: TfcItemStates);
 begin
@@ -692,33 +535,6 @@ begin
          Permisos.Canvas.Font.Color := clNavy;
       end;
    end;
-end;
-
-procedure TWUsuarios.PBorraBuscar(Sender: TObject);
-begin
-   if not (TFiltro.state in dseditmodes) then   begin
-      TFiltro.edit;
-   end;
-   TFiltro.FieldByName('BUsuario').AsString := '';
-end;
-
-procedure TWUsuarios.BuscaTecla(Sender: TObject);
-begin
-   if (TFiltro.State in dseditmodes) then   begin
-      TFiltro.post;
-   end;
-   PrepararQuery;
-end;
-
-procedure TWUsuarios.BtnNavFiltroClick(Sender: TObject);
-begin
-   {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-   with TFiltro do begin
-      Edit;
-      FieldByName('BUsuario').AsString := '';
-      Post;
-   end;
-   PrepararQuery;
 end;
 
 procedure TWUsuarios.PermisosToggleCheckbox(TreeView: TfcCustomTreeView; Node: TfcTreeNode);

@@ -1,6 +1,6 @@
 object WCuentas: TWCuentas
-  Left = 310
-  Top = 189
+  Left = 319
+  Top = 191
   BorderStyle = bsNone
   ClientHeight = 494
   ClientWidth = 792
