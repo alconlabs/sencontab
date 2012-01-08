@@ -1,7 +1,7 @@
 unit DMControl;
 interface
 uses Classes, Controls, Db, Dialogs, Forms, Graphics, Messages, SysUtils, Windows, IBSQL,
-     IBCustomDataSet, IBTableSet, IBDatabase, Globales, IBQuery;
+     IBCustomDataSet, IBTableSet, IBDatabase, Globales, IBQuery, ADODB;
 
 type
    TDmControlRef = class(TDataModule)
@@ -131,7 +131,7 @@ begin
       if Components[i] is TDataSet then begin
          try    TDataSet(Components[i]).Close;
          except ShowMessage('Error datamodulo al cerrar la tabla ' + TDataSet(Components[i]).Name);
-         end;
+         end;                                                                                                            
       end;
    end;
 end;

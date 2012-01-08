@@ -83,15 +83,41 @@ uses
   ccDBIntegrity in 'Fuentes\ccDBIntegrity.pas',
   FormHandler in 'Fuentes\FormHandler.pas',
   SearchAccount in 'Fuentes\SearchAccount.pas' {FormSearchAccount},
-  SearchConcept in 'Fuentes\SearchConcept.pas' {FormSearchConcept};
+  SearchConcept in 'Fuentes\SearchConcept.pas' {FormSearchConcept},
+  MainControllerClass in 'Fuentes\Controllers\MainControllerClass.pas',
+  ConfigurationClass in 'Fuentes\Controllers\ConfigurationClass.pas',
+  DBController in 'Fuentes\Controllers\DBController.pas',
+  DBConnection in 'Fuentes\models\DBConnection.pas',
+  LoginController in 'Fuentes\controllers\LoginController.pas',
+  LoginView in 'Fuentes\views\LoginView.pas' {FormLoginView},
+  CRSQLConnection in 'Fuentes\models\CRSQLConnection.pas',
+  ccStr in 'Fuentes\ccStr.pas',
+  Utilidades in 'Fuentes\Utilidades.pas',
+  WizardConnectDB in 'Fuentes\WizardConnectDB.pas' {WizardConnectDB},
+  D6OnHelpFix in 'Fuentes\D6OnHelpFix.pas',
+  HashCriptography in 'Fuentes\HashCriptography.pas',
+  LoginModel in 'Fuentes\models\LoginModel.pas',
+  MenuAdminController in 'Fuentes\controllers\MenuAdminController.pas',
+  MenuAdminView in 'Fuentes\views\MenuAdminView.pas' {FormMenuAdmin};
 
 {$R *.RES}
 
+var MainController :TMainController;
 begin
   Application.Initialize;
   Application.Title := 'Contabilidad';
-  Application.CreateForm(TDMControlRef, DMControlRef);
-  Application.CreateForm(TFormPrincipal, FormPrincipal);
-  Application.Run;
+
+  MainController := TMainController.Create;
+  try
+    MainController.Run;
+    Application.Run;
+  finally
+    MainController.Free;
+  end;
+
+  //Application.CreateForm(TDMControlRef, DMControlRef);
+  //Application.CreateForm(TFormPrincipal, FormPrincipal);
+  //Application.CreateForm(TFormLoginView, FormLoginView);
+
 end.
 

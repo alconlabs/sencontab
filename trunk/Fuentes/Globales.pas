@@ -18,6 +18,7 @@ const
    gcFormatoImportePtas  = '###,###,###';
    gcFormatoImporteEuros = '###,###,##0.#0';
 
+   {$Message Warn 'This two variables shall disapear in the next version'}
    gcUsuarioDesbloqueo     = 'FORZAR'; //Por si se olvidan todas las claves de entrada para poder entrar
    gcContrasegnaDesbloqueo = '';
 

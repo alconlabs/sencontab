@@ -1,9 +1,9 @@
-object FormLogin: TFormLogin
-  Left = 474
+object FormLoginView: TFormLoginView
+  Left = 376
   Top = 241
   BorderIcons = []
   BorderStyle = bsToolWindow
-  ClientHeight = 250
+  ClientHeight = 291
   ClientWidth = 450
   Color = 14275008
   Font.Charset = DEFAULT_CHARSET
@@ -15,7 +15,6 @@ object FormLogin: TFormLogin
   OldCreateOrder = True
   Position = poScreenCenter
   OnCreate = FormCreate
-  OnKeyPress = FormKeyPress
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -2015,8 +2014,9 @@ object FormLogin: TFormLogin
       0080800080800080800080800080800080800080800080800080800080800080
       8000808000808000808000808000808000808000808000808000808000808000
       808000808000808000808000808000808000}
+    Transparent = True
   end
-  object Label3: TLabel
+  object LabelUser: TLabel
     Left = 208
     Top = 121
     Width = 45
@@ -2030,12 +2030,12 @@ object FormLogin: TFormLogin
     ParentFont = False
     Transparent = True
   end
-  object LabelClave: TLabel
+  object LabelPassword: TLabel
     Left = 208
     Top = 145
-    Width = 70
+    Width = 59
     Height = 14
-    Caption = 'Contrase'#241'a'
+    Caption = 'Password'
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -12
@@ -2060,8 +2060,8 @@ object FormLogin: TFormLogin
     Transparent = True
   end
   object Label1: TLabel
-    Left = 211
-    Top = 165
+    Left = 27
+    Top = 181
     Width = 147
     Height = 29
     Alignment = taCenter
@@ -2078,7 +2078,7 @@ object FormLogin: TFormLogin
   end
   object LabelMensaje: TLabel
     Left = 176
-    Top = 16
+    Top = 24
     Width = 257
     Height = 18
     Alignment = taCenter
@@ -2093,9 +2093,9 @@ object FormLogin: TFormLogin
   end
   object LabelMensaje2: TLabel
     Left = 176
-    Top = 40
+    Top = 48
     Width = 257
-    Height = 18
+    Height = 10
     Alignment = taCenter
     AutoSize = False
     Font.Charset = ANSI_CHARSET
@@ -2106,7 +2106,25 @@ object FormLogin: TFormLogin
     ParentFont = False
     WordWrap = True
   end
-  object EditUsuario: TEdit
+  object LabelPasswordWarn: TLabel
+    Left = 8
+    Top = 248
+    Width = 441
+    Height = 18
+    Alignment = taCenter
+    AutoSize = False
+    Caption = 
+      'El usuario "Admin" a'#250'n tiene el password "sencille"      '#161'C'#225'mbie' +
+      'lo!'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clRed
+    Font.Height = -12
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    WordWrap = True
+  end
+  object EditUser: TEdit
     Left = 288
     Top = 118
     Width = 146
@@ -2144,36 +2162,48 @@ object FormLogin: TFormLogin
     BevelOuter = bvNone
     Color = 14275008
     TabOrder = 2
-    object BtnCancelar: TSpeedButton
+    object BtnCancel: TBitBtn
       Left = 9
       Top = 8
       Width = 88
       Height = 25
       Cursor = crHandPoint
+      Cancel = True
       Caption = '&Cancelar'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clNavy
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
+      ModalResult = 2
       ParentFont = False
-      OnClick = BtnCancelarClick
+      TabOrder = 0
     end
-    object BtnAceptar: TSpeedButton
+    object BtnAccept: TBitBtn
       Left = 105
       Top = 8
       Width = 88
       Height = 25
       Cursor = crHandPoint
       Caption = '&Aceptar'
+      Default = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clNavy
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
-      OnClick = BtnAceptarClick
+      TabOrder = 1
+      OnClick = BtnAcceptClick
     end
+  end
+  object StatusBar: TStatusBar
+    Left = 0
+    Top = 277
+    Width = 450
+    Height = 19
+    Align = alNone
+    Panels = <>
   end
   object Timer: TTimer
     Enabled = False

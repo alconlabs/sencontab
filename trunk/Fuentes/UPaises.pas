@@ -292,16 +292,6 @@ begin
             BtnCancel.Click;
          end;
       end;
-      VK_UP: begin
-         if not (ActiveControl is TDBGrid) then   begin
-            SelectNext(ActiveControl, not (GetKeyState(VK_SHIFT) and $80 = 0), True);
-         end;
-      end;
-      VK_DOWN: begin
-         if not (ActiveControl is TDBGrid) then   begin
-            SelectNext(ActiveControl, GetKeyState(VK_SHIFT) and $80 = 0, True);
-         end;
-      end;
    end;
 end;
 
