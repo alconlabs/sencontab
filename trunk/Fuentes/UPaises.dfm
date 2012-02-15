@@ -1,6 +1,6 @@
 object WPaises: TWPaises
-  Left = 425
-  Top = 167
+  Left = 514
+  Top = 215
   BorderStyle = bsSingle
   Caption = 'Cat'#225'logo de PAISES'
   ClientHeight = 357

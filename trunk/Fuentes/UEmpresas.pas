@@ -1,93 +1,66 @@
 unit UEmpresas;
 interface
 uses SysUtils, WinTypes, WinProcs, Messages, Classes, Graphics, Controls, Forms, Dialogs, Grids, DB,
-     DBTables, OvcBase, OvcPF, OvcDbPF, OvcEF, OvcPB, OvcNF, OvcDbNF, StdCtrls, Buttons, Wwkeycb, ExtCtrls,
-     DBCtrls, DBClient, IBDatabase, IBCustomDataSet, IBTableSet, Wwdatsrc, Wwdbigrd, Wwdbgrid,
-     navegadorNotarios, fcButton, fcImgBtn, jpeg, Mask, IBSQL, StFileOp, fcImage, fcimageform, SsBase;
+     DBTables, StdCtrls, Buttons, ExtCtrls, WizardGestEnterprises,
+     DBCtrls, DBClient, IBDatabase, IBCustomDataSet, IBTableSet, IBSQL, DBGrids, Mask,
+     ComCtrls;
 
 type
-   TWEmpresas = class(TForm)
-      OvcController1:  TOvcController;
-      SFichero:        TwwDataSource;
-      QFichero:        TIBTableSet;
-      Transaccion:     TIBTransaction;
-      Datos:           TGroupBox;
-      Label2:          TLabel;
-      eNombre:         TOvcDbPictureField;
-      Shape1:          TShape;
-      Label3:          TLabel;
-      Panel1:          TPanel;
-      BtnNavAniadir:   TfcImageBtn;
-      BtnNavBorrar:    TfcImageBtn;
-      BtnEdtGuardar:   TfcImageBtn;
-      BtnEdtCancelar:  TfcImageBtn;
-      FiltroBuscar:    TGroupBox;
-      FiltroBNombre:   TOvcDbPictureField;
-      TbFiltro:        TClientDataSet;
-      sFiltro:         TDataSource;
-      Panel3:          TPanel;
-      Panel5:          TPanel;
-      Panel4:          TPanel;
-      PanelSombra:     TPanel;
-      Navegador:       TDBNavegadorNotarios;
-      Label4:          TLabel;
-      BtnNavFiltro:    TfcImageBtn;
-      BtnNavImprimir:  TfcImageBtn;
-      BtnNavModificar: TfcImageBtn;
-      QFicheroCERRADA: TIBStringField;
-      QFicheroCLAVE:   TIBStringField;
-      QFicheroUBICACION: TIBStringField;
-      QFicheroNOMBRE:  TIBStringField;
-      QFicheroID_EMPRESA: TIntegerField;
-      QFicheroULTIMA:  TIBStringField;
-      Label5:          TLabel;
-      eUbicacion:      TOvcDbPictureField;
-      oCerrada:        TDBCheckBox;
-      BtnNavDuplicar:  TfcImageBtn;
-      BtnNavCopiar:    TfcImageBtn;
-      CopiaBD:         TStFileOperation;
-      BtnNavSelecciona: TfcImageBtn;
-      BtnNavUtilidades: TfcImageBtn;
-      QFicheroSERVIDOR: TIBStringField;
-      Label1:          TLabel;
-      OvcDbPictureField1: TOvcDbPictureField;
-      Rejilla:         TwwDBGrid;
-      Panel2:          TPanel;
-      Formulario:      TfcImageForm;
-      procedure BtnNavAniadirClick(Sender: TObject);
-      procedure BtnNavBorrarClick(Sender: TObject);
-      procedure BtnEdtGuardarClick(Sender: TObject);
-      procedure BtnEdtCancelarClick(Sender: TObject);
-      procedure RejillaDblClick(Sender: TObject);
-      procedure FormKeyPress(Sender: TObject; var Key: Char);
-      procedure FormShow(Sender: TObject);
-      procedure FormCreate(Sender: TObject);
-      procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-      procedure RejillaTitleButtonClick(Sender: TObject; AFieldName: String);
-      procedure RejillaCalcTitleAttributes(Sender: TObject; AFieldName: String;
-         AFont: TFont; ABrush: TBrush; var ATitleAlignment: TAlignment);
-      procedure FormClose(Sender: TObject; var action: TCloseaction);
-      procedure fcImageBtnMouseEnter(Sender: TObject);
-      procedure fcImageBtnMouseLeave(Sender: TObject);
-      procedure LimpiarFiltro(Sender: TObject);
-      procedure VerTabla(Sender: TObject);
-      procedure BtnNavImprimirClick(Sender: TObject);
-      procedure BtnNavCopiarClick(Sender: TObject);
-      procedure QFicheroNewRecord(DataSet: TDataSet);
-      procedure eNombreExit(Sender: TObject);
-      procedure BtnNavSeleccionaClick(Sender: TObject);
-      procedure BtnNavDuplicarClick(Sender: TObject);
-      procedure BtnNavUtilidadesClick(Sender: TObject);
-   private
-      FCampoOrden: String;
-      procedure CrearFiltro;
-      procedure PrepararQuery;
-   public
-      lDuplicado:          Boolean;
-      cUbicacionDuplicado: String;
-   end;
+  TFormEnterprises = class(TForm)
+    SFichero: TDataSource;
+    QFichero: TIBTableSet;
+    Transaccion: TIBTransaction;
+    TbFiltro: TClientDataSet;
+    sFiltro: TDataSource;
+    QFicheroCERRADA: TIBStringField;
+    QFicheroCLAVE: TIBStringField;
+    QFicheroUBICACION: TIBStringField;
+    QFicheroNOMBRE: TIBStringField;
+    QFicheroID_EMPRESA: TIntegerField;
+    QFicheroULTIMA: TIBStringField;
+    QFicheroSERVIDOR: TIBStringField;
+    Panel2: TPanel;
+    StatusBar: TStatusBar;
+    Panel4: TPanel;
+    Panel3: TPanel;
+    Rejilla: TDBGrid;
+    Panel1: TPanel;
+    BtnNavAniadir: TBitBtn;
+    BtnNavBorrar: TBitBtn;
+    BtnEdtGuardar: TBitBtn;
+    BtnNavImprimir: TBitBtn;
+    BtnNavModificar: TBitBtn;
+    BtnNavDuplicar: TBitBtn;
+    BtnNavCopiar: TBitBtn;
+    BtnNavSelecciona: TBitBtn;
+    BtnNavUtilidades: TBitBtn;
+    Panel5: TPanel;
+    procedure BtnNavAniadirClick(Sender: TObject);
+    procedure BtnNavBorrarClick(Sender: TObject);
+    procedure BtnEdtGuardarClick(Sender: TObject);
+    procedure RejillaDblClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure RejillaTitleButtonClick(Sender: TObject; AFieldName: String);
+    procedure RejillaCalcTitleAttributes(Sender: TObject; AFieldName: String; AFont: TFont; ABrush: TBrush; var ATitleAlignment: TAlignment);
+    procedure FormClose(Sender: TObject; var action: TCloseaction);
+    procedure BtnNavImprimirClick(Sender: TObject);
+    procedure BtnNavCopiarClick(Sender: TObject);
+    procedure QFicheroNewRecord(DataSet: TDataSet);
+    procedure eNombreExit(Sender: TObject);
+    procedure BtnNavSeleccionaClick(Sender: TObject);
+    procedure BtnNavDuplicarClick(Sender: TObject);
+    procedure BtnNavUtilidadesClick(Sender: TObject);
+  private
+    FViewWizardGestEnterprises :TFormWizardGestEnterprises;
+    FCampoOrden: String;
+    procedure PrepararQuery;
+  public
+    lDuplicado:          Boolean;
+    cUbicacionDuplicado: String;
+  end;
 
-var WEmpresas: TWEmpresas;
+var FormEnterprises: TFormEnterprises;
 
 implementation
 uses cadenas, DM, DMConta, DMControl, General, Globales, UEspere, MenuPrincipal, UUtilEmpresas;
@@ -96,21 +69,7 @@ uses cadenas, DM, DMConta, DMControl, General, Globales, UEspere, MenuPrincipal,
 const CADENA_BORRADO = 'Tiene asientos en el diario con ese concepto';
       CADENA_MANUAL  = 'Seleccione AYUDA si desea obtener más información sobre el problema surgido';
 
-procedure TWEmpresas.CrearFiltro;
-begin
-   {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-   with TbFiltro, FieldDefs do begin
-      active := False;
-      Clear;
-      Add('BNombre', ftstring, 25, False);
-      CreateDataSet;
-      active := True;
-      append;
-      FieldByName('BNombre').AsString := '';
-   end;
-end;
-
-procedure TWEmpresas.PrepararQuery;
+procedure TFormEnterprises.PrepararQuery;
 begin
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with QFichero, SelectSQL do begin
@@ -150,30 +109,18 @@ begin
    end;
 end;
 
-procedure TWEmpresas.BtnNavAniadirClick(Sender: TObject);
-var
-   cUbicacion: String;
-   i:          Word;
+procedure TFormEnterprises.BtnNavAniadirClick(Sender: TObject);
+var OK :Boolean;
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), ANIADIR) then begin
-      Exit;
+   FViewWizardGestEnterprises := TFormWizardGestEnterprises.CreateWizard;
+   try
+      OK := FViewWizardGestEnterprises.Execute;
+   finally;
+      FViewWizardGestEnterprises.Free;
    end;
-
-   cUbicacion := Trim(QficheroUbicacion.AsString);
-   for i := length(cUbicacion) downto 0 do begin
-      if cUbicacion[i] = '\' then begin
-         break;
-      end;
-   end;
-   cUbicacion        := Copy(cUbicacion, 1, i);
-   Navegador.Visible := False;
-   eNombre.SetFocus;
-   QFichero.Insert;
-   QficheroUbicacion.AsString := cUbicacion;
-   Modo(Self, Edita);
 end;
 
-procedure TWEmpresas.BtnNavBorrarClick(Sender: TObject);
+procedure TFormEnterprises.BtnNavBorrarClick(Sender: TObject);
 var
    cUbicacion, cNombreBD: String;
    nLong, i: Integer;
@@ -197,12 +144,12 @@ begin
             QFichero.Transaction.CommitRetaining;
             // Borrar la base de datos actual
             {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-            with CopiaBD, SourceFiles do begin
+            {with CopiaBD, SourceFiles do begin
                Operation := fopDelete;
                Clear;
                Add(gvdirectorio + 'datos\' + cNombreBD);
                Execute;
-            end;
+            end;}
          except
             DatabaseError('No se ha podido borrar la empresa seleccionada.' + #13 +
                CADENA_BORRADO);
@@ -211,16 +158,12 @@ begin
    end;
 end;
 
-procedure TWEmpresas.BtnNavImprimirClick(Sender: TObject);
+procedure TFormEnterprises.BtnNavImprimirClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), IMPRESION) then begin
-      Exit;
-   end;
-
    FormPrincipal.LanzarListado('LEmpresas.rtm', SFichero);
 end;
 
-procedure TWEmpresas.BtnEdtGuardarClick(Sender: TObject);
+procedure TFormEnterprises.BtnEdtGuardarClick(Sender: TObject);
 var
    ha_insertado: Boolean;
    cUbicacion, cNombreBD, cNombreBDDup: String;
@@ -233,7 +176,6 @@ begin
    Perform(wm_NextDlgCtl, 0, 0);
 
    if QFichero.FieldByName('Nombre').AsString = '' then  begin
-      eNombre.SetFocus;
       DatabaseError('No se puede dejar el nombre de la empresa en blanco.' + #13 +
          'Por favor, revise los datos de entrada.');
    end;
@@ -249,7 +191,6 @@ begin
          if (FieldByName('cuantos').AsInteger > 0) then   begin
             Close;
             Free;
-            eNombre.SetFocus;
             DatabaseError('El nombre de esta empresa ya existe.' + #13 +
                'Por favor, revise los datos de entrada.');
          end;
@@ -282,7 +223,7 @@ begin
 
       // Copiar la actual sobre la de copia
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-      with CopiaBD, SourceFiles do begin
+      {with CopiaBD, SourceFiles do begin
          Operation := fopCopy;
          Clear;
          //Destination:=gvDirectorio+'datos';
@@ -294,10 +235,9 @@ begin
             Add(gvDirectorio + 'datos\BD_Modelo.ib=' + gvDirectorio + 'datos\' + cNombreBD);
          end;
          Execute;
-      end;
+      end;}
    end;
 
-   Navegador.Visible := True;
    Modo(Self, Naveg);
    Rejilla.SetFocus;
    if ha_insertado then  begin
@@ -306,124 +246,50 @@ begin
       end;
       TbFiltro.FieldByName('BNombre').AsString := QFicheroNombre.AsString;
       PrepararQuery;
-      LimpiarFiltro(Sender);
    end;
    lDuplicado := False;
 end;
 
-procedure TWEmpresas.BtnEdtCancelarClick(Sender: TObject);
-begin
-   Perform(wm_NextDlgCtl, 0, 0);
-   if not QFichero.Modified then Exit;
-   if MessageDlg('¿Quiere anular las modificaciones realizadas a este concepto?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
-      Navegador.Visible := True;
-      try QFichero.Cancel;
-      except DatabaseError('No se ha podido cancelar la operación.' + #13 + CADENA_MANUAL);
-      end;
-      Modo(Self, Naveg);
-   end;
-end;
-
-procedure TWEmpresas.RejillaDblClick(Sender: TObject);
+procedure TFormEnterprises.RejillaDblClick(Sender: TObject);
 begin
    if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), MODIFICAR) then begin
       Exit;
    end;
 
    if not QFichero.IsEmpty then  begin
-      Navegador.Visible := False;
       try QFichero.Edit;
       except MessageDlg('No se puede editar el registro seleccionado.' + #13 + CADENA_MANUAL, mtInformation, [mbOK], 0);
       end;
       Modo(Self, Edita);
-      eNombre.SetFocus;
    end;
 end;
 
-procedure TWEmpresas.FormKeyPress(Sender: TObject; var Key: Char);
-begin
-   // Si pulsamos enter y el control actual no es un grid pasamos al siguiente
-   // control
-   if (Key = Chr(VK_RETURN)) then  begin
-      if (FiltroBNombre.Focused) and (FiltroBNombre.Text <> '') then   begin
-         key := #0;
-         if tbFiltro.State in dsEditModes then begin
-            tbFiltro.Post;
-         end;
-         PrepararQuery;
-      end
-
-      //Si no es ninguno de los otros dos pasamos al siguiente control
-      else
-      if (not (ActiveControl is TwwDBGrid)) then   begin
-         Key := #0;
-         SelectNext(ActiveControl, GetKeyState(vk_Shift) and $80 = 0, True);
-      end;
-   end;
-end;
-
-procedure TWEmpresas.FormShow(Sender: TObject);
-begin
-   SetBounds(0, FormPrincipal.Panel1.Top + FormPrincipal.Panel1.Height + 1, Width, Height);
-   FiltroBNombre.SetFocus;
-end;
-
-procedure TWEmpresas.FormCreate(Sender: TObject);
+procedure TFormEnterprises.FormCreate(Sender: TObject);
 begin
    lDuplicado := False;
-   ActivarTransacciones(self);
-   CrearFiltro;
+   //ActivarTransacciones(self);
    FCampoOrden := 'NOMBRE';
-   PrepararQuery;
+   //PrepararQuery;
    Modo(Self, Naveg);
 end;
 
-procedure TWEmpresas.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+procedure TFormEnterprises.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
-   case key of
-      VK_ESCAPE: begin
-         key := 0;
-         if QFichero.State in dsEditModes then begin
-            BtnEdtCancelar.Click;
-         end;
-      end;
-      VK_SPACE: begin
-         if (ActiveControl <> FiltroBNombre) and not
-            (QFichero.State in dsEditModes) then   begin
-            //Anulamos el evento de la tecla
-            Key := 0;
-            RejillaDblClick(Self);
-         end;
-      end;
-      VK_F2: begin
-         if not (QFichero.State in dsEditModes) then begin
-            BtnNavAniadir.Click;
-         end;
-      end;
-      VK_F3: begin
-         if QFichero.State in dsEditModes then begin
-            BtnEdtGuardar.Click;
-         end;
-      end;
+   case Key of
       VK_UP: begin
-         if not (ActiveControl is TwwDBGrid) then   begin
+         if not (ActiveControl is TDBGrid) then   begin
             SelectNext(ActiveControl, not (GetKeyState(VK_SHIFT) and $80 = 0), True);
          end;
       end;
       VK_DOWN: begin
-         if not (ActiveControl is TwwDBGrid) then   begin
+         if not (ActiveControl is TDBGrid) then   begin
             SelectNext(ActiveControl, GetKeyState(VK_SHIFT) and $80 = 0, True);
-         end;
-      end;
-      VK_F12: begin
-         if not (QFichero.State in dsEditModes) then begin
-            VerTabla(Sender);
          end;
       end;
    end;
 end;
 
-procedure TWEmpresas.RejillaTitleButtonClick(Sender: TObject; AFieldName: String);
+procedure TFormEnterprises.RejillaTitleButtonClick(Sender: TObject; AFieldName: String);
 begin
    if (UpperCase(AFieldName) = 'NOMBRE') then  begin
       FCampoOrden := UpperCase(AFieldName);
@@ -432,7 +298,7 @@ begin
    Rejilla.SetFocus;
 end;
 
-procedure TWEmpresas.RejillaCalcTitleAttributes(Sender: TObject; AFieldName: String;
+procedure TFormEnterprises.RejillaCalcTitleAttributes(Sender: TObject; AFieldName: String;
    AFont: TFont; ABrush: TBrush; var ATitleAlignment: TAlignment);
 begin
    if (UpperCase(AFieldName) = UpperCase(FCampoOrden)) then  begin
@@ -442,50 +308,12 @@ begin
    end;
 end;
 
-procedure TWEmpresas.FormClose(Sender: TObject; var action: TCloseaction);
+procedure TFormEnterprises.FormClose(Sender: TObject; var action: TCloseaction);
 begin
-   if QFichero.State = dsBrowse then  begin
-      action := caFree;
-      Formulario.Free;
-      Formulario := nil;
-      WEmpresas  := nil;
-   end
-   else begin
-      MessageBeep(0);
-      Abort;
-   end;
+   Action := caFree;
 end;
 
-procedure TWEmpresas.fcImageBtnMouseEnter(Sender: TObject);
-begin
-   (Sender as TfcImageBtn).Image.LoadFromFile(gvDirImagenes + gcBtnBlanco);
-end;
-
-procedure TWEmpresas.fcImageBtnMouseLeave(Sender: TObject);
-begin
-   (Sender as TfcImageBtn).Image.LoadFromFile(gvDirImagenes + gcBtn);
-end;
-
-procedure TWEmpresas.LimpiarFiltro(Sender: TObject);
-begin
-   if not (TbFiltro.state in dseditmodes) then begin
-      TbFiltro.edit;
-   end;
-   TbFiltro.FieldByName('BNombre').AsString := '';
-end;
-
-procedure TWEmpresas.VerTabla(Sender: TObject);
-begin
-   {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-   with TbFiltro do begin
-      Edit;
-      FieldByName('BNombre').AsString := '';
-      Post;
-   end;
-   PrepararQuery;
-end;
-
-procedure TWEmpresas.BtnNavCopiarClick(Sender: TObject);
+procedure TFormEnterprises.BtnNavCopiarClick(Sender: TObject);
 var
    cNombreEmpresa, cUbicacion, cServidor, cNombreBd: String;
    nLong, i:  Integer;
@@ -528,7 +356,7 @@ begin
       nLong     := Length(cNombreBD);
       // Copiar la actual sobre la de copia
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-      with CopiaBD, SourceFiles do begin
+      {with CopiaBD, SourceFiles do begin
          Operation := fopCopy;
          Clear;
          Destination := gvDirectorio + 'datos';
@@ -536,16 +364,16 @@ begin
          Add(gvDirectorio + 'datos\' + cNombreBD + '=' + gvDirectorio + 'datos\' + Copy(
             cNombreBD, 1, nLong - 4) + 'copia.ib');
          Execute;
-      end;
+      end;}
    end;
 end;
 
-procedure TWEmpresas.QFicheroNewRecord(DataSet: TDataSet);
+procedure TFormEnterprises.QFicheroNewRecord(DataSet: TDataSet);
 begin
    QFicheroCerrada.AsString := 'N';
 end;
 
-procedure TWEmpresas.eNombreExit(Sender: TObject);
+procedure TFormEnterprises.eNombreExit(Sender: TObject);
 var
    cUbicacion: String;
    i:          Word;
@@ -562,15 +390,15 @@ begin
    end;
 end;
 
-procedure TWEmpresas.BtnNavSeleccionaClick(Sender: TObject);
+procedure TFormEnterprises.BtnNavSeleccionaClick(Sender: TObject);
 begin
-   gvEmpresaActual := QFicheroID_EMPRESA.AsInteger;
-   DMControlRef.AbrirEmpresa(gvEmpresaActual);
-   FormPrincipal.PonerTituloMenu;
-   Close;
+   //gvEmpresaActual := QFicheroID_EMPRESA.AsInteger;
+   //DMControlRef.AbrirEmpresa(gvEmpresaActual);
+   //FormPrincipal.PonerTituloMenu;
+   //Close;
 end;
 
-procedure TWEmpresas.BtnNavDuplicarClick(Sender: TObject);
+procedure TFormEnterprises.BtnNavDuplicarClick(Sender: TObject);
 var
    cUbicacion, cNombre, cServidor: String;
    i: Word;
@@ -592,9 +420,7 @@ begin
             break;
          end;
       end;
-      cUbicacion        := Copy(cUbicacion, 1, i);
-      Navegador.Visible := False;
-      eNombre.SetFocus;
+      cUbicacion := Copy(cUbicacion, 1, i);
       QFichero.Insert;
       QficheroNombre.AsString    := cNombre + ' duplicado';
       QficheroServidor.AsString  := cServidor;
@@ -603,7 +429,7 @@ begin
    end;
 end;
 
-procedure TWEmpresas.BtnNavUtilidadesClick(Sender: TObject);
+procedure TFormEnterprises.BtnNavUtilidadesClick(Sender: TObject);
 begin
    if not Assigned(WUtilEmpresas) then  begin
       WUtilEmpresas := TWUtilEmpresas.Create(nil);

@@ -35,7 +35,7 @@ uses
   UCarteraEfectos in 'Fuentes\UCarteraEfectos.pas' {WCarteraEfectos},
   UAmortizaciones in 'Fuentes\UAmortizaciones.pas' {WAmortizaciones},
   UFormasPago in 'Fuentes\UFormasPago.pas' {WFormasPago},
-  UEmpresas in 'Fuentes\UEmpresas.pas' {WEmpresas},
+  UEmpresas in 'Fuentes\UEmpresas.pas' {FormEnterprises},
   UDetalleIVA in 'Fuentes\UDetalleIVA.pas' {WDetalleIVA},
   UEnlaceContable in 'Fuentes\UEnlaceContable.pas' {WEnlaceContable},
   UCargaRapidaNominas in 'Fuentes\UCargaRapidaNominas.pas' {WCargaRapidaNominas},
@@ -98,7 +98,11 @@ uses
   HashCriptography in 'Fuentes\HashCriptography.pas',
   LoginModel in 'Fuentes\models\LoginModel.pas',
   MenuAdminController in 'Fuentes\controllers\MenuAdminController.pas',
-  MenuAdminView in 'Fuentes\views\MenuAdminView.pas' {FormMenuAdmin};
+  MenuAdminView in 'Fuentes\views\MenuAdminView.pas' {FormMenuAdmin},
+  WizardGestEnterprises in 'Fuentes\WizardGestEnterprises.pas' {FormWizardGestEnterprises},
+  EnterprisesModel in 'Fuentes\models\EnterprisesModel.pas',
+  EnterprisesController in 'Fuentes\controllers\EnterprisesController.pas',
+  CustomController in 'Fuentes\controllers\CustomController.pas';
 
 {$R *.RES}
 

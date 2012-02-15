@@ -1,6 +1,6 @@
 object FormSplash: TFormSplash
-  Left = 431
-  Top = 277
+  Left = 405
+  Top = 150
   Width = 700
   Height = 500
   BorderIcons = []

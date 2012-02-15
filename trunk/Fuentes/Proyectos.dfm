@@ -1,6 +1,6 @@
 object WProyectos: TWProyectos
-  Left = 375
-  Top = 226
+  Left = 388
+  Top = 123
   BorderStyle = bsSingle
   Caption = 'Cat'#225'logo de Proyectos'
   ClientHeight = 483

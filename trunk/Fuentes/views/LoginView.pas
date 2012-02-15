@@ -1,7 +1,7 @@
 unit LoginView;
 interface
 uses Forms, DB, ExtCtrls, SysUtils, Controls, StdCtrls, Classes, Windows, Buttons, Graphics, Messages,
-  ComCtrls;
+     ComCtrls;
 
 type
    TFormLoginView = class(TForm)
@@ -70,7 +70,7 @@ procedure TFormLoginView.BtnAcceptClick(Sender: TObject);
       if (UpperCase(Trim(EditUser.Text)) = UpperCase(Trim(gcUsuarioDesbloqueo))) and
          (Trim(EditPassword.Text) = CadenaHoy) then begin
 
-         Result       := True;
+         Result := True;
       end
       else Result := False;
    end;

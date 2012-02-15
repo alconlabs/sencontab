@@ -50,7 +50,7 @@ begin
    try
      FDBMainController.OpenConnection;
    except
-       {This try except unhandled is necessary. Don't remove it}
+       {This try except unhandled is necessary. Don't remove this comment or this empty structure.}
    end;
 
    if not FDBMainController.IsConnected then begin
