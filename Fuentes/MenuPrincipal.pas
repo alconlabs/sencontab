@@ -29,7 +29,6 @@ type
     MenuItemMaestros: TMenuItem;
     MenuItemTiposDiario: TMenuItem;
     MenuItemFormasPago: TMenuItem;
-    MenuItemUsuarios: TMenuItem;
     MenuItemComerciales: TMenuItem;
     MenuItemConceptos: TMenuItem;
     MenuItemProvincias: TMenuItem;
@@ -91,7 +90,6 @@ type
     procedure MenuItemProvinciasClick(Sender: TObject);
     procedure MenuItemPaisesClick(Sender: TObject);
     procedure MenuItemConceptosClick(Sender: TObject);
-    procedure MenuItemUsuariosClick(Sender: TObject);
     procedure MenuItemTitulosClick(Sender: TObject);
     procedure MenuItemCuentasCuentasClick(Sender: TObject);
     procedure MenuItemSubCuentasClick(Sender: TObject);
@@ -118,7 +116,6 @@ type
     procedure MenuItemAmortizacionesClick(Sender: TObject);
     procedure MenuItemCarteraEfectosClick(Sender: TObject);
     procedure MeMenuItemCuentasAnaliticasClick(Sender: TObject);
-    procedure MenuItemControlEmpresasClick(Sender: TObject);
     procedure MenuItemLibroFacturasBienesInversion(Sender: TObject);
     procedure MenuItemOperacionesCEEClick(Sender: TObject);
     procedure MenuItemEnlaceContableClick(Sender: TObject);
@@ -634,14 +631,6 @@ begin
    WConceptos.Show;
 end;
 
-procedure TFormPrincipal.MenuItemUsuariosClick(Sender: TObject);
-begin
-   {$Message Warn '5ª Ventana para Test}
-   if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WUSUARIOS') then Exit;
-   if not Assigned(WUsuarios) then WUsuarios := TWUsuarios.Create(nil);
-   WUsuarios.Show;
-end;
-
 procedure TFormPrincipal.MenuItemTitulosClick(Sender: TObject);
 begin
    {$Message Warn '6ª Ventana para Test}
@@ -896,20 +885,6 @@ begin
    if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WANALITICAS') then Exit;
    if not Assigned(WAnaliticas) then WAnaliticas := TWAnaliticas.Create(nil);
    WAnaliticas.Show;
-end;
-
-procedure TFormPrincipal.MenuItemControlEmpresasClick(Sender: TObject);
-begin
-   {$Message Warn '32ª Ventana para Test}
-   if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WEMPRESAS') then Exit;
-   if not Assigned(WEmpresas) then WEmpresas := TWEmpresas.Create(nil);
-   { Cerrar data modulo de la empresa actual }
-   DmContaRef.Free;
-   DmRef.Free;
-
-   WEmpresas.ShowModal;
-   WEmpresas.Free;
-   WEmpresas := nil;
 end;
 
 procedure TFormPrincipal.MenuItemLibroFacturasBienesInversion(Sender: TObject);

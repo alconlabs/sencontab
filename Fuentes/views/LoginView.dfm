@@ -1,6 +1,6 @@
 object FormLoginView: TFormLoginView
-  Left = 376
-  Top = 241
+  Left = 392
+  Top = 189
   BorderIcons = []
   BorderStyle = bsToolWindow
   ClientHeight = 291
@@ -2060,7 +2060,7 @@ object FormLoginView: TFormLoginView
     Transparent = True
   end
   object Label1: TLabel
-    Left = 27
+    Left = 25
     Top = 181
     Width = 147
     Height = 29

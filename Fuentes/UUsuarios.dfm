@@ -1,8 +1,8 @@
 object WUsuarios: TWUsuarios
-  Left = 4
-  Top = 3
-  Width = 638
-  Height = 434
+  Left = 309
+  Top = 91
+  Width = 785
+  Height = 533
   Caption = 'Cat'#225'logo de USUARIOS'
   Color = 14275008
   Font.Charset = DEFAULT_CHARSET
@@ -27,7 +27,7 @@ object WUsuarios: TWUsuarios
     Height = 365
     BevelOuter = bvNone
     ParentColor = True
-    TabOrder = 2
+    TabOrder = 1
     object BtnEdtGuardar: TBitBtn
       Left = 7
       Top = 117
@@ -160,7 +160,7 @@ object WUsuarios: TWUsuarios
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 1
+    TabOrder = 0
     object PDatosCli: TOvcTabPage
       Tag = 1
       Caption = 'Datos'
@@ -175,8 +175,8 @@ object WUsuarios: TWUsuarios
       object DatosProvincias: TGroupBox
         Left = 0
         Top = 0
-        Width = 0
-        Height = 0
+        Width = 397
+        Height = 350
         Align = alClient
         Font.Charset = ANSI_CHARSET
         Font.Color = clNavy
@@ -313,8 +313,8 @@ object WUsuarios: TWUsuarios
       object Permisos: TfcTreeView
         Left = 0
         Top = 0
-        Width = 0
-        Height = 0
+        Width = 397
+        Height = 350
         Align = alClient
         Color = 15596540
         Font.Charset = ANSI_CHARSET
@@ -334,21 +334,6 @@ object WUsuarios: TWUsuarios
         OnCalcNodeAttributes = PermisosCalcNodeAttributes
       end
     end
-  end
-  object Aux: TBitBtn
-    Left = 578
-    Top = 444
-    Width = 88
-    Height = 25
-    Cursor = crHandPoint
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clNavy
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 0
-    Visible = False
   end
   object Rejilla: TwwDBGrid
     Left = 0
@@ -377,7 +362,7 @@ object WUsuarios: TWUsuarios
     Font.Style = []
     Options = [dgTitles, dgColumnResize, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgWordWrap]
     ParentFont = False
-    TabOrder = 3
+    TabOrder = 2
     TitleAlignment = taCenter
     TitleFont.Charset = ANSI_CHARSET
     TitleFont.Color = clWhite

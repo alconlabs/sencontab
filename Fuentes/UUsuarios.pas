@@ -11,7 +11,6 @@ type
     SUsuarios:     TwwDataSource;
     QUsuarios:     TIBTableSet;
     TransUsuarios: TIBTransaction;
-    Aux: TBitBtn;
     QUsuariosID_USUARIO: TIntegerField;
     QUsuariosID_EMPRESA: TIntegerField;
     QUsuariosCLAVE: TIBStringField;
@@ -86,8 +85,6 @@ type
    protected
      procedure CreateParams(var Params: TCreateParams); override;
    end;
-
-var WUsuarios: TWUsuarios;
 
 const TabDatos    = 0;
       TabPermisos = 1;

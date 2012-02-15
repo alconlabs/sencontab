@@ -3040,10 +3040,6 @@ object FormPrincipal: TFormPrincipal
       object MenuItemN994: TMenuItem
         Caption = '-'
       end
-      object MenuItemUsuarios: TMenuItem
-        Caption = 'Usuarios'
-        OnClick = MenuItemUsuariosClick
-      end
       object MenuItemComerciales: TMenuItem
         Caption = 'Comerciales'
         OnClick = MenuItemComercialesClick
@@ -3300,13 +3296,6 @@ object FormPrincipal: TFormPrincipal
     end
     object MenuItemHerramientas: TMenuItem
       Caption = '&Herramientas'
-      object MenuItemControlEmpresas: TMenuItem
-        Caption = 'Control de Empresas'
-        OnClick = MenuItemControlEmpresasClick
-      end
-      object MenuItemN9: TMenuItem
-        Caption = '-'
-      end
       object MenuItemEnlaceContable: TMenuItem
         Caption = 'Enlace Contable'
         OnClick = MenuItemEnlaceContableClick

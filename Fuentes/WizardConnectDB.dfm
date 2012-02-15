@@ -1,6 +1,6 @@
 object WizardConnectDB: TWizardConnectDB
-  Left = 289
-  Top = 192
+  Left = 300
+  Top = 212
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   BorderWidth = 4
@@ -418,7 +418,7 @@ object WizardConnectDB: TWizardConnectDB
       object Panel3: TPanel
         Left = 0
         Top = 0
-        Width = 671
+        Width = 667
         Height = 65
         Align = alTop
         BevelOuter = bvNone
@@ -450,15 +450,15 @@ object WizardConnectDB: TWizardConnectDB
       object GroupBox3: TGroupBox
         Left = 0
         Top = 65
-        Width = 671
-        Height = 308
+        Width = 667
+        Height = 234
         Align = alClient
         TabOrder = 1
         object DBGridPartidas: TDBGrid
           Left = 2
           Top = 89
-          Width = 667
-          Height = 217
+          Width = 663
+          Height = 143
           Align = alClient
           Options = [dgTitles, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
           TabOrder = 0
@@ -522,7 +522,7 @@ object WizardConnectDB: TWizardConnectDB
         object PanelUpPartidas: TPanel
           Left = 2
           Top = 15
-          Width = 667
+          Width = 663
           Height = 74
           Align = alTop
           Color = 16249839
@@ -613,7 +613,7 @@ object WizardConnectDB: TWizardConnectDB
       object Panel4: TPanel
         Left = 0
         Top = 0
-        Width = 671
+        Width = 667
         Height = 65
         Align = alTop
         BevelOuter = bvNone
@@ -643,14 +643,14 @@ object WizardConnectDB: TWizardConnectDB
       object GroupBox4: TGroupBox
         Left = 0
         Top = 65
-        Width = 671
-        Height = 308
+        Width = 667
+        Height = 234
         Align = alClient
         TabOrder = 1
         object Panel6: TPanel
           Left = 2
           Top = 15
-          Width = 667
+          Width = 663
           Height = 74
           Align = alTop
           Color = 16249839
@@ -783,8 +783,8 @@ object WizardConnectDB: TWizardConnectDB
         object DBGridCodigos: TDBGrid
           Left = 2
           Top = 89
-          Width = 667
-          Height = 217
+          Width = 663
+          Height = 143
           Align = alClient
           Options = [dgTitles, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
           TabOrder = 1
@@ -810,7 +810,7 @@ object WizardConnectDB: TWizardConnectDB
       object Panel5: TPanel
         Left = 0
         Top = 0
-        Width = 671
+        Width = 667
         Height = 65
         Align = alTop
         BevelOuter = bvNone
@@ -842,14 +842,14 @@ object WizardConnectDB: TWizardConnectDB
       object GroupBox5: TGroupBox
         Left = 0
         Top = 65
-        Width = 671
-        Height = 308
+        Width = 667
+        Height = 234
         Align = alClient
         TabOrder = 1
         object Panel7: TPanel
           Left = 2
           Top = 15
-          Width = 667
+          Width = 663
           Height = 34
           Align = alTop
           Color = 16249839
@@ -875,8 +875,8 @@ object WizardConnectDB: TWizardConnectDB
         object Fondo: TPanel
           Left = 2
           Top = 49
-          Width = 667
-          Height = 257
+          Width = 663
+          Height = 183
           Align = alClient
           TabOrder = 1
           object Gauge: TGauge
