@@ -6,7 +6,7 @@ uses SysUtils, WinTypes, WinProcs, Messages, Classes, Graphics, Controls, Forms,
      ComCtrls;
 
 type
-  TFormEnterprises = class(TForm)
+  TFormEnterprises = class(TCustomView)
     SFichero: TDataSource;
     QFichero: TIBTableSet;
     Transaccion: TIBTransaction;
@@ -35,7 +35,7 @@ type
     BtnNavSelecciona: TBitBtn;
     BtnNavUtilidades: TBitBtn;
     Panel5: TPanel;
-    procedure BtnNavAniadirClick(Sender: TObject);
+    //procedure BtnNavAniadirClick(Sender: TObject);
     procedure BtnNavBorrarClick(Sender: TObject);
     procedure BtnEdtGuardarClick(Sender: TObject);
     procedure RejillaDblClick(Sender: TObject);
@@ -109,16 +109,16 @@ begin
    end;
 end;
 
-procedure TFormEnterprises.BtnNavAniadirClick(Sender: TObject);
-var OK :Boolean;
-begin
-   FViewWizardGestEnterprises := TFormWizardGestEnterprises.CreateWizard;
-   try
-      OK := FViewWizardGestEnterprises.Execute;
-   finally;
-      FViewWizardGestEnterprises.Free;
-   end;
-end;
+//procedure TFormEnterprises.BtnNavAniadirClick(Sender: TObject);
+//var OK :Boolean;
+//begin
+//   FViewWizardGestEnterprises := TFormWizardGestEnterprises.CreateWizard;
+//   try
+//      OK := FViewWizardGestEnterprises.Execute;
+//   finally;
+//      FViewWizardGestEnterprises.Free;
+//   end;
+//end;
 
 procedure TFormEnterprises.BtnNavBorrarClick(Sender: TObject);
 var

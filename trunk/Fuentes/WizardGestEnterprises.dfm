@@ -1,6 +1,6 @@
 object FormWizardGestEnterprises: TFormWizardGestEnterprises
-  Left = 362
-  Top = 217
+  Left = 417
+  Top = 188
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   BorderWidth = 4
@@ -37,7 +37,7 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
       ShowHint = True
     end
     object Image02: TImage
-      Left = 32
+      Left = 36
       Top = 16
       Width = 17
       Height = 17
@@ -45,7 +45,7 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
       ShowHint = True
     end
     object Image03: TImage
-      Left = 48
+      Left = 52
       Top = 16
       Width = 17
       Height = 17
@@ -53,7 +53,7 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
       ShowHint = True
     end
     object Image04: TImage
-      Left = 64
+      Left = 68
       Top = 16
       Width = 17
       Height = 17
@@ -61,7 +61,7 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
       ShowHint = True
     end
     object Image05: TImage
-      Left = 80
+      Left = 84
       Top = 16
       Width = 17
       Height = 17
@@ -69,7 +69,7 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
       ShowHint = True
     end
     object Image06: TImage
-      Left = 96
+      Left = 100
       Top = 16
       Width = 17
       Height = 17
@@ -77,7 +77,7 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
       ShowHint = True
     end
     object Image07: TImage
-      Left = 112
+      Left = 116
       Top = 16
       Width = 17
       Height = 17
@@ -85,7 +85,7 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
       ShowHint = True
     end
     object Image08: TImage
-      Left = 128
+      Left = 132
       Top = 16
       Width = 17
       Height = 17
@@ -93,7 +93,7 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
       ShowHint = True
     end
     object Image09: TImage
-      Left = 144
+      Left = 148
       Top = 16
       Width = 17
       Height = 17
@@ -101,7 +101,7 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
       ShowHint = True
     end
     object Image10: TImage
-      Left = 160
+      Left = 164
       Top = 16
       Width = 17
       Height = 17
@@ -153,6 +153,7 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
       Height = 25
       Caption = 'Ayuda'
       TabOrder = 4
+      OnClick = BtnHelpClick
     end
   end
   object StatusBar: TStatusBar
@@ -183,7 +184,7 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
     Top = 0
     Width = 675
     Height = 352
-    ActivePage = TabEnterpriseData
+    ActivePage = TabManageOrNew
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -193,6 +194,7 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
     ParentFont = False
     TabOrder = 1
     TabPosition = tpBottom
+    Visible = False
     OnChanging = PageControlChanging
     object TabPresentation: TTabSheet
       Caption = 'Presentation'
@@ -450,9 +452,9 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
             ''
             ''
             
-              '* Empresa en este contexto hace referencia a las cuentas contabl' +
-              'es de una '
-            'persona f'#237'sica o jur'#237'dica durante un periodo contable completo. ')
+              '* Empresa en este contexto hace referencia a la contabilidad de ' +
+              'una '
+            'persona f'#237'sica o jur'#237'dica durante un periodo fiscal completo. ')
           TabOrder = 1
         end
       end
@@ -609,20 +611,20 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
           object Label4: TLabel
             Left = 24
             Top = 40
-            Width = 427
+            Width = 432
             Height = 13
             Caption = 
-              'La solicitud de C'#243'digos le permitir'#225' introducirlos manualmente o' +
-              ' cargarlos desde un fichero.'
+              'una descripci'#243'n m'#225's concreta. Vea la ayuda (F1) sobre la manera ' +
+              'de nombrar una empresa.'
           end
           object Label5: TLabel
             Left = 24
             Top = 24
-            Width = 403
+            Width = 412
             Height = 13
             Caption = 
               'Para la creaci'#243'n de una nueva empresa, debe indicar el nombre de' +
-              'l  la base de datos'
+              'l la misma as'#237' como '
           end
         end
         object RadioGroupManageOrNew: TRadioGroup
@@ -630,6 +632,9 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
           Top = 80
           Width = 201
           Height = 89
+          HelpType = htKeyword
+          HelpKeyword = 'Test'
+          HelpContext = 1500
           Items.Strings = (
             'Creaci'#243'n de una Nueva Empresa'
             'Gestionar una Empresa Existente')
@@ -1233,7 +1238,7 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
     Enabled = False
     Interval = 3000
     OnTimer = TimerTimer
-    Left = 417
+    Left = 457
     Top = 12
   end
   object OpenFileDialog: TOpenDialog
@@ -1242,11 +1247,11 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
       'Archivo de Texto plano (*.txt)|*.txt|Valores separados por comas' +
       ' (*.csv)|*.csv'
     Options = [ofHideReadOnly, ofPathMustExist, ofFileMustExist, ofNoNetworkButton, ofNoDereferenceLinks, ofEnableSizing]
-    Left = 508
+    Left = 548
     Top = 12
   end
   object ImageList: TImageList
-    Left = 461
+    Left = 501
     Top = 14
     Bitmap = {
       494C010103000400040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600

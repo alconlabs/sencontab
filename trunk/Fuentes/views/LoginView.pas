@@ -1,10 +1,10 @@
 unit LoginView;
 interface
-uses Forms, DB, ExtCtrls, SysUtils, Controls, StdCtrls, Classes, Windows, Buttons, Graphics, Messages,
+uses Forms, CustomView, DB, ExtCtrls, SysUtils, Controls, StdCtrls, Classes, Windows, Buttons, Graphics, Messages,
      ComCtrls;
 
 type
-   TFormLoginView = class(TForm)
+   TFormLoginView = class(TCustomView)
     LabelUser: TLabel;
     LabelPassword: TLabel;
     EditUser: TEdit;
@@ -24,6 +24,7 @@ type
     procedure BtnAcceptClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure TimerTimer(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
    protected
     procedure Paint; override;
     procedure WMNCHitTest(var Msg: TWMNCHitTest) ; message WM_NCHitTest;
@@ -169,6 +170,13 @@ begin
    StatusBar.Width := Self.Width -4;
 
    inherited;
+end;
+
+procedure TFormLoginView.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+   if (Key = Chr(VK_F1)) then begin
+      Application.HelpContext(Self.HelpContext)
+   end
 end;
 
 end.

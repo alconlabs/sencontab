@@ -1,6 +1,6 @@
 object FormEnterprises: TFormEnterprises
-  Left = 308
-  Top = 202
+  Left = 388
+  Top = 263
   BorderStyle = bsDialog
   ClientHeight = 475
   ClientWidth = 777
@@ -100,7 +100,6 @@ object FormEnterprises: TFormEnterprises
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 0
-        OnClick = BtnNavAniadirClick
       end
       object BtnNavBorrar: TBitBtn
         Left = 10

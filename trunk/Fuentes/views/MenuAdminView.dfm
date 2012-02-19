@@ -1,8 +1,10 @@
 object FormMenuAdmin: TFormMenuAdmin
-  Left = 360
-  Top = 73
+  Left = 363
+  Top = 68
   Width = 221
   Height = 539
+  HelpType = htKeyword
+  HelpKeyword = 'FormMenuAdmin'
   HorzScrollBar.Range = 111
   VertScrollBar.Range = 354
   BorderIcons = [biSystemMenu, biMinimize, biMaximize, biHelp]

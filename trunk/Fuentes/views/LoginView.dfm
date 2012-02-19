@@ -1,6 +1,6 @@
 object FormLoginView: TFormLoginView
-  Left = 392
-  Top = 189
+  Left = 441
+  Top = 214
   BorderIcons = []
   BorderStyle = bsToolWindow
   ClientHeight = 291
@@ -15,6 +15,7 @@ object FormLoginView: TFormLoginView
   OldCreateOrder = True
   Position = poScreenCenter
   OnCreate = FormCreate
+  OnKeyPress = FormKeyPress
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -2155,15 +2156,15 @@ object FormLoginView: TFormLoginView
     TabOrder = 1
   end
   object Panel1: TPanel
-    Left = 232
+    Left = 192
     Top = 200
-    Width = 209
+    Width = 249
     Height = 41
     BevelOuter = bvNone
     Color = 14275008
     TabOrder = 2
     object BtnCancel: TBitBtn
-      Left = 9
+      Left = 57
       Top = 8
       Width = 88
       Height = 25
@@ -2180,7 +2181,7 @@ object FormLoginView: TFormLoginView
       TabOrder = 0
     end
     object BtnAccept: TBitBtn
-      Left = 105
+      Left = 153
       Top = 8
       Width = 88
       Height = 25
@@ -2209,7 +2210,7 @@ object FormLoginView: TFormLoginView
     Enabled = False
     Interval = 4000
     OnTimer = TimerTimer
-    Left = 178
-    Top = 200
+    Left = 10
+    Top = 216
   end
 end

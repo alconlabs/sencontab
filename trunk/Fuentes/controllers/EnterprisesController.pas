@@ -39,16 +39,10 @@ end;
 function TEnterprisesController.ShowView;
 begin
    {Assignament of Resources}
-   FView.Caption                      := 'Asistente de Gestión de Empresas'; 
-   //FView.LabelUser.Caption            := 'Usuario';  //GetTextFor('LoginView_LabelUser'         );
-   //FView.LabelPassword.Caption        := 'Password'; //GetTextFor('LoginView_LabelPassword'     );
-   //FView.LinkLostPassword.Text        := GetTextFor('LoginView_LinkLostPassword'  );
-   //FView.LinkNewAccount.Text          := GetTextFor('LoginView_LinkNewAccount'    );
-   //FView.BtnCancel.Caption            := 'Cancelar'; //GetTextFor('BtnCancel'                   );
-   //FView.BtnAccept.Caption            := 'Aceptar';  //GetTextFor('BtnOK'                       );
-   //FView.LabelAdminPassword.Text      := GetTextFor('LoginView_LabelAdminPassword');
-   //FView.EditUser.scWaterMarkText     := GetTextFor('LoginView_EditUser'          );
-   //FView.EditPassword.scWaterMarkText := GetTextFor('LoginView_EditPassword'      );
+   FView.Caption                      := 'Asistente de Gestión de Empresas';
+   
+   FView.HelpType    := htKeyword;
+   FView.HelpKeyword := FView.Name;
 
    {Assignament of the delegates}
    //FView.BtnAccept.OnClick             := OnClick_BtnOK;

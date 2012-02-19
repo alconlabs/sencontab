@@ -6,13 +6,13 @@ uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   Buttons, ExtCtrls, DBCtrls, StdCtrls, ComCtrls, Grids,
   DBGrids, Mask, Gauges, DBXpress, SqlExpr, ConfigurationClass,
-  CRSQLConnection, ImgList, D6OnHelpFix, jpeg, CheckLst,
+  CRSQLConnection, ImgList, jpeg, CheckLst,
   DBController;
 
 type
   TButtonState   = (bsNext, bsNextBack, bsEnd);
-  TActivePage    = (apNone, apPresentation, apManageOrNew   , apSelectEnterprise, apCreateDB,
-                    apInsertData  , apInsertExamples, apCopyData, apConsolide, apLinkEnterprise,
+  TActivePage    = (apNone, apPresentation, apManageOrNew, apSelectEnterprise, apCreateDB,
+                    apInsertData, apInsertExamples, apCopyData, apConsolide, apLinkEnterprise,
                     apResume);
 
   TFormWizardGestEnterprises = class(TForm)
@@ -40,16 +40,6 @@ type
     Label4: TLabel;
     Label5: TLabel;
     ImageList: TImageList;
-    Image01: TImage;
-    Image02: TImage;
-    Image03: TImage;
-    Image04: TImage;
-    Image05: TImage;
-    Image06: TImage;
-    Image07: TImage;
-    Image08: TImage;
-    Image09: TImage;
-    Image10: TImage;
     Image1: TImage;
     BtnHelp: TButton;
     Panel1: TPanel;
@@ -84,6 +74,16 @@ type
     EditPassword: TEdit;
     EditRetypePassword: TEdit;
     Edit3: TEdit;
+    Image01: TImage;
+    Image02: TImage;
+    Image03: TImage;
+    Image04: TImage;
+    Image05: TImage;
+    Image06: TImage;
+    Image07: TImage;
+    Image08: TImage;
+    Image09: TImage;
+    Image10: TImage;
     procedure FormShow(Sender: TObject);
     procedure PageControlChanging(Sender: TObject; var AllowChange: Boolean);
     procedure FormCreate(Sender: TObject);
@@ -92,54 +92,48 @@ type
     procedure BtnCancelClick(Sender: TObject);
     procedure BtnEndClick(Sender: TObject);
     procedure BtnBackClick(Sender: TObject);
+    procedure BtnHelpClick(Sender: TObject);
   private
-     FOKDatabase  :Integer;
+     FOKPresentation :Integer;
      FOKSeleccion :Integer;
      FOKPartidas  :Integer;
      FOKCodigos   :Integer;
      FOKResumen   :Integer;
 
-     FModificando :Boolean;
      FActivePage  :TActivePage;
 
-     FDBController :TDBController;
-     //FController   :TEnterprisesController;
-
-     procedure SetOKDatabase (Value :Integer);
+     procedure SetOKPresentation(Value :Integer);
      procedure SetOKSeleccion(Value :Integer);
      procedure SetOKPartidas (Value :Integer);
      procedure SetOKCodigos  (Value :Integer);
      procedure SetResumen    (Value :Integer);
      procedure SetOKImages;
-     procedure SetActivePage (Value :TActivePage);
 
-     function  CheckDatabaseValues:Boolean;
-     procedure SetValuesToConfiguration;
-     function  CheckConnection(ADatabase :string):Boolean;
-     procedure CreateINIFile;
+     function  BeforeNext(Value :TActivePage):Boolean;
+     procedure SetActivePage(Value :TActivePage);
+     function  BeforeBack(Value :TActivePage):Boolean;
+
+
      procedure ShowErrorMessage(prmErrorMessage :string);
      procedure SetButtonState(prmState :TButtonState);
 
      function  DBConfigurationValid        :Boolean;
-     function  CodigosSolicitadosValidos   :Boolean;
+
      function  ExisteInformacionDeCodigos  :Boolean;
      function  ExisteInformacionDePartidas :Boolean;
      function  EliminarInformacionPartidas :Boolean;
      procedure CreaInformacionResumen;
      function  PartidaValida(prmCodigoPartida :string):Boolean;
-     function  CodigoValido(prmNSerie :string):Boolean;
   public
-     property OKDatabase  :Integer       read FOKDatabase  write SetOKDatabase;
-     property OKSeleccion :Integer       read FOKSeleccion write SetOKSeleccion;
-     property OKPartidas  :Integer       read FOKPartidas  write SetOKPartidas;
-     property OKCodigos   :Integer       read FOKCodigos   write SetOKCodigos;
-     property OKResumen   :Integer       read FOKResumen   write SetResumen;
-     property ActivePage  :TActivePage   read FActivePage  write SetActivePage;
-     property DB          :TDBController read FDBController;
+     property OKPresentation :Integer     read FOKPresentation write SetOKPresentation;
+     property OKSeleccion    :Integer     read FOKSeleccion    write SetOKSeleccion;
+     property OKPartidas     :Integer     read FOKPartidas     write SetOKPartidas;
+     property OKCodigos      :Integer     read FOKCodigos      write SetOKCodigos;
+     property OKResumen      :Integer     read FOKResumen      write SetResumen;
+     property ActivePage     :TActivePage read FActivePage     write SetActivePage;
 
-     constructor CreateWizard;
-     function Execute:Boolean;
-     property Modificando :Boolean read FModificando write FModificando;
+     //constructor CreateWizard;
+     //function Execute:Boolean;
   end;
 
 implementation
@@ -148,17 +142,24 @@ uses General;
 
 {$R *.DFM}
 
-constructor TFormWizardGestEnterprises.CreateWizard;
+//constructor TFormWizardGestEnterprises.CreateWizard;
+//begin
+//   Self.Create(Application);
+//
+//end;
+
+//function TFormWizardGestEnterprises.Execute:Boolean;
+//begin
+//   Result := ShowModal = mrOK;
+//end;
+
+procedure TFormWizardGestEnterprises.FormShow(Sender: TObject);
 begin
-   Self.Create(Application);
-
-   //FModel := TEnterprisesModel.Create(MainController.DBMain);
-
    PageControl.Visible := False;
    ActivePage := apPresentation;
    ImageList.GetBitmap(1, Image01.Picture.Bitmap);
-   ImageList.GetBitmap(1, Image02.Picture.Bitmap);
-   ImageList.GetBitmap(2, Image03.Picture.Bitmap);
+   ImageList.GetBitmap(0, Image02.Picture.Bitmap);
+   ImageList.GetBitmap(0, Image03.Picture.Bitmap);
    ImageList.GetBitmap(0, Image04.Picture.Bitmap);
    ImageList.GetBitmap(0, Image05.Picture.Bitmap);
    ImageList.GetBitmap(0, Image06.Picture.Bitmap);
@@ -179,21 +180,8 @@ begin
    Image09.Hint := 'EnlazarEmpresas';
    Image10.Hint := 'Resumen';
 
-   //EditHostName.Text     := FConfiguration.DBConfig.HostName;
-   //EditDataBaseName.Text := FConfiguration.DBConfig.Database;
-   //EditUserName.Text     := FConfiguration.DBConfig.User_Name;
-   
-end;
-
-function TFormWizardGestEnterprises.Execute:Boolean;
-begin
-   Result := ShowModal = mrOK;
-end;
-
-procedure TFormWizardGestEnterprises.FormShow(Sender: TObject);
-begin
+   ActivePage := apPresentation;
    SetButtonState(bsNext);
-
 end;
 
 procedure TFormWizardGestEnterprises.PageControlChanging(Sender: TObject; var AllowChange: Boolean);
@@ -255,7 +243,7 @@ end;
 
 procedure TFormWizardGestEnterprises.FormCreate(Sender: TObject);
 begin
-   FOKDatabase  := 0;
+   FOKPresentation  := 0;
    FOKSeleccion := 0;
    FOKPartidas  := 0;
    FOKCodigos   := 0;
@@ -265,25 +253,14 @@ end;
 function TFormWizardGestEnterprises.DBConfigurationValid:Boolean;
 var Resultado :Integer;
 begin
-   if FModificando then begin
-      Result := True;
-      Exit;
-   end;
-
    Result := True;
-    case Resultado of
-      -995 :begin
-         ShowErrorMessage('El código de SOLICITUD ya existe en la base de datos.');
-         Result := False;
-         Exit;
-      end;
+   case Resultado of
+     -995 :begin
+        ShowErrorMessage('El código de SOLICITUD ya existe en la base de datos.');
+        Result := False;
+        Exit;
+     end;
    end;
-end;
-
-function TFormWizardGestEnterprises.CodigosSolicitadosValidos:Boolean;
-begin
-   Result := True;
-   //Result := not MRegistroCodigos.IsEmpty;
 end;
 
 function TFormWizardGestEnterprises.ExisteInformacionDeCodigos:Boolean;
@@ -319,6 +296,42 @@ begin
    { Ponemos visibles lo componentes }
 end;
 
+function TFormWizardGestEnterprises.BeforeNext(Value: TActivePage):Boolean;
+begin
+   case Value of
+      apPresentation     :begin
+        ActivePage := apManageOrNew;
+      end;
+      apManageOrNew      :begin
+        ActivePage := apSelectEnterprise;
+      end;
+      apSelectEnterprise :begin
+        ActivePage := apCreateDB;
+      end;
+      apCreateDB         :begin
+        ActivePage := apInsertData;
+      end;
+      apInsertData       :begin
+        ActivePage := apInsertExamples;
+      end;
+      apInsertExamples   :begin
+        ActivePage := apCopyData;
+      end;
+      apCopyData         :begin
+        ActivePage := apConsolide;
+      end;
+      apConsolide        :begin
+        ActivePage := apLinkEnterprise;
+      end;
+      apLinkEnterprise   :begin
+        ActivePage := apResume;
+      end;
+      apResume           :begin
+        //ActivePage := apResume;
+      end;
+   end;
+end;
+
 procedure TFormWizardGestEnterprises.BtnNextClick(Sender: TObject);
 begin
    case ActivePage of
@@ -326,6 +339,7 @@ begin
         ActivePage := apManageOrNew;
       end;
       apManageOrNew      :begin
+        BeforeNext(apManageOrNew);
         ActivePage := apSelectEnterprise;
       end;
       apSelectEnterprise :begin
@@ -402,8 +416,50 @@ begin
    end;
 end;
 
+function TFormWizardGestEnterprises.BeforeBack(Value: TActivePage): Boolean;
+begin
+//
+end;
+
 procedure TFormWizardGestEnterprises.BtnBackClick(Sender: TObject);
 begin
+   case ActivePage of
+      apPresentation     :begin
+        ActivePage := apManageOrNew;
+      end;
+      apManageOrNew      :begin
+        if BeforeBack(apManageOrNew) then begin
+           ActivePage := apSelectEnterprise;
+           
+        end;
+      end;
+      apSelectEnterprise :begin
+        ActivePage := apCreateDB; 
+      end;
+      apCreateDB         :begin
+        ActivePage := apInsertData;
+      end;
+      apInsertData       :begin
+        ActivePage := apInsertExamples;
+      end;
+      apInsertExamples   :begin
+        ActivePage := apCopyData;
+      end;
+      apCopyData         :begin
+        ActivePage := apConsolide;
+      end;
+      apConsolide        :begin
+        ActivePage := apLinkEnterprise;
+      end;
+      apLinkEnterprise   :begin
+        ActivePage := apResume;
+      end;
+      apResume           :begin
+        //ActivePage := apResume;
+      end;
+   end;
+
+(*
    if PageControl.ActivePage = TabResumen then begin
       SetButtonState(bsNextBack);
    end else
@@ -420,6 +476,7 @@ begin
    //   TabDatabase.Show;
    //   SetButtonState(bsNext);
    //end;
+*)
 end;
 
 procedure TFormWizardGestEnterprises.BtnCancelClick(Sender: TObject);
@@ -471,71 +528,6 @@ begin
    end;
 end;
 
-function TFormWizardGestEnterprises.CodigoValido(prmNSerie :string):Boolean;
-begin
-   Result := True;
-   if prmNSerie = '' then begin
-      ShowErrorMessage('Debe indicar un código válido');
-      //EditNSerie.SetFocus;
-      Result := False;
-      Exit;
-   end else
-   if Length(prmNSerie) > 20 then begin
-      ShowErrorMessage('La código no debe superar los 20 caracteres de longitud.');
-      //EditNSerie.SetFocus;
-      Result := False;
-      Exit;
-   end;
-end;
-
-function TFormWizardGestEnterprises.CheckConnection(ADatabase :string):Boolean;
-begin
-
-end;
-
-function TFormWizardGestEnterprises.CheckDatabaseValues:Boolean;
-begin
-   //if Trim(EditHostName.Text    ) = '' then begin
-   //   ShowErrorMessage('Host Name cannot be empty.');
-   //   EditHostName.SetFocus;
-   //   Result := False;
-   //end else
-   //if Trim(EditDatabaseName.Text) = '' then begin
-   //   ShowErrorMessage('Database Name cannot be empty.');
-   //   EditDatabaseName.SetFocus;
-   //   Result := False;
-   //end else
-   //if Trim(EditUserName.Text    ) = '' then begin
-   //   ShowErrorMessage('User Name cannot be empty.');
-   //   EditUserName.SetFocus;
-   //   Result := False;
-   //end else
-   //if Trim(EditPassword.Text    ) = '' then begin
-   //   ShowErrorMessage('Password cannot be empty.');
-   //   EditPassword.SetFocus;
-   //   Result := False;
-   //end else
-   //if Trim(EditPassword.Text) <> (EditRetypePassword.Text) then begin
-   //   ShowErrorMessage('You need to type the same password twice.');
-   //   EditPassword.SetFocus;
-   //   Result := False;
-   //end
-   //else Result := True;
-end;
-
-procedure TFormWizardGestEnterprises.SetValuesToConfiguration;
-begin
-   //FConfiguration.DBConfig.HostName  := Trim(EditHostName.Text    );
-   //FConfiguration.DBConfig.Database  := Trim(EditDatabaseName.Text);
-   //FConfiguration.DBConfig.User_Name := Trim(EditUserName.Text    );
-   //FConfiguration.DBConfig.Password  := Trim(EditPassword.Text    );
-end;
-
-procedure TFormWizardGestEnterprises.CreateINIFile;
-begin
-   //
-end;
-
 procedure TFormWizardGestEnterprises.SetOKCodigos(Value: Integer);
 begin
    if (Value <> FOKCodigos) and (Value > -2) and (Value < 2) then begin
@@ -544,10 +536,10 @@ begin
    end;
 end;
 
-procedure TFormWizardGestEnterprises.SetOKDatabase(Value: Integer);
+procedure TFormWizardGestEnterprises.SetOKPresentation(Value: Integer);
 begin
-   if (Value <> FOKDatabase) and (Value > -2) and (Value < 2) then begin
-      FOKDatabase := Value;
+   if (Value <> FOKPresentation) and (Value > -2) and (Value < 2) then begin
+      FOKPresentation := Value;
       SetOKImages;
    end;
 end;
@@ -649,6 +641,11 @@ begin
       {ConfigureButtons;}
    end;
 
+end;
+
+procedure TFormWizardGestEnterprises.BtnHelpClick(Sender: TObject);
+begin
+   Application.HelpContext(Self.HelpContext);
 end;
 
 end.

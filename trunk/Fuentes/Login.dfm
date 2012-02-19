@@ -1,6 +1,8 @@
 object FormLogin: TFormLogin
   Left = 474
   Top = 241
+  HelpType = htKeyword
+  HelpKeyword = 'Main_Page'
   BorderIcons = []
   BorderStyle = bsToolWindow
   ClientHeight = 250
@@ -2137,15 +2139,15 @@ object FormLogin: TFormLogin
     TabOrder = 1
   end
   object Panel1: TPanel
-    Left = 232
+    Left = 192
     Top = 200
-    Width = 209
+    Width = 249
     Height = 41
     BevelOuter = bvNone
     Color = 14275008
     TabOrder = 2
     object BtnCancelar: TSpeedButton
-      Left = 9
+      Left = 57
       Top = 8
       Width = 88
       Height = 25
@@ -2160,7 +2162,7 @@ object FormLogin: TFormLogin
       OnClick = BtnCancelarClick
     end
     object BtnAceptar: TSpeedButton
-      Left = 105
+      Left = 153
       Top = 8
       Width = 88
       Height = 25
@@ -2179,7 +2181,7 @@ object FormLogin: TFormLogin
     Enabled = False
     Interval = 4000
     OnTimer = TimerTimer
-    Left = 178
-    Top = 200
+    Left = 10
+    Top = 216
   end
 end
