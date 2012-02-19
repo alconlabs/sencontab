@@ -6,9 +6,9 @@ uses Buttons, Classes, ComCtrls, Controls, Db, DBClient, DBCtrls, DBTables, Dial
      OvcBase, ovccalc, ovccaldg, ovcclcdg, OvcDbDat, OvcDbNF, OvcDbPF, ovcdlg, OvcEdCal, OvcEditF, OvcEdPop,
      OvcEF, ovcfiler, ovcmru, OvcNbk, OvcNF, OvcPB, OvcPF, ovcstate, ovcstore, StdCtrls, SysUtils, 
      Windows, Wwdbcomb, wwdbdatetimepicker, wwdbedit, Wwdbgrid, Wwdbigrd, wwdblook, Wwdotdot, Wwintl,
-     wwSpeedButton;
+     wwSpeedButton, CustomView;
 type
-   TWCargaAsiento = class(TForm)
+   TWCargaAsiento = class(TCustomView)
     EditComentario: TOvcDbPictureField;
     EditDescConcepto: TwwDBLookupCombo;
     EditSubcuentaCBSUBCUENTA: TwwDBLookupCombo;

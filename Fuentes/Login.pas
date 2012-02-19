@@ -1,9 +1,10 @@
 unit Login;
 interface
-uses Forms, DB, ExtCtrls, SysUtils, Controls, StdCtrls, Classes, Windows, Buttons, Graphics, Messages;
+uses Forms, DB, ExtCtrls, SysUtils, Controls, StdCtrls, Classes, Windows, Buttons, Graphics, Messages,
+     CustomView;
 
 type
-   TFormLogin = class(TForm)
+   TFormLogin = class(TCustomView)
     Label3: TLabel;
     LabelClave: TLabel;
     EditUsuario: TEdit;

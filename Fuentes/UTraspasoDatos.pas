@@ -3,10 +3,11 @@ interface
 uses Buttons, Classes, comctrls, Controls, Db, DBClient, DBCtrls, DBTables, Dialogs, ExtCtrls, fcButton,
      fcImage, fcimageform, fcImgBtn, fcpanel, Forms, Graphics, IBCustomDataSet, IBDatabase, IBQuery,
      IBSQL, Mask, Messages, OvcBase, OvcCmbx, OvcDbNF, OvcDbPF, OvcDrCbx, OvcEF, OvcNF, OvcPB, OvcPF,
-     StdCtrls, STSTRS, SysUtils, Windows, Wwdbcomb, wwdbdatetimepicker, wwdbedit, wwdblook, Wwdotdot;
+     StdCtrls, STSTRS, SysUtils, Windows, Wwdbcomb, wwdbdatetimepicker, wwdbedit, wwdblook, Wwdotdot,
+     CustomView;
 
 type
-   TWTraspasoDatos = class(TForm)
+   TWTraspasoDatos = class(TCustomView)
       Panel5:         TPanel;
       Panel4:         TPanel;
       Panel3:         TPanel;

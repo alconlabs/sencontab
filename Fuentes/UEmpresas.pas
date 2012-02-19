@@ -3,7 +3,7 @@ interface
 uses SysUtils, WinTypes, WinProcs, Messages, Classes, Graphics, Controls, Forms, Dialogs, Grids, DB,
      DBTables, StdCtrls, Buttons, ExtCtrls, WizardGestEnterprises,
      DBCtrls, DBClient, IBDatabase, IBCustomDataSet, IBTableSet, IBSQL, DBGrids, Mask,
-     ComCtrls;
+     ComCtrls, CustomView;
 
 type
   TFormEnterprises = class(TCustomView)

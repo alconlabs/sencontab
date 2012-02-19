@@ -5,9 +5,9 @@ uses Buttons, Classes, Controls, DB, DBClient, DBCtrls, DBTables, Dialogs, ExtCt
      IBTableSet, jpeg, Mask, Messages, navegadorNotarios, OvcBase, ovcclcdg, OvcDbNF, OvcDbPF, ovcdlg, OvcEF,
      OvcNbk, OvcNF, OvcPB, OvcPF, StdCtrls, SysUtils, Variants, WinProcs, WinTypes, wwclearpanel,
      wwclient, Wwdatsrc, Wwdbcomb, wwdbdatetimepicker, Wwdbdlg, wwdbedit, Wwdbgrid, Wwdbigrd, wwdblook,
-     wwDBNavigator, Wwdbspin, Wwdotdot, Wwkeycb, wwSpeedButton, Wwtable;
+     wwDBNavigator, Wwdbspin, Wwdotdot, Wwkeycb, wwSpeedButton, Wwtable, CustomView;
 type
-   TWCargaRapidaFacturas = class(TForm)
+   TWCargaRapidaFacturas = class(TCustomView)
       OvcController1: TOvcController;
       Shape1:         TShape;
       lTitulo:        TLabel;

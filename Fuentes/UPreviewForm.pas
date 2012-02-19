@@ -3,9 +3,9 @@ interface
 uses Buttons, Classes, comctrls, Controls, DB, DBClient, DBCtrls, Dialogs, ExtCtrls, fcButton, fcImgBtn,
      Forms, Graphics, Grids, IBDatabase, IBQuery, IBSQL, jpeg, Mask, Messages, OvcBase, OvcEF, OvcNF,
      OvcPB, ppTypes, ppUtils, ppViewr, StdCtrls, SysUtils, MenuPrincipal, WinProcs, WinTypes, wwclearpanel,
-     Wwdatsrc, Wwdbcomb, wwdbedit, Wwdotdot, Wwkeycb, wwSpeedButton;
+     Wwdatsrc, Wwdbcomb, wwdbedit, Wwdotdot, Wwkeycb, wwSpeedButton, CustomView;
 type
-   TWPreviewForm = class(TForm)
+   TWPreviewForm = class(TCustomView)
       PanelVisor:       TPanel;
       pnlPreviewBar:    TPanel;
       spbPreviewPrint:  TSpeedButton;

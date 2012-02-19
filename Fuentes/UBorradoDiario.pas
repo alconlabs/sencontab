@@ -2,9 +2,10 @@ unit UBorradoDiario;
 interface
 uses Classes, comctrls, Controls, Db, DBClient, DBCtrls, Dialogs, ExtCtrls, fcButton, fcImage, fcimageform,
      fcImgBtn, Forms, Graphics, IBSQL, Mask, Messages, OvcBase, OvcDbNF, OvcDbPF, OvcEF, OvcNF, OvcPB,
-     OvcPF, StdCtrls, SysUtils, Windows, Wwdbcomb, wwdbdatetimepicker, wwdbedit, wwdblook, Wwdotdot;
+     OvcPF, StdCtrls, SysUtils, Windows, Wwdbcomb, wwdbdatetimepicker, wwdbedit, wwdblook, Wwdotdot,
+     CustomView;
 type
-   TWBorradoDiario = class(TForm)
+   TWBorradoDiario = class(TCustomView)
       Panel5:           TPanel;
       Panel4:           TPanel;
       Panel3:           TPanel;

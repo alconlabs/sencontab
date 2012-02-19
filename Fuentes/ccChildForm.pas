@@ -4,10 +4,10 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Menus, IBDataBase;
+  Dialogs, Menus, IBDataBase, CustomView;
 
 type
-  TccFormChild = class(TForm)
+  TccFormChild = class(TCustomView)
   private
     FAsChild    :Boolean;
     FTempParent :TWinControl;

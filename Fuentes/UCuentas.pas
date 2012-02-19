@@ -5,9 +5,10 @@ uses Buttons, Classes, ComCtrls, Controls, Chart, Db, DBClient, DBCtrls, DBChart
      IBSQL, IBTableSet, jpeg, Mask, Menus, Messages, navegadorNotarios, OvcBase, OvcDbDat, OvcDbNF, OvcDbPF,
      OvcEdCal, OvcEditF, OvcEdPop, OvcEF, OvcNbk, OvcNF, OvcPB, OvcPF, ppCache, ppComm, ppDB, ppDBPipe,
      ppRelatv, Series, StdCtrls, SysUtils, TeEngine, TeeProcs, Windows, Wwdbcomb, wwdbedit,
-     Wwdbgrid, Wwdbigrd, wwdblook, Wwdotdot, wwSpeedButton;
+     Wwdbgrid, Wwdbigrd, wwdblook, Wwdotdot, wwSpeedButton,
+     CustomView;
 type
-   TWCuentas = class(TForm)
+   TWCuentas = class(TCustomView)
       Paginas:       TOvcNotebook;
       BtnNavAnadir:  TfcImageBtn;
       BtnNavBorrar:  TfcImageBtn;

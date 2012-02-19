@@ -6,10 +6,10 @@ uses Buttons, Classes, ComCtrls, ComObj, Controls, Chart, Db, DBClient, DBCtrls,
      OvcDbDat, OvcDbNF, OvcDbPF, OvcEdCal, OvcEditF, OvcEdPop, OvcEF, OvcNbk, OvcNF, OvcPB, OvcPF, ppCache,
      ppComm, ppDB, ppDBPipe, ppRelatv, Series, StdCtrls, SysUtils, TeEngine, TeeProcs, Windows,
      word_tlb, wwcheckbox, Wwdbcomb, wwdbdatetimepicker, wwdbedit, Wwdbgrid, Wwdbigrd, wwdblook, Wwdbspin,
-     Wwdotdot, wwSpeedButton, Wwtable, xprocs;
+     Wwdotdot, wwSpeedButton, Wwtable, xprocs, CustomView;
 
 type
-   TWSubCuentas = class(TForm)
+   TWSubCuentas = class(TCustomView)
       Paginas:        TOvcNotebook;
       BtnNavAnadir:   TfcImageBtn;
       BtnNavBorrar:   TfcImageBtn;

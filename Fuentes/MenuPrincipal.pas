@@ -3,9 +3,10 @@ interface
 uses Windows, TXComp, TXRB, Menus, ppParameter, ppBands, ppCtrls, ppVar, ppPrnabl, ppClass, ppCache, ppProd,
      ppReport, ppDB, ppComm, ppRelatv, ppDBPipe, ppDBBDE, ovcbase, AppEvnts, ImgList, Controls, Buttons, fcButton,
      fcImgBtn, ExtCtrls, Graphics, Classes, Forms, SysUtils, DB, ppdevice, ppFildev, ppMemo, ppModule, ppNoDataDlg,
-     ppRegion, ppStrtch, ppSubRpt, ppTypes, ppViewr, jpeg;
+     ppRegion, ppStrtch, ppSubRpt, ppTypes, ppViewr, jpeg,
+     CustomView;
 type
-   TFormPrincipal = class(TForm)
+   TFormPrincipal = class(TCustomView)
     ImageList: TImageList;
     ApplicationEvents: TApplicationEvents;
     OvcController: TOvcController;

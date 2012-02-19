@@ -3,10 +3,10 @@ interface
 uses Buttons, Classes, comctrls, Controls, CheckLst, DB, DBClient, DBCtrls, DBGrids, Dialogs, ExtCtrls,
      fcButton, fcImage, fcimageform, fcImgBtn, Forms, Graphics, Grids, IBDatabase, IBQuery, IBSQL, jpeg, Mask,
      Messages, OvcBase, OvcEF, OvcNF, OvcPB, StdCtrls, SysUtils, WinProcs, WinTypes, wwclearpanel, Wwdbcomb,
-     wwdbdatetimepicker, wwdbedit, wwdblook, Wwdotdot, Wwkeycb, wwSpeedButton;
+     wwdbdatetimepicker, wwdbedit, wwdblook, Wwdotdot, Wwkeycb, wwSpeedButton, CustomView;
 
 type
-   TWBalExplotacion = class(TForm)
+   TWBalExplotacion = class(TCustomView)
       OvcController1: TOvcController;
       Datos:          TGroupBox;
       Shape1:         TShape;

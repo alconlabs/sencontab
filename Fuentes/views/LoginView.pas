@@ -1,5 +1,7 @@
 unit LoginView;
+
 interface
+
 uses Forms, CustomView, DB, ExtCtrls, SysUtils, Controls, StdCtrls, Classes, Windows, Buttons, Graphics, Messages,
      ComCtrls;
 

@@ -2,9 +2,9 @@ unit MenuAdminView;
 interface
 uses Messages, SysUtils, Classes, Forms, Graphics, Buttons, Menus, ExtCtrls,
      ComCtrls, Controls, ImgList, StdCtrls,
-     UEmpresas, UUsuarios;
+     UEmpresas, UUsuarios, CustomView;
 type
-  TFormMenuAdmin = class(TForm)
+  TFormMenuAdmin = class(TCustomView)
     PanelMenu: TPanel;
     StatusBar: TStatusBar;
     PanelUserProfiles: TPanel;

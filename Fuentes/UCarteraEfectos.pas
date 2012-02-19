@@ -5,9 +5,10 @@ uses Buttons, Classes, ComCtrls, ComObj, Controls, Db, DBClient, DBCtrls, DBTabl
      IBQuery, IBSQL, IBTableSet, jpeg, Mask, Menus, Messages, navegadorNotarios, OvcBase, OvcDbDat, OvcDbNF,
      OvcDbPF, OvcEdCal, OvcEditF, OvcEdPop, OvcEF, OvcNbk, OvcNF, OvcPB, OvcPF, ppCache, ppComm, ppDB,
      ppDBPipe, ppRelatv, StdCtrls, SysUtils, variants, Windows, word_tlb, Wwdbcomb,
-     wwdbdatetimepicker, wwdbedit, Wwdbgrid, Wwdbigrd, wwdblook, Wwdotdot, wwSpeedButton, Wwtable;
+     wwdbdatetimepicker, wwdbedit, Wwdbgrid, Wwdbigrd, wwdblook, Wwdotdot, wwSpeedButton, Wwtable,
+     CustomView;
 type
-   TWCarteraEfectos = class(TForm)
+   TWCarteraEfectos = class(TCustomView)
       Paginas:       TOvcNotebook;
       BtnNavAnadir:  TfcImageBtn;
       BtnNavBorrar:  TfcImageBtn;

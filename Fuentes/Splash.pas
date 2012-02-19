@@ -1,8 +1,9 @@
 unit Splash;
 interface
-uses Classes, Controls, Dialogs, ExtCtrls, Forms, Graphics, jpeg, Messages, SysUtils, Windows;
+uses Classes, Controls, Dialogs, ExtCtrls, Forms, Graphics, jpeg, Messages, SysUtils, Windows,
+     CustomView;
 type
-   TFormSplash = class(TForm)
+   TFormSplash = class(TCustomView)
     Imagen: TImage;
     Timer: TTimer;
     procedure FormCreate(Sender: TObject);

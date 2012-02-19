@@ -3,10 +3,10 @@ interface
 uses Buttons, Classes, comctrls, Controls, DB, DBClient, DBCtrls, Dialogs, ExtCtrls, fcButton, fcImage,
      fcimageform, fcImgBtn, fcpanel, Forms, Graphics, Grids, IBDatabase, IBSQL, jpeg, Mask, Messages,
      OvcBase, OvcDbNF, OvcDbPF, OvcEF, ovcnbk, OvcNF, OvcPB, OvcPF, shellapi, StdCtrls, SysUtils,
-     WinProcs, WinTypes, wwclearpanel, Wwkeycb, wwSpeedButton;
+     WinProcs, WinTypes, wwclearpanel, Wwkeycb, wwSpeedButton, CustomView;
 
 type
-   TWIva300 = class(TForm)
+   TWIva300 = class(TCustomView)
       OvcController1:  TOvcController;
       Datos:           TGroupBox;
       Shape1:          TShape;

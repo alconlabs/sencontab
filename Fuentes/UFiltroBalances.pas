@@ -3,9 +3,9 @@ interface
 uses Classes, comctrls, Controls, CheckLst, Db, DBClient, DBCtrls, Dialogs, ExtCtrls, fcButton, fcImage,
      fcimageform, fcImgBtn, Forms, Graphics, IBQuery, Mask, Messages, OvcBase, OvcDbNF, OvcDbPF, OvcEF,
      OvcNF, OvcPB, OvcPF, StdCtrls, SysUtils, Windows, Wwdbcomb, wwdbdatetimepicker, wwdbedit, wwdblook,
-     Wwdotdot, Grids, DBGrids, DMBalances;
+     Wwdotdot, Grids, DBGrids, DMBalances, CustomView;
 type
-   TWFiltroBalances = class(TForm)
+   TWFiltroBalances = class(TCustomView)
       Panel5:           TPanel;
       Panel4:           TPanel;
       Panel3:           TPanel;

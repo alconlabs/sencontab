@@ -3,10 +3,10 @@ interface
 uses Buttons, DBClient, IBDatabase, IBCustomDataSet, IBTableSet, Forms,
      StdCtrls, Grids, Controls, windows, ExtCtrls, Graphics, Classes,
      SysUtils, Messages, DB, Mask, DBCtrls, DBGrids, ComCtrls,
-     FormHandler;
+     FormHandler, CustomView;
 
 type
-   TWPaises = class(TForm)
+   TWPaises = class(TCustomView)
     SFichero: TDataSource;
     QFichero: TIBTableSet;
     Transaccion: TIBTransaction;
