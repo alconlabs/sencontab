@@ -3,6 +3,7 @@ program Contabilidad;
 uses
   Forms,
   ogfirst,
+  Windows,
   DM in 'Fuentes\DM.pas' {DMRef: TDataModule},
   DMControl in 'Fuentes\DMControl.pas' {DmControlRef: TDataModule},
   DMConta in 'Fuentes\DMConta.pas' {DMContaRef: TDataModule},
@@ -102,16 +103,102 @@ uses
   WizardGestEnterprises in 'Fuentes\WizardGestEnterprises.pas' {FormWizardGestEnterprises},
   EnterprisesModel in 'Fuentes\models\EnterprisesModel.pas',
   EnterprisesController in 'Fuentes\controllers\EnterprisesController.pas',
-  CustomController in 'Fuentes\controllers\CustomController.pas';
+  CustomController in 'Fuentes\controllers\CustomController.pas',
+  CustomView in 'Fuentes\views\CustomView.pas' {CustomView};
 
 {$R *.RES}
 
+
+//********************************************************************
+//   Access Help API
+//********************************************************************
+var
+  HHCtrlHandle: THandle = 0;   //0 if hhctrl.ocx is not loaded
+
+{ Externals from HHCTRL.OCX }
+
+var  //functions are invalid if HHCtrlHandle = 0
+
+  HtmlHelpA: function(hwndCaller: HWND; pszFile: PAnsiChar;
+    uCommand: UInt; dwData: DWORD): HWND; stdcall;
+
+  HtmlHelpW: function(hwndCaller: HWND; pszFile: PWideChar;
+    uCommand: UInt; dwData: DWORD): HWND; stdcall;
+
+  HtmlHelp: function(hwndCaller: HWND; pszFile: PChar;
+    uCommand: UInt; dwData: DWORD): HWND; stdcall;
+
+const
+  hhctrlLib  = 'hhctrl.ocx';
+
+const
+  { Commands to pass to HtmlHelp() }
+
+  HH_DISPLAY_TOPIC        = $0000;
+  HH_HELP_CONTEXT         = $000F;
+  HH_CLOSE_ALL            = $0012;  // close all help windows opened by the caller
+//********************************************************************
+//********************************************************************
+//   Access Help API
+//********************************************************************
+const hhPathRegKey = 'CLSID\{adb880a6-d8ff-11cf-9377-00aa003b7a11}\InprocServer32';
+
+{setup HTML Help API function interface
+ sets HHCtrlHandle = 0 if API function not available
+ Note: See HH.pas instead of writing this code for each application
+ }
+
+procedure LoadHtmlHelp;
+begin
+  if HHCtrlHandle = 0 then
+  begin
+    HHCtrlHandle := LoadLibrary(hhctrlLib);
+    if HHCtrlHandle <> 0 then
+    begin
+      @HtmlHelpA := GetProcAddress(HHCtrlHandle, 'HtmlHelpA');
+      @HtmlHelpW := GetProcAddress(HHCtrlHandle, 'HtmlHelpW');
+      @HtmlHelp  := GetProcAddress(HHCtrlHandle, 'HtmlHelpA');
+    end;
+  end;
+end;
+
+procedure UnloadHtmlHelp;
+begin
+  if HHCtrlHandle <> 0 then
+  begin
+    FreeLibrary(HHCtrlHandle);
+    HHCtrlHandle := 0;
+  end;
+end;
+//********************************************************************
+
+
+
 var MainController :TMainController;
+var FOldHelpEvent: THelpEvent;  {this shall to be in the MainControllerclass}
 begin
   Application.Initialize;
   Application.Title := 'Contabilidad';
 
+
   MainController := TMainController.Create;
+  //++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  {Hook in our help}
+  FOldHelpEvent := Application.OnHelp;
+  Application.OnHelp := MainController.OnHelp_HelpHook;
+  //++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  //Load the HTML Help
+  LoadHtmlHelp;
+  if HHCtrlHandle = 0 then
+  begin
+    //ShowMessage('HTML Help is not installed on this PC.');
+    Halt;
+  end;
+  //++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
   try
     MainController.Run;
     Application.Run;

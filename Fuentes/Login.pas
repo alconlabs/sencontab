@@ -23,6 +23,7 @@ type
     procedure BtnCancelarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure TimerTimer(Sender: TObject);
+    procedure BtnHelpClick(Sender: TObject);
    protected
     procedure Paint; override;
     procedure WMNCHitTest(var Msg: TWMNCHitTest) ; message WM_NCHitTest;
@@ -182,6 +183,11 @@ begin
                     Width  -2,
                     ClientHeight -2, 3, 3);
    inherited;
+end;
+
+procedure TFormLogin.BtnHelpClick(Sender: TObject);
+begin
+   Application.HelpContext(Self.HelpContext);
 end;
 
 end.
