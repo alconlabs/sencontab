@@ -1,9 +1,9 @@
 object FormLoginView: TFormLoginView
-  Left = 441
-  Top = 214
+  Left = 460
+  Top = 219
   BorderIcons = []
   BorderStyle = bsToolWindow
-  ClientHeight = 291
+  ClientHeight = 297
   ClientWidth = 450
   Color = 14275008
   Font.Charset = DEFAULT_CHARSET

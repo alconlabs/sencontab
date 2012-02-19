@@ -3,10 +3,10 @@ interface
 uses Buttons, Classes, comctrls, Controls, DB, DBClient, DBCtrls, Dialogs, ExtCtrls, fcButton, fcImage,
      fcimageform, fcImgBtn, Forms, Graphics, Grids, IBCustomDataSet, IBDatabase, IBSQL, IBTableSet, jpeg,
      Mask, Messages, OvcBase, OvcDbNF, OvcEF, OvcNF, OvcPB, StdCtrls, SysUtils, WinProcs, WinTypes,
-     wwclearpanel, wwdbdatetimepicker, wwdblook, Wwkeycb, wwSpeedButton;
+     wwclearpanel, wwdbdatetimepicker, wwdblook, Wwkeycb, wwSpeedButton, CustomView;
 
 type
-   TWCopiaAsientos = class(TForm)
+   TWCopiaAsientos = class(TCustomView)
       OvcController1:  TOvcController;
       Shape1:          TShape;
       lTitulo:         TLabel;

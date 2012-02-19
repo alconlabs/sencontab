@@ -3,10 +3,10 @@ interface
 uses SysUtils, WinTypes, WinProcs, Messages, Classes, Graphics, Controls, Forms, Dialogs, Grids, DB,
      StdCtrls, Buttons, Wwkeycb, ExtCtrls, DBCtrls, Mask, IBDatabase, fcButton, fcImgBtn, wwSpeedButton,
      wwclearpanel, jpeg, IBSQL, ComCtrls, OvcBase, OvcEF, OvcPB, OvcNF, IBServices, StBase, StFileOp,
-     {IBScript,} fcImage, fcimageform, FileCtrl;
+     fcImage, fcimageform, FileCtrl, CustomView;
 
 type
-   TWActualizacionBD = class(TForm)
+   TWActualizacionBD = class(TCustomView)
       OvcController1: TOvcController;
       Datos:          TGroupBox;
       Shape1:         TShape;

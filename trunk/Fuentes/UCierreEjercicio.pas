@@ -3,9 +3,9 @@ interface
 uses Buttons, Classes, Controls, DB, DBClient, DBCtrls, Dialogs, ExtCtrls, fcButton, fcImage, fcimageform,
      fcImgBtn, Forms, Graphics, Grids, IBCustomDataSet, IBDatabase, IBQuery, IBSql, jpeg, Mask, Messages,
      OvcBase, OvcDbNF, OvcEF, OvcNF, OvcPB, StdCtrls, SysUtils, WinProcs, WinTypes, wwclearpanel, wwdblook,
-     Wwkeycb, wwSpeedButton;
+     Wwkeycb, wwSpeedButton, CustomView;
 type
-   TWCierreEjercicio = class(TForm)
+   TWCierreEjercicio = class(TCustomView)
       OvcController1: TOvcController;
       Datos:          TGroupBox;
       Shape1:         TShape;

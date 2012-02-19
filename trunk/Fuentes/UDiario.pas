@@ -5,9 +5,10 @@ uses Buttons, Classes, ComCtrls, Controls, Db, DBClient, DBCtrls, DBTables, Dial
      IBQuery, IBSQL, IBTableSet, jpeg, Mask, Menus, Messages, navegadorNotarios, OvcBase, OvcDbDat, OvcDbNF,
      OvcDbPF, OvcEdCal, OvcEditF, OvcEdPop, OvcEF, OvcNbk, OvcNF, OvcPB, OvcPF, ppCache, ppComm, ppDB,
      ppDBPipe, ppRelatv, StdCtrls, SysUtils, Windows, Wwdbcomb, wwdbdatetimepicker, wwdbedit,
-     Wwdbgrid, Wwdbigrd, wwdblook, Wwdotdot, wwSpeedButton;
+     Wwdbgrid, Wwdbigrd, wwdblook, Wwdotdot, wwSpeedButton,
+     CustomView;
 type
-   TWDiario = class(TForm)
+   TWDiario = class(TCustomView)
       lTitulo:         TLabel;
       Shape1:          TShape;
       QFichero:        TIBTableSet;

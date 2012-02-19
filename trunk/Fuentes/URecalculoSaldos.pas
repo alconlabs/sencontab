@@ -2,9 +2,9 @@ unit URecalculoSaldos;
 interface
 uses Buttons, Classes, comctrls, Controls, DB, DBCtrls, Dialogs, ExtCtrls, fcButton, fcImage, fcimageform,
      fcImgBtn, Forms, Graphics, Grids, IBDatabase, IBSQL, jpeg, Mask, Messages, OvcBase, OvcEF, OvcNF,
-     OvcPB, StdCtrls, SysUtils, WinProcs, WinTypes, wwclearpanel, Wwkeycb, wwSpeedButton;
+     OvcPB, StdCtrls, SysUtils, WinProcs, WinTypes, wwclearpanel, Wwkeycb, wwSpeedButton, CustomView;
 type
-   TWRecalculoSaldos = class(TForm)
+   TWRecalculoSaldos = class(TCustomView)
       OvcController1: TOvcController;
       Datos:          TGroupBox;
       Shape1:         TShape;

@@ -2,9 +2,9 @@ unit UFiltroLibroFacturasEmitidas;
 interface
 uses Classes, comctrls, Controls, Db, DBClient, DBCtrls, Dialogs, ExtCtrls, fcButton, fcImage, fcimageform,
      fcImgBtn, Forms, Graphics, Mask, Messages, OvcBase, OvcDbNF, OvcDbPF, OvcEF, OvcNF, OvcPB, OvcPF,
-     StdCtrls, SysUtils, Windows, Wwdbcomb, wwdbdatetimepicker, wwdbedit, wwdblook, Wwdotdot;
+     StdCtrls, SysUtils, Windows, Wwdbcomb, wwdbdatetimepicker, wwdbedit, wwdblook, Wwdotdot, CustomView;
 type
-   TWFiltroLibroFactEmitidas = class(TForm)
+   TWFiltroLibroFactEmitidas = class(TCustomView)
       Panel5:           TPanel;
       Panel4:           TPanel;
       Panel3:           TPanel;

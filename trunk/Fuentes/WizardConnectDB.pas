@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   Buttons, ExtCtrls, DBCtrls, StdCtrls, ComCtrls, Grids,
   DBGrids, DB, Mask, Gauges, DBXpress, SqlExpr, ConfigurationClass,
-  CRSQLConnection, ImgList, D6OnHelpFix;
+  CRSQLConnection, ImgList, D6OnHelpFix, CustomView;
 
   {TODO: Finish this wizard with editing posibilities and all the options }
   {TODO: Improve the detection of the Database. Don't create if the database has tables or exists previously}
@@ -14,7 +14,7 @@ uses
 type
   TButtonState   = (bsNext, bsNextBack, bsEnd);
 
-  TWizardConnectDB = class(TForm)
+  TWizardConnectDB = class(TCustomView)
     PanelBottom: TPanel;
     PageControl: TPageControl;
     TabDatabase: TTabSheet;

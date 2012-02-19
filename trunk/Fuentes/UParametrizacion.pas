@@ -4,9 +4,9 @@ uses Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs, S
      DB, IBCustomDataSet, wwSpeedButton, Buttons, ComCtrls, jpeg, IBSQL, fcImgBtn, fcButton,
      OvcBase, IBDatabase, IBTableSet, Mask, wwdbedit, Wwdotdot, Wwdbcomb, wwdblook, OvcEF, OvcPB, OvcNF,
      OvcDbNF, OvcNbk, Wwdbgrid, OvcCmbx, OvcPrCbx, OvcDlg, OvcRvPDg, wwdbdatetimepicker, StBrowsr, OvcPF,
-     OvcDbPF, DBClient, fcImage, fcimageform, SsBase;
+     OvcDbPF, DBClient, fcImage, fcimageform, SsBase, CustomView;
 type
-   TWParametrizacion = class(TForm)
+   TWParametrizacion = class(TCustomView)
       Paginas:          TOvcNotebook;
       Label2:           TLabel;
       Shape1:           TShape;

@@ -3,9 +3,9 @@ interface
 uses Buttons, Classes, comctrls, Controls, DB, DBClient, DBCtrls, Dialogs, ExtCtrls, fcButton, fcImage,
      fcimageform, fcImgBtn, Forms, Graphics, Grids, IBDatabase, IBSQL, jpeg, Mask, Messages, OvcBase,
      ovcdbnf, OvcEF, OvcNF, OvcPB, StdCtrls, SysUtils, WinProcs, WinTypes, wwclearpanel, Wwdatsrc,
-     Wwdbcomb, wwdbdatetimepicker, wwdbedit, wwdblook, Wwdotdot, Wwkeycb, wwSpeedButton;
+     Wwdbcomb, wwdbdatetimepicker, wwdbedit, wwdblook, Wwdotdot, Wwkeycb, wwSpeedButton, CustomView;
 type
-   TWGeneracionAsiento = class(TForm)
+   TWGeneracionAsiento = class(TCustomView)
       OvcController1:  TOvcController;
       Datos:           TGroupBox;
       Shape1:          TShape;

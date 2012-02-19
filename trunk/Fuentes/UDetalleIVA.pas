@@ -3,9 +3,9 @@ interface
 uses SysUtils, WinTypes, WinProcs, Messages, Classes, Graphics, Controls, Forms, Dialogs, Grids, DB,
      StdCtrls, Buttons, Wwkeycb, ExtCtrls, DBCtrls, Mask, IBDatabase, fcButton, fcImgBtn, wwSpeedButton,
      wwclearpanel, jpeg, IBSQL, ComCtrls, OvcBase, OvcEF, OvcPB, OvcNF, IBServices, StFileOp,
-     ovccalc, ovcdbnf, fcImage, fcimageform;
+     ovccalc, ovcdbnf, fcImage, fcimageform, CustomView;
 type
-   TWDetalleIVA = class(TForm)
+   TWDetalleIVA = class(TCustomView)
       OvcController1: TOvcController;
       Shape1:         TShape;
       lTitulo:        TLabel;

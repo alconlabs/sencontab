@@ -3,9 +3,9 @@ interface
 uses Classes, comctrls, Controls, Db, DBClient, DBCtrls, Dialogs, ExtCtrls, fcButton, fcImage, fcimageform,
      fcImgBtn, Forms, Graphics, IBCustomDataSet, IBQuery, Mask, Messages, OvcBase, OvcDbNF, OvcDbPF,
      OvcEF, OvcNF, OvcPB, OvcPF, StdCtrls, SysUtils, Windows, Wwdbcomb, wwdbdatetimepicker, wwdbedit,
-     wwdblook, Wwdotdot;
+     wwdblook, Wwdotdot, CustomView;
 type
-   TWPlanContable = class(TForm)
+   TWPlanContable = class(TCustomView)
       Panel5:         TPanel;
       Panel4:         TPanel;
       Panel3:         TPanel;

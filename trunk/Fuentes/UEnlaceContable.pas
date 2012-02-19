@@ -3,10 +3,10 @@ interface
 uses Buttons, Classes, comctrls, Controls, DB, DBClient, DBCtrls, DBTables, Dialogs, ExtCtrls, fcButton,
      fcImage, fcimageform, fcImgBtn, Forms, Graphics, Grids, IBCustomDataSet, IBDatabase, IBQuery, IBSQL,
      jpeg, Mask, Messages, OvcBase, OvcEF, OvcNF, OvcPB, StdCtrls, SysUtils, variants, WinProcs, WinTypes,
-     wwclearpanel, Wwkeycb, wwSpeedButton;
+     wwclearpanel, Wwkeycb, wwSpeedButton, CustomView;
 
 type
-   TWEnlaceContable = class(TForm)
+   TWEnlaceContable = class(TCustomView)
       OvcController1: TOvcController;
       Datos:          TGroupBox;
       Shape1:         TShape;

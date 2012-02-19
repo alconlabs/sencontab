@@ -3,10 +3,10 @@ interface
 uses Buttons, Classes, comctrls, Controls, DB, DBClient, DBCtrls, Dialogs, ExtCtrls, fcButton, fcImage,
      fcimageform, fcImgBtn, fcpanel, Forms, Graphics, Grids, IBDatabase, IBSQL, jpeg, Mask, Messages,
      OvcBase, OvcDbNF, OvcDbPF, OvcEF, OvcNF, OvcPB, OvcPF, shellapi, StdCtrls, SysUtils, WinProcs,
-     WinTypes, wwclearpanel, wwdbdatetimepicker, Wwkeycb, wwSpeedButton;
+     WinTypes, wwclearpanel, wwdbdatetimepicker, Wwkeycb, wwSpeedButton, CustomView;
 
 type
-   TWISoc202 = class(TForm)
+   TWISoc202 = class(TCustomView)
       OvcController1:  TOvcController;
       Datos:           TfcGroupBox;
       Shape1:          TShape;

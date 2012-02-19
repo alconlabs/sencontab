@@ -2,10 +2,10 @@ unit SearchConcept;
 interface
 uses SysUtils, WinTypes, WinProcs, Messages, Classes, Graphics, Controls,Forms, Dialogs, Grids,
      DB, DBTables, StdCtrls, Buttons, ComCtrls, ExtCtrls, DBCtrls, Mask,
-     DBGrids, DBClient, IBCustomDataSet, IBDatabase, IBTableSet, IBQuery;
+     DBGrids, DBClient, IBCustomDataSet, IBDatabase, IBTableSet, IBQuery, CustomView;
 
 type
-  TFormSearchConcept = class(TForm)
+  TFormSearchConcept = class(TCustomView)
     DBGrid: TDBGrid;
     PanelArriba: TPanel;
     EditSearchText: TEdit;

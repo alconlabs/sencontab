@@ -3,10 +3,11 @@ interface
 uses Buttons, Classes, Controls, Dialogs, ExtCtrls, Forms, Graphics, Grids, IBCustomDataSet, IBQuery,
      IBTableSet, Messages, navegadorNotarios, OvcBase, OvcDbNF, OvcDbPF, OvcEF, OvcNF, OvcPB, OvcPF,
      StdCtrls, SysUtils, WinProcs, WinTypes, Wwdatsrc, Wwdbgrid, Wwdbigrd, DBClient, DB,
-     fcButton, fcImgBtn, fcImage, fcimageform, IBDatabase;
+     fcButton, fcImgBtn, fcImage, fcimageform, IBDatabase,
+     CustomView;
 
 type
-   TWTitulos = class(TForm)
+   TWTitulos = class(TCustomView)
       OvcController1:  TOvcController;
       SFichero:        TwwDataSource;
       QFichero:        TIBTableSet;

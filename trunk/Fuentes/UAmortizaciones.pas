@@ -3,10 +3,10 @@ interface
 uses Classes, comctrls, Controls, Db, DBClient, DBCtrls, Dialogs, ExtCtrls, fcButton, fcImage, fcimageform,
      fcImgBtn, Forms, Graphics, IBCustomDataSet, IBQuery, IBSQL, Mask, Messages, OvcBase, OvcDbNF, OvcDbPF,
      OvcEF, OvcNF, OvcPB, OvcPF, StdCtrls, SysUtils, Windows, Wwdbcomb, wwdbdatetimepicker, wwdbedit,
-     wwdblook, Wwdotdot;
+     wwdblook, Wwdotdot, CustomView;
 
 type
-   TWAmortizaciones = class(TForm)
+   TWAmortizaciones = class(TCustomView)
       Panel5:           TPanel;
       Panel4:           TPanel;
       Panel3:           TPanel;
@@ -130,76 +130,62 @@ uses Cadenas, DM, DMConta, MenuPrincipal, General, Globales, UEspere;
 
 procedure TWAmortizaciones.CrearFiltro;
 begin
-   {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-   with CDSFiltro do begin
-      Active := False;
-      {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-      with FieldDefs do begin
-         Clear;
-         Add('Subcuenta1', ftString, 10, False);
-         Add('Subcuenta2', ftString, 10, False);
-         Add('Fecha', ftDate, 0, False);
-         Add('FechaCompraDesde', ftDate, 0, False);
-         Add('FechaCompraHasta', ftDate, 0, False);
-         Add('FechaUltDesde', ftDate, 0, False);
-         Add('FechaUltHasta', ftDate, 0, False);
-         Add('Moneda', ftString, 1, False);
-         Add('Concepto', ftVarBytes, 3, False);
-      end;
-      CreateDataSet;
-      Active := True;
-      Append;
-      FieldByName('Fecha').AsDateTime         := DmRef.QParametros.FieldByName('FechaAmortizacion').AsDateTime;
-      FieldByName('Moneda').AsString          := DMRef.QParametros.FieldByName('MONEDA').AsString;
-      FieldByName('FechaCompraHasta').AsDateTime :=
-         DmRef.QParametros.FieldByName('FechaAmortizacion').AsDateTime;
-      FieldByName('FechaUltHasta').AsDateTime :=
-         DmRef.QParametros.FieldByName('FechaAmortizacion').AsDateTime;
-   end;
+   CDSFiltro.Active := False;
+   CDSFiltro.FieldDefs.Clear;
+   CDSFiltro.FieldDefs.Add('Subcuenta1'      , ftString  , 10, False);
+   CDSFiltro.FieldDefs.Add('Subcuenta2'      , ftString  , 10, False);
+   CDSFiltro.FieldDefs.Add('Fecha'           , ftDate    ,  0, False);
+   CDSFiltro.FieldDefs.Add('FechaCompraDesde', ftDate    ,  0, False);
+   CDSFiltro.FieldDefs.Add('FechaCompraHasta', ftDate    ,  0, False);
+   CDSFiltro.FieldDefs.Add('FechaUltDesde'   , ftDate    ,  0, False);
+   CDSFiltro.FieldDefs.Add('FechaUltHasta'   , ftDate    ,  0, False);
+   CDSFiltro.FieldDefs.Add('Moneda'          , ftString  ,  1, False);
+   CDSFiltro.FieldDefs.Add('Concepto'        , ftVarBytes,  3, False);
+   CDSFiltro.CreateDataSet;
+   CDSFiltro.Active := True;
+   CDSFiltro.Append;
+   CDSFiltro.FieldByName('Fecha').AsDateTime         := DmRef.QParametros.FieldByName('FechaAmortizacion').AsDateTime;
+   CDSFiltro.FieldByName('Moneda').AsString          := DMRef.QParametros.FieldByName('MONEDA').AsString;
+   CDSFiltro.FieldByName('FechaCompraHasta').AsDateTime :=
+      DmRef.QParametros.FieldByName('FechaAmortizacion').AsDateTime;
+   CDSFiltro.FieldByName('FechaUltHasta').AsDateTime :=
+      DmRef.QParametros.FieldByName('FechaAmortizacion').AsDateTime;
 end;
 
 procedure TWAmortizaciones.CrearFicheroTrabajo;
 begin
    // Crear fichero de trabajo
-   {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-   with QTrabajos do begin
-      Active := False;
-      {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-      with FieldDefs do begin
-         Clear;
-         Add('TituloListado', ftString, 100, False);
-         Add('CentroCoste', ftString, 10, False);
-         Add('Subcuenta', ftString, 10, False);
-         Add('Inicio', ftFloat, 0, False);
-         Add('Descripcion', ftString, 80, False);
-         Add('Contrapartida', ftString, 10, False);
-         Add('Importe', ftFloat, 0, False);
-         Add('Debehaber', ftString, 1, False);
-         Add('Mes1', ftFloat, 0, False);
-         Add('Mes2', ftFloat, 0, False);
-         Add('Mes3', ftFloat, 0, False);
-         Add('Mes4', ftFloat, 0, False);
-         Add('Mes5', ftFloat, 0, False);
-         Add('Mes6', ftFloat, 0, False);
-         Add('Mes7', ftFloat, 0, False);
-         Add('Mes8', ftFloat, 0, False);
-         Add('Mes9', ftFloat, 0, False);
-         Add('Mes10', ftFloat, 0, False);
-         Add('Mes11', ftFloat, 0, False);
-         Add('Mes12', ftFloat, 0, False);
-         Add('Suma', ftFloat, 0, False);
-         Add('Total', ftFloat, 0, False);
-      end;
+   QTrabajos.Active := False;
 
-      {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-      with IndexDefs do begin
-         Clear;
-         Add('', 'Subcuenta;centrocoste', [ixPrimary]);
-         Add('DebeHaber', 'Debehaber;Subcuenta', []);
-      end;
-      CreateDataSet;
-      Active := True;
-   end;
+   QTrabajos.FieldDefs.Clear;
+   QTrabajos.FieldDefs.Add('TituloListado', ftString, 100, False);
+   QTrabajos.FieldDefs.Add('CentroCoste'  , ftString,  10, False);
+   QTrabajos.FieldDefs.Add('Subcuenta'    , ftString,  10, False);
+   QTrabajos.FieldDefs.Add('Inicio'       , ftFloat ,   0, False);
+   QTrabajos.FieldDefs.Add('Descripcion'  , ftString,  80, False);
+   QTrabajos.FieldDefs.Add('Contrapartida', ftString,  10, False);
+   QTrabajos.FieldDefs.Add('Importe'      , ftFloat ,   0, False);
+   QTrabajos.FieldDefs.Add('Debehaber'    , ftString,   1, False);
+   QTrabajos.FieldDefs.Add('Mes1'         , ftFloat ,   0, False);
+   QTrabajos.FieldDefs.Add('Mes2'         , ftFloat ,   0, False);
+   QTrabajos.FieldDefs.Add('Mes3'         , ftFloat ,   0, False);
+   QTrabajos.FieldDefs.Add('Mes4'         , ftFloat ,   0, False);
+   QTrabajos.FieldDefs.Add('Mes5'         , ftFloat ,   0, False);
+   QTrabajos.FieldDefs.Add('Mes6'         , ftFloat ,   0, False);
+   QTrabajos.FieldDefs.Add('Mes7'         , ftFloat ,   0, False);
+   QTrabajos.FieldDefs.Add('Mes8'         , ftFloat ,   0, False);
+   QTrabajos.FieldDefs.Add('Mes9'         , ftFloat ,   0, False);
+   QTrabajos.FieldDefs.Add('Mes10'        , ftFloat ,   0, False);
+   QTrabajos.FieldDefs.Add('Mes11'        , ftFloat ,   0, False);
+   QTrabajos.FieldDefs.Add('Mes12'        , ftFloat ,   0, False);
+   QTrabajos.FieldDefs.Add('Suma'         , ftFloat ,   0, False);
+   QTrabajos.FieldDefs.Add('Total'        , ftFloat ,   0, False);
+
+   QTrabajos.IndexDefs.Clear;
+   QTrabajos.IndexDefs.Add('', 'Subcuenta;centrocoste', [ixPrimary]);
+   QTrabajos.IndexDefs.Add('DebeHaber', 'Debehaber;Subcuenta', []);
+   QTrabajos.CreateDataSet;
+   QTrabajos.Active := True;
 end;
 
 procedure TWAmortizaciones.FormShow(Sender: TObject);
@@ -270,14 +256,13 @@ procedure TWAmortizaciones.BtnEdtAceptarClick(Sender: TObject);
 
 
       QTrabajos.EmptyDataSet;
-      {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-      with QModifica, Sql do begin
-         Close;
-         Clear;
-         Add('update amortiza set FUltAmor=:FUltAmor,VEjAInicio=:VEjAInicio,');
-         Add(' vEjAAmor=:vEjAAmor where subcuenta=:subcuenta');
-         prepare;
-      end;
+      
+      QModifica.Close;
+      QModifica.SQL.Clear;
+      QModifica.SQL.Add('update amortiza set FUltAmor=:FUltAmor,VEjAInicio=:VEjAInicio,');
+      QModifica.SQL.Add(' vEjAAmor=:vEjAAmor where subcuenta=:subcuenta');
+      QModifica.Prepare;
+
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with TIBSql.Create(nil), Sql do begin
          Close;

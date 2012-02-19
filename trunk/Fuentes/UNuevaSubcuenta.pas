@@ -5,10 +5,10 @@ uses Buttons, Classes, ComCtrls, Controls, Db, DBClient, DBCtrls, DBTables, Dial
      jpeg, Mask, Menus, Messages, navegadorNotarios, OvcBase, OvcDbDat, OvcDbNF, OvcDbPF, OvcEdCal,
      OvcEditF, OvcEdPop, OvcEF, OvcNbk, OvcNF, OvcPB, OvcPF, ppCache, ppComm, ppDB, ppDBPipe, ppRelatv,
      StdCtrls, SysUtils, Windows, Wwdbcomb, wwdbdatetimepicker, wwdbedit, Wwdbgrid, Wwdbigrd,
-     wwdblook, Wwdbspin, Wwdotdot, wwSpeedButton, Wwtable;
+     wwdblook, Wwdbspin, Wwdotdot, wwSpeedButton, Wwtable, CustomView;
 
 type
-   TWNuevaSubcuenta = class(TForm)
+   TWNuevaSubcuenta = class(TCustomView)
       BtnEdtAceptar:  TfcImageBtn;
       BtnEdtCancelar: TfcImageBtn;
       Label2:         TLabel;

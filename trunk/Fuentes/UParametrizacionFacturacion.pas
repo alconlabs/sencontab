@@ -2,9 +2,9 @@ unit UParametrizacionFacturacion;
 interface
 uses Buttons, Windows, SysUtils, Messages, DB, Graphics, Classes,
      Forms, StdCtrls, DBCtrls, Controls, ExtCtrls, ComCtrls, Mask,
-     FormHandler;
+     FormHandler, CustomView;
 type
-  TWParametrizacionFacturacion = class(TForm)
+  TWParametrizacionFacturacion = class(TCustomView)
     DSFichero: TDataSource;
     PanelButtons: TPanel;
     BtnSave: TSpeedButton;

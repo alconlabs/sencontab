@@ -85,8 +85,8 @@ object WCargaRapidaFacturas: TWCargaRapidaFacturas
       ParentFont = False
       object GroupBox2: TGroupBox
         Left = 0
-        Top = -63
-        Width = 0
+        Top = 355
+        Width = 750
         Height = 63
         Align = alBottom
         TabOrder = 3
@@ -322,8 +322,8 @@ object WCargaRapidaFacturas: TWCargaRapidaFacturas
       end
       object GroupBox3: TGroupBox
         Left = 0
-        Top = -154
-        Width = 0
+        Top = 264
+        Width = 750
         Height = 91
         Align = alBottom
         Font.Charset = ANSI_CHARSET
@@ -614,7 +614,7 @@ object WCargaRapidaFacturas: TWCargaRapidaFacturas
       object Datos: TGroupBox
         Left = 0
         Top = 128
-        Width = 0
+        Width = 750
         Height = 136
         Align = alClient
         Color = 14275008
@@ -833,6 +833,7 @@ object WCargaRapidaFacturas: TWCargaRapidaFacturas
             3300333330F033333300330000F000033300330FFFFFFF033300330000F00003
             3300333330F033333300333330F0333333003333300033333300333333333333
             33003333333333333300}
+          NumGlyphs = 0
           ParentClipping = True
           ParentShowHint = False
           RoundRectBias = 25
@@ -930,7 +931,7 @@ object WCargaRapidaFacturas: TWCargaRapidaFacturas
       object GroupBox1: TGroupBox
         Left = 0
         Top = 0
-        Width = 0
+        Width = 750
         Height = 128
         Align = alTop
         TabOrder = 0
@@ -2124,7 +2125,6 @@ object WCargaRapidaFacturas: TWCargaRapidaFacturas
           5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
           6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
           526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
-        NumGlyphs = 0
         ParentClipping = True
         ParentFont = False
         ShadeStyle = fbsNormal
@@ -2367,6 +2367,7 @@ object WCargaRapidaFacturas: TWCargaRapidaFacturas
           5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
           6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
           526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
+        NumGlyphs = 0
         ParentClipping = True
         ParentFont = False
         ShadeStyle = fbsNormal
@@ -2609,6 +2610,7 @@ object WCargaRapidaFacturas: TWCargaRapidaFacturas
           5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
           6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
           526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
+        NumGlyphs = 0
         ParentClipping = True
         ParentFont = False
         ShadeStyle = fbsNormal
@@ -2883,7 +2885,6 @@ object WCargaRapidaFacturas: TWCargaRapidaFacturas
       5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
       6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
       526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
-    NumGlyphs = 0
     ParentClipping = False
     ParentFont = False
     ShadeStyle = fbsNormal
@@ -3126,7 +3127,6 @@ object WCargaRapidaFacturas: TWCargaRapidaFacturas
       5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
       6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
       526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
-    NumGlyphs = 0
     ParentClipping = False
     ParentFont = False
     ShadeStyle = fbsNormal
@@ -3369,7 +3369,6 @@ object WCargaRapidaFacturas: TWCargaRapidaFacturas
       5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F50
       6F5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F
       506F5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F500000}
-    NumGlyphs = 0
     ParentClipping = False
     ParentFont = False
     ShadeStyle = fbsNormal

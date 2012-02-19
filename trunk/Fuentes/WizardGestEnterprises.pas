@@ -7,7 +7,7 @@ uses
   Buttons, ExtCtrls, DBCtrls, StdCtrls, ComCtrls, Grids,
   DBGrids, Mask, Gauges, DBXpress, SqlExpr, ConfigurationClass,
   CRSQLConnection, ImgList, jpeg, CheckLst,
-  DBController;
+  DBController, CustomView;
 
 type
   TButtonState   = (bsNext, bsNextBack, bsEnd);
@@ -15,7 +15,7 @@ type
                     apInsertData, apInsertExamples, apCopyData, apConsolide, apLinkEnterprise,
                     apResume);
 
-  TFormWizardGestEnterprises = class(TForm)
+  TFormWizardGestEnterprises = class(TCustomView)
     PanelBottom: TPanel;
     PageControl: TPageControl;
     TabPresentation: TTabSheet;

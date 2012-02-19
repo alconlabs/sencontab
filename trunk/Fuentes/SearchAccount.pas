@@ -2,10 +2,10 @@ unit SearchAccount;
 interface
 uses SysUtils, WinTypes, WinProcs, Messages, Classes, Graphics, Controls,Forms, Dialogs, Grids,
      DB, DBTables, StdCtrls, Buttons, ComCtrls, ExtCtrls, DBCtrls, Mask,
-     DBGrids, DBClient, IBCustomDataSet, IBDatabase, IBTableSet, IBQuery, DM;
+     DBGrids, DBClient, IBCustomDataSet, IBDatabase, IBTableSet, IBQuery, DM, CustomView;
 
 type
-  TFormSearchAccount = class(TForm)
+  TFormSearchAccount = class(TCustomView)
     DBGrid: TDBGrid;
     PanelArriba: TPanel;
     EditSearchText: TEdit;

@@ -1,10 +1,10 @@
 unit UImportacion;
 interface
 uses Buttons, Classes, Controls, DB, DBTables, Dialogs, ExtCtrls, Forms, Graphics, IBDatabase, IBSQL,
-     Messages, StdCtrls, SysUtils, Variants, Windows;
+     Messages, StdCtrls, SysUtils, Variants, Windows, CustomView;
 
 type
-   TWImportacion = class(TForm)
+   TWImportacion = class(TCustomView)
       RgTipo:          TRadioGroup;
       QSubcuentas:     TTable;
       QProveedores:    TTable;
