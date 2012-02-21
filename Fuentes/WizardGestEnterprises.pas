@@ -11,7 +11,7 @@ uses
 
 type
   TButtonState   = (bsNext, bsNextBack, bsEnd);
-  TActivePage    = (apNone, apPresentation, apManageOrNew, apSelectEnterprise, apCreateDB,
+  TActivePage    = (apNone, apPresentation, apManageOrNew, apEnterpriseData, apCreateDB,
                     apInsertData, apInsertExamples, apCopyData, apConsolide, apLinkEnterprise,
                     apResume);
 
@@ -47,7 +47,7 @@ type
     Image2: TImage;
     Label1: TLabel;
     Label2: TLabel;
-    Panel6: TPanel;
+    PanelEnterpriseData: TPanel;
     Panel4: TPanel;
     Image3: TImage;
     Label7: TLabel;
@@ -57,9 +57,9 @@ type
     CheckListBoxResumen: TCheckListBox;
     GroupBoxName: TGroupBox;
     Label18: TLabel;
-    EditDatabaseName: TEdit;
+    EditCD_ENTERPRISE: TEdit;
     Label19: TLabel;
-    EditUserName: TEdit;
+    EditDS_ENTERPRISE: TEdit;
     GroupBoxEnterprise: TGroupBox;
     DBGrid1: TDBGrid;
     GroupBox2: TGroupBox;
@@ -84,6 +84,13 @@ type
     Image08: TImage;
     Image09: TImage;
     Image10: TImage;
+    RadioGroup1: TRadioGroup;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Edit4: TEdit;
+    Label13: TLabel;
+    Edit5: TEdit;
     procedure FormShow(Sender: TObject);
     procedure PageControlChanging(Sender: TObject; var AllowChange: Boolean);
     procedure FormCreate(Sender: TObject);
@@ -123,7 +130,7 @@ type
      function  ExisteInformacionDePartidas :Boolean;
      function  EliminarInformacionPartidas :Boolean;
      procedure CreaInformacionResumen;
-     function  PartidaValida(prmCodigoPartida :string):Boolean;
+     function  CDEnterpriseValid(prmCD_Enterprise :string):Boolean;
   public
      property OKPresentation :Integer     read FOKPresentation write SetOKPresentation;
      property OKSeleccion    :Integer     read FOKSeleccion    write SetOKSeleccion;
@@ -171,7 +178,7 @@ begin
 
    Image01.Hint := 'Presentación';
    Image02.Hint := 'Gestión ó Nueva';
-   Image03.Hint := 'Seleccionar Empresa';
+   Image03.Hint := 'Datos de la Nueva Empresa';
    Image04.Hint := 'Crear Base de Datos';
    Image05.Hint := 'Insertar Datos';
    Image06.Hint := 'Insertar Ejemplos';
@@ -243,6 +250,8 @@ end;
 
 procedure TFormWizardGestEnterprises.FormCreate(Sender: TObject);
 begin
+   RadioGroupManageOrNew.ItemIndex := 0;
+   EditCD_Enterprise.CharCase := ecUpperCase;
    FOKPresentation  := 0;
    FOKSeleccion := 0;
    FOKPartidas  := 0;
@@ -293,7 +302,7 @@ var Partidas  :Integer;
     EnUso     :Integer;
     Renovados :Integer;
 begin
-   { Ponemos visibles lo componentes }
+   { Ponemos visibles los componentes }
 end;
 
 function TFormWizardGestEnterprises.BeforeNext(Value: TActivePage):Boolean;
@@ -303,9 +312,38 @@ begin
         ActivePage := apManageOrNew;
       end;
       apManageOrNew      :begin
-        ActivePage := apSelectEnterprise;
+       case RadioGroupManageOrNew.ItemIndex of
+         0:begin
+            // Check that the name is not empty
+            EditCD_Enterprise.Text := Trim(EditCD_Enterprise.Text);
+            EditDS_Enterprise.Text := Trim(EditDS_Enterprise.Text);
+            if EditCD_Enterprise.Text = '' then begin
+               EditCD_Enterprise.SetFocus;
+               EditCD_Enterprise.SelectAll;
+               ShowErrorMessage('Debe indicar un codigo para la empresa');
+               Result := False;
+            end else
+            // Check that the database name is correct: length, only letters and numbers, etc.
+            if (Length(EditCD_Enterprise.Text) < 3)  or (Length(EditCD_Enterprise.Text) > 10) then begin
+               EditCD_Enterprise.SetFocus;
+               EditCD_Enterprise.SelectAll;
+               ShowErrorMessage('El Código debe tener una lóngitud mínima de 3 carácteres y máxima de 10');
+               Result := False;
+            end else
+            if not CDEnterpriseValid(EditCD_Enterprise.Text) then begin
+               EditCD_Enterprise.SetFocus;
+               EditCD_Enterprise.SelectAll;
+               ShowErrorMessage('El nombre del código se debe componer de letras y números unicamente.');
+               Result := False;
+            end else
+            // Check that the database name doesn't exists.
+
+            // Check that the descriptive name is not empty.
+         end;
+         1:;
+       end;
       end;
-      apSelectEnterprise :begin
+      apEnterpriseData :begin
         ActivePage := apCreateDB;
       end;
       apCreateDB         :begin
@@ -337,82 +375,53 @@ begin
    case ActivePage of
       apPresentation     :begin
         ActivePage := apManageOrNew;
+        SetButtonState(bsNextBack);
       end;
       apManageOrNew      :begin
-        BeforeNext(apManageOrNew);
-        ActivePage := apSelectEnterprise;
+        if BeforeNext(apManageOrNew) then begin
+           case RadioGroupManageOrNew.ItemIndex of
+             0:begin
+                ActivePage := apEnterpriseData;
+                SetButtonState(bsNextBack);
+             end;
+             1:begin
+                SetButtonState(bsNextBack);
+             end;
+           end;
+        end;
       end;
-      apSelectEnterprise :begin
-        ActivePage := apCreateDB; 
+      apEnterpriseData :begin
+        ActivePage := apCreateDB;
+        SetButtonState(bsNextBack);
       end;
       apCreateDB         :begin
         ActivePage := apInsertData;
+        SetButtonState(bsNextBack);
       end;
       apInsertData       :begin
         ActivePage := apInsertExamples;
+        SetButtonState(bsNextBack);
       end;
       apInsertExamples   :begin
         ActivePage := apCopyData;
+        SetButtonState(bsNextBack);
       end;
       apCopyData         :begin
         ActivePage := apConsolide;
+        SetButtonState(bsNextBack);
       end;
       apConsolide        :begin
         ActivePage := apLinkEnterprise;
+        SetButtonState(bsNextBack);
       end;
       apLinkEnterprise   :begin
         ActivePage := apResume;
+        SetButtonState(bsNextBack);
       end;
       apResume           :begin
         //ActivePage := apResume;
+        SetButtonState(bsEnd);
       end;
-   end;
-
-   Exit;
-
-
-   //if PageControl.ActivePage = TabSeleccionaTipo then begin
-   //   case RadioGroupTipoSolicitud.ItemIndex of
-   //      0 :begin {Partidas}
-   //         if ExisteInformacionDeCodigos then begin
-   //            
-   //         end;
-   //         TabPartidas.Show;
-   //         EditCodigoPartida.SetFocus;
-   //      end;
-   //      1 :begin { Códigos }
-   //         if ExisteInformacionDePartidas then begin
-   //            if not EliminarInformacionPartidas then begin
-   //               TabSeleccionaTipo.Show;
-   //               Exit;
-   //            end;
-   //         end;
-   //         TabCodigos.Show;
-   //      end;
-   //   end;
-   //   SetButtonState(bsNextBack);
-   //end else
-   if PageControl.ActivePage = TabAccountPlan then begin
-      //if (Self.ActiveControl = EditCodigoPartida) and
-      //   (Trim(EditCodigoPartida.Text) <> '' ) then
-      //begin
-      //   BtnInsertarPartida.Click;
-      //end else
-   end else
-   if PageControl.ActivePage = TabEnterpriseData then begin
-      //if (Self.ActiveControl = EditNSerie) and
-      //   (Trim(EditNSerie.Text) <> '' ) then
-      //begin
-      //   BtnInsertaCodigo.Click;
-      //end else
-      //if CodigosSolicitadosValidos then begin
-      //   CreaInformacionResumen;
-      //   TabResumen.Show;
-      //   SetButtonState(bsEnd);
-      //end
-      //else begin
-      //   ShowErrorMessage('Los datos de los códigos solicitados no son válidos.');
-      //end;
    end;
 end;
 
@@ -425,37 +434,47 @@ procedure TFormWizardGestEnterprises.BtnBackClick(Sender: TObject);
 begin
    case ActivePage of
       apPresentation     :begin
-        ActivePage := apManageOrNew;
+        //SetButtonState(bsNext);
+        //ActivePage := apManageOrNew;
       end;
       apManageOrNew      :begin
         if BeforeBack(apManageOrNew) then begin
-           ActivePage := apSelectEnterprise;
+           ActivePage := apPresentation;
+           SetButtonState(bsNext);
            
         end;
       end;
-      apSelectEnterprise :begin
-        ActivePage := apCreateDB; 
+      apEnterpriseData :begin
+        ActivePage := apCreateDB;
+        SetButtonState(bsNextBack);
       end;
       apCreateDB         :begin
         ActivePage := apInsertData;
+        SetButtonState(bsNextBack);
       end;
       apInsertData       :begin
         ActivePage := apInsertExamples;
+        SetButtonState(bsNextBack);
       end;
       apInsertExamples   :begin
         ActivePage := apCopyData;
+        SetButtonState(bsNextBack);
       end;
       apCopyData         :begin
         ActivePage := apConsolide;
+        SetButtonState(bsNextBack);
       end;
       apConsolide        :begin
         ActivePage := apLinkEnterprise;
+        SetButtonState(bsNextBack);
       end;
       apLinkEnterprise   :begin
         ActivePage := apResume;
+        SetButtonState(bsNextBack);
       end;
       apResume           :begin
         //ActivePage := apResume;
+        SetButtonState(bsNextBack);
       end;
    end;
 
@@ -506,26 +525,13 @@ begin
    end;
 end;
 
-function TFormWizardGestEnterprises.PartidaValida(prmCodigoPartida :string):Boolean;
-var CodigoValidez :Integer;
+function TFormWizardGestEnterprises.CDEnterpriseValid(prmCD_Enterprise :string):Boolean;
+var i :Integer;
 begin
-   Result := True; {Valor por defecto}
-
-   {RFU.01a}
-   if prmCodigoPartida = '' then begin
-      ShowErrorMessage('Debe indicar un código de partida');
-      //EditCodigoPartida.SetFocus;
-      Result := False;
-      Exit;
-   end;
-
-   {RFU.01b}
-   if Length(prmCodigoPartida) > 10 then begin
-      ShowErrorMessage('El "Código de Partida" debe tener como máximo 10 caracteres de longitud');
-      //EditCodigoPartida.SetFocus;
-      Result := False;
-      Exit;
-   end;
+   Result := True;
+   for i := 1 to Length(prmCD_Enterprise) do begin
+      if not (prmCD_Enterprise[i] in ['A'..'Z', '0'..'9', '_']) then Result := False;
+   end; 
 end;
 
 procedure TFormWizardGestEnterprises.SetOKCodigos(Value: Integer);
@@ -618,7 +624,11 @@ begin
            PanelManageOrNew.Parent  := PanelContainer;
            PanelManageOrNew.Visible := True;
          end;
-         apSelectEnterprise :begin
+         apEnterpriseData :begin
+           PanelEnterpriseData.Parent  := PanelContainer;
+           PanelEnterpriseData.Visible := True;
+           ImageList.GetBitmap(1, Image02.Picture.Bitmap);
+           ImageList.GetBitmap(2, Image03.Picture.Bitmap);
          end;
          apCreateDB         :begin
          end;

@@ -2,8 +2,8 @@ object DMRef: TDMRef
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
-  Left = 394
-  Top = 163
+  Left = 264
+  Top = 138
   Height = 373
   Width = 583
   object IBDSiamCont: TIBDatabase

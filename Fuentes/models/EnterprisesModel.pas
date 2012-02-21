@@ -26,9 +26,9 @@ begin
 end;
 
 function TEnterprisesModel.CreateDBFile(DatabaseName :string):Boolean;
-var Q  :TSQLQuery;
+var //Q  :TSQLQuery;
     DB :TCRSQLConnection;
-    i  :Integer;
+    //i  :Integer;
 begin
    DB := TCRSQLConnection.Create(nil);
 
@@ -41,7 +41,7 @@ begin
    DB.VendorLib      := FConnection.VendorLib;      //'sqloledb.dll';
    DB.Params.Assign(FConnection.Params);
    DB.Params.Values['DataBase' ] := 'master';
-   
+
    //DB.Params.Values['DriverName' ] := 'SQLServer';
    //DB.Params.Values['BlobSize'   ] := '-1'  ;
    //DB.Params.Values['EnableBCD'  ] := 'True';
