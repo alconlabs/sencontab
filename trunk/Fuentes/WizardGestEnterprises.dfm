@@ -37,7 +37,7 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
       ShowHint = True
     end
     object Image02: TImage
-      Left = 36
+      Left = 32
       Top = 16
       Width = 17
       Height = 17
@@ -45,7 +45,7 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
       ShowHint = True
     end
     object Image03: TImage
-      Left = 52
+      Left = 48
       Top = 16
       Width = 17
       Height = 17
@@ -53,7 +53,7 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
       ShowHint = True
     end
     object Image04: TImage
-      Left = 68
+      Left = 64
       Top = 16
       Width = 17
       Height = 17
@@ -61,7 +61,7 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
       ShowHint = True
     end
     object Image05: TImage
-      Left = 84
+      Left = 80
       Top = 16
       Width = 17
       Height = 17
@@ -69,7 +69,7 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
       ShowHint = True
     end
     object Image06: TImage
-      Left = 100
+      Left = 96
       Top = 16
       Width = 17
       Height = 17
@@ -77,7 +77,7 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
       ShowHint = True
     end
     object Image07: TImage
-      Left = 116
+      Left = 112
       Top = 16
       Width = 17
       Height = 17
@@ -85,7 +85,7 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
       ShowHint = True
     end
     object Image08: TImage
-      Left = 132
+      Left = 128
       Top = 16
       Width = 17
       Height = 17
@@ -93,7 +93,7 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
       ShowHint = True
     end
     object Image09: TImage
-      Left = 148
+      Left = 144
       Top = 16
       Width = 17
       Height = 17
@@ -101,7 +101,7 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
       ShowHint = True
     end
     object Image10: TImage
-      Left = 164
+      Left = 160
       Top = 16
       Width = 17
       Height = 17
@@ -184,7 +184,7 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
     Top = 0
     Width = 675
     Height = 352
-    ActivePage = TabManageOrNew
+    ActivePage = TabEnterpriseData
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -649,9 +649,9 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
           object Label18: TLabel
             Left = 14
             Top = 26
-            Width = 77
+            Width = 91
             Height = 13
-            Caption = 'Database Name'
+            Caption = 'C'#243'digo de empresa'
             Color = 16249839
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
@@ -676,13 +676,14 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
             ParentColor = False
             ParentFont = False
           end
-          object EditDatabaseName: TEdit
+          object EditCD_ENTERPRISE: TEdit
             Tag = 100
             Left = 128
             Top = 22
             Width = 257
             Height = 20
             AutoSize = False
+            CharCase = ecUpperCase
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -11
@@ -691,7 +692,7 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
             ParentFont = False
             TabOrder = 0
           end
-          object EditUserName: TEdit
+          object EditDS_ENTERPRISE: TEdit
             Tag = 100
             Left = 128
             Top = 49
@@ -725,6 +726,425 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
             TitleFont.Height = -11
             TitleFont.Name = 'MS Sans Serif'
             TitleFont.Style = []
+          end
+        end
+      end
+    end
+    object TabEnterpriseData: TTabSheet
+      Caption = 'EnterpriseData'
+      ImageIndex = 3
+      object PanelEnterpriseData: TPanel
+        Left = 0
+        Top = 0
+        Width = 667
+        Height = 326
+        Align = alClient
+        Color = 16249839
+        TabOrder = 0
+        object Panel4: TPanel
+          Left = 1
+          Top = 1
+          Width = 665
+          Height = 65
+          Align = alTop
+          BevelOuter = bvNone
+          Color = clWhite
+          TabOrder = 0
+          object Image3: TImage
+            Left = 178
+            Top = 0
+            Width = 487
+            Height = 65
+            Align = alRight
+            Picture.Data = {
+              0A544A504547496D6167659C0C0000FFD8FFE000104A46494600010101006000
+              600000FFE1001645786966000049492A0008000000000000000000FFDB004300
+              080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A
+              1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432
+              FFDB0043010909090C0B0C180D0D1832211C2132323232323232323232323232
+              3232323232323232323232323232323232323232323232323232323232323232
+              3232323232FFC0001108005D01E703012200021101031101FFC4001F00000105
+              01010101010100000000000000000102030405060708090A0BFFC400B5100002
+              010303020403050504040000017D010203000411051221314106135161072271
+              14328191A1082342B1C11552D1F02433627282090A161718191A25262728292A
+              3435363738393A434445464748494A535455565758595A636465666768696A73
+              7475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9
+              AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4
+              E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F010003010101010101010101
+              0000000000000102030405060708090A0BFFC400B51100020102040403040705
+              040400010277000102031104052131061241510761711322328108144291A1B1
+              C109233352F0156272D10A162434E125F11718191A262728292A35363738393A
+              434445464748494A535455565758595A636465666768696A737475767778797A
+              82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6
+              B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2
+              F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00F7FA28A2800A28A2800A
+              28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A
+              28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A
+              28A2800A28A28010F4A89AA53D2A27A68081EAB3D597AACF5A22595A4AA9255B
+              92AA495AA219524AA9255B92AA495B44865396A94B5765AA52D6F12194E5EF54
+              A5ABB2D5296B7899B3CFFC4FE379B48D6FEC16D6A922C3B4CE64272D900E1707
+              8E0F539E4F4E39D8D3356B7D674F4BAB73E8B22F3F23E012B9206719EB5E77E2
+              F9ED353F154D269AD25C1936A315190F201B7098EA381F539C718AEE7C31A6B6
+              97E1FB78A44D934999651CE727A641E840DA08F515861EAD495692BDD1752315
+              04FA97A4AA9255B96AA495EA44E665492AACCCA8A59885503249380055A92B37
+              54FF00906DD7FD717FE46B4BF2C5B26D7762926AF633CAB1C7700BB1C00548C9
+              FC454AF5C8E99199752B7552321C373E839FE95D73D6180C4CF110729AD99A57
+              A71A6D2442D450D457A2731F66D14515F0C7B814514500145145001451450014
+              5145001451450014514500145145001451450014514500145145001451450014
+              5145001451450014514500145145001451450014514500145145001451450021
+              E951354A7A544D4D0881EAB3D597AACF5A2132B495564AB5255592B54432A495
+              4E5AB9255396B6890CA72D5296AECB54A5ADE24329CB5E75F13755BBB2B1B4B2
+              B793CB8EEFCC1311F78AAEDF973E87773EBF4CE7D165AF36F8A969BF4ED3EF37
+              E3CA99A2D98EBBC6739F6D9FAD15EFEC9D850B73AB9E611C8F148B246EC8E843
+              2B29C1047420D7A8783F52BAD4F42DF76FE64914A620E7AB00148CFA9E7AD796
+              D74BE0DD661D2F50961B965482E428F308FBAC0F193D8727F4E8335C583ABC95
+              55DE8CDEB479A3A1E872D5492AC97492359236564600AB29C820F7155A4AFA18
+              9E7B2A495CE6B3AF0B29CDB41187980058B745E871EFC55BD57C4369690916F2
+              C73CE47CAA872A3DC91FCBAFF3AE19999D8B33166639249C926B831B8EE45C94
+              9EA6F468733BC9685FB848EDED9654DC2795D4860000A362B1C63A72C3A761F9
+              D8B1D62E1EE563B86F316421410002A7F0AC86666396249C01C9EC38153597FC
+              7F5BFF00D755FE75E752C44E3553A6ECAFFD5CE99D34E0F9B53AB6A286A2BEB8
+              F20FB368A28AF863DC0A28A2800A28A2800A28A2800A28A2800A28A2800A28A2
+              800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2
+              800A28A2800A28A2800A28A2800A28A2800A28A28010F4A89AA53D2A26A68440
+              F55A4AB2F559EB44265692AAC956A4AA9256B1219524AA92D5C92A9CB5B44865
+              396A94B5765AA52D6F12194E5AF3FF008A3FF22E5BFF00D7E2FF00E80F5E812D
+              79FF00C51FF9172DBFEBF17FF407A75BF852143E24792D4B6B6EF77770DB4654
+              3CAEB1A96E80938E6A2AB3610BCF7D1471DCC56CF9DCB34AFB150819CEEEDD38
+              F7AF222AED23ADEC743A6F877C4769E7F9322596F5DADBA40770F6DB9C11EBC1
+              E78AA161A0EA5716B78BB2783E452239328256CE40E460E003F42457A1AEA561
+              71288A0BDB69646E8A92AB13F80349257B70C0D295ACDD95FAF7389D792E8717
+              63E132A164BF93D0F9519FA753F98E3F3ACAD7C471EA5F6786211C7046A8003D
+              7F8B3FF8F577D2579CEAD23CBAB5DB39C912B2FE00E07E805658DA34E8515182
+              DD9742729CEF229D4F67FF001FD6FF00F5D17F9D7B7691F0D3C2CDE0CB1D7750
+              B4942B59C57123199F6BFC81DC9C11B475E491CFE19F19B785A6BF49A2B631C4
+              19642B9242AEF0B904F38DC71DFEA7AD78D85C453AD51AA6EFCB2B3F5D34FEBD
+              0EAA9A4753A36A286A2BEECF10FB368A28AF863DC0A28A2800A28A2800A28A28
+              00A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A28
+              00A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A28
+              010F4A89EA53D2A26A68440F559EACBD567AD10995A4AA9255B92AAC95AC4865
+              392AA4B5724AA72D6D12194E5AA52D5D96A94B5BC4865396B90F1FFF00C89B7F
+              FF006CFF00F462D75F2D729E389BC8F086A0FE5C7265153122E40DCC067EA339
+              1E840AB9FF000E5E8C98FC48F10A28ADEF0F7865F5E8EE24370D6E911550DE56
+              E0C4E723391D38FCC5791084A72E58EE764A4A2AEC8BC29FF232DA7FC0FF00F4
+              06AF4492B0B4CF07FF00656A50DE7DBBCDF2F77C9E4EDCE411D771F5ADD92BDD
+              C0529D3A6D4D5B5386BC94A5745492BCF35B8961D66E954920B6EE7D58027F9D
+              7A1C95E77ACCDE7EB174FB76E1F66339FBBF2FF4ACF34B7B25DEE3C2FC6CEE35
+              1F88D677BF0FAD7C32B6F76BE45AAC2C31184770061B383C0209E993EA0FCC30
+              74E48E1B6B86B456682F10291236DF2CACC8C085E73C211C9E37E327196E72E2
+              258650AA490511B9F52A09FE75D2693FF20983FE05FF00A11AE0CB30749D7945
+              AB6EF4EF746D899B50524596A286A2BEB0F2CFB368A28AF863DC0A28A2800A28
+              A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28
+              A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28
+              A2800A28A28010F4A89AA53D2A26A68440F559EACBD5692B44265692AAC956A4
+              AAB256B1219524AA72D5B92AA4B5B44865396A94B5765AA52D6F12194E5AE3BE
+              20C889E0FBC577556768D50138DC77A9C0F53804FE06BB196B81F89F1BBF86A2
+              6446654BA467206768DAC327D06481F88AAAAED4E5E84C7E24791D7A9783218E
+              2F0B5BBA2E1A5677739EA7715CFE4A3F2AF3FD2742BFD6E475B28959632A2476
+              70A1376704F73D0F407A576367E1FF0013698BF65B5D5EDD2CC4848CAEE60A4F
+              500A9C7AE338CF7EF5C982528CB9F95B46D59A6B96E74B255492AC2AC8904692
+              C9E6C8AA033EDDBB8E3938ED9AAF257BB13859524AF36D4BFE42977FF5D9FF00
+              F4235E932579C6A0ACFAB5D2A82CC6770001924EE35E7E69F047D4E8C2FC4CB7
+              AE5BC9035987C616DD63C83C12BD7F98AD3D23FE41307FC0BFF42355FC51D6D7
+              FE07FF00B2D58D27FE41307FC0BFF4235AE1A0A18E9C576FF226A3E6A116FBFF
+              009965A8A1A8AF64E23ECDA28A2BE18F7028A28A0028A28A0028A28A0028A28A
+              0028A28A0028A28A0028A28A0028A28A0028A28A0028A28A0028A28A0028A28A
+              0028A28A0028A28A0028A28A0028A28A0028A28A0028A28A0028A28A0043D2A2
+              6A94F4A89E9A1103D567AB2F559EB44265692AA4956E4AA9256B1219564AA72D
+              5B92AA4B5B44865396A94B5765AA52D6F12194E5ACEBCB786EA1686E218E689B
+              EF248A194F39E41AD196A94B5BC4CD9E6FE068758D36F2EF4EBCB3961B5C3481
+              9E2207980AAF0DD0E47D7A71DF3D7CBDEAE4B54E5ABA14FD9C796F714E5CCEE5
+              392AA4956E4AA9257544C998DAB4B7E9085B0B71248E082E5C0D9D39C1EBDFF2
+              AE7ADF40BEFB7C577732C40F9825700E5B39CE3A63AD75F25567A896161564A5
+              36F4E9D06AAB8AB2395D56F93550969651C9290E18B0181D31FD7A9C55FB181E
+              DB4F8A29301D41C80738C927FAD693D577AD68E1DC6ABAB2776F4EC899D4BC54
+              12D085A8A1A8AEC313FFD9}
+          end
+          object Label7: TLabel
+            Left = 32
+            Top = 24
+            Width = 194
+            Height = 13
+            Caption = 'Informaci'#243'n b'#225'sica acerca de la empresa'
+          end
+          object Label8: TLabel
+            Left = 8
+            Top = 0
+            Width = 207
+            Height = 16
+            Caption = 'Datos B'#225'sicos de la Empresa'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+        end
+        object GroupBox2: TGroupBox
+          Left = 1
+          Top = 66
+          Width = 665
+          Height = 259
+          Align = alClient
+          TabOrder = 1
+          object Label16: TLabel
+            Left = 14
+            Top = 56
+            Width = 37
+            Height = 13
+            Caption = 'Nombre'
+            Color = 16249839
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = []
+            ParentColor = False
+            ParentFont = False
+          end
+          object Label6: TLabel
+            Left = 14
+            Top = 82
+            Width = 83
+            Height = 15
+            Caption = 'Periodo Contable'
+            Color = 16249839
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = []
+            ParentColor = False
+            ParentFont = False
+          end
+          object Label9: TLabel
+            Left = 14
+            Top = 109
+            Width = 75
+            Height = 13
+            Caption = 'Direcci'#243'n Fiscal'
+            Color = 16249839
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = []
+            ParentColor = False
+            ParentFont = False
+          end
+          object Label20: TLabel
+            Left = 14
+            Top = 136
+            Width = 47
+            Height = 13
+            Caption = 'Poblaci'#243'n'
+            Color = 16249839
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = []
+            ParentColor = False
+            ParentFont = False
+          end
+          object Label15: TLabel
+            Left = 14
+            Top = 163
+            Width = 65
+            Height = 13
+            Caption = 'C'#243'digo Postal'
+            Color = 16249839
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = []
+            ParentColor = False
+            ParentFont = False
+          end
+          object Label10: TLabel
+            Left = 118
+            Top = 82
+            Width = 31
+            Height = 13
+            Caption = 'Desde'
+            Color = 16249839
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = []
+            ParentColor = False
+            ParentFont = False
+          end
+          object Label11: TLabel
+            Left = 254
+            Top = 82
+            Width = 28
+            Height = 13
+            Caption = 'Hasta'
+            Color = 16249839
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = []
+            ParentColor = False
+            ParentFont = False
+          end
+          object Label12: TLabel
+            Left = 14
+            Top = 192
+            Width = 44
+            Height = 13
+            Caption = 'Provincia'
+            Color = 16249839
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = []
+            ParentColor = False
+            ParentFont = False
+          end
+          object Label13: TLabel
+            Left = 14
+            Top = 32
+            Width = 53
+            Height = 13
+            Caption = 'N.I.F./C.I.F'
+            Color = 16249839
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = []
+            ParentColor = False
+            ParentFont = False
+          end
+          object EditHostName: TEdit
+            Tag = 100
+            Left = 120
+            Top = 52
+            Width = 257
+            Height = 20
+            AutoSize = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+          end
+          object Edit1: TEdit
+            Tag = 100
+            Left = 152
+            Top = 78
+            Width = 89
+            Height = 20
+            AutoSize = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 1
+          end
+          object Edit2: TEdit
+            Tag = 100
+            Left = 120
+            Top = 105
+            Width = 257
+            Height = 20
+            AutoSize = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 2
+          end
+          object EditPassword: TEdit
+            Tag = 100
+            Left = 120
+            Top = 132
+            Width = 257
+            Height = 20
+            AutoSize = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = []
+            ParentFont = False
+            PasswordChar = '#'
+            TabOrder = 3
+          end
+          object EditRetypePassword: TEdit
+            Tag = 100
+            Left = 120
+            Top = 159
+            Width = 105
+            Height = 20
+            AutoSize = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = []
+            ParentFont = False
+            PasswordChar = '#'
+            TabOrder = 4
+          end
+          object Edit3: TEdit
+            Tag = 100
+            Left = 288
+            Top = 78
+            Width = 89
+            Height = 20
+            AutoSize = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 5
+          end
+          object Edit4: TEdit
+            Tag = 100
+            Left = 120
+            Top = 188
+            Width = 257
+            Height = 20
+            AutoSize = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = []
+            ParentFont = False
+            PasswordChar = '#'
+            TabOrder = 6
+          end
+          object Edit5: TEdit
+            Tag = 100
+            Left = 120
+            Top = 28
+            Width = 137
+            Height = 20
+            AutoSize = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 7
           end
         end
       end
@@ -862,9 +1282,9 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
           object Label1: TLabel
             Left = 8
             Top = 0
-            Width = 255
+            Width = 253
             Height = 16
-            Caption = 'Informar de las partidas a desactivar'
+            Caption = 'Tipo de inicializaci'#243'n de la empresa'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -13
@@ -875,340 +1295,29 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
           object Label2: TLabel
             Left = 32
             Top = 24
-            Width = 339
+            Width = 368
             Height = 13
             Caption = 
-              'Indique de una en una los c'#243'digos de las partidas que desea desa' +
-              'ctivar'
+              'Indique cual ser'#225' el tipo de operaci'#243'n incial que desea realizar' +
+              'e en la empresa'
           end
         end
-      end
-    end
-    object TabEnterpriseData: TTabSheet
-      Caption = 'EnterpriseData'
-      ImageIndex = 3
-      object Panel6: TPanel
-        Left = 0
-        Top = 0
-        Width = 667
-        Height = 326
-        Align = alClient
-        Color = 16249839
-        TabOrder = 0
-        object Panel4: TPanel
-          Left = 1
-          Top = 1
-          Width = 665
-          Height = 65
-          Align = alTop
-          BevelOuter = bvNone
-          Color = clWhite
-          TabOrder = 0
-          object Image3: TImage
-            Left = 178
-            Top = 0
-            Width = 487
-            Height = 65
-            Align = alRight
-            Picture.Data = {
-              0A544A504547496D6167659C0C0000FFD8FFE000104A46494600010101006000
-              600000FFE1001645786966000049492A0008000000000000000000FFDB004300
-              080606070605080707070909080A0C140D0C0B0B0C1912130F141D1A1F1E1D1A
-              1C1C20242E2720222C231C1C2837292C30313434341F27393D38323C2E333432
-              FFDB0043010909090C0B0C180D0D1832211C2132323232323232323232323232
-              3232323232323232323232323232323232323232323232323232323232323232
-              3232323232FFC0001108005D01E703012200021101031101FFC4001F00000105
-              01010101010100000000000000000102030405060708090A0BFFC400B5100002
-              010303020403050504040000017D010203000411051221314106135161072271
-              14328191A1082342B1C11552D1F02433627282090A161718191A25262728292A
-              3435363738393A434445464748494A535455565758595A636465666768696A73
-              7475767778797A838485868788898A92939495969798999AA2A3A4A5A6A7A8A9
-              AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE1E2E3E4
-              E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F010003010101010101010101
-              0000000000000102030405060708090A0BFFC400B51100020102040403040705
-              040400010277000102031104052131061241510761711322328108144291A1B1
-              C109233352F0156272D10A162434E125F11718191A262728292A35363738393A
-              434445464748494A535455565758595A636465666768696A737475767778797A
-              82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6
-              B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2
-              F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00F7FA28A2800A28A2800A
-              28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A
-              28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A
-              28A2800A28A28010F4A89AA53D2A27A68081EAB3D597AACF5A22595A4AA9255B
-              92AA495AA219524AA9255B92AA495B44865396A94B5765AA52D6F12194E5EF54
-              A5ABB2D5296B7899B3CFFC4FE379B48D6FEC16D6A922C3B4CE64272D900E1707
-              8E0F539E4F4E39D8D3356B7D674F4BAB73E8B22F3F23E012B9206719EB5E77E2
-              F9ED353F154D269AD25C1936A315190F201B7098EA381F539C718AEE7C31A6B6
-              97E1FB78A44D934999651CE727A641E840DA08F515861EAD495692BDD1752315
-              04FA97A4AA9255B96AA495EA44E665492AACCCA8A59885503249380055A92B37
-              54FF00906DD7FD717FE46B4BF2C5B26D7762926AF633CAB1C7700BB1C00548C9
-              FC454AF5C8E99199752B7552321C373E839FE95D73D6180C4CF110729AD99A57
-              A71A6D2442D450D457A2731F66D14515F0C7B814514500145145001451450014
-              5145001451450014514500145145001451450014514500145145001451450014
-              5145001451450014514500145145001451450014514500145145001451450021
-              E951354A7A544D4D0881EAB3D597AACF5A2132B495564AB5255592B54432A495
-              4E5AB9255396B6890CA72D5296AECB54A5ADE24329CB5E75F13755BBB2B1B4B2
-              B793CB8EEFCC1311F78AAEDF973E87773EBF4CE7D165AF36F8A969BF4ED3EF37
-              E3CA99A2D98EBBC6739F6D9FAD15EFEC9D850B73AB9E611C8F148B246EC8E843
-              2B29C1047420D7A8783F52BAD4F42DF76FE64914A620E7AB00148CFA9E7AD796
-              D74BE0DD661D2F50961B965482E428F308FBAC0F193D8727F4E8335C583ABC95
-              55DE8CDEB479A3A1E872D5492AC97492359236564600AB29C820F7155A4AFA18
-              9E7B2A495CE6B3AF0B29CDB41187980058B745E871EFC55BD57C4369690916F2
-              C73CE47CAA872A3DC91FCBAFF3AE19999D8B33166639249C926B831B8EE45C94
-              9EA6F468733BC9685FB848EDED9654DC2795D4860000A362B1C63A72C3A761F9
-              D8B1D62E1EE563B86F316421410002A7F0AC86666396249C01C9EC38153597FC
-              7F5BFF00D755FE75E752C44E3553A6ECAFFD5CE99D34E0F9B53AB6A286A2BEB8
-              F20FB368A28AF863DC0A28A2800A28A2800A28A2800A28A2800A28A2800A28A2
-              800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2
-              800A28A2800A28A2800A28A2800A28A2800A28A28010F4A89AA53D2A26A68440
-              F55A4AB2F559EB44265692AAC956A4AA9256B1219524AA92D5C92A9CB5B44865
-              396A94B5765AA52D6F12194E5AF3FF008A3FF22E5BFF00D7E2FF00E80F5E812D
-              79FF00C51FF9172DBFEBF17FF407A75BF852143E24792D4B6B6EF77770DB4654
-              3CAEB1A96E80938E6A2AB3610BCF7D1471DCC56CF9DCB34AFB150819CEEEDD38
-              F7AF222AED23ADEC743A6F877C4769E7F9322596F5DADBA40770F6DB9C11EBC1
-              E78AA161A0EA5716B78BB2783E452239328256CE40E460E003F42457A1AEA561
-              71288A0BDB69646E8A92AB13F80349257B70C0D295ACDD95FAF7389D792E8717
-              63E132A164BF93D0F9519FA753F98E3F3ACAD7C471EA5F6786211C7046A8003D
-              7F8B3FF8F577D2579CEAD23CBAB5DB39C912B2FE00E07E805658DA34E8515182
-              DD9742729CEF229D4F67FF001FD6FF00F5D17F9D7B7691F0D3C2CDE0CB1D7750
-              B4942B59C57123199F6BFC81DC9C11B475E491CFE19F19B785A6BF49A2B631C4
-              19642B9242AEF0B904F38DC71DFEA7AD78D85C453AD51AA6EFCB2B3F5D34FEBD
-              0EAA9A4753A36A286A2BEECF10FB368A28AF863DC0A28A2800A28A2800A28A28
-              00A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A28
-              00A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A28
-              010F4A89EA53D2A26A68440F559EACBD567AD10995A4AA9255B92AAC95AC4865
-              392AA4B5724AA72D6D12194E5AA52D5D96A94B5BC4865396B90F1FFF00C89B7F
-              FF006CFF00F462D75F2D729E389BC8F086A0FE5C7265153122E40DCC067EA339
-              1E840AB9FF000E5E8C98FC48F10A28ADEF0F7865F5E8EE24370D6E911550DE56
-              E0C4E723391D38FCC5791084A72E58EE764A4A2AEC8BC29FF232DA7FC0FF00F4
-              06AF4492B0B4CF07FF00656A50DE7DBBCDF2F77C9E4EDCE411D771F5ADD92BDD
-              C0529D3A6D4D5B5386BC94A5745492BCF35B8961D66E954920B6EE7D58027F9D
-              7A1C95E77ACCDE7EB174FB76E1F66339FBBF2FF4ACF34B7B25DEE3C2FC6CEE35
-              1F88D677BF0FAD7C32B6F76BE45AAC2C31184770061B383C0209E993EA0FCC30
-              74E48E1B6B86B456682F10291236DF2CACC8C085E73C211C9E37E327196E72E2
-              258650AA490511B9F52A09FE75D2693FF20983FE05FF00A11AE0CB30749D7945
-              AB6EF4EF746D899B50524596A286A2BEB0F2CFB368A28AF863DC0A28A2800A28
-              A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28
-              A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28
-              A2800A28A28010F4A89AA53D2A26A68440F559EACBD5692B44265692AAC956A4
-              AAB256B1219524AA72D5B92AA4B5B44865396A94B5765AA52D6F12194E5AE3BE
-              20C889E0FBC577556768D50138DC77A9C0F53804FE06BB196B81F89F1BBF86A2
-              6446654BA467206768DAC327D06481F88AAAAED4E5E84C7E24791D7A9783218E
-              2F0B5BBA2E1A5677739EA7715CFE4A3F2AF3FD2742BFD6E475B28959632A2476
-              70A1376704F73D0F407A576367E1FF0013698BF65B5D5EDD2CC4848CAEE60A4F
-              500A9C7AE338CF7EF5C982528CB9F95B46D59A6B96E74B255492AC2AC8904692
-              C9E6C8AA033EDDBB8E3938ED9AAF257BB13859524AF36D4BFE42977FF5D9FF00
-              F4235E932579C6A0ACFAB5D2A82CC6770001924EE35E7E69F047D4E8C2FC4CB7
-              AE5BC9035987C616DD63C83C12BD7F98AD3D23FE41307FC0BFF42355FC51D6D7
-              FE07FF00B2D58D27FE41307FC0BFF4235AE1A0A18E9C576FF226A3E6A116FBFF
-              009965A8A1A8AF64E23ECDA28A2BE18F7028A28A0028A28A0028A28A0028A28A
-              0028A28A0028A28A0028A28A0028A28A0028A28A0028A28A0028A28A0028A28A
-              0028A28A0028A28A0028A28A0028A28A0028A28A0028A28A0028A28A0043D2A2
-              6A94F4A89E9A1103D567AB2F559EB44265692AA4956E4AA9256B1219564AA72D
-              5B92AA4B5B44865396A94B5765AA52D6F12194E5ACEBCB786EA1686E218E689B
-              EF248A194F39E41AD196A94B5BC4CD9E6FE068758D36F2EF4EBCB3961B5C3481
-              9E2207980AAF0DD0E47D7A71DF3D7CBDEAE4B54E5ABA14FD9C796F714E5CCEE5
-              392AA4956E4AA9257544C998DAB4B7E9085B0B71248E082E5C0D9D39C1EBDFF2
-              AE7ADF40BEFB7C577732C40F9825700E5B39CE3A63AD75F25567A896161564A5
-              36F4E9D06AAB8AB2395D56F93550969651C9290E18B0181D31FD7A9C55FB181E
-              DB4F8A29301D41C80738C927FAD693D577AD68E1DC6ABAB2776F4EC899D4BC54
-              12D085A8A1A8AEC313FFD9}
-          end
-          object Label7: TLabel
-            Left = 32
-            Top = 24
-            Width = 266
-            Height = 13
-            Caption = 'Indique los c'#243'digos de activaci'#243'n que desea desactivar.'
-          end
-          object Label8: TLabel
-            Left = 8
-            Top = 0
-            Width = 207
-            Height = 16
-            Caption = 'Datos B'#225'sicos de la Empresa'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -13
-            Font.Name = 'MS Sans Serif'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-        end
-        object GroupBox2: TGroupBox
-          Left = 1
-          Top = 66
-          Width = 665
-          Height = 259
-          Align = alClient
+        object RadioGroup1: TRadioGroup
+          Left = 24
+          Top = 80
+          Width = 345
+          Height = 193
+          HelpType = htKeyword
+          HelpKeyword = 'Test'
+          HelpContext = 1500
+          ItemIndex = 0
+          Items.Strings = (
+            'Vacia, sin ning'#250'n tipo de informaci'#243'n'
+            'S'#243'lo con el plan Contable'
+            'Importar los datos desde una copia de seguridad.'
+            'Copiar los datos desde una empresa existente.'
+            'Consolidar los datos de dos o m'#225's empresas existentes.')
           TabOrder = 1
-          object Label16: TLabel
-            Left = 14
-            Top = 56
-            Width = 37
-            Height = 13
-            Caption = 'Nombre'
-            Color = 16249839
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
-            Font.Style = []
-            ParentColor = False
-            ParentFont = False
-          end
-          object Label6: TLabel
-            Left = 14
-            Top = 82
-            Width = 81
-            Height = 13
-            Caption = 'Periodo Contable'
-            Color = 16249839
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
-            Font.Style = []
-            ParentColor = False
-            ParentFont = False
-          end
-          object Label9: TLabel
-            Left = 14
-            Top = 109
-            Width = 75
-            Height = 13
-            Caption = 'Direcci'#243'n Fiscal'
-            Color = 16249839
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
-            Font.Style = []
-            ParentColor = False
-            ParentFont = False
-          end
-          object Label20: TLabel
-            Left = 14
-            Top = 136
-            Width = 47
-            Height = 13
-            Caption = 'Poblaci'#243'n'
-            Color = 16249839
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
-            Font.Style = []
-            ParentColor = False
-            ParentFont = False
-          end
-          object Label15: TLabel
-            Left = 14
-            Top = 163
-            Width = 65
-            Height = 13
-            Caption = 'C'#243'digo Postal'
-            Color = 16249839
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
-            Font.Style = []
-            ParentColor = False
-            ParentFont = False
-          end
-          object EditHostName: TEdit
-            Tag = 100
-            Left = 120
-            Top = 52
-            Width = 103
-            Height = 20
-            AutoSize = False
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
-            Font.Style = []
-            ParentFont = False
-            TabOrder = 0
-          end
-          object Edit1: TEdit
-            Tag = 100
-            Left = 120
-            Top = 78
-            Width = 89
-            Height = 20
-            AutoSize = False
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
-            Font.Style = []
-            ParentFont = False
-            TabOrder = 1
-          end
-          object Edit2: TEdit
-            Tag = 100
-            Left = 120
-            Top = 105
-            Width = 257
-            Height = 20
-            AutoSize = False
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
-            Font.Style = []
-            ParentFont = False
-            TabOrder = 2
-          end
-          object EditPassword: TEdit
-            Tag = 100
-            Left = 120
-            Top = 132
-            Width = 257
-            Height = 20
-            AutoSize = False
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
-            Font.Style = []
-            ParentFont = False
-            PasswordChar = '#'
-            TabOrder = 3
-          end
-          object EditRetypePassword: TEdit
-            Tag = 100
-            Left = 120
-            Top = 159
-            Width = 257
-            Height = 20
-            AutoSize = False
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
-            Font.Style = []
-            ParentFont = False
-            PasswordChar = '#'
-            TabOrder = 4
-          end
-          object Edit3: TEdit
-            Tag = 100
-            Left = 264
-            Top = 78
-            Width = 89
-            Height = 20
-            AutoSize = False
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
-            Font.Style = []
-            ParentFont = False
-            TabOrder = 5
-          end
         end
       end
     end

@@ -13,9 +13,9 @@ procedure ActivarTransacciones(Ventana: TForm);
 procedure CargaImagenesMensaje(Mensaje: TMensaje);
 procedure FibQueryOpen(Query: TIBTableSet; select: String);
 procedure FIbQueryRefresh(Query: TIBTableSet);
-procedure Modo(Formulario: TForm; Modo: TModo);
+procedure Modo(F : TForm; Modo: TModo);
 procedure QueryOpen(Query: TIBTableSet; select: String);
-procedure Moneda(Formulario: TForm; Moneda: String);
+procedure Moneda(F: TForm; Moneda: String);
 function ConversionImporte(Importe: Double; MonedaActual, MonedaFinal: String): Double;
 function RoundToDecimal(Value :Extended; Places :Integer; Bankers :Boolean):Extended;
   {-Rounds a real value to the specified number of decimal places}
@@ -39,17 +39,14 @@ procedure ActivarTransacciones(Ventana :TForm);
 var
    j: Word;
 begin
-   {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-   with Ventana do begin
-      for j := 0 to (ComponentCount - 1) do begin
-         if (Components[j] is TibTransaction) then begin
-            TibTransaction(Components[j]).Active := False;
-            TibTransaction(Components[j]).Params.Clear;
-            TibTransaction(Components[j]).Params.Add('Read_committed');
-            TibTransaction(Components[j]).Params.Add('Rec_version');
-            TibTransaction(Components[j]).Params.Add('Write');
-            TibTransaction(Components[j]).Active := True;
-         end;
+   for j := 0 to (Ventana.ComponentCount - 1) do begin
+      if (Ventana.Components[j] is TibTransaction) then begin
+         TibTransaction(Ventana.Components[j]).Active := False;
+         TibTransaction(Ventana.Components[j]).Params.Clear;
+         TibTransaction(Ventana.Components[j]).Params.Add('Read_committed');
+         TibTransaction(Ventana.Components[j]).Params.Add('Rec_version');
+         TibTransaction(Ventana.Components[j]).Params.Add('Write');
+         TibTransaction(Ventana.Components[j]).Active := True;
       end;
    end;
 end;
@@ -75,535 +72,524 @@ begin
    Query.Open;
 end;
 
-procedure Modo(Formulario: TForm; Modo: TModo);
+procedure Modo(F: TForm; Modo: TModo);
 var
    i, j: Integer;
 begin
-   if Formulario <> nil then begin
+   if F <> nil then begin
       case Modo of
          Edita: begin
-            {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-            with Formulario do begin
-               for i := 0 to (ComponentCount - 1) do begin
-                  if (Components[i] is TGroupBox) then   begin
-                     if UpperCase(Copy(TGroupBox(Components[i]).Name, 1, 6)) = 'FILTRO' then begin
-                        TGroupBox(Components[i]).Cursor  := crNo;
-                        TGroupBox(Components[i]).Enabled := False;
-                     end;
+            for i := 0 to (F.ComponentCount - 1) do begin
+               if (F.Components[i] is TGroupBox) then   begin
+                  if UpperCase(Copy(TGroupBox(F.Components[i]).Name, 1, 6)) = 'FILTRO' then begin
+                     TGroupBox(F.Components[i]).Cursor  := crNo;
+                     TGroupBox(F.Components[i]).Enabled := False;
                   end;
-                  if (Components[i] is Tfctreeview) then   begin
-                     Tfctreeview(Components[i]).Color := clWhite;
-                  end
-                  else
-                  if (Components[i] is TSpeedButton) and
-                     (UpperCase(Copy(TSpeedButton(Components[i]).Name, 1, 4)) <> 'PERM') then
+               end;
+               if (F.Components[i] is Tfctreeview) then   begin
+                  Tfctreeview(F.Components[i]).Color := clWhite;
+               end
+               else
+               if (F.Components[i] is TSpeedButton) and
+                  (UpperCase(Copy(TSpeedButton(F.Components[i]).Name, 1, 4)) <> 'PERM') then
+               begin
+                  TSpeedButton(F.Components[i]).Visible := False;
+               end
+               else
+               if (F.Components[i] is TovcDbPictureField) then   begin
+                  if (UpperCase(Copy(TovcDbPictureField(F.Components[i]).Name, 1, 6)) <> 'FILTRO')
+                  then   begin
+                     TovcDbPictureField(F.Components[i]).Cursor     := crHandPoint;
+                     TovcDbPictureField(F.Components[i]).Color      := clWhite;
+                     TovcDbPictureField(F.Components[i]).Font.Color := clBlack;
+                  end;
+               end
+               else
+               if (F.Components[i] is TOvcNoteBook) then   begin
+                  for j := 0 to (TOvcNoteBook(F.Components[i]).PageCount - 1) do
                   begin
-                     TSpeedButton(Components[i]).Visible := False;
-                  end
-                  else
-                  if (Components[i] is TovcDbPictureField) then   begin
-                     if (UpperCase(Copy(TovcDbPictureField(Components[i]).Name, 1, 6)) <> 'FILTRO')
-                     then   begin
-                        TovcDbPictureField(Components[i]).Cursor     := crHandPoint;
-                        TovcDbPictureField(Components[i]).Color      := clWhite;
-                        TovcDbPictureField(Components[i]).Font.Color := clBlack;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TOvcNoteBook) then   begin
-                     for j := 0 to (TOvcNoteBook(Components[i]).PageCount - 1) do
-                     begin
-                        TOvcNoteBook(Components[i]).Pages[j].PageVisible := TOvcNoteBook(Components[i]).Pages[j].Tag = 1;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TovcDbNumericField) then   begin
-                     if UpperCase(Copy(TovcDbNumericField(Components[i]).Name, 1, 6)) <>
-                        'FILTRO' then begin
-                        TovcDbNumericField(Components[i]).Cursor     := crHandPoint;
-                        TovcDbNumericField(Components[i]).Color      := clWhite;
-                        TovcDbNumericField(Components[i]).Font.Color := clBlack;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TovcDbSimpleField) then   begin
-                     if UpperCase(Copy(TovcDbSimpleField(Components[i]).Name, 1, 6)) <>
-                        'FILTRO' then
-                     begin
-                        TovcDbSimpleField(Components[i]).Cursor     := crHandPoint;
-                        TovcDbSimpleField(Components[i]).Color      := clWhite;
-                        TovcDbSimpleField(Components[i]).Font.Color := clBlack;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TwwDBEdit) then   begin
-                     if Copy(TwwDBEdit(Components[i]).Name, 1, 8) =
-                        'EditNEdt' then begin
-                        TwwDBEdit(Components[i]).Visible := True;
-                     end;
-                     if UpperCase(Copy(TwwDBEdit(Components[i]).Name, 1, 6)) <> 'FILTRO' then begin
-                        TwwDBEdit(Components[i]).Cursor     := crHandPoint;
-                        TwwDBEdit(Components[i]).Color      := clWhite;
-                        TwwDBEdit(Components[i]).Font.Color := clBlack;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TDBEdit) then   begin
-                     if UpperCase(Copy(TDBEdit(Components[i]).Name, 1, 6)) <> 'FILTRO' then
-                     begin
-                        TDBEdit(Components[i]).Cursor     := crHandPoint;
-                        TDBEdit(Components[i]).Color      := clWhite;
-                        TDBEdit(Components[i]).Font.Color := clBlack;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TwwDBSpinEdit) then begin
-                     TwwDBSpinEdit(Components[i]).Cursor     := crHandPoint;
-                     TwwDBSpinEdit(Components[i]).Color      := clWhite;
-                     TwwDBSpinEdit(Components[i]).Font.Color := clBlack;
-                  end
-                  else
-                  if (Components[i] is TwwDBLookUpCombo) then begin
-                     if Copy(TwwDBLookupCombo(Components[i]).Name, 1, 8) =
-                        'ComboEdt' then begin
-                        TwwDBLookupCombo(Components[i]).Visible := True;
-                     end;
-                     if UpperCase(Copy(TwwDBLookUpCombo(Components[i]).Name, 1, 6)) <>
-                        'FILTRO' then
-                     begin
-                        TwwDBLookupCombo(Components[i]).Cursor          := crHandPoint;
-                        TwwDBLookupCombo(Components[i]).Color           := clWhite;
-                        TwwDBLookupCombo(Components[i]).Grid.Color      := clWhite;
-                        TwwDBLookupCombo(Components[i]).Font.Color      := clBlack;
-                        TwwDBLookupCombo(Components[i]).Grid.Font.Color := clBlack;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TOvcPrinterComboBox) then begin
-                     if UpperCase(Copy(TOvcPrinterComboBox(Components[i]).Name, 1, 6)) <>
-                        'FILTRO' then begin
-                        TOvcPrinterComboBox(Components[i]).Cursor       := crHandPoint;
-                        TOvcPrinterComboBox(Components[i]).Color        := clWhite;
-                        TOvcPrinterComboBox(Components[i]).Font.Color   := clBlack;
-                        TOvcPrinterComboBox(Components[i]).MRUListColor := clWhite;
-                        TOvcPrinterComboBox(Components[i]).Enabled      := True;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TwwDBDateTimePicker) then begin
-                     if UpperCase(Copy(TwwDBDateTimePicker(Components[i]).Name, 1, 6)) <>
-                        'FILTRO' then begin
-                        TwwDBDateTimePicker(Components[i]).Cursor     := crHandPoint;
-                        TwwDBDateTimePicker(Components[i]).Color      := clWhite;
-                        TwwDBDateTimePicker(Components[i]).Font.Color := clBlack;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TOvcDBDateEdit) then begin
-                     if UpperCase(Copy(TOvcDBDateEdit(Components[i]).Name, 1, 6)) <> 'FILTRO' then
-                     begin
-                        TOvcDBDateEdit(Components[i]).Cursor     := crHandPoint;
-                        TOvcDBDateEdit(Components[i]).Color      := clWhite;
-                        TOvcDBDateEdit(Components[i]).Font.Color := clBlack;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TwwDBLookUpComboDlg) then begin
-                     if Copy(TwwDBLookupComboDlg(Components[i]).Name, 1, 8) =
-                        'ComboEdt' then begin
-                        TwwDBLookupComboDlg(Components[i]).Visible := True;
-                     end;
-                     if UpperCase(Copy(TwwDBLookUpComboDlg(Components[i]).Name, 1, 6)) <>
-                        'FILTRO' then begin
-                        TwwDBLookupComboDlg(Components[i]).Cursor          := crHandPoint;
-                        TwwDBLookupComboDlg(Components[i]).Color           := clWhite;
-                        TwwDBLookupComboDlg(Components[i]).Grid.Color      := clWhite;
-                        TwwDBLookupComboDlg(Components[i]).Font.Color      := clBlack;
-                        TwwDBLookupComboDlg(Components[i]).Grid.Font.Color := clBlack;
-                        TwwDBLookUpComboDlg(Components[i]).AutoDropDown    := True;
-                        TwwDBLookUpComboDlg(Components[i]).ShowButton      := True;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TwwDBComboBox) then begin
-                     if Copy(TwwDBComboBox(Components[i]).Name, 1, 8) =
-                        'ComboEdt' then begin
-                        TwwDBComboBox(Components[i]).Visible := True;
-                     end;
-                     TwwDBComboBox(Components[i]).Cursor     := crHandPoint;
-                     TwwDBComboBox(Components[i]).Color      := clWhite;
-                     TwwDBComboBox(Components[i]).Font.Color := clBlack;
-                  end
-                  else
-                  if (Components[i] is TDBCheckBox) then begin
-                     TDBCheckBox(Components[i]).Cursor := crHandPoint;
-                  end
-                  else
-                  if (Components[i] is TwwDBRichEdit) then begin
-                     TwwDBRichEdit(Components[i]).Cursor     := crHandPoint;
-                     TwwDBRichEdit(Components[i]).Color      := clWhite;
-                     TwwDBRichEdit(Components[i]).Font.Color := clBlack;
-                  end
-                  else
-                  if (Components[i] is TDBMemo) then begin
-                     TDBMemo(Components[i]).Cursor     := crHandPoint;
-                     TDBMemo(Components[i]).Color      := clWhite;
-                     TDBMemo(Components[i]).Font.Color := clBlack;
-                  end
-                  else
-                  //=========================
-                        {IF (Components[i] IS TEsMenuButton) THEN BEGIN
-                           IF Copy(TEsMenuButton(Components[i]).Name,1,6) = 'BtnEdt'
-                              THEN TEsMenuButton(Components[i]).Visible := True
-                              ELSE TEsMenuButton(Components[i]).Visible := False;
-                        END ELSE}
-                  if (Components[i] is TLabel) then begin
-                     if Copy(TLabel(Components[i]).Name, 1, 5) =
-                        'LbNav' then begin
-                        TLabel(Components[i]).Visible := False;
-                     end;
-                     if Copy(TLabel(Components[i]).Name, 1, 8) =
-                        'LabelEdt' then begin
-                        TLabel(Components[i]).Visible := True;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TCheckBox) then begin
-                     if Copy(TCheckBox(Components[i]).Name, 1, 5) =
-                        'CbNav' then begin
-                        TCheckBox(Components[i]).Visible := False;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TAnimate) then begin
-                     if Copy(TAnimate(Components[i]).Name, 1, 3) =
-                        'Nav' then begin
-                        TAnimate(Components[i]).Visible := False;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TfcImageBtn) then begin
-                     if Copy(TfcImageBtn(Components[i]).Name, 1, 7) =
-                        'BtnPerm' then begin
-                        TfcImageBtn(Components[i]).Visible := True;
-                     end
-                     else
-                     if Copy(TfcImageBtn(Components[i]).Name, 1, 6) = 'BtnNav' then   begin
-                        TfcImageBtn(Components[i]).Visible := False;
-                     end
-                     else
-                     if Copy(TfcImageBtn(Components[i]).Name, 1, 6) = 'BtnEdt' then begin
-                        TfcImageBtn(Components[i]).Visible := True;
-                     end
-                     else begin
-                        TfcImageBtn(Components[i]).Visible := False;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TDBNavegadorNotarios) then begin
-                     TDBNavegadorNotarios(Components[i]).Visible := False;
-                  end
-                  else
-                  if (Components[i] is TwwIncrementalSearch) then begin
-                     TwwIncrementalSearch(Components[i]).Enabled := False;
-                     TwwIncrementalSearch(Components[i]).Color   := $00C7C0AB;
-                  end
-                  else
-                  if (Components[i] is TwwDBGrid) then begin
-                     if (Copy(TwwDBGrid(Components[i]).Name, 1, 7) = 'GridEdt') or
-                        (Copy(TwwDBGrid(Components[i]).Name, 1, 8) = 'GridPerm') then
-                     begin
-                        TwwDBGrid(Components[i]).Enabled         := True;
-                        TwwDBGrid(Components[i]).Color           := gcClRejilla;
-                        TwwDBGrid(Components[i]).Font.Color      := gcClFuente;
-                        TwwDBGrid(Components[i]).FooterCellColor := gcClRejilla;
-                     end
-                     else begin
-                        TwwDBGrid(Components[i]).Enabled := False;
-                        TwwDBGrid(Components[i]).Color   := $00C7C0AB;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TwwKeyCombo) then begin
-                     TwwKeyCombo(Components[i]).Enabled := False;
-                     TwwKeyCombo(Components[i]).Color   := $00C7C0AB;
+                     TOvcNoteBook(F.Components[i]).Pages[j].PageVisible := TOvcNoteBook(F.Components[i]).Pages[j].Tag = 1;
                   end;
+               end
+               else
+               if (F.Components[i] is TovcDbNumericField) then   begin
+                  if UpperCase(Copy(TovcDbNumericField(F.Components[i]).Name, 1, 6)) <>
+                     'FILTRO' then begin
+                     TovcDbNumericField(F.Components[i]).Cursor     := crHandPoint;
+                     TovcDbNumericField(F.Components[i]).Color      := clWhite;
+                     TovcDbNumericField(F.Components[i]).Font.Color := clBlack;
+                  end;
+               end
+               else
+               if (F.Components[i] is TovcDbSimpleField) then   begin
+                  if UpperCase(Copy(TovcDbSimpleField(F.Components[i]).Name, 1, 6)) <>
+                     'FILTRO' then
+                  begin
+                     TovcDbSimpleField(F.Components[i]).Cursor     := crHandPoint;
+                     TovcDbSimpleField(F.Components[i]).Color      := clWhite;
+                     TovcDbSimpleField(F.Components[i]).Font.Color := clBlack;
+                  end;
+               end
+               else
+               if (F.Components[i] is TwwDBEdit) then   begin
+                  if Copy(TwwDBEdit(F.Components[i]).Name, 1, 8) =
+                     'EditNEdt' then begin
+                     TwwDBEdit(F.Components[i]).Visible := True;
+                  end;
+                  if UpperCase(Copy(TwwDBEdit(F.Components[i]).Name, 1, 6)) <> 'FILTRO' then begin
+                     TwwDBEdit(F.Components[i]).Cursor     := crHandPoint;
+                     TwwDBEdit(F.Components[i]).Color      := clWhite;
+                     TwwDBEdit(F.Components[i]).Font.Color := clBlack;
+                  end;
+               end
+               else
+               if (F.Components[i] is TDBEdit) then   begin
+                  if UpperCase(Copy(TDBEdit(F.Components[i]).Name, 1, 6)) <> 'FILTRO' then
+                  begin
+                     TDBEdit(F.Components[i]).Cursor     := crHandPoint;
+                     TDBEdit(F.Components[i]).Color      := clWhite;
+                     TDBEdit(F.Components[i]).Font.Color := clBlack;
+                  end;
+               end
+               else
+               if (F.Components[i] is TwwDBSpinEdit) then begin
+                  TwwDBSpinEdit(F.Components[i]).Cursor     := crHandPoint;
+                  TwwDBSpinEdit(F.Components[i]).Color      := clWhite;
+                  TwwDBSpinEdit(F.Components[i]).Font.Color := clBlack;
+               end
+               else
+               if (F.Components[i] is TwwDBLookUpCombo) then begin
+                  if Copy(TwwDBLookupCombo(F.Components[i]).Name, 1, 8) =
+                     'ComboEdt' then begin
+                     TwwDBLookupCombo(F.Components[i]).Visible := True;
+                  end;
+                  if UpperCase(Copy(TwwDBLookUpCombo(F.Components[i]).Name, 1, 6)) <>
+                     'FILTRO' then
+                  begin
+                     TwwDBLookupCombo(F.Components[i]).Cursor          := crHandPoint;
+                     TwwDBLookupCombo(F.Components[i]).Color           := clWhite;
+                     TwwDBLookupCombo(F.Components[i]).Grid.Color      := clWhite;
+                     TwwDBLookupCombo(F.Components[i]).Font.Color      := clBlack;
+                     TwwDBLookupCombo(F.Components[i]).Grid.Font.Color := clBlack;
+                  end;
+               end
+               else
+               if (F.Components[i] is TOvcPrinterComboBox) then begin
+                  if UpperCase(Copy(TOvcPrinterComboBox(F.Components[i]).Name, 1, 6)) <>
+                     'FILTRO' then begin
+                     TOvcPrinterComboBox(F.Components[i]).Cursor       := crHandPoint;
+                     TOvcPrinterComboBox(F.Components[i]).Color        := clWhite;
+                     TOvcPrinterComboBox(F.Components[i]).Font.Color   := clBlack;
+                     TOvcPrinterComboBox(F.Components[i]).MRUListColor := clWhite;
+                     TOvcPrinterComboBox(F.Components[i]).Enabled      := True;
+                  end;
+               end
+               else
+               if (F.Components[i] is TwwDBDateTimePicker) then begin
+                  if UpperCase(Copy(TwwDBDateTimePicker(F.Components[i]).Name, 1, 6)) <>
+                     'FILTRO' then begin
+                     TwwDBDateTimePicker(F.Components[i]).Cursor     := crHandPoint;
+                     TwwDBDateTimePicker(F.Components[i]).Color      := clWhite;
+                     TwwDBDateTimePicker(F.Components[i]).Font.Color := clBlack;
+                  end;
+               end
+               else
+               if (F.Components[i] is TOvcDBDateEdit) then begin
+                  if UpperCase(Copy(TOvcDBDateEdit(F.Components[i]).Name, 1, 6)) <> 'FILTRO' then
+                  begin
+                     TOvcDBDateEdit(F.Components[i]).Cursor     := crHandPoint;
+                     TOvcDBDateEdit(F.Components[i]).Color      := clWhite;
+                     TOvcDBDateEdit(F.Components[i]).Font.Color := clBlack;
+                  end;
+               end
+               else
+               if (F.Components[i] is TwwDBLookUpComboDlg) then begin
+                  if Copy(TwwDBLookupComboDlg(F.Components[i]).Name, 1, 8) =
+                     'ComboEdt' then begin
+                     TwwDBLookupComboDlg(F.Components[i]).Visible := True;
+                  end;
+                  if UpperCase(Copy(TwwDBLookUpComboDlg(F.Components[i]).Name, 1, 6)) <>
+                     'FILTRO' then begin
+                     TwwDBLookupComboDlg(F.Components[i]).Cursor          := crHandPoint;
+                     TwwDBLookupComboDlg(F.Components[i]).Color           := clWhite;
+                     TwwDBLookupComboDlg(F.Components[i]).Grid.Color      := clWhite;
+                     TwwDBLookupComboDlg(F.Components[i]).Font.Color      := clBlack;
+                     TwwDBLookupComboDlg(F.Components[i]).Grid.Font.Color := clBlack;
+                     TwwDBLookUpComboDlg(F.Components[i]).AutoDropDown    := True;
+                     TwwDBLookUpComboDlg(F.Components[i]).ShowButton      := True;
+                  end;
+               end
+               else
+               if (F.Components[i] is TwwDBComboBox) then begin
+                  if Copy(TwwDBComboBox(F.Components[i]).Name, 1, 8) =
+                     'ComboEdt' then begin
+                     TwwDBComboBox(F.Components[i]).Visible := True;
+                  end;
+                  TwwDBComboBox(F.Components[i]).Cursor     := crHandPoint;
+                  TwwDBComboBox(F.Components[i]).Color      := clWhite;
+                  TwwDBComboBox(F.Components[i]).Font.Color := clBlack;
+               end
+               else
+               if (F.Components[i] is TDBCheckBox) then begin
+                  TDBCheckBox(F.Components[i]).Cursor := crHandPoint;
+               end
+               else
+               if (F.Components[i] is TwwDBRichEdit) then begin
+                  TwwDBRichEdit(F.Components[i]).Cursor     := crHandPoint;
+                  TwwDBRichEdit(F.Components[i]).Color      := clWhite;
+                  TwwDBRichEdit(F.Components[i]).Font.Color := clBlack;
+               end
+               else
+               if (F.Components[i] is TDBMemo) then begin
+                  TDBMemo(F.Components[i]).Cursor     := crHandPoint;
+                  TDBMemo(F.Components[i]).Color      := clWhite;
+                  TDBMemo(F.Components[i]).Font.Color := clBlack;
+               end
+               else
+               //=========================
+               if (F.Components[i] is TLabel) then begin
+                  if Copy(TLabel(F.Components[i]).Name, 1, 5) =
+                     'LbNav' then begin
+                     TLabel(F.Components[i]).Visible := False;
+                  end;
+                  if Copy(TLabel(F.Components[i]).Name, 1, 8) =
+                     'LabelEdt' then begin
+                     TLabel(F.Components[i]).Visible := True;
+                  end;
+               end
+               else
+               if (F.Components[i] is TCheckBox) then begin
+                  if Copy(TCheckBox(F.Components[i]).Name, 1, 5) =
+                     'CbNav' then begin
+                     TCheckBox(F.Components[i]).Visible := False;
+                  end;
+               end
+               else
+               if (F.Components[i] is TAnimate) then begin
+                  if Copy(TAnimate(F.Components[i]).Name, 1, 3) =
+                     'Nav' then begin
+                     TAnimate(F.Components[i]).Visible := False;
+                  end;
+               end
+               else
+               if (F.Components[i] is TfcImageBtn) then begin
+                  if Copy(TfcImageBtn(F.Components[i]).Name, 1, 7) =
+                     'BtnPerm' then begin
+                     TfcImageBtn(F.Components[i]).Visible := True;
+                  end
+                  else
+                  if Copy(TfcImageBtn(F.Components[i]).Name, 1, 6) = 'BtnNav' then   begin
+                     TfcImageBtn(F.Components[i]).Visible := False;
+                  end
+                  else
+                  if Copy(TfcImageBtn(F.Components[i]).Name, 1, 6) = 'BtnEdt' then begin
+                     TfcImageBtn(F.Components[i]).Visible := True;
+                  end
+                  else begin
+                     TfcImageBtn(F.Components[i]).Visible := False;
+                  end;
+               end
+               else
+               if (F.Components[i] is TDBNavegadorNotarios) then begin
+                  TDBNavegadorNotarios(F.Components[i]).Visible := False;
+               end
+               else
+               if (F.Components[i] is TwwIncrementalSearch) then begin
+                  TwwIncrementalSearch(F.Components[i]).Enabled := False;
+                  TwwIncrementalSearch(F.Components[i]).Color   := $00C7C0AB;
+               end
+               else
+               if (F.Components[i] is TwwDBGrid) then begin
+                  if (Copy(TwwDBGrid(F.Components[i]).Name, 1, 7) = 'GridEdt') or
+                     (Copy(TwwDBGrid(F.Components[i]).Name, 1, 8) = 'GridPerm') then
+                  begin
+                     TwwDBGrid(F.Components[i]).Enabled         := True;
+                     TwwDBGrid(F.Components[i]).Color           := gcClRejilla;
+                     TwwDBGrid(F.Components[i]).Font.Color      := gcClFuente;
+                     TwwDBGrid(F.Components[i]).FooterCellColor := gcClRejilla;
+                  end
+                  else begin
+                     TwwDBGrid(F.Components[i]).Enabled := False;
+                     TwwDBGrid(F.Components[i]).Color   := $00C7C0AB;
+                  end;
+               end
+               else
+               if (F.Components[i] is TwwKeyCombo) then begin
+                  TwwKeyCombo(F.Components[i]).Enabled := False;
+                  TwwKeyCombo(F.Components[i]).Color   := $00C7C0AB;
                end;
             end;
          end;
          //========================================================================================
          Naveg: begin
-            {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-            with Formulario do begin
-               for i := 0 to (ComponentCount - 1) do begin
-                  if (Components[i] is TGroupBox) then   begin
-                     if UpperCase(Copy(TGroupBox(Components[i]).Name, 1, 6)) = 'FILTRO' then begin
-                        TGroupBox(Components[i]).Cursor  := crHandPoint;
-                        TGroupBox(Components[i]).Enabled := True;
-                     end;
+            for i := 0 to (F.ComponentCount - 1) do begin
+               if (F.Components[i] is TGroupBox) then   begin
+                  if UpperCase(Copy(TGroupBox(F.Components[i]).Name, 1, 6)) = 'FILTRO' then begin
+                     TGroupBox(F.Components[i]).Cursor  := crHandPoint;
+                     TGroupBox(F.Components[i]).Enabled := True;
                   end;
-                  if (Components[i] is TfcTreeView) then   begin
-                     Tfctreeview(Components[i]).Color := clInfoBk;
-                  end
-                  else
-                  if (Components[i] is TSpeedButton) then   begin
-                     TSpeedButton(Components[i]).Visible := True;
-                  end
-                  else
-                  if (Components[i] is TwwDBEdit) then begin
-                     if (UpperCase(Copy(TwwDBEdit(Components[i]).Name, 1, 6)) <> 'FILTRO') and
-                        (UpperCase(Copy(TwwDBEdit(Components[i]).Name, 1, 5)) <> 'EPERM') then
-                     begin
-                        TwwDBEdit(Components[i]).Cursor     := crNo;
-                        TwwDBEdit(Components[i]).Color      := gcClNaveg;
-                        TwwDBEdit(Components[i]).Font.Color := clBlack;
-                     end;
-                     if Copy(TwwDBEdit(Components[i]).Name, 1, 8) =
-                        'EditNEdt' then begin
-                        TwwDBEdit(Components[i]).Visible := False;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TwwDBDateTimePicker) then   begin
-                     if (UpperCase(Copy(TwwDBDateTimePicker(Components[i]).Name, 1, 6)) <>
-                        'FILTRO') and (UpperCase(
-                        Copy(TwwDBDateTimePicker(Components[i]).Name, 1, 5)) <> 'EPERM') then   begin
-                        TwwDBDateTimePicker(Components[i]).Cursor     := crNo;
-                        TwwDBDateTimePicker(Components[i]).Color      := gcClNaveg;
-                        TwwDBDateTimePicker(Components[i]).Font.Color := clBlack;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TDBEdit) then   begin
-                     if (UpperCase(Copy(TDBEdit(Components[i]).Name, 1, 6)) <> 'FILTRO') and
-                        (UpperCase(Copy(TDBEdit(Components[i]).Name, 1, 5)) <> 'EPERM') then
-                     begin
-                        TDBEdit(Components[i]).Cursor     := crNo;
-                        TDBEdit(Components[i]).Color      := gcClNaveg;
-                        TDBEdit(Components[i]).Font.Color := clBlack;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TOvcNoteBook) then   begin
-                     for j := 0 to (TOvcNoteBook(Components[i]).PageCount - 1) do
-                     begin
-                        TOvcNoteBook(Components[i]).Pages[j].PageVisible :=
-                           TOvcNoteBook(Components[i]).Pages[j].Name <> 'PageOculta';
-                     end;
-                  end
-                  else
-                  if (Components[i] is TOvcDbPictureField) then begin
-                     if (UpperCase(Copy(TOvcDbPictureField(Components[i]).Name, 1, 6)) <>
-                        'FILTRO') and (UpperCase(
-                        Copy(TOvcDbPictureField(Components[i]).Name, 1, 5)) <> 'EPERM') then begin
-                        TOvcDbPictureField(Components[i]).Cursor     := crNo;
-                        TOvcDbPictureField(Components[i]).Color      := gcClNaveg;
-                        TOvcDbPictureField(Components[i]).Font.Color := clBlack;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TOvcDbNumericField) then begin
-                     if (UpperCase(Copy(TOvcDbNumericField(Components[i]).Name, 1, 6)) <>
-                        'FILTRO') and (UpperCase(
-                        Copy(TOvcDbNumericField(Components[i]).Name, 1, 5)) <> 'EPERM') then begin
-                        TOvcDbNumericField(Components[i]).Cursor     := crNo;
-                        TOvcDbNumericField(Components[i]).Color      := gcClNaveg;
-                        TOvcDbNumericField(Components[i]).Font.Color := clBlack;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TOvcDbSimpleField) then begin
-                     if UpperCase(Copy(TOvcDBSimpleField(Components[i]).Name, 1, 6)) <>
-                        'FILTRO' then begin
-                        TOvcDbSimpleField(Components[i]).Cursor     := crNo;
-                        TOvcDbSimpleField(Components[i]).Color      := gcClNaveg;
-                        TOvcDbSimpleField(Components[i]).Font.Color := clBlack;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TwwDBLookupCombo) then begin
-                     if (UpperCase(Copy(TwwDBLookUpCombo(Components[i]).Name, 1, 6)) <>
-                        'FILTRO') and (UpperCase(
-                        Copy(TwwDBLookUpCombo(Components[i]).Name, 1, 5)) <> 'EPERM') then begin
-                        TwwDBLookupCombo(Components[i]).Cursor          := crNo;
-                        TwwDBLookupCombo(Components[i]).Color           := gcClNaveg;
-                        TwwDBLookupCombo(Components[i]).Grid.Color      := gcClNaveg;
-                        TwwDBLookupCombo(Components[i]).Font.Color      := clBlack;
-                        TwwDBLookupCombo(Components[i]).Grid.Font.Color := clBlack;
-                     end;
-                     if Copy(TwwDBLookupCombo(Components[i]).Name, 1, 8) =
-                        'ComboEdt' then begin
-                        TwwDBLookupCombo(Components[i]).Visible := False;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TwwDBComboBox) then begin
-                     if (UpperCase(Copy(TwwDBComboBox(Components[i]).Name, 1, 6)) <> 'FILTRO') then
-                     begin
-                        TwwDBComboBox(Components[i]).Cursor     := crNo;
-                        TwwDBComboBox(Components[i]).Color      := gcClNaveg;
-                        TwwDBComboBox(Components[i]).Font.Color := clBlack;
-                     end;
-                     if Copy(TwwDBComboBox(Components[i]).Name, 1, 8) =
-                        'ComboEdt' then begin
-                        TwwDBComboBox(Components[i]).Visible := False;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TwwDBSpinEdit) then begin
-                     if (UpperCase(Copy(TwwDBSpinEdit(Components[i]).Name, 1, 6)) <> 'FILTRO') then
-                     begin
-                        TwwDBSpinEdit(Components[i]).Cursor     := crNo;
-                        TwwDBSpinEdit(Components[i]).Color      := gcClNaveg;
-                        TwwDBSpinEdit(Components[i]).Font.Color := clBlack;
-                     end;
-                     if Copy(TwwDBSpinEdit(Components[i]).Name, 1, 8) =
-                        'ComboEdt' then begin
-                        TwwDBSpinEdit(Components[i]).Visible := False;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TOvcPrinterComboBox) then begin
-                     if UpperCase(Copy(TOvcPrinterComboBox(Components[i]).Name, 1, 6)) <>
-                        'FILTRO' then begin
-                        TOvcPrinterComboBox(Components[i]).Cursor       := crNo;
-                        TOvcPrinterComboBox(Components[i]).Color        := gcClNaveg;
-                        TOvcPrinterComboBox(Components[i]).Font.Color   := clBlack;
-                        TOvcPrinterComboBox(Components[i]).MRUListColor := gcClNaveg;
-                        TOvcPrinterComboBox(Components[i]).Enabled      := False;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TOvcDBDateEdit) then begin
-                     if UpperCase(Copy(TOvcDBDateEdit(Components[i]).Name, 1, 6)) <> 'FILTRO' then
-                     begin
-                        TOvcDBDateEdit(Components[i]).Cursor     := crNo;
-                        TOvcDBDateEdit(Components[i]).Color      := gcClNaveg;
-                        TOvcDBDateEdit(Components[i]).Font.Color := clBlack;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TwwDBLookupComboDlg) then begin
-                     if UpperCase(Copy(TwwDBLookUpComboDlg(Components[i]).Name, 1, 6)) <>
-                        'FILTRO' then begin
-                        TwwDBLookupComboDlg(Components[i]).Cursor          := crNo;
-                        TwwDBLookupComboDlg(Components[i]).Color           := gcClNaveg;
-                        TwwDBLookupComboDlg(Components[i]).Grid.Color      := gcClNaveg;
-                        TwwDBLookupComboDlg(Components[i]).Font.Color      := clBlack;
-                        TwwDBLookupComboDlg(Components[i]).Grid.Font.Color := clBlack;
-                        TwwDBLookUpComboDlg(Components[i]).AutoDropDown    := False;
-                        TwwDBLookUpComboDlg(Components[i]).ShowButton      := False;
-                     end;
-                     if Copy(TwwDBLookupComboDlg(Components[i]).Name, 1, 8) =
-                        'ComboEdt' then begin
-                        TwwDBLookupComboDlg(Components[i]).Visible := False;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TwwDBComboBox) then   begin
-                     if UpperCase(Copy(TwwDBComboBox(Components[i]).Name, 1, 6)) <> 'FILTRO' then
-                     begin
-                        TwwDBComboBox(Components[i]).Cursor     := crNo;
-                        TwwDBComboBox(Components[i]).Color      := gcClNaveg;
-                        TwwDBComboBox(Components[i]).Font.Color := clBlack;
-                     end;
-                     if Copy(TwwDBComboBox(Components[i]).Name, 1, 8) =
-                        'ComboEdt' then begin
-                        TwwDBComboBox(Components[i]).Visible := False;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TDBCheckBox) then begin
-                     if (UpperCase(Copy(TwwDBEdit(Components[i]).Name, 1, 5)) <> 'EPERM') then begin
-                        TDBCheckBox(Components[i]).Cursor := crNo;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TwwDBRichEdit) then begin
-                     TwwDBRichEdit(Components[i]).Cursor     := crNo;
-                     TwwDBRichEdit(Components[i]).Color      := gcClNaveg;
-                     TwwDBRichEdit(Components[i]).Font.Color := clBlack;
-                  end
-                  else
-                  if (Components[i] is TDBMemo) then begin
-                     if (UpperCase(Copy(TOvcDbPictureField(Components[i]).Name, 1, 5)) <>
-                        'EPERM') then
-                     begin
-                        TDBMemo(Components[i]).Cursor     := crNo;
-                        TDBMemo(Components[i]).Color      := gcClNaveg;
-                        TDBMemo(Components[i]).Font.Color := clBlack;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TCheckBox) then begin
-                     if Copy(TCheckBox(Components[i]).Name, 1, 5) =
-                        'CbNav' then begin
-                        TCheckBox(Components[i]).Visible := True;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TAnimate) then begin
-                     if Copy(TAnimate(Components[i]).Name, 1, 3) =
-                        'Nav' then begin
-                        TAnimate(Components[i]).Visible := False;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TLabel) then begin
-                     if Copy(TLabel(Components[i]).Name, 1, 5) =
-                        'LbNav' then begin
-                        TLabel(Components[i]).Visible := True;
-                     end;
-                     if Copy(TLabel(Components[i]).Name, 1, 8) =
-                        'LabelEdt' then begin
-                        TLabel(Components[i]).Visible := False;
-                     end;
-                  end
-                  else
-                  if (Components[i] is TfcImageBtn) then begin
-                     if Copy(TfcImageBtn(Components[i]).Name, 1, 7) =
-                        'BtnPerm' then begin
-                        TfcImageBtn(Components[i]).Visible := True;
-                     end
-                     else
-                     if Copy(TfcImageBtn(Components[i]).Name, 1, 6) = 'BtnNav' then   begin
-                        TfcImageBtn(Components[i]).Visible := True;
-                     end
-                     else
-                     if Copy(TfcImageBtn(Components[i]).Name, 1, 6) = 'BtnEdt' then begin
-                        TfcImageBtn(Components[i]).Visible := False;
-                     end
-                     else begin
-                        TfcImageBtn(Components[i]).Visible := (Copy(TfcImageBtn(Components[i]).Name, 1, 3) <> 'Aux');
-                     end;
-                  end
-                  else
-                  if (Components[i] is TDBNavegadorNotarios) then begin
-                     TDBNavegadorNotarios(Components[i]).Visible := True;
-                  end
-                  else
-                  if (Components[i] is TwwIncrementalSearch) then begin
-                     TwwIncrementalSearch(Components[i]).Enabled := True;
-                     TwwIncrementalSearch(Components[i]).Color   := clWhite;
-                  end
-                  else
-                  if (Components[i] is TwwDBGrid) then begin
-                     TwwDBGrid(Components[i]).Enabled := True;
-                     if (Copy(TwwDBGrid(Components[i]).Name, 1, 7) = 'Despleg') then
-                     begin
-                        TwwDBGrid(Components[i]).Color := gcClRejillaDesplegable;
-                     end
-                     else begin
-                        TwwDBGrid(Components[i]).Color := gcClRejilla;
-                     end;
-                     TwwDBGrid(Components[i]).Font.Color      := gcClFuente;
-                     TwwDBGrid(Components[i]).FooterCellColor := gcClRejilla;
-                  end
-                  else
-                  if (Components[i] is TwwKeyCombo) then begin
-                     TwwKeyCombo(Components[i]).Enabled := True;
-                     TwwKeyCombo(Components[i]).Color   := clWhite;
+               end;
+               if (F.Components[i] is TfcTreeView) then   begin
+                  Tfctreeview(F.Components[i]).Color := clInfoBk;
+               end
+               else
+               if (F.Components[i] is TSpeedButton) then   begin
+                  TSpeedButton(F.Components[i]).Visible := True;
+               end
+               else
+               if (F.Components[i] is TwwDBEdit) then begin
+                  if (UpperCase(Copy(TwwDBEdit(F.Components[i]).Name, 1, 6)) <> 'FILTRO') and
+                     (UpperCase(Copy(TwwDBEdit(F.Components[i]).Name, 1, 5)) <> 'EPERM') then
+                  begin
+                     TwwDBEdit(F.Components[i]).Cursor     := crNo;
+                     TwwDBEdit(F.Components[i]).Color      := gcClNaveg;
+                     TwwDBEdit(F.Components[i]).Font.Color := clBlack;
                   end;
+                  if Copy(TwwDBEdit(F.Components[i]).Name, 1, 8) =
+                     'EditNEdt' then begin
+                     TwwDBEdit(F.Components[i]).Visible := False;
+                  end;
+               end
+               else
+               if (F.Components[i] is TwwDBDateTimePicker) then   begin
+                  if (UpperCase(Copy(TwwDBDateTimePicker(F.Components[i]).Name, 1, 6)) <>
+                     'FILTRO') and (UpperCase(
+                     Copy(TwwDBDateTimePicker(F.Components[i]).Name, 1, 5)) <> 'EPERM') then   begin
+                     TwwDBDateTimePicker(F.Components[i]).Cursor     := crNo;
+                     TwwDBDateTimePicker(F.Components[i]).Color      := gcClNaveg;
+                     TwwDBDateTimePicker(F.Components[i]).Font.Color := clBlack;
+                  end;
+               end
+               else
+               if (F.Components[i] is TDBEdit) then   begin
+                  if (UpperCase(Copy(TDBEdit(F.Components[i]).Name, 1, 6)) <> 'FILTRO') and
+                     (UpperCase(Copy(TDBEdit(F.Components[i]).Name, 1, 5)) <> 'EPERM') then
+                  begin
+                     TDBEdit(F.Components[i]).Cursor     := crNo;
+                     TDBEdit(F.Components[i]).Color      := gcClNaveg;
+                     TDBEdit(F.Components[i]).Font.Color := clBlack;
+                  end;
+               end
+               else
+               if (F.Components[i] is TOvcNoteBook) then   begin
+                  for j := 0 to (TOvcNoteBook(F.Components[i]).PageCount - 1) do
+                  begin
+                     TOvcNoteBook(F.Components[i]).Pages[j].PageVisible :=
+                        TOvcNoteBook(F.Components[i]).Pages[j].Name <> 'PageOculta';
+                  end;
+               end
+               else
+               if (F.Components[i] is TOvcDbPictureField) then begin
+                  if (UpperCase(Copy(TOvcDbPictureField(F.Components[i]).Name, 1, 6)) <>
+                     'FILTRO') and (UpperCase(
+                     Copy(TOvcDbPictureField(F.Components[i]).Name, 1, 5)) <> 'EPERM') then begin
+                     TOvcDbPictureField(F.Components[i]).Cursor     := crNo;
+                     TOvcDbPictureField(F.Components[i]).Color      := gcClNaveg;
+                     TOvcDbPictureField(F.Components[i]).Font.Color := clBlack;
+                  end;
+               end
+               else
+               if (F.Components[i] is TOvcDbNumericField) then begin
+                  if (UpperCase(Copy(TOvcDbNumericField(F.Components[i]).Name, 1, 6)) <>
+                     'FILTRO') and (UpperCase(
+                     Copy(TOvcDbNumericField(F.Components[i]).Name, 1, 5)) <> 'EPERM') then begin
+                     TOvcDbNumericField(F.Components[i]).Cursor     := crNo;
+                     TOvcDbNumericField(F.Components[i]).Color      := gcClNaveg;
+                     TOvcDbNumericField(F.Components[i]).Font.Color := clBlack;
+                  end;
+               end
+               else
+               if (F.Components[i] is TOvcDbSimpleField) then begin
+                  if UpperCase(Copy(TOvcDBSimpleField(F.Components[i]).Name, 1, 6)) <>
+                     'FILTRO' then begin
+                     TOvcDbSimpleField(F.Components[i]).Cursor     := crNo;
+                     TOvcDbSimpleField(F.Components[i]).Color      := gcClNaveg;
+                     TOvcDbSimpleField(F.Components[i]).Font.Color := clBlack;
+                  end;
+               end
+               else
+               if (F.Components[i] is TwwDBLookupCombo) then begin
+                  if (UpperCase(Copy(TwwDBLookUpCombo(F.Components[i]).Name, 1, 6)) <>
+                     'FILTRO') and (UpperCase(
+                     Copy(TwwDBLookUpCombo(F.Components[i]).Name, 1, 5)) <> 'EPERM') then begin
+                     TwwDBLookupCombo(F.Components[i]).Cursor          := crNo;
+                     TwwDBLookupCombo(F.Components[i]).Color           := gcClNaveg;
+                     TwwDBLookupCombo(F.Components[i]).Grid.Color      := gcClNaveg;
+                     TwwDBLookupCombo(F.Components[i]).Font.Color      := clBlack;
+                     TwwDBLookupCombo(F.Components[i]).Grid.Font.Color := clBlack;
+                  end;
+                  if Copy(TwwDBLookupCombo(F.Components[i]).Name, 1, 8) =
+                     'ComboEdt' then begin
+                     TwwDBLookupCombo(F.Components[i]).Visible := False;
+                  end;
+               end
+               else
+               if (F.Components[i] is TwwDBComboBox) then begin
+                  if (UpperCase(Copy(TwwDBComboBox(F.Components[i]).Name, 1, 6)) <> 'FILTRO') then
+                  begin
+                     TwwDBComboBox(F.Components[i]).Cursor     := crNo;
+                     TwwDBComboBox(F.Components[i]).Color      := gcClNaveg;
+                     TwwDBComboBox(F.Components[i]).Font.Color := clBlack;
+                  end;
+                  if Copy(TwwDBComboBox(F.Components[i]).Name, 1, 8) =
+                     'ComboEdt' then begin
+                     TwwDBComboBox(F.Components[i]).Visible := False;
+                  end;
+               end
+               else
+               if (F.Components[i] is TwwDBSpinEdit) then begin
+                  if (UpperCase(Copy(TwwDBSpinEdit(F.Components[i]).Name, 1, 6)) <> 'FILTRO') then
+                  begin
+                     TwwDBSpinEdit(F.Components[i]).Cursor     := crNo;
+                     TwwDBSpinEdit(F.Components[i]).Color      := gcClNaveg;
+                     TwwDBSpinEdit(F.Components[i]).Font.Color := clBlack;
+                  end;
+                  if Copy(TwwDBSpinEdit(F.Components[i]).Name, 1, 8) =
+                     'ComboEdt' then begin
+                     TwwDBSpinEdit(F.Components[i]).Visible := False;
+                  end;
+               end
+               else
+               if (F.Components[i] is TOvcPrinterComboBox) then begin
+                  if UpperCase(Copy(TOvcPrinterComboBox(F.Components[i]).Name, 1, 6)) <>
+                     'FILTRO' then begin
+                     TOvcPrinterComboBox(F.Components[i]).Cursor       := crNo;
+                     TOvcPrinterComboBox(F.Components[i]).Color        := gcClNaveg;
+                     TOvcPrinterComboBox(F.Components[i]).Font.Color   := clBlack;
+                     TOvcPrinterComboBox(F.Components[i]).MRUListColor := gcClNaveg;
+                     TOvcPrinterComboBox(F.Components[i]).Enabled      := False;
+                  end;
+               end
+               else
+               if (F.Components[i] is TOvcDBDateEdit) then begin
+                  if UpperCase(Copy(TOvcDBDateEdit(F.Components[i]).Name, 1, 6)) <> 'FILTRO' then
+                  begin
+                     TOvcDBDateEdit(F.Components[i]).Cursor     := crNo;
+                     TOvcDBDateEdit(F.Components[i]).Color      := gcClNaveg;
+                     TOvcDBDateEdit(F.Components[i]).Font.Color := clBlack;
+                  end;
+               end
+               else
+               if (F.Components[i] is TwwDBLookupComboDlg) then begin
+                  if UpperCase(Copy(TwwDBLookUpComboDlg(F.Components[i]).Name, 1, 6)) <>
+                     'FILTRO' then begin
+                     TwwDBLookupComboDlg(F.Components[i]).Cursor          := crNo;
+                     TwwDBLookupComboDlg(F.Components[i]).Color           := gcClNaveg;
+                     TwwDBLookupComboDlg(F.Components[i]).Grid.Color      := gcClNaveg;
+                     TwwDBLookupComboDlg(F.Components[i]).Font.Color      := clBlack;
+                     TwwDBLookupComboDlg(F.Components[i]).Grid.Font.Color := clBlack;
+                     TwwDBLookUpComboDlg(F.Components[i]).AutoDropDown    := False;
+                     TwwDBLookUpComboDlg(F.Components[i]).ShowButton      := False;
+                  end;
+                  if Copy(TwwDBLookupComboDlg(F.Components[i]).Name, 1, 8) =
+                     'ComboEdt' then begin
+                     TwwDBLookupComboDlg(F.Components[i]).Visible := False;
+                  end;
+               end
+               else
+               if (F.Components[i] is TwwDBComboBox) then   begin
+                  if UpperCase(Copy(TwwDBComboBox(F.Components[i]).Name, 1, 6)) <> 'FILTRO' then
+                  begin
+                     TwwDBComboBox(F.Components[i]).Cursor     := crNo;
+                     TwwDBComboBox(F.Components[i]).Color      := gcClNaveg;
+                     TwwDBComboBox(F.Components[i]).Font.Color := clBlack;
+                  end;
+                  if Copy(TwwDBComboBox(F.Components[i]).Name, 1, 8) =
+                     'ComboEdt' then begin
+                     TwwDBComboBox(F.Components[i]).Visible := False;
+                  end;
+               end
+               else
+               if (F.Components[i] is TDBCheckBox) then begin
+                  if (UpperCase(Copy(TwwDBEdit(F.Components[i]).Name, 1, 5)) <> 'EPERM') then begin
+                     TDBCheckBox(F.Components[i]).Cursor := crNo;
+                  end;
+               end
+               else
+               if (F.Components[i] is TwwDBRichEdit) then begin
+                  TwwDBRichEdit(F.Components[i]).Cursor     := crNo;
+                  TwwDBRichEdit(F.Components[i]).Color      := gcClNaveg;
+                  TwwDBRichEdit(F.Components[i]).Font.Color := clBlack;
+               end
+               else
+               if (F.Components[i] is TDBMemo) then begin
+                  if (UpperCase(Copy(TOvcDbPictureField(F.Components[i]).Name, 1, 5)) <>
+                     'EPERM') then
+                  begin
+                     TDBMemo(F.Components[i]).Cursor     := crNo;
+                     TDBMemo(F.Components[i]).Color      := gcClNaveg;
+                     TDBMemo(F.Components[i]).Font.Color := clBlack;
+                  end;
+               end
+               else
+               if (F.Components[i] is TCheckBox) then begin
+                  if Copy(TCheckBox(F.Components[i]).Name, 1, 5) =
+                     'CbNav' then begin
+                     TCheckBox(F.Components[i]).Visible := True;
+                  end;
+               end
+               else
+               if (F.Components[i] is TAnimate) then begin
+                  if Copy(TAnimate(F.Components[i]).Name, 1, 3) =
+                     'Nav' then begin
+                     TAnimate(F.Components[i]).Visible := False;
+                  end;
+               end
+               else
+               if (F.Components[i] is TLabel) then begin
+                  if Copy(TLabel(F.Components[i]).Name, 1, 5) =
+                     'LbNav' then begin
+                     TLabel(F.Components[i]).Visible := True;
+                  end;
+                  if Copy(TLabel(F.Components[i]).Name, 1, 8) =
+                     'LabelEdt' then begin
+                     TLabel(F.Components[i]).Visible := False;
+                  end;
+               end
+               else
+               if (F.Components[i] is TfcImageBtn) then begin
+                  if Copy(TfcImageBtn(F.Components[i]).Name, 1, 7) =
+                     'BtnPerm' then begin
+                     TfcImageBtn(F.Components[i]).Visible := True;
+                  end
+                  else
+                  if Copy(TfcImageBtn(F.Components[i]).Name, 1, 6) = 'BtnNav' then   begin
+                     TfcImageBtn(F.Components[i]).Visible := True;
+                  end
+                  else
+                  if Copy(TfcImageBtn(F.Components[i]).Name, 1, 6) = 'BtnEdt' then begin
+                     TfcImageBtn(F.Components[i]).Visible := False;
+                  end
+                  else begin
+                     TfcImageBtn(F.Components[i]).Visible := (Copy(TfcImageBtn(F.Components[i]).Name, 1, 3) <> 'Aux');
+                  end;
+               end
+               else
+               if (F.Components[i] is TDBNavegadorNotarios) then begin
+                  TDBNavegadorNotarios(F.Components[i]).Visible := True;
+               end
+               else
+               if (F.Components[i] is TwwIncrementalSearch) then begin
+                  TwwIncrementalSearch(F.Components[i]).Enabled := True;
+                  TwwIncrementalSearch(F.Components[i]).Color   := clWhite;
+               end
+               else
+               if (F.Components[i] is TwwDBGrid) then begin
+                  TwwDBGrid(F.Components[i]).Enabled := True;
+                  if (Copy(TwwDBGrid(F.Components[i]).Name, 1, 7) = 'Despleg') then
+                  begin
+                     TwwDBGrid(F.Components[i]).Color := gcClRejillaDesplegable;
+                  end
+                  else begin
+                     TwwDBGrid(F.Components[i]).Color := gcClRejilla;
+                  end;
+                  TwwDBGrid(F.Components[i]).Font.Color      := gcClFuente;
+                  TwwDBGrid(F.Components[i]).FooterCellColor := gcClRejilla;
+               end
+               else
+               if (F.Components[i] is TwwKeyCombo) then begin
+                  TwwKeyCombo(F.Components[i]).Enabled := True;
+                  TwwKeyCombo(F.Components[i]).Color   := clWhite;
                end;
             end;
          end; // Naveg
@@ -660,93 +646,87 @@ begin
    end;
 end;
 
-procedure Moneda(Formulario: TForm; Moneda: String);
+procedure Moneda(F: TForm; Moneda: String);
 var
    i: Integer;
 begin
-   if Formulario <> nil then begin
+   if F <> nil then begin
       if moneda = 'P' then   begin
-         {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-         with Formulario do begin
-            for i := 0 to (ComponentCount - 1) do begin
-               if (Components[i] is TppDBText) then   begin
-                  if (UpperCase(Copy(TppDBText(Components[i]).Name, 3, 7)) = 'IMPORTE') or
-                     (UpperCase(Copy(TppDBText(Components[i]).UserName, 1, 7)) = 'IMPORTE') then   begin
-                     TppDBText(Components[i]).DisplayFormat := '###,###,###';
-                  end
-                  else
-                  if (UpperCase(Copy(TppDBText(Components[i]).Name, 3, 4)) = 'SUMA') or
-                     (UpperCase(Copy(TppDBText(Components[i]).UserName, 1, 4)) = 'SUMA') then   begin
-                     TppDBText(Components[i]).DisplayFormat := '###,###,###,###';
-                  end;
+         for i := 0 to (F.ComponentCount - 1) do begin
+            if (F.Components[i] is TppDBText) then   begin
+               if (UpperCase(Copy(TppDBText(F.Components[i]).Name, 3, 7)) = 'IMPORTE') or
+                  (UpperCase(Copy(TppDBText(F.Components[i]).UserName, 1, 7)) = 'IMPORTE') then   begin
+                  TppDBText(F.Components[i]).DisplayFormat := '###,###,###';
+               end
+               else
+               if (UpperCase(Copy(TppDBText(F.Components[i]).Name, 3, 4)) = 'SUMA') or
+                  (UpperCase(Copy(TppDBText(F.Components[i]).UserName, 1, 4)) = 'SUMA') then   begin
+                  TppDBText(F.Components[i]).DisplayFormat := '###,###,###,###';
                end;
             end;
-            if FindComponent('ppSuma1') <> nil then   begin
-               TppDbCalc(FindComponent('ppSuma1')).DisplayFormat := '###,###,###,###';
-            end;
-            if FindComponent('ppSuma2') <> nil then   begin
-               TppDbCalc(FindComponent('ppSuma2')).DisplayFormat := '###,###,###,###';
-            end;
-            if FindComponent('ppSuma3') <> nil then   begin
-               TppDbCalc(FindComponent('ppSuma3')).DisplayFormat := '###,###,###,###';
-            end;
-            if FindComponent('ppSuma4') <> nil then   begin
-               TppDbCalc(FindComponent('ppSuma4')).DisplayFormat := '###,###,###,###';
-            end;
-            if FindComponent('ppSuma5') <> nil then   begin
-               TppDbCalc(FindComponent('ppSuma5')).DisplayFormat := '###,###,###,###';
-            end;
-            if FindComponent('ppSuma6') <> nil then   begin
-               TppDbCalc(FindComponent('ppSuma6')).DisplayFormat := '###,###,###,###';
-            end;
-            if FindComponent('ppSuma7') <> nil then   begin
-               TppDbCalc(FindComponent('ppSuma7')).DisplayFormat := '###,###,###,###';
-            end;
-            if FindComponent('ppSuma8') <> nil then   begin
-               TppDbCalc(FindComponent('ppSuma8')).DisplayFormat := '###,###,###,###';
-            end;
+         end;
+         if F.FindComponent('ppSuma1') <> nil then   begin
+            TppDbCalc(F.FindComponent('ppSuma1')).DisplayFormat := '###,###,###,###';
+         end;
+         if F.FindComponent('ppSuma2') <> nil then   begin
+            TppDbCalc(F.FindComponent('ppSuma2')).DisplayFormat := '###,###,###,###';
+         end;
+         if F.FindComponent('ppSuma3') <> nil then   begin
+            TppDbCalc(F.FindComponent('ppSuma3')).DisplayFormat := '###,###,###,###';
+         end;
+         if F.FindComponent('ppSuma4') <> nil then   begin
+            TppDbCalc(F.FindComponent('ppSuma4')).DisplayFormat := '###,###,###,###';
+         end;
+         if F.FindComponent('ppSuma5') <> nil then   begin
+            TppDbCalc(F.FindComponent('ppSuma5')).DisplayFormat := '###,###,###,###';
+         end;
+         if F.FindComponent('ppSuma6') <> nil then   begin
+            TppDbCalc(F.FindComponent('ppSuma6')).DisplayFormat := '###,###,###,###';
+         end;
+         if F.FindComponent('ppSuma7') <> nil then   begin
+            TppDbCalc(F.FindComponent('ppSuma7')).DisplayFormat := '###,###,###,###';
+         end;
+         if F.FindComponent('ppSuma8') <> nil then   begin
+            TppDbCalc(F.FindComponent('ppSuma8')).DisplayFormat := '###,###,###,###';
          end;
       end
       else begin
-         {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-         with Formulario do begin
-            for i := 0 to (ComponentCount - 1) do begin
-               if (Components[i] is TppDBText) then   begin
-                  if (UpperCase(Copy(TppDBText(Components[i]).Name, 3, 7)) = 'IMPORTE') or
-                     (UpperCase(Copy(TppDBText(Components[i]).UserName, 1, 7)) = 'IMPORTE') then   begin
-                     TppDBText(Components[i]).DisplayFormat := '###,###,##0.#0';
-                  end
-                  else
-                  if (UpperCase(Copy(TppDBText(Components[i]).Name, 3, 4)) = 'SUMA') or
-                     (UpperCase(Copy(TppDBText(Components[i]).UserName, 1, 4)) = 'SUMA') then   begin
-                     TppDBText(Components[i]).DisplayFormat := '###,###,###,##0.#0';
-                  end;
+         for i := 0 to (F.ComponentCount - 1) do begin
+            if (F.Components[i] is TppDBText) then   begin
+               if (UpperCase(Copy(TppDBText(F.Components[i]).Name, 3, 7)) = 'IMPORTE') or
+                  (UpperCase(Copy(TppDBText(F.Components[i]).UserName, 1, 7)) = 'IMPORTE') then   begin
+                  TppDBText(F.Components[i]).DisplayFormat := '###,###,##0.#0';
+               end
+               else
+               if (UpperCase(Copy(TppDBText(F.Components[i]).Name, 3, 4)) = 'SUMA') or
+                  (UpperCase(Copy(TppDBText(F.Components[i]).UserName, 1, 4)) = 'SUMA') then   begin
+                  TppDBText(F.Components[i]).DisplayFormat := '###,###,###,##0.#0';
                end;
             end;
-            if FindComponent('ppSuma1') <> nil then   begin
-               TppDbCalc(FindComponent('ppSuma1')).DisplayFormat := '###,###,###,##0.#0';
-            end;
-            if FindComponent('ppSuma2') <> nil then   begin
-               TppDbCalc(FindComponent('ppSuma2')).DisplayFormat := '###,###,###,##0.#0';
-            end;
-            if FindComponent('ppSuma3') <> nil then   begin
-               TppDbCalc(FindComponent('ppSuma3')).DisplayFormat := '###,###,###,##0.#0';
-            end;
-            if FindComponent('ppSuma4') <> nil then   begin
-               TppDbCalc(FindComponent('ppSuma4')).DisplayFormat := '###,###,###,##0.#0';
-            end;
-            if FindComponent('ppSuma5') <> nil then   begin
-               TppDbCalc(FindComponent('ppSuma5')).DisplayFormat := '###,###,###,##0.#0';
-            end;
-            if FindComponent('ppSuma6') <> nil then   begin
-               TppDbCalc(FindComponent('ppSuma6')).DisplayFormat := '###,###,###,##0.#0';
-            end;
-            if FindComponent('ppSuma7') <> nil then   begin
-               TppDbCalc(FindComponent('ppSuma7')).DisplayFormat := '###,###,###,##0.#0';
-            end;
-            if FindComponent('ppSuma8') <> nil then   begin
-               TppDbCalc(FindComponent('ppSuma8')).DisplayFormat := '###,###,###,##0.#0';
-            end;
+         end;
+         if F.FindComponent('ppSuma1') <> nil then   begin
+            TppDbCalc(F.FindComponent('ppSuma1')).DisplayFormat := '###,###,###,##0.#0';
+         end;
+         if F.FindComponent('ppSuma2') <> nil then   begin
+            TppDbCalc(F.FindComponent('ppSuma2')).DisplayFormat := '###,###,###,##0.#0';
+         end;
+         if F.FindComponent('ppSuma3') <> nil then   begin
+            TppDbCalc(F.FindComponent('ppSuma3')).DisplayFormat := '###,###,###,##0.#0';
+         end;
+         if F.FindComponent('ppSuma4') <> nil then   begin
+            TppDbCalc(F.FindComponent('ppSuma4')).DisplayFormat := '###,###,###,##0.#0';
+         end;
+         if F.FindComponent('ppSuma5') <> nil then   begin
+            TppDbCalc(F.FindComponent('ppSuma5')).DisplayFormat := '###,###,###,##0.#0';
+         end;
+         if F.FindComponent('ppSuma6') <> nil then   begin
+            TppDbCalc(F.FindComponent('ppSuma6')).DisplayFormat := '###,###,###,##0.#0';
+         end;
+         if F.FindComponent('ppSuma7') <> nil then   begin
+            TppDbCalc(F.FindComponent('ppSuma7')).DisplayFormat := '###,###,###,##0.#0';
+         end;
+         if F.FindComponent('ppSuma8') <> nil then   begin
+            TppDbCalc(F.FindComponent('ppSuma8')).DisplayFormat := '###,###,###,##0.#0';
          end;
       end;
    end;

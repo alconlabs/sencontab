@@ -461,31 +461,27 @@ begin
 end;
 
 function TDMContaRef.ObtenerNumeroAsientoOtraBD(BaseDatos: TIBDatabase): Integer;
-var asiento: Integer;
+var Q :TIBSQL;
 begin
-   {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-   with TIBSQL.Create(nil), SQL do begin
-      Database := BaseDatos;
-      Clear;
-      Add('execute procedure Dame_NumeroAsiento');
-      ExecQuery;
-      asiento := FieldByName('asiento').AsInteger;
-      Free;
+   Q := TIBSQL.Create(nil);
+   Q.Database := BaseDatos;
+   Q.SQL.Add('execute procedure Dame_NumeroAsiento');
+   try
+      Q.ExecQuery;
+      Result := Q.FieldByName('asiento').AsInteger;
+   finally
+      Q.Free;
    end;
-   Result := asiento;
 end;
 
 function TDmContaRef.Dame_Contador(contador: String): Integer;
 begin
-   {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-   with QContadores, Sql do begin
-      Close;
-      Clear;
-      add('select gen_id(' + contador + ',0) contador from rdb$database');
-      ExecQuery;
-      Result := FieldByName('contador').AsInteger;
-      Close;
-   end;
+   QContadores.Close;
+   QContadores.SQL.Clear;
+   QContadores.SQL.Add('select gen_id(' + contador + ',0) contador from rdb$database');
+   QContadores.ExecQuery;
+   Result := QContadores.FieldByName('contador').AsInteger;
+   QContadores.Close;
 end;
 
 function TDMContaRef.Obtener_Contador(prmTabla, prmCampo, prmContador: String): Integer;
@@ -517,15 +513,12 @@ end;
 
 procedure TDmContaRef.Actualizar_Contador(contador: String; Valor: Integer);
 begin
-   {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-   with QContadores, Sql do begin
-      Close;
-      Clear;
-      add('set generator ' + contador + ' to ' + IntToStr(valor));
-      ExecQuery;
-      Transaction.CommitRetaining;
-      Close;
-   end;
+   QContadores.Close;
+   QContadores.SQL.Clear;
+   QContadores.SQL.Add('set generator ' + contador + ' to ' + IntToStr(valor));
+   QContadores.ExecQuery;
+   QContadores.Transaction.CommitRetaining;
+   QContadores.Close;
 end;
 
 function TDMContaRef.Pertenece_Analitica(CuentaAnalitica, FiltroCuenta, FiltroCuentaH,
@@ -537,67 +530,64 @@ begin
 
    if (FiltroCuenta <> '') or (FiltroDelegacion <> '') or (FiltroDepartamento <> '') or
       (FiltroSeccion <> '') or (FiltroProyecto <> '') then begin
-      {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-      with QFiltroAnaliticas, SQL do begin
-         Close;
-         if BaseDatos = nil then begin
-            Database := DMRef.IBDSiamCont;
-         end
-         else begin
-            Database := BaseDatos;
-         end;
-         Transaction := Database.DefaultTransaction;
-         Clear;
-         Add('SELECT * FROM ANALITICAS');
-         Add('WHERE CUENTA = :CUENTA_ANALITICA');
-
-         if FiltroCuentaH <> '' then begin
-            Add(' AND CUENTA>= :CUENTA and cuenta<=:cuentaH');
-         end
-         else
-         if FiltroCuenta <> '' then begin
-            Add(' AND CUENTA = :CUENTA');
-         end;
-
-         if FiltroDelegacion <> '' then begin
-            Add(' AND ID_DELEGACION = :ID_DELEGACION');
-         end;
-         if FiltroDepartamento <> '' then begin
-            Add(' AND ID_DEPARTAMENTO = :ID_DEPARTAMENTO');
-         end;
-         if FiltroSeccion <> '' then begin
-            Add(' AND ID_SECCION = :ID_SECCION');
-         end;
-         if FiltroProyecto <> '' then begin
-            Add(' AND ID_PROYECTO = :ID_PROYECTO');
-         end;
-
-         ParamByName('CUENTA_ANALITICA').AsString := CuentaAnalitica;
-         if FiltroCuenta <> '' then begin
-            ParamByName('CUENTA').AsString := FiltroCuenta;
-         end;
-         if FiltroCuentaH <> '' then begin
-            ParamByName('CUENTAH').AsString := FiltroCuentaH;
-         end;
-         if FiltroDelegacion <> '' then begin
-            ParamByName('ID_DELEGACION').AsString := FiltroDelegacion;
-         end;
-         if FiltroDepartamento <> '' then begin
-            ParamByName('ID_DEPARTAMENTO').AsString := FiltroDepartamento;
-         end;
-         if FiltroSeccion <> '' then begin
-            ParamByName('ID_SECCION').AsString := FiltroSeccion;
-         end;
-         if FiltroProyecto <> '' then begin
-            ParamByName('ID_PROYECTO').AsString := FiltroProyecto;
-         end;
-
-         Open;
-
-         Pertenece := not EOF;
-
-         Close;
+      QFiltroAnaliticas.Close;
+      if BaseDatos = nil then begin
+         QFiltroAnaliticas.Database := DMRef.IBDSiamCont;
+      end
+      else begin
+         QFiltroAnaliticas.Database := BaseDatos;
       end;
+      QFiltroAnaliticas.Transaction := QFiltroAnaliticas.Database.DefaultTransaction;
+      QFiltroAnaliticas.SQL.Clear;
+      QFiltroAnaliticas.SQL.Add('SELECT * FROM ANALITICAS');
+      QFiltroAnaliticas.SQL.Add('WHERE CUENTA = :CUENTA_ANALITICA');
+
+      if FiltroCuentaH <> '' then begin
+         QFiltroAnaliticas.SQL.Add(' AND CUENTA>= :CUENTA and cuenta<=:cuentaH');
+      end
+      else
+      if FiltroCuenta <> '' then begin
+         QFiltroAnaliticas.SQL.Add(' AND CUENTA = :CUENTA');
+      end;
+
+      if FiltroDelegacion <> '' then begin
+         QFiltroAnaliticas.SQL.Add(' AND ID_DELEGACION = :ID_DELEGACION');
+      end;
+      if FiltroDepartamento <> '' then begin
+         QFiltroAnaliticas.SQL.Add(' AND ID_DEPARTAMENTO = :ID_DEPARTAMENTO');
+      end;
+      if FiltroSeccion <> '' then begin
+         QFiltroAnaliticas.SQL.Add(' AND ID_SECCION = :ID_SECCION');
+      end;
+      if FiltroProyecto <> '' then begin
+         QFiltroAnaliticas.SQL.Add(' AND ID_PROYECTO = :ID_PROYECTO');
+      end;
+
+      QFiltroAnaliticas.ParamByName('CUENTA_ANALITICA').AsString := CuentaAnalitica;
+      if FiltroCuenta <> '' then begin
+         QFiltroAnaliticas.ParamByName('CUENTA').AsString := FiltroCuenta;
+      end;
+      if FiltroCuentaH <> '' then begin
+         QFiltroAnaliticas.ParamByName('CUENTAH').AsString := FiltroCuentaH;
+      end;
+      if FiltroDelegacion <> '' then begin
+         QFiltroAnaliticas.ParamByName('ID_DELEGACION').AsString := FiltroDelegacion;
+      end;
+      if FiltroDepartamento <> '' then begin
+         QFiltroAnaliticas.ParamByName('ID_DEPARTAMENTO').AsString := FiltroDepartamento;
+      end;
+      if FiltroSeccion <> '' then begin
+         QFiltroAnaliticas.ParamByName('ID_SECCION').AsString := FiltroSeccion;
+      end;
+      if FiltroProyecto <> '' then begin
+         QFiltroAnaliticas.ParamByName('ID_PROYECTO').AsString := FiltroProyecto;
+      end;
+
+      QFiltroAnaliticas.Open;
+
+      Pertenece := not QFiltroAnaliticas.EOF;
+
+      QFiltroAnaliticas.Close;
    end;
 
    Result := Pertenece;
@@ -713,7 +703,7 @@ begin
 end;
 
 procedure TDMContaRef.CerrarDataSets;
-var i :integer;
+//var i :integer;
 begin
    {$Message Warn 'Produce un Access Violation al terminar los tests }
    //for i := 0 to ComponentCount - 1 do begin
@@ -728,78 +718,66 @@ end;
 procedure TDMContaRef.CrearFicheroInformesBalances;
 begin
    // Balance acumulados
-   {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-   with QInfBalAcum do begin
-      Active := False;
-      {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-      with FieldDefs do begin
-         Clear;
-         // Campos generales
-         Add('FechaInicial', ftDateTime, 0, False);
-         Add('FechaFinal', ftDateTime, 0, False);
-         Add('FechaImpresion', ftDateTime, 0, False);
-         Add('TituloListado', ftString, 50, False);
+   QInfBalAcum.Active := False;
 
-         Add('Cuenta', ftString, 10, False);
-         Add('Descripcion', ftString, 50, False);
-         Add('Mes1', ftFloat, 0, False);
-         Add('Mes2', ftFloat, 0, False);
-         Add('Mes3', ftFloat, 0, False);
-         Add('Mes4', ftFloat, 0, False);
-         Add('Mes5', ftFloat, 0, False);
-         Add('Mes6', ftFloat, 0, False);
-         Add('Mes7', ftFloat, 0, False);
-         Add('Mes8', ftFloat, 0, False);
-         Add('Mes9', ftFloat, 0, False);
-         Add('Mes10', ftFloat, 0, False);
-         Add('Mes11', ftFloat, 0, False);
-         Add('Mes12', ftFloat, 0, False);
-         Add('Total', ftFloat, 0, False);
-      end;
-      {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-      with IndexDefs do begin
-         Clear;
-         Add('', 'cuenta', [ixPrimary]);
-      end;
+   QInfBalAcum.FieldDefs.Clear;
+   // Campos generales
+   QInfBalAcum.FieldDefs.Add('FechaInicial'  , ftDateTime ,  0, False);
+   QInfBalAcum.FieldDefs.Add('FechaFinal'    , ftDateTime ,  0, False);
+   QInfBalAcum.FieldDefs.Add('FechaImpresion', ftDateTime ,  0, False);
+   QInfBalAcum.FieldDefs.Add('TituloListado' , ftString   , 50, False);
 
-      CreateDataSet;
-      Active := True;
-   end;
+   QInfBalAcum.FieldDefs.Add('Cuenta'     , ftString, 10, False);
+   QInfBalAcum.FieldDefs.Add('Descripcion', ftString, 50, False);
+   QInfBalAcum.FieldDefs.Add('Mes1'       , ftFloat ,  0, False);
+   QInfBalAcum.FieldDefs.Add('Mes2'       , ftFloat ,  0, False);
+   QInfBalAcum.FieldDefs.Add('Mes3'       , ftFloat ,  0, False);
+   QInfBalAcum.FieldDefs.Add('Mes4'       , ftFloat ,  0, False);
+   QInfBalAcum.FieldDefs.Add('Mes5'       , ftFloat ,  0, False);
+   QInfBalAcum.FieldDefs.Add('Mes6'       , ftFloat ,  0, False);
+   QInfBalAcum.FieldDefs.Add('Mes7'       , ftFloat ,  0, False);
+   QInfBalAcum.FieldDefs.Add('Mes8'       , ftFloat ,  0, False);
+   QInfBalAcum.FieldDefs.Add('Mes9'       , ftFloat ,  0, False);
+   QInfBalAcum.FieldDefs.Add('Mes10'      , ftFloat ,  0, False);
+   QInfBalAcum.FieldDefs.Add('Mes11'      , ftFloat ,  0, False);
+   QInfBalAcum.FieldDefs.Add('Mes12'      , ftFloat ,  0, False);
+   QInfBalAcum.FieldDefs.Add('Total'      , ftFloat ,  0, False);
+
+   QInfBalAcum.IndexDefs.Clear;
+   QInfBalAcum.IndexDefs.Add('', 'cuenta', [ixPrimary]);
+
+   QInfBalAcum.CreateDataSet;
+   QInfBalAcum.Active := True;
+
 
    // Balance explotacion
-   {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-   with QInfBalExplo do begin
-      Active := False;
-      {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-      with FieldDefs do begin
-         Clear;
-         // Campos generales
-         Add('FechaInicial', ftDateTime, 0, False);
-         Add('FechaFinal', ftDateTime, 0, False);
-         Add('FechaImpresion', ftDateTime, 0, False);
+   QInfBalExplo.Active := False;
 
-         Add('CUENTA_ANALITICA', ftString, 10, False);
-         Add('DESC_ANALITICA', ftString, 50, False);
-         Add('Linea', ftFloat, 0, False);
-         Add('Cuenta', ftinteger, 0, False);
-         Add('Descripcion', ftString, 50, False);
-         Add('SaldoActual', ftFloat, 0, False);
-         Add('SaldoAnterior', ftFloat, 0, False);
-         Add('SaldoDif', ftFloat, 0, False);
-         Add('TantoActual', ftFloat, 0, False);
-         Add('TantoAnterior', ftFloat, 0, False);
-         Add('TantoDif', ftFloat, 0, False);
-      end;
-      {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-      with IndexDefs do begin
-         Clear;
-         Add('Cuenta', 'Cuenta', []);
-         Add('Analitica', 'CUENTA_ANALITICA; CUENTA', []);
-      end;
+   QInfBalExplo.FieldDefs.Clear;
+   // Campos generales
+   QInfBalExplo.FieldDefs.Add('FechaInicial'  , ftDateTime, 0, False);
+   QInfBalExplo.FieldDefs.Add('FechaFinal'    , ftDateTime, 0, False);
+   QInfBalExplo.FieldDefs.Add('FechaImpresion', ftDateTime, 0, False);
 
-      CreateDataSet;
-      Active := True;
-   end;
+   QInfBalExplo.FieldDefs.Add('CUENTA_ANALITICA', ftString , 10, False);
+   QInfBalExplo.FieldDefs.Add('DESC_ANALITICA'  , ftString , 50, False);
+   QInfBalExplo.FieldDefs.Add('Linea'           , ftFloat  ,  0, False);
+   QInfBalExplo.FieldDefs.Add('Cuenta'          , ftInteger,  0, False);
+   QInfBalExplo.FieldDefs.Add('Descripcion'     , ftString , 50, False);
+   QInfBalExplo.FieldDefs.Add('SaldoActual'     , ftFloat  ,  0, False);
+   QInfBalExplo.FieldDefs.Add('SaldoAnterior'   , ftFloat  ,  0, False);
+   QInfBalExplo.FieldDefs.Add('SaldoDif'        , ftFloat  ,  0, False);
+   QInfBalExplo.FieldDefs.Add('TantoActual'     , ftFloat  ,  0, False);
+   QInfBalExplo.FieldDefs.Add('TantoAnterior'   , ftFloat  ,  0, False);
+   QInfBalExplo.FieldDefs.Add('TantoDif'        , ftFloat  ,  0, False);
+
+   QInfBalExplo.IndexDefs.Clear;
+   QInfBalExplo.IndexDefs.Add('Cuenta'   , 'Cuenta', []);
+   QInfBalExplo.IndexDefs.Add('Analitica', 'CUENTA_ANALITICA; CUENTA', []);
+
+
+   QInfBalExplo.CreateDataSet;
+   QInfBalExplo.Active := True;
 end;
 
 procedure TDMContaRef.CrearFicheroInformesConta;
@@ -966,53 +944,54 @@ end;
 
 procedure TDMContaRef.ObtenerFiltrosDiario(var nPrimerAsiento, nUltimoAsiento: Integer;
    var dPrimeraFecha, dUltimaFecha: TDatetime);
+var Q :TIBSQL;
 begin
-   {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-   with TIBSql.Create(nil), sql do begin
-      Close;
-      Clear;
-      Database := DmRef.IBDSiamCont;
-      add('execute procedure dame_primer_asiento');
-      ExecQuery;
-      nPrimerAsiento := FieldByName('asiento').AsInteger;
-      Close;
-      Clear;
-      add('execute procedure dame_ultimo_asiento');
-      ExecQuery;
-      nUltimoAsiento := FieldByName('asiento').AsInteger;
-      Close;
-      Clear;
-      add('execute procedure dame_primera_fecha_asiento');
-      ExecQuery;
-      dPrimeraFecha := FieldByName('fecha').AsDateTime;
-      Close;
-      Clear;
-      add('execute procedure dame_ultima_fecha_asiento');
-      ExecQuery;
-      dUltimaFecha := FieldByName('fecha').AsDateTime;
-      Close;
-      Free;
+   Q := TIBSql.Create(nil);
+   Q.Database := DmRef.IBDSiamCont;
+   try
+      Q.SQL.Add('execute procedure dame_primer_asiento');
+      Q.ExecQuery;
+      nPrimerAsiento := Q.FieldByName('asiento').AsInteger;
+
+      Q.Close;
+      Q.SQL.Clear;
+      Q.SQL.Add('execute procedure dame_ultimo_asiento');
+      Q.ExecQuery;
+      nUltimoAsiento := Q.FieldByName('asiento').AsInteger;
+
+      Q.Close;
+      Q.SQL.Clear;
+      Q.SQL.Add('execute procedure dame_primera_fecha_asiento');
+      Q.ExecQuery;
+      dPrimeraFecha := Q.FieldByName('fecha').AsDateTime;
+
+      Q.Close;
+      Q.SQL.Clear;
+      Q.SQL.Add('execute procedure dame_ultima_fecha_asiento');
+      Q.ExecQuery;
+      dUltimaFecha := Q.FieldByName('fecha').AsDateTime;
+   finally
+      Q.Free;
    end;
 end;
 
 function TDMContaRef.ObtenerTipoSubcuenta(Subcuenta: String): String;
+var Q :TIBQuery;
 begin
-   {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-   with TIBQuery.Create(nil), SQL do begin
-      Close;
-      Database := DMRef.IBDSiamCont;
-      Clear;
-      Add('SELECT TIPOCUENTA FROM CUENTAS WHERE CUENTA = :CUENTA');
-      ParamByName('CUENTA').AsString := Copy(Subcuenta, 1, 3);
-      Open;
-      if not EOF then begin
-         Result := FieldByName('TIPOCUENTA').AsString;
+   Q := TIBQuery.Create(nil);
+   Q.Database := DMRef.IBDSiamCont;
+   Q.SQL.Add('SELECT TIPOCUENTA FROM CUENTAS WHERE CUENTA = :CUENTA');
+   Q.ParamByName('CUENTA').AsString := Copy(Subcuenta, 1, 3);
+   try
+      Q.Open;
+      if not Q.EOF then begin
+         Result := Q.FieldByName('TIPOCUENTA').AsString;
       end
       else begin
          Result := '';
       end;
-      Close;
-      Free;
+   finally
+      Q.Free;
    end;
 end;
 
@@ -1058,28 +1037,27 @@ begin
 end;
 
 function TDMContaRef.ObtenerUltimoAsientoSubcuenta(Subcuenta: String; FechaIni, FechaFin: TDateTime): Integer;
+var Q :TIBQuery;
 begin
-   {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-   with TIBQuery.Create(nil), SQL do begin
-      Close;
-      Database := DMRef.IBDSiamCont;
-      Clear;
-      Add('SELECT ASIENTO FROM DIARIO');
-      Add('WHERE FECHA >= :FECHAINI AND FECHA <= :FECHAFIN AND');
-      Add('      SUBCUENTA = :SUBCUENTA');
-      Add('ORDER BY ASIENTO DESC');
-      ParamByName('FECHAINI').AsDateTime := FechaIni;
-      ParamByName('FECHAFIN').AsDateTime := FechaFin;
-      ParamByName('SUBCUENTA').AsString  := Subcuenta;
-      Open;
-      if not EOF then begin
-         Result := FieldByName('ASIENTO').AsInteger;
+   Q := TIBQuery.Create(nil);
+   Q.Database := DMRef.IBDSiamCont;
+   Q.SQL.Add('SELECT ASIENTO FROM DIARIO');
+   Q.SQL.Add('WHERE FECHA >= :FECHAINI AND FECHA <= :FECHAFIN AND');
+   Q.SQL.Add('      SUBCUENTA = :SUBCUENTA');
+   Q.SQL.Add('ORDER BY ASIENTO DESC');
+   Q.ParamByName('FECHAINI').AsDateTime := FechaIni;
+   Q.ParamByName('FECHAFIN').AsDateTime := FechaFin;
+   Q.ParamByName('SUBCUENTA').AsString  := Subcuenta;
+   try
+      Q.Open;
+      if not Q.EOF then begin
+         Result := Q.FieldByName('ASIENTO').AsInteger;
       end
       else begin
          Result := 0;
       end;
-      Close;
-      Free;
+   finally
+      Q.Free;
    end;
 end;
 

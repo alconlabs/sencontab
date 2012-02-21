@@ -1,6 +1,6 @@
 object WAmortizaciones: TWAmortizaciones
-  Left = 435
-  Top = 261
+  Left = 290
+  Top = 218
   BorderStyle = bsNone
   ClientHeight = 449
   ClientWidth = 629

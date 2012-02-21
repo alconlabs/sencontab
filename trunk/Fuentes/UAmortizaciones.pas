@@ -459,64 +459,61 @@ procedure TWAmortizaciones.BtnEdtAceptarClick(Sender: TObject);
          subcuenta_hasta := Backchar(subcuenta_hasta, '9', gvlongitudsubcuenta);
       end;
 
-      {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-      with QAmortizaciones, SQL do begin
-         Close;
-         Clear;
-         database := DmRef.IBDSiamCont;
-         Add('SELECT                                                         ');
-         Add('    A.*, S.DESCRIPCION, C.TIPOCUENTA                           ');
-         Add('FROM AMORTIZA A, CUENTAS C, SUBCTAS S                          ');
-         Add('WHERE                                                          ');
-         if RgTipo.ItemIndex = 0 then   begin
-            Add('  (C.TIPOCUENTA = "M" OR C.TIPOCUENTA = "I") AND             ');
-         end
-         else
-         if RgTipo.ItemIndex = 1 then   begin
-            Add('  C.TIPOCUENTA = "M" AND                                     ');
-         end
-         else begin
-            Add('  C.TIPOCUENTA = "I" AND                                     ');
-         end;
-         Add('    SUBSTR(A.SUBCUENTA, 1, 3) = C.CUENTA AND                   ');
-         if CDSFiltro.FieldByName('SUBCUENTA1').AsString = '' then   begin
-            Add('  (A.SUBCUENTA IS NULL OR (A.SUBCUENTA >= :SUBCUENTA1 OR A.SUBCUENTA <= :SUBCUENTA2)) AND');
-         end
-         else begin
-            Add('  A.SUBCUENTA >= :SUBCUENTA1 AND A.SUBCUENTA <= :SUBCUENTA2 AND');
-         end;
-         Add('    A.SUBCUENTA = S.SUBCUENTA                                  ');
-         if not CDSFiltro.FieldByName('FECHA').IsNull then   begin
-            Add('    AND (A.FBAJA IS NULL OR A.FBAJA <= :FECHA)               ');
-         end;
-         if CDSFiltro.FieldByName('FECHACOMPRADESDE').IsNull then   begin
-            Add('   AND (A.FCOMPRA IS NULL OR (A.FCOMPRA >= :FECHACOMPRADESDE AND A.FCOMPRA <= :FECHACOMPRAHASTA))');
-         end
-         else begin
-            Add('   AND A.FCOMPRA >= :FECHACOMPRADESDE AND A.FCOMPRA <= :FECHACOMPRAHASTA');
-         end;
-         if CDSFiltro.FieldByName('FECHAULTDESDE').IsNull then   begin
-            Add('   AND (A.FULTAMOR IS NULL OR (A.FULTAMOR >= :FECHAULTDESDE AND A.FULTAMOR <= :FECHAULTHASTA))');
-         end
-         else begin
-            Add('   AND A.FULTAMOR >= :FECHAULTDESDE AND A.FULTAMOR <= :FECHAULTHASTA');
-         end;
-         Add('ORDER BY A.CLASE, A.SUBCUENTA                                  ');
-
-         ParamByName('SUBCUENTA1').AsString := subcuenta_desde;
-         ParamByName('SUBCUENTA2').AsString := subcuenta_hasta;
-         if not CDSFiltro.FieldByName('FECHA').IsNull then   begin
-            ParamByName('FECHA').AsDateTime := CDSFiltro.FieldByName('FECHA').AsDateTime;
-         end;
-         ParamByName('FECHACOMPRADESDE').AsDateTime :=
-            CDSFiltro.FieldByName('FECHACOMPRADESDE').AsDateTime;
-         ParamByName('FECHACOMPRAHASTA').AsDateTime :=
-            CDSFiltro.FieldByName('FECHACOMPRAHASTA').AsDateTime;
-         ParamByName('FECHAULTDESDE').AsDateTime    := CDSFiltro.FieldByName('FECHAULTDESDE').AsDateTime;
-         ParamByName('FECHAULTHASTA').AsDateTime    := CDSFiltro.FieldByName('FECHAULTHASTA').AsDateTime;
-
-         Open;
+      QAmortizaciones.Close;
+      QAmortizaciones.SQL.Clear;
+      QAmortizaciones.Database := DmRef.IBDSiamCont;
+      QAmortizaciones.SQL.Add('SELECT                                                         ');
+      QAmortizaciones.SQL.Add('    A.*, S.DESCRIPCION, C.TIPOCUENTA                           ');
+      QAmortizaciones.SQL.Add('FROM AMORTIZA A, CUENTAS C, SUBCTAS S                          ');
+      QAmortizaciones.SQL.Add('WHERE                                                          ');
+      if RgTipo.ItemIndex = 0 then   begin
+         QAmortizaciones.SQL.Add('  (C.TIPOCUENTA = "M" OR C.TIPOCUENTA = "I") AND             ');
+      end
+      else
+      if RgTipo.ItemIndex = 1 then   begin
+         QAmortizaciones.SQL.Add('  C.TIPOCUENTA = "M" AND                                     ');
+      end
+      else begin
+         QAmortizaciones.SQL.Add('  C.TIPOCUENTA = "I" AND                                     ');
       end;
+      QAmortizaciones.SQL.Add('    SUBSTR(A.SUBCUENTA, 1, 3) = C.CUENTA AND                   ');
+      if CDSFiltro.FieldByName('SUBCUENTA1').AsString = '' then   begin
+         QAmortizaciones.SQL.Add('  (A.SUBCUENTA IS NULL OR (A.SUBCUENTA >= :SUBCUENTA1 OR A.SUBCUENTA <= :SUBCUENTA2)) AND');
+      end
+      else begin
+         QAmortizaciones.SQL.Add('  A.SUBCUENTA >= :SUBCUENTA1 AND A.SUBCUENTA <= :SUBCUENTA2 AND');
+      end;
+      QAmortizaciones.SQL.Add('    A.SUBCUENTA = S.SUBCUENTA                                  ');
+      if not CDSFiltro.FieldByName('FECHA').IsNull then   begin
+         QAmortizaciones.SQL.Add('    AND (A.FBAJA IS NULL OR A.FBAJA <= :FECHA)               ');
+      end;
+      if CDSFiltro.FieldByName('FECHACOMPRADESDE').IsNull then   begin
+         QAmortizaciones.SQL.Add('   AND (A.FCOMPRA IS NULL OR (A.FCOMPRA >= :FECHACOMPRADESDE AND A.FCOMPRA <= :FECHACOMPRAHASTA))');
+      end
+      else begin
+         QAmortizaciones.SQL.Add('   AND A.FCOMPRA >= :FECHACOMPRADESDE AND A.FCOMPRA <= :FECHACOMPRAHASTA');
+      end;
+      if CDSFiltro.FieldByName('FECHAULTDESDE').IsNull then   begin
+         QAmortizaciones.SQL.Add('   AND (A.FULTAMOR IS NULL OR (A.FULTAMOR >= :FECHAULTDESDE AND A.FULTAMOR <= :FECHAULTHASTA))');
+      end
+      else begin
+         QAmortizaciones.SQL.Add('   AND A.FULTAMOR >= :FECHAULTDESDE AND A.FULTAMOR <= :FECHAULTHASTA');
+      end;
+      QAmortizaciones.SQL.Add('ORDER BY A.CLASE, A.SUBCUENTA                                  ');
+
+      QAmortizaciones.ParamByName('SUBCUENTA1').AsString := subcuenta_desde;
+      QAmortizaciones.ParamByName('SUBCUENTA2').AsString := subcuenta_hasta;
+      if not CDSFiltro.FieldByName('FECHA').IsNull then   begin
+         QAmortizaciones.ParamByName('FECHA').AsDateTime := CDSFiltro.FieldByName('FECHA').AsDateTime;
+      end;
+      QAmortizaciones.ParamByName('FECHACOMPRADESDE').AsDateTime :=
+         CDSFiltro.FieldByName('FECHACOMPRADESDE').AsDateTime;
+      QAmortizaciones.ParamByName('FECHACOMPRAHASTA').AsDateTime :=
+         CDSFiltro.FieldByName('FECHACOMPRAHASTA').AsDateTime;
+      QAmortizaciones.ParamByName('FECHAULTDESDE').AsDateTime    := CDSFiltro.FieldByName('FECHAULTDESDE').AsDateTime;
+      QAmortizaciones.ParamByName('FECHAULTHASTA').AsDateTime    := CDSFiltro.FieldByName('FECHAULTHASTA').AsDateTime;
+
+      QAmortizaciones.Open;
 
       Caratula.Cerrar;
       Caratula.Free;
