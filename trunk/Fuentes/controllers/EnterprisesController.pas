@@ -14,6 +14,7 @@ type
     procedure OnClick_BtnOK           (Sender : TObject);
     procedure OnClick_LinkLostPassword(Sender : TObject);
     procedure OnClick_LinkNewAccount  (Sender : TObject);
+    procedure DoCreateDatabase(prmCD_Enterprise, prmDS_Enterprise :string);
   public
     constructor Create(ADBController :TDBController); override;
     destructor  Destroy; override;
@@ -45,6 +46,7 @@ begin
    FView.HelpKeyword := FView.Name;
 
    {Assignament of the delegates}
+   FView.TaskCreateDatabase := DoCreateDatabase;
    //FView.BtnAccept.OnClick             := OnClick_BtnOK;
    //FView.BtnCancel.OnClick             := OnClick_BtnCancel;
    //FView.ClickHandler_LinkLostPassword := OnClick_LinkLostPassword;
@@ -101,6 +103,14 @@ begin
 //  finally
 //
 //  end;
+end;
+
+procedure TEnterprisesController.DoCreateDatabase(prmCD_Enterprise, prmDS_Enterprise :string);
+begin
+   if FModel.CreateDBFile(prmCD_Enterprise) then begin
+     FModel.RecordNewEnterprise(prmCD_Enterprise, prmDS_Enterprise);
+     FModel.CreateDBSchema(prmCD_Enterprise);
+   end;
 end;
 
 end.

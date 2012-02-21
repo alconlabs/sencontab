@@ -9,11 +9,17 @@ uses
   CRSQLConnection, ImgList, jpeg, CheckLst,
   DBController, CustomView;
 
+  {Todo: Lista de pasos realizados. Servirá para volver atras y para saber lo que se debe hacer al final}
+
 type
   TButtonState   = (bsNext, bsNextBack, bsEnd);
   TActivePage    = (apNone, apPresentation, apManageOrNew, apEnterpriseData, apCreateDB,
                     apInsertData, apInsertExamples, apCopyData, apConsolide, apLinkEnterprise,
                     apResume);
+
+  {Delegates Declarations}
+  TCreateDatabaseDelegate = procedure (CD :string; DS :string) of object;
+
 
   TFormWizardGestEnterprises = class(TCustomView)
     PanelBottom: TPanel;
@@ -54,7 +60,6 @@ type
     Label8: TLabel;
     MemoPresentation: TMemo;
     RadioGroupManageOrNew: TRadioGroup;
-    CheckListBoxResumen: TCheckListBox;
     GroupBoxName: TGroupBox;
     Label18: TLabel;
     EditCD_ENTERPRISE: TEdit;
@@ -91,6 +96,14 @@ type
     Edit4: TEdit;
     Label13: TLabel;
     Edit5: TEdit;
+    PanelResume: TPanel;
+    Panel6: TPanel;
+    Image4: TImage;
+    Label14: TLabel;
+    Label17: TLabel;
+    GroupBox1: TGroupBox;
+    Label21: TLabel;
+    CheckListBoxResumen: TCheckListBox;
     procedure FormShow(Sender: TObject);
     procedure PageControlChanging(Sender: TObject; var AllowChange: Boolean);
     procedure FormCreate(Sender: TObject);
@@ -108,6 +121,8 @@ type
      FOKResumen   :Integer;
 
      FActivePage  :TActivePage;
+
+     FCreateDatabase :TCreateDatabaseDelegate;
 
      procedure SetOKPresentation(Value :Integer);
      procedure SetOKSeleccion(Value :Integer);
@@ -131,7 +146,12 @@ type
      function  EliminarInformacionPartidas :Boolean;
      procedure CreaInformacionResumen;
      function  CDEnterpriseValid(prmCD_Enterprise :string):Boolean;
+
+     function DoCreateDatabase(prmCD_Enterprise, prmDS_Enterprise :string):Boolean; {Returns true if shall continue}
+
   public
+     property TaskCreateDatabase :TCreateDatabaseDelegate read FCreateDatabase write FCreateDatabase;
+
      property OKPresentation :Integer     read FOKPresentation write SetOKPresentation;
      property OKSeleccion    :Integer     read FOKSeleccion    write SetOKSeleccion;
      property OKPartidas     :Integer     read FOKPartidas     write SetOKPartidas;
@@ -174,7 +194,6 @@ begin
    ImageList.GetBitmap(0, Image08.Picture.Bitmap);
    ImageList.GetBitmap(0, Image09.Picture.Bitmap);
    ImageList.GetBitmap(0, Image10.Picture.Bitmap);
-
 
    Image01.Hint := 'Presentación';
    Image02.Hint := 'Gestión ó Nueva';
@@ -324,10 +343,10 @@ begin
                Result := False;
             end else
             // Check that the database name is correct: length, only letters and numbers, etc.
-            if (Length(EditCD_Enterprise.Text) < 3)  or (Length(EditCD_Enterprise.Text) > 10) then begin
+            if (Length(EditCD_Enterprise.Text) < 3)  or (Length(EditCD_Enterprise.Text) > 12) then begin
                EditCD_Enterprise.SetFocus;
                EditCD_Enterprise.SelectAll;
-               ShowErrorMessage('El Código debe tener una lóngitud mínima de 3 carácteres y máxima de 10');
+               ShowErrorMessage('El Código debe tener una lóngitud mínima de 3 carácteres y máxima de 12');
                Result := False;
             end else
             if not CDEnterpriseValid(EditCD_Enterprise.Text) then begin
@@ -340,7 +359,7 @@ begin
 
             // Check that the descriptive name is not empty.
          end;
-         1:;
+         1:{Todo: Comprobar que ha seleccionado una empresa correctamente.};
        end;
       end;
       apEnterpriseData :begin
@@ -391,8 +410,8 @@ begin
         end;
       end;
       apEnterpriseData :begin
-        ActivePage := apCreateDB;
-        SetButtonState(bsNextBack);
+        ActivePage := apResume;
+        SetButtonState(bsEnd);
       end;
       apCreateDB         :begin
         ActivePage := apInsertData;
@@ -420,7 +439,7 @@ begin
       end;
       apResume           :begin
         //ActivePage := apResume;
-        SetButtonState(bsEnd);
+        //SetButtonState(bsEnd);
       end;
    end;
 end;
@@ -433,6 +452,10 @@ end;
 procedure TFormWizardGestEnterprises.BtnBackClick(Sender: TObject);
 begin
    case ActivePage of
+      apResume           :begin
+        ActivePage := apEnterpriseData;
+        SetButtonState(bsNextBack);
+      end;
       apPresentation     :begin
         //SetButtonState(bsNext);
         //ActivePage := apManageOrNew;
@@ -441,11 +464,10 @@ begin
         if BeforeBack(apManageOrNew) then begin
            ActivePage := apPresentation;
            SetButtonState(bsNext);
-           
         end;
       end;
       apEnterpriseData :begin
-        ActivePage := apCreateDB;
+        ActivePage := apManageOrNew;
         SetButtonState(bsNextBack);
       end;
       apCreateDB         :begin
@@ -472,30 +494,7 @@ begin
         ActivePage := apResume;
         SetButtonState(bsNextBack);
       end;
-      apResume           :begin
-        //ActivePage := apResume;
-        SetButtonState(bsNextBack);
-      end;
    end;
-
-(*
-   if PageControl.ActivePage = TabResumen then begin
-      SetButtonState(bsNextBack);
-   end else
-   if PageControl.ActivePage = TabAccountPlan then begin
-      //TabSeleccionaTipo.Show;
-      SetButtonState(bsNextBack);
-   end else
-   if PageControl.ActivePage = TabEnterpriseData then begin
-      //TabSeleccionaTipo.Show;
-      SetButtonState(bsNextBack);
-   end
-   //else
-   //if PageControl.ActivePage = TabSeleccionaTipo then begin
-   //   TabDatabase.Show;
-   //   SetButtonState(bsNext);
-   //end;
-*)
 end;
 
 procedure TFormWizardGestEnterprises.BtnCancelClick(Sender: TObject);
@@ -508,14 +507,19 @@ begin
 end;
 
 procedure TFormWizardGestEnterprises.BtnEndClick(Sender: TObject);
-var Correctos :Integer;
+var StepsCorrect :Integer;
 begin
-   if MessageDlg('Se creará la base de datos de la empresa tal.', mtConfirmation, [mbYes, mbCancel], 0) = mrYes then
+   if MessageDlg('Se realizarán las tareas programadas.', mtConfirmation, [mbYes, mbCancel], 0) = mrYes then
    begin
       Screen.Cursor := crSQLWait;
       try
          try
-
+            //for StepCorrect := 0 to StepList.Count - 1 do begin
+            //    Make all the tasks.
+            //end;
+            if DoCreateDatabase(EditCD_Enterprise.Text, EditDS_Enterprise.Text) then begin
+            
+            end;
          finally
          end;
       finally
@@ -614,7 +618,13 @@ procedure TFormWizardGestEnterprises.SetActivePage(Value :TActivePage);
 begin
    if FActivePage <> Value then begin
       FActivePage := Value;
-      {ShowTheNewPage;}
+      {Hide all the pages}
+      PanelPresentation.Visible   := False;
+      PanelManageOrNew.Visible    := False;
+      PanelEnterpriseData.Visible := False;
+      PanelResume.Visible         := False;
+
+      {Show the "Value" page}
       case ActivePage of
          apPresentation     :begin
            PanelPresentation.Parent  := PanelContainer;
@@ -643,6 +653,10 @@ begin
          apLinkEnterprise   :begin
          end;
          apResume           :begin
+           PanelResume.Parent  := PanelContainer;
+           PanelResume.Visible := True;
+           //ImageList.GetBitmap(1, Image02.Picture.Bitmap);
+           //ImageList.GetBitmap(2, Image03.Picture.Bitmap);
 
          end;
       end;
@@ -656,6 +670,23 @@ end;
 procedure TFormWizardGestEnterprises.BtnHelpClick(Sender: TObject);
 begin
    Application.HelpContext(Self.HelpContext);
+end;
+
+function TFormWizardGestEnterprises.DoCreateDatabase(prmCD_Enterprise, prmDS_Enterprise :string):Boolean;
+begin
+   if Assigned(FCreateDatabase) then begin
+      try
+        FCreateDatabase(prmCD_Enterprise, prmDS_Enterprise);
+        Result := True;
+      except
+        if not HandleCreateException then
+          raise;
+        Result := False;
+      end;
+   end
+   else begin
+      Result := False;
+   end;
 end;
 
 end.
