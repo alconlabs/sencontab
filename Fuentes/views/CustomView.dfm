@@ -1,6 +1,6 @@
 object CustomView: TCustomView
-  Left = 294
-  Top = 179
+  Left = 298
+  Top = 182
   Width = 458
   Height = 318
   HelpType = htKeyword

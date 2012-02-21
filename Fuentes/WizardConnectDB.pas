@@ -1018,9 +1018,8 @@ begin
      {***********************************************************************************}
      DB.ExecuteDirect(
         'CREATE TABLE ENTERPRISES(                                           '+
-        '    CD_ENTERPRISE    int            NOT NULL,                       '+
+        '    CD_ENTERPRISE    char(12)       NOT NULL,                       '+
         '    DS_ENTERPRISE    varchar(80)    NOT NULL,                       '+
-        '    DB_NAME          varchar(30)    NOT NULL,                       '+
         '    CLOSED           char(1)        NOT NULL,                       '+
         '    BLOCKED          char(1)        NOT NULL,                       '+
         '    CONSTRAINT PK_ENTERPRISES PRIMARY KEY CLUSTERED (CD_ENTERPRISE) '+
@@ -1063,7 +1062,7 @@ begin
         '    APPLICATION      char(15)    NOT NULL,                                            '+
         '    CD_SECTION       char(15)    NOT NULL,                                            '+
         '    CD_MODULE        char(50)    NOT NULL,                                            '+
-        '    CD_ENTERPRISE    int         NOT NULL,                                            '+
+        '    CD_ENTERPRISE    char(12)    NOT NULL,                                            '+
         '    CD_USER          char(12)    NOT NULL,                                            '+
         '    ALLOW_SEE        char(1)     NOT NULL,                                            '+
         '    ALLOW_ACCESS     char(1)     NOT NULL,                                            '+
@@ -1099,7 +1098,7 @@ begin
         'CREATE TABLE SECTIONS_ALLOW(                                                    '+
         '    APPLICATION      char(15)    NOT NULL,                                      '+
         '    CD_SECTION       char(15)    NOT NULL,                                      '+
-        '    CD_ENTERPRISE    int         NOT NULL,                                      '+
+        '    CD_ENTERPRISE    char(12)    NOT NULL,                                      '+
         '    CD_USER          char(12)    NOT NULL,                                      '+
         '    ALLOW_SEE        char(1)     NOT NULL,                                      '+
         '    ALLOW_ACCESS     char(1)     NOT NULL,                                      '+
@@ -1116,7 +1115,7 @@ begin
      DB.ExecuteDirect(
         'CREATE TABLE USER_PROFILES(                                                          '+
         '    CD_USER          char(12)    NOT NULL,                                           '+
-        '    CD_ENTERPRISE    int         NOT NULL,                                           '+
+        '    CD_ENTERPRISE    char(12)    NOT NULL,                                           '+
         '    APPLICATION      char(15)    NOT NULL,                                           '+
         '    CD_SECTION       char(15)    NOT NULL,                                           '+
         '    CD_MODULE        char(50)    NOT NULL,                                           '+
