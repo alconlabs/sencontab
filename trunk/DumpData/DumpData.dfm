@@ -57,7 +57,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label4: TLabel
+  object LabelO_LASIPRED: TLabel
     Left = 306
     Top = 59
     Width = 6
@@ -65,7 +65,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label5: TLabel
+  object LabelO_PARAMETROS: TLabel
     Left = 306
     Top = 83
     Width = 6
@@ -73,7 +73,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label6: TLabel
+  object LabelO_TITULOS: TLabel
     Left = 306
     Top = 107
     Width = 6
@@ -81,7 +81,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label7: TLabel
+  object LabelO_IVAR: TLabel
     Left = 306
     Top = 131
     Width = 6
@@ -89,7 +89,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label8: TLabel
+  object LabelO_IVAS: TLabel
     Left = 306
     Top = 155
     Width = 6
@@ -97,7 +97,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label9: TLabel
+  object LabelO_NOMINAS: TLabel
     Left = 306
     Top = 179
     Width = 6
@@ -105,7 +105,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label10: TLabel
+  object LabelO_FORMAS: TLabel
     Left = 306
     Top = 203
     Width = 6
@@ -113,7 +113,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label11: TLabel
+  object LabelO_PAISES: TLabel
     Left = 306
     Top = 227
     Width = 6
@@ -121,7 +121,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label12: TLabel
+  object LabelO_PROVINCIAS: TLabel
     Left = 306
     Top = 251
     Width = 6
@@ -129,7 +129,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label13: TLabel
+  object LabelO_SUBCTAS: TLabel
     Left = 306
     Top = 323
     Width = 6
@@ -137,7 +137,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label14: TLabel
+  object LabelO_AMORTIZA: TLabel
     Left = 306
     Top = 347
     Width = 6
@@ -145,7 +145,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label15: TLabel
+  object LabelO_CONCEPTOS: TLabel
     Left = 306
     Top = 371
     Width = 6
@@ -153,7 +153,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label16: TLabel
+  object LabelO_COMERCIALES: TLabel
     Left = 306
     Top = 395
     Width = 6
@@ -161,7 +161,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label17: TLabel
+  object LabelO_TIPODIARIO: TLabel
     Left = 306
     Top = 419
     Width = 6
@@ -169,7 +169,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label18: TLabel
+  object LabelO_DELEGACION: TLabel
     Left = 306
     Top = 443
     Width = 6
@@ -177,7 +177,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label19: TLabel
+  object LabelO_DEPARTAMENTO: TLabel
     Left = 306
     Top = 467
     Width = 6
@@ -185,7 +185,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label20: TLabel
+  object LabelO_SECCION: TLabel
     Left = 306
     Top = 491
     Width = 6
@@ -193,7 +193,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label21: TLabel
+  object LabelO_PROYECTO: TLabel
     Left = 306
     Top = 515
     Width = 6
@@ -201,7 +201,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label22: TLabel
+  object LabelO_ANALITICAS: TLabel
     Left = 306
     Top = 539
     Width = 6
@@ -209,7 +209,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label23: TLabel
+  object LabelO_CARTERAEFECTOS: TLabel
     Left = 306
     Top = 563
     Width = 6
@@ -217,7 +217,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label24: TLabel
+  object LabelO_DIARIO: TLabel
     Left = 306
     Top = 587
     Width = 6
@@ -241,7 +241,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label27: TLabel
+  object LabelT_LASIPRED: TLabel
     Left = 482
     Top = 59
     Width = 6
@@ -249,7 +249,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label28: TLabel
+  object LabelT_PARAMETROS: TLabel
     Left = 482
     Top = 83
     Width = 6
@@ -257,7 +257,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label29: TLabel
+  object LabelT_TITULOS: TLabel
     Left = 482
     Top = 107
     Width = 6
@@ -265,7 +265,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label30: TLabel
+  object LabelT_IVAR: TLabel
     Left = 482
     Top = 131
     Width = 6
@@ -273,7 +273,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label31: TLabel
+  object LabelT_IVAS: TLabel
     Left = 482
     Top = 155
     Width = 6
@@ -281,7 +281,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label32: TLabel
+  object LabelT_NOMINAS: TLabel
     Left = 482
     Top = 179
     Width = 6
@@ -289,7 +289,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label33: TLabel
+  object LabelT_FORMAS: TLabel
     Left = 482
     Top = 203
     Width = 6
@@ -297,7 +297,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label34: TLabel
+  object LabelT_PAISES: TLabel
     Left = 482
     Top = 227
     Width = 6
@@ -305,7 +305,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label35: TLabel
+  object LabelT_PROVINCIAS: TLabel
     Left = 482
     Top = 251
     Width = 6
@@ -313,7 +313,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label36: TLabel
+  object LabelT_SUBCTAS: TLabel
     Left = 482
     Top = 323
     Width = 6
@@ -321,7 +321,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label37: TLabel
+  object LabelT_AMORTIZA: TLabel
     Left = 482
     Top = 347
     Width = 6
@@ -329,7 +329,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label38: TLabel
+  object LabelT_CONCEPTOS: TLabel
     Left = 482
     Top = 371
     Width = 6
@@ -337,7 +337,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label39: TLabel
+  object LabelT_COMERCIALES: TLabel
     Left = 482
     Top = 395
     Width = 6
@@ -345,7 +345,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label40: TLabel
+  object LabelT_TIPODIARIO: TLabel
     Left = 482
     Top = 419
     Width = 6
@@ -353,7 +353,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label41: TLabel
+  object LabelT_DELEGACION: TLabel
     Left = 482
     Top = 443
     Width = 6
@@ -361,7 +361,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label42: TLabel
+  object LabelT_DEPARTAMENTO: TLabel
     Left = 482
     Top = 467
     Width = 6
@@ -369,7 +369,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label43: TLabel
+  object LabelT_SECCION: TLabel
     Left = 482
     Top = 491
     Width = 6
@@ -377,7 +377,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label44: TLabel
+  object LabelT_PROYECTO: TLabel
     Left = 482
     Top = 515
     Width = 6
@@ -385,7 +385,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label45: TLabel
+  object LabelT_ANALITICAS: TLabel
     Left = 482
     Top = 539
     Width = 6
@@ -393,7 +393,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label46: TLabel
+  object LabelT_CARTERAEFECTOS: TLabel
     Left = 482
     Top = 563
     Width = 6
@@ -401,7 +401,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label47: TLabel
+  object LabelT_DIARIO: TLabel
     Left = 482
     Top = 587
     Width = 6
@@ -409,7 +409,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label2: TLabel
+  object LabelO_GRUPOS: TLabel
     Left = 306
     Top = 275
     Width = 6
@@ -417,7 +417,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label3: TLabel
+  object LabelT_GRUPOS: TLabel
     Left = 482
     Top = 275
     Width = 6
@@ -425,7 +425,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label25: TLabel
+  object LabelO_CUENTAS: TLabel
     Left = 306
     Top = 299
     Width = 6
@@ -433,7 +433,7 @@ object FormDumpData: TFormDumpData
     Alignment = taRightJustify
     Caption = '0'
   end
-  object Label26: TLabel
+  object LabelT_CUENTAS: TLabel
     Left = 482
     Top = 299
     Width = 6
@@ -457,6 +457,7 @@ object FormDumpData: TFormDumpData
     Height = 18
     Caption = 'ASIPRED'
     TabOrder = 1
+    OnClick = BtnASIPREDClick
   end
   object BtnLASIPRED: TButton
     Left = 320
@@ -465,6 +466,7 @@ object FormDumpData: TFormDumpData
     Height = 18
     Caption = 'LASIPRED'
     TabOrder = 2
+    OnClick = BtnLASIPREDClick
   end
   object BtnPARAMETROS: TButton
     Left = 320
@@ -473,6 +475,7 @@ object FormDumpData: TFormDumpData
     Height = 18
     Caption = 'PARAMETROS'
     TabOrder = 3
+    OnClick = BtnPARAMETROSClick
   end
   object BtnTITULOS: TButton
     Left = 320
@@ -481,6 +484,7 @@ object FormDumpData: TFormDumpData
     Height = 18
     Caption = 'TITULOS'
     TabOrder = 4
+    OnClick = BtnTITULOSClick
   end
   object BtnIVAR: TButton
     Left = 320
@@ -489,6 +493,7 @@ object FormDumpData: TFormDumpData
     Height = 18
     Caption = 'IVAR'
     TabOrder = 5
+    OnClick = BtnIVARClick
   end
   object BtnIVAS: TButton
     Left = 320
@@ -497,6 +502,7 @@ object FormDumpData: TFormDumpData
     Height = 18
     Caption = 'IVAS'
     TabOrder = 6
+    OnClick = BtnIVASClick
   end
   object BtnNOMINAS: TButton
     Left = 320
@@ -505,6 +511,7 @@ object FormDumpData: TFormDumpData
     Height = 18
     Caption = 'NOMINAS'
     TabOrder = 7
+    OnClick = BtnNOMINASClick
   end
   object BtnFORMAS: TButton
     Left = 320
@@ -513,6 +520,7 @@ object FormDumpData: TFormDumpData
     Height = 18
     Caption = 'FORMAS'
     TabOrder = 8
+    OnClick = BtnFORMASClick
   end
   object BtnPAISES: TButton
     Left = 320
@@ -521,6 +529,7 @@ object FormDumpData: TFormDumpData
     Height = 18
     Caption = 'PAISES'
     TabOrder = 9
+    OnClick = BtnPAISESClick
   end
   object BtnPROVINCIAS: TButton
     Left = 320
@@ -529,6 +538,7 @@ object FormDumpData: TFormDumpData
     Height = 18
     Caption = 'PROVINCIAS'
     TabOrder = 10
+    OnClick = BtnPROVINCIASClick
   end
   object BtnSUBCTAS: TButton
     Left = 320
@@ -537,6 +547,7 @@ object FormDumpData: TFormDumpData
     Height = 18
     Caption = 'SUBCTAS'
     TabOrder = 11
+    OnClick = BtnSUBCTASClick
   end
   object BtnAMORTIZA: TButton
     Left = 320
@@ -545,6 +556,7 @@ object FormDumpData: TFormDumpData
     Height = 18
     Caption = 'AMORTIZA'
     TabOrder = 12
+    OnClick = BtnAMORTIZAClick
   end
   object BtnCONCEPTOS: TButton
     Left = 320
@@ -553,6 +565,7 @@ object FormDumpData: TFormDumpData
     Height = 18
     Caption = 'CONCEPTOS'
     TabOrder = 13
+    OnClick = BtnCONCEPTOSClick
   end
   object BtnCOMERCIALES: TButton
     Left = 320
@@ -561,6 +574,7 @@ object FormDumpData: TFormDumpData
     Height = 18
     Caption = 'COMERCIALES'
     TabOrder = 14
+    OnClick = BtnCOMERCIALESClick
   end
   object BtnTIPODIARIO: TButton
     Left = 320
@@ -569,6 +583,7 @@ object FormDumpData: TFormDumpData
     Height = 18
     Caption = 'TIPODIARIO'
     TabOrder = 15
+    OnClick = BtnTIPODIARIOClick
   end
   object BtnDELEGACION: TButton
     Left = 320
@@ -577,6 +592,7 @@ object FormDumpData: TFormDumpData
     Height = 18
     Caption = 'DELEGACION'
     TabOrder = 16
+    OnClick = BtnDELEGACIONClick
   end
   object BtnDEPARTAMENTO: TButton
     Left = 320
@@ -585,6 +601,7 @@ object FormDumpData: TFormDumpData
     Height = 18
     Caption = 'DEPARTAMENTO'
     TabOrder = 17
+    OnClick = BtnDEPARTAMENTOClick
   end
   object BtnSECCION: TButton
     Left = 320
@@ -593,6 +610,7 @@ object FormDumpData: TFormDumpData
     Height = 18
     Caption = 'SECCION'
     TabOrder = 18
+    OnClick = BtnSECCIONClick
   end
   object BtnPROYECTO: TButton
     Left = 320
@@ -601,6 +619,7 @@ object FormDumpData: TFormDumpData
     Height = 18
     Caption = 'PROYECTO'
     TabOrder = 19
+    OnClick = BtnPROYECTOClick
   end
   object BtnANALITICAS: TButton
     Left = 320
@@ -609,6 +628,7 @@ object FormDumpData: TFormDumpData
     Height = 18
     Caption = 'ANALITICAS'
     TabOrder = 20
+    OnClick = BtnANALITICASClick
   end
   object BtnCARTERAEFECTOS: TButton
     Left = 320
@@ -617,6 +637,7 @@ object FormDumpData: TFormDumpData
     Height = 18
     Caption = 'CARTERAEFECTOS'
     TabOrder = 21
+    OnClick = BtnCARTERAEFECTOSClick
   end
   object BtnDIARIO: TButton
     Left = 320
@@ -625,6 +646,7 @@ object FormDumpData: TFormDumpData
     Height = 18
     Caption = 'DIARIO'
     TabOrder = 22
+    OnClick = BtnDIARIOClick
   end
   object EditDatabaseName: TEdit
     Left = 712
@@ -632,7 +654,7 @@ object FormDumpData: TFormDumpData
     Width = 121
     Height = 21
     TabOrder = 23
-    Text = 'TEST04'
+    Text = 'TEST05'
   end
   object BtnConnectSQLServer: TButton
     Left = 712
@@ -667,6 +689,7 @@ object FormDumpData: TFormDumpData
     Height = 18
     Caption = 'GRUPOS'
     TabOrder = 27
+    OnClick = BtnGRUPOSClick
   end
   object BtnCUENTAS: TButton
     Left = 320
@@ -675,10 +698,11 @@ object FormDumpData: TFormDumpData
     Height = 18
     Caption = 'CUENTAS'
     TabOrder = 28
+    OnClick = BtnCUENTASClick
   end
   object Interbase: TIBDatabase
     Connected = True
-    DatabaseName = 'localhost:c:\cviews\datos\SIAMCONT.ib'
+    DatabaseName = 'localhost:c:\cviews\datos\JESUSHERRERO.ib'
     Params.Strings = (
       'user_name=SYSDBA'
       'password=masterkey')
@@ -705,7 +729,7 @@ object FormDumpData: TFormDumpData
     Params.Strings = (
       'BlobSize=-1'
       'HostName=.'
-      'DataBase=TEST04'
+      'DataBase=TEST05'
       'DriverName=SQLServer'
       'User_Name=sa'
       'Password=MasterKey'
@@ -1550,6 +1574,429 @@ object FormDumpData: TFormDumpData
     Transaction = Transaction
     BufferChunks = 1000
     CachedUpdates = False
+    FieldDefs = <
+      item
+        Name = 'ACUDB01'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ACUDB02'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ACUDB03'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ACUDB04'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ACUDB05'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ACUDB06'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ACUDB07'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ACUDB08'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ACUDB09'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ACUDB10'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ACUDB11'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ACUDB12'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ACUHB01'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ACUHB02'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ACUHB03'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ACUHB04'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ACUHB05'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ACUHB06'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ACUHB07'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ACUHB08'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ACUHB09'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ACUHB10'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ACUHB11'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ACUHB12'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ANTDB'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ANTDB01'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ANTDB02'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ANTDB03'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ANTDB04'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ANTDB05'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ANTDB06'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ANTDB07'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ANTDB08'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ANTDB09'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ANTDB10'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ANTDB11'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ANTDB12'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ANTHB'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ANTHB01'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ANTHB02'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ANTHB03'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ANTHB04'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ANTHB05'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ANTHB06'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ANTHB07'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ANTHB08'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ANTHB09'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ANTHB10'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ANTHB11'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ANTHB12'
+        DataType = ftFloat
+      end
+      item
+        Name = 'ARRENDADOR'
+        DataType = ftString
+        Size = 1
+      end
+      item
+        Name = 'CONTRAPARTIDA'
+        DataType = ftString
+        Size = 10
+      end
+      item
+        Name = 'DESCRIPCION'
+        DataType = ftString
+        Size = 80
+      end
+      item
+        Name = 'DIRECCION'
+        DataType = ftString
+        Size = 35
+      end
+      item
+        Name = 'FAX'
+        DataType = ftString
+        Size = 16
+      end
+      item
+        Name = 'IVA'
+        DataType = ftFloat
+      end
+      item
+        Name = 'PROFESIONAL'
+        DataType = ftString
+        Size = 1
+      end
+      item
+        Name = 'RECARGO'
+        DataType = ftFloat
+      end
+      item
+        Name = 'SUBCUENTA'
+        Attributes = [faRequired]
+        DataType = ftString
+        Size = 10
+      end
+      item
+        Name = 'SUMADB'
+        DataType = ftFloat
+      end
+      item
+        Name = 'SUMAHB'
+        DataType = ftFloat
+      end
+      item
+        Name = 'TELEFONO'
+        DataType = ftString
+        Size = 16
+      end
+      item
+        Name = 'TIPOIVA'
+        DataType = ftString
+        Size = 1
+      end
+      item
+        Name = 'DIRECCION1'
+        DataType = ftString
+        Size = 35
+      end
+      item
+        Name = 'NIF'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'CODPOSTAL'
+        DataType = ftString
+        Size = 10
+      end
+      item
+        Name = 'POBLACION'
+        DataType = ftString
+        Size = 60
+      end
+      item
+        Name = 'PROVINCIA'
+        Attributes = [faFixed]
+        DataType = ftString
+        Size = 2
+      end
+      item
+        Name = 'PAIS'
+        Attributes = [faFixed]
+        DataType = ftString
+        Size = 2
+      end
+      item
+        Name = 'NUMERO'
+        DataType = ftString
+        Size = 10
+      end
+      item
+        Name = 'FORMAPAGO'
+        Attributes = [faFixed]
+        DataType = ftString
+        Size = 3
+      end
+      item
+        Name = 'DIAPAGO1'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'DIAPAGO2'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'PRES01'
+        DataType = ftFloat
+      end
+      item
+        Name = 'PRES02'
+        DataType = ftFloat
+      end
+      item
+        Name = 'PRES03'
+        DataType = ftFloat
+      end
+      item
+        Name = 'PRES04'
+        DataType = ftFloat
+      end
+      item
+        Name = 'PRES05'
+        DataType = ftFloat
+      end
+      item
+        Name = 'PRES06'
+        DataType = ftFloat
+      end
+      item
+        Name = 'PRES07'
+        DataType = ftFloat
+      end
+      item
+        Name = 'PRES08'
+        DataType = ftFloat
+      end
+      item
+        Name = 'PRES09'
+        DataType = ftFloat
+      end
+      item
+        Name = 'PRES10'
+        DataType = ftFloat
+      end
+      item
+        Name = 'PRES11'
+        DataType = ftFloat
+      end
+      item
+        Name = 'PRES12'
+        DataType = ftFloat
+      end
+      item
+        Name = 'PRESTOT'
+        DataType = ftFloat
+      end
+      item
+        Name = 'OBSOLETO'
+        Attributes = [faFixed]
+        DataType = ftString
+        Size = 1
+      end
+      item
+        Name = 'DIAPAGO3'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'ABREVIATURA'
+        DataType = ftString
+        Size = 10
+      end
+      item
+        Name = 'INTRACOMUNITARIO'
+        Attributes = [faFixed]
+        DataType = ftString
+        Size = 1
+      end
+      item
+        Name = 'SUBCTARET'
+        DataType = ftString
+        Size = 10
+      end>
+    IndexDefs = <
+      item
+        Name = 'RDB$PRIMARY32'
+        Fields = 'SUBCUENTA'
+        Options = [ixPrimary, ixUnique]
+      end
+      item
+        Name = 'SUBCTAS_TIPOIVA'
+        Fields = 'TIPOIVA'
+      end
+      item
+        Name = 'SUBCTAS_DESCRIPCION'
+        Fields = 'DESCRIPCION'
+      end
+      item
+        Name = 'RDB$FOREIGN42'
+        Fields = 'PROVINCIA'
+      end
+      item
+        Name = 'RDB$FOREIGN43'
+        Fields = 'PAIS'
+      end
+      item
+        Name = 'RDB$FOREIGN51'
+        Fields = 'FORMAPAGO'
+      end
+      item
+        Name = 'RDB$FOREIGN1'
+        Fields = 'CONTRAPARTIDA'
+      end>
+    StoreDefs = True
     TableName = 'SUBCTAS'
     Left = 200
     Top = 80
@@ -3981,6 +4428,119 @@ object FormDumpData: TFormDumpData
     Params = <>
     Left = 673
     Top = 608
+    object Target_DIARIOID_DIARIO: TIntegerField
+      FieldName = 'ID_DIARIO'
+    end
+    object Target_DIARIOAPUNTE: TIntegerField
+      FieldName = 'APUNTE'
+    end
+    object Target_DIARIOASIENTO: TIntegerField
+      FieldName = 'ASIENTO'
+    end
+    object Target_DIARIOBASEIMPONIBLE: TBCDField
+      FieldName = 'BASEIMPONIBLE'
+      Precision = 14
+      Size = 3
+    end
+    object Target_DIARIOCOMENTARIO: TStringField
+      FieldName = 'COMENTARIO'
+      Size = 40
+    end
+    object Target_DIARIOCONTRAPARTIDA: TStringField
+      FieldName = 'CONTRAPARTIDA'
+      Size = 10
+    end
+    object Target_DIARIODEBEHABER: TStringField
+      FieldName = 'DEBEHABER'
+      FixedChar = True
+      Size = 1
+    end
+    object Target_DIARIOFECHA: TSQLTimeStampField
+      FieldName = 'FECHA'
+    end
+    object Target_DIARIOIMPORTE: TBCDField
+      FieldName = 'IMPORTE'
+      Precision = 14
+      Size = 3
+    end
+    object Target_DIARIOIVA: TBCDField
+      FieldName = 'IVA'
+      Precision = 14
+      Size = 3
+    end
+    object Target_DIARIONIF: TStringField
+      FieldName = 'NIF'
+      Size = 15
+    end
+    object Target_DIARIOMONEDA: TStringField
+      FieldName = 'MONEDA'
+      FixedChar = True
+      Size = 1
+    end
+    object Target_DIARIONUMEROFACTURA: TStringField
+      FieldName = 'NUMEROFACTURA'
+      Size = 10
+    end
+    object Target_DIARIORECARGO: TBCDField
+      FieldName = 'RECARGO'
+      Precision = 14
+      Size = 3
+    end
+    object Target_DIARIOSUBCUENTA: TStringField
+      FieldName = 'SUBCUENTA'
+      Size = 10
+    end
+    object Target_DIARIOPUNTEO: TStringField
+      FieldName = 'PUNTEO'
+      FixedChar = True
+      Size = 1
+    end
+    object Target_DIARIOASIENTOPUNTEO: TIntegerField
+      FieldName = 'ASIENTOPUNTEO'
+    end
+    object Target_DIARIOPUNTEOIVA: TStringField
+      FieldName = 'PUNTEOIVA'
+      FixedChar = True
+      Size = 1
+    end
+    object Target_DIARIOID_CONCEPTOS: TStringField
+      FieldName = 'ID_CONCEPTOS'
+      FixedChar = True
+      Size = 3
+    end
+    object Target_DIARIOTIPODIARIO: TStringField
+      FieldName = 'TIPODIARIO'
+      FixedChar = True
+      Size = 2
+    end
+    object Target_DIARIOCUENTA_ANALITICA: TStringField
+      FieldName = 'CUENTA_ANALITICA'
+      FixedChar = True
+      Size = 10
+    end
+    object Target_DIARIOCUOTAIVA: TBCDField
+      FieldName = 'CUOTAIVA'
+      Precision = 14
+      Size = 3
+    end
+    object Target_DIARIOCUOTARECARGO: TBCDField
+      FieldName = 'CUOTARECARGO'
+      Precision = 14
+      Size = 3
+    end
+    object Target_DIARIOTIPOASIENTO: TIntegerField
+      FieldName = 'TIPOASIENTO'
+    end
+    object Target_DIARIOASIENTONOMINA: TIntegerField
+      FieldName = 'ASIENTONOMINA'
+    end
+    object Target_DIARIOEJERCICIO: TIntegerField
+      FieldName = 'EJERCICIO'
+    end
+    object Target_DIARIOSERIE: TStringField
+      FieldName = 'SERIE'
+      Size = 5
+    end
   end
   object Target_SIAM: TSimpleDataSet
     Aggregates = <>
