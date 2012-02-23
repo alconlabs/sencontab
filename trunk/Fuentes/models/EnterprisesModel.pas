@@ -137,8 +137,8 @@ begin
      {***********************************************************************************}
      DB.ExecuteDirect(
         'CREATE TABLE PARAMETROS(                                                 '+
-        '    ID_PARAMETROS                      smallint            NOT NULL,     '+
-        '    LONGITUD_SUBCUENTAS                smallint            NULL,         '+
+        '    ID_PARAMETROS                      int                 NOT NULL,     '+
+        '    LONGITUD_SUBCUENTAS                int                 NULL,         '+
         '    FECHA_INICIO_APLICACION            datetime            NULL,         '+
         '    FECHA_INICIO_EJERCICIO             datetime            NULL,         '+
         '    FECHA_FIN_EJERCICIO                datetime            NULL,         '+
@@ -214,8 +214,8 @@ begin
         '    SCTARETARRE                        varchar(10)         NULL,         '+
         '    CTORETPROF                         varchar(3)          NULL,         '+
         '    CTORETARRE                         varchar(3)          NULL,         '+
-        '    TANTORETPROF                       double precision    NULL,         '+
-        '    TANTORETARRE                       double precision    NULL,         '+
+        '    TANTORETPROF                       decimal(14, 3)      NULL,         '+
+        '    TANTORETARRE                       decimal(14, 3)      NULL,         '+
         '    SCTAHACIVA                         varchar(10)         NULL,         '+
         '    CTOHACIVA                          varchar(3)          NULL,         '+
         '    SCTAIVACEXENTO                     varchar(10)         NULL,         '+
@@ -237,12 +237,12 @@ begin
         '    INCLUIR_ABREV                      char(1)             NULL,         '+
         '    SCTAEFECTDESCONTADOS               varchar(10)         NULL,         '+
         '    SCTADEUDASDESCUENTOS               varchar(10)         NULL,         '+
-        '    ASIENTOS_INICIO_INTERVALO_BQDA     smallint            NULL,         '+
-        '    ASIENTOS_FIN_INTERVALO_BQDA        smallint            NULL,         '+
+        '    ASIENTOS_INICIO_INTERVALO_BQDA     int                 NULL,         '+
+        '    ASIENTOS_FIN_INTERVALO_BQDA        int                 NULL,         '+
         '    MOSTRAR_FILTRO_MAYOR               char(1)             NULL,         '+
         '    CTOPROVINTRA                       char(3)             NULL,         '+
-        '    ASIENTO_INICIO_INTERVALO_FILTRO    smallint            NULL,         '+
-        '    ASIENTO_FIN_INTERVALO_FILTRO       smallint            NULL,         '+
+        '    ASIENTO_INICIO_INTERVALO_FILTRO    int                 NULL,         '+
+        '    ASIENTO_FIN_INTERVALO_FILTRO       int                 NULL,         '+
         '    SCTAIVAINTRADEDUCIBLE              varchar(10)         NULL,         '+
         '    SCTAIVACINTRADEDUCIBLE             varchar(10)         NULL,         '+
         '    SCTAIVACINTRAREPERCUTIDO           varchar(10)         NULL,         '+
@@ -273,8 +273,8 @@ begin
      {***********************************************************************************}
      DB.ExecuteDirect(
         'CREATE TABLE TITULOS(                                         '+
-        '    TITULO         varchar(2)     NOT NULL,                   '+
-        '    DESCRIPCION    varchar(50)    NULL,                       '+
+        '    TITULO         char(2)        NOT NULL,                   '+
+        '    DESCRIPCION    char(50)       NOT NULL,                   '+
         '    RESTA1         varchar(3)     NULL,                       '+
         '    RESTA2         varchar(3)     NULL,                       '+
         '    RESTA3         varchar(3)     NULL,                       '+
@@ -296,15 +296,15 @@ begin
      {***********************************************************************************}
      DB.ExecuteDirect(
         'CREATE TABLE IVAR(                                            '+
-        '    TIPO           varchar(1)     NOT NULL,                   '+
-        '    DESCRIPCION    varchar(35)    NULL,                       '+
+        '    TIPO           char(1)     NOT NULL,                      '+
+        '    DESCRIPCION    char(35)    NOT NULL,                      '+
         '    CONSTRAINT PK_IVAR PRIMARY KEY CLUSTERED (TIPO)           '+
         ')                                                             ');
      {***********************************************************************************}
      DB.ExecuteDirect(
         'CREATE TABLE IVAS(                                            '+
-        '    TIPO           varchar(1)     NOT NULL,                   '+
-        '    DESCRIPCION    varchar(40)    NULL,                       '+
+        '    TIPO           char(1)     NOT NULL,                      '+
+        '    DESCRIPCION    char(40)    NOT NULL,                      '+
         '    CONSTRAINT PK_IVAS PRIMARY KEY CLUSTERED (TIPO)           '+
         ')                                                             ');
      {***********************************************************************************}
@@ -312,22 +312,95 @@ begin
         'CREATE TABLE NOMINAS(                                         '+
         '    ID_NOMINA          int                 NOT NULL,          '+
         '    ASIENTO            int                 NOT NULL,          '+
-        '    NOMINA             double precision    NULL,              '+
-        '    IRPF               double precision    NULL,              '+
-        '    SSOCIAL            double precision    NULL,              '+
-        '    NETO               double precision    NULL,              '+
-        '    SUBCUENTA          varchar(10)         NULL,              '+
+        '    NOMINA             decimal(14, 3)      NULL,              '+
+        '    IRPF               decimal(14, 3)      NULL,              '+
+        '    SSOCIAL            decimal(14, 3)      NULL,              '+
+        '    NETO               decimal(14, 3)      NULL,              '+
+        '    SUBCUENTA          char(10)            NULL,              '+
         '    NOMINA_EMPLEADO    char(1)             NULL,              '+
         '    CONSTRAINT PK_NOMINAS PRIMARY KEY NONCLUSTERED (ID_NOMINA)'+
         ')                                                             ');
+    {***********************************************************************************}
+     DB.ExecuteDirect(
+        'CREATE TABLE GRUPOS(                                          '+
+        '    GRUPO          char(3)     NOT NULL,                      '+
+        '    DESCRIPCION    char(50)    NOT NULL,                      '+
+        '    CONSTRAINT PK_GRUPOS PRIMARY KEY NONCLUSTERED (GRUPO)     '+
+        ')                                                             ');
+    {***********************************************************************************}
+     DB.ExecuteDirect(
+        'CREATE TABLE CUENTAS(                                          '+
+        '    CUENTA         char(3)           NOT NULL,                 '+
+        '    DESCRIPCION    char(50)          NOT NULL,                 '+
+        '    GRUPO1         char(3)           NULL,                     '+
+        '    GRUPO2         char(3)           NULL,                     '+
+        '    TIPOCUENTA     varchar(1)        NULL,                     '+
+        '    ACUDB01        decimal(14, 3)    NULL,                     '+
+        '    ACUDB02        decimal(14, 3)    NULL,                     '+
+        '    ACUDB03        decimal(14, 3)    NULL,                     '+
+        '    ACUDB04        decimal(14, 3)    NULL,                     '+
+        '    ACUDB05        decimal(14, 3)    NULL,                     '+
+        '    ACUDB06        decimal(14, 3)    NULL,                     '+
+        '    ACUDB07        decimal(14, 3)    NULL,                     '+
+        '    ACUDB08        decimal(14, 3)    NULL,                     '+
+        '    ACUDB09        decimal(14, 3)    NULL,                     '+
+        '    ACUDB10        decimal(14, 3)    NULL,                     '+
+        '    ACUDB11        decimal(14, 3)    NULL,                     '+
+        '    ACUDB12        decimal(14, 3)    NULL,                     '+
+        '    ACUHB01        decimal(14, 3)    NULL,                     '+
+        '    ACUHB02        decimal(14, 3)    NULL,                     '+
+        '    ACUHB03        decimal(14, 3)    NULL,                     '+
+        '    ACUHB04        decimal(14, 3)    NULL,                     '+
+        '    ACUHB05        decimal(14, 3)    NULL,                     '+
+        '    ACUHB06        decimal(14, 3)    NULL,                     '+
+        '    ACUHB07        decimal(14, 3)    NULL,                     '+
+        '    ACUHB08        decimal(14, 3)    NULL,                     '+
+        '    ACUHB09        decimal(14, 3)    NULL,                     '+
+        '    ACUHB10        decimal(14, 3)    NULL,                     '+
+        '    ACUHB11        decimal(14, 3)    NULL,                     '+
+        '    ACUHB12        decimal(14, 3)    NULL,                     '+
+        '    ANTDB01        decimal(14, 3)    NULL,                     '+
+        '    ANTDB02        decimal(14, 3)    NULL,                     '+
+        '    ANTDB03        decimal(14, 3)    NULL,                     '+
+        '    ANTDB04        decimal(14, 3)    NULL,                     '+
+        '    ANTDB05        decimal(14, 3)    NULL,                     '+
+        '    ANTDB06        decimal(14, 3)    NULL,                     '+
+        '    ANTDB07        decimal(14, 3)    NULL,                     '+
+        '    ANTDB08        decimal(14, 3)    NULL,                     '+
+        '    ANTDB09        decimal(14, 3)    NULL,                     '+
+        '    ANTDB10        decimal(14, 3)    NULL,                     '+
+        '    ANTDB11        decimal(14, 3)    NULL,                     '+
+        '    ANTDB12        decimal(14, 3)    NULL,                     '+
+        '    ANTHB01        decimal(14, 3)    NULL,                     '+
+        '    ANTHB02        decimal(14, 3)    NULL,                     '+
+        '    ANTHB03        decimal(14, 3)    NULL,                     '+
+        '    ANTHB04        decimal(14, 3)    NULL,                     '+
+        '    ANTHB05        decimal(14, 3)    NULL,                     '+
+        '    ANTHB06        decimal(14, 3)    NULL,                     '+
+        '    ANTHB07        decimal(14, 3)    NULL,                     '+
+        '    ANTHB08        decimal(14, 3)    NULL,                     '+
+        '    ANTHB09        decimal(14, 3)    NULL,                     '+
+        '    ANTHB10        decimal(14, 3)    NULL,                     '+
+        '    ANTHB11        decimal(14, 3)    NULL,                     '+
+        '    ANTHB12        decimal(14, 3)    NULL,                     '+
+        '    ANTHB          decimal(14, 3)    NULL,                     '+
+        '    ANTDB          decimal(14, 3)    NULL,                     '+
+        '    SUMADB         decimal(14, 3)    NULL,                     '+
+        '    SUMAHB         decimal(14, 3)    NULL,                     '+
+        '    CONSTRAINT PK_CUENTAS PRIMARY KEY NONCLUSTERED (CUENTA),   '+
+        '    CONSTRAINT FK_CUENTAS_GRUPO1 FOREIGN KEY (GRUPO1)          '+
+        '    REFERENCES GRUPOS(GRUPO),                                  '+
+        '    CONSTRAINT FK_CUENTAS_GRUPO2 FOREIGN KEY (GRUPO2)          '+
+        '    REFERENCES GRUPOS(GRUPO)                                   '+
+        ')                                                              ');
      {***********************************************************************************}
      DB.ExecuteDirect(
         'CREATE TABLE FORMAS(                                            '+
         '    FORMAPAGO    char(3)        NOT NULL,                       '+
+        '    DESCRIBE     char(40)       NOT NULL,                       '+
         '    CLASE        char(1)        NULL,                           '+
-        '    DESCRIBE     varchar(40)    NULL,                           '+
-        '    INTERVALO    smallint       NULL,                           '+
-        '    NUMVENCI     smallint       NULL,                           '+
+        '    INTERVALO    int            NULL,                           '+
+        '    NUMVENCI     int            NULL,                           '+
         '    OBSOLETO     char(1)        NULL,                           '+
         '    CONSTRAINT PK_FORMAS PRIMARY KEY NONCLUSTERED (FORMAPAGO)   '+
         ')                                                               ');
@@ -335,81 +408,81 @@ begin
      DB.ExecuteDirect(
         'CREATE TABLE PAISES(                                           '+
         '    PAIS      char(2)        NOT NULL,                         '+
-        '    NOMBRE    varchar(30)    NULL,                             '+
+        '    NOMBRE    char(30)       NOT NULL,                         '+
         '    CONSTRAINT PK_PAISES PRIMARY KEY NONCLUSTERED (PAIS)       '+
         ')                                                              ');
      {***********************************************************************************}
      DB.ExecuteDirect(
         'CREATE TABLE PROVINCIAS(                                              '+
         '    PROVINCIA    char(2)        NOT NULL,                             '+
-        '    NOMBRE       varchar(25)    NULL,                                 '+
-        '    CODIGO       char(2)        NULL,                                 '+
+        '    NOMBRE       char(25)       NOT NULL,                             '+
+        '    CODIGO       char(2)        NOT NULL,                             '+
         '    CONSTRAINT PK_PROVINCIAS PRIMARY KEY NONCLUSTERED (PROVINCIA)     '+
         ')                                                                     ');
    {***********************************************************************************}
      DB.ExecuteDirect(
         'CREATE TABLE SUBCTAS(                                                 '+
-        '    ACUDB01             double precision    NULL,                     '+
-        '    ACUDB02             double precision    NULL,                     '+
-        '    ACUDB03             double precision    NULL,                     '+
-        '    ACUDB04             double precision    NULL,                     '+
-        '    ACUDB05             double precision    NULL,                     '+
-        '    ACUDB06             double precision    NULL,                     '+
-        '    ACUDB07             double precision    NULL,                     '+
-        '    ACUDB08             double precision    NULL,                     '+
-        '    ACUDB09             double precision    NULL,                     '+
-        '    ACUDB10             double precision    NULL,                     '+
-        '    ACUDB11             double precision    NULL,                     '+
-        '    ACUDB12             double precision    NULL,                     '+
-        '    ACUHB01             double precision    NULL,                     '+
-        '    ACUHB02             double precision    NULL,                     '+
-        '    ACUHB03             double precision    NULL,                     '+
-        '    ACUHB04             double precision    NULL,                     '+
-        '    ACUHB05             double precision    NULL,                     '+
-        '    ACUHB06             double precision    NULL,                     '+
-        '    ACUHB07             double precision    NULL,                     '+
-        '    ACUHB08             double precision    NULL,                     '+
-        '    ACUHB09             double precision    NULL,                     '+
-        '    ACUHB10             double precision    NULL,                     '+
-        '    ACUHB11             double precision    NULL,                     '+
-        '    ACUHB12             double precision    NULL,                     '+
-        '    ANTDB               double precision    NULL,                     '+
-        '    ANTDB01             double precision    NULL,                     '+
-        '    ANTDB02             double precision    NULL,                     '+
-        '    ANTDB03             double precision    NULL,                     '+
-        '    ANTDB04             double precision    NULL,                     '+
-        '    ANTDB05             double precision    NULL,                     '+
-        '    ANTDB06             double precision    NULL,                     '+
-        '    ANTDB07             double precision    NULL,                     '+
-        '    ANTDB08             double precision    NULL,                     '+
-        '    ANTDB09             double precision    NULL,                     '+
-        '    ANTDB10             double precision    NULL,                     '+
-        '    ANTDB11             double precision    NULL,                     '+
-        '    ANTDB12             double precision    NULL,                     '+
-        '    ANTHB               double precision    NULL,                     '+
-        '    ANTHB01             double precision    NULL,                     '+
-        '    ANTHB02             double precision    NULL,                     '+
-        '    ANTHB03             double precision    NULL,                     '+
-        '    ANTHB04             double precision    NULL,                     '+
-        '    ANTHB05             double precision    NULL,                     '+
-        '    ANTHB06             double precision    NULL,                     '+
-        '    ANTHB07             double precision    NULL,                     '+
-        '    ANTHB08             double precision    NULL,                     '+
-        '    ANTHB09             double precision    NULL,                     '+
-        '    ANTHB10             double precision    NULL,                     '+
-        '    ANTHB11             double precision    NULL,                     '+
-        '    ANTHB12             double precision    NULL,                     '+
+        '    ACUDB01             decimal(14, 3)      NULL,                     '+
+        '    ACUDB02             decimal(14, 3)      NULL,                     '+
+        '    ACUDB03             decimal(14, 3)      NULL,                     '+
+        '    ACUDB04             decimal(14, 3)      NULL,                     '+
+        '    ACUDB05             decimal(14, 3)      NULL,                     '+
+        '    ACUDB06             decimal(14, 3)      NULL,                     '+
+        '    ACUDB07             decimal(14, 3)      NULL,                     '+
+        '    ACUDB08             decimal(14, 3)      NULL,                     '+
+        '    ACUDB09             decimal(14, 3)      NULL,                     '+
+        '    ACUDB10             decimal(14, 3)      NULL,                     '+
+        '    ACUDB11             decimal(14, 3)      NULL,                     '+
+        '    ACUDB12             decimal(14, 3)      NULL,                     '+
+        '    ACUHB01             decimal(14, 3)      NULL,                     '+
+        '    ACUHB02             decimal(14, 3)      NULL,                     '+
+        '    ACUHB03             decimal(14, 3)      NULL,                     '+
+        '    ACUHB04             decimal(14, 3)      NULL,                     '+
+        '    ACUHB05             decimal(14, 3)      NULL,                     '+
+        '    ACUHB06             decimal(14, 3)      NULL,                     '+
+        '    ACUHB07             decimal(14, 3)      NULL,                     '+
+        '    ACUHB08             decimal(14, 3)      NULL,                     '+
+        '    ACUHB09             decimal(14, 3)      NULL,                     '+
+        '    ACUHB10             decimal(14, 3)      NULL,                     '+
+        '    ACUHB11             decimal(14, 3)      NULL,                     '+
+        '    ACUHB12             decimal(14, 3)      NULL,                     '+
+        '    ANTDB               decimal(14, 3)      NULL,                     '+
+        '    ANTDB01             decimal(14, 3)      NULL,                     '+
+        '    ANTDB02             decimal(14, 3)      NULL,                     '+
+        '    ANTDB03             decimal(14, 3)      NULL,                     '+
+        '    ANTDB04             decimal(14, 3)      NULL,                     '+
+        '    ANTDB05             decimal(14, 3)      NULL,                     '+
+        '    ANTDB06             decimal(14, 3)      NULL,                     '+
+        '    ANTDB07             decimal(14, 3)      NULL,                     '+
+        '    ANTDB08             decimal(14, 3)      NULL,                     '+
+        '    ANTDB09             decimal(14, 3)      NULL,                     '+
+        '    ANTDB10             decimal(14, 3)      NULL,                     '+
+        '    ANTDB11             decimal(14, 3)      NULL,                     '+
+        '    ANTDB12             decimal(14, 3)      NULL,                     '+
+        '    ANTHB               decimal(14, 3)      NULL,                     '+
+        '    ANTHB01             decimal(14, 3)      NULL,                     '+
+        '    ANTHB02             decimal(14, 3)      NULL,                     '+
+        '    ANTHB03             decimal(14, 3)      NULL,                     '+
+        '    ANTHB04             decimal(14, 3)      NULL,                     '+
+        '    ANTHB05             decimal(14, 3)      NULL,                     '+
+        '    ANTHB06             decimal(14, 3)      NULL,                     '+
+        '    ANTHB07             decimal(14, 3)      NULL,                     '+
+        '    ANTHB08             decimal(14, 3)      NULL,                     '+
+        '    ANTHB09             decimal(14, 3)      NULL,                     '+
+        '    ANTHB10             decimal(14, 3)      NULL,                     '+
+        '    ANTHB11             decimal(14, 3)      NULL,                     '+
+        '    ANTHB12             decimal(14, 3)      NULL,                     '+
         '    ARRENDADOR          varchar(1)          NULL,                     '+
         '    CONTRAPARTIDA       varchar(10)         NULL,                     '+
         '    DESCRIPCION         varchar(80)         NULL,                     '+
         '    DIRECCION           varchar(35)         NULL,                     '+
         '    FAX                 varchar(16)         NULL,                     '+
-        '    IVA                 double precision    NULL,                     '+
+        '    IVA                 decimal(14, 3)      NULL,                     '+
         '    PROFESIONAL         varchar(1)          NULL,                     '+
-        '    RECARGO             double precision    NULL,                     '+
+        '    RECARGO             decimal(14, 3)      NULL,                     '+
         '    SUBCUENTA           varchar(10)         NOT NULL,                 '+
-        '    SUMADB              double precision    NULL,                     '+
-        '    SUMAHB              double precision    NULL,                     '+
+        '    SUMADB              decimal(14, 3)      NULL,                     '+
+        '    SUMAHB              decimal(14, 3)      NULL,                     '+
         '    TELEFONO            varchar(16)         NULL,                     '+
         '    TIPOIVA             varchar(1)          NULL,                     '+
         '    DIRECCION1          varchar(35)         NULL,                     '+
@@ -420,23 +493,23 @@ begin
         '    PAIS                char(2)             NULL,                     '+
         '    NUMERO              varchar(10)         NULL,                     '+
         '    FORMAPAGO           char(3)             NULL,                     '+
-        '    DIAPAGO1            smallint            NULL,                     '+
-        '    DIAPAGO2            smallint            NULL,                     '+
-        '    PRES01              double precision    NULL,                     '+
-        '    PRES02              double precision    NULL,                     '+
-        '    PRES03              double precision    NULL,                     '+
-        '    PRES04              double precision    NULL,                     '+
-        '    PRES05              double precision    NULL,                     '+
-        '    PRES06              double precision    NULL,                     '+
-        '    PRES07              double precision    NULL,                     '+
-        '    PRES08              double precision    NULL,                     '+
-        '    PRES09              double precision    NULL,                     '+
-        '    PRES10              double precision    NULL,                     '+
-        '    PRES11              double precision    NULL,                     '+
-        '    PRES12              double precision    NULL,                     '+
-        '    PRESTOT             double precision    NULL,                     '+
+        '    DIAPAGO1            int                 NULL,                     '+
+        '    DIAPAGO2            int                 NULL,                     '+
+        '    PRES01              decimal(14, 3)      NULL,                     '+
+        '    PRES02              decimal(14, 3)      NULL,                     '+
+        '    PRES03              decimal(14, 3)      NULL,                     '+
+        '    PRES04              decimal(14, 3)      NULL,                     '+
+        '    PRES05              decimal(14, 3)      NULL,                     '+
+        '    PRES06              decimal(14, 3)      NULL,                     '+
+        '    PRES07              decimal(14, 3)      NULL,                     '+
+        '    PRES08              decimal(14, 3)      NULL,                     '+
+        '    PRES09              decimal(14, 3)      NULL,                     '+
+        '    PRES10              decimal(14, 3)      NULL,                     '+
+        '    PRES11              decimal(14, 3)      NULL,                     '+
+        '    PRES12              decimal(14, 3)      NULL,                     '+
+        '    PRESTOT             decimal(14, 3)      NULL,                     '+
         '    OBSOLETO            char(1)             NULL,                     '+
-        '    DIAPAGO3            smallint            NULL,                     '+
+        '    DIAPAGO3            int                 NULL,                     '+
         '    ABREVIATURA         varchar(10)         NULL,                     '+
         '    INTRACOMUNITARIO    char(1)             NULL,                     '+
         '    CONSTRAINT PK23 PRIMARY KEY NONCLUSTERED (SUBCUENTA),             '+
@@ -462,17 +535,17 @@ begin
         '    SUBGASTO       varchar(10)         NULL,                          '+
         '    SUBAMOR        varchar(10)         NULL,                          '+
         '    PERIODO        varchar(1)          NULL,                          '+
-        '    ANUAL          double precision    NULL,                          '+
+        '    ANUAL          decimal(14, 3)      NULL,                          '+
         '    PROVEEDOR      varchar(10)         NULL,                          '+
         '    FACTURA        varchar(15)         NULL,                          '+
-        '    VCOMPRA        double precision    NULL,                          '+
-        '    VRESIDUAL      double precision    NULL,                          '+
-        '    VAMOR          double precision    NULL,                          '+
-        '    VEJPINICIO     double precision    NULL,                          '+
-        '    VEJAINICIO     double precision    NULL,                          '+
-        '    VEJPAMOR       double precision    NULL,                          '+
-        '    VEJAAMOR       double precision    NULL,                          '+
-        '    CLASE          double precision    NULL,                          '+
+        '    VCOMPRA        decimal(14, 3)      NULL,                          '+
+        '    VRESIDUAL      decimal(14, 3)      NULL,                          '+
+        '    VAMOR          decimal(14, 3)      NULL,                          '+
+        '    VEJPINICIO     decimal(14, 3)      NULL,                          '+
+        '    VEJAINICIO     decimal(14, 3)      NULL,                          '+
+        '    VEJPAMOR       decimal(14, 3)      NULL,                          '+
+        '    VEJAAMOR       decimal(14, 3)      NULL,                          '+
+        '    CLASE          decimal(14, 3)      NULL,                          '+
         '    CONSTRAINT PK1 PRIMARY KEY NONCLUSTERED (SUBCUENTA),              '+
         '    CONSTRAINT FK_AMORTIZA_SUBCUENTA FOREIGN KEY (SUBCUENTA)          '+
         '    REFERENCES SUBCTAS(SUBCUENTA),                                    '+
@@ -487,7 +560,7 @@ begin
      DB.ExecuteDirect(
         'CREATE TABLE CONCEPTOS(                                                  '+
         '    ID_CONCEPTOS        char(3)        NOT NULL,                         '+
-        '    DESCRIPCION         varchar(30)    NULL,                             '+
+        '    DESCRIPCION         char(30)       NOT NULL,                         '+
         '    TIPOCONTABILIDAD    char(1)        NULL,                             '+
         '    TIPOCONCEPTO        char(1)        NULL,                             '+
         '    OBSOLETO            char(1)        NULL,                             '+
@@ -502,54 +575,54 @@ begin
      {***********************************************************************************}
      DB.ExecuteDirect(
         'CREATE TABLE COMERCIALES(                                                 '+
-        '    NOMBRE       varchar(50)    NULL,                                     '+
-        '    COMERCIAL    varchar(10)    NOT NULL,                                 '+
+        '    COMERCIAL    char(10)    NOT NULL,                                    '+
+        '    NOMBRE       char(50)    NOT NULL,                                    '+
         '    CONSTRAINT PK_COMERCIALES PRIMARY KEY NONCLUSTERED (COMERCIAL)        '+
         ')                                                                         ');
      {***********************************************************************************}
      DB.ExecuteDirect(
         'CREATE TABLE TIPODIARIO(                                                   '+
-        '    DESCRIPCION    varchar(30)    NULL,                                    '+
         '    TIPODIARIO     char(2)        NOT NULL,                                '+
+        '    DESCRIPCION    char(30)       NOT NULL,                                '+
         '    CONSTRAINT PK_TIPODIARIO PRIMARY KEY NONCLUSTERED (TIPODIARIO)         '+
         ')                                                                          ');
      {***********************************************************************************}
      DB.ExecuteDirect(
         'CREATE TABLE DELEGACION(                                                   '+
-        '    ID_DELEGACION    varchar(10)    NOT NULL,                              '+
-        '    NOMBRE           varchar(50)    NULL,                                  '+
+        '    ID_DELEGACION    char(10)    NOT NULL,                                 '+
+        '    NOMBRE           char(50)    NOT NULL,                                 '+
         '    CONSTRAINT PK_DELEGACION PRIMARY KEY NONCLUSTERED (ID_DELEGACION)      '+
         ')                                                                          ');
      {***********************************************************************************}
      DB.ExecuteDirect(
         'CREATE TABLE DEPARTAMENTO(                                                 '+
-        '    ID_DEPARTAMENTO    varchar(10)    NOT NULL,                            '+
-        '    NOMBRE             varchar(50)    NULL,                                '+
+        '    ID_DEPARTAMENTO    char(10)    NOT NULL,                               '+
+        '    NOMBRE             char(50)    NOT NULL,                               '+
         '    CONSTRAINT PK_DEPARTAMENTO PRIMARY KEY NONCLUSTERED (ID_DEPARTAMENTO)  '+
         ')                                                                          ');
      {***********************************************************************************}
      DB.ExecuteDirect(
         'CREATE TABLE SECCION(                                                      '+
-        '    ID_SECCION    varchar(10)    NOT NULL,                                 '+
-        '    NOMBRE        varchar(50)    NULL,                                     '+
+        '    ID_SECCION    char(10)    NOT NULL,                                    '+
+        '    NOMBRE        char(50)    NOT NULL,                                    '+
         '    CONSTRAINT PK_SECCION PRIMARY KEY NONCLUSTERED (ID_SECCION)            '+
         ')                                                                          ');
      {***********************************************************************************}
      DB.ExecuteDirect(
         'CREATE TABLE PROYECTO(                                                     '+
-        '    ID_PROYECTO    varchar(10)    NOT NULL,                                '+
-        '    NOMBRE         varchar(50)    NULL,                                    '+
+        '    ID_PROYECTO    char(10)    NOT NULL,                                   '+
+        '    NOMBRE         char(50)    NOT NULL,                                   '+
         '    CONSTRAINT PK_PROYECTO PRIMARY KEY NONCLUSTERED (ID_PROYECTO)          '+
         ')                                                                          ');
      {***********************************************************************************}
      DB.ExecuteDirect(
         'CREATE TABLE ANALITICAS(                                                   '+
-        '    ID_PROYECTO        varchar(10)    NULL,                                '+
-        '    ID_SECCION         varchar(10)    NULL,                                '+
-        '    ID_DEPARTAMENTO    varchar(10)    NULL,                                '+
-        '    ID_DELEGACION      varchar(10)    NULL,                                '+
-        '    NOMBRE             varchar(50)    NULL,                                '+
-        '    CUENTA             varchar(10)    NOT NULL,                            '+
+        '    CUENTA             char(10)    NOT NULL,                               '+
+        '    NOMBRE             char(50)    NOT NULL,                               '+
+        '    ID_PROYECTO        char(10)    NULL,                                   '+
+        '    ID_SECCION         char(10)    NULL,                                   '+
+        '    ID_DEPARTAMENTO    char(10)    NULL,                                   '+
+        '    ID_DELEGACION      char(10)    NULL,                                   '+
         '    CONSTRAINT PK_ANALITICAS PRIMARY KEY NONCLUSTERED (CUENTA),            '+
         '    CONSTRAINT FK_ANALITICAS_DELEGACION FOREIGN KEY (ID_DELEGACION)        '+
         '    REFERENCES DELEGACION(ID_DELEGACION),                                  '+
@@ -570,12 +643,12 @@ begin
         '    CONCEPTO             varchar(50)         NULL,                             '+
         '    FEMISION             datetime            NULL,                             '+
         '    FASIENTO             datetime            NULL,                             '+
-        '    IMPORTE              double precision    NULL,                             '+
+        '    IMPORTE              decimal(14, 3)      NULL,                             '+
         '    FACTCLIENT           varchar(10)         NULL,                             '+
         '    FACTPROVEEDOR        varchar(15)         NULL,                             '+
         '    FVENCIMIENTO         datetime            NULL,                             '+
-        '    COMERCIAL            varchar(10)         NULL,                             '+
-        '    IMPCOMISION          double precision    NULL,                             '+
+        '    COMERCIAL            char(10)            NULL,                             '+
+        '    IMPCOMISION          decimal(14, 3)      NULL,                             '+
         '    ASIENTORIESGO        int                 NULL,                             '+
         '    EJERCICIO            int                 NULL,                             '+
         '    SERIE                varchar(5)          NULL,                             '+
@@ -591,28 +664,28 @@ begin
      DB.ExecuteDirect(
         'CREATE TABLE DIARIO(                                                  '+
         '    ID_DIARIO           int                 NOT NULL,                 '+
-        '    APUNTE              smallint            NULL,                     '+
+        '    APUNTE              int                 NULL,                     '+
         '    ASIENTO             int                 NULL,                     '+
-        '    BASEIMPONIBLE       double precision    NULL,                     '+
+        '    BASEIMPONIBLE       decimal(14, 3)      NULL,                     '+
         '    COMENTARIO          varchar(40)         NULL,                     '+
         '    CONTRAPARTIDA       varchar(10)         NULL,                     '+
         '    DEBEHABER           char(1)             NULL,                     '+
         '    FECHA               datetime            NULL,                     '+
-        '    IMPORTE             double precision    NULL,                     '+
-        '    IVA                 double precision    NULL,                     '+
+        '    IMPORTE             decimal(14, 3)      NULL,                     '+
+        '    IVA                 decimal(14, 3)      NULL,                     '+
         '    NIF                 varchar(15)         NULL,                     '+
         '    MONEDA              char(1)             NULL,                     '+
         '    NUMEROFACTURA       varchar(10)         NULL,                     '+
-        '    RECARGO             double precision    NULL,                     '+
+        '    RECARGO             decimal(14, 3)      NULL,                     '+
         '    SUBCUENTA           varchar(10)         NOT NULL,                 '+
         '    PUNTEO              char(1)             NULL,                     '+
         '    ASIENTOPUNTEO       int                 NULL,                     '+
         '    PUNTEOIVA           char(1)             NULL,                     '+
         '    ID_CONCEPTOS        char(3)             NOT NULL,                 '+
         '    TIPODIARIO          char(2)             NULL,                     '+
-        '    CUENTA_ANALITICA    varchar(10)         NULL,                     '+
-        '    CUOTAIVA            double precision    NULL,                     '+
-        '    CUOTARECARGO        double precision    NULL,                     '+
+        '    CUENTA_ANALITICA    char(10)            NULL,                     '+
+        '    CUOTAIVA            decimal(14, 3)      NULL,                     '+
+        '    CUOTARECARGO        decimal(14, 3)      NULL,                     '+
         '    TIPOASIENTO         int                 NULL,                     '+
         '    ASIENTONOMINA       int                 NULL,                     '+
         '    EJERCICIO           int                 NULL,                     '+
