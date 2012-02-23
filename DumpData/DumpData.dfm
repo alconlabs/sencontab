@@ -1,8 +1,8 @@
 object FormDumpData: TFormDumpData
-  Left = 447
-  Top = 181
-  Width = 857
-  Height = 771
+  Left = 320
+  Top = 157
+  Width = 889
+  Height = 769
   Caption = 'FormDumpData'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -36,10 +36,10 @@ object FormDumpData: TFormDumpData
   end
   object Gauge: TGauge
     Left = 16
-    Top = 680
+    Top = 696
     Width = 785
     Height = 28
-    Progress = 0
+    Progress = 1
   end
   object LabelO_SIAM: TLabel
     Left = 306
@@ -131,7 +131,7 @@ object FormDumpData: TFormDumpData
   end
   object Label13: TLabel
     Left = 306
-    Top = 275
+    Top = 323
     Width = 6
     Height = 13
     Alignment = taRightJustify
@@ -139,7 +139,7 @@ object FormDumpData: TFormDumpData
   end
   object Label14: TLabel
     Left = 306
-    Top = 299
+    Top = 347
     Width = 6
     Height = 13
     Alignment = taRightJustify
@@ -147,7 +147,7 @@ object FormDumpData: TFormDumpData
   end
   object Label15: TLabel
     Left = 306
-    Top = 323
+    Top = 371
     Width = 6
     Height = 13
     Alignment = taRightJustify
@@ -155,7 +155,7 @@ object FormDumpData: TFormDumpData
   end
   object Label16: TLabel
     Left = 306
-    Top = 347
+    Top = 395
     Width = 6
     Height = 13
     Alignment = taRightJustify
@@ -163,7 +163,7 @@ object FormDumpData: TFormDumpData
   end
   object Label17: TLabel
     Left = 306
-    Top = 371
+    Top = 419
     Width = 6
     Height = 13
     Alignment = taRightJustify
@@ -171,7 +171,7 @@ object FormDumpData: TFormDumpData
   end
   object Label18: TLabel
     Left = 306
-    Top = 395
+    Top = 443
     Width = 6
     Height = 13
     Alignment = taRightJustify
@@ -179,7 +179,7 @@ object FormDumpData: TFormDumpData
   end
   object Label19: TLabel
     Left = 306
-    Top = 419
+    Top = 467
     Width = 6
     Height = 13
     Alignment = taRightJustify
@@ -187,7 +187,7 @@ object FormDumpData: TFormDumpData
   end
   object Label20: TLabel
     Left = 306
-    Top = 443
+    Top = 491
     Width = 6
     Height = 13
     Alignment = taRightJustify
@@ -195,7 +195,7 @@ object FormDumpData: TFormDumpData
   end
   object Label21: TLabel
     Left = 306
-    Top = 467
+    Top = 515
     Width = 6
     Height = 13
     Alignment = taRightJustify
@@ -203,7 +203,7 @@ object FormDumpData: TFormDumpData
   end
   object Label22: TLabel
     Left = 306
-    Top = 491
+    Top = 539
     Width = 6
     Height = 13
     Alignment = taRightJustify
@@ -211,7 +211,7 @@ object FormDumpData: TFormDumpData
   end
   object Label23: TLabel
     Left = 306
-    Top = 515
+    Top = 563
     Width = 6
     Height = 13
     Alignment = taRightJustify
@@ -219,7 +219,7 @@ object FormDumpData: TFormDumpData
   end
   object Label24: TLabel
     Left = 306
-    Top = 539
+    Top = 587
     Width = 6
     Height = 13
     Alignment = taRightJustify
@@ -315,7 +315,7 @@ object FormDumpData: TFormDumpData
   end
   object Label36: TLabel
     Left = 482
-    Top = 275
+    Top = 323
     Width = 6
     Height = 13
     Alignment = taRightJustify
@@ -323,7 +323,7 @@ object FormDumpData: TFormDumpData
   end
   object Label37: TLabel
     Left = 482
-    Top = 299
+    Top = 347
     Width = 6
     Height = 13
     Alignment = taRightJustify
@@ -331,7 +331,7 @@ object FormDumpData: TFormDumpData
   end
   object Label38: TLabel
     Left = 482
-    Top = 323
+    Top = 371
     Width = 6
     Height = 13
     Alignment = taRightJustify
@@ -339,7 +339,7 @@ object FormDumpData: TFormDumpData
   end
   object Label39: TLabel
     Left = 482
-    Top = 347
+    Top = 395
     Width = 6
     Height = 13
     Alignment = taRightJustify
@@ -347,7 +347,7 @@ object FormDumpData: TFormDumpData
   end
   object Label40: TLabel
     Left = 482
-    Top = 371
+    Top = 419
     Width = 6
     Height = 13
     Alignment = taRightJustify
@@ -355,7 +355,7 @@ object FormDumpData: TFormDumpData
   end
   object Label41: TLabel
     Left = 482
-    Top = 395
+    Top = 443
     Width = 6
     Height = 13
     Alignment = taRightJustify
@@ -363,7 +363,7 @@ object FormDumpData: TFormDumpData
   end
   object Label42: TLabel
     Left = 482
-    Top = 419
+    Top = 467
     Width = 6
     Height = 13
     Alignment = taRightJustify
@@ -371,7 +371,7 @@ object FormDumpData: TFormDumpData
   end
   object Label43: TLabel
     Left = 482
-    Top = 443
+    Top = 491
     Width = 6
     Height = 13
     Alignment = taRightJustify
@@ -379,7 +379,7 @@ object FormDumpData: TFormDumpData
   end
   object Label44: TLabel
     Left = 482
-    Top = 467
+    Top = 515
     Width = 6
     Height = 13
     Alignment = taRightJustify
@@ -387,7 +387,7 @@ object FormDumpData: TFormDumpData
   end
   object Label45: TLabel
     Left = 482
-    Top = 491
+    Top = 539
     Width = 6
     Height = 13
     Alignment = taRightJustify
@@ -395,7 +395,7 @@ object FormDumpData: TFormDumpData
   end
   object Label46: TLabel
     Left = 482
-    Top = 515
+    Top = 563
     Width = 6
     Height = 13
     Alignment = taRightJustify
@@ -403,7 +403,39 @@ object FormDumpData: TFormDumpData
   end
   object Label47: TLabel
     Left = 482
-    Top = 539
+    Top = 587
+    Width = 6
+    Height = 13
+    Alignment = taRightJustify
+    Caption = '0'
+  end
+  object Label2: TLabel
+    Left = 306
+    Top = 275
+    Width = 6
+    Height = 13
+    Alignment = taRightJustify
+    Caption = '0'
+  end
+  object Label3: TLabel
+    Left = 482
+    Top = 275
+    Width = 6
+    Height = 13
+    Alignment = taRightJustify
+    Caption = '0'
+  end
+  object Label25: TLabel
+    Left = 306
+    Top = 299
+    Width = 6
+    Height = 13
+    Alignment = taRightJustify
+    Caption = '0'
+  end
+  object Label26: TLabel
+    Left = 482
+    Top = 299
     Width = 6
     Height = 13
     Alignment = taRightJustify
@@ -500,7 +532,7 @@ object FormDumpData: TFormDumpData
   end
   object BtnSUBCTAS: TButton
     Left = 320
-    Top = 272
+    Top = 320
     Width = 125
     Height = 18
     Caption = 'SUBCTAS'
@@ -508,7 +540,7 @@ object FormDumpData: TFormDumpData
   end
   object BtnAMORTIZA: TButton
     Left = 320
-    Top = 296
+    Top = 344
     Width = 125
     Height = 18
     Caption = 'AMORTIZA'
@@ -516,7 +548,7 @@ object FormDumpData: TFormDumpData
   end
   object BtnCONCEPTOS: TButton
     Left = 320
-    Top = 320
+    Top = 368
     Width = 125
     Height = 18
     Caption = 'CONCEPTOS'
@@ -524,7 +556,7 @@ object FormDumpData: TFormDumpData
   end
   object BtnCOMERCIALES: TButton
     Left = 320
-    Top = 344
+    Top = 392
     Width = 125
     Height = 18
     Caption = 'COMERCIALES'
@@ -532,7 +564,7 @@ object FormDumpData: TFormDumpData
   end
   object BtnTIPODIARIO: TButton
     Left = 320
-    Top = 368
+    Top = 416
     Width = 125
     Height = 18
     Caption = 'TIPODIARIO'
@@ -540,7 +572,7 @@ object FormDumpData: TFormDumpData
   end
   object BtnDELEGACION: TButton
     Left = 320
-    Top = 392
+    Top = 440
     Width = 125
     Height = 18
     Caption = 'DELEGACION'
@@ -548,7 +580,7 @@ object FormDumpData: TFormDumpData
   end
   object BtnDEPARTAMENTO: TButton
     Left = 320
-    Top = 416
+    Top = 464
     Width = 125
     Height = 18
     Caption = 'DEPARTAMENTO'
@@ -556,7 +588,7 @@ object FormDumpData: TFormDumpData
   end
   object BtnSECCION: TButton
     Left = 320
-    Top = 440
+    Top = 488
     Width = 125
     Height = 18
     Caption = 'SECCION'
@@ -564,7 +596,7 @@ object FormDumpData: TFormDumpData
   end
   object BtnPROYECTO: TButton
     Left = 320
-    Top = 464
+    Top = 512
     Width = 125
     Height = 18
     Caption = 'PROYECTO'
@@ -572,7 +604,7 @@ object FormDumpData: TFormDumpData
   end
   object BtnANALITICAS: TButton
     Left = 320
-    Top = 488
+    Top = 536
     Width = 125
     Height = 18
     Caption = 'ANALITICAS'
@@ -580,7 +612,7 @@ object FormDumpData: TFormDumpData
   end
   object BtnCARTERAEFECTOS: TButton
     Left = 320
-    Top = 512
+    Top = 560
     Width = 125
     Height = 18
     Caption = 'CARTERAEFECTOS'
@@ -588,7 +620,7 @@ object FormDumpData: TFormDumpData
   end
   object BtnDIARIO: TButton
     Left = 320
-    Top = 536
+    Top = 584
     Width = 125
     Height = 18
     Caption = 'DIARIO'
@@ -600,7 +632,7 @@ object FormDumpData: TFormDumpData
     Width = 121
     Height = 21
     TabOrder = 23
-    Text = 'XXXA'
+    Text = 'TEST04'
   end
   object BtnConnectSQLServer: TButton
     Left = 712
@@ -622,13 +654,30 @@ object FormDumpData: TFormDumpData
   end
   object BtnAll: TButton
     Left = 320
-    Top = 584
+    Top = 632
     Width = 125
     Height = 18
     Caption = 'ALL TABLES'
     TabOrder = 26
   end
+  object BtnGRUPOS: TButton
+    Left = 320
+    Top = 272
+    Width = 125
+    Height = 18
+    Caption = 'GRUPOS'
+    TabOrder = 27
+  end
+  object BtnCUENTAS: TButton
+    Left = 320
+    Top = 296
+    Width = 125
+    Height = 18
+    Caption = 'CUENTAS'
+    TabOrder = 28
+  end
   object Interbase: TIBDatabase
+    Connected = True
     DatabaseName = 'localhost:c:\cviews\datos\SIAMCONT.ib'
     Params.Strings = (
       'user_name=SYSDBA'
@@ -656,7 +705,7 @@ object FormDumpData: TFormDumpData
     Params.Strings = (
       'BlobSize=-1'
       'HostName=.'
-      'DataBase=XXXA'
+      'DataBase=TEST04'
       'DriverName=SQLServer'
       'User_Name=sa'
       'Password=MasterKey'
@@ -1502,8 +1551,8 @@ object FormDumpData: TFormDumpData
     BufferChunks = 1000
     CachedUpdates = False
     TableName = 'SUBCTAS'
-    Left = 96
-    Top = 608
+    Left = 200
+    Top = 80
     object Origin_SUBCTASACUDB01: TFloatField
       FieldName = 'ACUDB01'
     end
@@ -1805,7 +1854,7 @@ object FormDumpData: TFormDumpData
     CachedUpdates = False
     TableName = 'AMORTIZA'
     Left = 200
-    Top = 80
+    Top = 128
     object Origin_AMORTIZASUBCUENTA: TIBStringField
       FieldName = 'SUBCUENTA'
       Size = 10
@@ -1884,7 +1933,7 @@ object FormDumpData: TFormDumpData
     CachedUpdates = False
     TableName = 'CONCEPTOS'
     Left = 200
-    Top = 128
+    Top = 176
     object Origin_CONCEPTOSID_CONCEPTOS: TIBStringField
       FieldName = 'ID_CONCEPTOS'
       Size = 3
@@ -1921,7 +1970,7 @@ object FormDumpData: TFormDumpData
     CachedUpdates = False
     TableName = 'COMERCIALES'
     Left = 200
-    Top = 176
+    Top = 224
     object Origin_COMERCIALESNOMBRE: TIBStringField
       FieldName = 'NOMBRE'
       Size = 50
@@ -1938,7 +1987,7 @@ object FormDumpData: TFormDumpData
     CachedUpdates = False
     TableName = 'TIPODIARIO'
     Left = 200
-    Top = 224
+    Top = 272
     object Origin_TIPODIARIODESCRIPCION: TIBStringField
       FieldName = 'DESCRIPCION'
       Size = 30
@@ -1955,7 +2004,7 @@ object FormDumpData: TFormDumpData
     CachedUpdates = False
     TableName = 'DELEGACION'
     Left = 200
-    Top = 272
+    Top = 320
     object Origin_DELEGACIONNOMBRE: TIBStringField
       FieldName = 'NOMBRE'
       Size = 50
@@ -1972,7 +2021,7 @@ object FormDumpData: TFormDumpData
     CachedUpdates = False
     TableName = 'DEPARTAMENTO'
     Left = 200
-    Top = 320
+    Top = 368
     object Origin_DEPARTAMENTONOMBRE: TIBStringField
       FieldName = 'NOMBRE'
       Size = 50
@@ -1989,7 +2038,7 @@ object FormDumpData: TFormDumpData
     CachedUpdates = False
     TableName = 'SECCION'
     Left = 200
-    Top = 368
+    Top = 416
     object Origin_SECCIONNOMBRE: TIBStringField
       FieldName = 'NOMBRE'
       Size = 50
@@ -2006,7 +2055,7 @@ object FormDumpData: TFormDumpData
     CachedUpdates = False
     TableName = 'PROYECTO'
     Left = 200
-    Top = 416
+    Top = 464
     object Origin_PROYECTONOMBRE: TIBStringField
       FieldName = 'NOMBRE'
       Size = 50
@@ -2023,7 +2072,7 @@ object FormDumpData: TFormDumpData
     CachedUpdates = False
     TableName = 'ANALITICAS'
     Left = 200
-    Top = 464
+    Top = 512
     object Origin_ANALITICASID_PROYECTO: TIBStringField
       FieldName = 'ID_PROYECTO'
       Size = 10
@@ -2056,7 +2105,7 @@ object FormDumpData: TFormDumpData
     CachedUpdates = False
     TableName = 'CARTERAEFECTOS'
     Left = 200
-    Top = 512
+    Top = 560
     object Origin_CARTERAEFECTOSID_CARTERAEFECTOS: TIntegerField
       FieldName = 'ID_CARTERAEFECTOS'
     end
@@ -2121,7 +2170,7 @@ object FormDumpData: TFormDumpData
     CachedUpdates = False
     TableName = 'DIARIO'
     Left = 200
-    Top = 560
+    Top = 608
     object Origin_DIARIOID_DIARIO: TIntegerField
       FieldName = 'ID_DIARIO'
     end
@@ -2227,11 +2276,12 @@ object FormDumpData: TFormDumpData
     Params = <>
     Left = 559
     Top = 128
-    object Target_ASIPREDASIENTO: TSmallintField
+    object Target_ASIPREDASIENTO: TIntegerField
       FieldName = 'ASIENTO'
     end
     object Target_ASIPREDDESCRIPCION: TStringField
       FieldName = 'DESCRIPCION'
+      FixedChar = True
       Size = 40
     end
   end
@@ -2245,10 +2295,10 @@ object FormDumpData: TFormDumpData
     Params = <>
     Left = 559
     Top = 176
-    object Target_LASIPREDASIENTO: TSmallintField
+    object Target_LASIPREDASIENTO: TIntegerField
       FieldName = 'ASIENTO'
     end
-    object Target_LASIPREDAPUNTE: TSmallintField
+    object Target_LASIPREDAPUNTE: TIntegerField
       FieldName = 'APUNTE'
     end
     object Target_LASIPREDSUBCUENTA: TStringField
@@ -2298,10 +2348,10 @@ object FormDumpData: TFormDumpData
     Params = <>
     Left = 559
     Top = 224
-    object Target_PARAMETROSID_PARAMETROS: TSmallintField
+    object Target_PARAMETROSID_PARAMETROS: TIntegerField
       FieldName = 'ID_PARAMETROS'
     end
-    object Target_PARAMETROSLONGITUD_SUBCUENTAS: TSmallintField
+    object Target_PARAMETROSLONGITUD_SUBCUENTAS: TIntegerField
       FieldName = 'LONGITUD_SUBCUENTAS'
     end
     object Target_PARAMETROSFECHA_INICIO_APLICACION: TSQLTimeStampField
@@ -2605,11 +2655,15 @@ object FormDumpData: TFormDumpData
       FieldName = 'CTORETARRE'
       Size = 3
     end
-    object Target_PARAMETROSTANTORETPROF: TFloatField
+    object Target_PARAMETROSTANTORETPROF: TBCDField
       FieldName = 'TANTORETPROF'
+      Precision = 14
+      Size = 3
     end
-    object Target_PARAMETROSTANTORETARRE: TFloatField
+    object Target_PARAMETROSTANTORETARRE: TBCDField
       FieldName = 'TANTORETARRE'
+      Precision = 14
+      Size = 3
     end
     object Target_PARAMETROSSCTAHACIVA: TStringField
       FieldName = 'SCTAHACIVA'
@@ -2705,10 +2759,10 @@ object FormDumpData: TFormDumpData
       FieldName = 'SCTADEUDASDESCUENTOS'
       Size = 10
     end
-    object Target_PARAMETROSASIENTOS_INICIO_INTERVALO_BQDA: TSmallintField
+    object Target_PARAMETROSASIENTOS_INICIO_INTERVALO_BQDA: TIntegerField
       FieldName = 'ASIENTOS_INICIO_INTERVALO_BQDA'
     end
-    object Target_PARAMETROSASIENTOS_FIN_INTERVALO_BQDA: TSmallintField
+    object Target_PARAMETROSASIENTOS_FIN_INTERVALO_BQDA: TIntegerField
       FieldName = 'ASIENTOS_FIN_INTERVALO_BQDA'
     end
     object Target_PARAMETROSMOSTRAR_FILTRO_MAYOR: TStringField
@@ -2721,10 +2775,10 @@ object FormDumpData: TFormDumpData
       FixedChar = True
       Size = 3
     end
-    object Target_PARAMETROSASIENTO_INICIO_INTERVALO_FILTRO: TSmallintField
+    object Target_PARAMETROSASIENTO_INICIO_INTERVALO_FILTRO: TIntegerField
       FieldName = 'ASIENTO_INICIO_INTERVALO_FILTRO'
     end
-    object Target_PARAMETROSASIENTO_FIN_INTERVALO_FILTRO: TSmallintField
+    object Target_PARAMETROSASIENTO_FIN_INTERVALO_FILTRO: TIntegerField
       FieldName = 'ASIENTO_FIN_INTERVALO_FILTRO'
     end
     object Target_PARAMETROSSCTAIVAINTRADEDUCIBLE: TStringField
@@ -2849,10 +2903,12 @@ object FormDumpData: TFormDumpData
     Top = 272
     object Target_TITULOSTITULO: TStringField
       FieldName = 'TITULO'
+      FixedChar = True
       Size = 2
     end
     object Target_TITULOSDESCRIPCION: TStringField
       FieldName = 'DESCRIPCION'
+      FixedChar = True
       Size = 50
     end
     object Target_TITULOSRESTA1: TStringField
@@ -2932,10 +2988,12 @@ object FormDumpData: TFormDumpData
     Top = 320
     object Target_IVARTIPO: TStringField
       FieldName = 'TIPO'
+      FixedChar = True
       Size = 1
     end
     object Target_IVARDESCRIPCION: TStringField
       FieldName = 'DESCRIPCION'
+      FixedChar = True
       Size = 35
     end
   end
@@ -2951,10 +3009,12 @@ object FormDumpData: TFormDumpData
     Top = 368
     object Target_IVASTIPO: TStringField
       FieldName = 'TIPO'
+      FixedChar = True
       Size = 1
     end
     object Target_IVASDESCRIPCION: TStringField
       FieldName = 'DESCRIPCION'
+      FixedChar = True
       Size = 40
     end
   end
@@ -2974,20 +3034,29 @@ object FormDumpData: TFormDumpData
     object Target_NOMINASASIENTO: TIntegerField
       FieldName = 'ASIENTO'
     end
-    object Target_NOMINASNOMINA: TFloatField
+    object Target_NOMINASNOMINA: TBCDField
       FieldName = 'NOMINA'
+      Precision = 14
+      Size = 3
     end
-    object Target_NOMINASIRPF: TFloatField
+    object Target_NOMINASIRPF: TBCDField
       FieldName = 'IRPF'
+      Precision = 14
+      Size = 3
     end
-    object Target_NOMINASSSOCIAL: TFloatField
+    object Target_NOMINASSSOCIAL: TBCDField
       FieldName = 'SSOCIAL'
+      Precision = 14
+      Size = 3
     end
-    object Target_NOMINASNETO: TFloatField
+    object Target_NOMINASNETO: TBCDField
       FieldName = 'NETO'
+      Precision = 14
+      Size = 3
     end
     object Target_NOMINASSUBCUENTA: TStringField
       FieldName = 'SUBCUENTA'
+      FixedChar = True
       Size = 10
     end
     object Target_NOMINASNOMINA_EMPLEADO: TStringField
@@ -3011,19 +3080,20 @@ object FormDumpData: TFormDumpData
       FixedChar = True
       Size = 3
     end
+    object Target_FORMASDESCRIBE: TStringField
+      FieldName = 'DESCRIBE'
+      FixedChar = True
+      Size = 40
+    end
     object Target_FORMASCLASE: TStringField
       FieldName = 'CLASE'
       FixedChar = True
       Size = 1
     end
-    object Target_FORMASDESCRIBE: TStringField
-      FieldName = 'DESCRIBE'
-      Size = 40
-    end
-    object Target_FORMASINTERVALO: TSmallintField
+    object Target_FORMASINTERVALO: TIntegerField
       FieldName = 'INTERVALO'
     end
-    object Target_FORMASNUMVENCI: TSmallintField
+    object Target_FORMASNUMVENCI: TIntegerField
       FieldName = 'NUMVENCI'
     end
     object Target_FORMASOBSOLETO: TStringField
@@ -3049,6 +3119,7 @@ object FormDumpData: TFormDumpData
     end
     object Target_PAISESNOMBRE: TStringField
       FieldName = 'NOMBRE'
+      FixedChar = True
       Size = 30
     end
   end
@@ -3069,6 +3140,7 @@ object FormDumpData: TFormDumpData
     end
     object Target_PROVINCIASNOMBRE: TStringField
       FieldName = 'NOMBRE'
+      FixedChar = True
       Size = 25
     end
     object Target_PROVINCIASCODIGO: TStringField
@@ -3085,157 +3157,257 @@ object FormDumpData: TFormDumpData
     DataSet.MaxBlobSize = -1
     DataSet.Params = <>
     Params = <>
-    Left = 559
-    Top = 608
-    object Target_SUBCTASACUDB01: TFloatField
+    Left = 671
+    Top = 80
+    object Target_SUBCTASACUDB01: TBCDField
       FieldName = 'ACUDB01'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASACUDB02: TFloatField
+    object Target_SUBCTASACUDB02: TBCDField
       FieldName = 'ACUDB02'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASACUDB03: TFloatField
+    object Target_SUBCTASACUDB03: TBCDField
       FieldName = 'ACUDB03'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASACUDB04: TFloatField
+    object Target_SUBCTASACUDB04: TBCDField
       FieldName = 'ACUDB04'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASACUDB05: TFloatField
+    object Target_SUBCTASACUDB05: TBCDField
       FieldName = 'ACUDB05'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASACUDB06: TFloatField
+    object Target_SUBCTASACUDB06: TBCDField
       FieldName = 'ACUDB06'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASACUDB07: TFloatField
+    object Target_SUBCTASACUDB07: TBCDField
       FieldName = 'ACUDB07'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASACUDB08: TFloatField
+    object Target_SUBCTASACUDB08: TBCDField
       FieldName = 'ACUDB08'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASACUDB09: TFloatField
+    object Target_SUBCTASACUDB09: TBCDField
       FieldName = 'ACUDB09'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASACUDB10: TFloatField
+    object Target_SUBCTASACUDB10: TBCDField
       FieldName = 'ACUDB10'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASACUDB11: TFloatField
+    object Target_SUBCTASACUDB11: TBCDField
       FieldName = 'ACUDB11'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASACUDB12: TFloatField
+    object Target_SUBCTASACUDB12: TBCDField
       FieldName = 'ACUDB12'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASACUHB01: TFloatField
+    object Target_SUBCTASACUHB01: TBCDField
       FieldName = 'ACUHB01'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASACUHB02: TFloatField
+    object Target_SUBCTASACUHB02: TBCDField
       FieldName = 'ACUHB02'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASACUHB03: TFloatField
+    object Target_SUBCTASACUHB03: TBCDField
       FieldName = 'ACUHB03'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASACUHB04: TFloatField
+    object Target_SUBCTASACUHB04: TBCDField
       FieldName = 'ACUHB04'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASACUHB05: TFloatField
+    object Target_SUBCTASACUHB05: TBCDField
       FieldName = 'ACUHB05'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASACUHB06: TFloatField
+    object Target_SUBCTASACUHB06: TBCDField
       FieldName = 'ACUHB06'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASACUHB07: TFloatField
+    object Target_SUBCTASACUHB07: TBCDField
       FieldName = 'ACUHB07'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASACUHB08: TFloatField
+    object Target_SUBCTASACUHB08: TBCDField
       FieldName = 'ACUHB08'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASACUHB09: TFloatField
+    object Target_SUBCTASACUHB09: TBCDField
       FieldName = 'ACUHB09'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASACUHB10: TFloatField
+    object Target_SUBCTASACUHB10: TBCDField
       FieldName = 'ACUHB10'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASACUHB11: TFloatField
+    object Target_SUBCTASACUHB11: TBCDField
       FieldName = 'ACUHB11'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASACUHB12: TFloatField
+    object Target_SUBCTASACUHB12: TBCDField
       FieldName = 'ACUHB12'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASANTDB: TFloatField
+    object Target_SUBCTASANTDB: TBCDField
       FieldName = 'ANTDB'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASANTDB01: TFloatField
+    object Target_SUBCTASANTDB01: TBCDField
       FieldName = 'ANTDB01'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASANTDB02: TFloatField
+    object Target_SUBCTASANTDB02: TBCDField
       FieldName = 'ANTDB02'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASANTDB03: TFloatField
+    object Target_SUBCTASANTDB03: TBCDField
       FieldName = 'ANTDB03'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASANTDB04: TFloatField
+    object Target_SUBCTASANTDB04: TBCDField
       FieldName = 'ANTDB04'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASANTDB05: TFloatField
+    object Target_SUBCTASANTDB05: TBCDField
       FieldName = 'ANTDB05'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASANTDB06: TFloatField
+    object Target_SUBCTASANTDB06: TBCDField
       FieldName = 'ANTDB06'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASANTDB07: TFloatField
+    object Target_SUBCTASANTDB07: TBCDField
       FieldName = 'ANTDB07'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASANTDB08: TFloatField
+    object Target_SUBCTASANTDB08: TBCDField
       FieldName = 'ANTDB08'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASANTDB09: TFloatField
+    object Target_SUBCTASANTDB09: TBCDField
       FieldName = 'ANTDB09'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASANTDB10: TFloatField
+    object Target_SUBCTASANTDB10: TBCDField
       FieldName = 'ANTDB10'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASANTDB11: TFloatField
+    object Target_SUBCTASANTDB11: TBCDField
       FieldName = 'ANTDB11'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASANTDB12: TFloatField
+    object Target_SUBCTASANTDB12: TBCDField
       FieldName = 'ANTDB12'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASANTHB: TFloatField
+    object Target_SUBCTASANTHB: TBCDField
       FieldName = 'ANTHB'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASANTHB01: TFloatField
+    object Target_SUBCTASANTHB01: TBCDField
       FieldName = 'ANTHB01'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASANTHB02: TFloatField
+    object Target_SUBCTASANTHB02: TBCDField
       FieldName = 'ANTHB02'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASANTHB03: TFloatField
+    object Target_SUBCTASANTHB03: TBCDField
       FieldName = 'ANTHB03'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASANTHB04: TFloatField
+    object Target_SUBCTASANTHB04: TBCDField
       FieldName = 'ANTHB04'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASANTHB05: TFloatField
+    object Target_SUBCTASANTHB05: TBCDField
       FieldName = 'ANTHB05'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASANTHB06: TFloatField
+    object Target_SUBCTASANTHB06: TBCDField
       FieldName = 'ANTHB06'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASANTHB07: TFloatField
+    object Target_SUBCTASANTHB07: TBCDField
       FieldName = 'ANTHB07'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASANTHB08: TFloatField
+    object Target_SUBCTASANTHB08: TBCDField
       FieldName = 'ANTHB08'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASANTHB09: TFloatField
+    object Target_SUBCTASANTHB09: TBCDField
       FieldName = 'ANTHB09'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASANTHB10: TFloatField
+    object Target_SUBCTASANTHB10: TBCDField
       FieldName = 'ANTHB10'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASANTHB11: TFloatField
+    object Target_SUBCTASANTHB11: TBCDField
       FieldName = 'ANTHB11'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASANTHB12: TFloatField
+    object Target_SUBCTASANTHB12: TBCDField
       FieldName = 'ANTHB12'
+      Precision = 14
+      Size = 3
     end
     object Target_SUBCTASARRENDADOR: TStringField
       FieldName = 'ARRENDADOR'
@@ -3257,25 +3429,33 @@ object FormDumpData: TFormDumpData
       FieldName = 'FAX'
       Size = 16
     end
-    object Target_SUBCTASIVA: TFloatField
+    object Target_SUBCTASIVA: TBCDField
       FieldName = 'IVA'
+      Precision = 14
+      Size = 3
     end
     object Target_SUBCTASPROFESIONAL: TStringField
       FieldName = 'PROFESIONAL'
       Size = 1
     end
-    object Target_SUBCTASRECARGO: TFloatField
+    object Target_SUBCTASRECARGO: TBCDField
       FieldName = 'RECARGO'
+      Precision = 14
+      Size = 3
     end
     object Target_SUBCTASSUBCUENTA: TStringField
       FieldName = 'SUBCUENTA'
       Size = 10
     end
-    object Target_SUBCTASSUMADB: TFloatField
+    object Target_SUBCTASSUMADB: TBCDField
       FieldName = 'SUMADB'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASSUMAHB: TFloatField
+    object Target_SUBCTASSUMAHB: TBCDField
       FieldName = 'SUMAHB'
+      Precision = 14
+      Size = 3
     end
     object Target_SUBCTASTELEFONO: TStringField
       FieldName = 'TELEFONO'
@@ -3319,57 +3499,83 @@ object FormDumpData: TFormDumpData
       FixedChar = True
       Size = 3
     end
-    object Target_SUBCTASDIAPAGO1: TSmallintField
+    object Target_SUBCTASDIAPAGO1: TIntegerField
       FieldName = 'DIAPAGO1'
     end
-    object Target_SUBCTASDIAPAGO2: TSmallintField
+    object Target_SUBCTASDIAPAGO2: TIntegerField
       FieldName = 'DIAPAGO2'
     end
-    object Target_SUBCTASPRES01: TFloatField
+    object Target_SUBCTASPRES01: TBCDField
       FieldName = 'PRES01'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASPRES02: TFloatField
+    object Target_SUBCTASPRES02: TBCDField
       FieldName = 'PRES02'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASPRES03: TFloatField
+    object Target_SUBCTASPRES03: TBCDField
       FieldName = 'PRES03'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASPRES04: TFloatField
+    object Target_SUBCTASPRES04: TBCDField
       FieldName = 'PRES04'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASPRES05: TFloatField
+    object Target_SUBCTASPRES05: TBCDField
       FieldName = 'PRES05'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASPRES06: TFloatField
+    object Target_SUBCTASPRES06: TBCDField
       FieldName = 'PRES06'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASPRES07: TFloatField
+    object Target_SUBCTASPRES07: TBCDField
       FieldName = 'PRES07'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASPRES08: TFloatField
+    object Target_SUBCTASPRES08: TBCDField
       FieldName = 'PRES08'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASPRES09: TFloatField
+    object Target_SUBCTASPRES09: TBCDField
       FieldName = 'PRES09'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASPRES10: TFloatField
+    object Target_SUBCTASPRES10: TBCDField
       FieldName = 'PRES10'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASPRES11: TFloatField
+    object Target_SUBCTASPRES11: TBCDField
       FieldName = 'PRES11'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASPRES12: TFloatField
+    object Target_SUBCTASPRES12: TBCDField
       FieldName = 'PRES12'
+      Precision = 14
+      Size = 3
     end
-    object Target_SUBCTASPRESTOT: TFloatField
+    object Target_SUBCTASPRESTOT: TBCDField
       FieldName = 'PRESTOT'
+      Precision = 14
+      Size = 3
     end
     object Target_SUBCTASOBSOLETO: TStringField
       FieldName = 'OBSOLETO'
       FixedChar = True
       Size = 1
     end
-    object Target_SUBCTASDIAPAGO3: TSmallintField
+    object Target_SUBCTASDIAPAGO3: TIntegerField
       FieldName = 'DIAPAGO3'
     end
     object Target_SUBCTASABREVIATURA: TStringField
@@ -3391,7 +3597,7 @@ object FormDumpData: TFormDumpData
     DataSet.Params = <>
     Params = <>
     Left = 673
-    Top = 80
+    Top = 128
     object Target_AMORTIZASUBCUENTA: TStringField
       FieldName = 'SUBCUENTA'
       Size = 10
@@ -3427,8 +3633,10 @@ object FormDumpData: TFormDumpData
       FieldName = 'PERIODO'
       Size = 1
     end
-    object Target_AMORTIZAANUAL: TFloatField
+    object Target_AMORTIZAANUAL: TBCDField
       FieldName = 'ANUAL'
+      Precision = 14
+      Size = 3
     end
     object Target_AMORTIZAPROVEEDOR: TStringField
       FieldName = 'PROVEEDOR'
@@ -3438,29 +3646,45 @@ object FormDumpData: TFormDumpData
       FieldName = 'FACTURA'
       Size = 15
     end
-    object Target_AMORTIZAVCOMPRA: TFloatField
+    object Target_AMORTIZAVCOMPRA: TBCDField
       FieldName = 'VCOMPRA'
+      Precision = 14
+      Size = 3
     end
-    object Target_AMORTIZAVRESIDUAL: TFloatField
+    object Target_AMORTIZAVRESIDUAL: TBCDField
       FieldName = 'VRESIDUAL'
+      Precision = 14
+      Size = 3
     end
-    object Target_AMORTIZAVAMOR: TFloatField
+    object Target_AMORTIZAVAMOR: TBCDField
       FieldName = 'VAMOR'
+      Precision = 14
+      Size = 3
     end
-    object Target_AMORTIZAVEJPINICIO: TFloatField
+    object Target_AMORTIZAVEJPINICIO: TBCDField
       FieldName = 'VEJPINICIO'
+      Precision = 14
+      Size = 3
     end
-    object Target_AMORTIZAVEJAINICIO: TFloatField
+    object Target_AMORTIZAVEJAINICIO: TBCDField
       FieldName = 'VEJAINICIO'
+      Precision = 14
+      Size = 3
     end
-    object Target_AMORTIZAVEJPAMOR: TFloatField
+    object Target_AMORTIZAVEJPAMOR: TBCDField
       FieldName = 'VEJPAMOR'
+      Precision = 14
+      Size = 3
     end
-    object Target_AMORTIZAVEJAAMOR: TFloatField
+    object Target_AMORTIZAVEJAAMOR: TBCDField
       FieldName = 'VEJAAMOR'
+      Precision = 14
+      Size = 3
     end
-    object Target_AMORTIZACLASE: TFloatField
+    object Target_AMORTIZACLASE: TBCDField
       FieldName = 'CLASE'
+      Precision = 14
+      Size = 3
     end
   end
   object Target_CONCEPTOS: TSimpleDataSet
@@ -3472,7 +3696,7 @@ object FormDumpData: TFormDumpData
     DataSet.Params = <>
     Params = <>
     Left = 673
-    Top = 128
+    Top = 176
     object Target_CONCEPTOSID_CONCEPTOS: TStringField
       FieldName = 'ID_CONCEPTOS'
       FixedChar = True
@@ -3480,6 +3704,7 @@ object FormDumpData: TFormDumpData
     end
     object Target_CONCEPTOSDESCRIPCION: TStringField
       FieldName = 'DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
     object Target_CONCEPTOSTIPOCONTABILIDAD: TStringField
@@ -3515,14 +3740,16 @@ object FormDumpData: TFormDumpData
     DataSet.Params = <>
     Params = <>
     Left = 673
-    Top = 176
-    object Target_COMERCIALESNOMBRE: TStringField
-      FieldName = 'NOMBRE'
-      Size = 50
-    end
+    Top = 224
     object Target_COMERCIALESCOMERCIAL: TStringField
       FieldName = 'COMERCIAL'
+      FixedChar = True
       Size = 10
+    end
+    object Target_COMERCIALESNOMBRE: TStringField
+      FieldName = 'NOMBRE'
+      FixedChar = True
+      Size = 50
     end
   end
   object Target_TIPODIARIO: TSimpleDataSet
@@ -3534,15 +3761,16 @@ object FormDumpData: TFormDumpData
     DataSet.Params = <>
     Params = <>
     Left = 673
-    Top = 224
-    object Target_TIPODIARIODESCRIPCION: TStringField
-      FieldName = 'DESCRIPCION'
-      Size = 30
-    end
+    Top = 272
     object Target_TIPODIARIOTIPODIARIO: TStringField
       FieldName = 'TIPODIARIO'
       FixedChar = True
       Size = 2
+    end
+    object Target_TIPODIARIODESCRIPCION: TStringField
+      FieldName = 'DESCRIPCION'
+      FixedChar = True
+      Size = 30
     end
   end
   object Target_DELEGACION: TSimpleDataSet
@@ -3554,13 +3782,15 @@ object FormDumpData: TFormDumpData
     DataSet.Params = <>
     Params = <>
     Left = 673
-    Top = 272
+    Top = 320
     object Target_DELEGACIONID_DELEGACION: TStringField
       FieldName = 'ID_DELEGACION'
+      FixedChar = True
       Size = 10
     end
     object Target_DELEGACIONNOMBRE: TStringField
       FieldName = 'NOMBRE'
+      FixedChar = True
       Size = 50
     end
   end
@@ -3573,13 +3803,15 @@ object FormDumpData: TFormDumpData
     DataSet.Params = <>
     Params = <>
     Left = 673
-    Top = 320
+    Top = 368
     object Target_DEPARTAMENTOID_DEPARTAMENTO: TStringField
       FieldName = 'ID_DEPARTAMENTO'
+      FixedChar = True
       Size = 10
     end
     object Target_DEPARTAMENTONOMBRE: TStringField
       FieldName = 'NOMBRE'
+      FixedChar = True
       Size = 50
     end
   end
@@ -3592,13 +3824,15 @@ object FormDumpData: TFormDumpData
     DataSet.Params = <>
     Params = <>
     Left = 673
-    Top = 368
+    Top = 416
     object Target_SECCIONID_SECCION: TStringField
       FieldName = 'ID_SECCION'
+      FixedChar = True
       Size = 10
     end
     object Target_SECCIONNOMBRE: TStringField
       FieldName = 'NOMBRE'
+      FixedChar = True
       Size = 50
     end
   end
@@ -3611,13 +3845,15 @@ object FormDumpData: TFormDumpData
     DataSet.Params = <>
     Params = <>
     Left = 673
-    Top = 416
+    Top = 464
     object Target_PROYECTOID_PROYECTO: TStringField
       FieldName = 'ID_PROYECTO'
+      FixedChar = True
       Size = 10
     end
     object Target_PROYECTONOMBRE: TStringField
       FieldName = 'NOMBRE'
+      FixedChar = True
       Size = 50
     end
   end
@@ -3630,29 +3866,35 @@ object FormDumpData: TFormDumpData
     DataSet.Params = <>
     Params = <>
     Left = 673
-    Top = 464
-    object Target_ANALITICASID_PROYECTO: TStringField
-      FieldName = 'ID_PROYECTO'
-      Size = 10
-    end
-    object Target_ANALITICASID_SECCION: TStringField
-      FieldName = 'ID_SECCION'
-      Size = 10
-    end
-    object Target_ANALITICASID_DEPARTAMENTO: TStringField
-      FieldName = 'ID_DEPARTAMENTO'
-      Size = 10
-    end
-    object Target_ANALITICASID_DELEGACION: TStringField
-      FieldName = 'ID_DELEGACION'
+    Top = 512
+    object Target_ANALITICASCUENTA: TStringField
+      FieldName = 'CUENTA'
+      FixedChar = True
       Size = 10
     end
     object Target_ANALITICASNOMBRE: TStringField
       FieldName = 'NOMBRE'
+      FixedChar = True
       Size = 50
     end
-    object Target_ANALITICASCUENTA: TStringField
-      FieldName = 'CUENTA'
+    object Target_ANALITICASID_PROYECTO: TStringField
+      FieldName = 'ID_PROYECTO'
+      FixedChar = True
+      Size = 10
+    end
+    object Target_ANALITICASID_SECCION: TStringField
+      FieldName = 'ID_SECCION'
+      FixedChar = True
+      Size = 10
+    end
+    object Target_ANALITICASID_DEPARTAMENTO: TStringField
+      FieldName = 'ID_DEPARTAMENTO'
+      FixedChar = True
+      Size = 10
+    end
+    object Target_ANALITICASID_DELEGACION: TStringField
+      FieldName = 'ID_DELEGACION'
+      FixedChar = True
       Size = 10
     end
   end
@@ -3665,7 +3907,7 @@ object FormDumpData: TFormDumpData
     DataSet.Params = <>
     Params = <>
     Left = 673
-    Top = 512
+    Top = 560
     object Target_CARTERAEFECTOSID_CARTERAEFECTOS: TIntegerField
       FieldName = 'ID_CARTERAEFECTOS'
     end
@@ -3692,8 +3934,10 @@ object FormDumpData: TFormDumpData
     object Target_CARTERAEFECTOSFASIENTO: TSQLTimeStampField
       FieldName = 'FASIENTO'
     end
-    object Target_CARTERAEFECTOSIMPORTE: TFloatField
+    object Target_CARTERAEFECTOSIMPORTE: TBCDField
       FieldName = 'IMPORTE'
+      Precision = 14
+      Size = 3
     end
     object Target_CARTERAEFECTOSFACTCLIENT: TStringField
       FieldName = 'FACTCLIENT'
@@ -3708,10 +3952,13 @@ object FormDumpData: TFormDumpData
     end
     object Target_CARTERAEFECTOSCOMERCIAL: TStringField
       FieldName = 'COMERCIAL'
+      FixedChar = True
       Size = 10
     end
-    object Target_CARTERAEFECTOSIMPCOMISION: TFloatField
+    object Target_CARTERAEFECTOSIMPCOMISION: TBCDField
       FieldName = 'IMPCOMISION'
+      Precision = 14
+      Size = 3
     end
     object Target_CARTERAEFECTOSASIENTORIESGO: TIntegerField
       FieldName = 'ASIENTORIESGO'
@@ -3733,107 +3980,7 @@ object FormDumpData: TFormDumpData
     DataSet.Params = <>
     Params = <>
     Left = 673
-    Top = 560
-    object Target_DIARIOID_DIARIO: TIntegerField
-      FieldName = 'ID_DIARIO'
-    end
-    object Target_DIARIOAPUNTE: TSmallintField
-      FieldName = 'APUNTE'
-    end
-    object Target_DIARIOASIENTO: TIntegerField
-      FieldName = 'ASIENTO'
-    end
-    object Target_DIARIOBASEIMPONIBLE: TFloatField
-      FieldName = 'BASEIMPONIBLE'
-    end
-    object Target_DIARIOCOMENTARIO: TStringField
-      FieldName = 'COMENTARIO'
-      Size = 40
-    end
-    object Target_DIARIOCONTRAPARTIDA: TStringField
-      FieldName = 'CONTRAPARTIDA'
-      Size = 10
-    end
-    object Target_DIARIODEBEHABER: TStringField
-      FieldName = 'DEBEHABER'
-      FixedChar = True
-      Size = 1
-    end
-    object Target_DIARIOFECHA: TSQLTimeStampField
-      FieldName = 'FECHA'
-    end
-    object Target_DIARIOIMPORTE: TFloatField
-      FieldName = 'IMPORTE'
-    end
-    object Target_DIARIOIVA: TFloatField
-      FieldName = 'IVA'
-    end
-    object Target_DIARIONIF: TStringField
-      FieldName = 'NIF'
-      Size = 15
-    end
-    object Target_DIARIOMONEDA: TStringField
-      FieldName = 'MONEDA'
-      FixedChar = True
-      Size = 1
-    end
-    object Target_DIARIONUMEROFACTURA: TStringField
-      FieldName = 'NUMEROFACTURA'
-      Size = 10
-    end
-    object Target_DIARIORECARGO: TFloatField
-      FieldName = 'RECARGO'
-    end
-    object Target_DIARIOSUBCUENTA: TStringField
-      FieldName = 'SUBCUENTA'
-      Size = 10
-    end
-    object Target_DIARIOPUNTEO: TStringField
-      FieldName = 'PUNTEO'
-      FixedChar = True
-      Size = 1
-    end
-    object Target_DIARIOASIENTOPUNTEO: TIntegerField
-      FieldName = 'ASIENTOPUNTEO'
-    end
-    object Target_DIARIOPUNTEOIVA: TStringField
-      FieldName = 'PUNTEOIVA'
-      FixedChar = True
-      Size = 1
-    end
-    object Target_DIARIOID_CONCEPTOS: TStringField
-      FieldName = 'ID_CONCEPTOS'
-      FixedChar = True
-      Size = 3
-    end
-    object Target_DIARIOTIPODIARIO: TStringField
-      FieldName = 'TIPODIARIO'
-      FixedChar = True
-      Size = 2
-    end
-    object Target_DIARIOCUENTA_ANALITICA: TStringField
-      FieldName = 'CUENTA_ANALITICA'
-      Size = 10
-    end
-    object Target_DIARIOCUOTAIVA: TFloatField
-      FieldName = 'CUOTAIVA'
-    end
-    object Target_DIARIOCUOTARECARGO: TFloatField
-      FieldName = 'CUOTARECARGO'
-    end
-    object Target_DIARIOTIPOASIENTO: TIntegerField
-      FieldName = 'TIPOASIENTO'
-    end
-    object Target_DIARIOASIENTONOMINA: TIntegerField
-      FieldName = 'ASIENTONOMINA'
-    end
-    object Target_DIARIOEJERCICIO: TIntegerField
-      FieldName = 'EJERCICIO'
-    end
-    object Target_DIARIOSERIE: TStringField
-      FieldName = 'SERIE'
-      Size = 5
-    end
+    Top = 608
   end
   object Target_SIAM: TSimpleDataSet
     Aggregates = <>
@@ -3851,13 +3998,531 @@ object FormDumpData: TFormDumpData
     object Target_SIAMFECHAULTACTUALIZACION: TSQLTimeStampField
       FieldName = 'FECHAULTACTUALIZACION'
     end
-    object Target_SIAMULTIMAACTUALIZACION: TSQLTimeStampField
+    object Target_SIAMULTIMAACTUALIZACION: TIntegerField
       FieldName = 'ULTIMAACTUALIZACION'
     end
     object Target_SIAMVERSION: TStringField
       FieldName = 'VERSION'
       FixedChar = True
       Size = 5
+    end
+  end
+  object Origin_GRUPOS: TIBTable
+    Database = Interbase
+    Transaction = Transaction
+    BufferChunks = 1000
+    CachedUpdates = False
+    TableName = 'GRUPOS'
+    Left = 96
+    Top = 608
+    object Origin_GRUPOSDESCRIPCION: TIBStringField
+      FieldName = 'DESCRIPCION'
+      Size = 50
+    end
+    object Origin_GRUPOSGRUPO: TIBStringField
+      FieldName = 'GRUPO'
+      Size = 3
+    end
+  end
+  object Origin_CUENTAS: TIBTable
+    Database = Interbase
+    Transaction = Transaction
+    BufferChunks = 1000
+    CachedUpdates = False
+    TableName = 'CUENTAS'
+    Left = 96
+    Top = 656
+    object Origin_CUENTASCUENTA: TIBStringField
+      FieldName = 'CUENTA'
+      Size = 3
+    end
+    object Origin_CUENTASACUDB01: TFloatField
+      FieldName = 'ACUDB01'
+    end
+    object Origin_CUENTASACUDB02: TFloatField
+      FieldName = 'ACUDB02'
+    end
+    object Origin_CUENTASACUDB03: TFloatField
+      FieldName = 'ACUDB03'
+    end
+    object Origin_CUENTASACUDB04: TFloatField
+      FieldName = 'ACUDB04'
+    end
+    object Origin_CUENTASACUDB05: TFloatField
+      FieldName = 'ACUDB05'
+    end
+    object Origin_CUENTASACUDB06: TFloatField
+      FieldName = 'ACUDB06'
+    end
+    object Origin_CUENTASACUDB07: TFloatField
+      FieldName = 'ACUDB07'
+    end
+    object Origin_CUENTASACUDB08: TFloatField
+      FieldName = 'ACUDB08'
+    end
+    object Origin_CUENTASACUDB09: TFloatField
+      FieldName = 'ACUDB09'
+    end
+    object Origin_CUENTASACUDB10: TFloatField
+      FieldName = 'ACUDB10'
+    end
+    object Origin_CUENTASACUDB11: TFloatField
+      FieldName = 'ACUDB11'
+    end
+    object Origin_CUENTASACUDB12: TFloatField
+      FieldName = 'ACUDB12'
+    end
+    object Origin_CUENTASACUHB01: TFloatField
+      FieldName = 'ACUHB01'
+    end
+    object Origin_CUENTASACUHB02: TFloatField
+      FieldName = 'ACUHB02'
+    end
+    object Origin_CUENTASACUHB03: TFloatField
+      FieldName = 'ACUHB03'
+    end
+    object Origin_CUENTASACUHB04: TFloatField
+      FieldName = 'ACUHB04'
+    end
+    object Origin_CUENTASACUHB05: TFloatField
+      FieldName = 'ACUHB05'
+    end
+    object Origin_CUENTASACUHB06: TFloatField
+      FieldName = 'ACUHB06'
+    end
+    object Origin_CUENTASACUHB07: TFloatField
+      FieldName = 'ACUHB07'
+    end
+    object Origin_CUENTASACUHB08: TFloatField
+      FieldName = 'ACUHB08'
+    end
+    object Origin_CUENTASACUHB09: TFloatField
+      FieldName = 'ACUHB09'
+    end
+    object Origin_CUENTASACUHB10: TFloatField
+      FieldName = 'ACUHB10'
+    end
+    object Origin_CUENTASACUHB11: TFloatField
+      FieldName = 'ACUHB11'
+    end
+    object Origin_CUENTASACUHB12: TFloatField
+      FieldName = 'ACUHB12'
+    end
+    object Origin_CUENTASANTDB01: TFloatField
+      FieldName = 'ANTDB01'
+    end
+    object Origin_CUENTASANTDB02: TFloatField
+      FieldName = 'ANTDB02'
+    end
+    object Origin_CUENTASANTDB03: TFloatField
+      FieldName = 'ANTDB03'
+    end
+    object Origin_CUENTASANTDB04: TFloatField
+      FieldName = 'ANTDB04'
+    end
+    object Origin_CUENTASANTDB05: TFloatField
+      FieldName = 'ANTDB05'
+    end
+    object Origin_CUENTASANTDB06: TFloatField
+      FieldName = 'ANTDB06'
+    end
+    object Origin_CUENTASANTDB07: TFloatField
+      FieldName = 'ANTDB07'
+    end
+    object Origin_CUENTASANTDB08: TFloatField
+      FieldName = 'ANTDB08'
+    end
+    object Origin_CUENTASANTDB09: TFloatField
+      FieldName = 'ANTDB09'
+    end
+    object Origin_CUENTASANTDB10: TFloatField
+      FieldName = 'ANTDB10'
+    end
+    object Origin_CUENTASANTDB11: TFloatField
+      FieldName = 'ANTDB11'
+    end
+    object Origin_CUENTASANTDB12: TFloatField
+      FieldName = 'ANTDB12'
+    end
+    object Origin_CUENTASANTHB01: TFloatField
+      FieldName = 'ANTHB01'
+    end
+    object Origin_CUENTASANTHB02: TFloatField
+      FieldName = 'ANTHB02'
+    end
+    object Origin_CUENTASANTHB03: TFloatField
+      FieldName = 'ANTHB03'
+    end
+    object Origin_CUENTASANTHB04: TFloatField
+      FieldName = 'ANTHB04'
+    end
+    object Origin_CUENTASANTHB05: TFloatField
+      FieldName = 'ANTHB05'
+    end
+    object Origin_CUENTASANTHB06: TFloatField
+      FieldName = 'ANTHB06'
+    end
+    object Origin_CUENTASANTHB07: TFloatField
+      FieldName = 'ANTHB07'
+    end
+    object Origin_CUENTASANTHB08: TFloatField
+      FieldName = 'ANTHB08'
+    end
+    object Origin_CUENTASANTHB09: TFloatField
+      FieldName = 'ANTHB09'
+    end
+    object Origin_CUENTASANTHB10: TFloatField
+      FieldName = 'ANTHB10'
+    end
+    object Origin_CUENTASANTHB11: TFloatField
+      FieldName = 'ANTHB11'
+    end
+    object Origin_CUENTASANTHB12: TFloatField
+      FieldName = 'ANTHB12'
+    end
+    object Origin_CUENTASANTHB: TFloatField
+      FieldName = 'ANTHB'
+    end
+    object Origin_CUENTASANTDB: TFloatField
+      FieldName = 'ANTDB'
+    end
+    object Origin_CUENTASDESCRIPCION: TIBStringField
+      FieldName = 'DESCRIPCION'
+      Size = 50
+    end
+    object Origin_CUENTASGRUPO1: TIBStringField
+      FieldName = 'GRUPO1'
+      Size = 3
+    end
+    object Origin_CUENTASGRUPO2: TIBStringField
+      FieldName = 'GRUPO2'
+      Size = 3
+    end
+    object Origin_CUENTASSUMADB: TFloatField
+      FieldName = 'SUMADB'
+    end
+    object Origin_CUENTASSUMAHB: TFloatField
+      FieldName = 'SUMAHB'
+    end
+    object Origin_CUENTASTIPOCUENTA: TIBStringField
+      FieldName = 'TIPOCUENTA'
+      Size = 1
+    end
+  end
+  object Target_GRUPOS: TSimpleDataSet
+    Aggregates = <>
+    Connection = SQLServer
+    DataSet.CommandText = 'GRUPOS'
+    DataSet.CommandType = ctTable
+    DataSet.MaxBlobSize = -1
+    DataSet.Params = <>
+    Params = <>
+    Left = 559
+    Top = 608
+    object Target_GRUPOSGRUPO: TStringField
+      FieldName = 'GRUPO'
+      FixedChar = True
+      Size = 3
+    end
+    object Target_GRUPOSDESCRIPCION: TStringField
+      FieldName = 'DESCRIPCION'
+      FixedChar = True
+      Size = 50
+    end
+  end
+  object Target_CUENTAS: TSimpleDataSet
+    Aggregates = <>
+    Connection = SQLServer
+    DataSet.CommandText = 'CUENTAS'
+    DataSet.CommandType = ctTable
+    DataSet.MaxBlobSize = -1
+    DataSet.Params = <>
+    Params = <>
+    Left = 559
+    Top = 656
+    object Target_CUENTASCUENTA: TStringField
+      FieldName = 'CUENTA'
+      FixedChar = True
+      Size = 3
+    end
+    object Target_CUENTASDESCRIPCION: TStringField
+      FieldName = 'DESCRIPCION'
+      FixedChar = True
+      Size = 50
+    end
+    object Target_CUENTASGRUPO1: TStringField
+      FieldName = 'GRUPO1'
+      FixedChar = True
+      Size = 3
+    end
+    object Target_CUENTASGRUPO2: TStringField
+      FieldName = 'GRUPO2'
+      FixedChar = True
+      Size = 3
+    end
+    object Target_CUENTASTIPOCUENTA: TStringField
+      FieldName = 'TIPOCUENTA'
+      Size = 1
+    end
+    object Target_CUENTASACUDB01: TBCDField
+      FieldName = 'ACUDB01'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASACUDB02: TBCDField
+      FieldName = 'ACUDB02'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASACUDB03: TBCDField
+      FieldName = 'ACUDB03'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASACUDB04: TBCDField
+      FieldName = 'ACUDB04'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASACUDB05: TBCDField
+      FieldName = 'ACUDB05'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASACUDB06: TBCDField
+      FieldName = 'ACUDB06'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASACUDB07: TBCDField
+      FieldName = 'ACUDB07'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASACUDB08: TBCDField
+      FieldName = 'ACUDB08'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASACUDB09: TBCDField
+      FieldName = 'ACUDB09'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASACUDB10: TBCDField
+      FieldName = 'ACUDB10'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASACUDB11: TBCDField
+      FieldName = 'ACUDB11'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASACUDB12: TBCDField
+      FieldName = 'ACUDB12'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASACUHB01: TBCDField
+      FieldName = 'ACUHB01'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASACUHB02: TBCDField
+      FieldName = 'ACUHB02'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASACUHB03: TBCDField
+      FieldName = 'ACUHB03'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASACUHB04: TBCDField
+      FieldName = 'ACUHB04'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASACUHB05: TBCDField
+      FieldName = 'ACUHB05'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASACUHB06: TBCDField
+      FieldName = 'ACUHB06'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASACUHB07: TBCDField
+      FieldName = 'ACUHB07'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASACUHB08: TBCDField
+      FieldName = 'ACUHB08'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASACUHB09: TBCDField
+      FieldName = 'ACUHB09'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASACUHB10: TBCDField
+      FieldName = 'ACUHB10'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASACUHB11: TBCDField
+      FieldName = 'ACUHB11'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASACUHB12: TBCDField
+      FieldName = 'ACUHB12'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASANTDB01: TBCDField
+      FieldName = 'ANTDB01'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASANTDB02: TBCDField
+      FieldName = 'ANTDB02'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASANTDB03: TBCDField
+      FieldName = 'ANTDB03'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASANTDB04: TBCDField
+      FieldName = 'ANTDB04'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASANTDB05: TBCDField
+      FieldName = 'ANTDB05'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASANTDB06: TBCDField
+      FieldName = 'ANTDB06'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASANTDB07: TBCDField
+      FieldName = 'ANTDB07'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASANTDB08: TBCDField
+      FieldName = 'ANTDB08'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASANTDB09: TBCDField
+      FieldName = 'ANTDB09'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASANTDB10: TBCDField
+      FieldName = 'ANTDB10'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASANTDB11: TBCDField
+      FieldName = 'ANTDB11'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASANTDB12: TBCDField
+      FieldName = 'ANTDB12'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASANTHB01: TBCDField
+      FieldName = 'ANTHB01'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASANTHB02: TBCDField
+      FieldName = 'ANTHB02'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASANTHB03: TBCDField
+      FieldName = 'ANTHB03'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASANTHB04: TBCDField
+      FieldName = 'ANTHB04'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASANTHB05: TBCDField
+      FieldName = 'ANTHB05'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASANTHB06: TBCDField
+      FieldName = 'ANTHB06'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASANTHB07: TBCDField
+      FieldName = 'ANTHB07'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASANTHB08: TBCDField
+      FieldName = 'ANTHB08'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASANTHB09: TBCDField
+      FieldName = 'ANTHB09'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASANTHB10: TBCDField
+      FieldName = 'ANTHB10'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASANTHB11: TBCDField
+      FieldName = 'ANTHB11'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASANTHB12: TBCDField
+      FieldName = 'ANTHB12'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASANTHB: TBCDField
+      FieldName = 'ANTHB'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASANTDB: TBCDField
+      FieldName = 'ANTDB'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASSUMADB: TBCDField
+      FieldName = 'SUMADB'
+      Precision = 14
+      Size = 3
+    end
+    object Target_CUENTASSUMAHB: TBCDField
+      FieldName = 'SUMAHB'
+      Precision = 14
+      Size = 3
     end
   end
 end
