@@ -127,3 +127,6 @@ CodePage=1252
 FileVersion=1.0.0.0
 [Excluded Packages]
 c:\borland\delphi7\Projects\Bpl\DBXnumun.bpl=DBX NUMUN
+[HistoryLists\hlUnitAliases]
+Count=1
+Item0=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;

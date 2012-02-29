@@ -1,6 +1,6 @@
 object FormWizardGestEnterprises: TFormWizardGestEnterprises
-  Left = 421
-  Top = 194
+  Left = 422
+  Top = 195
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   BorderWidth = 4
@@ -1525,7 +1525,7 @@ object FormWizardGestEnterprises: TFormWizardGestEnterprises
       'Archivo de Texto plano (*.txt)|*.txt|Valores separados por comas' +
       ' (*.csv)|*.csv'
     Options = [ofHideReadOnly, ofPathMustExist, ofFileMustExist, ofNoNetworkButton, ofNoDereferenceLinks, ofEnableSizing]
-    Left = 548
+    Left = 564
     Top = 12
   end
   object ImageList: TImageList

@@ -9,7 +9,7 @@ MAKE = $(ROOT)\bin\make.exe -$(MAKEFLAGS) -f$**
 DCC = $(ROOT)\bin\dcc32.exe $**
 BRCC = $(ROOT)\bin\brcc32.exe $**
 #------------------------------------------------------------------------------
-PROJECTS = Contabilidad.exe DumpingData.exe
+PROJECTS = Contabilidad.exe DumpingData.exe Test_Contabilidad.exe ModelGenerator.exe
 #------------------------------------------------------------------------------
 default: $(PROJECTS)
 #------------------------------------------------------------------------------
@@ -18,6 +18,12 @@ Contabilidad.exe: Contabilidad.dpr
   $(DCC)
 
 DumpingData.exe: DumpData\DumpingData.dpr
+  $(DCC)
+
+Test_Contabilidad.exe: Test_Contabilidad.dpr
+  $(DCC)
+
+ModelGenerator.exe: ModelGenerator\ModelGenerator.dpr
   $(DCC)
 
 

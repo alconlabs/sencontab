@@ -105,6 +105,10 @@ HostApplication=
 Launcher=
 UseLauncher=0
 DebugCWD=
+[Language]
+ActiveLang=
+ProjectLang=
+RootDir=
 [Version Info]
 IncludeVerInfo=0
 AutoIncBuild=0
@@ -124,9 +128,3 @@ FileVersion=1.0.0.0
 [HistoryLists\hlUnitAliases]
 Count=1
 Item0=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;
-[HistoryLists\hlSearchPath]
-Count=4
-Item0=..\dunit\src;..\Componentes7\PaqueteBaseDatos\IBTableSet;..\Componentes7\PaqueteBaseDatos\NavegadorNotarios;..\Componentes7\PaqueteSiam\Mensaje;..\Componentes7\PaqueteSiam\Registro;..\OnGuard;..\OPartner7;..\Animated Menus;..\Extra\Source;..\IbScript\source\vcl;..\Siamlib7;..\ShellShock;.\Fuentes
-Item1=..\dunit\src;..\Componentes7\PaqueteBaseDatos\IBTableSet;..\Componentes7\PaqueteBaseDatos\NavegadorNotarios;..\Componentes7\PaqueteSiam\Mensaje;..\Componentes7\PaqueteSiam\Registro;..\OnGuard;..\OPartner7;..\Animated Menus;..\Extra\Source;..\IbScript\source\vcl;..\Siamlib7;..\ShellShock
-Item2=..\Componentes7\PaqueteBaseDatos\IBTableSet;..\Componentes7\PaqueteBaseDatos\NavegadorNotarios;..\Componentes7\PaqueteSiam\Mensaje;..\Componentes7\PaqueteSiam\Registro;..\OnGuard;..\OPartner7;..\Animated Menus;..\Extra\Source;..\IbScript\source\vcl;..\Siamlib7;..\ShellShock
-Item3=..\Componentes7\PaqueteBaseDatos\IBTableSet;..\Componentes7\PaqueteBaseDatos\NavegadorNotarios;..\Componentes7\PaqueteSiam\Mensaje;..\Componentes7\PaqueteSiam\Registro;..\OnGuard;..\OPartner7;..\Animated Menus;..\Extra\Source;C:\cviews\IbScript\source\vcl
