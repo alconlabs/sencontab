@@ -4,7 +4,7 @@ VersionId,Version_ID,Copyright,Global_User_ID,Row_Time_Stamp
 
 Diagram
 DiagramId,Version_ID,VersionId,LastUpdate,CreateDate,ActiveModel,ActiveSubmodel,VSplitterPosition,X,Y,Width,Height,DiagramNameId,AuthorId,CompanyId,VersionNoId,CopyrightStringId,DefinitionId,UnificationOptionId,FileNameId,CopyrightYearStringId,DiagramName,CodePage,SignatureGUID,ReleaseName,Flags,Global_User_ID,Row_Time_Stamp
-1,1,700,02/23/2012 18:46:20G,12/07/2006 11:12:01G,2,1,180,0,0,0,0,491,2,3,4,3,5,6,540,0,SIAMCONT.DM1,1252,NULL,"",0,1,0
+1,1,700,02/28/2012 00:35:56G,12/07/2006 11:12:01G,2,1,180,0,0,0,0,491,2,3,4,3,5,6,540,0,SIAMCONT.DM1,1252,NULL,"",0,1,0
 
 Model
 DiagramId,ModelId,Model_ID,ModelType,PlatformId,NamePrefix,SpaceHandling,CaseHandling,GenPrimaryKey,GenAlternateKey,GenInversionEntry,GenForeignKey,Notation,ModelNameId,RowOverhead,TableOverhead,IndexOverhead,BlobOverhead,BlobBlockSize,Global_User_ID,Row_Time_Stamp
@@ -52,6 +52,7 @@ DiagramId,ModelId,EntityId,Entity_ID,Model_ID,EntityNameId,TableNameId,Definitio
 1,2,23,48,2,34,34,0,0,0,0,0,0,1649,0
 1,2,24,49,2,35,35,0,0,0,0,0,0,1767,0
 1,2,25,50,2,36,36,0,0,0,0,0,0,1782,0
+1,2,26,57,2,602,603,0,0,0,0,0,0,2386,0
 1,1,1,1,1,10,10,0,0,0,9,0,0,3,0
 1,1,2,2,1,12,12,0,0,0,11,0,0,4,0
 1,1,3,3,1,13,13,0,0,0,11,0,0,5,0
@@ -105,6 +106,7 @@ DiagramId,ModelId,EntityId,TableStorage_ID,Entity_ID,Location,FillfactorPercent,
 1,2,23,48,48,"",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,"",0,0,0,"","",0,1650,0
 1,2,24,49,49,"",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,"",0,0,0,"","",0,1768,0
 1,2,25,50,50,"",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,"",0,0,0,"","",0,1783,0
+1,2,26,57,57,"",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,"",0,0,0,"","",0,2387,0
 1,1,1,1,1,"",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,"",0,0,0,"","",0,1904,0
 1,1,2,2,2,"",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,"",0,0,0,"","",0,1905,0
 1,1,3,3,3,"",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,"",0,0,0,"","",0,1906,0
@@ -718,6 +720,8 @@ DiagramId,ModelId,EntityId,AttributeId,Attribute_ID,Entity_ID,UserDatatypeId,Rul
 1,2,23,88,828,48,0,0,0,0,332,332,0,0,0,0,71,1,-1,-1,N,1,1,27,0,0,1,0,0,0,0,0,0,0,0,0,1734,0
 1,2,23,89,829,48,0,0,0,0,333,333,0,0,0,0,38,1,10,-1,N,1,1,4,0,0,1,0,0,0,0,0,0,10,0,0,1735,0
 1,2,23,90,830,48,0,0,0,0,334,334,0,0,0,0,73,1,1,-1,N,1,1,8,0,0,1,0,0,0,0,0,0,0,0,0,1736,0
+1,2,26,1,886,57,0,0,0,0,604,604,0,0,0,0,73,0,20,-1,N,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,2389,0
+1,2,26,2,887,57,0,0,0,0,608,608,0,0,0,0,71,1,-1,-1,N,1,1,2,0,0,1,0,0,0,0,0,0,0,0,0,2393,0
 1,1,1,1,1,1,0,0,0,0,37,37,0,0,37,0,38,0,10,-1,N,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,28,0
 1,1,1,2,2,1,0,0,0,0,39,39,0,0,0,0,38,1,10,-1,N,1,1,2,0,0,1,0,0,0,0,0,0,0,0,0,29,0
 1,1,1,3,3,1,0,0,0,0,40,40,0,0,0,0,41,1,-1,-1,N,1,1,3,0,0,1,0,0,0,0,0,0,0,0,0,30,0
@@ -1019,6 +1023,7 @@ DiagramId,ModelId,EntityId,AttributeId,PrimaryKey_ID,Attribute_ID,SequenceNo,Glo
 1,2,10,1,29,543,1,0,0
 1,2,3,1,53,455,1,0,0
 1,2,15,12,56,884,1,0,0
+1,2,26,1,57,886,1,0,0
 1,1,8,2,7,113,2,0,0
 1,1,1,1,1,1,1,0,0
 1,2,19,1,35,734,1,0,0
@@ -1033,6 +1038,7 @@ DiagramId,ModelId,EntityId,IndexId,Indexes_ID,Entity_ID,IsUniqueId,IndexTypeId,K
 1,1,1,2,2,1,355,0,I,-1,0,0,0,0,0,354,0,456,0
 1,1,1,3,3,1,355,0,I,-1,0,0,0,0,0,356,0,457,0
 1,1,1,4,4,1,355,0,I,-1,0,0,0,0,0,357,0,458,0
+1,2,26,1,230,57,353,553,P,0,0,0,0,0,0,607,0,2390,0
 1,1,1,5,5,1,355,0,I,-1,0,0,0,0,0,358,0,459,0
 1,1,1,6,6,1,355,0,I,-1,0,0,0,0,0,359,0,460,0
 1,1,1,7,79,1,353,0,P,0,0,0,0,0,0,465,0,824,0
@@ -1188,6 +1194,7 @@ DiagramId,ModelId,EntityId,IndexId,IndexStorage_ID,Indexes_ID,Location,Fillfacto
 1,1,1,2,2,2,"",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,"",1930,0
 1,1,1,3,3,3,"",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,"",1931,0
 1,1,1,4,4,4,"",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,"",1932,0
+1,2,26,1,230,230,"",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,P,2391,0
 1,1,1,5,5,5,"",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,"",1933,0
 1,1,1,6,6,6,"",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,"",1934,0
 1,1,1,7,79,79,"",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,"",825,0
@@ -1398,6 +1405,7 @@ DiagramId,ModelId,EntityId,IndexId,AttributeId,IndexColumn_ID,Attribute_ID,Index
 1,1,25,1,1,95,410,77,1,A,694,0
 1,1,6,4,2,33,49,28,1,A,681,0
 1,2,2,5,4,110,454,115,1,A,1038,0
+1,2,26,1,1,265,886,230,1,A,2392,0
 1,1,4,7,2,26,31,21,2,A,764,0
 1,1,11,3,1,184,143,89,1,A,1360,0
 1,1,1,5,9,5,9,5,1,A,719,0
@@ -2195,6 +2203,14 @@ String_Id,Data,Overflow,ConstantString,Row_Time_Stamp
 597,DT,0,0,0
 598,NUM,0,0,0
 599,DC,0,0,0
+600,NextVal,0,0,0
+602,Entity1,0,0,0
+603,SECUENCES,0,0,0
+604,SECUENCE,0,0,0
+605,PK26,0,0,0
+606,"",1,0,0
+607,PK_SEQUENCES,0,0,0
+608,COUNTER,0,0,0
 
 LargeString
 String_Id,Data,Row_Time_Stamp
@@ -2297,6 +2313,47 @@ Sub Main
 End Sub
 
 ",0
+606,"/*
+Name:          cf_nextval
+File:          nextval.cfm
+Created:       5 July 2002
+Version:       1.4
+Author:        James Thortnon <thornton@cs.baylor.edu>
+
+Usage:         <cf_nextval seq=your_sequence>
+ 
+
+Precondition:  seq is a valid sequence in the table sequences
+Postcondition: a variable with the same name as the sequence you passed in
+               is set in the caller scope to the next available sequence_id
+
+Description:   Simulates an Oracle sequence. Returns a unique identifier
+               that can be used across multiple tables.
+
+               Sequence table:
+*/
+ 
+/*
+CREATE TABLE sequences ( -- sequence is a reserved word
+                        seq            char(100) primary key,
+                        sequence_id    int       );
+*/
+--MS SQL Server stored procedure:
+
+CREATE PROCEDURE NextVal
+                 @sequence     CHAR(20),
+                 @secuence_id  INT OUTPUT
+               AS
+-- return an error if sequence does not exist
+-- so we will know if someone truncates the table
+
+   SET @sequence_id = -1
+           
+   UPDATE sequences
+   SET    @sequence_id = sequence_id = sequence_id + 1
+   WHERE  seq = @sequence
+   
+   RETURN @sequence_id",0
 542,"
 
 Function SSDefParUpdtSN( Rel As Relationship ) As String
@@ -5056,6 +5113,15 @@ StringUsage_Id,UniqueObject_Id,StringUsageType_Id,String_Id,Row_Time_Stamp
 2282,2381,15,67,0
 2283,2381,14,67,0
 2284,2381,11,67,0
+2285,2384,80,600,0
+2286,2384,83,606,0
+2287,2386,1,602,0
+2288,2386,2,603,0
+2289,2389,14,604,0
+2290,2389,15,604,0
+2291,2390,39,607,0
+2292,2393,14,608,0
+2293,2393,15,608,0
 
 StringUsageType
 StringUsageType_Id,UsageName,Description,Global_User_ID,Row_Time_Stamp
@@ -7205,6 +7271,16 @@ UniqueObject_Id,ObjectType_Id,Model_ID,Object_Domain_ID,InterModel_Id,IntraModel
 2381,1,2,2,12,15,0576ffcd4ef143768e9bb8a477f1412d,2e86b35e7ed547d69ab5e4b4863e5dc3,02/21/2012 23:17:46G,1329859151,1,0,0
 2382,26,2,2,54,0,0a0332e4f8984111b9f7289a91d58e64,a42a29aef77741b1b537521370b530fa,02/21/2012 23:17:46G,1329859151,1,0,0
 2383,28,2,2,0,0,9a012fe783e644e491a5ecd3a918bc27,f143fe414fa047eaa756ea36a3b62d7b,02/21/2012 23:17:46G,1329859151,1,0,0
+2384,20,2,2,1,0,169bcb0ce239405e950baf1d4e31bf31,56a8b424a9c6481baa0c07e7885b9755,02/27/2012 23:35:56G,1330373798,1,0,0
+2385,76,2,2,0,0,bce3270be2b74babb48518817c487d28,7bfb4b20752f43028f5650d6058a7fa7,02/27/2012 23:35:56G,1330373798,1,0,0
+2386,5,2,2,26,0,06dc9dfc5f3a4765a3cfb80053cfdd36,a11730483d0a4541ac279c67d3703e57,02/27/2012 23:35:56G,1330373811,1,0,0
+2387,41,2,2,0,0,0371a2b841404552b1b866fa24fd8b95,54c1b2da7d1c4e2b8aebbb5583b6fc3e,02/27/2012 23:35:56G,1330373811,1,0,0
+2388,27,0,2,26,0,05a0e90be1b840c2bdbe228350f4ec6f,f846ebff4a7d45469bce3c5d9abb2467,02/27/2012 23:35:56G,1330373811,1,0,0
+2389,1,2,2,1,26,e5cecc242ddc466baeae62d97a1d4520,a831c29fbb264e9fbe053cdf9ea88be0,02/27/2012 23:35:56G,1330373854,1,0,0
+2390,6,2,2,1,26,9faf2279c4054063b9b27a3783ac5d08,c605ef8a9d5e43eead1e7d7b5674adae,02/27/2012 23:35:56G,1330373854,1,0,0
+2391,40,2,2,0,0,971e6c9d38bf44aa82c0c425ce24634b,a2841ac94978454290ca263bb7d82be9,02/27/2012 23:35:56G,1330373854,1,0,0
+2392,28,2,2,0,0,44f94366fb364c13b910296bc904c84c,6fa0bd5269a94983933e4917729a7d26,02/27/2012 23:35:56G,1330373854,1,0,0
+2393,1,2,2,2,26,46aa08b3de7841fdac18f34ea2770a38,fdf654fbd36b41c1881dc5e1dbb1aeb5,02/27/2012 23:35:56G,1330374093,1,0,0
 
 ObjectDefinition
 ObjectType_Id,Description,ObjectName,Global_User_ID,Row_Time_Stamp
@@ -7315,11 +7391,11 @@ Identity_Value_ID,Table_Name,Column_Name,Next_Valid_Value,Global_User_ID,Row_Tim
 9,AppGenSearchColumn,AppGenSearchColumn_ID,1,0,0
 10,Attachment,Attachment_ID,1,0,0
 11,Attachment_Type,Attachment_Type_ID,2,0,0
-12,Attribute,Attribute_ID,886,0,0
+12,Attribute,Attribute_ID,888,0,0
 13,Bound_Dictionary_Object,Bound_Dictionary_Object_ID,1,0,0
 14,CheckConstraints,CheckConstraints_ID,1,0,0
 15,Circular_Layout,Circular_Layout_ID,5,0,0
-16,ColorDefault,ColorDefault_ID,564,0,0
+16,ColorDefault,ColorDefault_ID,570,0,0
 17,Column_Usage,Column_Usage_ID,1,0,0
 18,Components_Layout,Components_Layout_ID,5,0,0
 19,Configuration_Option,Configuration_Option_ID,1,0,0
@@ -7347,9 +7423,9 @@ Identity_Value_ID,Table_Name,Column_Name,Next_Valid_Value,Global_User_ID,Row_Tim
 41,Disconnected_Nodes_Layout,Disconnected_Nodes_Layout_ID,5,0,0
 42,Dock_Pos_Disp_Level,Dock_Pos_Disp_Level_ID,1,0,0
 43,Docking_Position,Docking_Position_ID,1,0,0
-44,Entity,Entity_ID,57,0,0
+44,Entity,Entity_ID,58,0,0
 45,Entity_Size_and_Position,Entity_Size_and_Position_ID,1,0,0
-46,EntityDisplay,EntityDisplay_ID,88,0,0
+46,EntityDisplay,EntityDisplay_ID,89,0,0
 47,Field,Field_ID,1,0,0
 48,Field_Column,Field_Column_ID,1,0,0
 49,Field_Data_Type,Field_Data_Type_ID,1,0,0
@@ -7364,9 +7440,9 @@ Identity_Value_ID,Table_Name,Column_Name,Next_Valid_Value,Global_User_ID,Row_Tim
 58,Group_Meta_Table,Group_Meta_Table_ID,1,0,0
 59,Group_Type,Group_Type_ID,1,0,0
 60,Hierarchical_Layout,Hierarchical_Layout_ID,5,0,0
-61,IndexColumn,IndexColumn_ID,265,0,0
-62,Indexes,Indexes_ID,230,0,0
-63,IndexStorage,IndexStorage_ID,230,0,0
+61,IndexColumn,IndexColumn_ID,266,0,0
+62,Indexes,Indexes_ID,231,0,0
+63,IndexStorage,IndexStorage_ID,231,0,0
 64,InterModelObjectLink,InterModelObjectLink_ID,1,0,0
 65,InterModelRelationship,InterModelRelationship_ID,1,0,0
 66,Layout_Algorithm,Layout_Algorithm_ID,1,0,0
@@ -7390,8 +7466,8 @@ Identity_Value_ID,Table_Name,Column_Name,Next_Valid_Value,Global_User_ID,Row_Tim
 84,Pipeline,Pipeline_ID,1,0,0
 85,Pipeline_Member,Pipeline_Member_ID,1,0,0
 86,Pipeline_Member_Property,Pipeline_Member_Property_ID,1,0,0
-87,PrimaryKey,PrimaryKey_ID,57,0,0
-88,Proc,Proc_ID,1,0,0
+87,PrimaryKey,PrimaryKey_ID,58,0,0
+88,Proc,Proc_ID,2,0,0
 89,Project,Project_ID,1,0,0
 90,Project_Link,Project_Link_ID,1,0,0
 91,Project_Member,Project_Member_ID,1,0,0
@@ -7415,7 +7491,7 @@ Identity_Value_ID,Table_Name,Column_Name,Next_Valid_Value,Global_User_ID,Row_Tim
 109,Shape_Edge_Display,Shape_Edge_Display_ID,1,0,0
 110,Storage_Object,Storage_Object_ID,1,0,0
 111,Submodel,Submodel_ID,5,0,0
-112,Submodel_SchemaObj_Link,Submodel_SchemaObj_Link_ID,1,0,0
+112,Submodel_SchemaObj_Link,Submodel_SchemaObj_Link_ID,2,0,0
 113,SubmodelLink,SubmodelLink_ID,3,0,0
 114,Submodel_Algorithm,Submodel_Algorithm_ID,1,0,0
 115,Subproject,Subproject_ID,1,0,0
@@ -7423,7 +7499,7 @@ Identity_Value_ID,Table_Name,Column_Name,Next_Valid_Value,Global_User_ID,Row_Tim
 117,Supertype,Supertype_ID,1,0,0
 118,SupertypeDisplay,SupertypeDisplay_ID,1,0,0
 119,Symmetric_Layout,Symmetric_Layout_ID,5,0,0
-120,TableStorage,TableStorage_ID,57,0,0
+120,TableStorage,TableStorage_ID,58,0,0
 121,TaskChain,TaskChain_ID,1,0,0
 122,TaskChainComponent,TaskChainComponent_ID,1,0,0
 123,TaskChainComponentDisplay,TaskChainComponentDisplay_ID,1,0,0
@@ -8779,7 +8855,7 @@ SubmodelLink_ID,Model_ID,Parent_ID,Child_ID,UltimateParent_ID,NodeLevel,IsBottom
 
 DiagramDisplay
 DiagramId,ModelId,SubmodelId,DiagramDisplay_ID,Submodel_ID,PlatformId,Animate,ZoomFactor,HviewSize,VviewSize,HorizontalScrollPosition,VerticalScrollPosition,PageOrientation,PageSize,DisplayFormat,EntityDisplayInfo,ViewDisplayFormat,ViewDisplayInfo,Shadow,CompleteRoleName,ShowVerbs,ShowCardinality,MethodologyId,StraightRelLine,PageBoundary,ShowViewRelationship,ShowView,HideTrigger,Global_User_ID,Row_Time_Stamp,ShowSchemaObjEdge,ShowSchemaObj,SchemaObjDisplayFormat,ShowRelationshipName,ShowLogicalRelationshipName,ShowTriggerLabel,ShowShape,ShowShapeEdge,ShowShapeName
-1,2,1,2,2,0,0,7798,0,0,-303,4555,1,1,9,3575,3,0,1,0,1,1,0,0,0,0,0,1,894,0,1,6,7,0,0,0,0,0,1
+1,2,1,2,2,0,0,7798,0,0,375,920,1,1,9,3575,3,0,1,0,1,1,0,0,0,0,0,1,894,0,1,6,7,0,0,0,0,0,1
 1,1,1,1,1,0,0,8897,0,0,2744,2335,1,1,8,3573,1,0,1,0,1,1,0,0,0,0,0,1,577,0,1,6,7,0,0,0,0,0,1
 1,1,3,4,4,0,0,7168,0,0,-166,4805,1,1,8,3573,1,0,1,0,1,1,0,0,1,0,0,1,2224,0,1,6,7,0,0,0,0,0,1
 
@@ -9211,6 +9287,7 @@ DiagramId,ModelId,SubmodelId,EntityId,EntityDisplay_ID,Submodel_ID,Entity_ID,Hor
 1,1,3,2,64,4,2,1843,3831,-1,-1,0,0,0,0,0,0,2301,0
 1,2,1,25,50,2,50,73,5853,-1,-1,0,0,0,0,0,0,1812,0
 1,1,3,3,65,4,3,567,4337,-1,-1,0,0,0,0,0,0,2302,0
+1,2,1,26,88,2,57,1037,308,-1,-1,0,0,0,0,0,0,2388,0
 1,1,3,4,66,4,4,2992,3364,-1,-1,0,0,0,0,0,0,2303,0
 1,1,3,5,67,4,5,3060,3658,-1,-1,0,0,0,0,0,0,2304,0
 1,1,3,6,68,4,6,3110,4013,-1,-1,0,0,0,0,0,0,2305,0
@@ -9233,6 +9310,7 @@ View_Display_ID,Submodel_ID,DbView_ID,DisplayBkgColor,View_Background_Color,Defa
 
 Submodel_SchemaObj_Link
 Submodel_SchemaObj_Link_ID,Submodel_ID,MetaTable_ID,Table_Row_ID,cxNode,cyNode,xNode,yNode,cxNodeBackup,cyNodeBackup,xNodeBackup,yNodeBackup,Flags,Global_User_ID
+1,2,5,1,-1,-1,1464,326,0,0,0,0,0,2385
 
 RelationshipDisplay
 DiagramId,ModelId,SubmodelId,RelationshipId,RelationshipDisplay_ID,ForeignKey_ID,Submodel_ID,ElbowPosition,DisplayVerbs,DisplayCardinality,PhysicalEntityId,VerbOffsetX,VerbOffsetY,InverseVerbOffsetX,InverseVerbOffsetY,DesiredRoutingStyle,ParentConnectorFlags,ParentConnectorOffsetX,ParentConnectorOffsetY,ParentConnectorPerMils,ChildConnectorFlags,ChildConnectorOffsetX,ChildConnectorOffsetY,ChildConnectorPerMils,NameOffsetX,NameOffsetY,LogicalNameOffsetX,LogicalNameOffsetY,Global_User_ID,Row_Time_Stamp
@@ -9535,6 +9613,7 @@ DbTrigger_ID,Entity_ID,Owner_ID,Name_ID,Description_ID,Type,Flags,Trigger_Action
 
 Proc
 Proc_ID,Model_ID,Owner_ID,Name_ID,Description_ID,Type,Flags,Value_ID,Global_User_ID
+1,2,0,600,0,0,1,606,2384
 
 Templated_Proc
 Templated_Proc_ID,Entity_ID,Name_ID,Description_ID,Flags,Value_ID,Global_User_ID

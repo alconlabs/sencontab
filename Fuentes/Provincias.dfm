@@ -1,6 +1,6 @@
 object FormProvincias: TFormProvincias
-  Left = 403
-  Top = 350
+  Left = 404
+  Top = 351
   BorderIcons = []
   BorderStyle = bsToolWindow
   Caption = 'Provincias'

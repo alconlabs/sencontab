@@ -9,7 +9,9 @@ uses
   DMConta in 'Fuentes\DMConta.pas' {DMContaRef: TDataModule},
   TestMainForm in 'UnitTests\TestMainForm.pas' {FormTestMainForm},
   UTDataBase in 'UnitTests\UTDataBase.pas',
-  Provincias in 'Fuentes\Provincias.pas' {FormProvincias};
+  Provincias in 'Fuentes\Provincias.pas' {FormProvincias},
+  CustomView in 'Fuentes\views\CustomView.pas' {CustomView},
+  ConfigurationClass in 'Fuentes\controllers\ConfigurationClass.pas';
 
 {$R *.RES}
 
