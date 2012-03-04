@@ -2,29 +2,29 @@ unit EnterprisesModel;
 
 interface
 
-uses Classes, CRSQLConnection;
+uses Classes, CustomEnterprisesModel, CRSQLConnection;
 
 type
-  TEnterprisesModel = class
+  TEnterprisesModel = class(TCustomEnterprisesModel)
   private
-    FConnection  :TCRSQLConnection;
+    //FConnection  :TCRSQLConnection;
   protected
   public
-    property Connection :TCRSQLConnection  read FConnection;
-    function CreateDBFile(DatabaseName :string):Boolean;
+    //property Connection :TCRSQLConnection  read FConnection;
+    function  CreateDBFile(DatabaseName :string):Boolean;
     procedure RecordNewEnterprise(prmCD_Enterprise, prmDS_Enterprise :string);
-    function CreateDBSchema(DatabaseName :string):Boolean;
+    function  CreateDBSchema(DatabaseName :string):Boolean;
     //function CheckDBSchemaExists(DatabaseName :string):Boolean;
-    constructor Create(AConnection :TCRSQLConnection);
+    //constructor Create(AConnection :TCRSQLConnection);
   end;
 
 implementation
 uses SysUtils, SqlExpr, HashCriptography;
 
-constructor TEnterprisesModel.Create(AConnection: TCRSQLConnection);
-begin
-   FConnection := AConnection;
-end;
+//constructor TEnterprisesModel.Create(AConnection: TCRSQLConnection);
+//begin
+//   FConnection := AConnection;
+//end;
 
 function TEnterprisesModel.CreateDBFile(DatabaseName :string):Boolean;
 var DB :TCRSQLConnection;
@@ -32,14 +32,14 @@ begin
    Result := True;
    DB := TCRSQLConnection.Create(nil);
 
-   DB.ConnectionName := FConnection.ConnectionName; //'SQLServerConnection';
-   DB.DriverName     := FConnection.Drivername;     //'SQLServer';
-   DB.GetDriverFunc  := FConnection.GetDriverFunc;  //'getSQLDriverSQLServer';
-   DB.LibraryName    := FConnection.LibraryName;    //'dbexpsda.dll';
-   DB.LoginPrompt    := FConnection.LoginPrompt;    //False;
-   DB.KeepConnection := FConnection.KeepConnection; //True;
-   DB.VendorLib      := FConnection.VendorLib;      //'sqloledb.dll';
-   DB.Params.Assign(FConnection.Params);
+   DB.ConnectionName := Connection.ConnectionName; //'SQLServerConnection';
+   DB.DriverName     := Connection.Drivername;     //'SQLServer';
+   DB.GetDriverFunc  := Connection.GetDriverFunc;  //'getSQLDriverSQLServer';
+   DB.LibraryName    := Connection.LibraryName;    //'dbexpsda.dll';
+   DB.LoginPrompt    := Connection.LoginPrompt;    //False;
+   DB.KeepConnection := Connection.KeepConnection; //True;
+   DB.VendorLib      := Connection.VendorLib;      //'sqloledb.dll';
+   DB.Params.Assign(Connection.Params);
    DB.Params.Values['DataBase' ] := 'master';
 
    //DB.Params.Values['DriverName' ] := 'SQLServer';
@@ -87,14 +87,14 @@ begin
    Result := True;
    DB := TCRSQLConnection.Create(nil);
 
-   DB.ConnectionName := FConnection.ConnectionName; //'SQLServerConnection';
-   DB.DriverName     := FConnection.Drivername;     //'SQLServer';
-   DB.GetDriverFunc  := FConnection.GetDriverFunc;  //'getSQLDriverSQLServer';
-   DB.LibraryName    := FConnection.LibraryName;    //'dbexpsda.dll';
-   DB.LoginPrompt    := FConnection.LoginPrompt;    //False;
-   DB.KeepConnection := FConnection.KeepConnection; //True;
-   DB.VendorLib      := FConnection.VendorLib;      //'sqloledb.dll';
-   DB.Params.Assign(FConnection.Params);
+   DB.ConnectionName := Connection.ConnectionName; //'SQLServerConnection';
+   DB.DriverName     := Connection.Drivername;     //'SQLServer';
+   DB.GetDriverFunc  := Connection.GetDriverFunc;  //'getSQLDriverSQLServer';
+   DB.LibraryName    := Connection.LibraryName;    //'dbexpsda.dll';
+   DB.LoginPrompt    := Connection.LoginPrompt;    //False;
+   DB.KeepConnection := Connection.KeepConnection; //True;
+   DB.VendorLib      := Connection.VendorLib;      //'sqloledb.dll';
+   DB.Params.Assign(Connection.Params);
    DB.Params.Values['DataBase' ] := DatabaseName;
 
    try
@@ -720,7 +720,7 @@ procedure TEnterprisesModel.RecordNewEnterprise(prmCD_Enterprise, prmDS_Enterpri
 var Q :TSQLQuery;
 begin
    { Comprobamos}
-   Q := FConnection.CreateQuery(
+   Q := Connection.CreateQuery(
         ['INSERT INTO ENTERPRISES(   ',
          '        CD_ENTERPRISE,     ', //CHAR(12)       NOT NULL,
          '        DS_ENTERPRISE,     ', //varchar(80)    NOT NULL,

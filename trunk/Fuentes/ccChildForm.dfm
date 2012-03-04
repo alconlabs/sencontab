@@ -1,6 +1,6 @@
 object ccFormChild: TccFormChild
-  Left = 509
-  Top = 230
+  Left = 528
+  Top = 192
   Width = 639
   Height = 565
   Caption = 'ccFormChild'

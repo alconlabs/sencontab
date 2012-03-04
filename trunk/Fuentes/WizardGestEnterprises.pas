@@ -6,8 +6,8 @@ uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   Buttons, ExtCtrls, DBCtrls, StdCtrls, ComCtrls, Grids,
   DBGrids, Mask, Gauges, DBXpress, SqlExpr, ConfigurationClass,
-  CRSQLConnection, ImgList, jpeg, CheckLst,
-  DBController, CustomView;
+  CRSQLConnection, ImgList, jpeg, CheckLst, Contnrs,
+  DBController, CustomView, DB, SnapBaseDataset, SnapObjectDataset;
 
   {Todo: Lista de pasos realizados. Servirá para volver atras y para saber lo que se debe hacer al final}
 
@@ -66,7 +66,7 @@ type
     Label19: TLabel;
     EditDS_ENTERPRISE: TEdit;
     GroupBoxEnterprise: TGroupBox;
-    DBGrid1: TDBGrid;
+    DBGridEnterprises: TDBGrid;
     GroupBox2: TGroupBox;
     Label16: TLabel;
     Label6: TLabel;
@@ -104,6 +104,13 @@ type
     GroupBox1: TGroupBox;
     Label21: TLabel;
     CheckListBoxResumen: TCheckListBox;
+    HEnterprises: TSnapObjectDataset;
+    HEnterprisesCLOSED: TStringField;
+    HEnterprisesBLOCKED: TStringField;
+    SEnterprises: TDataSource;
+    HEnterprisesCD_ENTERPRISE: TStringField;
+    HEnterprisesDS_ENTERPRISE: TStringField;
+    ImageListGrid: TImageList;
     procedure FormShow(Sender: TObject);
     procedure PageControlChanging(Sender: TObject; var AllowChange: Boolean);
     procedure FormCreate(Sender: TObject);
@@ -113,6 +120,10 @@ type
     procedure BtnEndClick(Sender: TObject);
     procedure BtnBackClick(Sender: TObject);
     procedure BtnHelpClick(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure DBGridEnterprisesDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumn;
+      State: TGridDrawState);
   private
      FOKPresentation :Integer;
      FOKSeleccion :Integer;
@@ -123,6 +134,7 @@ type
      FActivePage  :TActivePage;
 
      FCreateDatabase :TCreateDatabaseDelegate;
+     FEnterpriseRows :TObjectList;  
 
      procedure SetOKPresentation(Value :Integer);
      procedure SetOKSeleccion(Value :Integer);
@@ -158,6 +170,7 @@ type
      property OKCodigos      :Integer     read FOKCodigos      write SetOKCodigos;
      property OKResumen      :Integer     read FOKResumen      write SetResumen;
      property ActivePage     :TActivePage read FActivePage     write SetActivePage;
+     property EnterpriseRows :TObjectList read FEnterpriseRows write FEnterpriseRows;
 
      //constructor CreateWizard;
      //function Execute:Boolean;
@@ -165,7 +178,7 @@ type
 
 implementation
 
-uses General;
+uses General, EnterpriseClass;
 
 {$R *.DFM}
 
@@ -269,6 +282,10 @@ end;
 
 procedure TFormWizardGestEnterprises.FormCreate(Sender: TObject);
 begin
+   FEnterpriseRows := TObjectList.Create(True);
+   HEnterprises.ObjectClassName := TEnterprise.ClassName;
+   HEnterprises.ObjectInstance  := FEnterpriseRows;
+
    RadioGroupManageOrNew.ItemIndex := 0;
    EditCD_Enterprise.CharCase := ecUpperCase;
    FOKPresentation  := 0;
@@ -687,6 +704,53 @@ begin
    else begin
       Result := False;
    end;
+end;
+
+procedure TFormWizardGestEnterprises.FormDestroy(Sender: TObject);
+begin
+   FEnterpriseRows.Free;
+   inherited;
+end;
+
+procedure TFormWizardGestEnterprises.DBGridEnterprisesDrawColumnCell(
+  Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn;
+  State: TGridDrawState);
+var
+  Bitmap     :TBitmap;
+  FixRect    :TRect;
+  ImageIndex :Integer;
+  FenceUp    :Boolean;
+begin
+  // Customizing the 'CLOSED' field
+  if Column.Field = HEnterprisesCLOSED then begin
+    FenceUP := True;
+    //Select the required Image
+    if HEnterprisesCLOSED.AsString = 'F' then ImageIndex := 0
+    else ImageIndex := 1;
+  end else
+  if Column.Field = HEnterprisesBLOCKED then begin
+    FenceUP := True;
+    //Select the required Image
+    if HEnterprisesBLOCKED.AsString = 'F' then ImageIndex := 0
+    else ImageIndex := 1;
+  end
+  else FenceUp := False;
+
+  if FenceUp then begin
+     Bitmap := TBitmap.Create;
+     try
+       ImageListGrid.GetBitmap(ImageIndex, Bitmap);
+       //grab the image from the ImageList
+       FixRect       := Rect;                                     {  this is the center point }
+       FixRect.Left  := Rect.Left - (Bitmap.Width div 2) + ((Rect.Right - Rect.Left) div 2);
+       {Write the surface for the text without text}
+       DBGridEnterprises.Canvas.TextRect(Rect, Rect.Left, Rect.Top, '');
+       //Draw the bitmap
+       DBGridEnterprises.Canvas.Draw(FixRect.Left, Rect.Top+1, Bitmap);
+     finally
+         Bitmap.Free;
+     end;
+  end;
 end;
 
 end.

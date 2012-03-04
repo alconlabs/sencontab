@@ -267,7 +267,8 @@ begin
      Add('    FCharCase   :array[T'+Singular+'Field] of TEditCharCase;');
      Add('    FChanged    :array[T'+Singular+'Field] of Boolean;');
      for i := 0 to ListBoxFields.Items.Count - 1 do begin
-        if LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'char' then begin
+        if (LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'char'   )
+        or (LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'varchar') then begin
           Add('    procedure Set'+RFill(ListBoxFields.Items[i], F)+'(const Value :string);');
         end else
         if LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'int' then begin
@@ -279,7 +280,8 @@ begin
      Add('    procedure SetChanged(prmField :T'+Singular+'Field);');
      Add('  protected');
      for i := 0 to ListBoxFields.Items.Count - 1 do begin
-        if LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'char' then begin
+        if (LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'char'   )
+        or (LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'varchar') then begin
           Add('    F'+RFill(ListBoxFields.Items[i], F+1)+'     :string;');
         end else
         if LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'int' then begin
@@ -296,10 +298,11 @@ begin
      Add('    procedure Initialize; virtual;');
      Add('    function  IsNull(prmField :T'+Singular+'Field):Boolean;');
      Add('    function  IsChanged(prmField :T'+Singular+'Field):Boolean;');
-     Add('    procedure CompareWith(prmDato :T'+Singular+');');
+     Add('    procedure CompareWith(prmData :T'+Singular+');');
      Add('  published');
      for i := 0 to ListBoxFields.Items.Count - 1 do begin
-        if LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'char' then begin
+        if (LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'char'   )
+        or (LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'varchar') then begin
           Add('    property '+RFill(ListBoxFields.Items[i], F)+' :string read F'
                              +RFill(ListBoxFields.Items[i], F)+' write Set'+RFill(ListBoxFields.Items[i], F)+';');
         end else
@@ -395,10 +398,10 @@ begin
      Add('   Result := FChanged[prmField];');
      Add('end;');
      Add('');
-     Add('procedure T'+Singular+'.CompareWith(prmDato :T'+Singular+');');
+     Add('procedure T'+Singular+'.CompareWith(prmData :T'+Singular+');');
      Add('begin');
      for i := 0 to ListBoxFields.Items.Count - 1 do begin
-        Add('   if '+RFill(ListBoxFields.Items[i], F)+' <> prmDato.'
+        Add('   if '+RFill(ListBoxFields.Items[i], F)+' <> prmData.'
                     +RFill(ListBoxFields.Items[i], F)+' then SetChanged('
                     +Lowercase(Singular)+RFill(ListBoxFields.Items[i], F)+');');
      end;
@@ -408,7 +411,8 @@ begin
      {---- Form here to the end of file, the Setters ----}
 
      for i := 0 to ListBoxFields.Items.Count - 1 do begin
-        if LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'char' then begin
+        if (LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'char'   )
+        or (LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'varchar') then begin
           Add('procedure T'+Singular+'.Set'+ListBoxFields.Items[i]+'(const Value :string);');
           Add('begin');
           Add('   if (Trim(Value) <> '''') and IsNull('+LowerCase(Singular)+ListBoxFields.Items[i]+') then begin');
@@ -448,12 +452,12 @@ begin
      Add('(* The result unit is GPL code                             *)');
      Add('(* contact with me at juanc.cilleruelo@gmail.com           *)');
      Add('(***********************************************************)');
-     Add('unit '+Plural+'Model;');
+     Add('unit Custom'+Plural+'Model;');
      Add('');
      Add('interface');
      Add('');
      Add('uses Classes, SysUtils, Forms, Controls, Dialogs, db, SQLExpr,');
-     Add('     '+Singular+'Class;');
+     Add('     '+Singular+'Class, CRSQLConnection;');
      Add('');
      Add('{ TABLE NAME = '+ListBoxTables.Items[ListBoxTables.ItemIndex]+'  }');
      Add('{=== Column Definition ===}');
@@ -466,8 +470,9 @@ begin
      Add('{=== ================= ===}');
      Add('');
      Add('type');
-     Add('  T'+Plural+'Model = class');
+     Add('  TCustom'+Plural+'Model = class');
      Add('  private');
+     Add('    FConnection  :TCRSQLConnection;');
      Add('    FDataSet   :TSQLQuery;');
      Add('    FTableName :string;');
      Add('    FOrderBy   :string;');
@@ -477,13 +482,13 @@ begin
      Add('    function GetEOF :Boolean;');
      Add('    procedure ClearLastError;');
      Add('  public');
-     Add('    constructor Create(prmConnection :TSQLConnection); reintroduce;');
+     Add('    constructor Create(prmConnection :TCRSQLConnection); reintroduce;');
      Add('    destructor  Destroy; override;');
      Add('    function  Open :Boolean;');
-     Add('    procedure QueryByExample(prmValue :T'+Singular+'):Boolean;');
-     Add('    function Save(prmDato :T'+Singular+'):Boolean;');
-     Add('    function Update(prmDato, prmOldDato :T'+Singular+'):Boolean;');
-     Add('    function Delete(prmDato :T'+Singular+'):Boolean;');
+     Add('    function QueryByExample(prmValue :T'+Singular+'):Boolean;');
+     Add('    function Save(prmData :T'+Singular+'):Boolean;');
+     Add('    function Update(prmData, prmOldDato :T'+Singular+'):Boolean;');
+     Add('    function Delete(prmData :T'+Singular+'):Boolean;');
      Add('    function  ExistsChildrenKey(prmData :T'+Singular+'):Boolean;');
      Add('    function  PreviouslyExistsKey(prmData :T'+Singular+'):Boolean;');
      Add('    function  Current :T'+Singular+';');
@@ -491,9 +496,10 @@ begin
      Add('    function  Prior:Boolean;');
      Add('    function  Next:Boolean;');
      Add('    function  Last:Boolean;');
-     Add('    function  Locate(prmDato :T'+Singular+'):Boolean;');
+     Add('    function  Locate(prmData :T'+Singular+'):Boolean;');
      Add('    function  GetDefaults:T'+Singular+';');
      Add('    { Public properties}');
+     Add('    property Connection :TCRSQLConnection  read FConnection;');
      Add('    property EOF :Boolean read GetEOF;');
      Add('    property RowsAffected :Integer read GetRowsAffected;');
      Add('    property RowCount     :Integer read GetRowCount;');
@@ -504,40 +510,41 @@ begin
      Add('implementation');
      Add('uses TypInfo;');
      Add('');
-     Add('constructor T'+Plural+'Model.Create(prmConnection :TSQLConnection);');
+     Add('constructor TCustom'+Plural+'Model.Create(prmConnection :TCRSQLConnection);');
      Add('begin');
      Add('   inherited Create;');
+     Add('   FConnection := prmConnection; ');
      Add('   FTableName := '''+ListBoxTables.Items[ListBoxTables.ItemIndex]+''';');
      Add('   FOrderBy   := '''+ListBoxFields.Items[0]+''';');
      Add('   FDataSet := TSQLQuery.Create(nil);');
      Add('   FDataSet.SQLConnection := prmConnection;');
      Add('end;');
      Add('');
-     Add('destructor T'+Plural+'Model.Destroy;');
+     Add('destructor TCustom'+Plural+'Model.Destroy;');
      Add('begin');
      Add('   FDataSet.Free;');
      Add('   FDataSet := nil;');
      Add('   inherited;');
      Add('end;');
      Add('');
-     Add('procedure T'+Plural+'Model.ClearLastError;');
+     Add('procedure TCustom'+Plural+'Model.ClearLastError;');
      Add('begin');
-     Add('   FLastError := '';');
+     Add('   FLastError := '''';');
      Add('end;');
      Add('');
-     Add('function T'+Plural+'Model.GetRowsAffected:Integer;');
+     Add('function TCustom'+Plural+'Model.GetRowsAffected:Integer;');
      Add('begin');
      Add('   {$Message Warn ''No funciona el RowsAffected con dbExpress''}');
      Add('   Result := FDataSet.RowsAffected;');
      Add('end;');
      Add('');
-     Add('function T'+Plural+'Model.GetRowCount:Integer;');
+     Add('function TCustom'+Plural+'Model.GetRowCount:Integer;');
      Add('begin');
      Add('   {$Message Warn ''No funciona RecordCount con dbExpress''}');
      Add('   Result := FDataSet.RecordCount;');
      Add('end;');
      Add('');
-     Add('function T'+Plural+'Model.GetEOF:Boolean;');
+     Add('function TCustom'+Plural+'Model.GetEOF:Boolean;');
      Add('begin');
      Add('   if FDataSet = nil  then');
      Add('      Result := True');
@@ -547,7 +554,7 @@ begin
      Add('   else Result := FDataSet.EOF;');
      Add('end;');
      Add('');
-     Add('function T'+Plural+'Model.Open:Boolean;');
+     Add('function TCustom'+Plural+'Model.Open:Boolean;');
      Add('begin');
      Add('   FDataSet.Close;');
      Add('   FDataSet.ParamCheck := True;');
@@ -585,7 +592,7 @@ begin
      Add('end;');
      Add('');
 
-     Add('procedure T'+Plural+'Model.QueryByExample(prmValue :T'+Singular+');');
+     Add('function TCustom'+Plural+'Model.QueryByExample(prmValue :T'+Singular+'):Boolean;');
      Add('var i :T'+Singular+'Field;');
      Add('    IsFirst  :Boolean;');
      Add('begin');
@@ -633,9 +640,9 @@ begin
      Add('   //end;');
      Add('end;');
      Add('');
-     Add('function T'+Plural+'Model.Save(prmDato :T'+Singular+'):Boolean;');
+     Add('function TCustom'+Plural+'Model.Save(prmData :T'+Singular+'):Boolean;');
      Add('var SQL     :TStringList;');
-     Add('    Q       :TADOQuery;');
+     Add('    Q       :TSQLQuery;');
      Add('    i       :T'+Singular+'Field;');
      Add('begin');
      Add('   ClearLastError;');
@@ -688,7 +695,7 @@ begin
      Add('end;');
      Add('');
 
-     Add('function T'+Plural+'Model.Update(prmDato, prmOldDato :T'+Singular+'):Boolean;');
+     Add('function TCustom'+Plural+'Model.Update(prmData, prmOldDato :T'+Singular+'):Boolean;');
      Add('var Q     :TStringList;');
      Add('    First :Boolean;');
      Add('');
@@ -706,17 +713,17 @@ begin
      Add('   //Esta query puede ser local. No tiene por qué utilizarse la global');
      Add('');
      Add('   ClearLastError;');
-     Add('   //prmDato.CompareWith(prmOldDato);');
+     Add('   //prmData.CompareWith(prmOldDato);');
      Add('');
      Add('   //First := True;');
      Add('   //Q := TStringList.Create;');
      Add('   //Q.Add(''UPDATE USUARIOS SET    '');');
      Add('   //{If PrimaryKey changed }');
-     Add('   //if prmDato.CD_USUARIO <> prmOldDato.CD_USUARIO then begin');
+     Add('   //if prmData.CD_USUARIO <> prmOldDato.CD_USUARIO then begin');
      Add('   //   Q.Add(''CD_USUARIO = :prmCD_USUARIO'');');
      Add('   //   First := False;');
      Add('   //end;');
-     Add('   //if not prmDato.IsChanged(usuarioDS_USUARIO) then AQU(''DS_USUARI = :prmDS_USUARIO '');');
+     Add('   //if not prmData.IsChanged(usuarioDS_USUARIO) then AQU(''DS_USUARI = :prmDS_USUARIO '');');
      Add('   //Q.Add(''WHERE CD_USUARIO = :prmPK_CD_USUARIO '');');
      Add('');
      Add('   //FDataSet.Close;');
@@ -725,13 +732,13 @@ begin
      Add('   //try');
      Add('   //  try');
      Add('   //    with FDataSet do begin');
-     Add('   //      if prmDato.CD_USUARIO <> prmOldDato.CD_USUARIO then begin');
-     Add('   //         ParamByName(''prmCD_USUARIO'').Value := prmDato.CD_USUARIO;');
+     Add('   //      if prmData.CD_USUARIO <> prmOldDato.CD_USUARIO then begin');
+     Add('   //         ParamByName(''prmCD_USUARIO'').Value := prmData.CD_USUARIO;');
      Add('   //      end;');
      Add('   //      {Primary Key, always shall be assigned }');
      Add('   //      ParamByName(''prmPK_CD_USUARIO'').Value := prmOldDato.CD_USUARIO;');
-     Add('   //      if not prmDato.IsNull('+Singular+'DS_USUARIO)');
-     Add('   //         then ParamByName(''prmDS_USUARIO'').Value := prmDato.DS_USUARIO;');
+     Add('   //      if not prmData.IsNull('+Singular+'DS_USUARIO)');
+     Add('   //         then ParamByName(''prmDS_USUARIO'').Value := prmData.DS_USUARIO;');
      Add('   //    end;');
      Add('   //    FDataSet.ExecSQL;');
      Add('   //    except on E:Exception do');
@@ -741,8 +748,8 @@ begin
      Add('   //end;');
      Add('end;');
      Add('');
-     Add('function T'+Plural+'Model.Delete:Boolean;');
-     Add('function T'+Plural+'Model.Delete(prmData :T'+Singular+'):Boolean;');
+     Add('function TCustom'+Plural+'Model.Delete:Boolean;');
+     Add('function TCustom'+Plural+'Model.Delete(prmData :T'+Singular+'):Boolean;');
      Add('var Q :TADOQuery;');
      Add('begin');
      Add('   ClearLastError;');
@@ -775,7 +782,7 @@ begin
      Add('begin');
      Add('end;');
      Add('');
-     Add('function T'+Plural+'Model.Current :T'+Singular+';');
+     Add('function TCustom'+Plural+'Model.Current :T'+Singular+';');
      Add('var Item :T'+Singular+';');
      Add('    //i   :TUsuarioField;');
      Add('begin');
@@ -785,7 +792,8 @@ begin
      Add('   //   Item.CD_USUARIO := FDataSet.FieldByName(''CD_USUARIO'').AsString;');
      Add('   //end;');
      for i := 0 to ListBoxFields.Items.Count - 1 do begin
-        if LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'char' then begin
+        if (LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'char'   )
+        or (LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'varchar') then begin
           Add('   if not(FDataSet.FieldByName('''+RFill(ListBoxFields.Items[i]+'''', F+1)+').IsNull) then');
           Add('      Item.'+RFill(ListBoxFields.Items[i], F)+' := Trim(FDataSet.FieldByName('''+ListBoxFields.Items[i]+''').AsString);');
         end else
@@ -812,9 +820,8 @@ begin
      Add('   Result := Item;');
      Add('end;');
 
-     
      Add('');
-     Add('function T'+Plural+'Model.First:Boolean;');
+     Add('function TCustom'+Plural+'Model.First:Boolean;');
      Add('begin');
      Add('   ClearLastError;');
      Add('   Result := True;');
@@ -828,7 +835,7 @@ begin
      Add('   end;');
      Add('end;');
      Add('');
-     Add('function T'+Plural+'Model.Prior:Boolean');
+     Add('function TCustom'+Plural+'Model.Prior:Boolean');
      Add('begin');
      Add('   ClearLastError;');
      Add('   Result := True;');
@@ -842,7 +849,7 @@ begin
      Add('   end;');
      Add('end;');
      Add('');
-     Add('function T'+Plural+'Model.Next:Boolean;');
+     Add('function TCustom'+Plural+'Model.Next:Boolean;');
      Add('begin');
      Add('   ClearLastError;');
      Add('   Result := True;');
@@ -856,7 +863,7 @@ begin
      Add('   end;');
      Add('end;');
      Add('');
-     Add('function T'+Plural+'Model.Last:Boolean;');
+     Add('function TCustom'+Plural+'Model.Last:Boolean;');
      Add('begin');
      Add('   ClearLastError;');
      Add('   Result := True;');
@@ -870,7 +877,7 @@ begin
      Add('   end;');
      Add('end;');
      Add('');
-     Add('function T'+Plural+'Model.Locate(prmDato :T'+Singular+'):Boolean;');
+     Add('function TCustom'+Plural+'Model.Locate(prmData :T'+Singular+'):Boolean;');
      Add('begin');
      Add('   ClearLastError;');
      Add('   Result := True;');
@@ -884,7 +891,7 @@ begin
      Add('   end;');
      Add('end;');
      Add('');
-     Add('function T'+Plural+'Model.GetDefaults:T'+Singular+';');
+     Add('function TCustom'+Plural+'Model.GetDefaults:T'+Singular+';');
      Add('begin');
      Add('   Result := T'+Singular+'.Create;');
      Add('   //Result.CD_USUARIO := '';');
@@ -908,11 +915,13 @@ end;
 procedure TForm1.BtnSaveModelClick(Sender: TObject);
 begin
    PrepareGlobalData;
-   SaveDialog.FileName := Plural+'Model.pas';
-   SaveDialog.InitialDir := 'C:\ERPhoenix\Almacen\ModelLayer';
+   SaveDialog.FileName := 'Custom'+Plural+'Model.pas';
+   SaveDialog.InitialDir := 'C:\cviews\sencontab\Models';
    if SaveDialog.Execute then begin
       MemoModel.Lines.SaveToFile(SaveDialog.FileName);
    end;
 end;
+
+
 
 end.
