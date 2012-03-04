@@ -3,7 +3,9 @@ unit EnterprisesController;
 interface
 
 uses Classes, CustomController, DBController,
-     WizardGestEnterprises, EnterprisesModel;
+     WizardGestEnterprises,
+     EnterprisesModel,
+     EnterpriseClass;
 type
   TEnterprisesController = class(TCustomController)
   private
@@ -22,13 +24,22 @@ type
   end;
 
 implementation
-uses Forms, Controls, SysUtils;
+uses Forms, Controls, SysUtils, CustomEnterprisesModel;
 
 constructor TEnterprisesController.Create(ADBController :TDBController);
+var  Enterprise :TEnterprise;
 begin
    inherited Create(ADBController);
    FView  := TFormWizardGestEnterprises.Create(Application);
    FModel := TEnterprisesModel.Create(DBCtlr.DBConnection.Connection);
+   FModel.Open;
+   FView.HEnterprises.Open;
+   while not FModel.EOF do begin
+      Enterprise := FModel.Current;
+      FView.EnterpriseRows.Add(Enterprise);
+      FModel.Next;
+   end;
+   FView.HEnterprises.Refresh;
 end;
 
 destructor TEnterprisesController.Destroy;
@@ -40,7 +51,7 @@ end;
 function TEnterprisesController.ShowView;
 begin
    {Assignament of Resources}
-   FView.Caption                      := 'Asistente de Gestión de Empresas';
+   FView.Caption     := 'Asistente de Gestión de Empresas';
    
    FView.HelpType    := htKeyword;
    FView.HelpKeyword := FView.Name;

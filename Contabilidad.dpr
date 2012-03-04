@@ -104,7 +104,9 @@ uses
   EnterprisesModel in 'Fuentes\models\EnterprisesModel.pas',
   EnterprisesController in 'Fuentes\controllers\EnterprisesController.pas',
   CustomController in 'Fuentes\controllers\CustomController.pas',
-  CustomView in 'Fuentes\views\CustomView.pas' {CustomView};
+  CustomView in 'Fuentes\views\CustomView.pas' {CustomView},
+  EnterpriseClass in 'Fuentes\BusinessObjects\EnterpriseClass.pas',
+  CustomEnterprisesModel in 'Fuentes\models\CustomEnterprisesModel.pas';
 
 {$R *.RES}
 
