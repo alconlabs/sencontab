@@ -186,7 +186,7 @@ uses Dialogs, General, Globales, Cadenas, DM, DMConta, DMControl, Registry, ongu
      UFiltroListadosAsientos, UFiltroListadosMayor, UFiltroSitPgGg, UFormasPago, UGrupos, UImportacion,
      UIrpf110, UIrpf115, UISoc202, Login, UPaises, UParametrizacion, UParametrizacionFacturacion,
      UPlanAnalico, UPlanContable, UPreviewForm, Proyectos, UPunteoDiario, URecalculoSaldos,
-     URegistro, USecciones, USubCuentas, UTiposDiario, UTitulos, UTraspasoApuntes, UTraspasoDatos, UUsuarios,
+     URegistro, USecciones, USubCuentas, UTiposDiario, UTitulos, UTraspasoApuntes, UTraspasoDatos,
      Splash, Provincias, UActualizacionBD;
 {$R *.DFM}
 

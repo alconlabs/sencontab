@@ -135,6 +135,6 @@ Count=1
 Item0=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;
 [HistoryLists\hlSearchPath]
 Count=3
-Item0=$(DELPHI)\Lib\Debug;..\..\sencontab\SnapDataSet
-Item1=$(DELPHI)\Lib\Debug;SnapDataSet
-Item2=SnapDataSet
+Item0=SnapDataSet
+Item1=$(DELPHI)\Lib\Debug;..\..\sencontab\SnapDataSet
+Item2=$(DELPHI)\Lib\Debug;SnapDataSet

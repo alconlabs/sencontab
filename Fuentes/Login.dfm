@@ -1,6 +1,6 @@
 object FormLogin: TFormLogin
-  Left = 474
-  Top = 241
+  Left = 477
+  Top = 245
   HelpType = htKeyword
   HelpKeyword = 'Main_Page'
   BorderIcons = []

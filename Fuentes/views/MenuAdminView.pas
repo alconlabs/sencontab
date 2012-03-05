@@ -1,8 +1,7 @@
 unit MenuAdminView;
 interface
 uses Messages, SysUtils, Classes, Forms, Graphics, Buttons, Menus, ExtCtrls,
-     ComCtrls, Controls, ImgList, StdCtrls,
-     UEmpresas, UUsuarios, CustomView;
+     ComCtrls, Controls, ImgList, StdCtrls, CustomView;
 type
   TFormMenuAdmin = class(TCustomView)
     PanelMenu: TPanel;
@@ -30,10 +29,8 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure LabelMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
     procedure LabelEnterprisesMouseLeave(Sender: TObject);
-    procedure LabelUsersClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
-    FViewUsers       :TWUsuarios;
     function  AnyFormEditing:Boolean;
     procedure WMSysCommand(var Message :TWMSysCommand); message WM_SYSCOMMAND;
     procedure WMClose     (var Message :TWMClose     ); message WM_CLOSE;
@@ -125,16 +122,6 @@ end;
 procedure TFormMenuAdmin.LabelEnterprisesMouseLeave(Sender: TObject);
 begin
    TLabel(Sender).Font.Style := [];
-end;
-
-procedure TFormMenuAdmin.LabelUsersClick(Sender: TObject);
-begin
-   FViewUsers := TWUsuarios.Create(nil);
-   try
-      FViewUsers.Show;
-   finally
-      FViewUsers.Free;
-   end;
 end;
 
 procedure TFormMenuAdmin.FormShow(Sender: TObject);
