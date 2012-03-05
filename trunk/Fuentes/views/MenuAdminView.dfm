@@ -1,6 +1,6 @@
 object FormMenuAdmin: TFormMenuAdmin
-  Left = 363
-  Top = 68
+  Left = 337
+  Top = 158
   Width = 221
   Height = 539
   HelpType = htKeyword
@@ -108,7 +108,6 @@ object FormMenuAdmin: TFormMenuAdmin
         Width = 74
         Height = 22
         Caption = 'Usuarios'
-        OnClick = LabelUsersClick
         OnMouseMove = LabelMouseMove
         OnMouseLeave = LabelEnterprisesMouseLeave
       end

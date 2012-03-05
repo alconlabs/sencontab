@@ -16,7 +16,6 @@ uses
   UPaises in 'Fuentes\UPaises.pas' {WPaises},
   UParametrizacionFacturacion in 'Fuentes\UParametrizacionFacturacion.pas' {WParametrizacionFacturacion},
   Splash in 'Fuentes\Splash.pas' {FormSplash},
-  UUsuarios in 'Fuentes\UUsuarios.pas' {WUsuarios},
   UTitulos in 'Fuentes\UTitulos.pas' {WTitulos},
   UCuentas in 'Fuentes\UCuentas.pas' {WCuentas},
   UNuevaSubcuenta in 'Fuentes\UNuevaSubcuenta.pas' {WNuevaSubcuenta},
@@ -106,7 +105,13 @@ uses
   CustomController in 'Fuentes\controllers\CustomController.pas',
   CustomView in 'Fuentes\views\CustomView.pas' {CustomView},
   EnterpriseClass in 'Fuentes\BusinessObjects\EnterpriseClass.pas',
-  CustomEnterprisesModel in 'Fuentes\models\CustomEnterprisesModel.pas';
+  CustomEnterprisesModel in 'Fuentes\models\CustomEnterprisesModel.pas',
+  UsersController in 'Fuentes\controllers\UsersController.pas',
+  UsersView in 'Fuentes\views\UsersView.pas' {UsersView},
+  UserClass in 'Fuentes\BusinessObjects\UserClass.pas',
+  CustomUsersModel in 'Fuentes\models\CustomUsersModel.pas',
+  UsersModel in 'Fuentes\models\UsersModel.pas',
+  EditUserView in 'Fuentes\views\EditUserView.pas' {EditUserView};
 
 {$R *.RES}
 

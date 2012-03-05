@@ -1,6 +1,6 @@
 object FormEnterprises: TFormEnterprises
-  Left = 388
-  Top = 263
+  Left = 371
+  Top = 214
   BorderStyle = bsDialog
   ClientHeight = 475
   ClientWidth = 777

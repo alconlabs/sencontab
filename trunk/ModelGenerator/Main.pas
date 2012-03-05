@@ -489,8 +489,8 @@ begin
      Add('    function Save(prmData :T'+Singular+'):Boolean;');
      Add('    function Update(prmData, prmOldDato :T'+Singular+'):Boolean;');
      Add('    function Delete(prmData :T'+Singular+'):Boolean;');
-     Add('    function  ExistsChildrenKey(prmData :T'+Singular+'):Boolean;');
-     Add('    function  PreviouslyExistsKey(prmData :T'+Singular+'):Boolean;');
+     Add('    //function  ExistsChildrenKey(prmData :T'+Singular+'):Boolean;');
+     Add('    //function  PreviouslyExistsKey(prmData :T'+Singular+'):Boolean;');
      Add('    function  Current :T'+Singular+';');
      Add('    function  First:Boolean;');
      Add('    function  Prior:Boolean;');
@@ -667,17 +667,12 @@ begin
      Add('     end;');
      Add('     SQL[SQL.Count - 1] := Copy(SQL[SQL.Count - 1], 1, Length(SQL[SQL.Count - 1])-1)+'')'';');
      Add('');
-     Add('     Q := TADOQuery.Create(nil);');
-     Add('     Q.Connection := FDataSet.Connection;');
+     Add('     Q := FConnection.CreateQuery(['''']);');
      Add('     Q.SQL.Assign(SQL);');
-     Add('     Q.ParamCheck := True;');
-     Add('     Q.Parameters.Refresh;');
-     Add('     Q.Parameters.ParseSQL(Q.SQL.Text, True);');
-     Add('     //ShowMessage(Q.SQL.Text);');
      Add('     try');
      for i := 0 to ListBoxFields.Items.Count - 1 do begin
-        Add('       if not prmData.IsNull('+RFill(Singular+ListBoxFields.Items[i], F+1)+') then');
-        Add('          QParameters.ParamByName(''prm'+RFill(ListBoxFields.Items[i]+'''', F)+').Value := prmData.'+ListBoxFields.Items[i]+';');
+        Add('       if not prmData.IsNull('+RFill(Singular+ListBoxFields.Items[i], F+Length(Singular))+') then');
+        Add('          Q.ParamByName(''prm'+RFill(ListBoxFields.Items[i]+'''', F+3{prm})+').Value := prmData.'+ListBoxFields.Items[i]+';');
      end;
      Add('       Result := True;');
      Add('       try Q.ExecSQL;');
@@ -748,21 +743,17 @@ begin
      Add('   //end;');
      Add('end;');
      Add('');
-     Add('function TCustom'+Plural+'Model.Delete:Boolean;');
      Add('function TCustom'+Plural+'Model.Delete(prmData :T'+Singular+'):Boolean;');
-     Add('var Q :TADOQuery;');
+     Add('var Q :TSQLQuery;');
      Add('begin');
      Add('   ClearLastError;');
      Add('   Result := True;');
-     Add('   Q := TADOQuery.Create(nil);');
+     Add('   Q := FConnection.CreateQuery([''DELETE FROM '+ListBoxTables.Items[ListBoxTables.ItemIndex]+''',');
+     Add('                                 ''WHERE '+ListBoxFields.Items[0]+' = :prm'+ListBoxFields.Items[0]+''']);');
      Add('   try');
-     Add('     Q.Connection := FDataSet.Connection;');
-     Add('     Q.SQL.Add(''DELETE FROM '+ListBoxTables.Items[ListBoxTables.ItemIndex]+''');');
-     Add('     Q.SQL.Add(''WHERE '+ListBoxFields.Items[0]+' = :prm'+ListBoxFields.Items[0]+');');
      Add('     Q.ParamCheck := True;');
-     Add('{$Message Error ''change the primary key fields reference if necesary''}');
-     Add('     Q.Parameters.Refresh;');
-     Add('     Q.Parameters[0].Value := prmData.'+ListBoxFields.Items[0]+';');
+     Add('{Message Error ''change the primary key fields reference if necesary''}');
+     Add('     Q.Params[0].Value := prmData.'+ListBoxFields.Items[0]+';');
      Add('     try');
      Add('       Q.ExecSQL;');
      Add('     except');
@@ -777,9 +768,6 @@ begin
      Add('     end;');
      Add('   finally Q.Free;');
      Add('   end;');
-     Add('end;');
-
-     Add('begin');
      Add('end;');
      Add('');
      Add('function TCustom'+Plural+'Model.Current :T'+Singular+';');
@@ -835,7 +823,7 @@ begin
      Add('   end;');
      Add('end;');
      Add('');
-     Add('function TCustom'+Plural+'Model.Prior:Boolean');
+     Add('function TCustom'+Plural+'Model.Prior:Boolean;');
      Add('begin');
      Add('   ClearLastError;');
      Add('   Result := True;');

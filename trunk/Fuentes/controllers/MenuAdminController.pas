@@ -4,15 +4,18 @@ interface
 
 uses Classes, DBController,
      CustomController, MenuAdminView,
-     EnterprisesController;
+     EnterprisesController,
+     UsersController;
 
 type
   TMenuAdminController = class(TCustomController)
   private
     FView                  :TFormMenuAdmin;
     FEnterprisesController :TEnterprisesController;
+    FUsersController       :TUsersController;
   protected
     procedure LabelEnterprisesClick(Sender: TObject);
+    procedure LabelUsersClick(Sender: TObject);
   public
     constructor Create(ADBController :TDBController); override;
     destructor  Destroy; override;
@@ -27,7 +30,8 @@ begin
    inherited Create(ADBController);
    Application.CreateForm(TFormMenuAdmin, FView);
    { Delegates Assignation }
-   FView.LabelEnterprises.OnClick := LabelEnterprisesClick; 
+   FView.LabelEnterprises.OnClick := LabelEnterprisesClick;
+   FView.LabelUsers.OnClick       := LabelUsersClick; 
 end;
 
 destructor TMenuAdminController.Destroy;
@@ -40,6 +44,15 @@ begin
    FEnterprisesController := TEnterprisesController.Create(DBCtlr);
    try
       FEnterprisesController.ShowView;
+   finally
+   end;
+end;
+
+procedure TMenuAdminController.LabelUsersClick(Sender: TObject);
+begin
+   FUsersController := TUsersController.Create(DBCtlr);
+   try
+      FUsersController.ShowView;
    finally
    end;
 end;
