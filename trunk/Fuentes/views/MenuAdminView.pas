@@ -4,27 +4,10 @@ uses Messages, SysUtils, Classes, Forms, Graphics, Buttons, Menus, ExtCtrls,
      ComCtrls, Controls, ImgList, StdCtrls, CustomView;
 type
   TFormMenuAdmin = class(TCustomView)
-    PanelMenu: TPanel;
-    StatusBar: TStatusBar;
-    PanelUserProfiles: TPanel;
-    PanelProfiles: TPanel;
-    PanelUsers: TPanel;
-    PanelEnterprises: TPanel;
-    Panel4: TPanel;
-    Panel5: TPanel;
-    Panel6: TPanel;
-    Panel7: TPanel;
-    Panel8: TPanel;
-    Panel9: TPanel;
-    Panel10: TPanel;
-    Panel11: TPanel;
-    Panel12: TPanel;
-    Panel13: TPanel;
     LabelEnterprises: TLabel;
     LabelUsers: TLabel;
     LabelProfiles: TLabel;
     LabelUserProfiles: TLabel;
-    Timer: TTimer;
     procedure TimerTimer(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure LabelMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
@@ -97,17 +80,17 @@ end;
 
 procedure TFormMenuAdmin.ShowErrorMessage(prmErrorMessage :string);
 begin
-   StatusBar.Font.Color := clRed;
-   StatusBar.Font.Style := [fsBold];
-   StatusBar.Panels[1].Text := '      '+prmErrorMessage;
+   //StatusBar.Font.Color := clRed;
+   //StatusBar.Font.Style := [fsBold];
+   //StatusBar.Panels[1].Text := '      '+prmErrorMessage;
    MessageBeep(MB_ICONHAND);
-   Timer.Enabled := True;
+   //Timer.Enabled := True;
 end;
 
 procedure TFormMenuAdmin.TimerTimer(Sender: TObject);
 begin
-   StatusBar.Panels[1].Text := '';
-   Timer.Enabled := False;
+   //StatusBar.Panels[1].Text := '';
+   //Timer.Enabled := False;
 end;
 
 procedure TFormMenuAdmin.LabelMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);

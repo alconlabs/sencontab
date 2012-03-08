@@ -127,14 +127,3 @@ CodePage=1252
 FileVersion=1.0.0.0
 [Excluded Packages]
 c:\borland\delphi7\Projects\Bpl\DBXnumun.bpl=DBX NUMUN
-[HistoryLists\hlConditionals]
-Count=1
-Item0=EUREKALOG
-[HistoryLists\hlUnitAliases]
-Count=1
-Item0=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;
-[HistoryLists\hlSearchPath]
-Count=3
-Item0=SnapDataSet
-Item1=$(DELPHI)\Lib\Debug;..\..\sencontab\SnapDataSet
-Item2=$(DELPHI)\Lib\Debug;SnapDataSet

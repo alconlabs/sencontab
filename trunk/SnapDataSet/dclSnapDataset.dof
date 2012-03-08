@@ -138,14 +138,3 @@ Comments=
 C:\PROGRA~1\Borland\Delphi7\Projects\Bpl\JclDebugIdeD70.bpl='JCL Debug IDE extension for Delphi 7'
 C:\PROGRA~1\Borland\Delphi7\Projects\Bpl\ProjectAnalyzerD70.bpl='JCL Project Analyzer for Delphi 7'
 C:\PROGRA~1\Borland\Delphi7\Projects\Bpl\IdeOpenDlgFavoriteD70.bpl='JCL Open and Save IDE dialogs with favorite folders for Delphi 7'
-[HistoryLists\hlConditionals]
-Count=1
-Item0=EUREKALOG
-[HistoryLists\hlUnitAliases]
-Count=1
-Item0=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;
-[HistoryLists\hlSearchPath]
-Count=3
-Item0=$(DELPHI)\Lib\Debug;..\..\sencontab\SnapDataSet
-Item1=$(DELPHI)\Lib\Debug;SnapDataSet
-Item2=SnapDataSet

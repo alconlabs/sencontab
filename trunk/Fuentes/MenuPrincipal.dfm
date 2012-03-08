@@ -1,6 +1,6 @@
 object FormPrincipal: TFormPrincipal
-  Left = 93
-  Top = 224
+  Left = 59
+  Top = 197
   Width = 638
   Height = 434
   BorderIcons = [biSystemMenu, biMinimize, biMaximize, biHelp]

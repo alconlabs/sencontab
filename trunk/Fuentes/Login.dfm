@@ -2139,15 +2139,15 @@ object FormLogin: TFormLogin
     TabOrder = 1
   end
   object Panel1: TPanel
-    Left = 192
+    Left = 240
     Top = 200
-    Width = 249
+    Width = 201
     Height = 41
     BevelOuter = bvNone
     Color = 14275008
     TabOrder = 2
     object BtnCancelar: TSpeedButton
-      Left = 57
+      Left = 9
       Top = 8
       Width = 88
       Height = 25
@@ -2162,7 +2162,7 @@ object FormLogin: TFormLogin
       OnClick = BtnCancelarClick
     end
     object BtnAceptar: TSpeedButton
-      Left = 153
+      Left = 105
       Top = 8
       Width = 88
       Height = 25

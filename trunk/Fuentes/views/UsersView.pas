@@ -6,16 +6,16 @@ uses Buttons, Forms, Windows, Messages, DBClient, SysUtils,
 
 type
   TUsersView = class(TCustomView)
-    Panel1:        TPanel;
+    Panel1: TPanel;
     BtnNewUser: TBitBtn;
     BtnDeleteUser: TBitBtn;
     BtnEditUser: TBitBtn;
     ListViewUsers: TListView;
-    BtnList: TBitBtn;
-    BtnReport: TBitBtn;
-    BtnSmallIcons: TBitBtn;
-    BtnIconos: TBitBtn;
     ImageListIcons: TImageList;
+    BtnIconos: TBitBtn;
+    BtnSmallIcons: TBitBtn;
+    BtnReport: TBitBtn;
+    BtnList: TBitBtn;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure BtnListClick(Sender: TObject);
@@ -33,11 +33,13 @@ uses Dialogs;
 
 procedure TUsersView.FormCreate(Sender: TObject);
 begin
+   inherited;
 //
 end;
 
 procedure TUsersView.FormShow(Sender: TObject);
 begin
+   inherited;
    //SetBounds(0, FormPrincipal.Panel1.Top + FormPrincipal.Panel1.Height + 1, Width, Height);
 end;
 

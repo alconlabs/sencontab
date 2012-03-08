@@ -1,9 +1,9 @@
 object FormLoginView: TFormLoginView
-  Left = 478
-  Top = 184
+  Left = 683
+  Top = 380
   BorderIcons = []
   BorderStyle = bsToolWindow
-  ClientHeight = 297
+  ClientHeight = 279
   ClientWidth = 450
   Color = 14275008
   Font.Charset = DEFAULT_CHARSET
@@ -2096,7 +2096,7 @@ object FormLoginView: TFormLoginView
     Left = 176
     Top = 48
     Width = 257
-    Height = 10
+    Height = 17
     Alignment = taCenter
     AutoSize = False
     Font.Charset = ANSI_CHARSET
@@ -2110,7 +2110,7 @@ object FormLoginView: TFormLoginView
   object LabelPasswordWarn: TLabel
     Left = 8
     Top = 248
-    Width = 441
+    Width = 433
     Height = 18
     Alignment = taCenter
     AutoSize = False
@@ -2157,54 +2157,46 @@ object FormLoginView: TFormLoginView
   end
   object Panel1: TPanel
     Left = 192
-    Top = 200
+    Top = 168
     Width = 249
-    Height = 41
+    Height = 9
     BevelOuter = bvNone
     Color = 14275008
     TabOrder = 2
-    object BtnCancel: TBitBtn
-      Left = 57
-      Top = 8
-      Width = 88
-      Height = 25
-      Cursor = crHandPoint
-      Cancel = True
-      Caption = '&Cancelar'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clNavy
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ModalResult = 2
-      ParentFont = False
-      TabOrder = 0
-    end
-    object BtnAccept: TBitBtn
-      Left = 153
-      Top = 8
-      Width = 88
-      Height = 25
-      Cursor = crHandPoint
-      Caption = '&Aceptar'
-      Default = True
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clNavy
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-      TabOrder = 1
-      OnClick = BtnAcceptClick
-    end
   end
-  object StatusBar: TStatusBar
-    Left = 0
-    Top = 277
-    Width = 450
-    Height = 19
-    Align = alNone
-    Panels = <>
+  object BtnCancel: TBitBtn
+    Left = 249
+    Top = 200
+    Width = 88
+    Height = 25
+    Cursor = crHandPoint
+    Cancel = True
+    Caption = '&Cancelar'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clNavy
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ModalResult = 2
+    ParentFont = False
+    TabOrder = 3
+  end
+  object BtnAccept: TBitBtn
+    Left = 345
+    Top = 200
+    Width = 88
+    Height = 25
+    Cursor = crHandPoint
+    Caption = '&Aceptar'
+    Default = True
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clNavy
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 4
+    OnClick = BtnAcceptClick
   end
   object Timer: TTimer
     Enabled = False

@@ -1,6 +1,6 @@
 object EditUserView: TEditUserView
-  Left = 437
-  Top = 224
+  Left = 575
+  Top = 278
   BorderIcons = []
   BorderStyle = bsToolWindow
   ClientHeight = 216

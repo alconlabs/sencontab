@@ -1,10 +1,8 @@
 object UsersView: TUsersView
-  Left = 367
-  Top = 231
-  Width = 784
-  Height = 484
-  BorderIcons = [biSystemMenu, biMinimize, biMaximize, biHelp]
-  Caption = 'Gesti'#243'n de Usuarios de la Aplicaci'#243'n'
+  Left = 358
+  Top = 262
+  Width = 695
+  Height = 456
   Color = 14275008
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clBlack
@@ -13,16 +11,19 @@ object UsersView: TUsersView
   Font.Style = []
   KeyPreview = True
   OldCreateOrder = False
-  Position = poDesktopCenter
   OnCreate = FormCreate
   OnShow = FormShow
+  DesignSize = (
+    687
+    429)
   PixelsPerInch = 96
   TextHeight = 14
   object Panel1: TPanel
-    Left = 673
-    Top = 40
-    Width = 90
-    Height = 365
+    Left = 573
+    Top = 41
+    Width = 106
+    Height = 120
+    Anchors = [akTop, akRight]
     BevelOuter = bvNone
     ParentColor = True
     TabOrder = 0
@@ -73,55 +74,56 @@ object UsersView: TUsersView
     end
   end
   object ListViewUsers: TListView
-    Left = 32
-    Top = 56
-    Width = 609
+    Left = 16
+    Top = 64
+    Width = 553
     Height = 345
+    Anchors = [akLeft, akTop, akRight, akBottom]
     Columns = <>
     LargeImages = ImageListIcons
     TabOrder = 1
   end
-  object BtnList: TBitBtn
-    Left = 32
-    Top = 32
-    Width = 75
-    Height = 25
-    Caption = 'Lista'
-    TabOrder = 2
-    OnClick = BtnListClick
-  end
-  object BtnReport: TBitBtn
-    Left = 106
-    Top = 32
-    Width = 75
-    Height = 25
-    Caption = 'Informe'
-    TabOrder = 3
-    OnClick = BtnReportClick
-  end
-  object BtnSmallIcons: TBitBtn
-    Left = 180
-    Top = 32
-    Width = 75
-    Height = 25
-    Caption = 'Iconitos'
-    TabOrder = 4
-    OnClick = BtnSmallIconsClick
-  end
   object BtnIconos: TBitBtn
-    Left = 254
-    Top = 32
+    Left = 238
+    Top = 40
     Width = 75
     Height = 25
     Caption = 'Iconos'
-    TabOrder = 5
+    TabOrder = 2
     OnClick = BtnIconosClick
+  end
+  object BtnSmallIcons: TBitBtn
+    Left = 164
+    Top = 40
+    Width = 75
+    Height = 25
+    Caption = 'Iconitos'
+    TabOrder = 3
+    OnClick = BtnSmallIconsClick
+  end
+  object BtnReport: TBitBtn
+    Left = 90
+    Top = 40
+    Width = 75
+    Height = 25
+    Caption = 'Informe'
+    TabOrder = 4
+    OnClick = BtnReportClick
+  end
+  object BtnList: TBitBtn
+    Left = 16
+    Top = 40
+    Width = 75
+    Height = 25
+    Caption = 'Lista'
+    TabOrder = 5
+    OnClick = BtnListClick
   end
   object ImageListIcons: TImageList
     Height = 32
     Width = 32
     Left = 384
-    Top = 8
+    Top = 40
     Bitmap = {
       494C010101000400040020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040

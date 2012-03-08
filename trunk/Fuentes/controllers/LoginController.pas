@@ -27,12 +27,13 @@ type
   end;
 
 implementation
-uses Forms, Controls, SysUtils;
+uses Forms, Controls, SysUtils, CustomView;
 
 constructor TLoginController.Create(ADBController :TDBController);
 begin
    inherited Create(ADBController);
    FView  := TFormLoginView.Create(Application);
+   FView.AppleIcons := [aiClose];
    FModel := TLoginModel.Create(DBCtlr.DBConnection.Connection);
 end;
 
