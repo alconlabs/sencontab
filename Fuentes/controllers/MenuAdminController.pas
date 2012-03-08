@@ -23,12 +23,13 @@ type
   end;
 
 implementation
-uses Forms, Controls, SysUtils;
+uses Forms, Controls, SysUtils, CustomView;
 
 constructor TMenuAdminController.Create(ADBController :TDBController);
 begin
    inherited Create(ADBController);
    Application.CreateForm(TFormMenuAdmin, FView);
+   FView.AppleIcons := [aiClose];
    { Delegates Assignation }
    FView.LabelEnterprises.OnClick := LabelEnterprisesClick;
    FView.LabelUsers.OnClick       := LabelUsersClick; 

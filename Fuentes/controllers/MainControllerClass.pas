@@ -34,7 +34,7 @@ type
 
 implementation
 
-uses Controls, Dialogs,
+uses Controls, Dialogs, 
   ShellAPI, Forms;
   //Windows;
   //Messages,

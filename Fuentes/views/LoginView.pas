@@ -18,23 +18,19 @@ type
     Timer: TTimer;
     LabelMensaje2: TLabel;
     Panel1: TPanel;
+    LabelPasswordWarn: TLabel;
     BtnCancel: TBitBtn;
     BtnAccept: TBitBtn;
-    StatusBar: TStatusBar;
-    LabelPasswordWarn: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure BtnAcceptClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure TimerTimer(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
    protected
-    procedure Paint; override;
-    procedure WMNCHitTest(var Msg: TWMNCHitTest) ; message WM_NCHitTest;
    private
     Intentos    :Integer;
    public
     procedure MuestraMensaje(prmMensaje :string; prmMensaje2 :string = '');
-    class function MuestraModal:Boolean;
    end;
 
 var FormLoginView :TFormLoginView;
@@ -42,14 +38,6 @@ var FormLoginView :TFormLoginView;
 implementation
 uses General, Globales, DMControl, IBQuery;
 {$R *.DFM}
-
-class function TFormLoginView.MuestraModal:Boolean;
-begin
-   FormLoginView := Self.Create(nil);
-   try Result := FormLoginView.ShowModal = mrOK;
-   finally FormLoginView.Free;
-   end;
-end;
 
 procedure TFormLoginView.FormCreate(Sender: TObject);
 begin
@@ -142,36 +130,6 @@ begin
    LabelMensaje2.Caption := '';
    Timer.Enabled := False;
    if Intentos > 3 then Application.Terminate;
-end;
-
-procedure TFormLoginView.WMNCHitTest(var Msg: TWMNCHitTest);
-begin
-   {move the form by draging anywhere on the client area }
-   inherited;
-   if Msg.Result = htClient then Msg.Result := htCaption;
-end;
-
-procedure TFormLoginView.Paint;
-var Reg :HRGN;
-begin
-   {Hide Title Bar}
-   SetWindowLong(Handle, GWL_STYLE, GetWindowLong(Handle, GWL_STYLE) and not WS_CAPTION);
-   {Make borders rounded }
-   Reg := CreateRoundRectRgn(0, 0, Width , Height -(Height - ClientHeight), 3, 3);
-   SetWindowRgn(Handle, Reg, True);
-
-   Canvas.Pen.Width := 1;
-   Canvas.Pen.Color := clGray;
-   Canvas.RoundRect(0 ,
-                    0 ,
-                    Width  -2,
-                    ClientHeight -2, 3, 3);
-
-   StatusBar.Left  := 1;
-   StatusBar.Top   := Self.Height - StatusBar.Height -3;
-   StatusBar.Width := Self.Width -4;
-
-   inherited;
 end;
 
 procedure TFormLoginView.FormKeyPress(Sender: TObject; var Key: Char);
