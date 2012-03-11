@@ -1,10 +1,11 @@
 object CustomView: TCustomView
   Left = 673
-  Top = 242
-  Width = 458
-  Height = 318
+  Top = 247
   HelpType = htKeyword
   HelpKeyword = 'Help_Context_Still_Not_Available'
+  AutoScroll = False
+  ClientHeight = 291
+  ClientWidth = 450
   Color = 14275008
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

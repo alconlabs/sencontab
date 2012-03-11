@@ -1,8 +1,9 @@
 object UsersView: TUsersView
   Left = 362
-  Top = 268
+  Top = 272
   Width = 695
-  Height = 456
+  Height = 403
+  Caption = 'Gesti'#243'n de Usuarios'
   Color = 14275008
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clBlack
@@ -11,11 +12,10 @@ object UsersView: TUsersView
   Font.Style = []
   KeyPreview = True
   OldCreateOrder = False
-  OnCreate = FormCreate
   OnShow = FormShow
   DesignSize = (
     687
-    429)
+    376)
   PixelsPerInch = 96
   TextHeight = 14
   object Panel1: TPanel
@@ -77,7 +77,7 @@ object UsersView: TUsersView
     Left = 16
     Top = 64
     Width = 553
-    Height = 345
+    Height = 276
     Anchors = [akLeft, akTop, akRight, akBottom]
     Columns = <>
     LargeImages = ImageListIcons
@@ -122,8 +122,8 @@ object UsersView: TUsersView
   object ImageListIcons: TImageList
     Height = 32
     Width = 32
-    Left = 384
-    Top = 40
+    Left = 352
+    Top = 8
     Bitmap = {
       494C010101000400040020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040

@@ -2,7 +2,8 @@ unit UsersController;
 
 interface
 
-uses Classes, CustomController, DBController,
+uses Classes, CustomController, ComCtrls,
+     DBController,
      UsersView,
      UserClass,
      UsersModel;
@@ -16,6 +17,7 @@ type
     procedure OnClick_NewUser   (Sender : TObject);
     procedure OnClick_ModifyUser(Sender : TObject);
     procedure OnClick_DeleteUser(Sender : TObject);
+    procedure OnListViewUsersSelectItem(Sender: TObject; Item: TListItem; Selected: Boolean);
   public
     constructor Create(ADBController :TDBController); override;
     destructor  Destroy; override;
@@ -23,7 +25,7 @@ type
   end;
 
 implementation
-uses Forms, Controls, SysUtils, ComCtrls,
+uses Forms, Controls, SysUtils, 
      EditUserView, CustomView;
 
 constructor TUsersController.Create(ADBController :TDBController);
@@ -62,9 +64,10 @@ begin
    FView.HelpKeyword := FView.Name;
 
    {Assignment of delegates}
-   FView.BtnNewUser.OnClick    := OnClick_NewUser;
-   FView.BtnEditUser.OnClick   := OnClick_ModifyUser;
-   FView.BtnDeleteUser.OnClick := OnClick_DeleteUser;
+   FView.BtnNewUser.OnClick         := OnClick_NewUser;
+   FView.BtnEditUser.OnClick        := OnClick_ModifyUser;
+   FView.BtnDeleteUser.OnClick      := OnClick_DeleteUser;
+   FView.ListViewUsers.OnSelectItem := OnListViewUsersSelectItem;
    //Result :=
    FView.Show;
 end;
@@ -89,6 +92,13 @@ end;
 procedure TUsersController.OnClick_DeleteUser(Sender :TObject);
 begin
 
+end;
+
+procedure TUsersController.OnListViewUsersSelectItem(Sender: TObject; Item: TListItem; Selected: Boolean);
+var User :TUser;
+begin
+  User := TUser(Item.Data);
+  FView.ShowMessage(User.CD_USER);
 end;
 
 end.

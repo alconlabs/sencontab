@@ -23,9 +23,8 @@ type
     procedure ImageCloseClick(Sender: TObject);
     procedure ImageMinimizeClick(Sender: TObject);
     procedure ImageMaximizeClick(Sender: TObject);
-    procedure FormMouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
     procedure TimerMessageTimer(Sender: TObject);
+    procedure FormMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
    private
      FAppleIcons          :TAppleIcons;
      FAppleIconsVisibles  :TAppleIcons;
@@ -42,6 +41,7 @@ type
    public
      constructor Create(AOwner: TComponent); override;
      procedure ShowMessage(AErrorMessage :string);
+     procedure CustomViewMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
      property AppleIcons         :TAppleIcons read FAppleIcons         write SetAppleIcons;
      property AppleIconsVisibles :TAppleIcons read FAppleIconsVisibles write SetAppleIconsVisibles;
    end;
@@ -49,9 +49,11 @@ type
 implementation
 {$R *.DFM}
 
+const HEIGHT_FROM_BOTTOM = 30;
+
 constructor TCustomView.Create(AOwner: TComponent);
 begin
-   inherited;
+   inherited Create(AOwner);
    SetSystemButtonsColored;
    { Message label for the caption }
    FLabelCaption := TLabelCaptionForm.Create(Self);
@@ -67,32 +69,35 @@ begin
    //FLabelCaption.Caption    := '';
    FLabelCaption.Font.Charset := ANSI_CHARSET;
    FLabelCaption.Font.Color   := clGray;
+   FLabelCaption.Font.Style   := [fsBold];
    FLabelCaption.Font.Height  := 18;
    FLabelCaption.Font.Name    := 'MS Sans Serif';
    FLabelCaption.ParentFont   := False;
    FLabelCaption.SendToBack;
-   FLabelCaption.OnMouseDown := FormMouseDown;
+   FLabelCaption.OnMouseDown := CustomViewMouseDown;
 
    { Message label for error and warning messages }
-   {$Message Warn 'Cambiar el color de la letra al crear los labels'}
-   FLabelCaption := TLabelCaptionForm.Create(Self);
-   FLabelCaption.Parent     := Self;
-   FLabelCaption.AutoSize   := False;
-   FLabelCaption.Left       := 0;
-   FLabelCaption.Top        := ImageMaximize.Top;
-   FLabelCaption.Width      := Self.Width;
-   FLabelCaption.Height     := 20;
-   FLabelCaption.Alignment  := taCenter;
-   FLabelCaption.Offset     := 1;
-   FLabelCaption.LabelStyle := lsRaised;
-   //FLabelCaption.Caption    := '';
-   FLabelCaption.Font.Charset := ANSI_CHARSET;
-   FLabelCaption.Font.Color   := clGray;
-   FLabelCaption.Font.Height  := 18;
-   FLabelCaption.Font.Name    := 'MS Sans Serif';
-   FLabelCaption.ParentFont   := False;
-   FLabelCaption.SendToBack;
-   FLabelCaption.OnMouseDown := FormMouseDown;
+   FLabelMessage := TLabelCaptionForm.Create(Self);
+   FLabelMessage.Parent       := Self;
+   FLabelMessage.ColorOne     := clMoneyGreen;
+   FLabelMessage.ColorTwo     := clMaroon;
+   FLabelMessage.AutoSize     := False;
+   FLabelMessage.Left         := 0;
+   FLabelMessage.Top          := Self.Height - HEIGHT_FROM_BOTTOM;
+   FLabelMessage.Width        := Self.Width;
+   FLabelMessage.Height       := 20;
+   FLabelMessage.Alignment    := taLeftJustify;
+   FLabelMessage.Offset       := 1;
+   FLabelMessage.LabelStyle   := lsLowered;
+   FLabelMessage.Font.Charset := ANSI_CHARSET;
+   //FLabelMessage.Font.Color   := clGray;
+   FLabelMessage.Font.Height  := 18;
+   FLabelMessage.Font.Style   := [fsBold];
+   FLabelMessage.Font.Name    := 'MS Sans Serif';
+   FLabelMessage.ParentFont   := False;
+   FLabelMessage.Anchors      := [akLeft, akBottom];
+   FLabelMessage.SendToBack;
+   FLabelMessage.OnMouseDown := CustomViewMouseDown;
 end;
 
 procedure TCustomView.WMNCHitTest(var Msg: TWMNCHitTest);
@@ -121,9 +126,10 @@ begin
    Canvas.Pen.Color := $003B3B3B;
    case BorderStyle of
       bsSizeable, bsSizeToolWin: begin
-         Rect := CreateRoundRectRgn(0+2, 0+2, Width , Height - (Height - ClientHeight){+6}, 10, 10);
+         AutoScroll := False;  { This is very important. This is the problem of the window offset sizeable. }
+         Rect := CreateRoundRectRgn(0+1, 0+1, Width , Height - (Height - ClientHeight)+6, 10, 10);
          SetWindowRgn(Handle, Rect, True);
-         Canvas.RoundRect(0, 0, Width -6, ClientHeight -5{-6}, 10, 10);
+         Canvas.RoundRect(0, 0, Width -6, ClientHeight -5+6, 10, 10);
       end;
       bsNone, bsSingle, bsToolWindow: begin
          Rect := CreateRoundRectRgn(0, 0, Width , Height - (Height - ClientHeight), 10, 10);
@@ -253,6 +259,11 @@ begin
    Perform(wm_SysCommand, sc_DragMove, 0);
 end;
 
+procedure TCustomView.CustomViewMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+   FormMouseDown(Sender, Button, Shift, X, Y);
+end;
+
 procedure TCustomView.TimerMessageTimer(Sender: TObject);
 begin
    FLabelMessage.Caption := '';
@@ -261,11 +272,17 @@ end;
 
 procedure TCustomView.ShowMessage(AErrorMessage: string);
 begin
-   FLabelMessage.Font.Style := [fsBold];
+   FLabelMessage.Left         := 0;
+   FLabelMessage.Top          := Self.Height - HEIGHT_FROM_BOTTOM;
+   FLabelMessage.Width        := Self.Width;
+   FLabelMessage.Height       := 20;
+   FLabelMessage.Alignment    := taLeftJustify;
    FLabelMessage.Caption := '      '+AErrorMessage;
-   MessageBeep(MB_ICONHAND);
+   //MessageBeep(MB_ICONHAND);
    TimerMessage.Enabled := True;
 end;
+
+
 
 end.
 
