@@ -34,6 +34,7 @@ begin
    inherited Create(ADBController);
    FView  := TFormLoginView.Create(Application);
    FView.AppleIcons := [aiClose];
+   FView.AppleIconsVisibles := [aiClose];
    FModel := TLoginModel.Create(DBCtlr.DBConnection.Connection);
 end;
 

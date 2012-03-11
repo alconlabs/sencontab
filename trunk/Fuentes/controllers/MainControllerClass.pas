@@ -177,7 +177,7 @@ begin
     HELP_TCARD_DATA:              Result := 'HELP_TCARD_DATA';
     HELP_TCARD_OTHER_CALLER:      Result := 'HELP_TCARD_OTHER_CALLER';
   else
-    Result := inttostr(cmd);
+    Result := IntToStr(cmd);
   end;
   Result := 'Command = ' + Result;
 end;

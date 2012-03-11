@@ -1,6 +1,6 @@
 object UsersView: TUsersView
-  Left = 358
-  Top = 262
+  Left = 362
+  Top = 268
   Width = 695
   Height = 456
   Color = 14275008

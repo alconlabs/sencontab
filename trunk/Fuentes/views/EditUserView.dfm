@@ -1,8 +1,8 @@
 object EditUserView: TEditUserView
-  Left = 575
-  Top = 278
+  Left = 626
+  Top = 277
   BorderIcons = []
-  BorderStyle = bsToolWindow
+  BorderStyle = bsDialog
   ClientHeight = 216
   ClientWidth = 450
   Color = 11003889
@@ -13,7 +13,6 @@ object EditUserView: TEditUserView
   Font.Style = []
   KeyPreview = True
   OldCreateOrder = True
-  Position = poScreenCenter
   PixelsPerInch = 96
   TextHeight = 13
   object LabelUser: TLabel
@@ -126,14 +125,6 @@ object EditUserView: TEditUserView
     PasswordChar = '#'
     TabOrder = 1
   end
-  object StatusBar: TStatusBar
-    Left = 0
-    Top = 197
-    Width = 450
-    Height = 19
-    Align = alNone
-    Panels = <>
-  end
   object Edit1: TEdit
     Left = 80
     Top = 38
@@ -148,7 +139,7 @@ object EditUserView: TEditUserView
     MaxLength = 10
     ParentFont = False
     PasswordChar = '#'
-    TabOrder = 3
+    TabOrder = 2
   end
   object Edit2: TEdit
     Left = 120
@@ -164,7 +155,7 @@ object EditUserView: TEditUserView
     MaxLength = 10
     ParentFont = False
     PasswordChar = '#'
-    TabOrder = 4
+    TabOrder = 3
   end
   object Edit3: TEdit
     Left = 120
@@ -180,11 +171,11 @@ object EditUserView: TEditUserView
     MaxLength = 10
     ParentFont = False
     PasswordChar = '#'
-    TabOrder = 5
+    TabOrder = 4
   end
   object BtnCancel: TBitBtn
     Left = 257
-    Top = 160
+    Top = 168
     Width = 88
     Height = 25
     Cursor = crHandPoint
@@ -197,11 +188,11 @@ object EditUserView: TEditUserView
     Font.Style = [fsBold]
     ModalResult = 2
     ParentFont = False
-    TabOrder = 6
+    TabOrder = 5
   end
   object BtnAccept: TBitBtn
     Left = 353
-    Top = 160
+    Top = 168
     Width = 88
     Height = 25
     Cursor = crHandPoint
@@ -213,14 +204,7 @@ object EditUserView: TEditUserView
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 7
+    TabOrder = 6
     OnClick = BtnAcceptClick
-  end
-  object Timer: TTimer
-    Enabled = False
-    Interval = 4000
-    OnTimer = TimerTimer
-    Left = 18
-    Top = 144
   end
 end

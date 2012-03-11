@@ -13,6 +13,7 @@ type
     procedure LabelMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
     procedure LabelEnterprisesMouseLeave(Sender: TObject);
     procedure FormShow(Sender: TObject);
+  protected
   private
     function  AnyFormEditing:Boolean;
     procedure WMSysCommand(var Message :TWMSysCommand); message WM_SYSCOMMAND;
