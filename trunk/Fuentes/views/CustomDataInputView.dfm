@@ -1,6 +1,6 @@
 object CustomDataInputView: TCustomDataInputView
   Left = 673
-  Top = 242
+  Top = 247
   Width = 458
   Height = 318
   HelpType = htKeyword
@@ -13,7 +13,6 @@ object CustomDataInputView: TCustomDataInputView
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = True
-  OnMouseDown = FormMouseDown
   PixelsPerInch = 96
   TextHeight = 13
 end

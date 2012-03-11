@@ -59,10 +59,13 @@ begin
    //FView.EditPassword.scWaterMarkText := GetTextFor('LoginView_EditPassword'      );
 
    {Assignament of the delegates}
-   FView.BtnAccept.OnClick             := OnClick_BtnOK;
-   //FView.BtnCancel.OnClick             := OnClick_BtnCancel;
-   //FView.ClickHandler_LinkLostPassword := OnClick_LinkLostPassword;
-   //FView.ClickHandler_LinkNewAccount   := OnClick_LinkNewAccount;
+   FView.BtnAccept.OnClick                := OnClick_BtnOK;
+   FView.LabelPasswordWarn.OnMouseDown    := FView.CustomViewMouseDown;
+   FView.ImagenAnagrama.OnMouseDown       := FView.CustomViewMouseDown;
+   FView.LabelAccountingTitle.OnMouseDown := FView.CustomViewMouseDown;
+   //FView.BtnCancel.OnClick              := OnClick_BtnCancel;
+   //FView.ClickHandler_LinkLostPassword  := OnClick_LinkLostPassword;
+   //FView.ClickHandler_LinkNewAccount    := OnClick_LinkNewAccount;
 
    FView.LabelPasswordWarn.Visible := FModel.AdminPasswordInitial;
 
@@ -76,13 +79,13 @@ procedure TLoginController.OnClick_BtnOK(Sender :TObject);
 begin
    if (Trim(FView.EditUser.Text)     = '') or
       (Trim(FView.EditPassword.Text) = '') then begin
-      FView.MuestraMensaje('Ni Usuario ni Password pueden', ' quedar en blanco. ');
+      FView.ShowMessage('Ni Usuario ni Password pueden quedar en blanco.');
       FResult := msNone;
       Exit;
    end;
 
    if not FModel.UserCorrect(Trim(FView.EditUser.Text), Trim(FView.EditPassword.Text)) then begin
-      FView.MuestraMensaje('Usuario o Password no son correctos.', ' Inténtelo de Nuevo. ');
+      FView.ShowMessage('Usuario o Password no son correctos. Inténtelo de Nuevo.');
       FResult := msNone;
       Exit;
    end;

@@ -1,6 +1,6 @@
 object FormLoginView: TFormLoginView
   Left = 687
-  Top = 383
+  Top = 388
   BorderIcons = []
   BorderStyle = bsToolWindow
   ClientHeight = 279
@@ -2060,7 +2060,7 @@ object FormLoginView: TFormLoginView
     ParentFont = False
     Transparent = True
   end
-  object Label1: TLabel
+  object LabelAccountingTitle: TLabel
     Left = 25
     Top = 181
     Width = 147
@@ -2077,46 +2077,14 @@ object FormLoginView: TFormLoginView
     Transparent = True
     WordWrap = True
   end
-  object LabelMensaje: TLabel
-    Left = 176
-    Top = 24
-    Width = 257
-    Height = 18
-    Alignment = taCenter
-    AutoSize = False
-    Font.Charset = ANSI_CHARSET
-    Font.Color = clNavy
-    Font.Height = -13
-    Font.Name = 'Arial Narrow'
-    Font.Style = [fsBold]
-    ParentFont = False
-    WordWrap = True
-  end
-  object LabelMensaje2: TLabel
-    Left = 176
-    Top = 48
-    Width = 257
-    Height = 17
-    Alignment = taCenter
-    AutoSize = False
-    Font.Charset = ANSI_CHARSET
-    Font.Color = clNavy
-    Font.Height = -13
-    Font.Name = 'Arial Narrow'
-    Font.Style = [fsBold]
-    ParentFont = False
-    WordWrap = True
-  end
   object LabelPasswordWarn: TLabel
-    Left = 8
-    Top = 248
-    Width = 433
-    Height = 18
+    Left = 192
+    Top = 64
+    Width = 241
+    Height = 33
     Alignment = taCenter
     AutoSize = False
-    Caption = 
-      'El usuario "Admin" a'#250'n tiene el password "sencille"      '#161'C'#225'mbie' +
-      'lo!'
+    Caption = 'El usuario "Admin" a'#250'n tiene el password "sencille"   '#161'C'#225'mbielo!'
     Font.Charset = ANSI_CHARSET
     Font.Color = clRed
     Font.Height = -12
@@ -2197,12 +2165,5 @@ object FormLoginView: TFormLoginView
     ParentFont = False
     TabOrder = 4
     OnClick = BtnAcceptClick
-  end
-  object Timer: TTimer
-    Enabled = False
-    Interval = 4000
-    OnTimer = TimerTimer
-    Left = 10
-    Top = 216
   end
 end

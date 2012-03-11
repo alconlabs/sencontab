@@ -12,11 +12,8 @@ type
     EditUser: TEdit;
     EditPassword: TEdit;
     Label2: TLabel;
-    Label1: TLabel;
+    LabelAccountingTitle: TLabel;
     ImagenAnagrama: TImage;
-    LabelMensaje: TLabel;
-    Timer: TTimer;
-    LabelMensaje2: TLabel;
     Panel1: TPanel;
     LabelPasswordWarn: TLabel;
     BtnCancel: TBitBtn;
@@ -30,9 +27,8 @@ type
    private
     Intentos    :Integer;
    public
-    procedure MuestraMensaje(prmMensaje :string; prmMensaje2 :string = '');
    end;
-
+                  
 var FormLoginView :TFormLoginView;
 
 implementation
@@ -42,14 +38,6 @@ uses General, Globales, DMControl, IBQuery;
 procedure TFormLoginView.FormCreate(Sender: TObject);
 begin
    Intentos := 1;
-end;
-
-procedure TFormLoginView.MuestraMensaje(prmMensaje :string; prmMensaje2 :string = '');
-begin
-   LabelMensaje.Caption  := prmMensaje;
-   LabelMensaje2.Caption := prmMensaje2;
-   MessageBeep(MB_ICONHAND);
-   Timer.Enabled := True;
 end;
 
 procedure TFormLoginView.BtnAcceptClick(Sender: TObject);
@@ -110,10 +98,10 @@ begin
    else begin
       Inc(Intentos);
       if Intentos > 3 then begin
-         MuestraMensaje('Ha superado el límite de intentos.', 'La aplicación se cerrará inmediatamente');
+         ShowMessage('Ha superado el límite de intentos. La aplicación se cerrará inmediatamente');
       end
       else begin
-         MuestraMensaje('El usuario o el password no son correctos.', 'Por favor, inténtelo de nuevo.');
+         ShowMessage('El usuario o el password no son correctos. Por favor, inténtelo de nuevo.');
       end;
    end;
 end;
@@ -126,9 +114,7 @@ end;
 
 procedure TFormLoginView.TimerTimer(Sender: TObject);
 begin
-   LabelMensaje.Caption := '';
-   LabelMensaje2.Caption := '';
-   Timer.Enabled := False;
+
    if Intentos > 3 then Application.Terminate;
 end;
 

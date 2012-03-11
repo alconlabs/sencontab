@@ -16,7 +16,6 @@ type
     BtnSmallIcons: TBitBtn;
     BtnReport: TBitBtn;
     BtnList: TBitBtn;
-    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure BtnListClick(Sender: TObject);
     procedure BtnReportClick(Sender: TObject);
@@ -30,12 +29,6 @@ type
 implementation
 uses Dialogs;
 {$R *.DFM}
-
-procedure TUsersView.FormCreate(Sender: TObject);
-begin
-   inherited;
-//
-end;
 
 procedure TUsersView.FormShow(Sender: TObject);
 begin
