@@ -30,6 +30,7 @@ begin
    inherited Create(ADBController);
    Application.CreateForm(TFormMenuAdmin, FView);
    FView.AppleIcons := [aiClose];
+   FView.AppleIconsVisibles := [aiClose];
    { Delegates Assignation }
    FView.LabelEnterprises.OnClick := LabelEnterprisesClick;
    FView.LabelUsers.OnClick       := LabelUsersClick; 

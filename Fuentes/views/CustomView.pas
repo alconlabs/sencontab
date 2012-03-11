@@ -1,15 +1,13 @@
 unit CustomView;
 interface
 uses Forms, Messages, Windows, Graphics, Classes, ImgList, Controls,
-     Dialogs, ExtCtrls, Buttons;
+     Dialogs, ExtCtrls, Buttons, StdCtrls, LabelCaptionForm;
 
 type
    TAppleButton = (abGray, abRed      , abYellow      , abGreen,
                            abRedSignum, abYellowSignum, abGreenSignum);
    TShowedButtons = (sbClose, sbMinimized, sbMaximized);
-
    TAppleIcon = (aiClose, aiMinimize, aiMaximize);
-   
    TAppleIcons = set of TAppleIcon;
 
    TCustomView = class(TForm)
@@ -18,6 +16,7 @@ type
     ImageMinimize: TImage;
     ImageMaximize: TImage;
     TimerSystemIcons: TTimer;
+    TimerMessage: TTimer;
     procedure FormResize(Sender: TObject);
     procedure ImageAppleIconMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
     procedure TimerSystemIconsTimer(Sender: TObject);
@@ -26,18 +25,25 @@ type
     procedure ImageMaximizeClick(Sender: TObject);
     procedure FormMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure TimerMessageTimer(Sender: TObject);
+   private
+     FAppleIcons          :TAppleIcons;
+     FAppleIconsVisibles  :TAppleIcons;
+     FAppleButtonsIconics :Boolean;
+     FLabelCaption        :TLabelCaptionForm;
+     FLabelMessage        :TLabelCaptionForm;
+     procedure SetAppleIcons(Value :TAppleIcons);
+     procedure SetAppleIconsVisibles(Value :TAppleIcons);
+     procedure SetSystemButtonsIconics;
+     procedure SetSystemButtonsColored;
    protected
      procedure Paint; override;
      procedure WMNCHitTest(var Msg: TWMNCHitTest) ; message WM_NCHitTest;
-   private
-     FAppleIcons: TAppleIcons;
-     FAppleButtonsIconics :Boolean;
-     procedure SetAppleIcons(Value :TAppleIcons);
-     procedure SetSystemButtonsIconics;
-     procedure SetSystemButtonsColored;
    public
      constructor Create(AOwner: TComponent); override;
-     property AppleIcons: TAppleIcons read FAppleIcons write SetAppleIcons;
+     procedure ShowMessage(AErrorMessage :string);
+     property AppleIcons         :TAppleIcons read FAppleIcons         write SetAppleIcons;
+     property AppleIconsVisibles :TAppleIcons read FAppleIconsVisibles write SetAppleIconsVisibles;
    end;
 
 implementation
@@ -47,6 +53,46 @@ constructor TCustomView.Create(AOwner: TComponent);
 begin
    inherited;
    SetSystemButtonsColored;
+   { Message label for the caption }
+   FLabelCaption := TLabelCaptionForm.Create(Self);
+   FLabelCaption.Parent     := Self;
+   FLabelCaption.AutoSize   := False;
+   FLabelCaption.Left       := 0;
+   FLabelCaption.Top        := ImageMaximize.Top;
+   FLabelCaption.Width      := Self.Width;
+   FLabelCaption.Height     := 20;
+   FLabelCaption.Alignment  := taCenter;
+   FLabelCaption.Offset     := 1;
+   FLabelCaption.LabelStyle := lsRaised;
+   //FLabelCaption.Caption    := '';
+   FLabelCaption.Font.Charset := ANSI_CHARSET;
+   FLabelCaption.Font.Color   := clGray;
+   FLabelCaption.Font.Height  := 18;
+   FLabelCaption.Font.Name    := 'MS Sans Serif';
+   FLabelCaption.ParentFont   := False;
+   FLabelCaption.SendToBack;
+   FLabelCaption.OnMouseDown := FormMouseDown;
+
+   { Message label for error and warning messages }
+   {$Message Warn 'Cambiar el color de la letra al crear los labels'}
+   FLabelCaption := TLabelCaptionForm.Create(Self);
+   FLabelCaption.Parent     := Self;
+   FLabelCaption.AutoSize   := False;
+   FLabelCaption.Left       := 0;
+   FLabelCaption.Top        := ImageMaximize.Top;
+   FLabelCaption.Width      := Self.Width;
+   FLabelCaption.Height     := 20;
+   FLabelCaption.Alignment  := taCenter;
+   FLabelCaption.Offset     := 1;
+   FLabelCaption.LabelStyle := lsRaised;
+   //FLabelCaption.Caption    := '';
+   FLabelCaption.Font.Charset := ANSI_CHARSET;
+   FLabelCaption.Font.Color   := clGray;
+   FLabelCaption.Font.Height  := 18;
+   FLabelCaption.Font.Name    := 'MS Sans Serif';
+   FLabelCaption.ParentFont   := False;
+   FLabelCaption.SendToBack;
+   FLabelCaption.OnMouseDown := FormMouseDown;
 end;
 
 procedure TCustomView.WMNCHitTest(var Msg: TWMNCHitTest);
@@ -65,6 +111,8 @@ end;
 procedure TCustomView.Paint;
 var Rect :HRGN;
 begin
+   { To set the actual caption to the new label caption component }
+   FLabelCaption.Caption := Self.Caption;
    {Hide Title Bar}
    SetWindowLong(Handle, GWL_STYLE, GetWindowLong(Handle, GWL_STYLE) and not WS_CAPTION);
    inherited;
@@ -98,15 +146,19 @@ end;
 
 procedure TCustomView.SetSystemButtonsColored;
 begin
-   if aiClose in FAppleIcons
+   ImageClose.Visible    := aiClose    in FAppleIconsVisibles;
+   ImageMinimize.Visible := aiMinimize in FAppleIconsVisibles;
+   ImageMaximize.Visible := aiMaximize in FAppleIconsVisibles;
+
+   if (aiClose in FAppleIcons) and (aiClose in FAppleIconsVisibles) 
       then ImageListAppleWindow.GetBitmap(Ord(abRed   ), ImageClose.Picture.Bitmap)
       else ImageListAppleWindow.GetBitmap(Ord(abGray  ), ImageClose.Picture.Bitmap);
 
-   if aiMinimize in FAppleIcons
+   if (aiMinimize in FAppleIcons) and (aiMinimize in FAppleIconsVisibles)
       then ImageListAppleWindow.GetBitmap(Ord(abYellow), ImageMinimize.Picture.Bitmap)
       else ImageListAppleWindow.GetBitmap(Ord(abGray  ), ImageMinimize.Picture.Bitmap);
 
-   if aiMaximize in FAppleIcons
+   if (aiMaximize in FAppleIcons) and (aiMaximize in FAppleIconsVisibles)  
       then ImageListAppleWindow.GetBitmap(Ord(abGreen ), ImageMaximize.Picture.Bitmap)
       else ImageListAppleWindow.GetBitmap(Ord(abGray  ), ImageMaximize.Picture.Bitmap);
 
@@ -117,15 +169,15 @@ end;
 
 procedure TCustomView.SetSystemButtonsIconics;
 begin
-   if aiClose in FAppleIcons
+   if (aiClose in FAppleIcons) and (aiClose in FAppleIconsVisibles)
       then ImageListAppleWindow.GetBitmap(Ord(abRedSignum   ), ImageClose.Picture.Bitmap)
       else ImageListAppleWindow.GetBitmap(Ord(abGray        ), ImageClose.Picture.Bitmap);
 
-   if aiMinimize in FAppleIcons
+   if (aiMinimize in FAppleIcons) and (aiMinimize in FAppleIconsVisibles)
       then ImageListAppleWindow.GetBitmap(Ord(abYellowSignum), ImageMinimize.Picture.Bitmap)
       else ImageListAppleWindow.GetBitmap(Ord(abGray        ), ImageMinimize.Picture.Bitmap);
 
-   if aiMaximize in FAppleIcons
+   if (aiMaximize in FAppleIcons) and (aiMaximize in FAppleIconsVisibles)
       then ImageListAppleWindow.GetBitmap(Ord(abGreenSignum ), ImageMaximize.Picture.Bitmap)
       else ImageListAppleWindow.GetBitmap(Ord(abGray        ), ImageMaximize.Picture.Bitmap);
       
@@ -136,9 +188,9 @@ end;
 
 procedure TCustomView.ImageAppleIconMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
 begin
-   if ((Sender = ImageClose   ) and (aiClose    in FAppleIcons)) or
-      ((Sender = ImageMinimize) and (aiMinimize in FAppleIcons)) or
-      ((Sender = ImageMaximize) and (aiMaximize in FAppleIcons)) then begin
+   if ((Sender = ImageClose   ) and ((aiClose    in FAppleIcons) and (aiClose    in FAppleIconsVisibles))) or
+      ((Sender = ImageMinimize) and ((aiMinimize in FAppleIcons) and (aiMinimize in FAppleIconsVisibles))) or
+      ((Sender = ImageMaximize) and ((aiMaximize in FAppleIcons) and (aiMaximize in FAppleIconsVisibles))) then begin
       if not FAppleButtonsIconics then SetSystemButtonsIconics;
    end;
 end;
@@ -160,33 +212,59 @@ begin
   end;
 end;
 
+procedure TCustomView.SetAppleIconsVisibles(Value: TAppleIcons);
+begin
+  if FAppleIconsVisibles <> Value then begin
+     FAppleIconsVisibles := Value;
+     SetSystemButtonsColored;
+     if not(csDesigning in ComponentState) then begin
+        RecreateWnd;
+     end;
+  end;
+end;
+
 procedure TCustomView.ImageCloseClick(Sender: TObject);
 begin
-   if aiClose in FAppleIcons then
+   if (aiClose in FAppleIcons) and (aiClose in FAppleIconsVisibles) then
       SendMessage(Handle, WM_CLOSE, 0, 0);
 end;
 
 procedure TCustomView.ImageMinimizeClick(Sender: TObject);
 begin
-   if aiClose in FAppleIcons then
+   if (aiMinimize in FAppleIcons) and (aiMinimize in FAppleIconsVisibles) then
      PostMessage(Handle, WM_SYSCOMMAND, SC_MINIMIZE, 0);
 end;
 
 procedure TCustomView.ImageMaximizeClick(Sender: TObject);
 begin
-   if aiClose in FAppleIcons then begin
+   if (aiMaximize in FAppleIcons) and (aiMaximize in FAppleIconsVisibles) then begin
       { This is the standard behavior. We don't want this. }
       //PostMessage(Handle, WM_SYSCOMMAND, SC_MAXIMIZE, 0);
-      {We shall take the MainMenu Window and put this windows accord with his position and dimensions.} 
+      {We shall take the MainMenu Window and put this windows accord with his position and dimensions.}
    end;
 end;
 
 procedure TCustomView.FormMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+{ move the window from any where in the client area.}
 const
    sc_DragMove = $F012;
 begin
    ReleaseCapture;
    Perform(wm_SysCommand, sc_DragMove, 0);
+end;
+
+procedure TCustomView.TimerMessageTimer(Sender: TObject);
+begin
+   FLabelMessage.Caption := '';
+   TimerMessage.Enabled := False;
+end;
+
+procedure TCustomView.ShowMessage(AErrorMessage: string);
+begin
+   FLabelMessage.Font.Style := [fsBold];
+   FLabelMessage.Caption := '      '+AErrorMessage;
+   MessageBeep(MB_ICONHAND);
+   TimerMessage.Enabled := True;
 end;
 
 end.

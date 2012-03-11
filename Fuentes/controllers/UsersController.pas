@@ -24,7 +24,7 @@ type
 
 implementation
 uses Forms, Controls, SysUtils, ComCtrls,
-     EditUserView;
+     EditUserView, CustomView;
 
 constructor TUsersController.Create(ADBController :TDBController);
 var  User     :TUser;
@@ -32,6 +32,8 @@ var  User     :TUser;
 begin
    inherited Create(ADBController);
    FView  := TUsersView.Create(Application);
+   FView.AppleIcons := [aiClose, aiMinimize, aiMaximize];
+   FView.AppleIconsVisibles := [aiClose, aiMinimize, aiMaximize];
    FModel := TUsersModel.Create(DBCtlr.DBConnection.Connection);
    FModel.Open;
    while not FModel.EOF do begin
@@ -63,8 +65,8 @@ begin
    FView.BtnNewUser.OnClick    := OnClick_NewUser;
    FView.BtnEditUser.OnClick   := OnClick_ModifyUser;
    FView.BtnDeleteUser.OnClick := OnClick_DeleteUser;
-
-   Result := FView.ShowModal = mrOK;
+   //Result :=
+   FView.Show;
 end;
 
 
@@ -72,7 +74,7 @@ procedure TUsersController.OnClick_NewUser(Sender :TObject);
 var FEditUserView :TEditUserView;
     InsertUser    :Boolean;
 begin
-   FEditUserView := TEditUserView.Create(nil);
+   FEditUserView := TEditUserView.Create(FView);
    {Configuration of the view....}
    try InsertUser := FEditUserView.ShowModal = mrOK;
    finally FEditUserView.Free;

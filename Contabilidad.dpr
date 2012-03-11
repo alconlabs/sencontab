@@ -111,7 +111,9 @@ uses
   UserClass in 'Fuentes\BusinessObjects\UserClass.pas',
   CustomUsersModel in 'Fuentes\models\CustomUsersModel.pas',
   UsersModel in 'Fuentes\models\UsersModel.pas',
-  EditUserView in 'Fuentes\views\EditUserView.pas' {EditUserView};
+  EditUserView in 'Fuentes\views\EditUserView.pas' {EditUserView},
+  LabelCaptionForm in 'Fuentes\Tools\LabelCaptionForm.pas',
+  CustomDataInputView in 'Fuentes\views\CustomDataInputView.pas' {CustomDataInputView};
 
 {$R *.RES}
 

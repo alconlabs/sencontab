@@ -1,6 +1,6 @@
 object CustomView: TCustomView
-  Left = 668
-  Top = 235
+  Left = 673
+  Top = 242
   Width = 458
   Height = 318
   HelpType = htKeyword
@@ -368,5 +368,12 @@ object CustomView: TCustomView
     OnTimer = TimerSystemIconsTimer
     Left = 32
     Top = 72
+  end
+  object TimerMessage: TTimer
+    Enabled = False
+    Interval = 3000
+    OnTimer = TimerMessageTimer
+    Left = 32
+    Top = 128
   end
 end
