@@ -1,6 +1,6 @@
 object FormWizardGestEnterprises: TFormWizardGestEnterprises
-  Left = 412
-  Top = 300
+  Left = 885
+  Top = 288
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   BorderWidth = 4

@@ -97,7 +97,7 @@ PackageDCPOutputDir=
 SearchPath=SnapDataSet
 Packages=vcl;rtl;vclx;indy;inet;xmlrtl;vclie;inetdbbde;inetdbxpress;dbrtl;dsnap;dsnapcon;vcldb;soaprtl;VclSmp;dbexpress;dbxcds;inetdb;bdertl;vcldbx;webdsnap;websnap;adortl;teeui;teedb;tee;dss;visualclx;visualdbclx;vclactnband;vclshlctrls;IntrawebDB_50_70;Intraweb_50_70;Rave50CLX;Rave50VCL;dclOfficeXP;CLXIB;ibxpress;VCLIB;ip4000clientvcl7;ip4000v7;fc4000v7;rbTDBC77;rbRCL77;rbCIDE77;rbIDE77;rbBDE77;rbDIDE77;rbDAD77;rbUSER77;rbDBDE77;rbDB77;rbADO77;rbDBE77;xtradev7;P164_D70;P164_R70;O405_r70;O405br70;A405_R70;K102_R70;S402_r70;S402br70;Siam;G113_R70;BaseDatos
 Conditionals=
-DebugSourceDirs=
+DebugSourceDirs=C:\cviews\sencontab\SnapDataSet\;C:\borland\delphi7\source\vcl\
 UsePackages=0
 [Parameters]
 RunParams=

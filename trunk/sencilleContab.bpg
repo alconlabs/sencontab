@@ -9,8 +9,7 @@ MAKE = $(ROOT)\bin\make.exe -$(MAKEFLAGS) -f$**
 DCC = $(ROOT)\bin\dcc32.exe $**
 BRCC = $(ROOT)\bin\brcc32.exe $**
 #------------------------------------------------------------------------------
-PROJECTS = Contabilidad.exe DumpingData.exe Test_Contabilidad.exe ModelGenerator.exe dclSnapDataset.bpl SnapDataset.bpl ObjectDatasetDemo.exe \
-  Project1.exe
+PROJECTS = Contabilidad.exe DumpingData.exe Test_Contabilidad.exe ModelGenerator.exe dclSnapDataset.bpl SnapDataset.bpl ObjectDatasetDemo.exe
 #------------------------------------------------------------------------------
 default: $(PROJECTS)
 #------------------------------------------------------------------------------
@@ -34,9 +33,6 @@ SnapDataset.bpl: SnapDataSet\SnapDataset.dpk
   $(DCC)
 
 ObjectDatasetDemo.exe: ..\DemoSnap\ObjectDataset\ObjectDatasetDemo.dpr
-  $(DCC)
-
-Project1.exe: \\psf\Home\Documents\Downloads\frmnmr\frmnmr\Not_moveable_resizeable\Project1.dpr
   $(DCC)
 
 

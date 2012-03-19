@@ -5,9 +5,14 @@ uses Forms, Messages, Windows, Graphics, Classes, ImgList, Controls,
 
 type
    TCustomDataInputView = class(TCustomView)
+    procedure FormShow(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
    protected
+     //procedure DoShow; override;
+     //procedure DoClose(var Action: TCloseAction); override;
      procedure OnMoving(var Msg: TWMMoving); message WM_MOVING;
    private
+     FActualClientHeight :Integer;
      FCenterForm :TCustomForm;
    public
      constructor Create(AOwner: TComponent); override;
@@ -16,6 +21,27 @@ type
 implementation
 {$R *.DFM}
 
+
+//procedure TCustomDataInputView.DoShow;
+//begin
+//
+//end;
+
+//procedure TCustomDataInputView.DoClose(var Action: TCloseAction);
+//
+//   inherited DoClose(Action);
+//end;
+
+(*
+
+begin
+     if (ClientHeight = 0) then begin
+
+     end
+     else begin
+
+     end;
+*)
 constructor TCustomDataInputView.Create(AOwner: TComponent);
 var X :Integer;
     Y :Integer;
@@ -48,6 +74,35 @@ begin
    WorkArea.Bottom := Self.Top  + Self.Height;
    Msg.DragRect^ := WorkArea;
    inherited;
+end;
+
+procedure TCustomDataInputView.FormShow(Sender: TObject);
+var H :Integer;
+begin
+   FActualClientHeight := ClientHeight;
+   ClientHeight := 0;
+
+   inherited;
+
+   for H := 0 to FActualClientHeight do begin
+      Application.ProcessMessages;
+      ClientHeight := H;
+      //Sleep(10);
+      Repaint;
+   end;
+end;
+
+procedure TCustomDataInputView.FormClose(Sender: TObject; var Action: TCloseAction);
+var H :Integer;
+begin
+   FActualClientHeight := ClientHeight;
+   for h := ClientHeight downto 10 do begin
+       ClientHeight := h;
+       Sleep(1);
+   end;
+   Application.ProcessMessages;
+
+   ClientHeight := FActualClientHeight;
 end;
 
 end.
