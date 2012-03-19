@@ -6,25 +6,32 @@ uses Buttons, Forms, Windows, Messages, DBClient, SysUtils,
 
 type
   TUsersView = class(TCustomView)
-    Panel1: TPanel;
-    BtnNewUser: TBitBtn;
-    BtnDeleteUser: TBitBtn;
-    BtnEditUser: TBitBtn;
     ListViewUsers: TListView;
     ImageListIcons: TImageList;
-    BtnIconos: TBitBtn;
-    BtnSmallIcons: TBitBtn;
-    BtnReport: TBitBtn;
-    BtnList: TBitBtn;
+    Panel2: TPanel;
+    BtnImageNew: TImage;
+    BtnImageEdit: TImage;
+    BtnImageDelete: TImage;
+    Panel3: TPanel;
+    BtnImageList: TImage;
+    BtnImageReport: TImage;
+    BtnImageSmallIcons: TImage;
+    BtnImageIcons: TImage;
+    EditSearch: TEdit;
+    BtnImageSearch: TImage;
     procedure FormShow(Sender: TObject);
-    procedure BtnListClick(Sender: TObject);
-    procedure BtnReportClick(Sender: TObject);
-    procedure BtnSmallIconsClick(Sender: TObject);
-    procedure BtnIconosClick(Sender: TObject);
   private
   public
   protected
   end;
+
+  {TODO : Crear nuevo usuario        }
+  {TODO : Eliminar Usuario           }
+  {TODO : Crear búsqueda de usuarios }
+  {TODO : Implementar Búsqueda Super }
+  {TODO : Implementar, para la edición, eliminación, en la modelo el método ReferecedOn}
+  {TODO : En la implementación de la clase, crear los núevos métodos ya utilizados     }
+
 
 implementation
 uses Dialogs;
@@ -36,24 +43,17 @@ begin
    //SetBounds(0, FormPrincipal.Panel1.Top + FormPrincipal.Panel1.Height + 1, Width, Height);
 end;
 
-procedure TUsersView.BtnListClick(Sender: TObject);
-begin
-   ListViewUsers.ViewStyle := vsList;
-end;
-
-procedure TUsersView.BtnReportClick(Sender: TObject);
-begin
-   ListViewUsers.ViewStyle := vsReport;
-end;
-
-procedure TUsersView.BtnSmallIconsClick(Sender: TObject);
-begin
-  ListViewUsers.ViewStyle := vsSmallIcon;
-end;
-
-procedure TUsersView.BtnIconosClick(Sender: TObject);
-begin
-   ListViewUsers.ViewStyle := vsIcon;
-end;
-
 end.
+
+
+
+
+
+
+
+
+
+
+
+
+

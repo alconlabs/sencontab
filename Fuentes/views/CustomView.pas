@@ -53,8 +53,8 @@ const HEIGHT_FROM_BOTTOM = 30;
 
 constructor TCustomView.Create(AOwner: TComponent);
 begin
-   inherited Create(AOwner);
-   SetSystemButtonsColored;
+   inherited;
+   //SetSystemButtonsColored;
    { Message label for the caption }
    FLabelCaption := TLabelCaptionForm.Create(Self);
    FLabelCaption.Parent     := Self;
