@@ -1,6 +1,6 @@
 object FormMenuAdmin: TFormMenuAdmin
   Left = 641
-  Top = 212
+  Top = 148
   Width = 219
   Height = 384
   HelpType = htKeyword

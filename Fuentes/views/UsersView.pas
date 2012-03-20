@@ -27,10 +27,12 @@ type
 
   {TODO : Crear nuevo usuario        }
   {TODO : Eliminar Usuario           }
+  {TODO : Doble click sobre un icono debe editar }
   {TODO : Crear búsqueda de usuarios }
   {TODO : Implementar Búsqueda Super }
-  {TODO : Implementar, para la edición, eliminación, en la modelo el método ReferecedOn}
-  {TODO : En la implementación de la clase, crear los núevos métodos ya utilizados     }
+  {TODO : Implementar, para la edición, eliminación, en la modelo el método ReferecedOnTable           }
+  {TODO : En la implementación de la clase, crear los núevos métodos ya utilizados                     }
+  {TODO : No se pueden eliminar el administrador. Al guardar un Administrador se desactivan los demás. }
 
 
 implementation

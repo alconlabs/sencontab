@@ -295,41 +295,21 @@ end;
 procedure TUser.SetCD_USER(const Value :string);
 begin
    AssignString(Value, FCD_USER, FOLD_CD_USER, userCD_USER);
-   //if (Trim(Value) <> '') and IsNull(userCD_USER) then begin
-   //   FCD_USER := Value;
-   //   SetNotNull(userCD_USER);
-   //   SetChanged(userCD_USER);
-   //end;
 end;
 
 procedure TUser.SetDS_USER(const Value :string);
 begin
    AssignString(Value, FDS_USER, FOLD_DS_USER, userDS_USER);
-   //if (Trim(Value) <> '') and IsNull(userDS_USER) then begin
-   //   FDS_USER := Value;
-   //   SetNotNull(userDS_USER);
-   //   SetChanged(userDS_USER);
-   //end;
 end;
 
 procedure TUser.SetPASSWORD(const Value :string);
 begin
    AssignString(Value, FPASSWORD, FOLD_PASSWORD, userPASSWORD);
-   //if (Trim(Value) <> '') and IsNull(userPASSWORD) then begin
-   //   FPASSWORD := Value;
-   //   SetNotNull(userPASSWORD);
-   //   SetChanged(userPASSWORD);
-   //end;
 end;
 
 procedure TUser.SetADMINISTRATOR(const Value :string);
 begin
    AssignString(Value, FADMINISTRATOR, FOLD_ADMINISTRATOR, userADMINISTRATOR);
-   //if (Trim(Value) <> '') and IsNull(userADMINISTRATOR) then begin
-   //   FADMINISTRATOR := Value;
-   //   SetNotNull(userADMINISTRATOR);
-   //   SetChanged(userADMINISTRATOR);
-   //end;
 end;
 
 end.

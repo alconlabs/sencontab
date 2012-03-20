@@ -2114,6 +2114,7 @@ object FormLogin: TFormLogin
     Width = 146
     Height = 22
     Cursor = crIBeam
+    Color = 82109668
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -12
@@ -2128,6 +2129,7 @@ object FormLogin: TFormLogin
     Width = 146
     Height = 22
     Cursor = crIBeam
+    Color = 82109668
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -12

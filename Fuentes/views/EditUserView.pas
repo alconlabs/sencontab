@@ -13,13 +13,13 @@ type
     LabelUser: TLabel;
     LabelPassword: TLabel;
     EditCD_USER: TDBEdit;
-    EditNEW_PASSWORD: TDBEdit;
+    EditNEW_PASSWORD: TEdit;
     Label3: TLabel;
     EditDS_USER: TDBEdit;
-    Label1: TLabel;
+    LabelOldPassword: TLabel;
     EditOLD_PASSWORD: TDBEdit;
     Label2: TLabel;
-    EditNEW_PASSWORD_TWO: TDBEdit;
+    EditNEW_PASSWORD_TWO: TEdit;
     BtnCancel: TBitBtn;
     BtnAccept: TBitBtn;
     SUsers: TDataSource;
@@ -32,7 +32,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   protected
   private
-    FUser     :TUser; { Pointer to the current User class }
+    FUser      :TUser; { Pointer to the current User class }
     procedure SetUser(Value :TUser);
     function  GetUser:TUser;
   public
