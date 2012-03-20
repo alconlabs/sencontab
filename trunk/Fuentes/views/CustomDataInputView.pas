@@ -14,8 +14,10 @@ type
    private
      FActualClientHeight :Integer;
      FCenterForm :TCustomForm;
+     FState :TViewState;
    public
      constructor Create(AOwner: TComponent); override;
+     property State :TViewState read FState write FState;
    end;
 
 implementation
@@ -42,19 +44,43 @@ begin
 
      end;
 *)
+
+
+procedure SetTransparent(hWnd: longint; value: Byte);
+// opaque: value=255; fully transparent: value=0
+var
+   iExStyle: Integer;
+begin
+   iExStyle := GetWindowLong(hWnd, GWL_EXSTYLE);
+   if value < 255 then begin
+      iExStyle := iExStyle Or WS_EX_LAYERED;
+      SetWindowLong(hWnd, GWL_EXSTYLE, iExStyle);
+      SetLayeredWindowAttributes(hWnd, 0, value, LWA_ALPHA);
+   end
+   else begin
+      iExStyle := iExStyle xor WS_EX_LAYERED;
+      SetWindowLong(hWnd, GWL_EXSTYLE, iExStyle);
+   end;
+end;
+
 constructor TCustomDataInputView.Create(AOwner: TComponent);
 var X :Integer;
     Y :Integer;
 begin
    inherited Create(AOwner);
+
+   FHEIGHT_FROM_BOTTOM := 40;
+
+   SetTransparent(Handle, 244);
+
    FCenterForm := TCustomForm(AOwner);
    if Assigned(FCenterForm) then begin
       X := ((FCenterForm.Width - Width ) div 2) + FCenterForm.Left;
-      Y := FCenterForm.Top; 
+      Y := FCenterForm.Top;
    end
    else begin
-     X := (Screen.Width  - Width ) div 2;
-     Y := (Screen.Height - Height) div 2;
+      X := (Screen.Width  - Width ) div 2;
+      Y := (Screen.Height - Height) div 2;
    end;
 
    if X < 0 then X := 0;

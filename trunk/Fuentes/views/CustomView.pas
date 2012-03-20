@@ -10,6 +10,8 @@ type
    TAppleIcon = (aiClose, aiMinimize, aiMaximize);
    TAppleIcons = set of TAppleIcon;
 
+   TViewState = (vsEdit, vsInsert); 
+
    TCustomView = class(TForm)
     ImageListAppleWindow: TImageList;
     ImageClose: TImage;
@@ -36,6 +38,7 @@ type
      procedure SetSystemButtonsIconics;
      procedure SetSystemButtonsColored;
    protected
+     FHEIGHT_FROM_BOTTOM :Integer;
      procedure Paint; override;
      procedure WMNCHitTest(var Msg: TWMNCHitTest) ; message WM_NCHitTest;
    public
@@ -49,11 +52,10 @@ type
 implementation
 {$R *.DFM}
 
-const HEIGHT_FROM_BOTTOM = 30;
-
 constructor TCustomView.Create(AOwner: TComponent);
 begin
    inherited;
+   FHEIGHT_FROM_BOTTOM := 30;
    //SetSystemButtonsColored;
    { Message label for the caption }
    FLabelCaption := TLabelCaptionForm.Create(Self);
@@ -83,7 +85,7 @@ begin
    FLabelMessage.ColorTwo     := clMaroon;
    FLabelMessage.AutoSize     := False;
    FLabelMessage.Left         := 0;
-   FLabelMessage.Top          := Self.Height - HEIGHT_FROM_BOTTOM;
+   FLabelMessage.Top          := Self.Height - FHEIGHT_FROM_BOTTOM;
    FLabelMessage.Width        := Self.Width;
    FLabelMessage.Height       := 20;
    FLabelMessage.Alignment    := taLeftJustify;
@@ -273,7 +275,7 @@ end;
 procedure TCustomView.ShowMessage(AErrorMessage: string);
 begin
    FLabelMessage.Left         := 0;
-   FLabelMessage.Top          := Self.Height - HEIGHT_FROM_BOTTOM;
+   FLabelMessage.Top          := Self.Height - FHEIGHT_FROM_BOTTOM;
    FLabelMessage.Width        := Self.Width;
    FLabelMessage.Height       := 20;
    FLabelMessage.Alignment    := taLeftJustify;

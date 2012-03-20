@@ -1,11 +1,11 @@
 object EditUserView: TEditUserView
-  Left = 529
-  Top = 369
+  Left = 533
+  Top = 259
   BorderIcons = []
   BorderStyle = bsDialog
-  ClientHeight = 216
-  ClientWidth = 450
-  Color = 11003889
+  ClientHeight = 234
+  ClientWidth = 452
+  Color = 14933723
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -65,7 +65,7 @@ object EditUserView: TEditUserView
     ParentFont = False
     Transparent = True
   end
-  object Label1: TLabel
+  object LabelOldPassword: TLabel
     Left = 24
     Top = 73
     Width = 85
@@ -101,7 +101,9 @@ object EditUserView: TEditUserView
     Left = 80
     Top = 14
     Width = 146
-    Height = 22
+    Height = 20
+    Color = 82109668
+    Ctl3D = False
     DataField = 'CD_USER'
     DataSource = SUsers
     Font.Charset = ANSI_CHARSET
@@ -109,22 +111,24 @@ object EditUserView: TEditUserView
     Font.Height = -12
     Font.Name = 'Tahoma'
     Font.Style = []
-    MaxLength = 12
+    ParentCtl3D = False
     ParentFont = False
     TabOrder = 0
   end
-  object EditNEW_PASSWORD: TDBEdit
+  object EditNEW_PASSWORD: TEdit
     Left = 120
     Top = 94
     Width = 146
-    Height = 22
-    DataSource = SUsers
+    Height = 20
+    Color = 82109668
+    Ctl3D = False
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -12
     Font.Name = 'Tahoma'
     Font.Style = []
     MaxLength = 10
+    ParentCtl3D = False
     ParentFont = False
     PasswordChar = '#'
     TabOrder = 3
@@ -133,7 +137,9 @@ object EditUserView: TEditUserView
     Left = 80
     Top = 38
     Width = 329
-    Height = 22
+    Height = 20
+    Color = 82109668
+    Ctl3D = False
     DataField = 'DS_USER'
     DataSource = SUsers
     Font.Charset = ANSI_CHARSET
@@ -141,7 +147,7 @@ object EditUserView: TEditUserView
     Font.Height = -12
     Font.Name = 'Tahoma'
     Font.Style = []
-    MaxLength = 80
+    ParentCtl3D = False
     ParentFont = False
     TabOrder = 1
   end
@@ -149,7 +155,9 @@ object EditUserView: TEditUserView
     Left = 120
     Top = 70
     Width = 146
-    Height = 22
+    Height = 20
+    Color = 82109668
+    Ctl3D = False
     DataSource = SUsers
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
@@ -157,22 +165,25 @@ object EditUserView: TEditUserView
     Font.Name = 'Tahoma'
     Font.Style = []
     MaxLength = 10
+    ParentCtl3D = False
     ParentFont = False
     PasswordChar = '#'
     TabOrder = 2
   end
-  object EditNEW_PASSWORD_TWO: TDBEdit
+  object EditNEW_PASSWORD_TWO: TEdit
     Left = 120
     Top = 118
     Width = 146
-    Height = 22
-    DataSource = SUsers
+    Height = 20
+    Color = 82109668
+    Ctl3D = False
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -12
     Font.Name = 'Tahoma'
     Font.Style = []
     MaxLength = 10
+    ParentCtl3D = False
     ParentFont = False
     PasswordChar = '#'
     TabOrder = 4

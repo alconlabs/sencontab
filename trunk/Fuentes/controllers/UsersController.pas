@@ -15,6 +15,7 @@ type
     FModel        :TUsersModel;
     FEditUserView :TEditUserView;
   protected
+    procedure InsertListItem(prmUser :TUser);
     procedure AssignDelegatesToEditUserView;
     {Delegate declarations}
     procedure OnClick_NewUser   (Sender : TObject);
@@ -28,7 +29,6 @@ type
     procedure OnListViewUsersSelectItem(Sender: TObject; Item: TListItem; Selected: Boolean);
     procedure Delegate_EditUserViewBtnAcceptClick(Sender: TObject);
     procedure Delegate_EditUserViewBtnCancelClick(Sender: TObject);
-
   public
     constructor Create(ADBController :TDBController); override;
     destructor  Destroy; override;
@@ -40,8 +40,7 @@ uses Forms, Controls, SysUtils, Dialogs,
      CustomView;
 
 constructor TUsersController.Create(ADBController :TDBController);
-var  User     :TUser;
-     ListItem :TListItem;
+var  User :TUser;
 begin
    inherited Create(ADBController);
    FView  := TUsersView.Create(Application);
@@ -51,11 +50,7 @@ begin
    FModel.Open;
    while not FModel.EOF do begin
       User := FModel.Current;
-      ListItem := FView.ListViewUsers.Items.Add;
-      ListItem.Data := User;
-      Listitem.Caption := User.CD_USER+' -> '+User.DS_USER;
-      ListItem.ImageIndex := 0;
-      //FView.ListViewUsers.Add(User);
+      InsertListItem(User);
       FModel.Next;
    end;
 end;
@@ -64,6 +59,15 @@ destructor TUsersController.Destroy;
 begin
    FModel.Free;
    FView.Free;
+end;
+
+procedure TUsersController.InsertListItem(prmUser: TUser);
+var ListItem :TListItem;
+begin
+   ListItem := FView.ListViewUsers.Items.Add;
+   ListItem.Data := prmUser;
+   Listitem.Caption := prmUser.CD_USER+' -> '+prmUser.DS_USER;
+   ListItem.ImageIndex := 0;
 end;
 
 function TUsersController.ShowView;
@@ -89,26 +93,38 @@ begin
 end;
 
 procedure TUsersController.OnClick_NewUser(Sender :TObject);
-var InsertUser    :Boolean;
+var User :TUser;
 begin
    FEditUserView := TEditUserView.Create(FView);
+   FEditUserView.State := vsInsert;
    {Configuration of the view....}
-   try InsertUser := FEditUserView.ShowModal = mrOK;
+   AssignDelegatesToEditUserView;
+   FEditUserView.EditOLD_PASSWORD.Visible := False;
+   FEditUserView.LabelOldPassword.Visible := False;
+   User := FModel.GetNewClass;
+   FEditUserView.User := User;
+   try
+      if FEditUserView.ShowModal = mrOK then begin
+         {Call to model with insert instruction. }
+         InsertListItem(User);
+         FModel.Save(User);
+      end;
    finally FEditUserView.Free;
    end;
 end;
 
 procedure TUsersController.OnClick_ModifyUser(Sender :TObject);
-var ModifyUser :Boolean;
 begin
    if FView.ListViewUsers.Selected <> nil then begin
       FEditUserView := TEditUserView.Create(FView);
+      FEditUserView.State := vsEdit;
       AssignDelegatesToEditUserView;
       {Configuration of the view....}
       FEditUserView.User := TUser(FView.ListViewUsers.Selected.Data);
       try
          if FEditUserView.ShowModal = mrOK then begin
-            //TUser(FView.ListViewUsers.Selected.Data).Assign(FEditUserView.User);
+            {Call to model with update instruction }
+            //UpdateItemToDatabase(User);
          end;
       finally FEditUserView.Free;
       end;
@@ -146,7 +162,6 @@ begin
    ShowMessage('Falta de implementar la opción de Búsqueda');
 end;
 
-
 procedure TUsersController.AssignDelegatesToEditUserView;
 begin
    FEditUserView.BtnAccept.Onclick := Delegate_EditUserViewBtnAcceptClick;
@@ -155,19 +170,40 @@ end;
 
 procedure TUsersController.Delegate_EditUserViewBtnAcceptClick(Sender: TObject);
 var MessageText :string;
+    ResultCode  :Integer;
 begin
-   if FModel.CheckValues(FEditUserView.User, MessageText) <> 0 then begin
+   case FEditUserView.State of
+     vsEdit:;
+     vsInsert:begin
+        if Trim(FEditUserView.EditNEW_PASSWORD.Text) = '' then begin
+           Avisar de que debe indicarse la clave
+        end else
+        if Trim(FEditUserView.EditNEW_PASSWORD.Text) <> Trim(FEditUserView.EditNEW_PASSWORD_TWO.Text) then begin
+           Indicar que deben ser iguales la primera y la segunda
+        end
+        else Asignar el varlor de la clave a Password con la función de encriptacion.
+
+
+     end;
+   end;
+
+   ResultCode := FModel.CheckValues(FEditUserView.User, MessageText);
+   if  ResultCode <> 0 then begin
       FEditUserView.ShowMessage(MessageText);
+      case ResultCode of
+           -1:FEditUserView.EditCD_USER.SetFocus;
+           -2:FEditUserView.EditDS_USER.SetFocus;
+           -3:FEditUserView.EditOLD_PASSWORD.SetFocus;
+      end;
    end
    else begin
-      ShowMessage('Pulsó Aceptar');
       FEditUserView.ModalResult := mrOK;
    end;
 end;
 
 procedure TUsersController.Delegate_EditUserViewBtnCancelClick(Sender: TObject);
 begin
-   ShowMessage('Pulsó Cancelar');
+   FEditUserView.ModalResult := mrCancel;
 end;
 
 procedure TUsersController.OnListViewUsersSelectItem(Sender: TObject; Item: TListItem; Selected: Boolean);
@@ -176,5 +212,6 @@ begin
   User := TUser(Item.Data);
   FView.ShowMessage(User.CD_USER+'   =>  '+User.DS_USER);
 end;
+
 
 end.
