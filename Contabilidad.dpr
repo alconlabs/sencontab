@@ -10,7 +10,6 @@ uses
   DMBalances in 'Fuentes\DMBalances.pas' {DMBlnc: TDataModule},
   MenuPrincipal in 'Fuentes\MenuPrincipal.pas' {FormPrincipal},
   Globales in 'Fuentes\Globales.pas',
-  Login in 'Fuentes\Login.pas' {FormLogin},
   General in 'Fuentes\General.pas',
   Proyectos in 'Fuentes\Proyectos.pas' {WProyectos},
   UPaises in 'Fuentes\UPaises.pas' {WPaises},
@@ -81,6 +80,7 @@ uses
   InfBalanceSituacion in 'Fuentes\InfBalanceSituacion.pas',
   ccChildForm in 'Fuentes\ccChildForm.pas' {ccFormChild},
   ccDBIntegrity in 'Fuentes\ccDBIntegrity.pas',
+  Login in 'Fuentes\Login.pas' {FormLogin},
   FormHandler in 'Fuentes\FormHandler.pas',
   SearchAccount in 'Fuentes\SearchAccount.pas' {FormSearchAccount},
   SearchConcept in 'Fuentes\SearchConcept.pas' {FormSearchConcept},
@@ -88,8 +88,6 @@ uses
   ConfigurationClass in 'Fuentes\Controllers\ConfigurationClass.pas',
   DBController in 'Fuentes\Controllers\DBController.pas',
   DBConnection in 'Fuentes\models\DBConnection.pas',
-  LoginController in 'Fuentes\controllers\LoginController.pas',
-  LoginView in 'Fuentes\views\LoginView.pas' {FormLoginView},
   CRSQLConnection in 'Fuentes\models\CRSQLConnection.pas',
   ccStr in 'Fuentes\ccStr.pas',
   Utilidades in 'Fuentes\Utilidades.pas',
@@ -97,23 +95,26 @@ uses
   D6OnHelpFix in 'Fuentes\D6OnHelpFix.pas',
   HashCriptography in 'Fuentes\HashCriptography.pas',
   LoginModel in 'Fuentes\models\LoginModel.pas',
+  LoginView in 'Fuentes\views\LoginView.pas' {FormLoginView},
+  LoginController in 'Fuentes\controllers\LoginController.pas',
   MenuAdminController in 'Fuentes\controllers\MenuAdminController.pas',
   MenuAdminView in 'Fuentes\views\MenuAdminView.pas' {FormMenuAdmin},
   WizardGestEnterprises in 'Fuentes\WizardGestEnterprises.pas' {FormWizardGestEnterprises},
+  CustomEnterprisesModel in 'Fuentes\models\CustomEnterprisesModel.pas',
   EnterprisesModel in 'Fuentes\models\EnterprisesModel.pas',
   EnterprisesController in 'Fuentes\controllers\EnterprisesController.pas',
+  EnterpriseClass in 'Fuentes\BusinessObjects\EnterpriseClass.pas',
   CustomController in 'Fuentes\controllers\CustomController.pas',
   CustomView in 'Fuentes\views\CustomView.pas' {CustomView},
-  EnterpriseClass in 'Fuentes\BusinessObjects\EnterpriseClass.pas',
-  CustomEnterprisesModel in 'Fuentes\models\CustomEnterprisesModel.pas',
   UsersController in 'Fuentes\controllers\UsersController.pas',
   UsersView in 'Fuentes\views\UsersView.pas' {UsersView},
-  UserClass in 'Fuentes\BusinessObjects\UserClass.pas',
-  CustomUsersModel in 'Fuentes\models\CustomUsersModel.pas',
-  UsersModel in 'Fuentes\models\UsersModel.pas',
   EditUserView in 'Fuentes\views\EditUserView.pas' {EditUserView},
+  UserClass in 'Fuentes\BusinessObjects\UserClass.pas',
+  UsersModel in 'Fuentes\models\UsersModel.pas',
+  CustomUsersModel in 'Fuentes\models\CustomUsersModel.pas',
   LabelCaptionForm in 'Fuentes\Tools\LabelCaptionForm.pas',
-  CustomDataInputView in 'Fuentes\views\CustomDataInputView.pas' {CustomDataInputView};
+  CustomDataInputView in 'Fuentes\views\CustomDataInputView.pas' {CustomDataInputView},
+  MemCheck in 'Fuentes\Tools\MemCheck.pas';
 
 {$R *.RES}
 
@@ -211,6 +212,7 @@ begin
   try
     MainController.Run;
     Application.Run;
+    MemChk;
   finally
     MainController.Free;
   end;

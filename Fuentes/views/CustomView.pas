@@ -13,20 +13,23 @@ type
    TViewState = (vsEdit, vsInsert); 
 
    TCustomView = class(TForm)
-    ImageListAppleWindow: TImageList;
-    ImageClose: TImage;
-    ImageMinimize: TImage;
-    ImageMaximize: TImage;
-    TimerSystemIcons: TTimer;
-    TimerMessage: TTimer;
-    procedure FormResize(Sender: TObject);
-    procedure ImageAppleIconMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
-    procedure TimerSystemIconsTimer(Sender: TObject);
-    procedure ImageCloseClick(Sender: TObject);
-    procedure ImageMinimizeClick(Sender: TObject);
-    procedure ImageMaximizeClick(Sender: TObject);
-    procedure TimerMessageTimer(Sender: TObject);
-    procedure FormMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+     ImageListAppleWindow: TImageList;
+     ImageClose: TImage;
+     ImageMinimize: TImage;
+     ImageMaximize: TImage;
+     TimerSystemIcons: TTimer;
+     TimerMessage: TTimer;
+    StateImages: TImageList;
+    LargeImages: TImageList;
+    SmallImages: TImageList;
+     procedure FormResize(Sender: TObject);
+     procedure ImageAppleIconMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+     procedure TimerSystemIconsTimer(Sender: TObject);
+     procedure ImageCloseClick(Sender: TObject);
+     procedure ImageMinimizeClick(Sender: TObject);
+     procedure ImageMaximizeClick(Sender: TObject);
+     procedure TimerMessageTimer(Sender: TObject);
+     procedure FormMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
    private
      FAppleIcons          :TAppleIcons;
      FAppleIconsVisibles  :TAppleIcons;
@@ -40,7 +43,7 @@ type
    protected
      FHEIGHT_FROM_BOTTOM :Integer;
      procedure Paint; override;
-     procedure WMNCHitTest(var Msg: TWMNCHitTest) ; message WM_NCHitTest;
+     //procedure WMNCHitTest(var Msg: TWMNCHitTest) ; message WM_NCHitTest;
    public
      constructor Create(AOwner: TComponent); override;
      procedure ShowMessage(AErrorMessage :string);
@@ -51,6 +54,7 @@ type
 
 implementation
 {$R *.DFM}
+uses SysUtils;
 
 constructor TCustomView.Create(AOwner: TComponent);
 begin
@@ -102,18 +106,18 @@ begin
    FLabelMessage.OnMouseDown := CustomViewMouseDown;
 end;
 
-procedure TCustomView.WMNCHitTest(var Msg: TWMNCHitTest);
-begin
+//procedure TCustomView.WMNCHitTest(var Msg: TWMNCHitTest);
+//begin
    {move the form by draging anywhere on the client area }
    //if (Msg.Result = htClient) then begin
    //   Msg.Result := htCaption;
    //end;
-   inherited;
+//   inherited;
    //else begin
    //   Msg.Result := htCaption;
    //   inherited;
    //end;
-end;
+//end;
 
 procedure TCustomView.Paint;
 var Rect :HRGN;
