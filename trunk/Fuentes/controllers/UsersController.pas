@@ -2,7 +2,7 @@ unit UsersController;
 
 interface
 
-uses Classes, CustomController, ComCtrls,
+uses Classes, CustomController, ComCtrls, Controls,
      DBController,
      UsersView,
      EditUserView,
@@ -21,11 +21,16 @@ type
     procedure OnClick_NewUser   (Sender : TObject);
     procedure OnClick_ModifyUser(Sender : TObject);
     procedure OnClick_DeleteUser(Sender : TObject);
+    procedure OnDragOver_DeleteUser(Sender, Source: TObject; X, Y: Integer; State: TDragState; var Accept: Boolean);
+    procedure OnDragDrop_DeleteUser(Sender, Source: TObject; X,  Y: Integer);
+    procedure OnDragOver_EditUser(Sender, Source: TObject; X, Y: Integer; State: TDragState; var Accept: Boolean);
+    procedure OnDragDrop_EditUser(Sender, Source: TObject; X,  Y: Integer);
     procedure OnClick_BtnImageList(Sender :TObject);
     procedure OnClick_BtnImageReport(Sender: TObject);
-    procedure OnClick_BtnImageSmallIcons(Sender: TObject);
     procedure OnClick_BtnImageIconos(Sender: TObject);
     procedure OnClick_BtnImageSearch(Sender: TObject);
+    procedure OnDblClick_ListUsers(Sender: TObject);
+    procedure OnListUsers_InfoTip(Sender: TObject; Item: TListItem; var InfoTip: String);
     procedure OnListViewUsersSelectItem(Sender: TObject; Item: TListItem; Selected: Boolean);
     procedure Delegate_EditUserViewBtnAcceptClick(Sender: TObject);
     procedure Delegate_EditUserViewBtnCancelClick(Sender: TObject);
@@ -36,14 +41,16 @@ type
   end;
 
 implementation
-uses Forms, Controls, SysUtils, Dialogs, 
-     CustomView;
+uses Forms, SysUtils, Dialogs, DB,
+     CustomView,
+     HashCriptography;
 
 constructor TUsersController.Create(ADBController :TDBController);
-var  User :TUser;
+var User :TUser;
 begin
    inherited Create(ADBController);
-   FView  := TUsersView.Create(Application);
+   Application.CreateForm(TUsersView, FView);
+   //FView  := TUsersView.Create(Application);
    FView.AppleIcons := [aiClose, aiMinimize, aiMaximize];
    FView.AppleIconsVisibles := [aiClose, aiMinimize, aiMaximize];
    FModel := TUsersModel.Create(DBCtlr.DBConnection.Connection);
@@ -66,7 +73,10 @@ var ListItem :TListItem;
 begin
    ListItem := FView.ListViewUsers.Items.Add;
    ListItem.Data := prmUser;
-   Listitem.Caption := prmUser.CD_USER+' -> '+prmUser.DS_USER;
+   ListItem.Caption := prmUser.CD_USER;//+' -> '+prmUser.DS_USER;
+   ListItem.SubItems.Add(prmUser.DS_USER);
+   if prmUser.ADMINISTRATOR = 'Y' then ListItem.SubItems.Add('Si')
+   else ListItem.SubItems.Add('No');
    ListItem.ImageIndex := 0;
 end;
 
@@ -82,12 +92,17 @@ begin
    FView.BtnImageNew.OnClick        := OnClick_NewUser;
    FView.BtnImageEdit.OnClick       := OnClick_ModifyUser;
    FView.BtnImageDelete.OnClick     := OnClick_DeleteUser;
+   FView.BtnImageDelete.OnDragOver  := OnDragOver_DeleteUser;
+   FView.BtnImageDelete.OnDragDrop  := OnDragDrop_DeleteUser;
+   FView.BtnImageEdit.OnDragOver    := OnDragOver_EditUser;
+   FView.BtnImageEdit.OnDragDrop    := OnDragDrop_EditUser;
    FView.ListViewUsers.OnSelectItem := OnListViewUsersSelectItem;
    FView.BtnImageList.Onclick       := OnClick_BtnImageList;
    FView.BtnImageReport.OnClick     := OnClick_BtnImageReport;
-   FView.BtnImageSmallIcons.OnClick := OnClick_BtnImageSmallIcons;
    FView.BtnImageIcons.OnClick      := OnClick_BtnImageIconos;
    FView.BtnImageSearch.OnClick     := OnClick_BtnImageSearch;
+   FView.ListViewUsers.OnDblClick   := OnDblClick_ListUsers;
+   FView.ListViewUsers.OnInfoTip    := OnListUsers_InfoTip;
    //Result :=
    FView.Show;
 end;
@@ -101,6 +116,7 @@ begin
    AssignDelegatesToEditUserView;
    FEditUserView.EditOLD_PASSWORD.Visible := False;
    FEditUserView.LabelOldPassword.Visible := False;
+
    User := FModel.GetNewClass;
    FEditUserView.User := User;
    try
@@ -123,8 +139,7 @@ begin
       FEditUserView.User := TUser(FView.ListViewUsers.Selected.Data);
       try
          if FEditUserView.ShowModal = mrOK then begin
-            {Call to model with update instruction }
-            //UpdateItemToDatabase(User);
+            FModel.Update(TUser(FView.ListViewUsers.Selected.Data));
          end;
       finally FEditUserView.Free;
       end;
@@ -133,8 +148,63 @@ begin
 end;
 
 procedure TUsersController.OnClick_DeleteUser(Sender :TObject);
+var User :TUser;
 begin
+   User := TUser(FView.ListViewUsers.Selected.Data);
+   if User <> nil then begin
+      if MessageDlg('¿Seguro que desea eliminar el elemento seleccionado?',
+         mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
+         if FModel.Delete(User) then begin
+            FView.ListViewUsers.Selected.Delete;
+         end;
+      end;
+   end;
+end;
 
+procedure TUsersController.OnDragOver_DeleteUser(Sender, Source: TObject;
+  X, Y: Integer; State: TDragState; var Accept: Boolean);
+begin
+   Accept := (Source is TListView) and (TObject(TListView(Source).Selected.Data) is TUser);
+end;
+
+procedure TUsersController.OnDragDrop_DeleteUser(Sender, Source: TObject; X, Y: Integer);
+var User :TUser;
+begin
+   if (Source is TListView) and (TObject(TListView(Source).Selected.Data) is TUser) then begin
+       User := TUser(TListView(Source).Selected.Data);
+       if User <> nil then begin
+          if MessageDlg('¿Seguro que desea eliminar el elemento seleccionado?',
+             mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
+             if FModel.Delete(User) then begin
+                TListView(Source).Selected.Delete;
+             end;
+          end;
+       end;
+   end;
+end;
+
+procedure TUsersController.OnDragOver_EditUser(Sender, Source: TObject; X, Y: Integer; State: TDragState; var Accept: Boolean);
+begin
+   Accept := (Source is TListView) and (TObject(TListView(Source).Selected.Data) is TUser);
+end;
+
+procedure TUsersController.OnDragDrop_EditUser(Sender, Source: TObject; X, Y: Integer);
+var User :TUser;
+begin
+   if (Source is TListView) and (TObject(TListView(Source).Selected.Data) is TUser) then begin
+       User := TUser(TListView(Source).Selected.Data);
+       FEditUserView := TEditUserView.Create(FView);
+       FEditUserView.State := vsEdit;
+       AssignDelegatesToEditUserView;
+       {Configuration of the view....}
+       FEditUserView.User := TUser(FView.ListViewUsers.Selected.Data);
+       try
+          if FEditUserView.ShowModal = mrOK then begin
+             FModel.Update(User);
+          end;
+       finally FEditUserView.Free;
+       end;
+   end;
 end;
 
 procedure TUsersController.OnClick_BtnImageList(Sender :TObject);
@@ -145,11 +215,6 @@ end;
 procedure TUsersController.OnClick_BtnImageReport(Sender: TObject);
 begin
    FView.ListViewUsers.ViewStyle := vsReport;
-end;
-
-procedure TUsersController.OnClick_BtnImageSmallIcons(Sender: TObject);
-begin
-   FView.ListViewUsers.ViewStyle := vsSmallIcon;
 end;
 
 procedure TUsersController.OnClick_BtnImageIconos(Sender: TObject);
@@ -171,22 +236,34 @@ end;
 procedure TUsersController.Delegate_EditUserViewBtnAcceptClick(Sender: TObject);
 var MessageText :string;
     ResultCode  :Integer;
+    Continue    :Boolean;
 begin
    case FEditUserView.State of
-     vsEdit:;
+     vsEdit:begin
+       Continue := True; {TODO: Hacer las comprobaciones del password }
+     end;
      vsInsert:begin
         if Trim(FEditUserView.EditNEW_PASSWORD.Text) = '' then begin
-           Avisar de que debe indicarse la clave
+           FEditUserView.ShowMessage('Debe indicar el Password');
+           FEditUserView.EditNEW_PASSWORD.SetFocus;
+           Continue := False;
         end else
         if Trim(FEditUserView.EditNEW_PASSWORD.Text) <> Trim(FEditUserView.EditNEW_PASSWORD_TWO.Text) then begin
-           Indicar que deben ser iguales la primera y la segunda
+           FEditUserView.ShowMessage('No ha repetido bien el password');
+           FEditUserView.EditNEW_PASSWORD_TWO.SetFocus;
+           Continue := False;
         end
-        else Asignar el varlor de la clave a Password con la función de encriptacion.
-
-
+        else begin
+           if not (FEditUserView.HUsers.State in dsEditModes) then FEditUserView.HUsers.Edit;
+           FEditUserView.HUsersPASSWORD.AsString := GetSHA1Hash(FEditUserView.EditNEW_PASSWORD.Text);
+           FEditUserView.HUsers.Post;
+           Continue := True;  
+        end;
      end;
    end;
 
+   if not Continue then Exit;
+   
    ResultCode := FModel.CheckValues(FEditUserView.User, MessageText);
    if  ResultCode <> 0 then begin
       FEditUserView.ShowMessage(MessageText);
@@ -206,6 +283,11 @@ begin
    FEditUserView.ModalResult := mrCancel;
 end;
 
+procedure TUsersController.OnDblClick_ListUsers(Sender: TObject);
+begin
+   FView.BtnImageEdit.OnClick(Self);
+end;
+
 procedure TUsersController.OnListViewUsersSelectItem(Sender: TObject; Item: TListItem; Selected: Boolean);
 var User :TUser;
 begin
@@ -213,5 +295,15 @@ begin
   FView.ShowMessage(User.CD_USER+'   =>  '+User.DS_USER);
 end;
 
+procedure TUsersController.OnListUsers_InfoTip(Sender: TObject; Item: TListItem; var InfoTip: String);
+var TextAdministrator :string;
+begin
+   if TUser(Item.Data).ADMINISTRATOR = 'Y' then TextAdministrator := 'Es Administrador'
+   else TextAdministrator := 'Usuario estandar';
+
+   InfoTip := TUser(Item.Data).CD_USER + #13#10 +
+              TUser(Item.Data).DS_USER + #13#10 +
+              TextAdministrator;
+end;
 
 end.

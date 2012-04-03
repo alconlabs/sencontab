@@ -5,8 +5,8 @@ uses Forms, Messages, Windows, Graphics, Classes, ImgList, Controls,
 
 type
    TCustomDataInputView = class(TCustomView)
-    procedure FormShow(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+     procedure FormShow(Sender: TObject);
+     procedure FormClose(Sender: TObject; var Action: TCloseAction);
    protected
      //procedure DoShow; override;
      //procedure DoClose(var Action: TCloseAction); override;

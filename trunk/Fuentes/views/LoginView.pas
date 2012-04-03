@@ -114,7 +114,6 @@ end;
 
 procedure TFormLoginView.TimerTimer(Sender: TObject);
 begin
-
    if Intentos > 3 then Application.Terminate;
 end;
 

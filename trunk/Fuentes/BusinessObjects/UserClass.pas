@@ -37,6 +37,7 @@ const UserFieldNames: TUserFieldNamesDef = (
 type
   TUser = class(TPersistent)
   private
+    FPrimaryKey  :array[TUserField] of Boolean;
     FNullFields  :array[TUserField] of Boolean;
     FRequired    :array[TUserField] of Boolean;
     FLengths     :array[TUserField] of Integer;
@@ -91,8 +92,14 @@ type
     procedure Initialize; virtual;
     function  IsNull(prmField :TUserField):Boolean;
     function  IsChanged(prmField :TUserField):Boolean;
+    { New }
+    function  FieldToString(prmField :TUserField):string;
     procedure CompareWith(prmData :TUser);
     property EmptyStringToNull :Boolean read FEmptyStringToNull write FEmptyStringToNull; {default True}
+    { New }
+    function IsPrimaryKey(Field :TUserField):Boolean; overload;
+    { New }
+    function IsPrimaryKey(Field :string):Boolean; overload;
   published
     property CD_USER       :string read FCD_USER       write SetCD_USER      ;
     property DS_USER       :string read FDS_USER       write SetDS_USER      ;
@@ -100,8 +107,8 @@ type
     property ADMINISTRATOR :string read FADMINISTRATOR write SetADMINISTRATOR;
   end;
 
-implementation
-uses SysUtils;
+implementation          { New unit TypInfo }
+uses SysUtils, TypInfo;
 
 { TUser }
 constructor TUser.Create;
@@ -120,6 +127,7 @@ begin
    FEmptyStringToNull := True; {Default Value}
 
    for i := Low(TUserField) to High(TUserField) do begin
+      FPrimaryKey[i]  := False;
       FNullFields[i]  := True;
       FChanged[i]     := False;
       FMasks  [i]     := '';
@@ -127,6 +135,8 @@ begin
       FOldAssigned[i] := False;
       FNullOlds[i]    := False;
    end;
+
+   FPrimaryKey[userCD_USER    ] := True;    { New } { Puede llevarse a la inicialización heredada si es complejo averiguarlo }
 
    FRequired[userCD_USER      ] := False;
    FRequired[userDS_USER      ] := False;
@@ -182,7 +192,7 @@ begin
       { NOT IS the First Assignation }                                                            
       if IsNullOrEmpty(Value) then begin                                                   
          { The Value is NULL or Empty}                                                            
-         if FEmptyStringToNull then begin                                                         
+         if FEmptyStringToNull then begin
             FNullFields[Field]  := True;                                                          
             REF_VAR             := Value;                                                         
          end                                                                                      
@@ -292,6 +302,19 @@ begin
    if ADMINISTRATOR <> prmData.ADMINISTRATOR then SetChanged(userADMINISTRATOR);
 end;
 
+function TUser.IsPrimaryKey(Field :TUserField):Boolean;
+begin
+   Result := FPrimaryKey[Field];
+end;
+
+function TUser.IsPrimaryKey(Field :string):Boolean;
+begin
+   if Field = 'CD_USER'       then IsPrimaryKey(userCD_USER      ) else
+   if Field = 'DS_USER'       then IsPrimaryKey(userDS_USER      ) else
+   if Field = 'PASSWORD'      then IsPrimaryKey(userPASSWORD     ) else
+   if Field = 'ADMINISTRATOR' then IsPrimaryKey(userADMINISTRATOR);
+end;
+
 procedure TUser.SetCD_USER(const Value :string);
 begin
    AssignString(Value, FCD_USER, FOLD_CD_USER, userCD_USER);
@@ -310,6 +333,13 @@ end;
 procedure TUser.SetADMINISTRATOR(const Value :string);
 begin
    AssignString(Value, FADMINISTRATOR, FOLD_ADMINISTRATOR, userADMINISTRATOR);
+end;
+
+{ New }
+function TUser.FieldToString(prmField: TUserField): string;
+begin
+   Result := UserFieldNames[prmField];
+   //GetEnumName(TypeInfo(TUserField), Integer(prmField));
 end;
 
 end.

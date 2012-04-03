@@ -2,7 +2,7 @@ object DMRef: TDMRef
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
-  Left = 273
+  Left = 122
   Top = 141
   Height = 373
   Width = 583
