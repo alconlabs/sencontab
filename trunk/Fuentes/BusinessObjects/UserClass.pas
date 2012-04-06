@@ -69,7 +69,8 @@ type
     procedure AcceptFieldChange(Field :TUserField);
     { New }
     procedure ClearValueField(Field :TUserField);
-
+    { New }
+    function GetVersion :string;
   protected
     FCD_USER            :string;
     FDS_USER            :string;
@@ -100,6 +101,8 @@ type
     function IsPrimaryKey(Field :TUserField):Boolean; overload;
     { New }
     function IsPrimaryKey(Field :string):Boolean; overload;
+    { New }
+    property Version :string read GetVersion;
   published
     property CD_USER       :string read FCD_USER       write SetCD_USER      ;
     property DS_USER       :string read FDS_USER       write SetDS_USER      ;
@@ -153,7 +156,6 @@ begin
    FHints[userPASSWORD     ] := '';
    FHints[userADMINISTRATOR] := '';
 end;
-
 
 procedure TUser.AssignString(Value :string; var REF_VAR :string;
                                             var REF_OLD_VAR :string; Field :TUserField);
@@ -340,6 +342,11 @@ function TUser.FieldToString(prmField: TUserField): string;
 begin
    Result := UserFieldNames[prmField];
    //GetEnumName(TypeInfo(TUserField), Integer(prmField));
+end;
+
+function TUser.GetVersion: string;
+begin
+   Result := '1.00';
 end;
 
 end.

@@ -1,8 +1,11 @@
 unit CustomView;
 interface
-uses Forms, Messages, Windows, Graphics, Classes, ImgList, Controls,
+uses Forms, Messages, Windows, Graphics, Classes, ImgList, Controls, ComCtrls,
      Dialogs, ExtCtrls, Buttons, StdCtrls, LabelCaptionForm;
 
+const DELAY_SHORT =        400;
+      DELAY_LONG  =       3000;
+      DELAY_NEVER = 2147483647;
 type
    TAppleButton = (abGray, abRed      , abYellow      , abGreen,
                            abRedSignum, abYellowSignum, abGreenSignum);
@@ -10,7 +13,14 @@ type
    TAppleIcon = (aiClose, aiMinimize, aiMaximize);
    TAppleIcons = set of TAppleIcon;
 
-   TViewState = (vsEdit, vsInsert); 
+   TViewState = (vsEdit, vsInsert);
+
+   TccListColumn = class(TListColumn)
+   private
+     FColumnName :string;
+   public
+     property ColumnName :string read FColumnName write FColumnName;
+   end;
 
    TCustomView = class(TForm)
      ImageListAppleWindow: TImageList;

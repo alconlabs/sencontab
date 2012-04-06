@@ -1,6 +1,6 @@
 object CustomDataInputView: TCustomDataInputView
-  Left = 370
-  Top = 220
+  Left = 371
+  Top = 229
   Width = 458
   Height = 318
   HelpType = htKeyword
