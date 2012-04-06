@@ -22,25 +22,37 @@ uses Classes, SysUtils, Forms, Controls, Dialogs, db, SQLExpr,
 type
   TCustomUsersModel = class
   private
+    FConnection     :TCRSQLConnection;
+    FTableName      :string;
+    FOrderFieldName :string;   { The real name for the order instruction }
+    FDataSet        :TSQLQuery;
+    FLastError      :string;
     { New }
-    //FHelper     :TModelHelper;  //<TSettingsField, TSettingsRow>;
-    FConnection  :TCRSQLConnection;
-    FDataSet   :TSQLQuery;
-    FTableName :string;
-    FOrderBy   :string;
-    FLastError :string;
+    FSenseOrderBy   :string;
+    { New }
+    FSQLSearch      :TStringList;
+    procedure ClearLastError;
     function GetRowsAffected:Integer;
     function GetRowCount    :Integer;
     function GetEOF :Boolean;
-    procedure ClearLastError;
+
+    { New }
+    function GetVersion :string;
     { New }
     function GetSQLForUpdate(Value :TUser):TStringList;
-    { New } 
-    //procedure AssignParamsUpdate(Value :TUser; ACommand :TSQLQuery);
+    { New }
+    function GetOrderFieldName:string;
+    { New }
+    procedure SetOrderFieldName(Value :string);
+  protected { New section too }
+    { New }
+    function GetBaseSQLForSelect:TStringList;
   public
     constructor Create(prmConnection :TCRSQLConnection); reintroduce;
     destructor  Destroy; override;
-    function  Open :Boolean;
+    function  Open :Boolean;                     //overload;
+    { New }
+    function Refresh:Boolean;
     function QueryByExample(prmValue :TUser):Boolean;
     function Save(prmData :TUser):Boolean;
     function Update(prmData :TUser):Boolean;
@@ -55,10 +67,16 @@ type
     function  Locate(prmData :TUser):Boolean;
     function  GetDefaults:TUser;
     { Public properties}
-    property Connection :TCRSQLConnection  read FConnection;
-    property EOF :Boolean read GetEOF;
-    property RowsAffected :Integer read GetRowsAffected;
-    property RowCount     :Integer read GetRowCount;
+    { New }
+    property Version        :string            read GetVersion;
+    property Connection     :TCRSQLConnection  read FConnection;
+    property EOF            :Boolean           read GetEOF;
+    property RowsAffected   :Integer           read GetRowsAffected;
+    property RowCount       :Integer           read GetRowCount;
+    { New }
+    property OrderFieldName :string            read GetOrderFieldName write SetOrderFieldName;
+    { New }
+    property SQLSearch      :TStringList       read FSQLSearch        write FSQLSearch;
   end;
 
 implementation
@@ -67,11 +85,15 @@ uses TypInfo;
 constructor TCustomUsersModel.Create(prmConnection :TCRSQLConnection);
 begin
    inherited Create;
-   FConnection := prmConnection; 
-   FTableName := 'USERS';
-   FOrderBy   := 'CD_USER';
+   FConnection := prmConnection;
+   FTableName      := 'USERS';
+   FOrderFieldName := 'CD_USER';
    FDataSet := TSQLQuery.Create(nil);
    FDataSet.SQLConnection := prmConnection;
+   { New }
+   FSQLSearch := TStringList.Create;
+   { New }
+   FSenseOrderBy := 'ASC';
 end;
 
 destructor TCustomUsersModel.Destroy;
@@ -108,19 +130,29 @@ begin
    else Result := FDataSet.EOF;
 end;
 
-function TCustomUsersModel.Open:Boolean;
+function TCustomUsersModel.GetBaseSQLForSelect: TStringList;
 begin
+   Result := TStringList.Create;
+   Result.Add('SELECT CD_USER,      ');
+   Result.Add('       DS_USER,      ');
+   Result.Add('       PASSWORD,     ');
+   Result.Add('       ADMINISTRATOR ');
+   Result.Add('FROM   USERS');
+end;
+
+{ Updated }
+function TCustomUsersModel.Open:Boolean;
+var SQL :TStringList;
+begin
+   SQL := GetBaseSQLForSelect;
+   SQL.AddStrings(FSQLSearch);
+   SQL.Add('ORDER BY ' + OrderFieldName + ' '+ FSenseOrderBy);
+
    FDataSet.Close;
    FDataSet.ParamCheck := True;
-   //FDataSet.LockType := ltReadOnly;
-   //FDataSet.CursorLocation := clUseClient;
    FDataSet.SQL.Clear;
-   FDataSet.SQL.Add('SELECT CD_USER, ');
-   FDataSet.SQL.Add('       DS_USER, ');
-   FDataSet.SQL.Add('       PASSWORD, ');
-   FDataSet.SQL.Add('       ADMINISTRATOR ');
-   FDataSet.SQL.Add('FROM   USERS');
-   FDataSet.SQL.Add('ORDER BY CD_USER ');
+   FDataSet.SQL.Assign(SQL);
+   
    ClearLastError;
    Result := True;
    try
@@ -131,6 +163,14 @@ begin
        FLastError := E.Message;
      end;
    end;
+end;
+
+function TCustomUsersModel.Refresh:Boolean;
+begin
+   FDataSet.Close;
+   ClearLastError;
+   Result := True;
+   Open;
 end;
 
 function TCustomUsersModel.QueryByExample(prmValue :TUser):Boolean;
@@ -171,8 +211,8 @@ begin
              end;
            end;
         end;
-        if Trim(FOrderBy) <> '' then
-           FDataSet.SQL.Add('ORDER BY ' + FOrderBy);
+        if Trim(FOrderFieldName) <> '' then
+           FDataSet.SQL.Add('ORDER BY ' + FOrderFieldName);
      finally
      end;
      FDataSet.Open;
@@ -260,7 +300,7 @@ begin
    ClearLastError;
 
    SQL := GetSQLForUpdate(prmData);
-   ShowMessage(SQL.Text);
+   //ShowMessage(SQL.Text);
    try
      Q := FConnection.CreateQuery(['']);
      Q.SQL.Assign(SQL);
@@ -305,10 +345,6 @@ begin
    finally
      SQL.Free;
    end;
-
-   Result := True;
-   //Command.ExecuteNonQuery;
-   Result := False;
 end;
 
 function TCustomUsersModel.Delete(prmData :TUser):Boolean;
@@ -492,131 +528,30 @@ begin
    Result := Query;
 end;
 
-//procedure TCustomUsersModel.AssignParamsUpdate(Value :TRowClass; ACommand :SQLCECommand);
-//var PropInfo  :System.Reflection.PropertyInfo;
-//    PropInfo2 :System.Reflection.PropertyInfo;
-//begin
-//  for each Field :TFields in FFields do begin
-//     if Value.IsChanged(Field.ToString) then begin
-//       PropInfo  := typeof(Value).GetProperty(Field.ToString());
-//       PropInfo2 := Value.GetType().GetProperty(Field.ToString());
-//
-//       case PropInfo.PropertyType.ToString() of
-//         'Boolean'  :begin {bit     }
-//            ACommand.Parameters.Add(
-//               new SQLCEParameter("@"+Field.ToString(), SqlDbType.Bit)).Value
-//                  := (PropInfo2.GetValue(Value, nil)) as System.Boolean;
-//         end;
-//         'System.DateTime' :begin {datetime}
-//            ACommand.Parameters.Add(
-//               new SQLCEParameter("@"+Field.ToString(), SQLDBType.DateTime)).Value
-//                  := SQLDateTime(PropInfo2.GetValue(Value, nil) as System.DateTime);
-//         end;
-//         'Byte'     :begin {tinyint }
-//            ACommand.Parameters.Add(
-//               new SQLCEParameter("@"+Field.ToString(), SqlDbType.TinyInt)).Value
-//                  := (PropInfo2.GetValue(Value, nil)) as System.Byte;
-//         end;
-//         'SmallInt' :begin {smallint}
-//            ACommand.Parameters.Add(
-//               new SQLCEParameter("@"+Field.ToString(), SqlDbType.SmallInt)).Value
-//                  := (PropInfo2.GetValue(Value, nil)) as System.Int16;
-//         end;
-//         'System.Int32'{'Integer'}  :begin {int     }
-//            ACommand.Parameters.Add(
-//               new SQLCEParameter("@"+Field.ToString(), SqlDbType.Int)).Value
-//                  := (PropInfo2.GetValue(Value, nil)) as System.Int32;
-//         end;
-//         'Int64'    :begin {bigint  }
-//            ACommand.Parameters.Add(
-//               new SQLCEParameter("@"+Field.ToString(), SqlDbType.BigInt)).Value
-//                  := (PropInfo2.GetValue(Value, nil)) as System.Int64;
-//         end;
-//         'Single'   :begin {real    }
-//            ACommand.Parameters.Add(
-//               new SQLCEParameter("@"+Field.ToString(), SqlDbType.Real)).Value
-//                  := (PropInfo2.GetValue(Value, nil)) as System.Single;
-//         end;
-//         'Double'   :begin {numeric }
-//            ACommand.Parameters.Add(
-//               new SQLCEParameter("@"+Field.ToString(), SqlDbType.Decimal)).Value
-//                  := (PropInfo2.GetValue(Value, nil)) as System.Double;
-//         end;
-//         'System.String'{'String'}   :begin {nvarchar}
-//            ACommand.Parameters.Add(
-//               new SQLCEParameter("@"+Field.ToString(), SqlDbType.NVarChar)).Value
-//                  := (PropInfo2.GetValue(Value, nil)) as System.String;
-//         end;
-//         else;
-//         (* raise
-//         'Char'     :;
-//         'ShortInt' :;
-//         'Word'     :;
-//         'Longworld':;*)
-//       end; // case
-//     end; // if not null
-//   end;
-//
-//   for each Field :TFields in FFields do begin
-//     if Value.IsPrimaryKey(Field.ToString) then begin
-//       PropInfo  := typeof(Value).GetProperty(Field.ToString());
-//       PropInfo2 := Value.GetType().GetProperty('Old_'+Field.ToString());
-//
-//       case PropInfo.PropertyType.ToString() of
-//         'Boolean'  :begin {bit     }
-//            ACommand.Parameters.Add(
-//               new SQLCEParameter("@PK_"+Field.ToString(), SqlDbType.Bit)).Value
-//                  := (PropInfo2.GetValue(Value, nil)) as System.Boolean;
-//         end;
-//         'System.DateTime' :begin {datetime}
-//            ACommand.Parameters.Add(
-//               new SQLCEParameter("@PK_"+Field.ToString(), SQLDBType.DateTime)).Value
-//                  := SQLDateTime(PropInfo2.GetValue(Value, nil) as System.DateTime);
-//         end;
-//         'Byte'     :begin {tinyint }
-//            ACommand.Parameters.Add(
-//               new SQLCEParameter("@PK_"+Field.ToString(), SqlDbType.TinyInt)).Value
-//                  := (PropInfo2.GetValue(Value, nil)) as System.Byte;
-//         end;
-//         'SmallInt' :begin {smallint}
-//            ACommand.Parameters.Add(
-//               new SQLCEParameter("@PK_"+Field.ToString(), SqlDbType.SmallInt)).Value
-//                  := (PropInfo2.GetValue(Value, nil)) as System.Int16;
-//         end;
-//         'System.Int32'{'Integer'}  :begin {int     }
-//            ACommand.Parameters.Add(
-//               new SQLCEParameter("@PK_"+Field.ToString(), SqlDbType.Int)).Value
-//                  := (PropInfo2.GetValue(Value, nil)) as System.Int32;
-//         end;
-//         'Int64'    :begin {bigint  }
-//            ACommand.Parameters.Add(
-//               new SQLCEParameter("@PK_"+Field.ToString(), SqlDbType.BigInt)).Value
-//                  := (PropInfo2.GetValue(Value, nil)) as System.Int64;
-//         end;
-//         'Single'   :begin {real    }
-//            ACommand.Parameters.Add(
-//               new SQLCEParameter("@PK_"+Field.ToString(), SqlDbType.Real)).Value
-//                  := (PropInfo2.GetValue(Value, nil)) as System.Single;
-//         end;
-//         'Double'   :begin {numeric }
-//            ACommand.Parameters.Add(
-//               new SQLCEParameter("@PK_"+Field.ToString(), SqlDbType.Decimal)).Value
-//                  := (PropInfo2.GetValue(Value, nil)) as System.Double;
-//         end;
-//         'System.String'{'String'}   :begin {nvarchar}
-//            ACommand.Parameters.Add(
-//               new SQLCEParameter("@PK_"+Field.ToString(), SqlDbType.NVarChar)).Value
-//                  := (PropInfo2.GetValue(Value, nil)) as System.String;
-//         end;
-//         else;
-//         (* raise
-//         'Char'     :;
-//         'ShortInt' :;
-//         'Word'     :;
-//         'Longworld':;*)
-//       end; // case
-//     end; // if not null
-//   end;
-//end;
+function TCustomUsersModel.GetVersion: string;
+begin
+   Result := '1.00';
+end;
+
+function TCustomUsersModel.GetOrderFieldName: string;
+begin
+   if FOrderFieldName = 'CD_USER'        then Result := 'CD_USER'       else
+   if FOrderFieldName = 'DS_USER'        then Result := 'DS_USER'       else
+   if FOrderFieldName = 'PASSWORD'       then Result := 'PASSWORD'      else
+   if FOrderFieldName = 'ADMINISTRATOR'  then Result := 'ADMINISTRATOR' else
+   Result := '***(CHECK THE NAME FOR THE ORDER FIELD)*** ERROR';
+end;
+
+procedure TCustomUsersModel.SetOrderFieldName(Value :string);
+begin
+   if FOrderFieldName <> Value then begin
+      FOrderFieldName := Value;
+      FSenseOrderBy := 'ASC';
+   end
+   else begin
+      if FSenseOrderBy = 'ASC' then FSenseOrderBy := 'DESC'
+                               else FSenseOrderBy := 'ASC';
+   end;
+end;
 
 end.

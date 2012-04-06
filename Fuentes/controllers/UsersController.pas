@@ -2,7 +2,7 @@ unit UsersController;
 
 interface
 
-uses Classes, CustomController, ComCtrls, Controls,
+uses Classes, CustomController, ComCtrls, Controls, ExtCtrls,
      DBController,
      UsersView,
      EditUserView,
@@ -11,61 +11,97 @@ uses Classes, CustomController, ComCtrls, Controls,
 type
   TUsersController = class(TCustomController)
   private
-    FView         :TUsersView;
-    FModel        :TUsersModel;
-    FEditUserView :TEditUserView;
+    FView          :TUsersView;
+    FModel         :TUsersModel;
+    FEditUserView  :TEditUserView;
+    FTimerInterval :Integer; {Time of delay after the las key press for go search}
+    FTimer         :TTimer;
+    FTextSearched: string; {Timer componente for searchs}
   protected
+    procedure InsertListColumns;
     procedure InsertListItem(prmUser :TUser);
     procedure AssignDelegatesToEditUserView;
     {Delegate declarations}
-    procedure OnClick_NewUser   (Sender : TObject);
-    procedure OnClick_ModifyUser(Sender : TObject);
-    procedure OnClick_DeleteUser(Sender : TObject);
+    procedure OnShowForm        (Sender :TObject);
+    procedure OnClick_NewUser   (Sender :TObject);
+    procedure OnClick_ModifyUser(Sender :TObject);
+    procedure OnClick_DeleteUser(Sender :TObject);
     procedure OnDragOver_DeleteUser(Sender, Source: TObject; X, Y: Integer; State: TDragState; var Accept: Boolean);
     procedure OnDragDrop_DeleteUser(Sender, Source: TObject; X,  Y: Integer);
     procedure OnDragOver_EditUser(Sender, Source: TObject; X, Y: Integer; State: TDragState; var Accept: Boolean);
     procedure OnDragDrop_EditUser(Sender, Source: TObject; X,  Y: Integer);
+    procedure OnKeyDown_EditSearch(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure OnTimerEvent(Sender: TObject);
     procedure OnClick_BtnImageList(Sender :TObject);
     procedure OnClick_BtnImageReport(Sender: TObject);
     procedure OnClick_BtnImageIconos(Sender: TObject);
     procedure OnClick_BtnImageSearch(Sender: TObject);
     procedure OnDblClick_ListUsers(Sender: TObject);
+    procedure OnColumnClick_ListUsers(Sender: TObject; Column: TListColumn);
     procedure OnListUsers_InfoTip(Sender: TObject; Item: TListItem; var InfoTip: String);
     procedure OnListViewUsersSelectItem(Sender: TObject; Item: TListItem; Selected: Boolean);
     procedure Delegate_EditUserViewBtnAcceptClick(Sender: TObject);
     procedure Delegate_EditUserViewBtnCancelClick(Sender: TObject);
+    procedure SetTextSearched(Value :string);
+    property  TextSearched :string read FTextSearched write SetTextSearched;
   public
     constructor Create(ADBController :TDBController); override;
     destructor  Destroy; override;
+    procedure   RefreshAllItems;  {Clear all data in the view and reload it from database }
     function    ShowView:Boolean;
   end;
 
 implementation
-uses Forms, SysUtils, Dialogs, DB,
+uses Forms, SysUtils, Dialogs, DB, Windows, Messages,
      CustomView,
      HashCriptography;
 
 constructor TUsersController.Create(ADBController :TDBController);
-var User :TUser;
 begin
    inherited Create(ADBController);
    Application.CreateForm(TUsersView, FView);
-   //FView  := TUsersView.Create(Application);
    FView.AppleIcons := [aiClose, aiMinimize, aiMaximize];
    FView.AppleIconsVisibles := [aiClose, aiMinimize, aiMaximize];
+   InsertListColumns;
+
    FModel := TUsersModel.Create(DBCtlr.DBConnection.Connection);
    FModel.Open;
-   while not FModel.EOF do begin
-      User := FModel.Current;
-      InsertListItem(User);
-      FModel.Next;
-   end;
+   RefreshAllItems;
+
+   FTimer := TTimer.Create(FView);
+   FTimer.Enabled  := False;
+   FTimerInterval  := DELAY_SHORT;
+   FTimer.Interval := FTimerInterval;
+   FTimer.OnTimer  := OnTimerEvent;
 end;
 
 destructor TUsersController.Destroy;
 begin
    FModel.Free;
    FView.Free;
+end;
+
+procedure TUsersController.InsertListColumns;
+var Column :TccListColumn;
+begin
+   FView.ListViewUsers.Columns.Clear;
+   Column := TccListColumn.Create(FView.ListViewUsers.Columns);
+   Column.Caption    := 'Usuario';
+   Column.ColumnName := 'CD_USER';
+   Column.Width      := 120;
+   //FView.ListViewUsers.Columns.Add(Column);
+
+   Column := TccListColumn.Create(FView.ListViewUsers.Columns);
+   Column.Caption    := 'Nombre';
+   Column.ColumnName := 'DS_USER';
+   Column.Width      := 180;
+   //FView.ListViewUsers.Columns.Add(Column);
+
+   Column := TccListColumn.Create(FView.ListViewUsers.Columns);
+   Column.Caption    := 'Administrador';
+   Column.ColumnName := 'ADMINISTRATOR';
+   Column.Width      := 80;
+   //FView.ListViewUsers.Columns.Add(Column);
 end;
 
 procedure TUsersController.InsertListItem(prmUser: TUser);
@@ -75,12 +111,17 @@ begin
    ListItem.Data := prmUser;
    ListItem.Caption := prmUser.CD_USER;//+' -> '+prmUser.DS_USER;
    ListItem.SubItems.Add(prmUser.DS_USER);
-   if prmUser.ADMINISTRATOR = 'Y' then ListItem.SubItems.Add('Si')
-   else ListItem.SubItems.Add('No');
-   ListItem.ImageIndex := 0;
+   if prmUser.ADMINISTRATOR = 'Y' then begin
+      ListItem.SubItems.Add('Si');
+      ListItem.ImageIndex := 1;
+   end
+   else begin
+      ListItem.SubItems.Add('No');
+      ListItem.ImageIndex := 0;
+   end;
 end;
 
-function TUsersController.ShowView;
+function TUsersController.ShowView:Boolean;
 begin
    {Assignament of Resources}
    FView.Caption     := 'Gestión de Usuarios.';
@@ -89,22 +130,45 @@ begin
    FView.HelpKeyword := FView.Name;
 
    {Assignment of delegates}
-   FView.BtnImageNew.OnClick        := OnClick_NewUser;
-   FView.BtnImageEdit.OnClick       := OnClick_ModifyUser;
-   FView.BtnImageDelete.OnClick     := OnClick_DeleteUser;
-   FView.BtnImageDelete.OnDragOver  := OnDragOver_DeleteUser;
-   FView.BtnImageDelete.OnDragDrop  := OnDragDrop_DeleteUser;
-   FView.BtnImageEdit.OnDragOver    := OnDragOver_EditUser;
-   FView.BtnImageEdit.OnDragDrop    := OnDragDrop_EditUser;
-   FView.ListViewUsers.OnSelectItem := OnListViewUsersSelectItem;
-   FView.BtnImageList.Onclick       := OnClick_BtnImageList;
-   FView.BtnImageReport.OnClick     := OnClick_BtnImageReport;
-   FView.BtnImageIcons.OnClick      := OnClick_BtnImageIconos;
-   FView.BtnImageSearch.OnClick     := OnClick_BtnImageSearch;
-   FView.ListViewUsers.OnDblClick   := OnDblClick_ListUsers;
-   FView.ListViewUsers.OnInfoTip    := OnListUsers_InfoTip;
-   //Result :=
+   FView.OnShow                      := OnShowForm;
+   FView.BtnImageNew.OnClick         := OnClick_NewUser;
+   FView.BtnImageEdit.OnClick        := OnClick_ModifyUser;
+   FView.BtnImageDelete.OnClick      := OnClick_DeleteUser;
+   FView.BtnImageDelete.OnDragOver   := OnDragOver_DeleteUser;
+   FView.BtnImageDelete.OnDragDrop   := OnDragDrop_DeleteUser;
+   FView.BtnImageEdit.OnDragOver     := OnDragOver_EditUser;
+   FView.BtnImageEdit.OnDragDrop     := OnDragDrop_EditUser;
+   FView.ListViewUsers.OnSelectItem  := OnListViewUsersSelectItem;
+   FView.BtnImageList.Onclick        := OnClick_BtnImageList;
+   FView.BtnImageReport.OnClick      := OnClick_BtnImageReport;
+   FView.BtnImageIcons.OnClick       := OnClick_BtnImageIconos;
+   FView.BtnImageSearch.OnClick      := OnClick_BtnImageSearch;
+   FView.ListViewUsers.OnDblClick    := OnDblClick_ListUsers;
+   FView.ListViewUsers.OnColumnClick := OnColumnClick_ListUsers;
+   FView.ListViewUsers.OnInfoTip     := OnListUsers_InfoTip;
+   FView.EditSearchText.OnKeyDown    := OnKeyDown_EditSearch;
+   Result := True;
    FView.Show;
+end;
+
+procedure TUsersController.RefreshAllItems;
+{Clear all data in the view and reload it from database }
+{! I M P O R T A N T  !   This method don't executes the query. It spend the query is open previously.}
+var User :TUser;  
+begin
+   FView.ListViewUsers.Items.Clear;
+   FModel.First;
+   while not FModel.EOF do begin
+      User := FModel.Current;
+      InsertListItem(User);
+      FModel.Next;
+   end;
+end;
+
+procedure TUsersController.OnShowForm(Sender: TObject);
+begin
+   FView.EditSearchText.SetFocus;
+   FView.EditSearchText.SelectAll;
 end;
 
 procedure TUsersController.OnClick_NewUser(Sender :TObject);
@@ -140,6 +204,8 @@ begin
       try
          if FEditUserView.ShowModal = mrOK then begin
             FModel.Update(TUser(FView.ListViewUsers.Selected.Data));
+            FModel.Refresh;
+            RefreshAllItems;
          end;
       finally FEditUserView.Free;
       end;
@@ -224,7 +290,8 @@ end;
 
 procedure TUsersController.OnClick_BtnImageSearch(Sender: TObject);
 begin
-   ShowMessage('Falta de implementar la opción de Búsqueda');
+   FModel.Refresh;
+   RefreshAllItems;
 end;
 
 procedure TUsersController.AssignDelegatesToEditUserView;
@@ -238,6 +305,8 @@ var MessageText :string;
     ResultCode  :Integer;
     Continue    :Boolean;
 begin
+   Continue := False;
+   
    case FEditUserView.State of
      vsEdit:begin
        Continue := True; {TODO: Hacer las comprobaciones del password }
@@ -288,6 +357,13 @@ begin
    FView.BtnImageEdit.OnClick(Self);
 end;
 
+procedure TUsersController.OnColumnClick_ListUsers(Sender: TObject; Column: TListColumn);
+begin
+   FModel.OrderFieldName := TccListColumn(Column).ColumnName;
+   FModel.Refresh;
+   RefreshAllItems;
+end;
+
 procedure TUsersController.OnListViewUsersSelectItem(Sender: TObject; Item: TListItem; Selected: Boolean);
 var User :TUser;
 begin
@@ -305,5 +381,40 @@ begin
               TUser(Item.Data).DS_USER + #13#10 +
               TextAdministrator;
 end;
+
+procedure TUsersController.OnKeyDown_EditSearch(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+   FTimer.Enabled := False;
+   FTimer.Interval := FTimerInterval;
+   case Key of
+      VK_UP , VK_DOWN , VK_HOME,
+      VK_END, VK_PRIOR, VK_NEXT,
+      VK_RIGHT, VK_LEFT :SendMessage(FView.ListViewUsers.Handle, WM_KEYDOWN, Key, 0);
+      {if the componente is a grid, remove the next two from the previus option an remove the coment in two next lines}
+      //VK_RIGHT                  :SendMessage(FView.ListViewUsers.Handle, WM_HSCROLL, SB_LINERIGHT, 0);
+      //VK_LEFT                   :SendMessage(FView.ListViewUsers.Handle, WM_HSCROLL, SB_LINELEFT , 0);
+   end;
+   FTimer.Enabled := True;
+end;
+
+procedure TUsersController.OnTimerEvent(Sender: TObject);
+begin
+   TextSearched := FView.EditSearchText.Text;
+end;
+
+procedure TUsersController.SetTextSearched(Value: string);
+var TempText :string;
+begin
+   TempText := Trim(Value);
+   if FTextSearched <> TempText then begin
+      FTextSearched := TempText;
+      FTimer.Enabled := False;
+      //FModel.OrderFieldBy := 'CD_USER';  { This can be changed in the view }
+      FModel.Search(FTextSearched);
+      RefreshAllItems;
+   end;
+end;
+
+
 
 end.

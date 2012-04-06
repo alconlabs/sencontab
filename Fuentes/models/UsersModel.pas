@@ -7,9 +7,11 @@ uses Classes, SysUtils, Forms, Controls, Dialogs,
 type
   TUsersModel = class(TCustomUsersModel)
   private
+    function CheckTextSearched(prmText :TCaption):string;
   public
     function CheckValues(prmUser :TUser; var prmMessage :string):Integer;
-    function GetNewClass:TUser;
+    function GetNewClass :TUser;
+    procedure Search(prmTextSearched :string);
   end;
 
 implementation
@@ -39,6 +41,41 @@ function TUsersModel.GetNewClass: TUser;
 begin
    Result := TUser.Create;
    Result.ADMINISTRATOR := 'N';
+end;
+
+{$Message Warn 'Llevar este método a la madre de todas las modelos'}
+function TUsersModel.CheckTextSearched(prmText :TCaption):string;
+var i :Integer;
+begin
+   if Length(Trim(prmText)) <> 0 then begin
+      {Si el campo es alfanumérico se sustituyen '*' por '%', y '?' por '_'}
+      for i := 1 to Length(prmText) do begin
+         if prmText[i] = '*' then prmText[i] := '%';
+         if prmText[i] = '?' then prmText[i] := '_';
+      end;
+      {Si no hay % se buscará la cadena exacta y todas las cadenas que la contengan}
+      if Pos('%', prmText) = 0 then begin
+         prmText := '%' + prmText + '%';
+      end;
+   end;
+   Result := prmText;
+end;
+
+procedure TUsersModel.Search(prmTextSearched :string);
+var TextSearched :string;
+begin
+   TextSearched := CheckTextSearched(prmTextSearched);
+
+   SQLSearch.Clear;
+
+   if Length(TextSearched) > 0 then begin
+      { We need to know if the query begins with WHERE or with AND }
+      SQLSearch.Add('WHERE   RTRIM(LTRIM(CD_USER)) + ''|''+ ');
+      SQLSearch.Add('        RTRIM(LTRIM(DS_USER))          ');
+      SQLSearch.Add('LIKE  '''+TextSearched+'''             ');
+   end;
+   
+   Open;
 end;
 
 end.
