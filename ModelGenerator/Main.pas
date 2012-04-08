@@ -7,6 +7,8 @@ uses
   Dialogs, DB, StdCtrls, Buttons, FMTBcd, ADODB,
   ComCtrls, ExtCtrls, DBXpress, SqlExpr, CRSQLConnection;
 
+  {TODO : A new version in witch the developer put the SQL Statement and the Model is generated with this query}
+
 type
   TForm1 = class(TForm)
     Panel1: TPanel;
@@ -40,6 +42,7 @@ type
     BtnSaveClass: TButton;
     SQLServer: TCRSQLConnection;
     LabelSQLServer: TLabel;
+    BitBtn1: TBitBtn;
     procedure BtnConectarERPSystemClick(Sender: TObject);
     procedure BtnConectarEMP_TESTClick(Sender: TObject);
     procedure ListBoxTablesClick(Sender: TObject);
@@ -259,13 +262,18 @@ begin
      Add('type');
      Add('  T'+Singular+' = class(TPersistent)');
      Add('  private');
-     Add('    FNullFields :array[T'+Singular+'Field] of Boolean;');
-     Add('    FRequired   :array[T'+Singular+'Field] of Boolean;');
-     Add('    FLengths    :array[T'+Singular+'Field] of Integer;');
-     Add('    FMasks      :array[T'+Singular+'Field] of string; ');
-     Add('    FHints      :array[T'+Singular+'Field] of string;  {for show help in status bar }');
-     Add('    FCharCase   :array[T'+Singular+'Field] of TEditCharCase;');
-     Add('    FChanged    :array[T'+Singular+'Field] of Boolean;');
+     Add('    FPrimaryKey  :array[T'+Singular+'Field] of Boolean;');
+     Add('    FNullFields  :array[T'+Singular+'Field] of Boolean;');
+     Add('    FRequired    :array[T'+Singular+'Field] of Boolean;');
+     Add('    FLengths     :array[T'+Singular+'Field] of Integer;');
+     Add('    FMasks       :array[T'+Singular+'Field] of string; ');
+     Add('    FHints       :array[T'+Singular+'Field] of string;  {for show help in status bar }');
+     Add('    FCharCase    :array[T'+Singular+'Field] of TEditCharCase;');
+     Add('    FChanged     :array[T'+Singular+'Field] of Boolean;');
+     Add('    FEmptyStringToNull :Boolean;                       ');
+     Add('    FOldAssigned :array[T'+Singular+'Field] of Boolean;');
+     Add('    FNullOlds    :array[T'+Singular+'Field] of Boolean;');
+
      for i := 0 to ListBoxFields.Items.Count - 1 do begin
         if (LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'char'   )
         or (LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'varchar') then begin
@@ -278,6 +286,13 @@ begin
      Add('    {------------------------------------------------}');
      Add('    procedure SetNotNull(prmField :T'+Singular+'Field);');
      Add('    procedure SetChanged(prmField :T'+Singular+'Field);');
+     Add('    function IsNullOrEmpty(prmValue :string):Boolean;                                          ');
+     Add('    procedure AssignString(Value :string; var REF_VAR :string;                                 ');
+     Add('                                          var REF_OLD_VAR :string; Field :T'+Singular+'Field); ');
+     Add('    procedure AcceptChanges();                                                                 ');
+     Add('    procedure AcceptFieldChange(Field :T'+Singular+'Field);                                    ');
+     Add('    procedure ClearValueField(Field :T'+Singular+'Field);                                      ');
+     Add('    function GetVersion :string;                                                               ');
      Add('  protected');
      for i := 0 to ListBoxFields.Items.Count - 1 do begin
         if (LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'char'   )
@@ -286,6 +301,15 @@ begin
         end else
         if LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'int' then begin
           Add('    F'+RFill(ListBoxFields.Items[i], F+1)+'     :Integer;');
+        end else
+     end;
+     for i := 0 to ListBoxFields.Items.Count - 1 do begin
+        if (LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'char'   )
+        or (LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'varchar') then begin
+          Add('    FOLD_'+RFill(ListBoxFields.Items[i], F+1)+'     :string;');
+        end else
+        if LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'int' then begin
+          Add('    FOLD_'+RFill(ListBoxFields.Items[i], F+1)+'     :Integer;');
         end else
      end;
      Add('    function GetLength(prmField :T'+Singular+'Field):Integer;');
@@ -298,7 +322,23 @@ begin
      Add('    procedure Initialize; virtual;');
      Add('    function  IsNull(prmField :T'+Singular+'Field):Boolean;');
      Add('    function  IsChanged(prmField :T'+Singular+'Field):Boolean;');
+     Add('    function  FieldToString(prmField :T'+Singular+'Field):string;');
      Add('    procedure CompareWith(prmData :T'+Singular+');');
+     Add('    property EmptyStringToNull :Boolean read FEmptyStringToNull write FEmptyStringToNull; {default True} ');
+     Add('    function IsPrimaryKey(Field :T'+Singular+'Field):Boolean; overload;                                  ');
+     Add('    function IsPrimaryKey(Field :string):Boolean; overload;                                              ');
+     Add('    property Version :string read GetVersion;                                                            ');
+     for i := 0 to ListBoxFields.Items.Count - 1 do begin
+        if (LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'char'   )
+        or (LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'varchar') then begin
+          Add('    property '+RFill(ListBoxFields.Items[i]+'_OldValue', F+9)+' :string read FOLD_'
+                             +RFill(ListBoxFields.Items[i], F)+';');
+        end else
+        if LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'int' then begin
+          Add('    property '+RFill(ListBoxFields.Items[i]+'_OldValue', F+9)+' :Integer read FOLD_'
+                             +RFill(ListBoxFields.Items[i], F)+';');
+        end;
+     end;
      Add('  published');
      for i := 0 to ListBoxFields.Items.Count - 1 do begin
         if (LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'char'   )
@@ -316,7 +356,7 @@ begin
      {---- End of Interface ----}
      Add('');
      Add('implementation');
-     Add('uses SysUtils;');
+     Add('uses SysUtils, TypInfo;');
      Add('');
      Add('{ T'+Singular+' }');
      Add('constructor T'+Singular+'.Create;');
@@ -332,13 +372,21 @@ begin
      Add('procedure T'+Singular+'.Initialize;');
      Add('var i :T'+Singular+'Field;');
      Add('begin');
+     Add('   FEmptyStringToNull := True; {Default Value}    ');
+     Add('                                                  ');
      Add('   for i := Low(T'+Singular+'Field) to High(T'+Singular+'Field) do begin');
+     Add('      FPrimaryKey[i] := False;');
      Add('      FNullFields[i] := True;');
      Add('      FChanged[i]    := False;');
      Add('      FMasks  [i]    := '''';');
      Add('      FCharCase[i]   := ecUpperCase;');
+     Add('      FOldAssigned[i] := False;     ');
+     Add('      FNullOlds[i]    := False;     ');
      Add('   end;');
      Add('');
+     Add(' {$Message Error ''Remove this message after add here de Primary key fields like the next line''}');
+     Add(' FPrimaryKey[userCD_USER    ] := True;');
+     Add('');    
      for i := 0 to ListBoxFields.Items.Count - 1 do begin
         if UpperCase(Trim(ListBoxAllowNULL.Items[i])) = 'YES' then begin
           Add('   FRequired['+LowerCase(Singular)+RFill(ListBoxFields.Items[i], F)+'] := False;');
@@ -356,6 +404,106 @@ begin
         Add('   FHints['+LowerCase(Singular)+RFill(ListBoxFields.Items[i], F)+'] := '''';');
      end;
      Add('end;');
+     Add('');
+     Add('procedure T'+Singular+'.AssignString(Value :string; var REF_VAR :string;                         ');
+     Add('                                            var REF_OLD_VAR :string; Field :T'+Singular+'Field); ');
+     Add('begin                                                                                            ');
+     Add('   if not FOldAssigned[Field] then begin                                                         ');
+     Add('      { IS the First Assignation }                                                               ');
+     Add('      if IsNullOrEmpty(Value) then begin                                                         ');
+     Add('         { The Value is Empty or NULL }                                                          ');
+     Add('         if FEmptyStringToNull then begin                                                        ');
+     Add('            FOldAssigned[Field]  := True;                                                        ');
+     Add('            FNullOlds[Field]     := True;                                                        ');
+     Add('            REF_OLD_VAR          := Value;                                                       ');
+     Add('            FNullFields[Field]   := True;                                                        ');
+     Add('            REF_VAR              := Value;                                                       ');
+     Add('         end                                                                                     ');
+     Add('         else begin                                                                              ');
+     Add('            FOldAssigned[Field]  := True;                                                        ');
+     Add('            FNullOlds[Field]     := False;                                                       ');
+     Add('            REF_OLD_VAR          := Value;                                                       ');
+     Add('            FNullFields[Field]   := False;                                                       ');
+     Add('            REF_VAR              := Value;                                                       ');
+     Add('         end;                                                                                    ');
+     Add('      end                                                                                        ');
+     Add('      else begin                                                                                 ');
+     Add('         {NOT IS NULL or Empty}                                                                  ');
+     Add('         FOldAssigned[Field]  := True;                                                           ');
+     Add('         FNullOlds[Field]     := False;                                                          ');
+     Add('         REF_OLD_VAR          := Value;                                                          ');
+     Add('         FNullFields[Field]   := False;                                                          ');
+     Add('         REF_VAR              := Value;                                                          ');
+     Add('      end;                                                                                       ');
+     Add('      { Because is the First Assignation we set the value unchanged }                            ');
+     Add('      FChanged[Field] := False;                                                                  ');
+     Add('   end                                                                                           ');
+     Add('   else begin                                                                                    ');
+     Add('      { NOT IS the First Assignation }                                                           ');
+     Add('      if IsNullOrEmpty(Value) then begin                                                         ');
+     Add('         { The Value is NULL or Empty}                                                           ');
+     Add('         if FEmptyStringToNull then begin                                                        ');
+     Add('            FNullFields[Field]  := True;                                                         ');
+     Add('            REF_VAR             := Value;                                                        ');
+     Add('         end                                                                                     ');
+     Add('         else begin                                                                              ');
+     Add('            FNullFields[Field]  := False;                                                        ');
+     Add('            REF_VAR             := Value;                                                        ');
+     Add('         end;                                                                                    ');
+     Add('      end                                                                                        ');
+     Add('      else begin                                                                                 ');
+     Add('         {NOT IS NULL or Empty }                                                                 ');
+     Add('         FNullFields[Field]  := False;                                                           ');
+     Add('         REF_VAR             := Value;                                                           ');
+     Add('      end;                                                                                       ');
+     Add('      { Because is not the First Assignation we set the value CHANGED }                          ');
+     Add('      FChanged[Field] := True;                                                                   ');
+     Add('   end;                                                                                          ');
+     Add('end;                                                                                             ');
+     Add('');
+     Add('function T'+Singular+'.IsNullOrEmpty(prmValue :string):Boolean;                ');
+     Add('begin                                                                          ');
+     Add('   Result := Trim(prmValue) = '''';                                            ');
+     Add('end;                                                                           ');
+     Add('');
+     Add('procedure T'+Singular+'.AcceptChanges();                                       ');
+     Add('var Field :T'+Singular+'Field;                                                 ');
+     Add('begin                                                                          ');
+     Add('   for Field := Low(T'+Singular+'Field) to High(T'+Singular+'Field) do begin   ');
+     Add('      FOldAssigned[Field] := True;                                             ');
+     Add('      FChanged[Field]     := False;                                            ');
+     Add('      if IsNull(Field) then begin                                              ');
+     Add('         FNullOlds[Field] := True;                                             ');
+     Add('         ClearValueField(Field);                                               ');
+     Add('      end                                                                      ');
+     Add('      else begin                                                               ');
+     Add('         FNullOlds[Field] := False;                                            ');
+     Add('         AcceptFieldChange(Field);                                             ');
+     Add('      end;                                                                     ');
+     Add('   end;                                                                        ');
+     Add('end;                                                                           ');
+     Add('');
+     Add('procedure T'+Singular+'.AcceptFieldChange(Field :T'+Singular+'Field);');
+     Add('begin');
+     Add('   case Field of');
+     for i := 0 to ListBoxFields.Items.Count - 1 do begin
+        Add('      '+Lowercase(Singular)+RFill(ListBoxFields.Items[i], F)+' :'
+                    +'FOLD_'+RFill(ListBoxFields.Items[i], F)+' := '
+                    +'F'+RFill(ListBoxFields.Items[i], F)+';');
+     end;
+     Add('   end;');
+     Add('end;');
+     Add('');
+     Add('procedure T'+Singular+'.ClearValueField(Field :T'+Singular+'Field);');
+     Add('begin');
+     Add('   case Field of');
+     for i := 0 to ListBoxFields.Items.Count - 1 do begin
+        Add('      '+Lowercase(Singular)+RFill(ListBoxFields.Items[i], F)+' :'
+                    +'F'+RFill(ListBoxFields.Items[i], F)+' := '''';');
+     end;
+     Add('   end;');
+     Add('end;');
+
      Add('');
      Add('procedure T'+Singular+'.SetNotNull(prmField :T'+Singular+'Field);');
      Add('begin');
@@ -407,6 +555,25 @@ begin
      end;
      Add('end;');
      Add('');
+     Add('function T'+Singular+'.IsPrimaryKey(Field :T'+Singular+'Field):Boolean;');
+     Add('begin');
+     Add('   Result := FPrimaryKey[Field];');
+     Add('end;');
+     Add('');
+     Add('function T'+Singular+'.IsPrimaryKey(Field :string):Boolean;');
+     Add('begin');
+     for i := 0 to ListBoxFields.Items.Count - 1 do begin
+        {IsTheLast}
+        if not(i = (ListBoxFields.Items.Count -1)) then
+           Add('   if Field = '''+RFill(ListBoxFields.Items[i]+'''', F+1)+' then '
+               +RFill('IsPrimaryKey('+Lowercase(Singular)+ListBoxFields.Items[i], F)
+               +Lowercase(Singular)+RFill(ListBoxFields.Items[i], F)+') else')
+        else Add('   if Field = '''+RFill(ListBoxFields.Items[i]+'''', F+1)+' then '
+                 +RFill('IsPrimaryKey('+Lowercase(Singular)+ListBoxFields.Items[i], F)
+                 +Lowercase(Singular)+RFill(ListBoxFields.Items[i], F)+');');
+     end;
+     Add('end;');
+     Add('');
 
      {---- Form here to the end of file, the Setters ----}
 
@@ -415,11 +582,13 @@ begin
         or (LowerCase(Trim(ListBoxFieldTypes.Items[i])) = 'varchar') then begin
           Add('procedure T'+Singular+'.Set'+ListBoxFields.Items[i]+'(const Value :string);');
           Add('begin');
-          Add('   if (Trim(Value) <> '''') and IsNull('+LowerCase(Singular)+ListBoxFields.Items[i]+') then begin');
-          Add('      F'+ListBoxFields.Items[i]+' := Value;');
-          Add('      SetNotNull('+LowerCase(Singular)+ListBoxFields.Items[i]+');');
-          Add('      SetChanged('+LowerCase(Singular)+ListBoxFields.Items[i]+');');
-          Add('   end;');
+          Add('   AssignString(Value, F'+ListBoxFields.Items[i]+', FOLD_'+ListBoxFields.Items[i]+', '+LowerCase(Singular)+ListBoxFields.Items[i]+'); ');
+
+          //Add('   if (Trim(Value) <> '''') and IsNull('+LowerCase(Singular)+ListBoxFields.Items[i]+') then begin');
+          //Add('      F'+ListBoxFields.Items[i]+' := Value;');
+          //Add('      SetNotNull('+LowerCase(Singular)+ListBoxFields.Items[i]+');');
+          //Add('      SetChanged('+LowerCase(Singular)+ListBoxFields.Items[i]+');');
+          //Add('   end;');
           Add('end;');
           Add('');
         end else
@@ -435,6 +604,18 @@ begin
           Add('');
         end;
      end;
+     Add('');
+     Add('function T'+Singular+'.FieldToString(prmField: T'+Singular+'Field): string; ');
+     Add('begin                                                                       ');
+     Add('   Result := UserFieldNames[prmField];                                      ');
+     Add('   //GetEnumName(TypeInfo(TUserField), Integer(prmField));                  ');
+     Add('end;                                                                        ');
+     Add('                                                                            ');
+     Add('function T'+Singular+'.GetVersion: string;                                  ');
+     Add('begin                                                                       ');
+     Add('   Result := ''1.00'';                                                      ');
+     Add('end;                                                                        ');
+     Add('');
      Add('end.');
    end;
 end;
@@ -472,22 +653,31 @@ begin
      Add('type');
      Add('  TCustom'+Plural+'Model = class');
      Add('  private');
-     Add('    FConnection  :TCRSQLConnection;');
-     Add('    FDataSet   :TSQLQuery;');
-     Add('    FTableName :string;');
-     Add('    FOrderBy   :string;');
-     Add('    FLastError :string;');
+     Add('    FConnection     :TCRSQLConnection;');
+     Add('    FTableName      :string;                                              ');
+     Add('    FOrderFieldName :string;   { The real name for the order instruction }');
+     Add('    FDataSet        :TSQLQuery;');
+     Add('    FLastError      :string;');
+     Add('    FSenseOrderBy   :string;     ');
+     Add('    FSQLSearch      :TStringList;');
+     Add('    procedure ClearLastError;');
      Add('    function GetRowsAffected:Integer;');
      Add('    function GetRowCount    :Integer;');
      Add('    function GetEOF :Boolean;');
-     Add('    procedure ClearLastError;');
+     Add('    function GetVersion :string;');
+     Add('    function GetSQLForUpdate(Value :TUser):TStringList;');
+     Add('    function GetOrderFieldName:string;');
+     Add('    procedure SetOrderFieldName(Value :string);');
+     Add('  protected');
+     Add('    function GetBaseSQLForSelect:TStringList;');
      Add('  public');
      Add('    constructor Create(prmConnection :TCRSQLConnection); reintroduce;');
      Add('    destructor  Destroy; override;');
      Add('    function  Open :Boolean;');
+     Add('    function Refresh:Boolean;');
      Add('    function QueryByExample(prmValue :T'+Singular+'):Boolean;');
      Add('    function Save(prmData :T'+Singular+'):Boolean;');
-     Add('    function Update(prmData, prmOldDato :T'+Singular+'):Boolean;');
+     Add('    function Update(prmData :T'+Singular+'):Boolean;');
      Add('    function Delete(prmData :T'+Singular+'):Boolean;');
      Add('    //function  ExistsChildrenKey(prmData :T'+Singular+'):Boolean;');
      Add('    //function  PreviouslyExistsKey(prmData :T'+Singular+'):Boolean;');
@@ -499,10 +689,13 @@ begin
      Add('    function  Locate(prmData :T'+Singular+'):Boolean;');
      Add('    function  GetDefaults:T'+Singular+';');
      Add('    { Public properties}');
-     Add('    property Connection :TCRSQLConnection  read FConnection;');
-     Add('    property EOF :Boolean read GetEOF;');
-     Add('    property RowsAffected :Integer read GetRowsAffected;');
-     Add('    property RowCount     :Integer read GetRowCount;');
+     Add('    property Version        :string            read GetVersion;');
+     Add('    property Connection     :TCRSQLConnection  read FConnection;');
+     Add('    property EOF            :Boolean           read GetEOF;');
+     Add('    property RowsAffected   :Integer           read GetRowsAffected;');
+     Add('    property RowCount       :Integer           read GetRowCount;');
+     Add('    property OrderFieldName :string            read GetOrderFieldName write SetOrderFieldName;');
+     Add('    property SQLSearch      :TStringList       read FSQLSearch        write FSQLSearch;');
      Add('  end;');
 
      {---- End of Interface ----}
@@ -515,9 +708,11 @@ begin
      Add('   inherited Create;');
      Add('   FConnection := prmConnection; ');
      Add('   FTableName := '''+ListBoxTables.Items[ListBoxTables.ItemIndex]+''';');
-     Add('   FOrderBy   := '''+ListBoxFields.Items[0]+''';');
+     Add('   FOrderFieldName  := '''+ListBoxFields.Items[0]+''';');
      Add('   FDataSet := TSQLQuery.Create(nil);');
      Add('   FDataSet.SQLConnection := prmConnection;');
+     Add('   FSQLSearch := TStringList.Create; ');
+     Add('   FSenseOrderBy := ''ASC'';         ');
      Add('end;');
      Add('');
      Add('destructor TCustom'+Plural+'Model.Destroy;');
@@ -554,19 +749,14 @@ begin
      Add('   else Result := FDataSet.EOF;');
      Add('end;');
      Add('');
-     Add('function TCustom'+Plural+'Model.Open:Boolean;');
+     Add('function TCustom'+Plural+'Model.GetBaseSQLForSelect: TStringList;');
      Add('begin');
-     Add('   FDataSet.Close;');
-     Add('   FDataSet.ParamCheck := True;');
-     Add('   //FDataSet.LockType := ltReadOnly;');
-     Add('   //FDataSet.CursorLocation := clUseClient;');
-     Add('   FDataSet.SQL.Clear;');
-
+     Add('   Result := TStringList.Create;');
      IsTheFirst := True;
      for i := 0 to ListBoxFields.Items.Count - 1 do begin
-        Add('   FDataSet.SQL.Add(''       '+ListBoxFields.Items[i]);
+        Add('   Result.Add(''       '+ListBoxFields.Items[i]);
         if IsTheFirst then begin
-           MemoModel.Lines[MemoModel.Lines.Count - 1] := '   FDataSet.SQL.Add(''SELECT '+ListBoxFields.Items[i]+', '');';
+           MemoModel.Lines[MemoModel.Lines.Count - 1] := '   Result.Add(''SELECT '+ListBoxFields.Items[i]+', '');';
            IsTheFirst := False;
         end
         else begin
@@ -577,8 +767,21 @@ begin
            else MemoModel.Lines[MemoModel.Lines.Count - 1] := MemoModel.Lines[MemoModel.Lines.Count - 1]+', '');';
         end;
      end;
-     Add('   FDataSet.SQL.Add(''FROM   '+ListBoxTables.Items[ListBoxTables.ItemIndex]+''');');
-     Add('   FDataSet.SQL.Add(''ORDER BY '+ListBoxFields.Items[0]+' '');');
+     Add('   Result.Add(''FROM   '+ListBoxTables.Items[ListBoxTables.ItemIndex]+''');');
+     Add('end;');
+     Add('');
+     Add('function TCustom'+Plural+'Model.Open:Boolean;');
+     Add('var SQL :TStringList;');
+     Add('begin');
+     Add('   SQL := GetBaseSQLForSelect;');
+     Add('   SQL.AddStrings(FSQLSearch);');
+     Add('   SQL.Add(''ORDER BY '' + OrderFieldName + '' ''+ FSenseOrderBy);');
+     Add('   FDataSet.Close;');
+     Add('   FDataSet.ParamCheck := True;');
+     Add('   //FDataSet.LockType := ltReadOnly;');
+     Add('   //FDataSet.CursorLocation := clUseClient;');
+     Add('   FDataSet.SQL.Clear;');
+     Add('   FDataSet.SQL.Assign(SQL);');
      Add('   ClearLastError;');
      Add('   Result := True;');
      Add('   try');
@@ -591,7 +794,14 @@ begin
      Add('   end;');
      Add('end;');
      Add('');
-
+     Add('function TCustom'+Plural+'Model.Refresh:Boolean;');
+     Add('begin                                           ');
+     Add('   FDataSet.Close;                              ');
+     Add('   ClearLastError;                              ');
+     Add('   Result := True;                              ');
+     Add('   Open;                                        ');
+     Add('end;                                            ');
+     Add('');
      Add('function TCustom'+Plural+'Model.QueryByExample(prmValue :T'+Singular+'):Boolean;');
      Add('var i :T'+Singular+'Field;');
      Add('    IsFirst  :Boolean;');
@@ -630,8 +840,8 @@ begin
      Add('             end;');
      Add('           end;');
      Add('        end;');
-     Add('        if Trim(FOrderBy) <> '''' then');
-     Add('           FDataSet.SQL.Add(''ORDER BY '' + FOrderBy);');
+     Add('        if Trim(FOrderFieldName) <> '''' then');
+     Add('           FDataSet.SQL.Add(''ORDER BY '' + FOrderFieldName);');
      Add('     finally');
      Add('     end;');
      Add('     FDataSet.Open;');
@@ -689,58 +899,71 @@ begin
      Add('   end;');
      Add('end;');
      Add('');
-
-     Add('function TCustom'+Plural+'Model.Update(prmData, prmOldDato :T'+Singular+'):Boolean;');
-     Add('var Q     :TStringList;');
-     Add('    First :Boolean;');
+     
+     Add('function TCustom'+Plural+'Model.Update(prmData :T'+Singular+'):Boolean;');
+     Add('var Q     :TSQLQuery;                                                       ');
+     Add('    SQL   :TStringList;                                                     ');
+     Add('    each  :T'+Singular+'Field;                                              ');
      Add('');
-     Add('    //procedure AQU(UpdateQueryRow :string);');
-     Add('    //begin');
-     Add('    //   if not First then Q.Add('','');');
-     Add('    //   Q.Add(UpdateQueryRow);');
-     Add('    //   First := False;');
-     Add('    //end;');
-     Add('begin');
-     Add('   //Caso 1: Un campo que tenía un valor, ahora tiene un nulo.');
-     Add('   //Caso 2: Un campo que no es nulo pero no ha cambiado.');
-     Add('   //Caso 3: Nos llegan dos datos idénticos. Nada que actualizar.');
-     Add('');
-     Add('   //Esta query puede ser local. No tiene por qué utilizarse la global');
+     Add('begin');                                                                    
+     Add('(*************************************************************************  ');
+     Add('   TABLE OF TRUE                                                            ');
+     Add('                                                                            ');
+     Add('  CASE    OLD VALUE  --- VALUE                                              ');
+     Add('  -----------------------------                                             ');
+     Add('   A      NULL           NULL    this is the same and equal values          ');
+     Add('   B      NULL           VALOR   this is diferent values                    ');
+     Add('   C      VALOR          NULL    this is diferent values                    ');
+     Add('   D      VALOR          VALOR   same value or diferent value               ');
+     Add('                                                                            ');
+     Add('  IsChanges is a check for B, C and D cases, but in D case has an exception.');
+     Add('    In case of D, the may be changed, but with the same value.              ');
+     Add('    In this case we consider that is changed, because the final user can use');
+     Add('    this circunstance to make that collateral effects, like triggers, run   ');
+     Add('    with the same data.                                                     ');
+     Add('                                                                            ');
+     Add('***************************************************************************)');
      Add('');
      Add('   ClearLastError;');
-     Add('   //prmData.CompareWith(prmOldDato);');
      Add('');
-     Add('   //First := True;');
-     Add('   //Q := TStringList.Create;');
-     Add('   //Q.Add(''UPDATE USUARIOS SET    '');');
-     Add('   //{If PrimaryKey changed }');
-     Add('   //if prmData.CD_USUARIO <> prmOldDato.CD_USUARIO then begin');
-     Add('   //   Q.Add(''CD_USUARIO = :prmCD_USUARIO'');');
-     Add('   //   First := False;');
-     Add('   //end;');
-     Add('   //if not prmData.IsChanged(usuarioDS_USUARIO) then AQU(''DS_USUARI = :prmDS_USUARIO '');');
-     Add('   //Q.Add(''WHERE CD_USUARIO = :prmPK_CD_USUARIO '');');
+     Add('   SQL := GetSQLForUpdate(prmData);                      ');
+     Add('   try                                                   ');
+     Add('     Q := FConnection.CreateQuery(['''']);               ');
+     Add('     Q.SQL.Assign(SQL);                                  ');
+     Add('     try                                                 ');
+
+     for i := 0 to ListBoxFields.Items.Count - 1 do begin
+        Add('       if not prmData.IsNull('+RFill(Singular+ListBoxFields.Items[i], F+Length(Singular))+') then');
+        Add('          Q.ParamByName(''prm'+RFill(ListBoxFields.Items[i]+'''', F+3{prm})+').Value := prmData.'+ListBoxFields.Items[i]+';');
+     end;
+
+     Add('                                                                                               ');
+     Add('       //for each := Low(TUserField) to High(TUserField) do begin                              ');
+     Add('       //   if prmData.IsPrimaryKey(each) then begin                                           ');
+     Add('       //      Q.ParamByName(''prmPK_''+prmData.FieldToString(each)).Value := prmData.el valor;');
+     Add('       //   end;                                                                               ');
+     Add('       //end;                                                                                  ');
      Add('');
-     Add('   //FDataSet.Close;');
-     Add('   //FDataSet.ParamCheck := True;');
-     Add('   //FDataSet.SQL.Text := Q.Text;');
-     Add('   //try');
-     Add('   //  try');
-     Add('   //    with FDataSet do begin');
-     Add('   //      if prmData.CD_USUARIO <> prmOldDato.CD_USUARIO then begin');
-     Add('   //         ParamByName(''prmCD_USUARIO'').Value := prmData.CD_USUARIO;');
-     Add('   //      end;');
-     Add('   //      {Primary Key, always shall be assigned }');
-     Add('   //      ParamByName(''prmPK_CD_USUARIO'').Value := prmOldDato.CD_USUARIO;');
-     Add('   //      if not prmData.IsNull('+Singular+'DS_USUARIO)');
-     Add('   //         then ParamByName(''prmDS_USUARIO'').Value := prmData.DS_USUARIO;');
-     Add('   //    end;');
-     Add('   //    FDataSet.ExecSQL;');
-     Add('   //    except on E:Exception do');
-     Add('   //       raise Exception.CreateFmt(''Error %d : %s'', [0, E.Message]);');
-     Add('   //    end;');
-     Add('   //finally Q.Free;');
-     Add('   //end;');
+
+     for i := 0 to ListBoxFields.Items.Count - 1 do begin
+        Add('       if prmData.IsPrimaryKey('+Singular+ListBoxFields.Items[i] +') then');
+        Add('          Q.ParamByName(''prmPK_''+prmData.FieldToString('+Singular+ListBoxFields.Items[i]+')).Value := prmData.'+ListBoxFields.Items[i]+'_OldValue;');
+        Add('');
+     end;
+     Add('       Result := True;                 ');
+     Add('       try Q.ExecSQL;                  ');
+     Add('       except                          ');
+     Add('         on E : Exception do begin     ');
+     Add('           Result := False;            ');
+     Add('           FLastError := E.Message;    ');
+     Add('         end;                          ');
+     Add('       end;                            ');
+     Add('     finally Q.Free;                   ');
+     Add('     end;                              ');
+     Add('   finally                             ');
+     Add('     SQL.Free;                         ');
+     Add('   end;                                ');
+     Add('');
      Add('end;');
      Add('');
      Add('function TCustom'+Plural+'Model.Delete(prmData :T'+Singular+'):Boolean;');
@@ -790,20 +1013,6 @@ begin
           Add('      Item.'+ListBoxFields.Items[i]+' := FDataSet.FieldByName('''+ListBoxFields.Items[i]+''').AsInteger;');
         end;
      end;
-     //Add('   if not(FDataSet.FieldByName(''CD_USUARIO'').IsNull) then');
-     //Add('      Item.CD_USUARIO := FDataSet.FieldByName(''CD_USUARIO'').AsString;');
-     //Add('   if not(FDataSet.FieldByName(''DS_USUARIO'').IsNull) then');
-     //Add('      Item.DS_USUARIO := FDataSet.FieldByName(''DS_USUARIO'').AsString;');
-     //Add('   if not(FDataSet.FieldByName(''PASSWORD'').IsNull) then');
-     //Add('      Item.PASSWORD := FDataSet.FieldByName(''PASSWORD'').AsString;');
-     //Add('   if not(FDataSet.FieldByName(''CD_TIPOUSUARIO'').IsNull) then');
-     //Add('      Item.CD_TIPOUSUARIO := FDataSet.FieldByName(''CD_TIPOUSUARIO'').AsString;');
-     //Add('   if not(FDataSet.FieldByName(''EMAIL_USUARIO'').IsNull) then');
-     //Add('      Item.EMAIL_USUARIO := FDataSet.FieldByName(''EMAIL_USUARIO'').AsString;');
-     //Add('   if not(FDataSet.FieldByName(''TELEFONO'').IsNull) then');
-     //Add('      Item.TELEFONO := FDataSet.FieldByName(''TELEFONO'').AsString;');
-     //Add('   if not(FDataSet.FieldByName(''TELEFONO_MOVIL'').IsNull) then');
-     //Add('      Item.TELEFONO_MOVIL := FDataSet.FieldByName(''TELEFONO_MOVIL'').AsString;');
      Add('');
      Add('   Result := Item;');
      Add('end;');
@@ -885,6 +1094,88 @@ begin
      Add('   //Result.CD_USUARIO := '';');
      Add('   //Result.DS_USUARIO := '';');
      Add('end;');
+     Add('');
+     Add('function TCustom'+Plural+'Model.GetSQLForUpdate(Value: T'+Singular+'):TStringList;');
+     Add('var Query :TStringList;                                                           ');
+     Add('    First :Boolean;                                                               ');
+     Add('    Comma :string;                                                                ');
+     Add('    each  :T'+Singular+'Field;                                                    ');
+     Add('begin                                                                             ');
+     Add('  (***********************************************************************************');
+     Add('   TABLE OF TRUE                                                                      ');
+     Add('                                                                                      ');
+     Add('  CASE    OLD VALUE  --- VALUE                                                        ');
+     Add('  -----------------------------                                                       ');
+     Add('   A      NULL           NULL    this is the same and equal values                    ');
+     Add('   B      NULL           VALOR   this is diferent values                              ');
+     Add('   C      VALOR          NULL    this is diferent values                              ');
+     Add('   D      VALOR          VALOR   same value or diferent value                         ');
+     Add('                                                                                      ');
+     Add('   IsChanges is a check for B, C and D cases, but in D case has an exception.         ');
+     Add('      In case of D, the may be changed, but with the same value.                      ');
+     Add('      In this case we consider that is changed, because the final user can use this   ');
+     Add('      circunstance to make that collateral effects, like triggers, run with the same data.');
+     Add('                                                                                      ');
+     Add('************************************************************************************) ');
+     Add('');
+     Add('   First := True;                                                                     ');
+     Add('   Query := TStringList.Create();                                                     ');
+     Add('   Query.Append(''UPDATE ''+FTableName+'' SET '');                                    ');
+     Add('                                                                                      ');
+     Add('   First := True;                                                                     ');
+     Add('   for each := Low(T'+Singular+'Field) to High(T'+Singular+'Field) do begin           ');
+     Add('      if Value.IsChanged(each) then begin                                             ');
+     Add('         if First then comma := ''''                                                  ');
+     Add('                  else comma := '', '';                                               ');
+     Add('         if Value.IsNull(each) then                                                   ');
+     Add('            Query.Append(comma + Value.FieldToString(Each) + '' = NULL '')            ');
+     Add('         else                                                                         ');
+     Add('            Query.Append(comma + Value.FieldToString(Each) + '' = :prm''+ Value.FieldToString(Each));');
+     Add('         First := False;                                                              ');
+     Add('      end;                                                                            ');
+     Add('   end;                                                                               ');
+     Add('');
+     Add('   First := True;                                                                     ');
+     Add('   for each := Low(T'+Singular+'Field) to High(T'+Singular+'Field) do begin           ');
+     Add('      if Value.IsPrimaryKey(each) then begin                                          ');
+     Add('         if First then comma := '' WHERE ''                                           ');
+     Add('                  else comma := '' AND   '';                                          ');
+     Add('         if Value.IsNull(each) then                                                   ');
+     Add('            Query.Append(comma + Value.FieldToString(each) + '' = NULL '')            ');
+     Add('            // Show a Warning. A Primary Key field shall have value                   ');
+     Add('         else                                                                         ');
+     Add('            Query.Append(comma + Value.FieldToString(each) + '' = :prmPK_''+Value.FieldToString(each));');
+     Add('         First := False;                                                              ');
+     Add('      end;                                                                            ');
+     Add('   end;                                                                               ');
+     Add('   Result := Query;                                                                   ');
+     Add('end;                                                                                  ');
+     Add('');
+     Add('function TCustom'+Plural+'Model.GetVersion: string;                                   ');
+     Add('begin                                                                                 ');
+     Add('   Result := ''1.00'';                                                                ');
+     Add('end;                                                                                  ');
+     Add('');
+     Add('function TCustom'+Plural+'Model.GetOrderFieldName: string;                            ');
+     Add('begin                                                                                 ');
+     for i := 0 to ListBoxFields.Items.Count - 1 do begin
+        Add('       if FOrderFieldName = '''+RFill(ListBoxFields.Items[i]+'''', F+1)+' then '+
+            'Result := '''+RFill(ListBoxFields.Items[i]+'''', F+1)+' else ');
+     end;
+     Add('   Result := ''***(CHECK THE NAME FOR THE ORDER FIELD)*** ERROR'';                    ');
+     Add('end;                                                                                  ');
+     Add('');
+     Add('procedure TCustom'+Plural+'Model.SetOrderFieldName(Value :string);                    ');
+     Add('begin                                                                                 ');
+     Add('   if FOrderFieldName <> Value then begin                                             ');
+     Add('      FOrderFieldName := Value;                                                       ');
+     Add('      FSenseOrderBy := ''ASC'';                                                       ');
+     Add('   end                                                                                ');
+     Add('   else begin                                                                         ');
+     Add('      if FSenseOrderBy = ''ASC'' then FSenseOrderBy := ''DESC''                       ');
+     Add('                               else FSenseOrderBy := ''ASC'';                         ');
+     Add('   end;                                                                               ');
+     Add('end;                                                                                  ');
      Add('');
      Add('end.');
    end;

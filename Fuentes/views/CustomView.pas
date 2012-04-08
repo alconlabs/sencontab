@@ -29,9 +29,9 @@ type
      ImageMaximize: TImage;
      TimerSystemIcons: TTimer;
      TimerMessage: TTimer;
-    StateImages: TImageList;
-    LargeImages: TImageList;
-    SmallImages: TImageList;
+     StateImages: TImageList;
+     LargeImages: TImageList;
+     SmallImages: TImageList;
      procedure FormResize(Sender: TObject);
      procedure ImageAppleIconMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
      procedure TimerSystemIconsTimer(Sender: TObject);
