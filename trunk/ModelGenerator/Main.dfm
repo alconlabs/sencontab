@@ -1,8 +1,8 @@
 object Form1: TForm1
-  Left = 212
-  Top = 153
+  Left = 465
+  Top = 280
   Width = 799
-  Height = 665
+  Height = 588
   Caption = 'Creator'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -141,20 +141,28 @@ object Form1: TForm1
       EditLabel.Caption = 'Nombre Plural'
       TabOrder = 8
     end
+    object BitBtn1: TBitBtn
+      Left = 784
+      Top = 224
+      Width = 75
+      Height = 25
+      Caption = 'BitBtn1'
+      TabOrder = 9
+    end
   end
   object Panel2: TPanel
     Left = 0
     Top = 305
     Width = 791
-    Height = 333
+    Height = 256
     Align = alClient
     TabOrder = 1
     object PageControl1: TPageControl
       Left = 1
       Top = 1
       Width = 789
-      Height = 331
-      ActivePage = TabModel
+      Height = 254
+      ActivePage = TabClass
       Align = alClient
       TabOrder = 0
       object TabClass: TTabSheet
@@ -189,7 +197,7 @@ object Form1: TForm1
           Left = 0
           Top = 48
           Width = 781
-          Height = 255
+          Height = 178
           Align = alClient
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
@@ -236,7 +244,7 @@ object Form1: TForm1
           Left = 0
           Top = 48
           Width = 781
-          Height = 255
+          Height = 178
           Align = alClient
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText

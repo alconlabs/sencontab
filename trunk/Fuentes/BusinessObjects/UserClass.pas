@@ -41,15 +41,12 @@ type
     FNullFields  :array[TUserField] of Boolean;
     FRequired    :array[TUserField] of Boolean;
     FLengths     :array[TUserField] of Integer;
-    FMasks       :array[TUserField] of string;
+    FMasks       :array[TUserField] of string; 
     FHints       :array[TUserField] of string;  {for show help in status bar }
     FCharCase    :array[TUserField] of TEditCharCase;
     FChanged     :array[TUserField] of Boolean;
-    { New }
-    FEmptyStringToNull :Boolean;
-    { New }
+    FEmptyStringToNull :Boolean;                       
     FOldAssigned :array[TUserField] of Boolean;
-    { New }
     FNullOlds    :array[TUserField] of Boolean;
     procedure SetCD_USER      (const Value :string);
     procedure SetDS_USER      (const Value :string);
@@ -58,31 +55,22 @@ type
     {------------------------------------------------}
     procedure SetNotNull(prmField :TUserField);
     procedure SetChanged(prmField :TUserField);
-    { New }
-    function IsNullOrEmpty(prmValue :string):Boolean;
-    { New }
-    procedure AssignString(Value :string; var REF_VAR :string;
-                                          var REF_OLD_VAR :string; Field :TUserField);
-    { New }
-    procedure AcceptChanges();
-    { New }
-    procedure AcceptFieldChange(Field :TUserField);
-    { New }
-    procedure ClearValueField(Field :TUserField);
-    { New }
-    function GetVersion :string;
+    function IsNullOrEmpty(prmValue :string):Boolean;                                          
+    procedure AssignString(Value :string; var REF_VAR :string;                                 
+                                          var REF_OLD_VAR :string; Field :TUserField); 
+    procedure AcceptChanges();                                                                 
+    procedure AcceptFieldChange(Field :TUserField);                                    
+    procedure ClearValueField(Field :TUserField);                                      
+    function GetVersion :string;                                                               
   protected
     FCD_USER            :string;
     FDS_USER            :string;
     FPASSWORD           :string;
     FADMINISTRATOR      :string;
-
-    { New }
     FOLD_CD_USER            :string;
     FOLD_DS_USER            :string;
     FOLD_PASSWORD           :string;
     FOLD_ADMINISTRATOR      :string;
-
     function GetLength(prmField :TUserField):Integer;
     function GetHint(prmField :TUserField):string;
     function GetCharCase(prmField :TUserField):TEditCharCase;
@@ -93,16 +81,16 @@ type
     procedure Initialize; virtual;
     function  IsNull(prmField :TUserField):Boolean;
     function  IsChanged(prmField :TUserField):Boolean;
-    { New }
     function  FieldToString(prmField :TUserField):string;
     procedure CompareWith(prmData :TUser);
-    property EmptyStringToNull :Boolean read FEmptyStringToNull write FEmptyStringToNull; {default True}
-    { New }
-    function IsPrimaryKey(Field :TUserField):Boolean; overload;
-    { New }
-    function IsPrimaryKey(Field :string):Boolean; overload;
-    { New }
-    property Version :string read GetVersion;
+    property EmptyStringToNull :Boolean read FEmptyStringToNull write FEmptyStringToNull; {default True} 
+    function IsPrimaryKey(Field :TUserField):Boolean; overload;                                  
+    function IsPrimaryKey(Field :string):Boolean; overload;                                              
+    property Version :string read GetVersion;                                                            
+    property CD_USER_OldValue       :string read FOLD_CD_USER      ;
+    property DS_USER_OldValue       :string read FOLD_DS_USER      ;
+    property PASSWORD_OldValue      :string read FOLD_PASSWORD     ;
+    property ADMINISTRATOR_OldValue :string read FOLD_ADMINISTRATOR;
   published
     property CD_USER       :string read FCD_USER       write SetCD_USER      ;
     property DS_USER       :string read FDS_USER       write SetDS_USER      ;
@@ -110,7 +98,7 @@ type
     property ADMINISTRATOR :string read FADMINISTRATOR write SetADMINISTRATOR;
   end;
 
-implementation          { New unit TypInfo }
+implementation
 uses SysUtils, TypInfo;
 
 { TUser }
@@ -127,19 +115,19 @@ end;
 procedure TUser.Initialize;
 var i :TUserField;
 begin
-   FEmptyStringToNull := True; {Default Value}
-
+   FEmptyStringToNull := True; {Default Value}    
+                                                  
    for i := Low(TUserField) to High(TUserField) do begin
-      FPrimaryKey[i]  := False;
-      FNullFields[i]  := True;
-      FChanged[i]     := False;
-      FMasks  [i]     := '';
-      FCharCase[i]    := ecUpperCase;
-      FOldAssigned[i] := False;
-      FNullOlds[i]    := False;
+      FPrimaryKey[i] := False;
+      FNullFields[i] := True;
+      FChanged[i]    := False;
+      FMasks  [i]    := '';
+      FCharCase[i]   := ecUpperCase;
+      FOldAssigned[i] := False;     
+      FNullOlds[i]    := False;     
    end;
 
-   FPrimaryKey[userCD_USER    ] := True;    { New } { Puede llevarse a la inicialización heredada si es complejo averiguarlo }
+   FPrimaryKey[userCD_USER    ] := True;
 
    FRequired[userCD_USER      ] := False;
    FRequired[userDS_USER      ] := False;
@@ -157,83 +145,83 @@ begin
    FHints[userADMINISTRATOR] := '';
 end;
 
-procedure TUser.AssignString(Value :string; var REF_VAR :string;
-                                            var REF_OLD_VAR :string; Field :TUserField);
-begin
-   if not FOldAssigned[Field] then begin
-      { IS the First Assignation }
-      if IsNullOrEmpty(Value) then begin
-         { The Value is Empty or NULL }                                                           
-         if FEmptyStringToNull then begin                                                         
-            FOldAssigned[Field]  := True;                                                         
-            FNullOlds[Field]     := True;                                                         
-            REF_OLD_VAR          := Value;                                                        
-            FNullFields[Field]   := True;                                                         
-            REF_VAR              := Value;                                                        
-         end                                                                                      
-         else begin                                                                               
-            FOldAssigned[Field]  := True;                                                         
-            FNullOlds[Field]     := False;                                                        
-            REF_OLD_VAR          := Value;                                                        
-            FNullFields[Field]   := False;                                                        
-            REF_VAR              := Value;                                                        
-         end;                                                                                     
-      end                                                                                         
-      else begin                                                                                  
-         {NOT IS NULL or Empty}                                                                   
-         FOldAssigned[Field]  := True;                                                            
-         FNullOlds[Field]     := False;                                                           
-         REF_OLD_VAR          := Value;                                                           
-         FNullFields[Field]   := False;                                                           
-         REF_VAR              := Value;                                                           
-      end;                                                                                        
-      { Because is the First Assignation we set the value unchanged }                             
-      FChanged[Field] := False;                                                                   
-   end                                                                                            
-   else begin                                                                                     
-      { NOT IS the First Assignation }                                                            
-      if IsNullOrEmpty(Value) then begin                                                   
-         { The Value is NULL or Empty}                                                            
-         if FEmptyStringToNull then begin
-            FNullFields[Field]  := True;                                                          
-            REF_VAR             := Value;                                                         
-         end                                                                                      
-         else begin
-            FNullFields[Field]  := False;
-            REF_VAR             := Value;                                                         
-         end;                                                                                     
-      end                                                                                         
-      else begin                                                                                  
-         {NOT IS NULL or Empty }                                                                  
-         FNullFields[Field]  := False;                                                            
-         REF_VAR             := Value;                                                            
-      end;                                                                                        
-      { Because is not the First Assignation we set the value CHANGED }
-      FChanged[Field] := True;
-   end;
-end;
+procedure TUser.AssignString(Value :string; var REF_VAR :string;                         
+                                            var REF_OLD_VAR :string; Field :TUserField); 
+begin                                                                                            
+   if not FOldAssigned[Field] then begin                                                         
+      { IS the First Assignation }                                                               
+      if IsNullOrEmpty(Value) then begin                                                         
+         { The Value is Empty or NULL }                                                          
+         if FEmptyStringToNull then begin                                                        
+            FOldAssigned[Field]  := True;                                                        
+            FNullOlds[Field]     := True;                                                        
+            REF_OLD_VAR          := Value;                                                       
+            FNullFields[Field]   := True;                                                        
+            REF_VAR              := Value;                                                       
+         end                                                                                     
+         else begin                                                                              
+            FOldAssigned[Field]  := True;                                                        
+            FNullOlds[Field]     := False;                                                       
+            REF_OLD_VAR          := Value;                                                       
+            FNullFields[Field]   := False;                                                       
+            REF_VAR              := Value;                                                       
+         end;                                                                                    
+      end                                                                                        
+      else begin                                                                                 
+         {NOT IS NULL or Empty}                                                                  
+         FOldAssigned[Field]  := True;                                                           
+         FNullOlds[Field]     := False;                                                          
+         REF_OLD_VAR          := Value;                                                          
+         FNullFields[Field]   := False;                                                          
+         REF_VAR              := Value;                                                          
+      end;                                                                                       
+      { Because is the First Assignation we set the value unchanged }                            
+      FChanged[Field] := False;                                                                  
+   end                                                                                           
+   else begin                                                                                    
+      { NOT IS the First Assignation }                                                           
+      if IsNullOrEmpty(Value) then begin                                                         
+         { The Value is NULL or Empty}                                                           
+         if FEmptyStringToNull then begin                                                        
+            FNullFields[Field]  := True;                                                         
+            REF_VAR             := Value;                                                        
+         end                                                                                     
+         else begin                                                                              
+            FNullFields[Field]  := False;                                                        
+            REF_VAR             := Value;                                                        
+         end;                                                                                    
+      end                                                                                        
+      else begin                                                                                 
+         {NOT IS NULL or Empty }                                                                 
+         FNullFields[Field]  := False;                                                           
+         REF_VAR             := Value;                                                           
+      end;                                                                                       
+      { Because is not the First Assignation we set the value CHANGED }                          
+      FChanged[Field] := True;                                                                   
+   end;                                                                                          
+end;                                                                                             
 
-function TUser.IsNullOrEmpty(prmValue :string):Boolean;
-begin
-   Result := Trim(prmValue) = '';
-end;
+function TUser.IsNullOrEmpty(prmValue :string):Boolean;                
+begin                                                                          
+   Result := Trim(prmValue) = '';                                            
+end;                                                                           
 
-procedure TUser.AcceptChanges();
-var Field :TUserField;
-begin
-   for Field := Low(TUserField) to High(TUserField) do begin
-      FOldAssigned[Field] := True;
-      FChanged[Field]     := False;
-      if IsNull(Field) then begin
-         FNullOlds[Field] := True;
-         ClearValueField(Field);
-      end
-      else begin
-         FNullOlds[Field] := False;
-         AcceptFieldChange(Field);
-      end;
-   end;
-end;
+procedure TUser.AcceptChanges();                                       
+var Field :TUserField;                                                 
+begin                                                                          
+   for Field := Low(TUserField) to High(TUserField) do begin   
+      FOldAssigned[Field] := True;                                             
+      FChanged[Field]     := False;                                            
+      if IsNull(Field) then begin                                              
+         FNullOlds[Field] := True;                                             
+         ClearValueField(Field);                                               
+      end                                                                      
+      else begin                                                               
+         FNullOlds[Field] := False;                                            
+         AcceptFieldChange(Field);                                             
+      end;                                                                     
+   end;                                                                        
+end;                                                                           
 
 procedure TUser.AcceptFieldChange(Field :TUserField);
 begin
@@ -319,34 +307,34 @@ end;
 
 procedure TUser.SetCD_USER(const Value :string);
 begin
-   AssignString(Value, FCD_USER, FOLD_CD_USER, userCD_USER);
+   AssignString(Value, FCD_USER, FOLD_CD_USER, userCD_USER); 
 end;
 
 procedure TUser.SetDS_USER(const Value :string);
 begin
-   AssignString(Value, FDS_USER, FOLD_DS_USER, userDS_USER);
+   AssignString(Value, FDS_USER, FOLD_DS_USER, userDS_USER); 
 end;
 
 procedure TUser.SetPASSWORD(const Value :string);
 begin
-   AssignString(Value, FPASSWORD, FOLD_PASSWORD, userPASSWORD);
+   AssignString(Value, FPASSWORD, FOLD_PASSWORD, userPASSWORD); 
 end;
 
 procedure TUser.SetADMINISTRATOR(const Value :string);
 begin
-   AssignString(Value, FADMINISTRATOR, FOLD_ADMINISTRATOR, userADMINISTRATOR);
+   AssignString(Value, FADMINISTRATOR, FOLD_ADMINISTRATOR, userADMINISTRATOR); 
 end;
 
-{ New }
-function TUser.FieldToString(prmField: TUserField): string;
-begin
-   Result := UserFieldNames[prmField];
-   //GetEnumName(TypeInfo(TUserField), Integer(prmField));
-end;
 
-function TUser.GetVersion: string;
-begin
-   Result := '1.00';
-end;
+function TUser.FieldToString(prmField: TUserField): string; 
+begin                                                                       
+   Result := UserFieldNames[prmField];                                      
+   //GetEnumName(TypeInfo(TUserField), Integer(prmField));                  
+end;                                                                        
+                                                                            
+function TUser.GetVersion: string;                                  
+begin                                                                       
+   Result := '1.00';                                                      
+end;                                                                        
 
 end.

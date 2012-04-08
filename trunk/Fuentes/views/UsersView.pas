@@ -29,10 +29,6 @@ type
 
   {TODO : Implementar lo de los códigos repetidos en la modelo }
   {TODO : Implementar, para la edición, eliminación, en la modelo el método ReferecedOnTable           }
-
-  {TODO : En la implementación de la clase, crear los nuevos métodos ya utilizados                     }
-  {TODO : En la implementación de la modelo, crear los nuevos métodos ya utilizados                    }
-
 implementation
 {$R *.DFM}
 

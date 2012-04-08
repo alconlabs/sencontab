@@ -23,35 +23,26 @@ type
   TCustomUsersModel = class
   private
     FConnection     :TCRSQLConnection;
-    FTableName      :string;
+    FTableName      :string;                                              
     FOrderFieldName :string;   { The real name for the order instruction }
     FDataSet        :TSQLQuery;
     FLastError      :string;
-    { New }
-    FSenseOrderBy   :string;
-    { New }
+    FSenseOrderBy   :string;     
     FSQLSearch      :TStringList;
     procedure ClearLastError;
     function GetRowsAffected:Integer;
     function GetRowCount    :Integer;
     function GetEOF :Boolean;
-
-    { New }
     function GetVersion :string;
-    { New }
     function GetSQLForUpdate(Value :TUser):TStringList;
-    { New }
     function GetOrderFieldName:string;
-    { New }
     procedure SetOrderFieldName(Value :string);
-  protected { New section too }
-    { New }
+  protected
     function GetBaseSQLForSelect:TStringList;
   public
     constructor Create(prmConnection :TCRSQLConnection); reintroduce;
     destructor  Destroy; override;
-    function  Open :Boolean;                     //overload;
-    { New }
+    function  Open :Boolean;
     function Refresh:Boolean;
     function QueryByExample(prmValue :TUser):Boolean;
     function Save(prmData :TUser):Boolean;
@@ -67,15 +58,12 @@ type
     function  Locate(prmData :TUser):Boolean;
     function  GetDefaults:TUser;
     { Public properties}
-    { New }
     property Version        :string            read GetVersion;
     property Connection     :TCRSQLConnection  read FConnection;
     property EOF            :Boolean           read GetEOF;
     property RowsAffected   :Integer           read GetRowsAffected;
     property RowCount       :Integer           read GetRowCount;
-    { New }
     property OrderFieldName :string            read GetOrderFieldName write SetOrderFieldName;
-    { New }
     property SQLSearch      :TStringList       read FSQLSearch        write FSQLSearch;
   end;
 
@@ -85,15 +73,13 @@ uses TypInfo;
 constructor TCustomUsersModel.Create(prmConnection :TCRSQLConnection);
 begin
    inherited Create;
-   FConnection := prmConnection;
-   FTableName      := 'USERS';
-   FOrderFieldName := 'CD_USER';
+   FConnection := prmConnection; 
+   FTableName := 'USERS';
+   FOrderFieldName  := 'CD_USER';
    FDataSet := TSQLQuery.Create(nil);
    FDataSet.SQLConnection := prmConnection;
-   { New }
-   FSQLSearch := TStringList.Create;
-   { New }
-   FSenseOrderBy := 'ASC';
+   FSQLSearch := TStringList.Create; 
+   FSenseOrderBy := 'ASC';         
 end;
 
 destructor TCustomUsersModel.Destroy;
@@ -133,26 +119,25 @@ end;
 function TCustomUsersModel.GetBaseSQLForSelect: TStringList;
 begin
    Result := TStringList.Create;
-   Result.Add('SELECT CD_USER,      ');
-   Result.Add('       DS_USER,      ');
-   Result.Add('       PASSWORD,     ');
+   Result.Add('SELECT CD_USER, ');
+   Result.Add('       DS_USER, ');
+   Result.Add('       PASSWORD, ');
    Result.Add('       ADMINISTRATOR ');
    Result.Add('FROM   USERS');
 end;
 
-{ Updated }
 function TCustomUsersModel.Open:Boolean;
 var SQL :TStringList;
 begin
    SQL := GetBaseSQLForSelect;
    SQL.AddStrings(FSQLSearch);
    SQL.Add('ORDER BY ' + OrderFieldName + ' '+ FSenseOrderBy);
-
    FDataSet.Close;
    FDataSet.ParamCheck := True;
+   //FDataSet.LockType := ltReadOnly;
+   //FDataSet.CursorLocation := clUseClient;
    FDataSet.SQL.Clear;
    FDataSet.SQL.Assign(SQL);
-   
    ClearLastError;
    Result := True;
    try
@@ -166,12 +151,12 @@ begin
 end;
 
 function TCustomUsersModel.Refresh:Boolean;
-begin
-   FDataSet.Close;
-   ClearLastError;
-   Result := True;
-   Open;
-end;
+begin                                           
+   FDataSet.Close;                              
+   ClearLastError;                              
+   Result := True;                              
+   Open;                                        
+end;                                            
 
 function TCustomUsersModel.QueryByExample(prmValue :TUser):Boolean;
 var i :TUserField;
@@ -274,38 +259,38 @@ begin
    end;
 end;
 
-{ New }
 function TCustomUsersModel.Update(prmData :TUser):Boolean;
-var Q     :TSQLQuery;
-    SQL   :TStringList;
-    each  :TUserField;
+var Q     :TSQLQuery;                                                       
+    SQL   :TStringList;                                                     
+    each  :TUserField;                                              
+
 begin
-(*************************************************************************
-   TABLE OF TRUE
-
-  CASE    OLD VALUE  --- VALUE
-  -----------------------------
-   A      NULL           NULL    this is the same and equal values
-   B      NULL           VALOR   this is diferent values
-   C      VALOR          NULL    this is diferent values
-   D      VALOR          VALOR   same value or diferent value
-
+(*************************************************************************  
+   TABLE OF TRUE                                                            
+                                                                            
+  CASE    OLD VALUE  --- VALUE                                              
+  -----------------------------                                             
+   A      NULL           NULL    this is the same and equal values          
+   B      NULL           VALOR   this is diferent values                    
+   C      VALOR          NULL    this is diferent values                    
+   D      VALOR          VALOR   same value or diferent value               
+                                                                            
   IsChanges is a check for B, C and D cases, but in D case has an exception.
-    In case of D, the may be changed, but with the same value.
+    In case of D, the may be changed, but with the same value.              
     In this case we consider that is changed, because the final user can use
-    this circunstance to make that collateral effects, like triggers, run
-    with the same data.
-
+    this circunstance to make that collateral effects, like triggers, run   
+    with the same data.                                                     
+                                                                            
 ***************************************************************************)
+
    ClearLastError;
 
-   SQL := GetSQLForUpdate(prmData);
-   //ShowMessage(SQL.Text);
-   try
-     Q := FConnection.CreateQuery(['']);
-     Q.SQL.Assign(SQL);
-     try
-       if not prmData.IsNull(userCD_USER      ) then
+   SQL := GetSQLForUpdate(prmData);                      
+   try                                                   
+     Q := FConnection.CreateQuery(['']);               
+     Q.SQL.Assign(SQL);                                  
+     try                                                 
+       if not prmData.IsNull(UserCD_USER      ) then
           Q.ParamByName('prmCD_USER'        ).Value := prmData.CD_USER;
        if not prmData.IsNull(UserDS_USER      ) then
           Q.ParamByName('prmDS_USER'        ).Value := prmData.DS_USER;
@@ -313,38 +298,39 @@ begin
           Q.ParamByName('prmPASSWORD'       ).Value := prmData.PASSWORD;
        if not prmData.IsNull(UserADMINISTRATOR) then
           Q.ParamByName('prmADMINISTRATOR'  ).Value := prmData.ADMINISTRATOR;
-
-       //for each := Low(TUserField) to High(TUserField) do begin
-       //   if prmData.IsPrimaryKey(each) then begin
+                                                                                               
+       //for each := Low(TUserField) to High(TUserField) do begin                              
+       //   if prmData.IsPrimaryKey(each) then begin                                           
        //      Q.ParamByName('prmPK_'+prmData.FieldToString(each)).Value := prmData.el valor;
-       //   end;
-       //end;
+       //   end;                                                                               
+       //end;                                                                                  
 
-        if prmData.IsPrimaryKey(userCD_USER) then
-           Q.ParamByName('prmPK_'+prmData.FieldToString(userCD_USER)).Value := prmData.CD_USER;
+       if prmData.IsPrimaryKey(UserCD_USER) then
+          Q.ParamByName('prmPK_'+prmData.FieldToString(UserCD_USER)).Value := prmData.CD_USER_OldValue;
 
-        if prmData.IsPrimaryKey(userDS_USER) then
-           Q.ParamByName('prmPK_'+prmData.FieldToString(userDS_USER)).Value := prmData.DS_USER;
+       if prmData.IsPrimaryKey(UserDS_USER) then
+          Q.ParamByName('prmPK_'+prmData.FieldToString(UserDS_USER)).Value := prmData.DS_USER_OldValue;
 
-        if prmData.IsPrimaryKey(userPASSWORD) then
-           Q.ParamByName('prmPK_'+prmData.FieldToString(userPASSWORD)).Value := prmData.PASSWORD;
+       if prmData.IsPrimaryKey(UserPASSWORD) then
+          Q.ParamByName('prmPK_'+prmData.FieldToString(UserPASSWORD)).Value := prmData.PASSWORD_OldValue;
 
-        if prmData.IsPrimaryKey(userADMINISTRATOR) then
-           Q.ParamByName('prmPK_'+prmData.FieldToString(userADMINISTRATOR)).Value := prmData.ADMINISTRATOR;
-           
-       Result := True;
-       try Q.ExecSQL;
-       except
-         on E : Exception do begin
-           Result := False;
-           FLastError := E.Message;
-         end;
-       end;
-     finally Q.Free;
-     end;
-   finally
-     SQL.Free;
-   end;
+       if prmData.IsPrimaryKey(UserADMINISTRATOR) then
+          Q.ParamByName('prmPK_'+prmData.FieldToString(UserADMINISTRATOR)).Value := prmData.ADMINISTRATOR_OldValue;
+
+       Result := True;                 
+       try Q.ExecSQL;                  
+       except                          
+         on E : Exception do begin     
+           Result := False;            
+           FLastError := E.Message;    
+         end;                          
+       end;                            
+     finally Q.Free;                   
+     end;                              
+   finally                             
+     SQL.Free;                         
+   end;                                
+
 end;
 
 function TCustomUsersModel.Delete(prmData :TUser):Boolean;
@@ -473,85 +459,85 @@ begin
 end;
 
 function TCustomUsersModel.GetSQLForUpdate(Value: TUser):TStringList;
-var Query :TStringList;
-    First :Boolean;
-    Comma :string;
-    each  :TUserField;
-begin
+var Query :TStringList;                                                           
+    First :Boolean;                                                               
+    Comma :string;                                                                
+    each  :TUserField;                                                    
+begin                                                                             
   (***********************************************************************************
-   TABLE OF TRUE
-
-  CASE    OLD VALUE  --- VALUE
-  -----------------------------
-   A      NULL           NULL    this is the same and equal values
-   B      NULL           VALOR   this is diferent values 
-   C      VALOR          NULL    this is diferent values
-   D      VALOR          VALOR   same value or diferent value
-
-   IsChanges is a check for B, C and D cases, but in D case has an exception.
-      In case of D, the may be changed, but with the same value.
-      In this case we consider that is changed, because the final user can use this
+   TABLE OF TRUE                                                                      
+                                                                                      
+  CASE    OLD VALUE  --- VALUE                                                        
+  -----------------------------                                                       
+   A      NULL           NULL    this is the same and equal values                    
+   B      NULL           VALOR   this is diferent values                              
+   C      VALOR          NULL    this is diferent values                              
+   D      VALOR          VALOR   same value or diferent value                         
+                                                                                      
+   IsChanges is a check for B, C and D cases, but in D case has an exception.         
+      In case of D, the may be changed, but with the same value.                      
+      In this case we consider that is changed, because the final user can use this   
       circunstance to make that collateral effects, like triggers, run with the same data.
+                                                                                      
+************************************************************************************) 
 
-************************************************************************************)
-
-   First := True;
-   Query := TStringList.Create();
-   Query.Append('UPDATE '+FTableName+' SET ');
-
-   First := True;     
-   for each := Low(TUserField) to High(TUserField) do begin
-      if Value.IsChanged(each) then begin
-         if First then comma := ''
-                  else comma := ', ';
-         if Value.IsNull(each) then 
-            Query.Append(comma + Value.FieldToString(Each) + ' = NULL ')
-         else
+   First := True;                                                                     
+   Query := TStringList.Create();                                                     
+   Query.Append('UPDATE '+FTableName+' SET ');                                    
+                                                                                      
+   First := True;                                                                     
+   for each := Low(TUserField) to High(TUserField) do begin           
+      if Value.IsChanged(each) then begin                                             
+         if First then comma := ''                                                  
+                  else comma := ', ';                                               
+         if Value.IsNull(each) then                                                   
+            Query.Append(comma + Value.FieldToString(Each) + ' = NULL ')            
+         else                                                                         
             Query.Append(comma + Value.FieldToString(Each) + ' = :prm'+ Value.FieldToString(Each));
-         First := False;
-      end;
-   end;
+         First := False;                                                              
+      end;                                                                            
+   end;                                                                               
 
-   First := True;
-   for each := Low(TUserField) to High(TUserField) do begin
-      if Value.IsPrimaryKey(each) then begin
-         if First then comma := ' WHERE '
-                  else comma := ' AND   ';
-         if Value.IsNull(each) then
-            Query.Append(comma + Value.FieldToString(each) + ' = NULL ')
-            // Show a Warning. A Primary Key field shall have value
-         else
+   First := True;                                                                     
+   for each := Low(TUserField) to High(TUserField) do begin           
+      if Value.IsPrimaryKey(each) then begin                                          
+         if First then comma := ' WHERE '                                           
+                  else comma := ' AND   ';                                          
+         if Value.IsNull(each) then                                                   
+            Query.Append(comma + Value.FieldToString(each) + ' = NULL ')            
+            // Show a Warning. A Primary Key field shall have value                   
+         else                                                                         
             Query.Append(comma + Value.FieldToString(each) + ' = :prmPK_'+Value.FieldToString(each));
-         First := False;
-      end;
-   end;
-   Result := Query;
-end;
+         First := False;                                                              
+      end;                                                                            
+   end;                                                                               
+   Result := Query;                                                                   
+end;                                                                                  
 
-function TCustomUsersModel.GetVersion: string;
-begin
-   Result := '1.00';
-end;
+function TCustomUsersModel.GetVersion: string;                                   
+begin                                                                                 
+   Result := '1.00';                                                                
+end;                                                                                  
 
-function TCustomUsersModel.GetOrderFieldName: string;
-begin
-   if FOrderFieldName = 'CD_USER'        then Result := 'CD_USER'       else
-   if FOrderFieldName = 'DS_USER'        then Result := 'DS_USER'       else
-   if FOrderFieldName = 'PASSWORD'       then Result := 'PASSWORD'      else
-   if FOrderFieldName = 'ADMINISTRATOR'  then Result := 'ADMINISTRATOR' else
-   Result := '***(CHECK THE NAME FOR THE ORDER FIELD)*** ERROR';
-end;
+function TCustomUsersModel.GetOrderFieldName: string;                            
+begin                                                                                 
+       if FOrderFieldName = 'CD_USER'       then Result := 'CD_USER'       else 
+       if FOrderFieldName = 'DS_USER'       then Result := 'DS_USER'       else 
+       if FOrderFieldName = 'PASSWORD'      then Result := 'PASSWORD'      else 
+       if FOrderFieldName = 'ADMINISTRATOR' then Result := 'ADMINISTRATOR' else 
+   Result := '***(CHECK THE NAME FOR THE ORDER FIELD)*** ERROR';                    
+end;                                                                                  
 
-procedure TCustomUsersModel.SetOrderFieldName(Value :string);
-begin
-   if FOrderFieldName <> Value then begin
-      FOrderFieldName := Value;
-      FSenseOrderBy := 'ASC';
-   end
-   else begin
-      if FSenseOrderBy = 'ASC' then FSenseOrderBy := 'DESC'
-                               else FSenseOrderBy := 'ASC';
-   end;
-end;
+procedure TCustomUsersModel.SetOrderFieldName(Value :string);                    
+begin                                                                                 
+   if FOrderFieldName <> Value then begin                                             
+      FOrderFieldName := Value;                                                       
+      FSenseOrderBy := 'ASC';                                                       
+   end                                                                                
+   else begin                                                                         
+      if FSenseOrderBy = 'ASC' then FSenseOrderBy := 'DESC'                       
+                               else FSenseOrderBy := 'ASC';                         
+   end;                                                                               
+end;                                                                                  
 
 end.

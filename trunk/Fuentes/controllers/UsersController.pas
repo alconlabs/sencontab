@@ -203,6 +203,7 @@ begin
       FEditUserView.User := TUser(FView.ListViewUsers.Selected.Data);
       try
          if FEditUserView.ShowModal = mrOK then begin
+            //TUser(FView.ListViewUsers.Selected.Data).AcceptChanges;
             FModel.Update(TUser(FView.ListViewUsers.Selected.Data));
             FModel.Refresh;
             RefreshAllItems;
