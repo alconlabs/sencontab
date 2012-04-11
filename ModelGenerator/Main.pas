@@ -42,7 +42,6 @@ type
     BtnSaveClass: TButton;
     SQLServer: TCRSQLConnection;
     LabelSQLServer: TLabel;
-    BitBtn1: TBitBtn;
     procedure BtnConectarERPSystemClick(Sender: TObject);
     procedure BtnConectarEMP_TESTClick(Sender: TObject);
     procedure ListBoxTablesClick(Sender: TObject);
@@ -385,7 +384,7 @@ begin
      Add('   end;');
      Add('');
      Add(' {$Message Error ''Remove this message after add here de Primary key fields like the next line''}');
-     Add(' FPrimaryKey[userCD_USER    ] := True;');
+     Add(' FPrimaryKey[xxxxXXXXX] := True;');
      Add('');    
      for i := 0 to ListBoxFields.Items.Count - 1 do begin
         if UpperCase(Trim(ListBoxAllowNULL.Items[i])) = 'YES' then begin
@@ -566,10 +565,10 @@ begin
         {IsTheLast}
         if not(i = (ListBoxFields.Items.Count -1)) then
            Add('   if Field = '''+RFill(ListBoxFields.Items[i]+'''', F+1)+' then '
-               +RFill('IsPrimaryKey('+Lowercase(Singular)+ListBoxFields.Items[i], F)
+               +RFill('IsPrimaryKey('+Lowercase(Singular)+ListBoxFields.Items[i], F+2)
                +Lowercase(Singular)+RFill(ListBoxFields.Items[i], F)+') else')
         else Add('   if Field = '''+RFill(ListBoxFields.Items[i]+'''', F+1)+' then '
-                 +RFill('IsPrimaryKey('+Lowercase(Singular)+ListBoxFields.Items[i], F)
+                 +RFill('IsPrimaryKey('+Lowercase(Singular)+ListBoxFields.Items[i], F+2)
                  +Lowercase(Singular)+RFill(ListBoxFields.Items[i], F)+');');
      end;
      Add('end;');
@@ -607,8 +606,8 @@ begin
      Add('');
      Add('function T'+Singular+'.FieldToString(prmField: T'+Singular+'Field): string; ');
      Add('begin                                                                       ');
-     Add('   Result := UserFieldNames[prmField];                                      ');
-     Add('   //GetEnumName(TypeInfo(TUserField), Integer(prmField));                  ');
+     Add('   Result := '+Singular+'FieldNames[prmField];                              ');
+     Add('   //GetEnumName(TypeInfo(T'+Singular+'Field), Integer(prmField));          ');
      Add('end;                                                                        ');
      Add('                                                                            ');
      Add('function T'+Singular+'.GetVersion: string;                                  ');
@@ -665,7 +664,7 @@ begin
      Add('    function GetRowCount    :Integer;');
      Add('    function GetEOF :Boolean;');
      Add('    function GetVersion :string;');
-     Add('    function GetSQLForUpdate(Value :TUser):TStringList;');
+     Add('    function GetSQLForUpdate(Value :T'+Singular+'):TStringList;');
      Add('    function GetOrderFieldName:string;');
      Add('    procedure SetOrderFieldName(Value :string);');
      Add('  protected');

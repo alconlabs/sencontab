@@ -1,8 +1,8 @@
 object Form1: TForm1
-  Left = 465
-  Top = 280
-  Width = 799
-  Height = 588
+  Left = 295
+  Top = 203
+  Width = 798
+  Height = 554
   Caption = 'Creator'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -16,7 +16,7 @@ object Form1: TForm1
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 791
+    Width = 790
     Height = 305
     Align = alTop
     TabOrder = 0
@@ -141,27 +141,19 @@ object Form1: TForm1
       EditLabel.Caption = 'Nombre Plural'
       TabOrder = 8
     end
-    object BitBtn1: TBitBtn
-      Left = 784
-      Top = 224
-      Width = 75
-      Height = 25
-      Caption = 'BitBtn1'
-      TabOrder = 9
-    end
   end
   object Panel2: TPanel
     Left = 0
     Top = 305
-    Width = 791
-    Height = 256
+    Width = 790
+    Height = 222
     Align = alClient
     TabOrder = 1
     object PageControl1: TPageControl
       Left = 1
       Top = 1
-      Width = 789
-      Height = 254
+      Width = 788
+      Height = 220
       ActivePage = TabClass
       Align = alClient
       TabOrder = 0
@@ -170,7 +162,7 @@ object Form1: TForm1
         object Panel3: TPanel
           Left = 0
           Top = 0
-          Width = 781
+          Width = 780
           Height = 48
           Align = alTop
           TabOrder = 0
@@ -196,8 +188,8 @@ object Form1: TForm1
         object MemoClass: TMemo
           Left = 0
           Top = 48
-          Width = 781
-          Height = 178
+          Width = 780
+          Height = 144
           Align = alClient
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
@@ -217,7 +209,7 @@ object Form1: TForm1
         object Panel4: TPanel
           Left = 0
           Top = 0
-          Width = 781
+          Width = 780
           Height = 48
           Align = alTop
           TabOrder = 0
@@ -243,8 +235,8 @@ object Form1: TForm1
         object MemoModel: TMemo
           Left = 0
           Top = 48
-          Width = 781
-          Height = 178
+          Width = 780
+          Height = 144
           Align = alClient
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText

@@ -26,9 +26,12 @@ type
 
   {TODO : Falta un nuevo estado para el usuario : BLOQUEADO }
   {TODO : No se debe poder eliminar todos los administradores. Al guardar un Administrador se desactivan los demás. }
+  {TODO : Plantear la opción de un botón independiente para la modificación del password. }
+  {TODO : Añadir todo el control del password al modificarlo, junto más datos o sólamente el password }
 
   {TODO : Implementar lo de los códigos repetidos en la modelo }
   {TODO : Implementar, para la edición, eliminación, en la modelo el método ReferecedOnTable           }
+
 implementation
 {$R *.DFM}
 

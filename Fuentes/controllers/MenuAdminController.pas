@@ -5,7 +5,8 @@ interface
 uses Classes, DBController,
      CustomController, MenuAdminView,
      EnterprisesController,
-     UsersController;
+     UsersController,
+     ProfilesController;
 
 type
   TMenuAdminController = class(TCustomController)
@@ -13,9 +14,11 @@ type
     FView                  :TFormMenuAdmin;
     FEnterprisesController :TEnterprisesController;
     FUsersController       :TUsersController;
+    FProfilesController    :TProfilesController;
   protected
     procedure LabelEnterprisesClick(Sender: TObject);
     procedure LabelUsersClick(Sender: TObject);
+    procedure LabelProfilesClick(Sender: TObject);
   public
     constructor Create(ADBController :TDBController); override;
     destructor  Destroy; override;
@@ -33,7 +36,8 @@ begin
    FView.AppleIconsVisibles := [aiClose];
    { Delegates Assignation }
    FView.LabelEnterprises.OnClick := LabelEnterprisesClick;
-   FView.LabelUsers.OnClick       := LabelUsersClick; 
+   FView.LabelUsers.OnClick       := LabelUsersClick;
+   FView.LabelProfiles.OnClick    := LabelProfilesClick;
 end;
 
 destructor TMenuAdminController.Destroy;
@@ -46,6 +50,15 @@ begin
    FEnterprisesController := TEnterprisesController.Create(DBCtlr);
    try
       FEnterprisesController.ShowView;
+   finally
+   end;
+end;
+
+procedure TMenuAdminController.LabelProfilesClick(Sender: TObject);
+begin
+   FProfilesController := TProfilesController.Create(DBCtlr);
+   try
+      FProfilesController.ShowView;
    finally
    end;
 end;

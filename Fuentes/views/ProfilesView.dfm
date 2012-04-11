@@ -1,9 +1,9 @@
-object UsersView: TUsersView
-  Left = 318
-  Top = 72
+object ProfilesView: TProfilesView
+  Left = 520
+  Top = 184
   Width = 603
   Height = 403
-  Caption = 'Gesti'#243'n de Usuarios'
+  Caption = 'Gesti'#243'n de Perfiles'
   Color = 14275008
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clBlack
@@ -71,7 +71,7 @@ object UsersView: TUsersView
     ParentCtl3D = False
     TabOrder = 3
   end
-  object ListViewUsers: TListView
+  object ListView: TListView
     Left = 24
     Top = 88
     Width = 553
