@@ -8,7 +8,6 @@ type
     LabelUsers: TLabel;
     LabelProfiles: TLabel;
     LabelUserProfiles: TLabel;
-    procedure TimerTimer(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure LabelMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
     procedure LabelEnterprisesMouseLeave(Sender: TObject);
@@ -18,7 +17,6 @@ type
     function  AnyFormEditing:Boolean;
     procedure WMSysCommand(var Message :TWMSysCommand); message WM_SYSCOMMAND;
     procedure WMClose     (var Message :TWMClose     ); message WM_CLOSE;
-    procedure ShowErrorMessage(prmErrorMessage :string);
   public
   end;
 
@@ -77,21 +75,6 @@ begin
    //{$ELSE}
    ////Action := caFree;
    //{$ENDIF}
-end;
-
-procedure TFormMenuAdmin.ShowErrorMessage(prmErrorMessage :string);
-begin
-   //StatusBar.Font.Color := clRed;
-   //StatusBar.Font.Style := [fsBold];
-   //StatusBar.Panels[1].Text := '      '+prmErrorMessage;
-   MessageBeep(MB_ICONHAND);
-   //Timer.Enabled := True;
-end;
-
-procedure TFormMenuAdmin.TimerTimer(Sender: TObject);
-begin
-   //StatusBar.Panels[1].Text := '';
-   //Timer.Enabled := False;
 end;
 
 procedure TFormMenuAdmin.LabelMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);

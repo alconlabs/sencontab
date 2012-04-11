@@ -1,6 +1,6 @@
 object CustomView: TCustomView
-  Left = 563
-  Top = 214
+  Left = 549
+  Top = 215
   HelpType = htKeyword
   HelpKeyword = 'Help_Context_Still_Not_Available'
   AutoScroll = False
