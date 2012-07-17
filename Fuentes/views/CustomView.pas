@@ -6,6 +6,11 @@ uses Forms, Messages, Windows, Graphics, Classes, ImgList, Controls, ComCtrls,
 const DELAY_SHORT =        400;
       DELAY_LONG  =       3000;
       DELAY_NEVER = 2147483647;
+
+      ImageIndex_User     = 0;
+      ImageIndex_UserPlus = 1;
+      ImageIndex_Profile  = 2;
+
 type
    TAppleButton = (abGray, abRed      , abYellow      , abGreen,
                            abRedSignum, abYellowSignum, abGreenSignum);

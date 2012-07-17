@@ -12,45 +12,24 @@ uses Classes, StdCtrls;
 
 { TABLE NAME = PROFILES  }
 {=== Column Definition ===}
-{ APPLICATION    	char      	  15	 NULL Allowed  No    }
-{ CD_SECTION     	char      	  15	 NULL Allowed  No    }
-{ CD_MODULE      	char      	  50	 NULL Allowed  No    }
 { CD_PROFILE     	char      	  15	 NULL Allowed  No    }
 { DS_PROFILE     	char      	  80	 NULL Allowed  YES   }
-{ ALLOW_ADD      	char      	   1	 NULL Allowed  No    }
-{ ALLOW_MODIFY   	char      	   1	 NULL Allowed  No    }
-{ ALLOW_DELETE   	char      	   1	 NULL Allowed  No    }
-{ ALLOW_REPORT   	char      	   1	 NULL Allowed  No    }
-{ ALLOW_EXEC     	char      	   1	 NULL Allowed  No    }
+{ APPLICATION    	char      	  15	 NULL Allowed  No    }
 {=== ================= ===}
 
 type
    TProfileField = (
-      profileAPPLICATION , 
-      profileCD_SECTION  , 
-      profileCD_MODULE   , 
-      profileCD_PROFILE  , 
-      profileDS_PROFILE  , 
-      profileALLOW_ADD   , 
-      profileALLOW_MODIFY, 
-      profileALLOW_DELETE, 
-      profileALLOW_REPORT, 
-      profileALLOW_EXEC  
+      profileCD_PROFILE , 
+      profileDS_PROFILE , 
+      profileAPPLICATION
    );
 
-   TProfileFieldNamesDef = array[profileAPPLICATION..profileALLOW_EXEC] of string;
+   TProfileFieldNamesDef = array[profileCD_PROFILE..profileAPPLICATION] of string;
 
 const ProfileFieldNames: TProfileFieldNamesDef = (
-            'APPLICATION' , 
-            'CD_SECTION'  , 
-            'CD_MODULE'   , 
-            'CD_PROFILE'  , 
-            'DS_PROFILE'  , 
-            'ALLOW_ADD'   , 
-            'ALLOW_MODIFY', 
-            'ALLOW_DELETE', 
-            'ALLOW_REPORT', 
-            'ALLOW_EXEC'  
+            'CD_PROFILE' , 
+            'DS_PROFILE' , 
+            'APPLICATION'
             );
 type
   TProfile = class(TPersistent)
@@ -66,16 +45,9 @@ type
     FEmptyStringToNull :Boolean;                       
     FOldAssigned :array[TProfileField] of Boolean;
     FNullOlds    :array[TProfileField] of Boolean;
-    procedure SetAPPLICATION (const Value :string);
-    procedure SetCD_SECTION  (const Value :string);
-    procedure SetCD_MODULE   (const Value :string);
-    procedure SetCD_PROFILE  (const Value :string);
-    procedure SetDS_PROFILE  (const Value :string);
-    procedure SetALLOW_ADD   (const Value :string);
-    procedure SetALLOW_MODIFY(const Value :string);
-    procedure SetALLOW_DELETE(const Value :string);
-    procedure SetALLOW_REPORT(const Value :string);
-    procedure SetALLOW_EXEC  (const Value :string);
+    procedure SetCD_PROFILE (const Value :string);
+    procedure SetDS_PROFILE (const Value :string);
+    procedure SetAPPLICATION(const Value :string);
     {------------------------------------------------}
     procedure SetNotNull(prmField :TProfileField);
     procedure SetChanged(prmField :TProfileField);
@@ -87,26 +59,12 @@ type
     procedure ClearValueField(Field :TProfileField);                                      
     function GetVersion :string;                                                               
   protected
-    FAPPLICATION       :string;
-    FCD_SECTION        :string;
-    FCD_MODULE         :string;
-    FCD_PROFILE        :string;
-    FDS_PROFILE        :string;
-    FALLOW_ADD         :string;
-    FALLOW_MODIFY      :string;
-    FALLOW_DELETE      :string;
-    FALLOW_REPORT      :string;
-    FALLOW_EXEC        :string;
-    FOLD_APPLICATION       :string;
-    FOLD_CD_SECTION        :string;
-    FOLD_CD_MODULE         :string;
-    FOLD_CD_PROFILE        :string;
-    FOLD_DS_PROFILE        :string;
-    FOLD_ALLOW_ADD         :string;
-    FOLD_ALLOW_MODIFY      :string;
-    FOLD_ALLOW_DELETE      :string;
-    FOLD_ALLOW_REPORT      :string;
-    FOLD_ALLOW_EXEC        :string;
+    FCD_PROFILE       :string;
+    FDS_PROFILE       :string;
+    FAPPLICATION      :string;
+    FOLD_CD_PROFILE       :string;
+    FOLD_DS_PROFILE       :string;
+    FOLD_APPLICATION      :string;
     function GetLength(prmField :TProfileField):Integer;
     function GetHint(prmField :TProfileField):string;
     function GetCharCase(prmField :TProfileField):TEditCharCase;
@@ -123,27 +81,13 @@ type
     function IsPrimaryKey(Field :TProfileField):Boolean; overload;                                  
     function IsPrimaryKey(Field :string):Boolean; overload;                                              
     property Version :string read GetVersion;                                                            
-    property APPLICATION_OldValue  :string read FOLD_APPLICATION ;
-    property CD_SECTION_OldValue   :string read FOLD_CD_SECTION  ;
-    property CD_MODULE_OldValue    :string read FOLD_CD_MODULE   ;
-    property CD_PROFILE_OldValue   :string read FOLD_CD_PROFILE  ;
-    property DS_PROFILE_OldValue   :string read FOLD_DS_PROFILE  ;
-    property ALLOW_ADD_OldValue    :string read FOLD_ALLOW_ADD   ;
-    property ALLOW_MODIFY_OldValue :string read FOLD_ALLOW_MODIFY;
-    property ALLOW_DELETE_OldValue :string read FOLD_ALLOW_DELETE;
-    property ALLOW_REPORT_OldValue :string read FOLD_ALLOW_REPORT;
-    property ALLOW_EXEC_OldValue   :string read FOLD_ALLOW_EXEC  ;
+    property CD_PROFILE_OldValue  :string read FOLD_CD_PROFILE ;
+    property DS_PROFILE_OldValue  :string read FOLD_DS_PROFILE ;
+    property APPLICATION_OldValue :string read FOLD_APPLICATION;
   published
-    property APPLICATION  :string read FAPPLICATION  write SetAPPLICATION ;
-    property CD_SECTION   :string read FCD_SECTION   write SetCD_SECTION  ;
-    property CD_MODULE    :string read FCD_MODULE    write SetCD_MODULE   ;
-    property CD_PROFILE   :string read FCD_PROFILE   write SetCD_PROFILE  ;
-    property DS_PROFILE   :string read FDS_PROFILE   write SetDS_PROFILE  ;
-    property ALLOW_ADD    :string read FALLOW_ADD    write SetALLOW_ADD   ;
-    property ALLOW_MODIFY :string read FALLOW_MODIFY write SetALLOW_MODIFY;
-    property ALLOW_DELETE :string read FALLOW_DELETE write SetALLOW_DELETE;
-    property ALLOW_REPORT :string read FALLOW_REPORT write SetALLOW_REPORT;
-    property ALLOW_EXEC   :string read FALLOW_EXEC   write SetALLOW_EXEC  ;
+    property CD_PROFILE  :string read FCD_PROFILE  write SetCD_PROFILE ;
+    property DS_PROFILE  :string read FDS_PROFILE  write SetDS_PROFILE ;
+    property APPLICATION :string read FAPPLICATION write SetAPPLICATION;
   end;
 
 implementation
@@ -176,43 +120,20 @@ begin
    end;
 
 
-   FPrimaryKey[profileAPPLICATION] := True;
-   FPrimaryKey[profileCD_SECTION ] := True;
-   FPrimaryKey[profileCD_MODULE  ] := True;
    FPrimaryKey[profileCD_PROFILE ] := True;
+   FPrimaryKey[profileAPPLICATION] := True;
 
-   FRequired[profileAPPLICATION ] := False;
-   FRequired[profileCD_SECTION  ] := False;
-   FRequired[profileCD_MODULE   ] := False;
-   FRequired[profileCD_PROFILE  ] := False;
-   FRequired[profileDS_PROFILE  ] := False;
-   FRequired[profileALLOW_ADD   ] := False;
-   FRequired[profileALLOW_MODIFY] := False;
-   FRequired[profileALLOW_DELETE] := False;
-   FRequired[profileALLOW_REPORT] := False;
-   FRequired[profileALLOW_EXEC  ] := False;
+   FRequired[profileCD_PROFILE ] := False;
+   FRequired[profileDS_PROFILE ] := False;
+   FRequired[profileAPPLICATION] := False;
 
-   FLengths[profileAPPLICATION ] := 15;
-   FLengths[profileCD_SECTION  ] := 15;
-   FLengths[profileCD_MODULE   ] := 50;
-   FLengths[profileCD_PROFILE  ] := 15;
-   FLengths[profileDS_PROFILE  ] := 80;
-   FLengths[profileALLOW_ADD   ] := 1;
-   FLengths[profileALLOW_MODIFY] := 1;
-   FLengths[profileALLOW_DELETE] := 1;
-   FLengths[profileALLOW_REPORT] := 1;
-   FLengths[profileALLOW_EXEC  ] := 1;
+   FLengths[profileCD_PROFILE ] := 15;
+   FLengths[profileDS_PROFILE ] := 80;
+   FLengths[profileAPPLICATION] := 15;
 
-   FHints[profileAPPLICATION ] := '';
-   FHints[profileCD_SECTION  ] := '';
-   FHints[profileCD_MODULE   ] := '';
-   FHints[profileCD_PROFILE  ] := '';
-   FHints[profileDS_PROFILE  ] := '';
-   FHints[profileALLOW_ADD   ] := '';
-   FHints[profileALLOW_MODIFY] := '';
-   FHints[profileALLOW_DELETE] := '';
-   FHints[profileALLOW_REPORT] := '';
-   FHints[profileALLOW_EXEC  ] := '';
+   FHints[profileCD_PROFILE ] := '';
+   FHints[profileDS_PROFILE ] := '';
+   FHints[profileAPPLICATION] := '';
 end;
 
 procedure TProfile.AssignString(Value :string; var REF_VAR :string;                         
@@ -296,32 +217,18 @@ end;
 procedure TProfile.AcceptFieldChange(Field :TProfileField);
 begin
    case Field of
-      profileAPPLICATION  :FOLD_APPLICATION  := FAPPLICATION ;
-      profileCD_SECTION   :FOLD_CD_SECTION   := FCD_SECTION  ;
-      profileCD_MODULE    :FOLD_CD_MODULE    := FCD_MODULE   ;
-      profileCD_PROFILE   :FOLD_CD_PROFILE   := FCD_PROFILE  ;
-      profileDS_PROFILE   :FOLD_DS_PROFILE   := FDS_PROFILE  ;
-      profileALLOW_ADD    :FOLD_ALLOW_ADD    := FALLOW_ADD   ;
-      profileALLOW_MODIFY :FOLD_ALLOW_MODIFY := FALLOW_MODIFY;
-      profileALLOW_DELETE :FOLD_ALLOW_DELETE := FALLOW_DELETE;
-      profileALLOW_REPORT :FOLD_ALLOW_REPORT := FALLOW_REPORT;
-      profileALLOW_EXEC   :FOLD_ALLOW_EXEC   := FALLOW_EXEC  ;
+      profileCD_PROFILE  :FOLD_CD_PROFILE  := FCD_PROFILE ;
+      profileDS_PROFILE  :FOLD_DS_PROFILE  := FDS_PROFILE ;
+      profileAPPLICATION :FOLD_APPLICATION := FAPPLICATION;
    end;
 end;
 
 procedure TProfile.ClearValueField(Field :TProfileField);
 begin
    case Field of
-      profileAPPLICATION  :FAPPLICATION  := '';
-      profileCD_SECTION   :FCD_SECTION   := '';
-      profileCD_MODULE    :FCD_MODULE    := '';
-      profileCD_PROFILE   :FCD_PROFILE   := '';
-      profileDS_PROFILE   :FDS_PROFILE   := '';
-      profileALLOW_ADD    :FALLOW_ADD    := '';
-      profileALLOW_MODIFY :FALLOW_MODIFY := '';
-      profileALLOW_DELETE :FALLOW_DELETE := '';
-      profileALLOW_REPORT :FALLOW_REPORT := '';
-      profileALLOW_EXEC   :FALLOW_EXEC   := '';
+      profileCD_PROFILE  :FCD_PROFILE  := '';
+      profileDS_PROFILE  :FDS_PROFILE  := '';
+      profileAPPLICATION :FAPPLICATION := '';
    end;
 end;
 
@@ -368,16 +275,9 @@ end;
 
 procedure TProfile.CompareWith(prmData :TProfile);
 begin
-   if APPLICATION  <> prmData.APPLICATION  then SetChanged(profileAPPLICATION );
-   if CD_SECTION   <> prmData.CD_SECTION   then SetChanged(profileCD_SECTION  );
-   if CD_MODULE    <> prmData.CD_MODULE    then SetChanged(profileCD_MODULE   );
-   if CD_PROFILE   <> prmData.CD_PROFILE   then SetChanged(profileCD_PROFILE  );
-   if DS_PROFILE   <> prmData.DS_PROFILE   then SetChanged(profileDS_PROFILE  );
-   if ALLOW_ADD    <> prmData.ALLOW_ADD    then SetChanged(profileALLOW_ADD   );
-   if ALLOW_MODIFY <> prmData.ALLOW_MODIFY then SetChanged(profileALLOW_MODIFY);
-   if ALLOW_DELETE <> prmData.ALLOW_DELETE then SetChanged(profileALLOW_DELETE);
-   if ALLOW_REPORT <> prmData.ALLOW_REPORT then SetChanged(profileALLOW_REPORT);
-   if ALLOW_EXEC   <> prmData.ALLOW_EXEC   then SetChanged(profileALLOW_EXEC  );
+   if CD_PROFILE  <> prmData.CD_PROFILE  then SetChanged(profileCD_PROFILE );
+   if DS_PROFILE  <> prmData.DS_PROFILE  then SetChanged(profileDS_PROFILE );
+   if APPLICATION <> prmData.APPLICATION then SetChanged(profileAPPLICATION);
 end;
 
 function TProfile.IsPrimaryKey(Field :TProfileField):Boolean;
@@ -387,31 +287,9 @@ end;
 
 function TProfile.IsPrimaryKey(Field :string):Boolean;
 begin
-   if Field = 'APPLICATION'  then IsPrimaryKey(profileAPPLICATION ) else
-   if Field = 'CD_SECTION'   then IsPrimaryKey(profileCD_SECTION  ) else
-   if Field = 'CD_MODULE'    then IsPrimaryKey(profileCD_MODULE   ) else
-   if Field = 'CD_PROFILE'   then IsPrimaryKey(profileCD_PROFILE  ) else
-   if Field = 'DS_PROFILE'   then IsPrimaryKey(profileDS_PROFILE  ) else
-   if Field = 'ALLOW_ADD'    then IsPrimaryKey(profileALLOW_ADD   ) else
-   if Field = 'ALLOW_MODIFY' then IsPrimaryKey(profileALLOW_MODIFY) else
-   if Field = 'ALLOW_DELETE' then IsPrimaryKey(profileALLOW_DELETE) else
-   if Field = 'ALLOW_REPORT' then IsPrimaryKey(profileALLOW_REPORT) else
-   if Field = 'ALLOW_EXEC'   then IsPrimaryKey(profileALLOW_EXEC  );
-end;
-
-procedure TProfile.SetAPPLICATION(const Value :string);
-begin
-   AssignString(Value, FAPPLICATION, FOLD_APPLICATION, profileAPPLICATION); 
-end;
-
-procedure TProfile.SetCD_SECTION(const Value :string);
-begin
-   AssignString(Value, FCD_SECTION, FOLD_CD_SECTION, profileCD_SECTION); 
-end;
-
-procedure TProfile.SetCD_MODULE(const Value :string);
-begin
-   AssignString(Value, FCD_MODULE, FOLD_CD_MODULE, profileCD_MODULE); 
+   if Field = 'CD_PROFILE'  then IsPrimaryKey(profileCD_PROFILE ) else
+   if Field = 'DS_PROFILE'  then IsPrimaryKey(profileDS_PROFILE ) else
+   if Field = 'APPLICATION' then IsPrimaryKey(profileAPPLICATION);
 end;
 
 procedure TProfile.SetCD_PROFILE(const Value :string);
@@ -424,29 +302,9 @@ begin
    AssignString(Value, FDS_PROFILE, FOLD_DS_PROFILE, profileDS_PROFILE); 
 end;
 
-procedure TProfile.SetALLOW_ADD(const Value :string);
+procedure TProfile.SetAPPLICATION(const Value :string);
 begin
-   AssignString(Value, FALLOW_ADD, FOLD_ALLOW_ADD, profileALLOW_ADD); 
-end;
-
-procedure TProfile.SetALLOW_MODIFY(const Value :string);
-begin
-   AssignString(Value, FALLOW_MODIFY, FOLD_ALLOW_MODIFY, profileALLOW_MODIFY); 
-end;
-
-procedure TProfile.SetALLOW_DELETE(const Value :string);
-begin
-   AssignString(Value, FALLOW_DELETE, FOLD_ALLOW_DELETE, profileALLOW_DELETE); 
-end;
-
-procedure TProfile.SetALLOW_REPORT(const Value :string);
-begin
-   AssignString(Value, FALLOW_REPORT, FOLD_ALLOW_REPORT, profileALLOW_REPORT); 
-end;
-
-procedure TProfile.SetALLOW_EXEC(const Value :string);
-begin
-   AssignString(Value, FALLOW_EXEC, FOLD_ALLOW_EXEC, profileALLOW_EXEC); 
+   AssignString(Value, FAPPLICATION, FOLD_APPLICATION, profileAPPLICATION); 
 end;
 
 

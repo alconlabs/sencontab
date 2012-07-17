@@ -15,6 +15,8 @@ type
   end;
 
 implementation
+
+uses CustomModel;
 //uses ;
 
 { TProfilesModel }
@@ -31,7 +33,7 @@ end;
 function TProfilesModel.GetNewClass: TProfile;
 begin
    Result := TProfile.Create;
-   //Result.ADMINISTRATOR := 'N';
+   Result.APPLICATION := ApplicationNameConst;
 end;
 
 {$Message Warn 'Llevar este método a la madre de todas las modelos'}

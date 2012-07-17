@@ -18,6 +18,7 @@ type
     EditSearchText: TEdit;
     BtnImageSearch: TImage;
     Shape1: TShape;
+    Image1: TImage;
     procedure FormCreate(Sender: TObject);
   private
   public

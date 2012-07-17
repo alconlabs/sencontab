@@ -109,12 +109,13 @@ begin
    ListItem := FView.ListView.Items.Add;
    ListItem.Data := prmItem;
    ListItem.Caption := prmItem.CD_PROFILE;
+   ListItem.ImageIndex := ImageIndex_Profile;
 end;
 
 function TProfilesController.ShowView:Boolean;
 begin
    {Assignament of Resources}
-   FView.Caption     := 'Gestión de Usuarios.';
+   FView.Caption     := 'Gestión de Perfiles.';
 
    FView.HelpType    := htKeyword;
    FView.HelpKeyword := FView.Name;

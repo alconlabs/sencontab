@@ -116,20 +116,15 @@ uses
   CustomDataInputView in 'Fuentes\views\CustomDataInputView.pas' {CustomDataInputView},
   MemCheck in 'Fuentes\Tools\MemCheck.pas',
   ApplicationClass in 'Fuentes\BusinessObjects\ApplicationClass.pas',
-  ModuleClass in 'Fuentes\BusinessObjects\ModuleClass.pas',
   ProfileClass in 'Fuentes\BusinessObjects\ProfileClass.pas',
-  SectionClass in 'Fuentes\BusinessObjects\SectionClass.pas',
-  CustomSectionsModel in 'Fuentes\models\CustomSectionsModel.pas',
   CustomApplicationsModel in 'Fuentes\models\CustomApplicationsModel.pas',
-  CustomModulesModel in 'Fuentes\models\CustomModulesModel.pas',
   CustomProfilesModel in 'Fuentes\models\CustomProfilesModel.pas',
   ApplicationsModel in 'Fuentes\models\ApplicationsModel.pas',
-  ModulesModel in 'Fuentes\models\ModulesModel.pas',
   ProfilesModel in 'Fuentes\models\ProfilesModel.pas',
-  SectionsModel in 'Fuentes\models\SectionsModel.pas',
   ProfilesController in 'Fuentes\controllers\ProfilesController.pas',
   ProfilesView in 'Fuentes\views\ProfilesView.pas' {ProfilesView},
-  EditProfileView in 'Fuentes\views\EditProfileView.pas' {EditProfileView};
+  EditProfileView in 'Fuentes\views\EditProfileView.pas' {EditProfileView},
+  CustomModel in 'Fuentes\models\CustomModel.pas';
 
 {$R *.RES}
 

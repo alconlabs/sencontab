@@ -67,8 +67,6 @@ type
     Panel7: TPanel;
     Fondo: TPanel;
     Label13: TLabel;
-    StatusBar: TStatusBar;
-    Timer: TTimer;
     OpenFileDialog: TOpenDialog;
     Label16: TLabel;
     Label18: TLabel;
@@ -110,7 +108,6 @@ type
     procedure PageControlChanging(Sender: TObject; var AllowChange: Boolean);
     procedure FormCreate(Sender: TObject);
     procedure BtnNextClick(Sender: TObject);
-    procedure TimerTimer(Sender: TObject);
     procedure BtnCancelClick(Sender: TObject);
     procedure BtnEndClick(Sender: TObject);
     procedure BtnBackClick(Sender: TObject);
@@ -146,7 +143,6 @@ type
      function  CheckDatabaseVersion:Boolean;
      procedure CreateDatabase;
      procedure CreateINIFile;
-     procedure ShowErrorMessage(prmErrorMessage :string);
      procedure SetButtonState(prmState :TButtonState);
 
      function  DBConfigurationValid        :Boolean;
@@ -295,20 +291,6 @@ begin
    end;
 end;
 
-procedure TWizardConnectDB.TimerTimer(Sender: TObject);
-begin
-   StatusBar.Panels[1].Text := '';
-   Timer.Enabled := False;
-end;
-
-procedure TWizardConnectDB.ShowErrorMessage(prmErrorMessage :string);
-begin
-   StatusBar.Font.Style := [fsBold];
-   StatusBar.Panels[1].Text := '      '+prmErrorMessage;
-   MessageBeep(MB_ICONHAND);
-   Timer.Enabled := True;
-end;
-
 procedure TWizardConnectDB.FormCreate(Sender: TObject);
 begin
    FOKDatabase  := 0;
@@ -330,7 +312,7 @@ begin
 
    Result := True;
    //if Trim(MRegistroCodigo.AsString) = '' then begin
-   //   ShowErrorMessage('Debe indicar un código de solicitud');
+   //   ShowMessage('Debe indicar un código de solicitud');
    //   EditCodigo.SetFocus;
    //   Result := False;
    //   Exit;
@@ -339,7 +321,7 @@ begin
    //Resultado := DPCData.RegistroCorrecto(MRegistroCODIGO.AsString);
    case Resultado of
       -995 :begin
-         ShowErrorMessage('El código de SOLICITUD ya existe en la base de datos.');
+         ShowMessage('El código de SOLICITUD ya existe en la base de datos.');
          EditHostName.SetFocus;
          Result := False;
          Exit;
@@ -465,7 +447,7 @@ begin
          SetButtonState(bsNextBack);
       end
       else begin
-         ShowErrorMessage('¡Inténtelo de nuevo!');
+         ShowMessage('¡Inténtelo de nuevo!');
       end;
    end else
    if PageControl.ActivePage = TabSeleccionaTipo then begin
@@ -481,7 +463,7 @@ begin
             //try MRegistro.Post;
             //except
             //   MRegistro.Cancel;
-            //   ShowErrorMessage('Hubo algún problema al indicar el tipo de Solicitud');
+            //   ShowMessage('Hubo algún problema al indicar el tipo de Solicitud');
             //end;
 
             EditCodigoPartida.SetFocus;
@@ -500,7 +482,7 @@ begin
             //try MRegistro.Post;
             //except
             //   MRegistro.Cancel;
-            //   ShowErrorMessage('Hubo algún problema al indicar el tipo de Solicitud');
+            //   ShowMessage('Hubo algún problema al indicar el tipo de Solicitud');
             //end;
             //EditNSerie.SetFocus;
          end;
@@ -519,7 +501,7 @@ begin
          SetButtonState(bsEnd);
       end
       else begin
-         ShowErrorMessage('Los datos de las partidas solicitadas no son válidos.');
+         ShowMessage('Los datos de las partidas solicitadas no son válidos.');
       end;
    end else
    if PageControl.ActivePage = TabCodigos then begin
@@ -534,7 +516,7 @@ begin
          SetButtonState(bsEnd);
       end
       else begin
-         ShowErrorMessage('Los datos de los códigos solicitados no son válidos.');
+         ShowMessage('Los datos de los códigos solicitados no son válidos.');
       end;
    end;
 end;
@@ -598,7 +580,7 @@ begin
 
    {RFU.01a}
    if prmCodigoPartida = '' then begin
-      ShowErrorMessage('Debe indicar un código de partida');
+      ShowMessage('Debe indicar un código de partida');
       EditCodigoPartida.SetFocus;
       Result := False;
       Exit;
@@ -606,7 +588,7 @@ begin
 
    {RFU.01b}
    if Length(prmCodigoPartida) > 10 then begin
-      ShowErrorMessage('El "Código de Partida" debe tener como máximo 10 caracteres de longitud');
+      ShowMessage('El "Código de Partida" debe tener como máximo 10 caracteres de longitud');
       EditCodigoPartida.SetFocus;
       Result := False;
       Exit;
@@ -618,7 +600,7 @@ begin
    //   MRegistroPartidas.First;
    //   while not MRegistroPartidas.EOF do begin
    //      if MRegistroPartidasCodigoPartida.AsString = prmCodigoPartida then begin
-   //         ShowErrorMessage('El "Código de Partida" ya está en solicitado AQUÍ');
+   //         ShowMessage('El "Código de Partida" ya está en solicitado AQUÍ');
    //         EditCodigoPartida.SetFocus;
    //         Result := False;
    //         Break;
@@ -632,38 +614,38 @@ begin
    //CodigoValidez := DPCData.CodigoPartidaCorrecto(prmCodigoPartida);
    //case CodigoValidez of
    //   -990 :begin {FRU.02}
-   //      ShowErrorMessage('(990) La partida '+prmCodigoPartida+' no existe en la base de datos.');
+   //      ShowMessage('(990) La partida '+prmCodigoPartida+' no existe en la base de datos.');
    //      EditCodigoPartida.SetFocus;
    //      Result := False;
    //      Exit;
    //   end;
    //   -991 :begin {FRU.03}
-   //      ShowErrorMessage('(991) Existe una solicitud de desactivación de la partida '+prmCodigoPartida+
+   //      ShowMessage('(991) Existe una solicitud de desactivación de la partida '+prmCodigoPartida+
    //                   ' Consulte con el usuario '+DPCData.GetUsuarioSolicitoDesactPartida(prmCodigoPartida));
    //      EditCodigoPartida.SetFocus;
    //      Result := False;
    //      Exit;
    //   end;
    //   -992 :begin {FRU.04}
-   //      ShowErrorMessage('(992) La partida '+prmCodigoPartida+' ya está inactiva.');
+   //      ShowMessage('(992) La partida '+prmCodigoPartida+' ya está inactiva.');
    //      EditCodigoPartida.SetFocus;
    //      Result := False;
    //      Exit;
    //   end;
    //   -993 :begin {FRU.05}
-   //      ShowErrorMessage('(993) La partida '+prmCodigoPartida+' no tiene codigos de activación vinculados.');
+   //      ShowMessage('(993) La partida '+prmCodigoPartida+' no tiene codigos de activación vinculados.');
    //      EditCodigoPartida.SetFocus;
    //      Result := False;
    //      Exit;
    //   end;
    //   -994 :begin {FRU.06}
-   //      ShowErrorMessage('(994) La partida '+prmCodigoPartida+' no tiene códigos de activación a desactivar.');
+   //      ShowMessage('(994) La partida '+prmCodigoPartida+' no tiene códigos de activación a desactivar.');
    //      EditCodigoPartida.SetFocus;
    //      Result := False;
    //      Exit;
    //   end;
    //   -995 :begin {FRU.07}
-   //      ShowErrorMessage('(995) La partida '+prmCodigoPartida+' tiene '+DPCData.GetNumCodigosVinculados(prmCodigoPartida)+
+   //      ShowMessage('(995) La partida '+prmCodigoPartida+' tiene '+DPCData.GetNumCodigosVinculados(prmCodigoPartida)+
    //                   ' vinculados a clientes finales.');
    //      EditCodigoPartida.SetFocus;
    //      Result := True;
@@ -708,7 +690,7 @@ begin
    //    Screen.Cursor := crDefault;
    //except MRegistroPartidas.Cancel;
    //       Screen.Cursor := crDefault;
-   //       ShowErrorMessage('Hubo algún problema al dar de alta la partida');
+   //       ShowMessage('Hubo algún problema al dar de alta la partida');
    //end;
 end;
 
@@ -724,13 +706,13 @@ function TWizardConnectDB.CodigoValido(prmNSerie :string):Boolean;
 begin
    Result := True;
    if prmNSerie = '' then begin
-      ShowErrorMessage('Debe indicar un código válido');
+      ShowMessage('Debe indicar un código válido');
       EditNSerie.SetFocus;
       Result := False;
       Exit;
    end else
    if Length(prmNSerie) > 20 then begin
-      ShowErrorMessage('La código no debe superar los 20 caracteres de longitud.');
+      ShowMessage('La código no debe superar los 20 caracteres de longitud.');
       EditNSerie.SetFocus;
       Result := False;
       Exit;
@@ -750,7 +732,7 @@ begin
    //    Result := True;
    //except MRegistroCodigos.Cancel;
    //    Result := False;
-   //    ShowErrorMessage('Hubo algún problema al dar de alta el código');
+   //    ShowMessage('Hubo algún problema al dar de alta el código');
    //end;
 end;
 
@@ -814,7 +796,7 @@ begin
    if MessageDlg('¡Esto quitará TODOS LOS CÓDIGOS DE ACTIVACIÓN de la solicitud actual!', mtConfirmation, [mbYes, mbCancel], 0) = mrYes then
    begin
       //MRegistroCodigos.EmptyTable;
-      ShowErrorMessage('Se ha vaciado la tabla');
+      ShowMessage('Se ha vaciado la tabla');
    end;
 end;
 
@@ -826,7 +808,7 @@ begin
          CheckConnection('master'); { This is for Connect correctly }
          { The database shall not exists }
          if not CheckDatabaseExistency(FConfiguration.DBConfig.DataBase) then begin
-            ShowErrorMessage('Database '''+FConfiguration.DBConfig.DataBase+''' already exists.');
+            ShowMessage('Database '''+FConfiguration.DBConfig.DataBase+''' already exists.');
             OKDatabase := 1;
          end;
       end
@@ -834,7 +816,7 @@ begin
          CheckConnection(FConfiguration.DBConfig.DataBase);
          { Database shall exists }
          if CheckDatabaseExistency(FConfiguration.DBConfig.DataBase) then begin
-            ShowErrorMessage('Database '''+FConfiguration.DBConfig.DataBase+''' does not exists.');
+            ShowMessage('Database '''+FConfiguration.DBConfig.DataBase+''' does not exists.');
             OKDatabase := 1;
          end;
 
@@ -893,7 +875,7 @@ begin
        OKDatabase := 1;
    except
        on E: Exception do begin
-         ShowErrorMessage(E.Message);
+         ShowMessage(E.Message);
          Result := False;
          OKDatabase := -1;
        end;
@@ -903,27 +885,27 @@ end;
 function TWizardConnectDB.CheckDatabaseValues:Boolean;
 begin
    if Trim(EditHostName.Text    ) = '' then begin
-      ShowErrorMessage('Host Name cannot be empty.');
+      ShowMessage('Host Name cannot be empty.');
       EditHostName.SetFocus;
       Result := False;
    end else
    if Trim(EditDatabaseName.Text) = '' then begin
-      ShowErrorMessage('Database Name cannot be empty.');
+      ShowMessage('Database Name cannot be empty.');
       EditDatabaseName.SetFocus;
       Result := False;
    end else
    if Trim(EditUserName.Text    ) = '' then begin
-      ShowErrorMessage('User Name cannot be empty.');
+      ShowMessage('User Name cannot be empty.');
       EditUserName.SetFocus;
       Result := False;
    end else
    if Trim(EditPassword.Text    ) = '' then begin
-      ShowErrorMessage('Password cannot be empty.');
+      ShowMessage('Password cannot be empty.');
       EditPassword.SetFocus;
       Result := False;
    end else
    if Trim(EditPassword.Text) <> (EditRetypePassword.Text) then begin
-      ShowErrorMessage('You need to type the same password twice.');
+      ShowMessage('You need to type the same password twice.');
       EditPassword.SetFocus;
       Result := False;
    end
@@ -976,7 +958,7 @@ begin
                              *)
      except
         on E: Exception do begin
-           ShowErrorMessage(E.Message);
+           ShowMessage(E.Message);
         end;
      end;
    finally
@@ -1019,34 +1001,30 @@ begin
      DB.ExecuteDirect(
         'CREATE TABLE ENTERPRISES(                                           '+
         '    CD_ENTERPRISE    char(12)       NOT NULL,                       '+
+        '    APPLICATION      char(15)       NOT NULL,                       '+
         '    DS_ENTERPRISE    varchar(80)    NOT NULL,                       '+
         '    CLOSED           char(1)        NOT NULL,                       '+
         '    BLOCKED          char(1)        NOT NULL,                       '+
-        '    CONSTRAINT PK_ENTERPRISES PRIMARY KEY CLUSTERED (CD_ENTERPRISE) '+
+        '    CONSTRAINT PK_ENTERPRISES PRIMARY KEY CLUSTERED (CD_ENTERPRISE, APPLICATION), '+
+        '    CONSTRAINT RefAPPLICATIONS54 FOREIGN KEY (APPLICATION)          '+
+        '               REFERENCES APPLICATIONS(APPLICATION)                 '+
         ')                                                                   ');
+
      {***********************************************************************************}
      DB.ExecuteDirect(
-        'CREATE TABLE SECTIONS(                                                       '+
-        '    APPLICATION    char(15)       NOT NULL,                                  '+
-        '    CD_SECTION     char(15)       NOT NULL,                                  '+
-        '    DS_SECTION     varchar(25)    NULL,                                      '+
-        '    CONSTRAINT PK_SECTIONS PRIMARY KEY CLUSTERED (CD_SECTION, APPLICATION),  '+
-        '    CONSTRAINT RefAPPLICATIONS35 FOREIGN KEY (APPLICATION)                   '+
-        '    REFERENCES APPLICATIONS(APPLICATION)                                     '+
-        ')                                                                            ');
-     {***********************************************************************************}
-     DB.ExecuteDirect(
-        'CREATE TABLE MODULES(                                               '+
-        '    APPLICATION       char(15)       NOT NULL,                      '+
-        '    CD_SECTION        char(15)       NOT NULL,                      '+
-        '    CD_MODULE         char(50)       NOT NULL,                      '+
-        '    DS_MODULE         varchar(80)    NOT NULL,                      '+
-        '    HELP_PAGE_LINK    char(80)       NOT NULL,                      '+
-        '    CONSTRAINT PK_MODULES PRIMARY                                   '+
-        '             KEY CLUSTERED (CD_MODULE, CD_SECTION, APPLICATION),    '+
-        '    CONSTRAINT RefSECTIONS34 FOREIGN KEY (CD_SECTION, APPLICATION)  '+
-        '    REFERENCES SECTIONS(CD_SECTION, APPLICATION)                    '+
-        ')                                                                   ');
+        'CREATE TABLE OPTIONS(                                                         '+
+        '    CD_OPTION              char(100)    NOT NULL,                             '+
+        '    CD_PARENT_OPTION       char(100)    NULL,                                 '+
+        '    DS_OPTION              char(100)    NULL,                                 '+
+        '    NAME_IN_FONT_SOURCE    char(100)    NULL,                                 '+
+        '    HELP_PAGE_LINK         char(100)    NOT NULL,                             '+
+        '    APPLICATION            char(15)     NOT NULL,                             '+
+        '    CONSTRAINT PK_OPTIONS PRIMARY KEY NONCLUSTERED (CD_OPTION, APPLICATION),  '+
+        '    CONSTRAINT RefOPTIONS44 FOREIGN KEY (CD_PARENT_OPTION, APPLICATION)       '+
+        '    REFERENCES OPTIONS(CD_OPTION, APPLICATION),                               '+
+        '    CONSTRAINT RefAPPLICATIONS48 FOREIGN KEY (APPLICATION)                    '+
+        '    REFERENCES APPLICATIONS(APPLICATION)                                      '+
+        ')                                                                             ');
      {***********************************************************************************}
      DB.ExecuteDirect(
         'CREATE TABLE USERS(                                     '+
@@ -1058,81 +1036,63 @@ begin
         ')                                                       ');
      {***********************************************************************************}
      DB.ExecuteDirect(
-        'CREATE TABLE MODULES_ALLOW(                                                           '+
-        '    APPLICATION      char(15)    NOT NULL,                                            '+
-        '    CD_SECTION       char(15)    NOT NULL,                                            '+
-        '    CD_MODULE        char(50)    NOT NULL,                                            '+
-        '    CD_ENTERPRISE    char(12)    NOT NULL,                                            '+
-        '    CD_USER          char(12)    NOT NULL,                                            '+
-        '    ALLOW_SEE        char(1)     NOT NULL,                                            '+
-        '    ALLOW_ACCESS     char(1)     NOT NULL,                                            '+
-        '    CONSTRAINT PK_MODULES_ALLOW PRIMARY                                               '+
-        '       KEY NONCLUSTERED (CD_ENTERPRISE, CD_USER, APPLICATION, CD_SECTION, CD_MODULE), '+
-        '    CONSTRAINT RefMODULES36 FOREIGN KEY (CD_MODULE, CD_SECTION, APPLICATION)          '+
-        '    REFERENCES MODULES(CD_MODULE, CD_SECTION, APPLICATION),                           '+
-        '    CONSTRAINT RefENTERPRISES37 FOREIGN KEY (CD_ENTERPRISE)                           '+
-        '    REFERENCES ENTERPRISES(CD_ENTERPRISE),                                            '+
-        '    CONSTRAINT RefUSERS38 FOREIGN KEY (CD_USER)                                       '+
-        '    REFERENCES USERS(CD_USER)                                                         '+
-        ')                                                                                     ');
+        'CREATE TABLE USER_ENTERPRISES(                                                                      '+
+        '    APPLICATION      char(15)    NOT NULL,                                                          '+
+        '    CD_ENTERPRISE    char(12)    NOT NULL,                                                          '+
+        '    CD_USER          char(12)    NOT NULL,                                                          '+
+        '    CONSTRAINT PK_USER_ENTERPRISES PRIMARY KEY NONCLUSTERED (APPLICATION, CD_ENTERPRISE, CD_USER),  '+
+        '    CONSTRAINT RefAPPLICATIONS51 FOREIGN KEY (APPLICATION)                                          '+
+        '    REFERENCES APPLICATIONS(APPLICATION),                                                           '+
+        '    CONSTRAINT RefENTERPRISES52 FOREIGN KEY (CD_ENTERPRISE, APPLICATION)                            '+
+        '    REFERENCES ENTERPRISES(CD_ENTERPRISE, APPLICATION),                                             '+
+        '    CONSTRAINT RefUSERS53 FOREIGN KEY (CD_USER)                                                     '+
+        '    REFERENCES USERS(CD_USER)                                                                       '+
+        ')                                                                                                   ');
      {***********************************************************************************}
      DB.ExecuteDirect(
-        'CREATE TABLE PROFILES(                                                          '+
-        '    APPLICATION     char(15)    NOT NULL,                                       '+
-        '    CD_SECTION      char(15)    NOT NULL,                                       '+
-        '    CD_MODULE       char(50)    NOT NULL,                                       '+
-        '    CD_PROFILE      char(15)    NOT NULL,                                       '+
-        '    DS_PROFILE      char(80)    NULL,                                           '+
-        '    ALLOW_ADD       char(1)     NOT NULL,                                       '+
-        '    ALLOW_MODIFY    char(1)     NOT NULL,                                       '+
-        '    ALLOW_DELETE    char(1)     NOT NULL,                                       '+
-        '    ALLOW_REPORT    char(1)     NOT NULL,                                       '+
-        '    ALLOW_EXEC      char(1)     NOT NULL,                                       '+
-        '    CONSTRAINT PK_PROFILES PRIMARY                                              '+
-        '            KEY CLUSTERED (CD_PROFILE, CD_MODULE, CD_SECTION, APPLICATION),     '+
-        '    CONSTRAINT RefMODULES30 FOREIGN KEY (CD_MODULE, CD_SECTION, APPLICATION)    '+
-        '    REFERENCES MODULES(CD_MODULE, CD_SECTION, APPLICATION)                      '+
-        ')                                                                               ');
+        'CREATE TABLE PROFILES(                                                     '+
+        '    CD_PROFILE     char(15)    NOT NULL,                                   '+
+        '    DS_PROFILE     char(80)    NULL,                                       '+
+        '    APPLICATION    char(15)    NOT NULL,                                   '+
+        '    CONSTRAINT PK_PROFILES PRIMARY KEY CLUSTERED (CD_PROFILE, APPLICATION),'+
+        '    CONSTRAINT RefAPPLICATIONS46 FOREIGN KEY (APPLICATION)                 '+
+        '    REFERENCES APPLICATIONS(APPLICATION)                                   '+
+        ')                                                                          ');
      {***********************************************************************************}
      DB.ExecuteDirect(
-        'CREATE TABLE SECTIONS_ALLOW(                                                    '+
-        '    APPLICATION      char(15)    NOT NULL,                                      '+
-        '    CD_SECTION       char(15)    NOT NULL,                                      '+
-        '    CD_ENTERPRISE    char(12)    NOT NULL,                                      '+
-        '    CD_USER          char(12)    NOT NULL,                                      '+
-        '    ALLOW_SEE        char(1)     NOT NULL,                                      '+
-        '    ALLOW_ACCESS     char(1)     NOT NULL,                                      '+
-        '    CONSTRAINT PK_SECTIONS_ALLOW PRIMARY                                        '+
-        '          KEY NONCLUSTERED (APPLICATION, CD_SECTION, CD_ENTERPRISE, CD_USER),   '+
-        '    CONSTRAINT RefSECTIONS39 FOREIGN KEY (CD_SECTION, APPLICATION)              '+
-        '    REFERENCES SECTIONS(CD_SECTION, APPLICATION),                               '+
-        '    CONSTRAINT RefENTERPRISES40 FOREIGN KEY (CD_ENTERPRISE)                     '+
-        '    REFERENCES ENTERPRISES(CD_ENTERPRISE),                                      '+
-        '    CONSTRAINT RefUSERS41 FOREIGN KEY (CD_USER)                                 '+
-        '    REFERENCES USERS(CD_USER)                                                   '+
-        ')                                                                               ');
+        'CREATE TABLE PROFILE_OPTIONS(                                                                            '+
+        '    CD_PROFILE_OPTION           char(100)    NOT NULL,                                                   '+
+        '    CD_PARENT_PROFILE_OPTION    char(100)    NULL,                                                       '+
+        '    CD_PROFILE                  char(15)     NOT NULL,                                                   '+
+        '    APPLICATION                 char(15)     NOT NULL,                                                   '+
+        '    ALLOW_SEE                   char(1)      NOT NULL,                                                   '+
+        '    ALLOW_ACCESS                char(1)      NOT NULL,                                                   '+
+        '    ALLOW_ADD                   char(1)      NOT NULL,                                                   '+
+        '    ALLOW_MODIFY                char(1)      NOT NULL,                                                   '+
+        '    ALLOW_DELETE                char(1)      NOT NULL,                                                   '+
+        '    ALLOW_REPORT                char(1)      NOT NULL,                                                   '+
+        '    ALLOW_EXEC                  char(1)      NOT NULL,                                                   '+
+        '    CONSTRAINT PK_PROFILE_OPTIONS PRIMARY KEY NONCLUSTERED (CD_PROFILE_OPTION, CD_PROFILE, APPLICATION), '+
+        '    CONSTRAINT RefPROFILES45 FOREIGN KEY (CD_PROFILE, APPLICATION)                                       '+
+        '    REFERENCES PROFILES(CD_PROFILE, APPLICATION),                                                        '+
+        '    CONSTRAINT RefPROFILE_OPTIONS47 FOREIGN KEY (CD_PARENT_PROFILE_OPTION, CD_PROFILE, APPLICATION)      '+
+        '    REFERENCES PROFILE_OPTIONS(CD_PROFILE_OPTION, CD_PROFILE, APPLICATION)                               '+
+        ')                                                                                                        ');
      {***********************************************************************************}
      DB.ExecuteDirect(
-        'CREATE TABLE USER_PROFILES(                                                          '+
-        '    CD_USER          char(12)    NOT NULL,                                           '+
-        '    CD_ENTERPRISE    char(12)    NOT NULL,                                           '+
-        '    APPLICATION      char(15)    NOT NULL,                                           '+
-        '    CD_SECTION       char(15)    NOT NULL,                                           '+
-        '    CD_MODULE        char(50)    NOT NULL,                                           '+
-        '    ALLOW_ADD        char(1)     NOT NULL,                                           '+
-        '    ALLOW_MODIFY     char(1)     NOT NULL,                                           '+
-        '    ALLOW_DELETE     char(1)     NOT NULL,                                           '+
-        '    ALLOW_REPORT     char(1)     NOT NULL,                                           '+
-        '    ALLOW_EXEC       char(1)     NOT NULL,                                           '+
-        '    CONSTRAINT PK_USER_PROFILES PRIMARY                                              '+
-        '         KEY CLUSTERED (CD_MODULE, CD_USER, CD_ENTERPRISE, CD_SECTION, APPLICATION), '+
-        '    CONSTRAINT RefMODULES31 FOREIGN KEY (CD_MODULE, CD_SECTION, APPLICATION)         '+
-        '    REFERENCES MODULES(CD_MODULE, CD_SECTION, APPLICATION),                          '+
-        '    CONSTRAINT RefUSERS32 FOREIGN KEY (CD_USER)                                      '+
-        '    REFERENCES USERS(CD_USER),                                                       '+
-        '    CONSTRAINT RefENTERPRISES33 FOREIGN KEY (CD_ENTERPRISE)                          '+
-        '    REFERENCES ENTERPRISES(CD_ENTERPRISE)                                            '+
-        ')                                                                                    ');
+        'CREATE TABLE USER_PROFILES(                                                                               '+
+        '    CD_USER          char(12)    NOT NULL,                                                                '+
+        '    CD_PROFILE       char(15)    NOT NULL,                                                                '+
+        '    APPLICATION      char(15)    NOT NULL,                                                                '+
+        '    CD_ENTERPRISE    char(12)    NOT NULL,                                                                '+
+        '    CONSTRAINT PK_USER_PROFILES PRIMARY KEY CLUSTERED (CD_USER, CD_PROFILE, APPLICATION, CD_ENTERPRISE),  '+
+        '    CONSTRAINT RefUSERS32 FOREIGN KEY (CD_USER)                                                           '+
+        '    REFERENCES USERS(CD_USER),                                                                            '+
+        '    CONSTRAINT RefPROFILES49 FOREIGN KEY (CD_PROFILE, APPLICATION)                                        '+
+        '    REFERENCES PROFILES(CD_PROFILE, APPLICATION),                                                         '+
+        '    CONSTRAINT RefENTERPRISES50 FOREIGN KEY (CD_ENTERPRISE, APPLICATION)                                  '+
+        '    REFERENCES ENTERPRISES(CD_ENTERPRISE, APPLICATION)                                                    '+
+        ')                                                                                                         ');
      {***********************************************************************************}
      DB.ExecuteDirect(
         'CREATE INDEX AK_ENTERPRISES_DS_ENTERPRISE ON ENTERPRISES(DS_ENTERPRISE)   ');
@@ -1158,289 +1118,283 @@ begin
         '                   ''Y''                                       ) ');
      {***********************************************************************************}
      {***********************************************************************************}
-     DB.ExecuteDirect(                       
-        'INSERT INTO SECTIONS(APPLICATION   , CD_SECTION  , DS_SECTION  )     '+
-        '            VALUES  (''ACCOUNTING'', ''MAESTROS'', ''Maestros'');    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
-        '            VALUES  (''ACCOUNTING'', ''MAESTROS'', ''TiposDiario'',  ''Tipos de Diario'', ''NULL'');    ');
+        'INSERT INTO OPTIONS(APPLICATION   , CD_OPTION   ,  DS_OPTION  , HELP_PAGE_LINK)       '+
+        '            VALUES (''ACCOUNTING'', ''MAESTROS'', ''Maestros'', ''Contab_Maestros''); ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
-        '            VALUES  (''ACCOUNTING'', ''MAESTROS'', ''FormasPago'',  ''Formas de Pago'' , ''NULL'' );    ');
-
-//     DB.ExecuteDirect(
-//        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
-//        '            VALUES  (''ACCOUNTING'', ''MAESTROS'', ''Usuarios'',  ''Usuarios'', ''NULL'');              ');
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION      ,  DS_OPTION          , HELP_PAGE_LINK) '+
+        '            VALUES (''ACCOUNTING'', ''MAESTROS''    , ''TiposDiario'',  ''Tipos de Diario'', ''NULL'');      ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )  '+
-        '            VALUES  (''ACCOUNTING'', ''MAESTROS'', ''Comerciales'',  ''Comerciales'', ''NULL'');     ');
+        'INSERT INTO OPTIONS(APPLICATION    , CD_PARENT_OPTION, CD_OPTION     ,  DS_OPTION          , HELP_PAGE_LINK  )   '+
+        '            VALUES  (''ACCOUNTING'', ''MAESTROS''    , ''FormasPago'',  ''Formas de Pago'' , ''NULL''        );  ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
-        '            VALUES  (''ACCOUNTING'', ''MAESTROS'', ''Conceptos'',  ''Conceptos'', ''NULL'');            ');
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION , CD_OPTION      , DS_OPTION      , HELP_PAGE_LINK)  '+
+        '            VALUES (''ACCOUNTING'', ''MAESTROS''     , ''Comerciales'', ''Comerciales'', ''NULL'');       ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
-        '            VALUES  (''ACCOUNTING'', ''MAESTROS'', ''Provincias'',  ''Provincias'', ''NULL'');          ');
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION    , DS_OPTION    , HELP_PAGE_LINK  )     '+
+        '            VALUES (''ACCOUNTING'', ''MAESTROS''    , ''Conceptos'', ''Conceptos'', ''NULL'');            ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
-        '            VALUES  (''ACCOUNTING'', ''MAESTROS'', ''Paises'',  ''Paises'', ''NULL'');                 ');
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION     , DS_OPTION     , HELP_PAGE_LINK  )   '+
+        '            VALUES (''ACCOUNTING'', ''MAESTROS''     , ''Provincias'', ''Provincias'', ''NULL'');          ');
 
-//     DB.ExecuteDirect(
-//        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
-//        '            VALUES  (''ACCOUNTING'', ''MAESTROS'', ''Salir'',  ''Salir'', ''NULL'');                    ');
+     DB.ExecuteDirect(
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
+        '            VALUES (''ACCOUNTING'', ''MAESTROS''    , ''Paises'', ''Paises'', ''NULL''        );    ');
+
      {***********************************************************************************}
      DB.ExecuteDirect(
-        'INSERT INTO SECTIONS(APPLICATION   , CD_SECTION  , DS_SECTION  )     '+
-        '            VALUES  (''ACCOUNTING'', ''PLANCONTABLE'', ''Plan Contable'');    ');
+        'INSERT INTO OPTIONS(APPLICATION   , CD_OPTION       , DS_OPTION        , HELP_PAGE_LINK)     '+
+        '            VALUES (''ACCOUNTING'', ''PLANCONTABLE'', ''Plan Contable'', ''NULL''      );    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
-        '            VALUES  (''ACCOUNTING'', ''PLANCONTABLE'', ''Titulos'',  ''Títulos'', ''NULL'');    ');
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION  , DS_OPTION  , HELP_PAGE_LINK)     '+
+        '            VALUES (''ACCOUNTING'', ''PLANCONTABLE'', ''Titulos'', ''Títulos'', ''NULL''      );    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
-        '            VALUES  (''ACCOUNTING'', ''PLANCONTABLE'', ''Grupos'',  ''Grupos'' , ''NULL'' );    ');
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK)     '+
+        '            VALUES (''ACCOUNTING'', ''PLANCONTABLE'', ''Grupos'', ''Grupos'', ''NULL''      );    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
-        '            VALUES  (''ACCOUNTING'', ''PLANCONTABLE'', ''Cuentas'',  ''Cuentas'', ''NULL'');              ');
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION  , DS_OPTION  , HELP_PAGE_LINK)     '+
+        '            VALUES (''ACCOUNTING'', ''PLANCONTABLE'', ''Cuentas'', ''Cuentas'', ''NULL''      );    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )  '+
-        '            VALUES  (''ACCOUNTING'', ''PLANCONTABLE'', ''SubCuentas'',  ''Subcuentas'', ''NULL'');     ');
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION     , DS_OPTION     , HELP_PAGE_LINK)     '+
+        '            VALUES (''ACCOUNTING'', ''PLANCONTABLE'', ''SubCuentas'', ''Subcuentas'', ''NULL''      );    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
-        '            VALUES  (''ACCOUNTING'', ''PLANCONTABLE'', ''Impr_PlanContab'',  ''Impresión Plan Contable'', ''NULL''); ');
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION          , DS_OPTION                  , HELP_PAGE_LINK)     '+
+        '            VALUES (''ACCOUNTING'', ''PLANCONTABLE'', ''Impr_PlanContab'', ''Impresión Plan Contable'', ''NULL''      ); ');
      {***********************************************************************************}
      DB.ExecuteDirect(
-        'INSERT INTO SECTIONS(APPLICATION   , CD_SECTION  , DS_SECTION  )     '+
-        '            VALUES  (''ACCOUNTING'', ''PLANANALITICA'', ''Plan Analítica'');    ');
+        'INSERT INTO OPTIONS(APPLICATION   , CD_OPTION        , DS_OPTION         , HELP_PAGE_LINK)  '+
+        '            VALUES (''ACCOUNTING'', ''PLANANALITICA'', ''Plan Analítica'', ''NULL''      ); ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
-        '            VALUES  (''ACCOUNTING'', ''PLANANALITICA'', ''Delegaciones'',  ''Delegaciones'', ''NULL'');    ');
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION , CD_OPTION       , DS_OPTION       , HELP_PAGE_LINK)     '+
+        '            VALUES (''ACCOUNTING'', ''PLANANALITICA'', ''Delegaciones'', ''Delegaciones'', ''NULL''      );    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
-        '            VALUES  (''ACCOUNTING'', ''PLANANALITICA'', ''Departamentos'',  ''Departamentos'' , ''NULL'' );    ');
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION , CD_OPTION        , DS_OPTION        , HELP_PAGE_LINK)     '+
+        '            VALUES (''ACCOUNTING'', ''PLANANALITICA'', ''Departamentos'', ''Departamentos'', ''NULL''      );    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
-        '            VALUES  (''ACCOUNTING'', ''PLANANALITICA'', ''Secciones'',  ''Secciones'', ''NULL'');              ');
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
+        '            VALUES (''ACCOUNTING'', ''PLANANALITICA'', ''Secciones'',  ''Secciones'', ''NULL'');              ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )  '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''PLANANALITICA'', ''Proyectos'',  ''Proyectos'', ''NULL'');     ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''PLANANALITICA'', ''Impr_PlanAnalit'',  ''Impresión Plan Analítica'', ''NULL'');  ');
      {***********************************************************************************}
      DB.ExecuteDirect(
-        'INSERT INTO SECTIONS(APPLICATION   , CD_SECTION  , DS_SECTION  )     '+
-        '            VALUES  (''ACCOUNTING'', ''ASISTENTES'', ''Asistentes Asientos'');    ');
+        'INSERT INTO OPTIONS(APPLICATION   , CD_OPTION     , DS_OPTION              , HELP_PAGE_LINK)     '+
+        '            VALUES (''ACCOUNTING'', ''ASISTENTES'', ''Asistentes Asientos'', ''NULL''      );    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''ASISTENTES'', ''CargaRapidaAsientos'',  ''Carga rápida de asientos'', ''NULL'');    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''ASISTENTES'', ''FacturasVenta'',  ''Facturas de Venta'' , ''NULL'' );    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''ASISTENTES'', ''FacturasCompra'',  ''Facturas de Compra'', ''NULL'');              ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )  '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''ASISTENTES'', ''CargaSimplificada'',  ''CargaSimplificada'', ''NULL'');     ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''ASISTENTES'', ''Nominas'',  ''Nominas'', ''NULL'');  ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''ASISTENTES'', ''ConbrosPagos'',  ''Cobros / Pagos'', ''NULL'');  ');
 
      {***********************************************************************************}
      DB.ExecuteDirect(
-        'INSERT INTO SECTIONS(APPLICATION   , CD_SECTION  , DS_SECTION  )     '+
-        '            VALUES  (''ACCOUNTING'', ''DIARIO'', ''Diario'');    ');
+        'INSERT INTO OPTIONS(APPLICATION   , CD_OPTION , DS_OPTION , HELP_PAGE_LINK)     '+
+        '            VALUES (''ACCOUNTING'', ''DIARIO'', ''Diario'', ''NULL''      );    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''DIARIO'', ''ListadoAsientos'',  ''Listado de Asientos'', ''NULL'');    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''DIARIO'', ''Mayor'',  ''Mayor'' , ''NULL'' );    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''DIARIO'', ''RecalculoSaldos'',  ''Recálculo de Saldos'', ''NULL'');              ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )  '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''DIARIO'', ''BorradoGeneralAsientos'',  ''Borrado General de Asientos'', ''NULL'');     ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''DIARIO'', ''TraspasoApuntesEntreSubcuentas'',  ''Traspaso de Apuntes entre Subcuentas'', ''NULL'');  ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''DIARIO'', ''CopiaAsientosEntreEmpresas'',  ''Copia de Asientos entre Empresas'', ''NULL'');  ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''DIARIO'', ''PunteoAutomaticoAsientos'',  ''Punteo Automático de Asientos'', ''NULL'');  ');
      {***********************************************************************************}
      DB.ExecuteDirect(
-        'INSERT INTO SECTIONS(APPLICATION   , CD_SECTION  , DS_SECTION  )     '+
-        '            VALUES  (''ACCOUNTING'', ''BALANCES'', ''Balances'');    ');
+        'INSERT INTO OPTIONS(APPLICATION   , CD_OPTION  , DS_OPTION  , HELP_PAGE_LINK)     '+
+        '            VALUES (''ACCOUNTING'', ''BALANCES'', ''Balances'', ''NULL''      );    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''BALANCES'', ''SUMASYSALDOS'',  ''Sumas y Saldos'', ''NULL'');    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''BALANCES'', ''Situacion'',  ''Situación'' , ''NULL'' );    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''BALANCES'', ''PerdidasYGanancias'',  ''Perdidas y Ganancias'', ''NULL'');              ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )  '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''BALANCES'', ''Acumulados'',  ''Acumulados'', ''NULL'');     ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''BALANCES'', ''Explotacion'',  ''Explotación'', ''NULL'');  ');
      {***********************************************************************************}
      DB.ExecuteDirect(
-        'INSERT INTO SECTIONS(APPLICATION   , CD_SECTION  , DS_SECTION  )     '+
-        '            VALUES  (''ACCOUNTING'', ''IVA'', ''I.V.A.'');           ');
+        'INSERT INTO OPTIONS(APPLICATION   , CD_OPTION, DS_OPTION , HELP_PAGE_LINK)     '+
+        '            VALUES (''ACCOUNTING'', ''IVA''  , ''I.V.A.'', ''NULL''      );    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''IVA'', ''Modelo300'',  ''Modelo (300)'', ''NULL'');    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''IVA'', ''LibroFacturasEmitidas'',  ''Libro de Facturas Emitidas'' , ''NULL'' );    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''IVA'', ''LibroFacturasRecibidas'',  ''Libro de Facturas Recibidas'', ''NULL'');              ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )  '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''IVA'', ''LibroFacturasBienesInversion'',  ''Libro de Facturas Bienes de Inversión'', ''NULL'');     ');
 
      {***********************************************************************************}
-     
-     DB.ExecuteDirect(
-        'INSERT INTO SECTIONS(APPLICATION   , CD_SECTION  , DS_SECTION  )     '+
-        '            VALUES  (''ACCOUNTING'', ''IMPUESTOS'', ''Impuestos'');    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_OPTION    , DS_OPTION    , HELP_PAGE_LINK)     '+
+        '            VALUES (''ACCOUNTING'', ''IMPUESTOS'', ''Impuestos'', ''NULL''      );    ');
+
+     DB.ExecuteDirect(
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''IMPUESTOS'', ''OperacionesTerceros347'',  ''Operaciones con Terceros (347)'', ''NULL'');    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''IMPUESTOS'', ''OperacionesCEE'',  ''Operaciones con la CEE (349, 216)'' , ''NULL'' );    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''IMPUESTOS'', ''IRPF110'',  ''I.R.P.F. (110)'', ''NULL''); ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )  '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''IMPUESTOS'', ''IRPF115'',  ''I.R.P.F. (115)'', ''NULL'');     ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''IMPUESTOS'', ''ImpuestoSociedades202'',  ''Impuesto de Sociedades (202)'', ''NULL'');  ');
 
      {***********************************************************************************}
-     
-     DB.ExecuteDirect(
-        'INSERT INTO SECTIONS(APPLICATION   , CD_SECTION  , DS_SECTION  )     '+
-        '            VALUES  (''ACCOUNTING'', ''GESTION'', ''Gestion'');    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_OPTION  , DS_OPTION  , HELP_PAGE_LINK)     '+
+        '            VALUES (''ACCOUNTING'', ''GESTION'', ''Gestion'', ''NULL''      );    ');
+
+     DB.ExecuteDirect(
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''GESTION'', ''CarteraEfectos'',  ''Operaciones con Terceros (347)'', ''NULL'');    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''GESTION'', ''Amortizaciones'',  ''Operaciones con la CEE (349, 216)'' , ''NULL'' );    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''GESTION'', ''CierreEjercicio'',  ''I.R.P.F. (110)'', ''NULL''); ');  {Proceso Automatizado}
 
      {***********************************************************************************}
-     
-     DB.ExecuteDirect(
-        'INSERT INTO SECTIONS(APPLICATION   , CD_SECTION  , DS_SECTION  )     '+
-        '            VALUES  (''ACCOUNTING'', ''HERRAMIENTAS'', ''Herramientas'');    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_OPTION       , DS_OPTION       , HELP_PAGE_LINK)     '+
+        '            VALUES (''ACCOUNTING'', ''HERRAMIENTAS'', ''Herramientas'', ''NULL''      );    ');
+
+     DB.ExecuteDirect(
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''HERRAMIENTAS'', ''ControlEmpresas'',  ''Control de Empresas'', ''NULL'');    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''HERRAMIENTAS'', ''EnlaceContable'',  ''EnlaceContable'' , ''NULL'' );    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''HERRAMIENTAS'', ''ParametrosGenerales'',  ''Parámetros Generales'', ''NULL''); ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )  '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''HERRAMIENTAS'', ''ParametrosFacturacion'',  ''Parámetros de Facturación'', ''NULL'');     ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''HERRAMIENTAS'', ''Importacion'',  ''Importación'', ''NULL'');  ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )  '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''HERRAMIENTAS'', ''TraspasoDatos'',  ''Traspaso de Datos'', ''NULL'');     ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''HERRAMIENTAS'', ''ActualizacionDB'',  ''Actualización de la Base de Datos'', ''NULL'');  ');
 
      {***********************************************************************************}
-     
-     DB.ExecuteDirect(
-        'INSERT INTO SECTIONS(APPLICATION   , CD_SECTION  , DS_SECTION  )     '+
-        '            VALUES  (''ACCOUNTING'', ''AYUDA'', ''Ayuda'');    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_OPTION, DS_OPTION, HELP_PAGE_LINK)     '+
+        '            VALUES (''ACCOUNTING'', ''AYUDA'', ''Ayuda'',  ''NULL''     );    ');
+
+     DB.ExecuteDirect(
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''AYUDA'', ''Contabilidad'',  ''Ayuda de Contabilidad'', ''NULL'');    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''AYUDA'', ''ConectarseA'',  ''Conectarse a la Web'' , ''NULL'' );    ');
 
      DB.ExecuteDirect(
-        'INSERT INTO MODULES(APPLICATION   , CD_SECTION  , CD_MODULE, DS_MODULE, HELP_PAGE_LINK  )     '+
+        'INSERT INTO OPTIONS(APPLICATION   , CD_PARENT_OPTION, CD_OPTION , DS_OPTION , HELP_PAGE_LINK  )     '+
         '            VALUES  (''ACCOUNTING'', ''AYUDA'', ''AcercaDe'',  ''Acerca de...'', ''NULL''); ');  {Proceso Automatizado}
    finally
       DB.Free;

@@ -1,6 +1,6 @@
 object UsersView: TUsersView
-  Left = 318
-  Top = 72
+  Left = 641
+  Top = 140
   Width = 603
   Height = 403
   Caption = 'Gesti'#243'n de Usuarios'

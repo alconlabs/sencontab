@@ -8,7 +8,7 @@ unit CustomEnterprisesModel;
 
 interface
 
-uses Classes, SysUtils, Forms, Controls, Dialogs, db, SQLExpr,
+uses Classes, SysUtils, Forms, Controls, Dialogs, db, SQLExpr, CustomModel,
      EnterpriseClass, CRSQLConnection;
 
 { TABLE NAME = ENTERPRISES  }
@@ -20,7 +20,7 @@ uses Classes, SysUtils, Forms, Controls, Dialogs, db, SQLExpr,
 {=== ================= ===}
 
 type
-  TCustomEnterprisesModel = class
+  TCustomEnterprisesModel = class(TCustomModel)
   private
     FConnection :TCRSQLConnection;
     FDataSet    :TSQLQuery;

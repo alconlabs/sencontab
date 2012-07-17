@@ -8,7 +8,7 @@ unit CustomUsersModel;
 
 interface
 
-uses Classes, SysUtils, Forms, Controls, Dialogs, db, SQLExpr,
+uses Classes, SysUtils, Forms, Controls, Dialogs, db, SQLExpr, CustomModel,
      UserClass, CRSQLConnection;
 
 { TABLE NAME = USERS  }
@@ -20,7 +20,7 @@ uses Classes, SysUtils, Forms, Controls, Dialogs, db, SQLExpr,
 {=== ================= ===}
 
 type
-  TCustomUsersModel = class
+  TCustomUsersModel = class(TCustomModel)
   private
     FConnection     :TCRSQLConnection;
     FTableName      :string;                                              

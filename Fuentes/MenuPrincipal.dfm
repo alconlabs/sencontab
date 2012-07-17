@@ -1,8 +1,8 @@
 object FormPrincipal: TFormPrincipal
-  Left = 9
-  Top = 9
+  Left = 396
+  Top = 251
   Width = 638
-  Height = 434
+  Height = 436
   BorderIcons = [biSystemMenu, biMinimize, biMaximize, biHelp]
   Caption = 'Contabilidad'
   Color = 16776944

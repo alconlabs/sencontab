@@ -17,6 +17,9 @@ type
     Source: TDataSource;
     Table: TClientDataSet;
     TableCD_PROFILE: TStringField;
+    Label1: TLabel;
+    EditDS_PROFILE: TDBEdit;
+    TableDS_PROFILE: TStringField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   protected
   private
@@ -42,6 +45,7 @@ function TEditProfileView.GetItem: TProfile;
 begin
    if Table.State in dsEditModes then Table.Post;
    FProfile.CD_PROFILE := TableCD_PROFILE.AsString;
+   FProfile.DS_PROFILE := TableDS_PROFILE.AsString;
    Result := FProfile;
 end;
 
@@ -51,6 +55,7 @@ begin
    Table.EmptyDataSet; {The only row shall be destroyed.}
    Table.Insert;
    TableCD_PROFILE.AsString := Value.CD_PROFILE;
+   TableDS_PROFILE.AsString := Value.DS_PROFILE;
    Table.Post;
 end;
 

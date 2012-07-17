@@ -1,6 +1,6 @@
 object FormDumpData: TFormDumpData
-  Left = 320
-  Top = 157
+  Left = 341
+  Top = 155
   Width = 889
   Height = 769
   Caption = 'FormDumpData'
@@ -654,7 +654,7 @@ object FormDumpData: TFormDumpData
     Width = 121
     Height = 21
     TabOrder = 23
-    Text = 'TEST05'
+    Text = 'JHER'
   end
   object BtnConnectSQLServer: TButton
     Left = 712
@@ -701,8 +701,7 @@ object FormDumpData: TFormDumpData
     OnClick = BtnCUENTASClick
   end
   object Interbase: TIBDatabase
-    Connected = True
-    DatabaseName = 'localhost:c:\cviews\datos\JESUSHERRERO.ib'
+    DatabaseName = 'C:\cviews\Datos\JHER.ib'
     Params.Strings = (
       'user_name=SYSDBA'
       'password=masterkey')
@@ -729,7 +728,7 @@ object FormDumpData: TFormDumpData
     Params.Strings = (
       'BlobSize=-1'
       'HostName=.'
-      'DataBase=TEST05'
+      'DataBase=TEST_05'
       'DriverName=SQLServer'
       'User_Name=sa'
       'Password=MasterKey'
@@ -737,7 +736,6 @@ object FormDumpData: TFormDumpData
       'EnableBCD=True'
       'FetchAll=True')
     VendorLib = 'sqloledb.dll'
-    Connected = True
     Left = 792
     Top = 96
   end
