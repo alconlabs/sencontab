@@ -11,7 +11,12 @@ uses
   UTDataBase in 'UnitTests\UTDataBase.pas',
   Provincias in 'Fuentes\Provincias.pas' {FormProvincias},
   CustomView in 'Fuentes\views\CustomView.pas' {CustomView},
-  ConfigurationClass in 'Fuentes\controllers\ConfigurationClass.pas';
+  ConfigurationClass in 'Fuentes\controllers\ConfigurationClass.pas',
+  LabelCaptionForm in 'Fuentes\Tools\LabelCaptionForm.pas',
+  CRSQLConnection in 'Fuentes\models\CRSQLConnection.pas',
+  DBController in 'Fuentes\controllers\DBController.pas',
+  DBConnection in 'Fuentes\models\DBConnection.pas',
+  EnterpriseClass in 'Fuentes\BusinessObjects\EnterpriseClass.pas';
 
 {$R *.RES}
 
@@ -23,7 +28,7 @@ end.
 
 
 
-//Project1TestCases in 'Project1TestCases.pas';
+  //Project1TestCases in 'Project1TestCases.pas';
   //ogfirst,
   //
   //
