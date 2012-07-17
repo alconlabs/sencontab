@@ -1,8 +1,8 @@
 object CustomDataInputView: TCustomDataInputView
-  Left = 371
-  Top = 229
+  Left = 361
+  Top = 210
   Width = 458
-  Height = 318
+  Height = 320
   HelpType = htKeyword
   HelpKeyword = 'Help_Context_Still_Not_Available'
   Anchors = [akLeft, akTop, akRight, akBottom]

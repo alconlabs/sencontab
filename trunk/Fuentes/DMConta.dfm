@@ -4,7 +4,7 @@ object DMContaRef: TDMContaRef
   OnDestroy = DataModuleDestroy
   Left = 10
   Top = 18
-  Height = 434
+  Height = 436
   Width = 638
   object QGrupos: TIBTableSet
     Database = DMRef.IBDSiamCont

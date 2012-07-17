@@ -1,13 +1,13 @@
 object WizardConnectDB: TWizardConnectDB
-  Left = 463
-  Top = 273
+  Left = 469
+  Top = 242
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   BorderWidth = 4
   Caption = 'Configuraci'#243'n del Sistema en senContab.'
   ClientHeight = 399
   ClientWidth = 675
-  Color = 16249839
+  Color = 14275008
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -26,7 +26,7 @@ object WizardConnectDB: TWizardConnectDB
     Width = 675
     Height = 68
     Align = alBottom
-    Color = 16249839
+    Color = 14275008
     TabOrder = 0
     object BtnBack: TButton
       Left = 344
@@ -66,19 +66,6 @@ object WizardConnectDB: TWizardConnectDB
       TabOrder = 3
       OnClick = BtnCancelClick
     end
-    object StatusBar: TStatusBar
-      Left = 1
-      Top = 48
-      Width = 673
-      Height = 19
-      Panels = <
-        item
-          Width = 50
-        end
-        item
-          Width = 50
-        end>
-    end
   end
   object PageControl: TPageControl
     Left = 0
@@ -112,7 +99,7 @@ object WizardConnectDB: TWizardConnectDB
           Width = 53
           Height = 13
           Caption = 'Host Name'
-          Color = 16249839
+          Color = 14275008
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -127,7 +114,7 @@ object WizardConnectDB: TWizardConnectDB
           Width = 77
           Height = 13
           Caption = 'Database Name'
-          Color = 16249839
+          Color = 14275008
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -142,7 +129,7 @@ object WizardConnectDB: TWizardConnectDB
           Width = 53
           Height = 13
           Caption = 'User Name'
-          Color = 16249839
+          Color = 14275008
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -157,7 +144,7 @@ object WizardConnectDB: TWizardConnectDB
           Width = 46
           Height = 13
           Caption = 'Password'
-          Color = 16249839
+          Color = 14275008
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -172,7 +159,7 @@ object WizardConnectDB: TWizardConnectDB
           Width = 83
           Height = 13
           Caption = 'Retype Password'
-          Color = 16249839
+          Color = 14275008
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -291,7 +278,7 @@ object WizardConnectDB: TWizardConnectDB
           Width = 277
           Height = 16
           Caption = 'Configurar Conexi'#243'n a la Base de Datos'
-          Color = 16249839
+          Color = 14275008
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
@@ -308,7 +295,7 @@ object WizardConnectDB: TWizardConnectDB
           Caption = 
             'Los datos de conexi'#243'n hacen referencia tanto a la base de datos ' +
             'principal como a las bases de datos correspondientes a cada'
-          Color = 16249839
+          Color = 14275008
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -323,7 +310,7 @@ object WizardConnectDB: TWizardConnectDB
           Width = 100
           Height = 13
           Caption = 'una de las empresas.'
-          Color = 16249839
+          Color = 14275008
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -344,7 +331,7 @@ object WizardConnectDB: TWizardConnectDB
         Height = 65
         Align = alTop
         BevelOuter = bvNone
-        Color = 16249839
+        Color = 14275008
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -390,7 +377,7 @@ object WizardConnectDB: TWizardConnectDB
         Width = 667
         Height = 234
         Align = alClient
-        Color = 16249839
+        Color = 14275008
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -460,6 +447,7 @@ object WizardConnectDB: TWizardConnectDB
           Width = 663
           Height = 143
           Align = alClient
+          Color = 14275008
           Options = [dgTitles, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
@@ -525,7 +513,7 @@ object WizardConnectDB: TWizardConnectDB
           Width = 663
           Height = 74
           Align = alTop
-          Color = 16249839
+          Color = 14275008
           TabOrder = 1
           object Label6: TLabel
             Left = 8
@@ -653,7 +641,7 @@ object WizardConnectDB: TWizardConnectDB
           Width = 663
           Height = 74
           Align = alTop
-          Color = 16249839
+          Color = 14275008
           TabOrder = 0
           object Label9: TLabel
             Left = 8
@@ -786,6 +774,7 @@ object WizardConnectDB: TWizardConnectDB
           Width = 663
           Height = 143
           Align = alClient
+          Color = 14275008
           Options = [dgTitles, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
           TabOrder = 1
           TitleFont.Charset = DEFAULT_CHARSET
@@ -852,7 +841,7 @@ object WizardConnectDB: TWizardConnectDB
           Width = 663
           Height = 34
           Align = alTop
-          Color = 16249839
+          Color = 14275008
           TabOrder = 0
           object Label13: TLabel
             Left = 4
@@ -878,6 +867,7 @@ object WizardConnectDB: TWizardConnectDB
           Width = 663
           Height = 183
           Align = alClient
+          Color = 14275008
           TabOrder = 1
           object Gauge: TGauge
             Left = 8
@@ -1084,13 +1074,6 @@ object WizardConnectDB: TWizardConnectDB
         end
       end
     end
-  end
-  object Timer: TTimer
-    Enabled = False
-    Interval = 3000
-    OnTimer = TimerTimer
-    Left = 609
-    Top = 12
   end
   object OpenFileDialog: TOpenDialog
     DefaultExt = '*.txt'

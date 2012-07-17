@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 295
-  Top = 203
+  Left = 296
+  Top = 76
   Width = 798
   Height = 554
   Caption = 'Creator'
@@ -276,7 +276,7 @@ object Form1: TForm1
     Params.Strings = (
       'BlobSize=-1'
       'HostName=.'
-      'DataBase=SENCONTAB2'
+      'DataBase=CONTAB01'
       'DriverName=SQLServer'
       'User_Name=sa'
       'Password=MasterKey'

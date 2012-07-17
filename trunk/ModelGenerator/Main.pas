@@ -636,7 +636,7 @@ begin
      Add('');
      Add('interface');
      Add('');
-     Add('uses Classes, SysUtils, Forms, Controls, Dialogs, db, SQLExpr,');
+     Add('uses Classes, SysUtils, Forms, Controls, Dialogs, db, SQLExpr, CustomModel,');
      Add('     '+Singular+'Class, CRSQLConnection;');
      Add('');
      Add('{ TABLE NAME = '+ListBoxTables.Items[ListBoxTables.ItemIndex]+'  }');
@@ -650,7 +650,7 @@ begin
      Add('{=== ================= ===}');
      Add('');
      Add('type');
-     Add('  TCustom'+Plural+'Model = class');
+     Add('  TCustom'+Plural+'Model = class(TCustomModel)');
      Add('  private');
      Add('    FConnection     :TCRSQLConnection;');
      Add('    FTableName      :string;                                              ');

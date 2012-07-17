@@ -113,11 +113,11 @@ begin
    ListItem.SubItems.Add(prmUser.DS_USER);
    if prmUser.ADMINISTRATOR = 'Y' then begin
       ListItem.SubItems.Add('Si');
-      ListItem.ImageIndex := 1;
+      ListItem.ImageIndex := ImageIndex_UserPlus;
    end
    else begin
       ListItem.SubItems.Add('No');
-      ListItem.ImageIndex := 0;
+      ListItem.ImageIndex := ImageIndex_User;
    end;
 end;
 

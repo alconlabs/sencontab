@@ -8,7 +8,7 @@ unit CustomApplicationsModel;
 
 interface
 
-uses Classes, SysUtils, Forms, Controls, Dialogs, db, SQLExpr,
+uses Classes, SysUtils, Forms, Controls, Dialogs, db, SQLExpr, CustomModel,
      ApplicationClass, CRSQLConnection;
 
 { TABLE NAME = APPLICATIONS  }
@@ -18,7 +18,7 @@ uses Classes, SysUtils, Forms, Controls, Dialogs, db, SQLExpr,
 {=== ================= ===}
 
 type
-  TCustomApplicationsModel = class
+  TCustomApplicationsModel = class(TCustomModel)
   private
     FConnection     :TCRSQLConnection;
     FTableName      :string;                                              

@@ -9,24 +9,17 @@ unit CustomProfilesModel;
 interface
 
 uses Classes, SysUtils, Forms, Controls, Dialogs, db, SQLExpr,
-     ProfileClass, CRSQLConnection;
+     CustomModel, ProfileClass, CRSQLConnection;
 
 { TABLE NAME = PROFILES  }
 {=== Column Definition ===}
-{ APPLICATION 	char      	  15 NULL Allowed  	No    }
-{ CD_SECTION  	char      	  15 NULL Allowed  	No    }
-{ CD_MODULE   	char      	  50 NULL Allowed  	No    }
-{ CD_PROFILE  	char      	  15 NULL Allowed  	No    }
-{ DS_PROFILE  	char      	  80 NULL Allowed  	YES   }
-{ ALLOW_ADD   	char      	   1 NULL Allowed  	No    }
-{ ALLOW_MODIFY	char      	   1 NULL Allowed  	No    }
-{ ALLOW_DELETE	char      	   1 NULL Allowed  	No    }
-{ ALLOW_REPORT	char      	   1 NULL Allowed  	No    }
-{ ALLOW_EXEC  	char      	   1 NULL Allowed  	No    }
+{ CD_PROFILE 	char      	  15 NULL Allowed  	No    }
+{ DS_PROFILE 	char      	  80 NULL Allowed  	YES   }
+{ APPLICATION	char      	  15 NULL Allowed  	No    }
 {=== ================= ===}
 
 type
-  TCustomProfilesModel = class
+  TCustomProfilesModel = class(TCustomModel)
   private
     FConnection     :TCRSQLConnection;
     FTableName      :string;                                              
@@ -81,7 +74,7 @@ begin
    inherited Create;
    FConnection := prmConnection; 
    FTableName := 'PROFILES';
-   FOrderFieldName  := 'APPLICATION';
+   FOrderFieldName  := 'CD_PROFILE';
    FDataSet := TSQLQuery.Create(nil);
    FDataSet.SQLConnection := prmConnection;
    FSQLSearch := TStringList.Create; 
@@ -125,16 +118,9 @@ end;
 function TCustomProfilesModel.GetBaseSQLForSelect: TStringList;
 begin
    Result := TStringList.Create;
-   Result.Add('SELECT APPLICATION, ');
-   Result.Add('       CD_SECTION, ');
-   Result.Add('       CD_MODULE, ');
-   Result.Add('       CD_PROFILE, ');
+   Result.Add('SELECT CD_PROFILE, ');
    Result.Add('       DS_PROFILE, ');
-   Result.Add('       ALLOW_ADD, ');
-   Result.Add('       ALLOW_MODIFY, ');
-   Result.Add('       ALLOW_DELETE, ');
-   Result.Add('       ALLOW_REPORT, ');
-   Result.Add('       ALLOW_EXEC ');
+   Result.Add('       APPLICATION ');
    Result.Add('FROM   PROFILES');
 end;
 
@@ -248,26 +234,12 @@ begin
      Q := FConnection.CreateQuery(['']);
      Q.SQL.Assign(SQL);
      try
-       if not prmData.IsNull(ProfileAPPLICATION ) then
-          Q.ParamByName('prmAPPLICATION'   ).Value := prmData.APPLICATION;
-       if not prmData.IsNull(ProfileCD_SECTION  ) then
-          Q.ParamByName('prmCD_SECTION'    ).Value := prmData.CD_SECTION;
-       if not prmData.IsNull(ProfileCD_MODULE   ) then
-          Q.ParamByName('prmCD_MODULE'     ).Value := prmData.CD_MODULE;
-       if not prmData.IsNull(ProfileCD_PROFILE  ) then
-          Q.ParamByName('prmCD_PROFILE'    ).Value := prmData.CD_PROFILE;
-       if not prmData.IsNull(ProfileDS_PROFILE  ) then
-          Q.ParamByName('prmDS_PROFILE'    ).Value := prmData.DS_PROFILE;
-       if not prmData.IsNull(ProfileALLOW_ADD   ) then
-          Q.ParamByName('prmALLOW_ADD'     ).Value := prmData.ALLOW_ADD;
-       if not prmData.IsNull(ProfileALLOW_MODIFY) then
-          Q.ParamByName('prmALLOW_MODIFY'  ).Value := prmData.ALLOW_MODIFY;
-       if not prmData.IsNull(ProfileALLOW_DELETE) then
-          Q.ParamByName('prmALLOW_DELETE'  ).Value := prmData.ALLOW_DELETE;
-       if not prmData.IsNull(ProfileALLOW_REPORT) then
-          Q.ParamByName('prmALLOW_REPORT'  ).Value := prmData.ALLOW_REPORT;
-       if not prmData.IsNull(ProfileALLOW_EXEC  ) then
-          Q.ParamByName('prmALLOW_EXEC'    ).Value := prmData.ALLOW_EXEC;
+       if not prmData.IsNull(ProfileCD_PROFILE ) then
+          Q.ParamByName('prmCD_PROFILE'   ).Value := prmData.CD_PROFILE;
+       if not prmData.IsNull(ProfileDS_PROFILE ) then
+          Q.ParamByName('prmDS_PROFILE'   ).Value := prmData.DS_PROFILE;
+       if not prmData.IsNull(ProfileAPPLICATION) then
+          Q.ParamByName('prmAPPLICATION'  ).Value := prmData.APPLICATION;
        Result := True;
        try Q.ExecSQL;
        except
@@ -309,31 +281,18 @@ begin
 
    ClearLastError;
 
-   SQL := GetSQLForUpdate(prmData);                      
+   SQL := GetSQLForUpdate(prmData);
+   ShowMessage(SQL.Text);                   
    try                                                   
      Q := FConnection.CreateQuery(['']);               
      Q.SQL.Assign(SQL);                                  
      try                                                 
-       if not prmData.IsNull(ProfileAPPLICATION ) then
-          Q.ParamByName('prmAPPLICATION'   ).Value := prmData.APPLICATION;
-       if not prmData.IsNull(ProfileCD_SECTION  ) then
-          Q.ParamByName('prmCD_SECTION'    ).Value := prmData.CD_SECTION;
-       if not prmData.IsNull(ProfileCD_MODULE   ) then
-          Q.ParamByName('prmCD_MODULE'     ).Value := prmData.CD_MODULE;
-       if not prmData.IsNull(ProfileCD_PROFILE  ) then
-          Q.ParamByName('prmCD_PROFILE'    ).Value := prmData.CD_PROFILE;
-       if not prmData.IsNull(ProfileDS_PROFILE  ) then
-          Q.ParamByName('prmDS_PROFILE'    ).Value := prmData.DS_PROFILE;
-       if not prmData.IsNull(ProfileALLOW_ADD   ) then
-          Q.ParamByName('prmALLOW_ADD'     ).Value := prmData.ALLOW_ADD;
-       if not prmData.IsNull(ProfileALLOW_MODIFY) then
-          Q.ParamByName('prmALLOW_MODIFY'  ).Value := prmData.ALLOW_MODIFY;
-       if not prmData.IsNull(ProfileALLOW_DELETE) then
-          Q.ParamByName('prmALLOW_DELETE'  ).Value := prmData.ALLOW_DELETE;
-       if not prmData.IsNull(ProfileALLOW_REPORT) then
-          Q.ParamByName('prmALLOW_REPORT'  ).Value := prmData.ALLOW_REPORT;
-       if not prmData.IsNull(ProfileALLOW_EXEC  ) then
-          Q.ParamByName('prmALLOW_EXEC'    ).Value := prmData.ALLOW_EXEC;
+       if not prmData.IsChanged(ProfileCD_PROFILE ) then
+          Q.ParamByName('prmCD_PROFILE'   ).Value := prmData.CD_PROFILE;
+       if not prmData.IsChanged(ProfileDS_PROFILE ) then
+          Q.ParamByName('prmDS_PROFILE'   ).Value := prmData.DS_PROFILE;
+       if not prmData.IsChanged(ProfileAPPLICATION) then
+          Q.ParamByName('prmAPPLICATION'  ).Value := prmData.APPLICATION;
                                                                                                
        //for each := Low(TUserField) to High(TUserField) do begin                              
        //   if prmData.IsPrimaryKey(each) then begin                                           
@@ -341,35 +300,14 @@ begin
        //   end;                                                                               
        //end;                                                                                  
 
-       if prmData.IsPrimaryKey(ProfileAPPLICATION) then
-          Q.ParamByName('prmPK_'+prmData.FieldToString(ProfileAPPLICATION)).Value := prmData.APPLICATION_OldValue;
-
-       if prmData.IsPrimaryKey(ProfileCD_SECTION) then
-          Q.ParamByName('prmPK_'+prmData.FieldToString(ProfileCD_SECTION)).Value := prmData.CD_SECTION_OldValue;
-
-       if prmData.IsPrimaryKey(ProfileCD_MODULE) then
-          Q.ParamByName('prmPK_'+prmData.FieldToString(ProfileCD_MODULE)).Value := prmData.CD_MODULE_OldValue;
-
        if prmData.IsPrimaryKey(ProfileCD_PROFILE) then
           Q.ParamByName('prmPK_'+prmData.FieldToString(ProfileCD_PROFILE)).Value := prmData.CD_PROFILE_OldValue;
 
        if prmData.IsPrimaryKey(ProfileDS_PROFILE) then
           Q.ParamByName('prmPK_'+prmData.FieldToString(ProfileDS_PROFILE)).Value := prmData.DS_PROFILE_OldValue;
 
-       if prmData.IsPrimaryKey(ProfileALLOW_ADD) then
-          Q.ParamByName('prmPK_'+prmData.FieldToString(ProfileALLOW_ADD)).Value := prmData.ALLOW_ADD_OldValue;
-
-       if prmData.IsPrimaryKey(ProfileALLOW_MODIFY) then
-          Q.ParamByName('prmPK_'+prmData.FieldToString(ProfileALLOW_MODIFY)).Value := prmData.ALLOW_MODIFY_OldValue;
-
-       if prmData.IsPrimaryKey(ProfileALLOW_DELETE) then
-          Q.ParamByName('prmPK_'+prmData.FieldToString(ProfileALLOW_DELETE)).Value := prmData.ALLOW_DELETE_OldValue;
-
-       if prmData.IsPrimaryKey(ProfileALLOW_REPORT) then
-          Q.ParamByName('prmPK_'+prmData.FieldToString(ProfileALLOW_REPORT)).Value := prmData.ALLOW_REPORT_OldValue;
-
-       if prmData.IsPrimaryKey(ProfileALLOW_EXEC) then
-          Q.ParamByName('prmPK_'+prmData.FieldToString(ProfileALLOW_EXEC)).Value := prmData.ALLOW_EXEC_OldValue;
+       if prmData.IsPrimaryKey(ProfileAPPLICATION) then
+          Q.ParamByName('prmPK_'+prmData.FieldToString(ProfileAPPLICATION)).Value := prmData.APPLICATION_OldValue;
 
        Result := True;                 
        try Q.ExecSQL;                  
@@ -393,11 +331,11 @@ begin
    ClearLastError;
    Result := True;
    Q := FConnection.CreateQuery(['DELETE FROM PROFILES',
-                                 'WHERE APPLICATION = :prmAPPLICATION']);
+                                 'WHERE CD_PROFILE = :prmCD_PROFILE']);
    try
      Q.ParamCheck := True;
 {Message Error 'change the primary key fields reference if necesary'}
-     Q.Params[0].Value := prmData.APPLICATION;
+     Q.Params[0].Value := prmData.CD_PROFILE;
      try
        Q.ExecSQL;
      except
@@ -423,26 +361,12 @@ begin
    //begin
    //   Item.CD_USUARIO := FDataSet.FieldByName('CD_USUARIO').AsString;
    //end;
-   if not(FDataSet.FieldByName('APPLICATION' ).IsNull) then
-      Item.APPLICATION  := Trim(FDataSet.FieldByName('APPLICATION').AsString);
-   if not(FDataSet.FieldByName('CD_SECTION'  ).IsNull) then
-      Item.CD_SECTION   := Trim(FDataSet.FieldByName('CD_SECTION').AsString);
-   if not(FDataSet.FieldByName('CD_MODULE'   ).IsNull) then
-      Item.CD_MODULE    := Trim(FDataSet.FieldByName('CD_MODULE').AsString);
-   if not(FDataSet.FieldByName('CD_PROFILE'  ).IsNull) then
-      Item.CD_PROFILE   := Trim(FDataSet.FieldByName('CD_PROFILE').AsString);
-   if not(FDataSet.FieldByName('DS_PROFILE'  ).IsNull) then
-      Item.DS_PROFILE   := Trim(FDataSet.FieldByName('DS_PROFILE').AsString);
-   if not(FDataSet.FieldByName('ALLOW_ADD'   ).IsNull) then
-      Item.ALLOW_ADD    := Trim(FDataSet.FieldByName('ALLOW_ADD').AsString);
-   if not(FDataSet.FieldByName('ALLOW_MODIFY').IsNull) then
-      Item.ALLOW_MODIFY := Trim(FDataSet.FieldByName('ALLOW_MODIFY').AsString);
-   if not(FDataSet.FieldByName('ALLOW_DELETE').IsNull) then
-      Item.ALLOW_DELETE := Trim(FDataSet.FieldByName('ALLOW_DELETE').AsString);
-   if not(FDataSet.FieldByName('ALLOW_REPORT').IsNull) then
-      Item.ALLOW_REPORT := Trim(FDataSet.FieldByName('ALLOW_REPORT').AsString);
-   if not(FDataSet.FieldByName('ALLOW_EXEC'  ).IsNull) then
-      Item.ALLOW_EXEC   := Trim(FDataSet.FieldByName('ALLOW_EXEC').AsString);
+   if not(FDataSet.FieldByName('CD_PROFILE' ).IsNull) then
+      Item.CD_PROFILE  := Trim(FDataSet.FieldByName('CD_PROFILE').AsString);
+   if not(FDataSet.FieldByName('DS_PROFILE' ).IsNull) then
+      Item.DS_PROFILE  := Trim(FDataSet.FieldByName('DS_PROFILE').AsString);
+   if not(FDataSet.FieldByName('APPLICATION').IsNull) then
+      Item.APPLICATION := Trim(FDataSet.FieldByName('APPLICATION').AsString);
 
    Result := Item;
 end;
@@ -587,16 +511,9 @@ end;
 
 function TCustomProfilesModel.GetOrderFieldName: string;                            
 begin                                                                                 
-       if FOrderFieldName = 'APPLICATION'  then Result := 'APPLICATION'  else 
-       if FOrderFieldName = 'CD_SECTION'   then Result := 'CD_SECTION'   else 
-       if FOrderFieldName = 'CD_MODULE'    then Result := 'CD_MODULE'    else 
-       if FOrderFieldName = 'CD_PROFILE'   then Result := 'CD_PROFILE'   else 
-       if FOrderFieldName = 'DS_PROFILE'   then Result := 'DS_PROFILE'   else 
-       if FOrderFieldName = 'ALLOW_ADD'    then Result := 'ALLOW_ADD'    else 
-       if FOrderFieldName = 'ALLOW_MODIFY' then Result := 'ALLOW_MODIFY' else 
-       if FOrderFieldName = 'ALLOW_DELETE' then Result := 'ALLOW_DELETE' else 
-       if FOrderFieldName = 'ALLOW_REPORT' then Result := 'ALLOW_REPORT' else 
-       if FOrderFieldName = 'ALLOW_EXEC'   then Result := 'ALLOW_EXEC'   else 
+       if FOrderFieldName = 'CD_PROFILE'  then Result := 'CD_PROFILE'  else 
+       if FOrderFieldName = 'DS_PROFILE'  then Result := 'DS_PROFILE'  else 
+       if FOrderFieldName = 'APPLICATION' then Result := 'APPLICATION' else 
    Result := '***(CHECK THE NAME FOR THE ORDER FIELD)*** ERROR';                    
 end;                                                                                  
 
