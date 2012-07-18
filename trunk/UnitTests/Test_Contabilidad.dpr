@@ -4,19 +4,19 @@ uses
   Forms,
   TestFrameWork,
   GUITestRunner,
-  DM in 'Fuentes\DM.pas' {DMRef: TDataModule},
-  DMControl in 'Fuentes\DMControl.pas' {DmControlRef: TDataModule},
-  DMConta in 'Fuentes\DMConta.pas' {DMContaRef: TDataModule},
-  TestMainForm in 'UnitTests\TestMainForm.pas' {FormTestMainForm},
-  UTDataBase in 'UnitTests\UTDataBase.pas',
-  Provincias in 'Fuentes\Provincias.pas' {FormProvincias},
-  CustomView in 'Fuentes\views\CustomView.pas' {CustomView},
-  ConfigurationClass in 'Fuentes\controllers\ConfigurationClass.pas',
-  LabelCaptionForm in 'Fuentes\Tools\LabelCaptionForm.pas',
-  CRSQLConnection in 'Fuentes\models\CRSQLConnection.pas',
-  DBController in 'Fuentes\controllers\DBController.pas',
-  DBConnection in 'Fuentes\models\DBConnection.pas',
-  EnterpriseClass in 'Fuentes\BusinessObjects\EnterpriseClass.pas';
+  CustomView in '..\Fuentes\views\CustomView.pas' {CustomView},
+  ConfigurationClass in '..\Fuentes\controllers\ConfigurationClass.pas',
+  LabelCaptionForm in '..\Fuentes\Tools\LabelCaptionForm.pas',
+  CRSQLConnection in '..\Fuentes\models\CRSQLConnection.pas',
+  DBController in '..\Fuentes\controllers\DBController.pas',
+  DBConnection in '..\Fuentes\models\DBConnection.pas',
+  UTDataBase in 'UTDataBase.pas',
+  Utilidades in '..\Fuentes\Utilidades.pas',
+  WizardConnectDB in '..\Fuentes\WizardConnectDB.pas' {WizardConnectDB},
+  D6OnHelpFix in '..\Fuentes\D6OnHelpFix.pas',
+  General in '..\Fuentes\General.pas',
+  Globales in '..\Fuentes\Globales.pas',
+  HashCriptography in '..\Fuentes\HashCriptography.pas';
 
 {$R *.RES}
 
