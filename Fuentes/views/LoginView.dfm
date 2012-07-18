@@ -14,7 +14,6 @@ object FormLoginView: TFormLoginView
   KeyPreview = True
   OldCreateOrder = True
   Position = poScreenCenter
-  OnCreate = FormCreate
   OnKeyPress = FormKeyPress
   OnShow = FormShow
   PixelsPerInch = 96
@@ -2166,6 +2165,5 @@ object FormLoginView: TFormLoginView
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 4
-    OnClick = BtnAcceptClick
   end
 end

@@ -6,14 +6,13 @@ uses TestFramework, DBTables,
 
 type
   TTCDataBase = class(TTestCase)
-  public
+  protected
      procedure Setup;    override;
-     procedure TearDown; override;
   private
     FDBMainController :TDBController;
     property DBMain :TDBController read FDBMainController;
-  protected
-
+  public
+     procedure TearDown; override;
   published
     procedure ConnectWithTheServer;
     procedure InicializacionDB;
