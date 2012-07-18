@@ -12,9 +12,14 @@ type
 
   TLoginController = class(TCustomController)
   private
-    FView         :TFormLoginView;
-    FModel        :TLoginModel;
-    FResult       :TMenuShowed;
+  {$IFDEF UNIT_TESTING}
+  public
+  {$ENDIF}
+    FView   :TFormLoginView;
+    FModel  :TLoginModel;
+    FResult :TMenuShowed;
+  private
+    procedure InitializeView;
   protected
     {Delegate declarations}
     procedure OnClick_BtnOK           (Sender : TObject);
@@ -23,7 +28,7 @@ type
   public
     constructor Create(ADBController :TDBController); override;
     destructor  Destroy; override;
-    function ShowView:TMenuShowed;
+    function ShowView :TMenuShowed;
   end;
 
 implementation
@@ -36,6 +41,7 @@ begin
    FView.AppleIcons := [aiClose];
    FView.AppleIconsVisibles := [aiClose];
    FModel := TLoginModel.Create(DBCtlr.DBConnection.Connection);
+   InitializeView;
 end;
 
 destructor TLoginController.Destroy;
@@ -44,7 +50,7 @@ begin
    FView.Free;
 end;
 
-function TLoginController.ShowView :TMenuShowed;
+procedure TLoginController.InitializeView;
 begin
    {Assignament of Resources}
    FView.Caption                      := 'Login';    //GetTextFor('LoginView_Caption'           );
@@ -68,7 +74,10 @@ begin
    //FView.ClickHandler_LinkNewAccount    := OnClick_LinkNewAccount;
 
    FView.LabelPasswordWarn.Visible := FModel.AdminPasswordInitial;
+end;
 
+function TLoginController.ShowView :TMenuShowed;
+begin
    if FView.ShowModal = mrOK then begin
       Result := FResult;
    end
@@ -121,5 +130,6 @@ begin
 //
 //  end;
 end;
+
 
 end.
