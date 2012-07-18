@@ -1,6 +1,6 @@
 object WizardConnectDB: TWizardConnectDB
-  Left = 469
-  Top = 242
+  Left = 470
+  Top = 244
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   BorderWidth = 4
