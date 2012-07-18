@@ -1,6 +1,6 @@
 object EditProfileView: TEditProfileView
-  Left = 536
-  Top = 270
+  Left = 537
+  Top = 272
   BorderIcons = []
   BorderStyle = bsDialog
   ClientHeight = 170

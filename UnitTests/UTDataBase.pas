@@ -2,19 +2,16 @@ unit UTDataBase;
 
 interface
 uses TestFramework, DBTables,
-     DBController,
-     ConfigurationClass;
+     DBController;
 
 type
   TTCDataBase = class(TTestCase)
   public
-     destructor  Destroy; override;
      procedure Setup;    override;
      procedure TearDown; override;
   private
-    FDBMainController   :TDBController;
-    FConfiguration      :TConfiguration;
-    property DBMain     :TDBController  read FDBMainController;
+    FDBMainController :TDBController;
+    property DBMain :TDBController read FDBMainController;
   protected
 
   published
@@ -32,17 +29,11 @@ const ORIG_TESTDB_DIR = 'C:\cviews\Datos\TESTDB';
 
 implementation
 uses Forms, Dialogs, Classes, SysUtils, Windows, Messages, GUITestRunner, Math, SQLExpr,
-     IBQuery, ccBtnPanel;
-
-destructor TTCDataBase.Destroy;
-begin
-   FConfiguration.Free;
-   inherited;
-end;
+     IBQuery, ccBtnPanel, CommonForAllTests;
 
 procedure TTCDataBase.Setup;
 begin
-//
+   FDBMainController := CommonDBMainController;
 end;
 
 procedure TTCDataBase.TearDown;
@@ -52,25 +43,8 @@ end;
 
 procedure TTCDataBase.ConnectWithTheServer;
 begin
-   FConfiguration := TConfiguration.Create();
-   {This is the database for tests of enterprise issues}
-   FConfiguration.DBConfig.DataBase := 'TEST_ENTERPRISES';
-
-   {This method of connection is the same as the main program}
-
-   {After the Creation of DBController we have a FDBMainController instance or an exception -nothing-}
-   FDBMainController := TDBController.Create(FConfiguration.DBConfig);
-   try
-     {After the construction we try to connect to the server}
-     {But first we delete and recreate the database for testing}
-
-     FDBMainController.OpenConnection;
-   except
-       {This try except unhandled is necessary. Don't remove this comment or this empty structure.}
-   end;
-
-   Check(FDBMainController.IsConnected, 'There is a problem with the database connection');
-   Check(FDBMainController.ServerDate = Date, 'The date of database is not the same as the system');
+   Check(DBMain.IsConnected, 'There is a problem with the database connection');
+   Check(DBMain.ServerDate = Date, 'The date of database is not the same as the system');
 end;
 
 procedure TTCDataBase.InicializacionDB;
