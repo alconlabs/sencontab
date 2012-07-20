@@ -280,13 +280,6 @@ type
     QParametrosOFFICE2003: TIBStringField;
     QParametrosTRATASERIE: TIBStringField;
     QParametrosACTCOMENTARIO: TIBStringField;
-    ClientDataSet1: TClientDataSet;
-    ClientDataSet1CD_OPTION: TStringField;
-    ClientDataSet1DS_OPTION: TStringField;
-    ClientDataSet1CD_PARENT_OPTION: TStringField;
-    ClientDataSet1NAME_IN_FONT_SOURCE: TStringField;
-    ClientDataSet1HELP_PAGE_LINK: TStringField;
-    ClientDataSet1APPLICATION: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   protected

@@ -7,6 +7,7 @@ uses
   UTDataBase in 'UTDataBase.pas',
   UTLogin in 'UTLogin.pas',
   UTOptions in 'UTOptions.pas',
+  UTEnterprises in 'UTEnterprises.pas',
   ___________________________ in '___________________________.pas',
   CustomView in '..\Fuentes\views\CustomView.pas' {CustomView},
   ConfigurationClass in '..\Fuentes\controllers\ConfigurationClass.pas',

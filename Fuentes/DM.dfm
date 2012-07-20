@@ -3096,44 +3096,4 @@ object DMRef: TDMRef
     Left = 360
     Top = 224
   end
-  object ClientDataSet1: TClientDataSet
-    Active = True
-    Aggregates = <>
-    Params = <>
-    Left = 200
-    Top = 72
-    Data = {
-      E60000009619E0BD010000001800000006000000000003000000E6000943445F
-      4F5054494F4E01004900000001000557494454480200020064000944535F4F50
-      54494F4E01004900000001000557494454480200020064001043445F50415245
-      4E545F4F5054494F4E0100490000000100055749445448020002006400134E41
-      4D455F494E5F464F4E545F534F55524345010049000000010005574944544802
-      00020064000E48454C505F504147455F4C494E4B010049000000010005574944
-      54480200020064000B4150504C49434154494F4E010049000000010005574944
-      5448020002000F000000}
-    object ClientDataSet1CD_OPTION: TStringField
-      FieldName = 'CD_OPTION'
-      Size = 100
-    end
-    object ClientDataSet1DS_OPTION: TStringField
-      FieldName = 'DS_OPTION'
-      Size = 100
-    end
-    object ClientDataSet1CD_PARENT_OPTION: TStringField
-      FieldName = 'CD_PARENT_OPTION'
-      Size = 100
-    end
-    object ClientDataSet1NAME_IN_FONT_SOURCE: TStringField
-      FieldName = 'NAME_IN_FONT_SOURCE'
-      Size = 100
-    end
-    object ClientDataSet1HELP_PAGE_LINK: TStringField
-      FieldName = 'HELP_PAGE_LINK'
-      Size = 100
-    end
-    object ClientDataSet1APPLICATION: TStringField
-      FieldName = 'APPLICATION'
-      Size = 15
-    end
-  end
 end

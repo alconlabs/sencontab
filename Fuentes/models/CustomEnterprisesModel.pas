@@ -23,13 +23,14 @@ type
   TCustomEnterprisesModel = class(TCustomModel)
   private
     FConnection :TCRSQLConnection;
-    FDataSet    :TSQLQuery;
     FTableName  :string;
     FOrderBy    :string;
-    FLastError  :string;
     function GetRowsAffected:Integer;
     function GetRowCount    :Integer;
     function GetEOF :Boolean;
+  protected
+    FLastError  :string;
+    FDataSet :TSQLQuery;
     procedure ClearLastError;
   public
     constructor Create(prmConnection :TCRSQLConnection); reintroduce;
