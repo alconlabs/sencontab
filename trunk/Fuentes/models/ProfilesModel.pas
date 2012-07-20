@@ -2,7 +2,7 @@ unit ProfilesModel;
 
 interface
 
-uses Classes, SysUtils, Forms, Controls, Dialogs, 
+uses Classes, SysUtils, Forms, Controls, Dialogs,
      CustomProfilesModel, ProfileClass, CRSQLConnection;
 type
   TProfilesModel = class(TCustomProfilesModel)
@@ -12,6 +12,13 @@ type
     function CheckValues(prmValue :TProfile; var prmMessage :string):Integer;
     function GetNewClass :TProfile;
     procedure Search(prmTextSearched :string);
+    {--------------------------------------------------------------------------------------}
+    procedure CreateProfileDetails;
+    function  IsProfileUptoday(prmCurrentOptions :TList):Boolean;
+    function  UpdateProfileDetails(prmNewOptions :TList):TList; //Return the Items Changed.
+    procedure DeleteProfileDetails;
+    procedure CopyProfileDetails(prmFromProfile :string; prmNewProfile :string);
+    procedure ModifyAProfileDetail(prmNewOptions :TList);
   end;
 
 implementation
@@ -67,8 +74,42 @@ begin
    //   SQLSearch.Add('        RTRIM(LTRIM(DS_USER))          ');
    //   SQLSearch.Add('LIKE  '''+TextSearched+'''             ');
    //end;
-   
+
    Open;
+end;
+
+procedure TProfilesModel.CopyProfileDetails(prmFromProfile, prmNewProfile: string);
+// This method receibes the name of a profile and the name of a new profile that still not exists
+// and create a new profile with al the options with the same values.
+// Requirements: The new profile shall not exists.
+//               The From profile shall be uptoday in the options.
+begin
+   {$Message Warn 'Still not implemented'}
+end;
+
+procedure TProfilesModel.CreateProfileDetails;
+begin
+   {$Message Warn 'Still not implemented'}
+end;
+
+procedure TProfilesModel.DeleteProfileDetails;
+begin
+   {$Message Warn 'Still not implemented'}
+end;
+
+procedure TProfilesModel.ModifyAProfileDetail(prmNewOptions: TList);
+begin
+   {$Message Warn 'Still not implemented'}
+end;
+
+function TProfilesModel.UpdateProfileDetails(prmNewOptions: TList): TList;
+begin
+   {$Message Warn 'Still not implemented'}
+end;
+
+function TProfilesModel.IsProfileUptoday(prmCurrentOptions: TList): Boolean;
+begin
+   {$Message Warn 'Still not implemented'}
 end;
 
 end.

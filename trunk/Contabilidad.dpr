@@ -124,7 +124,11 @@ uses
   ProfilesController in 'Fuentes\controllers\ProfilesController.pas',
   ProfilesView in 'Fuentes\views\ProfilesView.pas' {ProfilesView},
   EditProfileView in 'Fuentes\views\EditProfileView.pas' {EditProfileView},
-  CustomModel in 'Fuentes\models\CustomModel.pas';
+  CustomModel in 'Fuentes\models\CustomModel.pas',
+  OptionClass in 'Fuentes\BusinessObjects\OptionClass.pas',
+  CustomOptionsModel in 'Fuentes\models\CustomOptionsModel.pas',
+  OptionsModel in 'Fuentes\models\OptionsModel.pas',
+  ListOfOptions in 'Fuentes\BOLists\ListOfOptions.pas';
 
 {$R *.RES}
 
