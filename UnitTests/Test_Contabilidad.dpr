@@ -6,6 +6,7 @@ uses
   GUITestRunner,
   UTDataBase in 'UTDataBase.pas',
   UTLogin in 'UTLogin.pas',
+  UTOptions in 'UTOptions.pas',
   ___________________________ in '___________________________.pas',
   CustomView in '..\Fuentes\views\CustomView.pas' {CustomView},
   ConfigurationClass in '..\Fuentes\controllers\ConfigurationClass.pas',
@@ -23,7 +24,12 @@ uses
   LoginController in '..\Fuentes\controllers\LoginController.pas',
   CustomController in '..\Fuentes\controllers\CustomController.pas',
   LoginView in '..\Fuentes\views\LoginView.pas' {FormLoginView},
-  LoginModel in '..\Fuentes\models\LoginModel.pas';
+  LoginModel in '..\Fuentes\models\LoginModel.pas',
+  OptionClass in '..\Fuentes\BusinessObjects\OptionClass.pas',
+  OptionsModel in '..\Fuentes\models\OptionsModel.pas',
+  CustomOptionsModel in '..\Fuentes\models\CustomOptionsModel.pas',
+  CustomModel in '..\Fuentes\models\CustomModel.pas',
+  ListOfOptions in '..\Fuentes\BOLists\ListOfOptions.pas';
 
 {$R *.RES}
 

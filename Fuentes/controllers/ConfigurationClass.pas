@@ -52,6 +52,7 @@ type
 
     function  IsKeyPressed(const VirtKeyCode: Integer): Boolean;
     function  GetConfigFileName:string;
+    function  GetRunningDirectory:string;
     function  CheckEnvironment():Boolean;
     function  IsApplicationOK :Boolean;
   public
@@ -74,8 +75,9 @@ type
     /// Indicate the version of the program that we are currently running.
     /// <returns> A string containing the text of the version. </returns>
     /// </summary>
-    property DBConfig       :TSdaDBConfig read FDBConfig    write FDBConfig;
-    property ConfigFileName :string       read GetConfigFileName;
+    property DBConfig         :TSdaDBConfig read FDBConfig    write FDBConfig;
+    property ConfigFileName   :string       read GetConfigFileName;
+    property RunningDirectory :string       read GetRunningDirectory; 
   end;
 
 implementation
@@ -581,6 +583,19 @@ begin
   FileName  := Copy(ExeName, 1, Length(ExeName)-Length(Extension));
 
   Result := ExtractFilePath(Application.ExeName) + FileName + '.INI';
+end;
+
+function TConfiguration.GetRunningDirectory: string;
+var ExeName   :string;
+    Extension :string;
+    FileName  :string;
+begin
+  // Get the current Application exe name, without the extension
+  ExeName   := ExtractFileName(Application.ExeName);
+  Extension := ExtractFileExt (Application.ExeName);
+  FileName  := Copy(ExeName, 1, Length(ExeName)-Length(Extension));
+
+  Result := ExtractFilePath(Application.ExeName);
 end;
 
 end.
