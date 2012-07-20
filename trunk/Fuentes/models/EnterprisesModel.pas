@@ -16,6 +16,7 @@ type
     function  CreateDBSchema(DatabaseName :string):Boolean;
     //function CheckDBSchemaExists(DatabaseName :string):Boolean;
     //constructor Create(AConnection :TCRSQLConnection);
+    procedure LoadEnterprisesAssignedToUser(prmUser :string);
   end;
 
 implementation
@@ -713,6 +714,31 @@ begin
      end;
    finally
       DB.Free;
+   end;
+end;
+
+procedure TEnterprisesModel.LoadEnterprisesAssignedToUser(prmUser: string);
+begin
+   FDataSet.Close;
+   FDataSet.SQL.Clear;
+   FDataSet.SQL.Add('SELECT E.CD_ENTERPRISE,                             ');
+   FDataSet.SQL.Add('       E.APPLICATION,                               ');
+   FDataSet.SQL.Add('       E.DS_ENTERPRISE,                             ');
+   FDataSet.SQL.Add('       E.CLOSED,                                    ');
+   FDataSet.SQL.Add('       E.BLOCKED,                                   ');
+   FDataSet.SQL.Add('       UE.CD_USER                                   ');
+   FDataSet.SQL.Add('FROM   ENTERPRISES E                                ');
+   FDataSet.SQL.Add('LEFT   JOIN USER_ENTERPRISES UE                     ');
+   FDataSet.SQL.Add('             ON E.CD_ENTERPRISE = UE.CD_ENTERPRISE  ');
+   FDataSet.SQL.Add('WHERE  UE.CD_USER = :prmUser                        ');
+   FDataSet.ParamByName('prmUser').AsString := prmUser;
+   ClearLastError;
+   try
+     FDataSet.Open;
+   except
+     on E : Exception do begin
+       FLastError := E.Message;
+     end;
    end;
 end;
 

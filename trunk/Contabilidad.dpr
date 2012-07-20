@@ -128,7 +128,9 @@ uses
   OptionClass in 'Fuentes\BusinessObjects\OptionClass.pas',
   CustomOptionsModel in 'Fuentes\models\CustomOptionsModel.pas',
   OptionsModel in 'Fuentes\models\OptionsModel.pas',
-  ListOfOptions in 'Fuentes\BOLists\ListOfOptions.pas';
+  ListOfOptions in 'Fuentes\BOLists\ListOfOptions.pas',
+  EnterprisesListController in 'Fuentes\controllers\EnterprisesListController.pas',
+  EnterprisesListView in 'Fuentes\views\EnterprisesListView.pas' {FormEnterprisesListView};
 
 {$R *.RES}
 
@@ -225,7 +227,7 @@ begin
 
   try
     MainController.Run;
-    Application.Run;
+    //Application.Run;
     MemChk;
   finally
     MainController.Free;

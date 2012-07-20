@@ -1,6 +1,6 @@
 object ProfilesView: TProfilesView
-  Left = 610
-  Top = 149
+  Left = 795
+  Top = 218
   Width = 603
   Height = 405
   Caption = 'Gesti'#243'n de Perfiles'

@@ -2,12 +2,13 @@ unit MainControllerClass;
 
 interface
 
-uses Classes, StdCtrls, SysUtils,
+uses Classes, StdCtrls, SysUtils, Windows,
      DBController,
      LoginController,
      ConfigurationClass,
      MenuAdminController,
-     Windows;
+     EnterprisesListController,
+     UserClass;
 
 type
   TMainController = class
@@ -15,7 +16,9 @@ type
     FDBMainController   :TDBController;
     FLoginController    :TLoginController;
     FConfiguration      :TConfiguration;
+    FConnectedUser      :TUser;
     //FMainMenu           :TMainMenuController;
+    FEnterprisesList    :TEnterprisesListController;
     FMenuAdmin          :TMenuAdminController;
     procedure ShowMainMenu;
     procedure ShowMenuAdmin;
@@ -142,6 +145,8 @@ end;
 
 procedure TMainController.ShowMainMenu;
 begin
+   FEnterprisesList := TEnterprisesListController.Create(DBMain);
+   FEnterprisesList.Showview;
   //FMainMenu := TMainMenuController.Create();
   //FMainMenu.DBController := DBMainController;
   //FMainMenu.ShowView;
