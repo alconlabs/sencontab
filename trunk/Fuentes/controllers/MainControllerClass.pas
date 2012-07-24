@@ -39,7 +39,7 @@ type
 implementation
 
 uses Controls, Dialogs, ShellAPI, Forms,
-     MenuPrincipal;
+     MenuPrincipal, DM;
   //Windows;
   //Messages,
   //SysUtils,
@@ -163,6 +163,7 @@ begin
 
       //FMainMenu.DBController := DBMainController;
       //FMenuMain.ShowView;
+      Application.CreateForm(TDMRef, DMRef);
       Application.CreateForm(TFormPrincipal, FormPrincipal);
       FormPrincipal.Show;
       Application.Run;

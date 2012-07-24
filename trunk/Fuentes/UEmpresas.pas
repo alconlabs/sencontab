@@ -19,10 +19,8 @@ type
     QFicheroID_EMPRESA: TIntegerField;
     QFicheroULTIMA: TIBStringField;
     QFicheroSERVIDOR: TIBStringField;
-    Panel2: TPanel;
     StatusBar: TStatusBar;
     Panel4: TPanel;
-    Panel3: TPanel;
     Rejilla: TDBGrid;
     Panel1: TPanel;
     BtnNavAniadir: TBitBtn;
@@ -34,7 +32,6 @@ type
     BtnNavCopiar: TBitBtn;
     BtnNavSelecciona: TBitBtn;
     BtnNavUtilidades: TBitBtn;
-    Panel5: TPanel;
     //procedure BtnNavAniadirClick(Sender: TObject);
     procedure BtnNavBorrarClick(Sender: TObject);
     procedure BtnEdtGuardarClick(Sender: TObject);
@@ -48,7 +45,6 @@ type
     procedure BtnNavCopiarClick(Sender: TObject);
     procedure QFicheroNewRecord(DataSet: TDataSet);
     procedure eNombreExit(Sender: TObject);
-    procedure BtnNavSeleccionaClick(Sender: TObject);
     procedure BtnNavDuplicarClick(Sender: TObject);
     procedure BtnNavUtilidadesClick(Sender: TObject);
   private
@@ -388,14 +384,6 @@ begin
       cUbicacion := Copy(cUbicacion, 1, i);
       QFicheroUbicacion.AsString := cUbicacion + Trim(QFicheroNombre.AsString) + '.ib';
    end;
-end;
-
-procedure TFormEnterprises.BtnNavSeleccionaClick(Sender: TObject);
-begin
-   //gvEmpresaActual := QFicheroID_EMPRESA.AsInteger;
-   //DMControlRef.AbrirEmpresa(gvEmpresaActual);
-   //FormPrincipal.PonerTituloMenu;
-   //Close;
 end;
 
 procedure TFormEnterprises.BtnNavDuplicarClick(Sender: TObject);

@@ -82,7 +82,6 @@ type
     procedure FormCreate(Sender: TObject);
     procedure SMBtnSalirClick(Sender: TObject);
     procedure ApplicationEventsException(Sender: TObject; E: Exception);
-    procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure Enlace1Open(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure ppHeaderBand1BeforePrint(Sender: TObject);
@@ -397,21 +396,6 @@ begin
 
    {***************************************************************************************}
 
-   {probando el arranque}
-   //if not gvDemo and (DMControlRef.QControlPEDIR_CLAVE.AsString <> 'N') then begin
-   //   if not TFormLogin.MuestraModal then Application.Terminate;
-   //   try FormSplash := TFormSplash.Create(nil);
-   //       FormSplash.ActivarTemporizador;
-   //       FormSplash.ShowModal;
-   //       FormSplash.Update;
-   //   finally FormSplash.Free;
-   //   end;
-   //end;
-   //
-   //if (gvUsuario = gcUsuarioDesbloqueo) or (DMControlRef.QControlPEDIR_CLAVE.AsString = 'N') then begin
-   //   gvEmpresaActual := -1;
-   //end;
-
    { Este valor indica a AbrirEmpresa un modo de funcionamiento. }
    //DMControlRef.AbrirEmpresa(gvEmpresaActual);
 end;
@@ -451,16 +435,6 @@ begin
       end;
 
       MessageDlg(Mensaje, mtInformation, [mbOK], 0);
-   end;
-end;
-
-procedure TFormPrincipal.FormKeyPress(Sender: TObject; var Key: Char);
-begin
-   if (Key = Chr(VK_RETURN)) then begin
-      if not (ActiveControl is TwwDBGrid) then begin
-         Key := #0;
-         SelectNext(ActiveControl, GetKeyState(vk_Shift) and $80 = 0, True);
-      end;
    end;
 end;
 

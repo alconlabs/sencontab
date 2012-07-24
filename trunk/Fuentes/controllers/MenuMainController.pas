@@ -63,12 +63,12 @@ end;
 
 procedure TMenuMainController.ShowView;
 begin
-  Application.CreateForm(TFormMenuMain, FView);
+   Application.CreateForm(TFormMenuMain, FView);
    FView.AppleIcons := [aiClose];
    FView.AppleIconsVisibles := [aiClose];
    { Delegates Assignation }
    FView.LabelUsers.OnClick       := LabelUsersClick;
-  FView.Show;
+   FView.Show;
 end;
 
 end.

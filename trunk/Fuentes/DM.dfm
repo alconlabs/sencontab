@@ -2,41 +2,30 @@ object DMRef: TDMRef
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
-  Left = 629
-  Top = 256
-  Height = 375
+  Left = 694
+  Top = 274
+  Height = 709
   Width = 583
   object IBDSiamCont: TIBDatabase
-    Connected = True
-    DatabaseName = 'localhost:c:\cviews\datos\SIAMCONT.ib'
     Params.Strings = (
       'user_name=SYSDBA'
       'password=masterkey')
     LoginPrompt = False
-    DefaultTransaction = IBT1
     IdleTimer = 0
     SQLDialect = 1
     TraceFlags = []
-    Left = 98
-    Top = 8
-  end
-  object IBT1: TIBTransaction
-    Active = True
-    DefaultDatabase = IBDSiamCont
-    AutoStopAction = saNone
-    Left = 168
-    Top = 8
+    AllowStreamedConnected = False
+    Left = 106
+    Top = 24
   end
   object QAuxiliar: TIBSQL
     Database = IBDSiamCont
     ParamCheck = True
-    Transaction = IBT1
-    Left = 232
-    Top = 8
+    Left = 280
+    Top = 32
   end
   object QProvinciasNom: TIBTableSet
     Database = IBDSiamCont
-    Transaction = IBT1
     BufferChunks = 1000
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -78,8 +67,8 @@ object DMRef: TDMRef
         '  PROVINCIA                      =:PROVINCIA                    ' +
         '   ')
     TableName = 'provincias'
-    Left = 398
-    Top = 8
+    Left = 286
+    Top = 184
     object QProvinciasNomPROVINCIA: TIBStringField
       FieldName = 'PROVINCIA'
       Origin = 'PROVINCIAS.PROVINCIA'
@@ -101,7 +90,6 @@ object DMRef: TDMRef
   end
   object QPaisNom: TIBTableSet
     Database = IBDSiamCont
-    Transaction = IBT1
     BufferChunks = 1000
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -140,8 +128,8 @@ object DMRef: TDMRef
         '  PAIS                           =:PAIS                         ' +
         '   ')
     TableName = 'PAISES'
-    Left = 306
-    Top = 8
+    Left = 154
+    Top = 376
     object QPaisNomPAIS: TIBStringField
       FieldName = 'PAIS'
       Origin = 'PAISES.PAIS'
@@ -157,7 +145,6 @@ object DMRef: TDMRef
   end
   object QParametros: TIBDataSet
     Database = IBDSiamCont
-    Transaction = IBT1
     BufferChunks = 1000
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -1001,8 +988,8 @@ object DMRef: TDMRef
       
         '  ID_PARAMETROS                  =:old_ID_PARAMETROS            ' +
         '       ')
-    Left = 484
-    Top = 8
+    Left = 284
+    Top = 128
     object QParametrosID_PARAMETROS: TSmallintField
       FieldName = 'ID_PARAMETROS'
       Origin = 'PARAMETROS.ID_PARAMETROS'
@@ -2006,7 +1993,6 @@ object DMRef: TDMRef
   end
   object QAnaliticas: TIBTableSet
     Database = IBDSiamCont
-    Transaction = IBT1
     BufferChunks = 32
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -2061,7 +2047,7 @@ object DMRef: TDMRef
         '  CUENTA                         =:CUENTA                       ' +
         '   ')
     TableName = 'analiticas'
-    Left = 39
+    Left = 47
     Top = 82
     object QAnaliticasCUENTA: TIBStringField
       DisplayWidth = 10
@@ -2103,7 +2089,6 @@ object DMRef: TDMRef
   end
   object QAnaliticasNom: TIBTableSet
     Database = IBDSiamCont
-    Transaction = IBT1
     BufferChunks = 32
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -2158,7 +2143,7 @@ object DMRef: TDMRef
         '  CUENTA                         =:CUENTA                       ' +
         '   ')
     TableName = 'analiticas'
-    Left = 111
+    Left = 151
     Top = 82
     object IBStringField45: TIBStringField
       DisplayWidth = 30
@@ -2200,7 +2185,6 @@ object DMRef: TDMRef
   end
   object QDelegacionNom: TIBTableSet
     Database = IBDSiamCont
-    Transaction = IBT1
     BufferChunks = 32
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -2239,7 +2223,7 @@ object DMRef: TDMRef
         '  ID_DELEGACION                  =:ID_DELEGACION                ' +
         '   ')
     TableName = 'delegacion'
-    Left = 135
+    Left = 151
     Top = 138
     object QDelegacionNomNOMBRE: TIBStringField
       DisplayWidth = 30
@@ -2259,7 +2243,6 @@ object DMRef: TDMRef
   end
   object QDepartamentoNom: TIBTableSet
     Database = IBDSiamCont
-    Transaction = IBT1
     BufferChunks = 32
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -2298,8 +2281,8 @@ object DMRef: TDMRef
         '  ID_DEPARTAMENTO                =:ID_DEPARTAMENTO              ' +
         '   ')
     TableName = 'departamento'
-    Left = 311
-    Top = 82
+    Left = 151
+    Top = 314
     object QDepartamentoNomNOMBRE: TIBStringField
       DisplayWidth = 30
       FieldName = 'NOMBRE'
@@ -2318,7 +2301,6 @@ object DMRef: TDMRef
   end
   object QProyectoNom: TIBTableSet
     Database = IBDSiamCont
-    Transaction = IBT1
     BufferChunks = 32
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -2357,8 +2339,8 @@ object DMRef: TDMRef
         '  ID_PROYECTO                    =:ID_PROYECTO                  ' +
         '   ')
     TableName = 'proyecto'
-    Left = 407
-    Top = 82
+    Left = 151
+    Top = 442
     object QProyectoNomNOMBRE: TIBStringField
       DisplayWidth = 30
       FieldName = 'NOMBRE'
@@ -2375,7 +2357,6 @@ object DMRef: TDMRef
   end
   object QSeccionNom: TIBTableSet
     Database = IBDSiamCont
-    Transaction = IBT1
     BufferChunks = 32
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -2414,8 +2395,8 @@ object DMRef: TDMRef
         '  ID_SECCION                     =:ID_SECCION                   ' +
         '   ')
     TableName = 'seccion'
-    Left = 487
-    Top = 82
+    Left = 151
+    Top = 506
     object QSeccionNomNOMBRE: TIBStringField
       DisplayWidth = 30
       FieldName = 'NOMBRE'
@@ -2432,7 +2413,6 @@ object DMRef: TDMRef
   end
   object QDelegacion: TIBTableSet
     Database = IBDSiamCont
-    Transaction = IBT1
     BufferChunks = 32
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -2487,7 +2467,6 @@ object DMRef: TDMRef
   end
   object QDepartamento: TIBTableSet
     Database = IBDSiamCont
-    Transaction = IBT1
     BufferChunks = 32
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -2526,8 +2505,8 @@ object DMRef: TDMRef
         '  ID_DEPARTAMENTO                =:ID_DEPARTAMENTO              ' +
         '   ')
     TableName = 'departamento'
-    Left = 311
-    Top = 138
+    Left = 47
+    Top = 314
     object IBStringField3: TIBStringField
       FieldName = 'NOMBRE'
       Origin = 'DEPARTAMENTO.NOMBRE'
@@ -2542,7 +2521,6 @@ object DMRef: TDMRef
   end
   object QProyecto: TIBTableSet
     Database = IBDSiamCont
-    Transaction = IBT1
     BufferChunks = 32
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -2581,8 +2559,8 @@ object DMRef: TDMRef
         '  ID_PROYECTO                    =:ID_PROYECTO                  ' +
         '   ')
     TableName = 'proyecto'
-    Left = 407
-    Top = 138
+    Left = 47
+    Top = 442
     object IBStringField5: TIBStringField
       FieldName = 'NOMBRE'
       Origin = 'PROYECTO.NOMBRE'
@@ -2597,7 +2575,6 @@ object DMRef: TDMRef
   end
   object QSeccion: TIBTableSet
     Database = IBDSiamCont
-    Transaction = IBT1
     BufferChunks = 32
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -2636,8 +2613,8 @@ object DMRef: TDMRef
         '  ID_SECCION                     =:ID_SECCION                   ' +
         '   ')
     TableName = 'seccion'
-    Left = 487
-    Top = 146
+    Left = 47
+    Top = 506
     object IBStringField7: TIBStringField
       FieldName = 'NOMBRE'
       Origin = 'SECCION.NOMBRE'
@@ -2652,7 +2629,6 @@ object DMRef: TDMRef
   end
   object QComercial: TIBTableSet
     Database = IBDSiamCont
-    Transaction = IBT1
     BufferChunks = 32
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -2692,7 +2668,7 @@ object DMRef: TDMRef
         '   ')
     TableName = 'comerciales'
     Left = 47
-    Top = 210
+    Top = 194
     object QComercialNOMBRE: TIBStringField
       FieldName = 'NOMBRE'
       Origin = 'COMERCIALES.NOMBRE'
@@ -2707,7 +2683,6 @@ object DMRef: TDMRef
   end
   object QcomercialNom: TIBTableSet
     Database = IBDSiamCont
-    Transaction = IBT1
     BufferChunks = 32
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -2746,8 +2721,8 @@ object DMRef: TDMRef
         '  COMERCIAL                      =:COMERCIAL                    ' +
         '   ')
     TableName = 'comerciales'
-    Left = 47
-    Top = 266
+    Left = 151
+    Top = 194
     object IBStringField9: TIBStringField
       DisplayWidth = 50
       FieldName = 'NOMBRE'
@@ -2764,7 +2739,6 @@ object DMRef: TDMRef
   end
   object QFormaPago: TIBTableSet
     Database = IBDSiamCont
-    Transaction = IBT1
     BufferChunks = 32
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -2819,8 +2793,8 @@ object DMRef: TDMRef
         '  FORMAPAGO                      =:FORMAPAGO                    ' +
         '   ')
     TableName = 'formas'
-    Left = 151
-    Top = 210
+    Left = 47
+    Top = 250
     object QFormaPagoFORMAPAGO: TIBStringField
       FieldName = 'FORMAPAGO'
       Origin = 'FORMAS.FORMAPAGO'
@@ -2856,7 +2830,6 @@ object DMRef: TDMRef
   end
   object QFormaPagoNom: TIBTableSet
     Database = IBDSiamCont
-    Transaction = IBT1
     BufferChunks = 32
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -2912,7 +2885,7 @@ object DMRef: TDMRef
         '   ')
     TableName = 'formas'
     Left = 151
-    Top = 266
+    Top = 250
     object IBStringField11: TIBStringField
       FieldName = 'FORMAPAGO'
       Origin = 'FORMAS.FORMAPAGO'
@@ -2948,7 +2921,6 @@ object DMRef: TDMRef
   end
   object QTipoDiario: TIBTableSet
     Database = IBDSiamCont
-    Transaction = IBT1
     BufferChunks = 32
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -2987,8 +2959,8 @@ object DMRef: TDMRef
         '  TIPODIARIO                     =:TIPODIARIO                   ' +
         '   ')
     TableName = 'tipodiario'
-    Left = 247
-    Top = 202
+    Left = 47
+    Top = 562
     object QTipoDiarioDESCRIPCION: TIBStringField
       FieldName = 'DESCRIPCION'
       Origin = 'TIPODIARIO.DESCRIPCION'
@@ -3004,7 +2976,6 @@ object DMRef: TDMRef
   end
   object QTipodiarioNom: TIBTableSet
     Database = IBDSiamCont
-    Transaction = IBT1
     BufferChunks = 32
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -3043,8 +3014,8 @@ object DMRef: TDMRef
         '  TIPODIARIO                     =:TIPODIARIO                   ' +
         '   ')
     TableName = 'tipodiario'
-    Left = 255
-    Top = 266
+    Left = 151
+    Top = 562
     object IBStringField15: TIBStringField
       FieldName = 'DESCRIPCION'
       Origin = 'TIPODIARIO.DESCRIPCION'
@@ -3067,22 +3038,22 @@ object DMRef: TDMRef
     IdleTimer = 0
     SQLDialect = 1
     TraceFlags = []
-    Left = 360
-    Top = 272
+    Left = 392
+    Top = 184
   end
   object IBTConsolida: TIBTransaction
     Active = False
     DefaultDatabase = IBDConsolida
     AutoStopAction = saNone
-    Left = 458
-    Top = 272
+    Left = 490
+    Top = 184
   end
   object TransBdEjanterior: TIBTransaction
     Active = False
     DefaultDatabase = BDEjAnterior
     AutoStopAction = saNone
-    Left = 458
-    Top = 224
+    Left = 490
+    Top = 136
   end
   object BDEjAnterior: TIBDatabase
     Params.Strings = (
@@ -3093,7 +3064,35 @@ object DMRef: TDMRef
     IdleTimer = 0
     SQLDialect = 1
     TraceFlags = []
-    Left = 360
-    Top = 224
+    Left = 392
+    Top = 136
+  end
+  object DB: TCRSQLConnection
+    ConnectionName = 'SQLServerConnection'
+    DriverName = 'SQLServer'
+    GetDriverFunc = 'getSQLDriverSQLServer'
+    LibraryName = 'dbexpsda.dll'
+    LoginPrompt = False
+    Params.Strings = (
+      'BlobSize=-1'
+      'HostName=.'
+      'DataBase=AVEZZO'
+      'DriverName=SQLServer'
+      'User_Name=sa'
+      'Password=masterkey'
+      'LongStrings=True'
+      'EnableBCD=True'
+      'FetchAll=True')
+    VendorLib = 'oledb'
+    Connected = True
+    Left = 39
+    Top = 23
+  end
+  object IBT1: TIBTransaction
+    Active = False
+    DefaultDatabase = IBDSiamCont
+    AutoStopAction = saNone
+    Left = 176
+    Top = 24
   end
 end

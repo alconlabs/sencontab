@@ -2,8 +2,8 @@ object DMContaRef: TDMContaRef
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
-  Left = 316
-  Top = 247
+  Left = 647
+  Top = 261
   Height = 607
   Width = 1098
   object QGrupos: TIBTableSet
@@ -10122,8 +10122,8 @@ object DMContaRef: TDMContaRef
         '  SUBCUENTA                      =:SUBCUENTA                    ' +
         '   ')
     TableName = 'SUBCTAS'
-    Left = 966
-    Top = 420
+    Left = 790
+    Top = 428
     object QSubCTAIVADeducibleIntraDESCRIPCION: TIBStringField
       FieldName = 'DESCRIPCION'
       Origin = 'SUBCTAS.DESCRIPCION'
@@ -10450,8 +10450,8 @@ object DMContaRef: TDMContaRef
         '  SUBCUENTA                      =:SUBCUENTA                    ' +
         '   ')
     TableName = 'SUBCTAS'
-    Left = 966
-    Top = 476
+    Left = 790
+    Top = 484
     object QSubCTAIVADeducibleIntraDescDESCRIPCION: TIBStringField
       FieldName = 'DESCRIPCION'
       Origin = 'SUBCTAS.DESCRIPCION'

@@ -78,7 +78,6 @@ uses
   InfBalanceSituacion in 'Fuentes\InfBalanceSituacion.pas',
   ccChildForm in 'Fuentes\ccChildForm.pas' {ccFormChild},
   ccDBIntegrity in 'Fuentes\ccDBIntegrity.pas',
-  Login in 'Fuentes\Login.pas' {FormLogin},
   FormHandler in 'Fuentes\FormHandler.pas',
   SearchAccount in 'Fuentes\SearchAccount.pas' {FormSearchAccount},
   SearchConcept in 'Fuentes\SearchConcept.pas' {FormSearchConcept},
