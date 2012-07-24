@@ -1,6 +1,6 @@
 object WParametrizacion: TWParametrizacion
-  Left = 404
-  Top = 235
+  Left = 535
+  Top = 310
   BorderStyle = bsNone
   Caption = 'Parametrizaci'#243'n'
   ClientHeight = 504
@@ -1208,24 +1208,6 @@ object WParametrizacion: TWParametrizacion
           PictureMask = 'XXXX-XXXX-XX-XXXXXXXXXX'
           TabOrder = 17
         end
-        object DBCheckBox1: TDBCheckBox
-          Left = 18
-          Top = 329
-          Width = 224
-          Height = 17
-          Caption = 'Solicitar clave de acceso a SiamCont'
-          DataField = 'PEDIR_CLAVE'
-          DataSource = DSControl
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clNavy
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 25
-          ValueChecked = 'S'
-          ValueUnchecked = 'N'
-        end
         object DBCheckBox2: TDBCheckBox
           Left = 18
           Top = 312
@@ -1258,7 +1240,7 @@ object WParametrizacion: TWParametrizacion
           Font.Name = 'Arial'
           Font.Style = [fsBold]
           ParentFont = False
-          TabOrder = 26
+          TabOrder = 25
           ValueChecked = 'S'
           ValueUnchecked = 'N'
         end
@@ -1274,7 +1256,7 @@ object WParametrizacion: TWParametrizacion
           Font.Name = 'Arial'
           Font.Style = [fsBold]
           ParentFont = False
-          TabOrder = 29
+          TabOrder = 28
           object Label76: TLabel
             Left = 167
             Top = 20
@@ -1497,7 +1479,7 @@ object WParametrizacion: TWParametrizacion
             'Por Subcuenta'
             'Por Descripci'#243'n')
           ParentFont = False
-          TabOrder = 28
+          TabOrder = 27
           Values.Strings = (
             'S'
             'D')
@@ -1589,7 +1571,7 @@ object WParametrizacion: TWParametrizacion
           Font.Name = 'Arial'
           Font.Style = [fsBold]
           ParentFont = False
-          TabOrder = 27
+          TabOrder = 26
           ValueChecked = 'S'
           ValueUnchecked = 'N'
         end
@@ -3414,7 +3396,7 @@ object WParametrizacion: TWParametrizacion
   object DSFichero: TDataSource
     AutoEdit = False
     DataSet = DMRef.QParametros
-    Left = 305
+    Left = 585
     Top = 5
   end
   object OvcController1: TOvcController
@@ -3429,18 +3411,18 @@ object WParametrizacion: TWParametrizacion
       False
       ())
     Epoch = 2000
-    Left = 504
+    Left = 704
     Top = 8
   end
   object CDSFiltro: TClientDataSet
     Aggregates = <>
     Params = <>
-    Left = 210
+    Left = 474
     Top = 8
   end
   object DSFiltro: TDataSource
     DataSet = CDSFiltro
-    Left = 242
+    Left = 530
     Top = 8
   end
   object OpenDialog: TOpenDialog
@@ -3451,8 +3433,7 @@ object WParametrizacion: TWParametrizacion
   end
   object DSControl: TDataSource
     AutoEdit = False
-    DataSet = DmControlRef.QControl
-    Left = 346
+    Left = 642
     Top = 5
   end
 end

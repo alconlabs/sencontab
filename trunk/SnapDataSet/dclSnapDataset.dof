@@ -138,3 +138,11 @@ Comments=
 C:\PROGRA~1\Borland\Delphi7\Projects\Bpl\JclDebugIdeD70.bpl='JCL Debug IDE extension for Delphi 7'
 C:\PROGRA~1\Borland\Delphi7\Projects\Bpl\ProjectAnalyzerD70.bpl='JCL Project Analyzer for Delphi 7'
 C:\PROGRA~1\Borland\Delphi7\Projects\Bpl\IdeOpenDlgFavoriteD70.bpl='JCL Open and Save IDE dialogs with favorite folders for Delphi 7'
+[HistoryLists\hlUnitAliases]
+Count=1
+Item0=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;
+[HistoryLists\hlSearchPath]
+Count=3
+Item0=..\dunit\src;..\Componentes7\PaqueteBaseDatos\IBTableSet;..\Componentes7\PaqueteBaseDatos\NavegadorNotarios;..\Componentes7\PaqueteSiam\Mensaje;..\Componentes7\PaqueteSiam\Registro;..\OnGuard;..\OPartner7;..\Animated Menus;..\Extra\Source;..\IbScript\source\vcl;..\Siamlib7;..\ShellShock
+Item1=..\Componentes7\PaqueteBaseDatos\IBTableSet;..\Componentes7\PaqueteBaseDatos\NavegadorNotarios;..\Componentes7\PaqueteSiam\Mensaje;..\Componentes7\PaqueteSiam\Registro;..\OnGuard;..\OPartner7;..\Animated Menus;..\Extra\Source;..\IbScript\source\vcl;..\Siamlib7;..\ShellShock
+Item2=..\Componentes7\PaqueteBaseDatos\IBTableSet;..\Componentes7\PaqueteBaseDatos\NavegadorNotarios;..\Componentes7\PaqueteSiam\Mensaje;..\Componentes7\PaqueteSiam\Registro;..\OnGuard;..\OPartner7;..\Animated Menus;..\Extra\Source;C:\cviews\IbScript\source\vcl

@@ -2,10 +2,10 @@ object DMContaRef: TDMContaRef
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
-  Left = 10
-  Top = 18
-  Height = 436
-  Width = 638
+  Left = 316
+  Top = 247
+  Height = 607
+  Width = 1098
   object QGrupos: TIBTableSet
     Database = DMRef.IBDSiamCont
     Transaction = Transaccion

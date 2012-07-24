@@ -93,7 +93,7 @@ type
 var WAnaliticas: TWAnaliticas;
 
 implementation
-uses DM, DMConta, DMControl, General, Globales, MenuPrincipal;
+uses DM, DMConta, General, Globales, MenuPrincipal;
 {$R *.DFM}
 
 const CADENA_BORRADO = 'Tiene asientos en el diario con ese concepto';
@@ -166,10 +166,10 @@ end;
 
 procedure TWAnaliticas.BtnNavAniadirClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), ANIADIR) then begin
-      Exit;
-   end;
-
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), ANIADIR) then begin
+   //   Exit;
+   //end;
+   
    Navegador.Visible := False;
    eCuenta.SetFocus;
    QFichero.Insert;
@@ -178,9 +178,9 @@ end;
 
 procedure TWAnaliticas.BtnNavBorrarClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), BORRAR) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), BORRAR) then begin
+   //   Exit;
+   //end;
 
    if not QFichero.IsEmpty then   begin
       if MessageDlg('¿Desea borrar esta cuenta analítica?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
@@ -195,9 +195,9 @@ end;
 
 procedure TWAnaliticas.BtnNavImprimirClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), IMPRESION) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), IMPRESION) then begin
+   //   Exit;
+   //end;
 
    FormPrincipal.LanzarListado('LAnaliticas.rtm', SFichero);
 end;
@@ -257,9 +257,9 @@ end;
 
 procedure TWAnaliticas.RejillaDblClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), MODIFICAR) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), MODIFICAR) then begin
+   //   Exit;
+   //end;
 
    if not QFichero.IsEmpty then  begin
       Navegador.Visible := False;

@@ -163,7 +163,7 @@ type
 
 var WCargaCobrosPagos: TWCargaCobrosPagos;
 implementation
-uses Cadenas, DM, DMConta, DMControl, General, Globales, InfMayor, letras, UCargaAsiento,
+uses Cadenas, DM, DMConta, General, Globales, InfMayor, letras, UCargaAsiento,
      UCargaRapidaNominas, UCarteraEfectos, UDiario, UFiltroMayorSubcuenta, UNuevaSubcuenta, MenuPrincipal;
 {$R *.DFM}
 
@@ -930,9 +930,9 @@ begin
    end;
 
    if not QCobrosPagos.IsEmpty then  begin
-      if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WDIARIO') then begin
-         Exit;
-      end;
+      //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WDIARIO') then begin
+      //   Exit;
+      //end;
 
       if QCobrosPagosSUBCUENTA.AsString <> '' then begin
          if MessageDlg('El asiento seleccionado ya tiene subcuenta.' +
@@ -1005,9 +1005,9 @@ begin
             #13 + '¿Desea continuar?', mtConfirmation, [mbYes, mbNo], 0) = mrNo then Exit;
       end;
 
-      if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WCARTERAEFECTOS') then begin
-         Exit;
-      end;
+      //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WCARTERAEFECTOS') then begin
+      //   Exit;
+      //end;
 
       if Assigned(WCarteraEfectos) then   begin
          WCarteraEfectos.Close;

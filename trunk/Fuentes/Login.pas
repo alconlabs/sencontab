@@ -38,7 +38,7 @@ type
 var FormLogin :TFormLogin;
 
 implementation
-uses General, Globales, DMControl, IBQuery;
+uses General, Globales, IBQuery;
 {$R *.DFM}
 
 class function TFormLogin.MuestraModal:Boolean;
@@ -86,14 +86,14 @@ procedure TFormLogin.BtnAceptarClick(Sender: TObject);
          Result          := True;
          Exit;
       end;
-      
-      Q := DMControlRef.CreateQuery(['SELECT NOMBRE,               ',
-                                     '       CLAVE ,               ',
-                                     '       ID_USUARIO,           ',
-                                     '       ID_EMPRESA            ',
-                                     'FROM   USUARIOS              ',
-                                     'WHERE  NOMBRE = :prmUSUARIO  ',
-                                     'AND    CLAVE  = :prmPASSWORD ']);
+
+      //Q := DMControlRef.CreateQuery(['SELECT NOMBRE,               ',
+      //                               '       CLAVE ,               ',
+      //                               '       ID_USUARIO,           ',
+      //                               '       ID_EMPRESA            ',
+      //                               'FROM   USUARIOS              ',
+      //                               'WHERE  NOMBRE = :prmUSUARIO  ',
+      //                               'AND    CLAVE  = :prmPASSWORD ']);
       Q.ParamByName('prmUSUARIO' ).AsString := prmUSUARIO;
       Q.ParamByName('prmPASSWORD').AsString := prmPASSWORD;
       try Q.Open;

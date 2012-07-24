@@ -77,10 +77,13 @@ type
       TipoListado: Integer;
    end;
 
+
+{TODO: Debe existir una lista de empresas para el componente de selección de la empresa del Ejercicion Anterior}
+
 var WFiltroSitPgGg: TWFiltroSitPgGg;
 
 implementation
-uses DM, DMConta, DMControl, General, Globales, xprocs, DMBalances;
+uses DM, DMConta, General, Globales, xprocs, DMBalances;
 {$R *.DFM}
 
 procedure TWFiltroSitPgGg.CrearFiltro;
@@ -124,7 +127,8 @@ begin
    lbEmpresas.Clear;
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with TIBQuery.Create(nil), SQL do begin
-      Database := DmControlRef.BDControl;
+      //Database := DmControlRef.BDControl;
+      {$Message Warn 'Requiere una adaptación a SQL Server'}
       Close;
       Clear;
       Add('SELECT NOMBRE FROM EMPRESAS');

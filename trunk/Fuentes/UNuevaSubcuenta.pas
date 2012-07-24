@@ -190,7 +190,7 @@ type
 var WNuevaSubcuenta: TWNuevaSubcuenta;
 
 implementation
-uses DM, DMConta, DMControl, General, Globales, Letras, MenuPrincipal;
+uses DM, DMConta, General, Globales, Letras, MenuPrincipal;
 {$R *.DFM}
 
 const CADENA_MANUAL = 'Seleccione AYUDA si desea obtener más información sobre el problema surgido';

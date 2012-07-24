@@ -65,7 +65,7 @@ type
 var WCopiaAsientos: TWCopiaAsientos;
 
 implementation
-uses Cadenas, DM, DMConta, DMControl, General, Globales, UEspere, MenuPrincipal;
+uses Cadenas, DM, DMConta, General, Globales, UEspere, MenuPrincipal;
 {$R *.DFM}
 
 const CADENA_MANUAL = 'Seleccione AYUDA si desea obtener más información sobre el problema surgido';
@@ -108,7 +108,9 @@ begin
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with TIBSql.Create(nil), sql do begin
       Close;
-      Database := DMControlRef.BDControl;
+      {$Message Warn 'Se debe adaptar esta parte para el trabajo con SQL Server'}
+      //Database := DMControlRef.BDControl;
+
       Add('SELECT ubicacion,servidor From empresas');
       Add('WHERE id_empresa=:id_empresa');
       parambyname('id_empresa').AsInteger := QFiltro.FieldByName('Empresa').AsInteger;

@@ -122,7 +122,6 @@ type
       OvcDbPictureField11: TOvcDbPictureField;
       OvcDbPictureField12: TOvcDbPictureField;
       OvcDbPictureField13: TOvcDbPictureField;
-      DBCheckBox1:      TDBCheckBox;
       DSControl:        TDataSource;
       DBCheckBox2:      TDBCheckBox;
       DBCheckBox5:      TDBCheckBox;
@@ -177,7 +176,7 @@ type
 var WParametrizacion: TWParametrizacion;
 
 implementation
-uses DM, DMConta, DMControl, General, Globales, InfAsientos, ststrs, MenuPrincipal;
+uses DM, DMConta, General, Globales, InfAsientos, ststrs, MenuPrincipal;
 {$R *.DFM}
 
 const CADENA_MANUAL = 'Seleccione AYUDA si desea obtener más información sobre el problema surgido';
@@ -312,8 +311,8 @@ begin
    try
       DMRef.QParametros.Post;
       DMRef.QParametros.Transaction.CommitRetaining;
-      DmControlRef.QControl.Post;
-      DmControlRef.QControl.Transaction.CommitRetaining;
+      //DmControlRef.QControl.Post;
+      //DmControlRef.QControl.Transaction.CommitRetaining;
    except
       DatabaseError('Error al guardar los datos');
    end;
@@ -333,11 +332,11 @@ procedure TWParametrizacion.BtnEdtCancelarClick(Sender: TObject);
 begin
    Perform(wm_NextDlgCtl, 0, 0);
 
-   if not(DMRef.QParametros.Modified or DmControlRef.QControl.Modified) then Exit;
+   if not(DMRef.QParametros.Modified {or DmControlRef.QControl.Modified}) then Exit;
 
    if MessageDlg('¿Quiere anular las modificaciones realizadas?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
       try DMRef.QParametros.Cancel;
-          DmControlRef.QControl.Cancel;
+          {DmControlRef.QControl.Cancel;}
       except DatabaseError('No se ha podido cancelar la operación.' + #13 + CADENA_MANUAL);
       end;
       Modo(Self, Naveg);
@@ -360,9 +359,9 @@ begin
       end;
    end;
 
-   if not (DmControlRef.QControl.State in dsEditModes) then   begin
+   {if not (DmControlRef.QControl.State in dsEditModes) then   begin
       DmControlRef.QControl.Edit;
-   end;
+   end;}
 
    eNombreFiscal.SetFocus;
 end;

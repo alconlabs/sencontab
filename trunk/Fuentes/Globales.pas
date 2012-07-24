@@ -1,6 +1,5 @@
 unit Globales;
 interface
-uses OnGuard;
 
 type
    TOWValues         = (OW_WPROVINCIAS, OW_WPAISES);
@@ -9,8 +8,6 @@ type
    TPermiso          = (ANIADIR, MODIFICAR, BORRAR, IMPRESION);
 
 const
-   cClaveApp: TKey = ($30, $8E, $20, $C5, $B9, $6D, $42, $86, $4A, $24, $8C, $3E, $95, $BB, $1D, $B3);
-
    gcMascaraPorcentajes = '##0.00 %';
    gcFormatoFecha       = 'dd/mm/yyyy';
    gcFormatoDecimales: array [0..3] of String = ('###,###,###', '###,###,###.#',
@@ -101,30 +98,28 @@ const
    COLOR_ASIENTO2 = $00D9D1C0;
 
 var
-   gvWIndice:        Integer;
-   gvDirectorio:     String;
-   gvDirInformes:    String;
-   gvUsuario:        String;
-   gvID_Usuario:     Integer;
-   gvPuesto:         String;
-   gvCanEdit:        Boolean;
-   gvMonedaNueva:    Integer;
-   gvLongitudSubcuenta: Integer;
-   gvEmpresaActual:  Integer;
-   gvUbicacionEmpresa: String;
-   gvServidor:       String;
-   gvDirImagenes:    String;
-   gvDirAyuda:       String;
-   gvNombreEmpresa:  String;
-   gvNombreEmpresaMenu: String;
-   gvTratamientoRecargo: Boolean;
-   gvMonedaListado:  String;
-   gvTipoConta:      String;
-   gvProcesoAbortado: Boolean;
-   gvDemo:           Boolean;
-   gvFormatoOficial: Boolean;
-   gvComprobarRegistro: Boolean;
-
+   gvWIndice           :Integer;
+   gvDirectorio        :string;
+   gvDirInformes       :string;
+   gvUsuario           :string;
+   gvID_Usuario        :Integer;
+   gvPuesto            :string;
+   gvCanEdit           :Boolean;
+   gvMonedaNueva       :Integer;
+   gvLongitudSubcuenta :Integer;
+   gvEmpresaActual     :Integer;
+   gvUbicacionEmpresa  :string;
+   gvServidor          :string;
+   gvDirImagenes       :string;
+   gvDirAyuda          :string;
+   gvNombreEmpresa     :string;
+   gvNombreEmpresaMenu :string;
+   gvTratamientoRecargo:Boolean;
+   gvMonedaListado     :string;
+   gvTipoConta         :string;
+   gvProcesoAbortado   :Boolean;
+   gvFormatoOficial    :Boolean;
+   
 implementation
 
 

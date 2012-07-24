@@ -236,7 +236,7 @@ type
 var WCarteraEfectos: TWCarteraEfectos;
 
 implementation
-uses DM, DMConta, DMControl, General, Globales, Letras, UCargaCobrosPagos, UEfectosComerciales,
+uses DM, DMConta, General, Globales, Letras, UCargaCobrosPagos, UEfectosComerciales,
      UEspere, UGeneracionAsiento, MenuPrincipal, USituacionEfecto;
 {$R *.DFM}
 
@@ -1154,9 +1154,9 @@ end;
 
 procedure TWCarteraEfectos.BtnNavAnadirClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), ANIADIR) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), ANIADIR) then begin
+   //   Exit;
+   //end;
 
    lAdd := True;
    try
@@ -1185,10 +1185,10 @@ end;
 
 procedure TWCarteraEfectos.RejillaDblClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), MODIFICAR) then begin
-      Exit;
-   end;
-
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), MODIFICAR) then begin
+   //   Exit;
+   //end;
+   //
    if not QFichero.IsEmpty and (Rejilla.SelectedList.Count = 1) then  begin
       lAdd := False;
       try
@@ -1257,9 +1257,9 @@ end;
 
 procedure TWCarteraEfectos.BtnNavBorrarClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), BORRAR) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), BORRAR) then begin
+   //   Exit;
+   //end;
 
    if QFichero.IsEmpty then Exit;
    if MessageDlg('¿Desea borrar este efecto?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
@@ -1493,9 +1493,9 @@ end;
 
 procedure TWCarteraEfectos.InformeFVencClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), IMPRESION) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), IMPRESION) then begin
+   //   Exit;
+   //end;
 
    if CampoOrden <> 'FVENCIMIENTO' then  begin
       CampoOrden := 'FVENCIMIENTO';
@@ -1507,9 +1507,9 @@ end;
 
 procedure TWCarteraEfectos.InformeporSubcuenta1Click(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), IMPRESION) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), IMPRESION) then begin
+   //   Exit;
+   //end;
 
    if CampoOrden <> 'SUBCUENTA' then  begin
       CampoOrden := 'SUBCUENTA';
@@ -1520,9 +1520,9 @@ end;
 
 procedure TWCarteraEfectos.InformeporBanco1Click(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), IMPRESION) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), IMPRESION) then begin
+   //   Exit;
+   //end;
 
    if CampoOrden <> 'SUBCTABANCO' then  begin
       CampoOrden := 'SUBCTABANCO';
@@ -1533,9 +1533,9 @@ end;
 
 procedure TWCarteraEfectos.InformeporSituacin1Click(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), IMPRESION) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), IMPRESION) then begin
+   //   Exit;
+   //end;
 
    if CampoOrden <> 'SITUACION, FVENCIMIENTO' then  begin
       CampoOrden := 'SITUACION, FVENCIMIENTO';
@@ -1546,9 +1546,9 @@ end;
 
 procedure TWCarteraEfectos.InformeporComercial1Click(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), IMPRESION) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), IMPRESION) then begin
+   //   Exit;
+   //end;
 
    if CampoOrden <> 'COMERCIAL, SUBCUENTA, FVENCIMIENTO' then  begin
       CampoOrden := 'COMERCIAL, SUBCUENTA, FVENCIMIENTO';
@@ -1559,9 +1559,9 @@ end;
 
 procedure TWCarteraEfectos.BtnPermAsientoClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), MODIFICAR) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), MODIFICAR) then begin
+   //   Exit;
+   //end;
 
    if not QFichero.IsEmpty then  begin
       if QFichero.State in dsEditModes then   begin

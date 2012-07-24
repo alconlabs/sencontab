@@ -68,7 +68,7 @@ type
 var WBalExplotacion: TWBalExplotacion;
 
 implementation
-uses DM, DMConta, DMControl, General, Globales, UEspere, MenuPrincipal;
+uses DM, DMConta, General, Globales, UEspere, MenuPrincipal;
 {$R *.DFM}
 
 const
@@ -79,7 +79,8 @@ begin
    lbEmpresas.Clear;
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with TIBQuery.Create(nil), SQL do begin
-      Database := DmControlRef.BDControl;
+      {$Message Warn 'Requiere una adaptación a SQL Server'}
+      //Database := DmControlRef.BDControl;
       Close;
       Clear;
       Add('SELECT NOMBRE FROM EMPRESAS');

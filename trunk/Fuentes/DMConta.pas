@@ -318,8 +318,9 @@ uses General, Globales, DM, Splash;
 
 procedure TDMContaRef.ActualizarNumeroGasto(Gasto: Integer);
 begin
-   if Gasto < 0 then Gasto := 0;
-   DMRef.EjecutarSQL('SET GENERATOR GASTO TO ' + IntToStr(Gasto));
+   {$Message Warn 'Esto terminará en la Modelo correspondiente. De momento lo comentamos para poder desacernos de EjecutaSQL'}
+   //if Gasto < 0 then Gasto := 0;
+   //DMRef.EjecutarSQL('SET GENERATOR GASTO TO ' + IntToStr(Gasto));
 end;
 
 procedure TDMContaRef.RefrescarSubcuentas(Subcuenta: String);

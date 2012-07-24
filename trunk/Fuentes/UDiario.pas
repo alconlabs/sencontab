@@ -196,7 +196,7 @@ type
 var WDiario: TWDiario;
 
 implementation
-uses Cadenas, DM, DMConta, DMControl, General, InfAsientos, UCargaApuntes, UCargaAsiento,
+uses Cadenas, DM, DMConta, General, InfAsientos, UCargaApuntes, UCargaAsiento,
      UCargaCobrosPagos, UCargaRapidaNominas, UCarteraEfectos, UEspere, MenuPrincipal;
 {$R *.DFM}
 
@@ -224,12 +224,13 @@ end;
 
 procedure TWDiario.BorrarAsiento(ASIENTO: Integer);
 begin
-   try
-      DmRef.EjecutarSQL('DELETE FROM DIARIO ' + 'WHERE ' + 'ASIENTO = ' + IntToStr(ASIENTO));
-      PrepararQuery;
-   except
-      DatabaseError('No se ha podido borrar el asiento seleccionado.' + #13 + CADENA_MANUAL);
-   end;
+   {$Message Warn 'Esto terminará en la Modelo correspondiente. De momento lo comentamos para poder desacernos de EjecutaSQL'}
+   //try
+   //   DmRef.EjecutarSQL('DELETE FROM DIARIO ' + 'WHERE ' + 'ASIENTO = ' + IntToStr(ASIENTO));
+   //   PrepararQuery;
+   //except
+   //   DatabaseError('No se ha podido borrar el asiento seleccionado.' + #13 + CADENA_MANUAL);
+   //end;
 end;
 
 procedure TWDiario.CrearFiltro;
@@ -910,18 +911,18 @@ end;
 
 procedure TWDiario.BtnNavAnadirClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), ANIADIR) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), ANIADIR) then begin
+   //   Exit;
+   //end;
 
    AnyadirAsiento;
 end;
 
 procedure TWDiario.RejillaDblClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), MODIFICAR) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), MODIFICAR) then begin
+   //   Exit;
+   //end;
 
    ModificarAsiento;
 end;
@@ -957,10 +958,10 @@ end;
 
 procedure TWDiario.BtnNavBorrarClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), BORRAR) then begin
-      Exit;
-   end;
-
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), BORRAR) then begin
+   //   Exit;
+   //end;
+   
    if not QFichero.IsEmpty then begin
       if DMContaRef.AsientoBloqueado(QFicheroFECHA.AsDateTime) then begin
          DatabaseError('No se puede borrar un asiento bloqueado.');
@@ -1137,9 +1138,9 @@ end;
 
 procedure TWDiario.ListadoAsientosClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), IMPRESION) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), IMPRESION) then begin
+   //   Exit;
+   //end;
 
    // Necesarios para el informe
    PonerTipoConta(QFiltro.FieldByName('TipoConcepto').AsString);
@@ -1153,9 +1154,9 @@ end;
 
 procedure TWDiario.ListadoAsientoActualClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), IMPRESION) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), IMPRESION) then begin
+   //   Exit;
+   //end;
 
    // Primero vaciar el fichero
    DMContaRef.QInformesConta.EmptyDataset;
@@ -1232,9 +1233,9 @@ var
    nAsiento:           Integer;
    QDiario, QDuplicar: TIBsql;
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), ANIADIR) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), ANIADIR) then begin
+   //   Exit;
+   //end;
 
    if QFichero.IsEmpty then Exit;
    if MessageDlg('¿Desea duplicar el asiento ' + FormatFloat('###,###,###', QFicheroASIENTO.AsInteger) + ' ?',
@@ -1356,10 +1357,9 @@ end;
 procedure TWDiario.BtnNavVencimientosClick(Sender: TObject);
 var TipoCuenta :string;
 begin
-   if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WCARTERAEFECTOS') then begin
-      Exit;
-   end;
-
+   //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WCARTERAEFECTOS') then begin
+   //   Exit;
+   //end;
 
    if not QFichero.IsEmpty then  begin
       TipoCuenta := '';

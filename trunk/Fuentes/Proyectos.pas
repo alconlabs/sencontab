@@ -53,7 +53,7 @@ type
 
 var WProyectos: TWProyectos;
 implementation
-uses General, Globales, DM, DMControl, MenuPrincipal, Dialogs;
+uses General, Globales, DM, MenuPrincipal, Dialogs;
 {$R *.DFM}
 
 const CADENA_MANUAL  = 'Seleccione AYUDA si desea obtener más información sobre el problema surgido';
@@ -121,9 +121,9 @@ end;
 
 procedure TWProyectos.BtnAppendClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), ANIADIR) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), ANIADIR) then begin
+   //   Exit;
+   //end;
 
    EditCD_PROYECTO.SetFocus;
    try
@@ -136,9 +136,9 @@ end;
 
 procedure TWProyectos.BtnDeleteClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), BORRAR) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), BORRAR) then begin
+   //   Exit;
+   //end;
 
    if not QFichero.IsEmpty then begin
       if MessageDlg('¿Desea borrar este proyecto?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
@@ -153,9 +153,9 @@ end;
 
 procedure TWProyectos.BtnReportClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), IMPRESION) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), IMPRESION) then begin
+   //   Exit;
+   //end;
 
    FormPrincipal.LanzarListado('LProyectos.rtm', SFichero);
 end;
@@ -217,9 +217,9 @@ end;
 
 procedure TWProyectos.DataGridDblClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), MODIFICAR) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), MODIFICAR) then begin
+   //   Exit;
+   //end;
 
    if not QFichero.IsEmpty then begin
       try QFichero.Edit;
