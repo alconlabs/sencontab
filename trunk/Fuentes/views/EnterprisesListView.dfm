@@ -1,6 +1,6 @@
 object FormEnterprisesListView: TFormEnterprisesListView
-  Left = 695
-  Top = 231
+  Left = 1103
+  Top = 277
   BorderIcons = []
   BorderStyle = bsToolWindow
   ClientHeight = 279

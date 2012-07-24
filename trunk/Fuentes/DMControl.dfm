@@ -2,10 +2,10 @@ object DmControlRef: TDmControlRef
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
-  Left = 962
-  Top = 218
-  Height = 245
-  Width = 278
+  Left = 623
+  Top = 215
+  Height = 314
+  Width = 515
   object BDControl: TIBDatabase
     DatabaseName = 'LENOVO:c:\cviews\datos\CONTROL_CONT.ib'
     Params.Strings = (
@@ -17,15 +17,15 @@ object DmControlRef: TDmControlRef
     SQLDialect = 1
     TraceFlags = []
     AllowStreamedConnected = False
-    Left = 42
-    Top = 8
+    Left = 282
+    Top = 56
   end
   object TransaccionControl: TIBTransaction
     Active = False
     DefaultDatabase = BDControl
     AutoStopAction = saNone
-    Left = 120
-    Top = 8
+    Left = 360
+    Top = 56
   end
   object QEmpresas: TIBTableSet
     Database = BDControl
@@ -87,8 +87,8 @@ object DmControlRef: TDmControlRef
         '  ID_EMPRESA                     =:ID_EMPRESA                   ' +
         '   ')
     TableName = 'empresas'
-    Left = 40
-    Top = 72
+    Left = 312
+    Top = 120
     object QEmpresasNOMBRE: TIBStringField
       DisplayLabel = 'EMPRESA'
       DisplayWidth = 25
@@ -184,8 +184,8 @@ object DmControlRef: TDmControlRef
         '  ID_USUARIO                     =:ID_USUARIO                   ' +
         '   ')
     TableName = 'usuarios'
-    Left = 174
-    Top = 75
+    Left = 446
+    Top = 123
     object QUsuariosID_USUARIO: TIntegerField
       FieldName = 'ID_USUARIO'
       Origin = 'USUARIOS.ID_USUARIO'
@@ -247,8 +247,8 @@ object DmControlRef: TDmControlRef
         '  ID_CONTROL                     =:ID_CONTROL                   ' +
         '   ')
     TableName = 'control'
-    Left = 174
-    Top = 131
+    Left = 446
+    Top = 179
     object QControlPEDIR_CLAVE: TIBStringField
       FieldName = 'PEDIR_CLAVE'
       Origin = 'CONTROL.PEDIR_CLAVE'
@@ -265,12 +265,12 @@ object DmControlRef: TDmControlRef
     Database = BDControl
     ParamCheck = True
     Transaction = TransaccionControl
-    Left = 200
-    Top = 8
+    Left = 440
+    Top = 56
   end
   object sEmpresas: TDataSource
     DataSet = QEmpresas
-    Left = 104
-    Top = 72
+    Left = 384
+    Top = 120
   end
 end

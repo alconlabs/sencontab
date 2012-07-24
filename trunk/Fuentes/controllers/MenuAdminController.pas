@@ -6,7 +6,9 @@ uses Classes, DBController,
      CustomController, MenuAdminView,
      EnterprisesController,
      UsersController,
-     ProfilesController;
+     ProfilesController,
+     UserClass;
+
 
 type
   TMenuAdminController = class(TCustomController)
@@ -15,12 +17,13 @@ type
     FEnterprisesController :TEnterprisesController;
     FUsersController       :TUsersController;
     FProfilesController    :TProfilesController;
+    FUserAuthenticated     :TUser;
   protected
     procedure LabelEnterprisesClick(Sender: TObject);
     procedure LabelUsersClick(Sender: TObject);
     procedure LabelProfilesClick(Sender: TObject);
   public
-    constructor Create(ADBController :TDBController); override;
+    constructor Create(ADBController :TDBController; AUser :TUser); reintroduce;
     destructor  Destroy; override;
     procedure ShowView;
   end;
@@ -28,9 +31,10 @@ type
 implementation
 uses Forms, Controls, SysUtils, CustomView;
 
-constructor TMenuAdminController.Create(ADBController :TDBController);
+constructor TMenuAdminController.Create(ADBController :TDBController; AUser :TUser);
 begin
    inherited Create(ADBController);
+   FUserAuthenticated := AUser;
    Application.CreateForm(TFormMenuAdmin, FView);
    FView.AppleIcons := [aiClose];
    FView.AppleIconsVisibles := [aiClose];

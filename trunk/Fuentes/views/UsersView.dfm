@@ -14,7 +14,7 @@ object UsersView: TUsersView
   OnCreate = FormCreate
   DesignSize = (
     595
-    376)
+    369)
   PixelsPerInch = 96
   TextHeight = 14
   object Shape1: TShape

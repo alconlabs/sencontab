@@ -2,7 +2,8 @@ unit LoginModel;
 
 interface
 
-uses Classes, CRSQLConnection;
+uses Classes, CRSQLConnection,
+     UserClass;
 
 type
   TLoginModel = class
@@ -13,9 +14,10 @@ type
   public
     property Connection            :TCRSQLConnection  read FConnection;
     property AdminPasswordInitial  :Boolean           read GetAdminPasswordInitial;
+    constructor Create(AConnection :TCRSQLConnection);
     function UserCorrect(prmUser, prmPassword :string):Boolean;
     function UserIsAdministrator(prmUser :string):Boolean;
-    constructor Create(AConnection :TCRSQLConnection);
+    function GetUserAuthenticated(prmUser :string):TUser;
   end;
 
 implementation
@@ -68,6 +70,27 @@ begin
    try Q.Open;
        Result := (not Q.FieldByName('PASSWORD').IsNull                             ) and
                  (    Q.FieldByName('PASSWORD').AsString = GetSHA1Hash(prmPassword));
+   finally Q.Free;
+   end;
+end;
+
+function TLoginModel.GetUserAuthenticated(prmUser :string):TUser;
+var Q :TSQLQuery;
+begin
+   Q := FConnection.CreateQuery(
+        ['SELECT CD_USER,                  ',
+         '       DS_USER,                  ',
+         '       PASSWORD,                 ',
+         '       ADMINISTRATOR             ',
+         'FROM   USERS                     ',
+         'WHERE  CD_USER       = :prmUser  ']);
+   Q.ParamByName('prmUser').AsString := prmUser;
+   try Q.Open;
+      Result := TUser.Create;
+      Result.CD_USER       := Q.FieldByName('CD_USER'      ).AsString;
+      Result.DS_USER       := Q.FieldByName('DS_USER'      ).AsString;
+      Result.PASSWORD      := Q.FieldByName('PASSWORD'     ).AsString;
+      Result.ADMINISTRATOR := Q.FieldByName('ADMINISTRATOR').AsString;
    finally Q.Free;
    end;
 end;
