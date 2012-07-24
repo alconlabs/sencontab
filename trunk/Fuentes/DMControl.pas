@@ -2,47 +2,43 @@ unit DMControl;
 interface
 uses Classes, Controls, Db, Dialogs, Forms, Graphics, Messages, SysUtils, Windows, IBSQL,
      IBCustomDataSet, IBTableSet, IBDatabase, Globales, IBQuery, ADODB,
-  DBXpress, SqlExpr, CRSQLConnection;
+     DBXpress, SqlExpr, CRSQLConnection;
 
 type
-   TDmControlRef = class(TDataModule)
-      BDControl:          TIBDatabase;
-      TransaccionControl: TIBTransaction;
-      QEmpresas:          TIBTableSet;
-      QEmpresasCERRADA:   TIBStringField;
-      QEmpresasCLAVE:     TIBStringField;
-      QEmpresasUBICACION: TIBStringField;
-      QEmpresasNOMBRE:    TIBStringField;
-      QEmpresasID_EMPRESA: TIntegerField;
-      QEmpresasULTIMA:    TIBStringField;
-      QUsuarios:          TIBTableSet;
-      QUsuariosID_USUARIO: TIntegerField;
-      QUsuariosID_EMPRESA: TIntegerField;
-      QUsuariosCLAVE:     TIBStringField;
-      QUsuariosNOMBRE:    TIBStringField;
-      QControl:           TIBTableSet;
-      QControlPEDIR_CLAVE: TIBStringField;
-      QControlID_CONTROL: TSmallintField;
-      QEmpresasSERVIDOR:  TIBStringField;
-      QAuxiliar:          TIBSQL;
-      sEmpresas:          TDataSource;
-      procedure DataModuleCreate(Sender: TObject);
-      procedure DataModuleDestroy(Sender: TObject);
-   protected
-      procedure Loaded; override;
-   private
-      function GetTestRunning:Boolean;
-   public
-      procedure AbrirDataSets;
-      procedure CerrarDataSets;
-      procedure AbrirEmpresa(prmEMPRESA :Integer);
-      function ObtenerNumeroUsuario: Integer;
-      function AccesoUsuario(IDUsuario: Integer; Window: String): Boolean;
-      function ExistenRegistros(Tabla, Condicion: String): Boolean;
-      function PermisoUsuario(prmIDUsuario :Integer; prmVentana: String; prmPermiso: TPermiso): Boolean;
-      property TestRunning :Boolean read GetTestRunning;
-      function CreateQuery(const prmSQL :array of string):TIBQuery;
-   end;
+  TDmControlRef = class(TDataModule)
+    BDControl: TIBDatabase;
+    TransaccionControl: TIBTransaction;
+    QEmpresas: TIBTableSet;
+    QEmpresasCERRADA: TIBStringField;
+    QEmpresasCLAVE: TIBStringField;
+    QEmpresasUBICACION: TIBStringField;
+    QEmpresasNOMBRE: TIBStringField;
+    QEmpresasID_EMPRESA: TIntegerField;
+    QEmpresasULTIMA: TIBStringField;
+    QUsuarios: TIBTableSet;
+    QUsuariosID_USUARIO: TIntegerField;
+    QUsuariosID_EMPRESA: TIntegerField;
+    QUsuariosCLAVE: TIBStringField;
+    QUsuariosNOMBRE: TIBStringField;
+    QEmpresasSERVIDOR: TIBStringField;
+    sEmpresas: TDataSource;
+    procedure DataModuleCreate(Sender: TObject);
+    procedure DataModuleDestroy(Sender: TObject);
+  protected
+    procedure Loaded; override;
+  private
+    function GetTestRunning:Boolean;
+  public
+    procedure AbrirDataSets;
+    procedure CerrarDataSets;
+    procedure AbrirEmpresa(prmEMPRESA :Integer);
+    function ObtenerNumeroUsuario: Integer;
+    function AccesoUsuario(IDUsuario: Integer; Window: String): Boolean;
+    function ExistenRegistros(Tabla, Condicion: String): Boolean;
+    function PermisoUsuario(prmIDUsuario :Integer; prmVentana: String; prmPermiso: TPermiso): Boolean;
+    property TestRunning :Boolean read GetTestRunning;
+    function CreateQuery(const prmSQL :array of string):TIBQuery;
+  end;
 
 var DmControlRef: TDmControlRef;
 
@@ -70,7 +66,6 @@ end;
 procedure TDmControlRef.Loaded;
 var DirWindows :array[0..255] of Char;
     WinIni     :TIniFile;
-    cRegistro  :string;
     cPath      :string;
     Directorio :string;
 begin
@@ -86,8 +81,6 @@ begin
 
    WinIni := TIniFile.Create(Directorio + 'SIAMCONTCONF.INI');
    cPath     := UPPERCASE(WinINI.ReadString('DATABASE', 'PATH'    , '' ));
-   cRegistro := UPPERCASE(WinINI.ReadString('REGISTRO', 'REGISTRO', 'S'));
-   gvComprobarRegistro := (cRegistro = 'S');
    WinINI.Free;
 
    if not TestRunning then begin
@@ -120,8 +113,8 @@ end;
 
 procedure TDmControlRef.AbrirDataSets;
 begin
-   QueryOpen(QUsuarios, 'SELECT * from usuarios order by nombre     ');
-   QueryOpen(QControl , 'SELECT * from control  order by id_control ');
+   //QueryOpen(QUsuarios, 'SELECT * from usuarios order by nombre     ');
+   //QueryOpen(QControl , 'SELECT * from control  order by id_control ');
    QueryOpen(QEmpresas, 'SELECT * from empresas order by nombre     ');
 end;
 
@@ -143,7 +136,7 @@ begin
    if TestRunning then Exit;
    Q := TIBSQL.Create(nil);
    Q.Close;
-   Q.Database := DMControlRef.BDControl;
+   Q.Database := BDControl;
    // Primero inicializar todas a N
    Q.SQL.Add('Update empresas set ultima = "N" ');
    Q.ExecQuery;
@@ -155,8 +148,8 @@ begin
    Q.ParamByName('id_empresa').AsInteger := gvEmpresaActual;
    Q.ExecQuery;
    Q.Transaction.CommitRetaining;
-   if (gvUsuario <> gcUsuarioDesbloqueo) and
-      (DMControlRef.QControl.FieldByName('Pedir_Clave').AsString <> 'N') then begin
+
+   if (gvUsuario <> gcUsuarioDesbloqueo) then begin
       // Grabar en usuario la ultima empresa
       Q.Close;
       Q.SQL.Clear;
@@ -238,7 +231,7 @@ var Numero :Integer;
 begin
    Q := TIBSQL.Create(nil);
    try
-      Q.Database := DmControlRef.BDControl;
+      Q.Database := BDControl;
       Q.SQL.Add('execute procedure Dame_NumeroUsuario');
       Q.ExecQuery;
       Numero := Q.FieldByName('ID_USUARIO').AsInteger;
@@ -256,37 +249,26 @@ begin
 end;
 
 function TDmControlRef.ExistenRegistros(Tabla, Condicion: String): Boolean;
+var Q :TIBSQL;
 begin
-   QAuxiliar.Close;
-   QAuxiliar.SQL.Clear;
-   QAuxiliar.SQL.Add('SELECT COUNT(*) NUM FROM ' + Tabla);
-   if Trim(Condicion) <> '' then begin
-      QAuxiliar.SQL.Add('WHERE ' + Condicion);
+   Q := TIBSQL.Create(nil);
+   try
+      Q.Database := BDControl;
+      Q.SQL.Add('SELECT COUNT(*) NUM FROM ' + Tabla);
+      if Trim(Condicion) <> '' then begin
+         Q.SQL.Add('WHERE ' + Condicion);
+      end;
+      Q.Prepare;
+      Q.ExecQuery;
+      Result := (Q.FieldByName('NUM').AsInteger <> 0);
+   finally
+      Q.Free;
    end;
-   QAuxiliar.Prepare;
-   QAuxiliar.ExecQuery;
-   Result := (QAuxiliar.FieldByName('NUM').AsInteger <> 0);
 end;
 
 function TDmControlRef.PermisoUsuario(prmIDUsuario :Integer; prmVentana :string; prmPermiso :TPermiso):Boolean;
 var Q :TIBQuery;
 begin
-   if gvDemo then begin
-      case prmPermiso of
-         ANIADIR   :Result := False;
-         MODIFICAR :Result := True;
-         BORRAR    :Result := True;
-         IMPRESION :Result := False;
-         else raise Exception.Create('Permiso Usuario prmPermiso incorrecto.');
-      end;
-      Exit;
-   end;
-
-   // Sin permiso en modo DEMO para AÑADIR, MODIFICAR y BORRAR en Usuarios
-   //if UpperCase(Ventana) = 'WUSUARIOS' then begin
-   //   TienePermiso := TienePermiso and (not gvDemo);
-   //end;
-
    Q := CreateQuery(['SELECT ANIADIR, MODIFICAR, BORRAR, IMPRESION ',
                      'FROM   PERMISOS_USUARIOS P,                  ',
                      '       MANTENIMIENTOS    M                   ',

@@ -2,8 +2,8 @@ object DmControlRef: TDmControlRef
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
-  Left = 623
-  Top = 215
+  Left = 579
+  Top = 191
   Height = 314
   Width = 515
   object BDControl: TIBDatabase
@@ -17,15 +17,15 @@ object DmControlRef: TDmControlRef
     SQLDialect = 1
     TraceFlags = []
     AllowStreamedConnected = False
-    Left = 282
-    Top = 56
+    Left = 50
+    Top = 64
   end
   object TransaccionControl: TIBTransaction
     Active = False
     DefaultDatabase = BDControl
     AutoStopAction = saNone
-    Left = 360
-    Top = 56
+    Left = 144
+    Top = 72
   end
   object QEmpresas: TIBTableSet
     Database = BDControl
@@ -87,8 +87,8 @@ object DmControlRef: TDmControlRef
         '  ID_EMPRESA                     =:ID_EMPRESA                   ' +
         '   ')
     TableName = 'empresas'
-    Left = 312
-    Top = 120
+    Left = 72
+    Top = 128
     object QEmpresasNOMBRE: TIBStringField
       DisplayLabel = 'EMPRESA'
       DisplayWidth = 25
@@ -184,8 +184,8 @@ object DmControlRef: TDmControlRef
         '  ID_USUARIO                     =:ID_USUARIO                   ' +
         '   ')
     TableName = 'usuarios'
-    Left = 446
-    Top = 123
+    Left = 70
+    Top = 195
     object QUsuariosID_USUARIO: TIntegerField
       FieldName = 'ID_USUARIO'
       Origin = 'USUARIOS.ID_USUARIO'
@@ -206,71 +206,9 @@ object DmControlRef: TDmControlRef
       Size = 15
     end
   end
-  object QControl: TIBTableSet
-    Database = BDControl
-    Transaction = TransaccionControl
-    BufferChunks = 1000
-    CachedUpdates = False
-    DeleteSQL.Strings = (
-      'DELETE FROM CONTROL'
-      'WHERE'
-      
-        '  ID_CONTROL                     =:old_ID_CONTROL               ' +
-        '       ')
-    InsertSQL.Strings = (
-      'INSERT INTO CONTROL'
-      
-        '  (PEDIR_CLAVE                    ,ID_CONTROL                   ' +
-        '  )'
-      'VALUES'
-      
-        '  (:PEDIR_CLAVE                    ,:ID_CONTROL                 ' +
-        '    )')
-    RefreshSQL.Strings = (
-      'SELECT'
-      '  *'
-      'FROM CONTROL'
-      'WHERE'
-      
-        '  ID_CONTROL                     =?ID_CONTROL                   ' +
-        '   ')
-    SelectSQL.Strings = (
-      'SELECT * FROM CONTROL')
-    ModifySQL.Strings = (
-      'UPDATE CONTROL'
-      'SET'
-      
-        '  PEDIR_CLAVE                    =:PEDIR_CLAVE                  ' +
-        '   '
-      'WHERE'
-      
-        '  ID_CONTROL                     =:ID_CONTROL                   ' +
-        '   ')
-    TableName = 'control'
-    Left = 446
-    Top = 179
-    object QControlPEDIR_CLAVE: TIBStringField
-      FieldName = 'PEDIR_CLAVE'
-      Origin = 'CONTROL.PEDIR_CLAVE'
-      FixedChar = True
-      Size = 1
-    end
-    object QControlID_CONTROL: TSmallintField
-      FieldName = 'ID_CONTROL'
-      Origin = 'CONTROL.ID_CONTROL'
-      Required = True
-    end
-  end
-  object QAuxiliar: TIBSQL
-    Database = BDControl
-    ParamCheck = True
-    Transaction = TransaccionControl
-    Left = 440
-    Top = 56
-  end
   object sEmpresas: TDataSource
     DataSet = QEmpresas
-    Left = 384
-    Top = 120
+    Left = 144
+    Top = 128
   end
 end
