@@ -402,11 +402,13 @@ var { Estas variables son necesarias para registrar la aplicacion e impedir la e
 begin
    InformePrincipal.Template.OnNew     := ReportTemplateEvent;
    InformePrincipal.Template.OnLoadEnd := ReportTemplateEvent;
+   
    PantallaGrande := (GetSystemMetrics(SM_CXSCREEN) = 1024);
    WindowState    := wsMaximized;
    gvDirectorio   := ExtractFilePath(Application.ExeName);
    gvDirImagenes  := gvDirectorio + gcDirImagenes;
 
+   gvComprobarRegistro := False; {probando el arranque}
    if gvComprobarRegistro then begin
       {************************************************************************************}
       { Este bloque comprueba si esta registrado el programa, si no muestra la ventana de  }
@@ -473,25 +475,27 @@ begin
    end
    else gvDemo := False;
 
+   gvDemo := False; {probando el arranque}
    if gvDemo then begin
       MessageDlg('Aplicación en modo D E M O S T R A C I Ó N.', mtInformation, [mbOK], 0);
    end;
    {                                                                                       }
    {***************************************************************************************}
 
-   if not gvDemo and (DMControlRef.QControlPEDIR_CLAVE.AsString <> 'N') then begin
-      if not TFormLogin.MuestraModal then Application.Terminate;
-      try FormSplash := TFormSplash.Create(nil);
-          FormSplash.ActivarTemporizador;
-          FormSplash.ShowModal;
-          FormSplash.Update;
-      finally FormSplash.Free;
-      end;
-   end;
-
-   if (gvUsuario = gcUsuarioDesbloqueo) or (DMControlRef.QControlPEDIR_CLAVE.AsString = 'N') then begin
-      gvEmpresaActual := -1;
-   end;
+   {probando el arranque}
+   //if not gvDemo and (DMControlRef.QControlPEDIR_CLAVE.AsString <> 'N') then begin
+   //   if not TFormLogin.MuestraModal then Application.Terminate;
+   //   try FormSplash := TFormSplash.Create(nil);
+   //       FormSplash.ActivarTemporizador;
+   //       FormSplash.ShowModal;
+   //       FormSplash.Update;
+   //   finally FormSplash.Free;
+   //   end;
+   //end;
+   //
+   //if (gvUsuario = gcUsuarioDesbloqueo) or (DMControlRef.QControlPEDIR_CLAVE.AsString = 'N') then begin
+   //   gvEmpresaActual := -1;
+   //end;
    { Este valor indica a AbrirEmpresa un modo de funcionamiento. }
    DMControlRef.AbrirEmpresa(gvEmpresaActual);
 end;

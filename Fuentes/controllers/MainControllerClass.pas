@@ -7,8 +7,10 @@ uses Classes, StdCtrls, SysUtils, Windows,
      LoginController,
      ConfigurationClass,
      MenuAdminController,
+     MenuMainController,
      EnterprisesListController,
-     UserClass;
+     UserClass,
+     CurrentConfigClass;
 
 type
   TMainController = class
@@ -16,12 +18,11 @@ type
     FDBMainController   :TDBController;
     FLoginController    :TLoginController;
     FConfiguration      :TConfiguration;
-    FConnectedUser      :TUser;
-    //FMainMenu           :TMainMenuController;
+    FMenuMain           :TMenuMainController;
     FEnterprisesList    :TEnterprisesListController;
     FMenuAdmin          :TMenuAdminController;
-    procedure ShowMainMenu;
-    procedure ShowMenuAdmin;
+    procedure ShowMenuMain(prmUser :TUser);
+    procedure ShowMenuAdmin(prmUser :TUser);
     function WHCmdToStr(cmd: Integer): String;
   protected
 
@@ -37,8 +38,9 @@ type
 
 implementation
 
-uses Controls, Dialogs, 
-  ShellAPI, Forms;
+uses Controls, Dialogs, ShellAPI, Forms,
+     DMControl,
+     MenuPrincipal;
   //Windows;
   //Messages,
   //SysUtils,
@@ -136,26 +138,45 @@ begin
    try
       case FLoginController.ShowView of
          msNone  :{If the result is False the program begins down normaly };
-         msAdmin :ShowMenuAdmin;
-         msMain  :ShowMainMenu;
+         msAdmin :ShowMenuAdmin(FLoginController.UserAuthenticated);
+         msMain  :ShowMenuMain(FLoginController.UserAuthenticated);
       end; // case
    finally
+      FLoginController.Free;
    end;
 end;
 
-procedure TMainController.ShowMainMenu;
+procedure TMainController.ShowMenuMain(prmUser :TUser);
+var EnterpriseSelected :Boolean;
 begin
-   FEnterprisesList := TEnterprisesListController.Create(DBMain);
-   FEnterprisesList.Showview;
-  //FMainMenu := TMainMenuController.Create();
-  //FMainMenu.DBController := DBMainController;
-  //FMainMenu.ShowView;
+   FEnterprisesList := TEnterprisesListController.Create(DBMain, prmUser);
+   try
+      EnterpriseSelected := FEnterprisesList.ShowView;
+   finally
+      FEnterprisesList.Free;
+   end;
+
+   if EnterpriseSelected then begin
+      FMenuMain := TMenuMainController.Create(DBMain, prmUser,
+                                              FEnterprisesList.CD_ENTERPRISE,
+                                              FEnterprisesList.CD_PROFILE   ,
+                                              'ACCOUNTING'                  );
+
+      //FMainMenu.DBController := DBMainController;
+      //FMenuMain.ShowView;
+      Application.CreateForm(TDMControlRef, DMControlRef);
+      Application.CreateForm(TFormPrincipal, FormPrincipal);
+      FormPrincipal.Show;
+      Application.Run;
+   end
+   else Exit;
 end;
 
-procedure TMainController.ShowMenuAdmin;
+procedure TMainController.ShowMenuAdmin(prmUser :TUser);
 begin
-   FMenuAdmin := TMenuAdminController.Create(FDBMainController);
+   FMenuAdmin := TMenuAdminController.Create(FDBMainController, prmUser);
    FMenuAdmin.ShowView;
+   Application.Run;
 end;
 
 function TMainController.WHCmdToStr(cmd: Integer): String;

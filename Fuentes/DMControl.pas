@@ -1,7 +1,8 @@
 unit DMControl;
 interface
 uses Classes, Controls, Db, Dialogs, Forms, Graphics, Messages, SysUtils, Windows, IBSQL,
-     IBCustomDataSet, IBTableSet, IBDatabase, Globales, IBQuery, ADODB;
+     IBCustomDataSet, IBTableSet, IBDatabase, Globales, IBQuery, ADODB,
+  DBXpress, SqlExpr, CRSQLConnection;
 
 type
    TDmControlRef = class(TDataModule)
@@ -137,38 +138,37 @@ begin
 end;
 
 procedure TDmControlRef.DataModuleDestroy(Sender: TObject);
+var Q :TIBSQL;
 begin
    if TestRunning then Exit;
-   {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-   with TIBSql.Create(nil), sql do begin
-      Close;
-      Database := DMControlRef.BDControl;
-      // Primero inicializar todas a N
-      Add('Update empresas set ultima = "N" ');
-      ExecQuery;
-      Transaction.CommitRetaining;
-      Clear;
-      // Grabar ultima empresa
-      Add('Update empresas set ultima="S"');
-      Add('Where id_empresa=:id_empresa');
-      parambyname('id_empresa').AsInteger := gvEmpresaActual;
-      ExecQuery;
-      Transaction.CommitRetaining;
-      if (gvUsuario <> gcUsuarioDesbloqueo) and
-         (DMControlRef.QControl.FieldByName('Pedir_Clave').AsString <> 'N') then begin
-         // Grabar en usuario la ultima empresa
-         Close;
-         Clear;
-         Add('Update usuarios set id_empresa=:id_empresa');
-         Add('Where id_usuario=:id_usuario');
-         parambyname('id_empresa').AsInteger := gvEmpresaActual;
-         parambyname('id_usuario').AsInteger := gvId_Usuario;
-         ExecQuery;
-         Transaction.CommitRetaining;
-      end;
-      Close;
-      Free;
+   Q := TIBSQL.Create(nil);
+   Q.Close;
+   Q.Database := DMControlRef.BDControl;
+   // Primero inicializar todas a N
+   Q.SQL.Add('Update empresas set ultima = "N" ');
+   Q.ExecQuery;
+   Q.Transaction.CommitRetaining;
+   Q.SQL.Clear;
+   // Grabar ultima empresa
+   Q.SQL.Add('Update empresas set ultima="S"');
+   Q.SQL.Add('Where id_empresa=:id_empresa');
+   Q.ParamByName('id_empresa').AsInteger := gvEmpresaActual;
+   Q.ExecQuery;
+   Q.Transaction.CommitRetaining;
+   if (gvUsuario <> gcUsuarioDesbloqueo) and
+      (DMControlRef.QControl.FieldByName('Pedir_Clave').AsString <> 'N') then begin
+      // Grabar en usuario la ultima empresa
+      Q.Close;
+      Q.SQL.Clear;
+      Q.SQL.Add('Update usuarios set id_empresa=:id_empresa');
+      Q.SQL.Add('Where id_usuario=:id_usuario');
+      Q.ParamByName('id_empresa').AsInteger := gvEmpresaActual;
+      Q.ParamByName('id_usuario').AsInteger := gvId_Usuario;
+      Q.ExecQuery;
+      Q.Transaction.CommitRetaining;
    end;
+   Q.Close;
+   Q.Free;
    CerrarDataSets;
 end;
 
@@ -233,17 +233,17 @@ begin
 end;
 
 function TDmControlRef.ObtenerNumeroUsuario: Integer;
-var
-   Numero: Integer;
+var Numero :Integer;
+    Q      :TIBSQL;
 begin
-   {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-   with TIBSQL.Create(nil), SQL do begin
-      Database := DmControlRef.BDControl;
-      Clear;
-      Add('execute procedure Dame_NumeroUsuario');
-      ExecQuery;
-      Numero := FieldByName('ID_USUARIO').AsInteger;
-      Free;
+   Q := TIBSQL.Create(nil);
+   try
+      Q.Database := DmControlRef.BDControl;
+      Q.SQL.Add('execute procedure Dame_NumeroUsuario');
+      Q.ExecQuery;
+      Numero := Q.FieldByName('ID_USUARIO').AsInteger;
+   finally
+      Q.Free;
    end;
    Result := Numero;
 end;
@@ -257,18 +257,15 @@ end;
 
 function TDmControlRef.ExistenRegistros(Tabla, Condicion: String): Boolean;
 begin
-   {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-   with QAuxiliar do begin
-      Close;
-      SQL.Clear;
-      SQL.Add('SELECT COUNT(*) NUM FROM ' + Tabla);
-      if Trim(Condicion) <> '' then begin
-         SQL.Add('WHERE ' + Condicion);
-      end;
-      Prepare;
-      ExecQuery;
-      Result := (QAuxiliar.FieldByName('NUM').AsInteger <> 0);
+   QAuxiliar.Close;
+   QAuxiliar.SQL.Clear;
+   QAuxiliar.SQL.Add('SELECT COUNT(*) NUM FROM ' + Tabla);
+   if Trim(Condicion) <> '' then begin
+      QAuxiliar.SQL.Add('WHERE ' + Condicion);
    end;
+   QAuxiliar.Prepare;
+   QAuxiliar.ExecQuery;
+   Result := (QAuxiliar.FieldByName('NUM').AsInteger <> 0);
 end;
 
 function TDmControlRef.PermisoUsuario(prmIDUsuario :Integer; prmVentana :string; prmPermiso :TPermiso):Boolean;

@@ -2,7 +2,10 @@ unit LoginController;
 
 interface
 
-uses Classes, DBController, CustomController, LoginView, LoginModel;
+uses Classes, DBController, CustomController,
+     LoginView,
+     LoginModel,
+     UserClass;
 
    {TODO: Create the model for the login function. This is a classic model.}
    {TODO: Do all the functionality in the Controller instead in the View.  }
@@ -15,11 +18,14 @@ type
   {$IFDEF UNIT_TESTING}
   public
   {$ENDIF}
-    FView   :TFormLoginView;
-    FModel  :TLoginModel;
-    FResult :TMenuShowed;
+    FView              :TFormLoginView;
+    FModel             :TLoginModel;
+    FUserAuthenticated :TUser;
+    FResult            :TMenuShowed;
   private
     procedure InitializeView;
+    procedure SetResult(Value :TMenuShowed);
+    property  prvResult :TMenuShowed read FResult write SetResult;
   protected
     {Delegate declarations}
     procedure OnClick_BtnOK           (Sender : TObject);
@@ -29,6 +35,7 @@ type
     constructor Create(ADBController :TDBController); override;
     destructor  Destroy; override;
     function ShowView :TMenuShowed;
+    property UserAuthenticated :TUser read FUserAuthenticated; {read only}
   end;
 
 implementation
@@ -37,6 +44,7 @@ uses Forms, Controls, SysUtils, CustomView;
 constructor TLoginController.Create(ADBController :TDBController);
 begin
    inherited Create(ADBController);
+   FUserAuthenticated := nil;
    FView  := TFormLoginView.Create(Application);
    FView.AppleIcons := [aiClose];
    FView.AppleIconsVisibles := [aiClose];
@@ -79,7 +87,7 @@ end;
 function TLoginController.ShowView :TMenuShowed;
 begin
    if FView.ShowModal = mrOK then begin
-      Result := FResult;
+      Result := prvResult;
    end
    else Result := msNone;
 end;
@@ -89,22 +97,22 @@ begin
    if (Trim(FView.EditUser.Text)     = '') or
       (Trim(FView.EditPassword.Text) = '') then begin
       FView.ShowMessage('Ni Usuario ni Password pueden quedar en blanco.');
-      FResult := msNone;
+      prvResult := msNone;
       Exit;
    end;
 
    if not FModel.UserCorrect(Trim(FView.EditUser.Text), Trim(FView.EditPassword.Text)) then begin
       FView.ShowMessage('Usuario o Password no son correctos. Inténtelo de Nuevo.');
-      FResult := msNone;
+      prvResult := msNone;
       Exit;
    end;
 
    if FModel.UserIsAdministrator(Trim(FView.EditUser.Text)) then begin
-      FResult := msAdmin; // Show the administration menu
+      prvResult := msAdmin; // Show the administration menu
       FView.ModalResult := mrOK;
    end
    else begin
-      FResult := msMain; // Show the main form menu
+      prvResult := msMain; // Show the main form menu
       FView.ModalResult := mrOK;
    end;
 end;
@@ -131,5 +139,16 @@ begin
 //  end;
 end;
 
+procedure TLoginController.SetResult(Value: TMenuShowed);
+begin
+   if FResult <> Value then begin
+      FResult := Value;
+      case FResult of
+         msNone  :if Assigned(FUserAuthenticated) then FreeAndNil(FUserAuthenticated);
+         msAdmin :FUserAuthenticated := FModel.GetUserAuthenticated(Trim(FView.EditUser.Text));
+         msMain  :FUserAuthenticated := FModel.GetUserAuthenticated(Trim(FView.EditUser.Text));
+      end;
+   end;
+end;
 
 end.

@@ -566,10 +566,10 @@ begin
         if not(i = (ListBoxFields.Items.Count -1)) then
            Add('   if Field = '''+RFill(ListBoxFields.Items[i]+'''', F+1)+' then '
                +RFill('IsPrimaryKey('+Lowercase(Singular)+ListBoxFields.Items[i], F+2)
-               +Lowercase(Singular)+RFill(ListBoxFields.Items[i], F)+') else')
+               {+Lowercase(Singular)}+RFill(ListBoxFields.Items[i], F)+') else')
         else Add('   if Field = '''+RFill(ListBoxFields.Items[i]+'''', F+1)+' then '
                  +RFill('IsPrimaryKey('+Lowercase(Singular)+ListBoxFields.Items[i], F+2)
-                 +Lowercase(Singular)+RFill(ListBoxFields.Items[i], F)+');');
+                 {+Lowercase(Singular)}+RFill(ListBoxFields.Items[i], F)+');');
      end;
      Add('end;');
      Add('');
@@ -655,11 +655,8 @@ begin
      Add('    FConnection     :TCRSQLConnection;');
      Add('    FTableName      :string;                                              ');
      Add('    FOrderFieldName :string;   { The real name for the order instruction }');
-     Add('    FDataSet        :TSQLQuery;');
-     Add('    FLastError      :string;');
      Add('    FSenseOrderBy   :string;     ');
      Add('    FSQLSearch      :TStringList;');
-     Add('    procedure ClearLastError;');
      Add('    function GetRowsAffected:Integer;');
      Add('    function GetRowCount    :Integer;');
      Add('    function GetEOF :Boolean;');
@@ -668,6 +665,9 @@ begin
      Add('    function GetOrderFieldName:string;');
      Add('    procedure SetOrderFieldName(Value :string);');
      Add('  protected');
+     Add('    FDataSet        :TSQLQuery;');
+     Add('    FLastError      :string;');
+     Add('    procedure ClearLastError;');
      Add('    function GetBaseSQLForSelect:TStringList;');
      Add('  public');
      Add('    constructor Create(prmConnection :TCRSQLConnection); reintroduce;');
@@ -1152,7 +1152,10 @@ begin
      Add('');
      Add('function TCustom'+Plural+'Model.GetVersion: string;                                   ');
      Add('begin                                                                                 ');
-     Add('   Result := ''1.00'';                                                                ');
+     Add('   Result := ''1.01'';                                                                ');
+     Add('   { Improvements in 1.01:                                                          } ');
+     Add('   { FLastErrorl, FDataSet and procedure ClearLastError, has been translated to the } ');
+     Add('   { protected section of the class. It allows the descentants the use of this Items} ');
      Add('end;                                                                                  ');
      Add('');
      Add('function TCustom'+Plural+'Model.GetOrderFieldName: string;                            ');

@@ -7,25 +7,20 @@ uses Classes, CustomEnterprisesModel, CRSQLConnection;
 type
   TEnterprisesModel = class(TCustomEnterprisesModel)
   private
-    //FConnection  :TCRSQLConnection;
   protected
   public
-    //property Connection :TCRSQLConnection  read FConnection;
     function  CreateDBFile(DatabaseName :string):Boolean;
     procedure RecordNewEnterprise(prmCD_Enterprise, prmDS_Enterprise :string);
     function  CreateDBSchema(DatabaseName :string):Boolean;
     //function CheckDBSchemaExists(DatabaseName :string):Boolean;
     //constructor Create(AConnection :TCRSQLConnection);
     procedure LoadEnterprisesAssignedToUser(prmUser :string);
+    function  GetProfileCodeForThis(prmAPPLICATION, prmCD_USER, prmCD_ENTERPRISE :string):string;
+    function  GetProfileDescriptionForThis(prmAPPLICATION, prmCD_USER, prmCD_ENTERPRISE :string):string;
   end;
 
 implementation
 uses SysUtils, SqlExpr, HashCriptography;
-
-//constructor TEnterprisesModel.Create(AConnection: TCRSQLConnection);
-//begin
-//   FConnection := AConnection;
-//end;
 
 function TEnterprisesModel.CreateDBFile(DatabaseName :string):Boolean;
 var DB :TCRSQLConnection;
@@ -714,6 +709,44 @@ begin
      end;
    finally
       DB.Free;
+   end;
+end;
+
+function TEnterprisesModel.GetProfileDescriptionForThis(prmAPPLICATION, prmCD_USER, prmCD_ENTERPRISE :string): string;
+var Q :TSQLQuery;
+begin
+   Q := Connection.CreateQuery(
+        ['SELECT P.DS_PROFILE AS DS_PROFILE                ',
+         'FROM   USER_PROFILES UP                          ',
+         'JOIN PROFILES P ON P.CD_PROFILE = UP.CD_PROFILE  ',
+         'WHERE UP.CD_USER        = :prmCD_USER            ',
+         'AND   UP.APPLICATION    = :prmAPPLICATION        ',
+         'AND   UP.CD_ENTERPRISE  = :prmCD_ENTERPRISE      ']);
+   Q.ParamByName('prmCD_USER'      ).AsString := prmCD_USER;
+   Q.ParamByName('prmAPPLICATION'  ).AsString := prmAPPLICATION;
+   Q.ParamByName('prmCD_ENTERPRISE').AsString := prmCD_ENTERPRISE;
+   try Q.Open;
+       Result := Q.FieldByName('DS_PROFILE').AsString;
+   finally Q.Free;
+   end;
+end;
+
+function TEnterprisesModel.GetProfileCodeForThis(prmAPPLICATION, prmCD_USER, prmCD_ENTERPRISE :string): string;
+var Q :TSQLQuery;
+begin
+   Q := Connection.CreateQuery(
+        ['SELECT P.CD_PROFILE AS CD_PROFILE                ',
+         'FROM   USER_PROFILES UP                          ',
+         'JOIN PROFILES P ON P.CD_PROFILE = UP.CD_PROFILE  ',
+         'WHERE UP.CD_USER        = :prmCD_USER            ',
+         'AND   UP.APPLICATION    = :prmAPPLICATION        ',
+         'AND   UP.CD_ENTERPRISE  = :prmCD_ENTERPRISE      ']);
+   Q.ParamByName('prmCD_USER'      ).AsString := prmCD_USER;
+   Q.ParamByName('prmAPPLICATION'  ).AsString := prmAPPLICATION;
+   Q.ParamByName('prmCD_ENTERPRISE').AsString := prmCD_ENTERPRISE;
+   try Q.Open;
+       Result := Q.FieldByName('CD_PROFILE').AsString;
+   finally Q.Free;
    end;
 end;
 

@@ -7,7 +7,7 @@ uses Classes,
      ConfigurationClass;
 
 type
-  TDBController = class
+  TDBController = class(TPersistent)
   private
      FDBConnection :TDBConnection;
      FDBConfig     :TSdaDBConfig; 
@@ -19,6 +19,7 @@ type
      function  IsConnected:Boolean;
      function  Disconnect:Boolean;
      property DBConnection :TDBConnection read FDBConnection;
+     property DBConfig     :TSdaDBConfig  read FDBConfig;
      property ServerDate   :TDateTime     read GetServerData;
   end;
 

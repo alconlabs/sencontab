@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 296
-  Top = 76
+  Left = 298
+  Top = 78
   Width = 798
   Height = 554
   Caption = 'Creator'
@@ -146,14 +146,14 @@ object Form1: TForm1
     Left = 0
     Top = 305
     Width = 790
-    Height = 222
+    Height = 215
     Align = alClient
     TabOrder = 1
     object PageControl1: TPageControl
       Left = 1
       Top = 1
       Width = 788
-      Height = 220
+      Height = 213
       ActivePage = TabClass
       Align = alClient
       TabOrder = 0
@@ -189,7 +189,7 @@ object Form1: TForm1
           Left = 0
           Top = 48
           Width = 780
-          Height = 144
+          Height = 137
           Align = alClient
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
@@ -236,7 +236,7 @@ object Form1: TForm1
           Left = 0
           Top = 48
           Width = 780
-          Height = 144
+          Height = 137
           Align = alClient
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
