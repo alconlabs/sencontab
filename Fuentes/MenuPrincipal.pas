@@ -183,7 +183,7 @@ uses Dialogs, General, Globales, Cadenas, DM, DMConta, Registry, ogUtil, Wwdbgri
      UCierreEjercicio, UComerciales, UConceptos, UCopiaAsientos, UCuentas, UDelegaciones, UDepartamentos,
      UDiario, UEmpresas, UEnlaceContable, UEspere, UFiltro347, UFiltroBalances, UFiltroLibroFacturasEmitidas,
      UFiltroListadosAsientos, UFiltroListadosMayor, UFiltroSitPgGg, UFormasPago, UGrupos, UImportacion,
-     UIrpf110, UIrpf115, UISoc202, Login, UPaises, UParametrizacion, UParametrizacionFacturacion,
+     UIrpf110, UIrpf115, UISoc202, UPaises, UParametrizacion, UParametrizacionFacturacion,
      UPlanAnalico, UPlanContable, UPreviewForm, Proyectos, UPunteoDiario, URecalculoSaldos,
      USecciones, USubCuentas, UTiposDiario, UTitulos, UTraspasoApuntes, UTraspasoDatos,
      Provincias, UActualizacionBD;
