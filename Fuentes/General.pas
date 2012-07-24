@@ -1,7 +1,7 @@
 unit General;
 interface
 uses Buttons, Classes, ComCtrls, Controls, db, dbCtrls, Forms, IBTableSet, StdCtrls, SysUtils,
-     wwdbdatetimepicker, UMensaje;
+     wwdbdatetimepicker;
 
 type TModo        = (Naveg, Edita);
      TTipoMensaje = (UnBoton, DosBotones);
@@ -10,7 +10,7 @@ var MascaraImportes, MascaraImportesORPHEUS: String;
 
 procedure PonerTipoConta(TipoConcepto: String);
 procedure ActivarTransacciones(Ventana: TForm);
-procedure CargaImagenesMensaje(Mensaje: TMensaje);
+//procedure CargaImagenesMensaje(Mensaje: TMensaje);
 procedure FibQueryOpen(Query: TIBTableSet; select: String);
 procedure FIbQueryRefresh(Query: TIBTableSet);
 procedure Modo(F : TForm; Modo: TModo);
@@ -51,13 +51,13 @@ begin
    end;
 end;
 
-procedure CargaImagenesMensaje(Mensaje: TMensaje);
-begin
-   Mensaje.Imagenes.Fondo     := gvDirImagenes + 'FormErrores.bmp';
-   Mensaje.Imagenes.Si_Arriba := gvDirImagenes + gcMnsBtnSi_Arriba;
-   Mensaje.Imagenes.No_Arriba := gvDirImagenes + gcMnsBtnNo_Arriba;
-   Mensaje.Imagenes.Ok_Arriba := gvDirImagenes + gcMnsBtnOk_Arriba;
-end;
+//procedure CargaImagenesMensaje(Mensaje: TMensaje);
+//begin
+//   Mensaje.Imagenes.Fondo     := gvDirImagenes + 'FormErrores.bmp';
+//   Mensaje.Imagenes.Si_Arriba := gvDirImagenes + gcMnsBtnSi_Arriba;
+//   Mensaje.Imagenes.No_Arriba := gvDirImagenes + gcMnsBtnNo_Arriba;
+//   Mensaje.Imagenes.Ok_Arriba := gvDirImagenes + gcMnsBtnOk_Arriba;
+//end;
 
 procedure FibQueryOpen(Query :TibTableSet; Select :String);
 begin

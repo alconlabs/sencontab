@@ -1,11 +1,11 @@
 unit DM;
 interface
 uses Classes, Controls, Db, Dialogs, Forms, Graphics,IBQuery, Messages, SysUtils, Variants, Windows,
-     Globales, IBCustomDataSet, IBDatabase, IBSQL, IBTableSet, DBClient;
+     Globales, IBCustomDataSet, IBDatabase, IBSQL, IBTableSet, DBClient,
+     DBXpress, SqlExpr, CRSQLConnection;
 type
   TDMRef = class(TDataModule)
     IBDSiamCont:    TIBDatabase;
-    IBT1:           TIBTransaction;
     QAuxiliar:      TIBSQL;
     QProvinciasNom: TIBTableSet;
     QPaisNom:       TIBTableSet;
@@ -280,6 +280,8 @@ type
     QParametrosOFFICE2003: TIBStringField;
     QParametrosTRATASERIE: TIBStringField;
     QParametrosACTCOMENTARIO: TIBStringField;
+    DB: TCRSQLConnection;
+    IBT1: TIBTransaction;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   protected

@@ -91,7 +91,6 @@ object FormPrincipal: TFormPrincipal
   WindowMenu = MenuItemVentana
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
-  OnKeyPress = FormKeyPress
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13

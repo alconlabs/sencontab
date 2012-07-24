@@ -10,7 +10,7 @@ DCC = $(ROOT)\bin\dcc32.exe $**
 BRCC = $(ROOT)\bin\brcc32.exe $**
 #------------------------------------------------------------------------------
 PROJECTS = Contabilidad.exe DumpingData.exe ModelGenerator.exe dclSnapDataset.bpl SnapDataset.bpl ObjectDatasetDemo.exe Test_Contabilidad.exe \
-  UnitTestsW32.exe Siam.bpl
+  UnitTestsW32.exe
 #------------------------------------------------------------------------------
 default: $(PROJECTS)
 #------------------------------------------------------------------------------
@@ -37,9 +37,6 @@ Test_Contabilidad.exe: UnitTests\Test_Contabilidad.dpr
   $(DCC)
 
 UnitTestsW32.exe: ..\DUnit\tests\UnitTestsW32.dpr
-  $(DCC)
-
-Siam.bpl: ..\Libs\Componentes7\PaqueteSiam\Siam.dpk
   $(DCC)
 
 

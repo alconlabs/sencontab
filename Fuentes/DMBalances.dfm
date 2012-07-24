@@ -1,7 +1,8 @@
 object DMBlnc: TDMBlnc
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Left = 298
+  Left = 864
+  Top = 412
   Height = 436
   Width = 491
   object HInfBalTitulos: TTable

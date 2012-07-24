@@ -1,6 +1,6 @@
 object FormEnterprises: TFormEnterprises
-  Left = 371
-  Top = 214
+  Left = 384
+  Top = 258
   BorderStyle = bsDialog
   ClientHeight = 475
   ClientWidth = 777
@@ -17,16 +17,6 @@ object FormEnterprises: TFormEnterprises
   OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 16
-  object Panel2: TPanel
-    Left = 0
-    Top = 0
-    Width = 777
-    Height = 49
-    Align = alTop
-    BevelOuter = bvNone
-    ParentColor = True
-    TabOrder = 0
-  end
   object StatusBar: TStatusBar
     Left = 0
     Top = 456
@@ -36,28 +26,18 @@ object FormEnterprises: TFormEnterprises
   end
   object Panel4: TPanel
     Left = 0
-    Top = 49
+    Top = 0
     Width = 777
-    Height = 350
+    Height = 456
     Align = alClient
     BevelOuter = bvNone
     ParentColor = True
-    TabOrder = 2
-    object Panel3: TPanel
+    TabOrder = 1
+    object Rejilla: TDBGrid
       Left = 0
       Top = 0
-      Width = 41
-      Height = 350
-      Align = alLeft
-      BevelOuter = bvNone
-      ParentColor = True
-      TabOrder = 0
-    end
-    object Rejilla: TDBGrid
-      Left = 41
-      Top = 0
-      Width = 631
-      Height = 350
+      Width = 672
+      Height = 456
       TabStop = False
       Align = alClient
       BorderStyle = bsNone
@@ -69,7 +49,7 @@ object FormEnterprises: TFormEnterprises
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 1
+      TabOrder = 0
       TitleFont.Charset = ANSI_CHARSET
       TitleFont.Color = clWhite
       TitleFont.Height = -11
@@ -81,11 +61,11 @@ object FormEnterprises: TFormEnterprises
       Left = 672
       Top = 0
       Width = 105
-      Height = 350
+      Height = 456
       Align = alRight
       BevelOuter = bvNone
       ParentColor = True
-      TabOrder = 2
+      TabOrder = 1
       object BtnNavAniadir: TBitBtn
         Left = 10
         Top = 14
@@ -212,7 +192,6 @@ object FormEnterprises: TFormEnterprises
         ParentFont = False
         TabOrder = 7
         Visible = False
-        OnClick = BtnNavSeleccionaClick
       end
       object BtnNavUtilidades: TBitBtn
         Left = 10
@@ -232,16 +211,6 @@ object FormEnterprises: TFormEnterprises
       end
     end
   end
-  object Panel5: TPanel
-    Left = 0
-    Top = 399
-    Width = 777
-    Height = 57
-    Align = alBottom
-    BevelOuter = bvNone
-    ParentColor = True
-    TabOrder = 3
-  end
   object SFichero: TDataSource
     AutoEdit = False
     DataSet = QFichero
@@ -249,7 +218,6 @@ object FormEnterprises: TFormEnterprises
     Top = 117
   end
   object QFichero: TIBTableSet
-    Database = DmControlRef.BDControl
     Transaction = Transaccion
     OnNewRecord = QFicheroNewRecord
     BufferChunks = 32
@@ -361,7 +329,6 @@ object FormEnterprises: TFormEnterprises
   end
   object Transaccion: TIBTransaction
     Active = False
-    DefaultDatabase = DmControlRef.BDControl
     AutoStopAction = saNone
     Left = 258
     Top = 117
