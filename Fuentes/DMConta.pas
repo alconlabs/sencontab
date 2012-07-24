@@ -312,7 +312,7 @@ var
    DMContaRef: TDMContaRef;
 
 implementation
-uses General, Globales, DM, Splash;
+uses General, Globales, DM;
 
 {$R *.DFM}
 
@@ -904,29 +904,21 @@ end;
 procedure TDMContaRef.DataModuleCreate(Sender: TObject);
 var i :Word;
 begin
-   FormSplash := TFormSplash.Create(nil);
-   try FormSplash.Show;
-       FormSplash.Update;
-
-       for i := 0 to (ComponentCount - 1) do begin
-          if (Components[i] is TibTransaction) then begin
-             TibTransaction(Components[i]).Active := False;
-             TibTransaction(Components[i]).Params.Clear;
-             TibTransaction(Components[i]).Params.Add('Read_committed');
-             TibTransaction(Components[i]).Params.Add('Rec_version'   );
-             TibTransaction(Components[i]).Params.Add('Write'         );
-             TibTransaction(Components[i]).Active := True;
-          end;
-       end;
-       AbrirDataSets;
-
-       CrearFicheroInformesConta;
-       CrearFicheroInformesBalances;
-       CrearFicheroGraficos;
-
-       FormSplash.Close;
-   finally FormSplash.Free;
+   for i := 0 to (ComponentCount - 1) do begin
+      if (Components[i] is TibTransaction) then begin
+         TibTransaction(Components[i]).Active := False;
+         TibTransaction(Components[i]).Params.Clear;
+         TibTransaction(Components[i]).Params.Add('Read_committed');
+         TibTransaction(Components[i]).Params.Add('Rec_version'   );
+         TibTransaction(Components[i]).Params.Add('Write'         );
+         TibTransaction(Components[i]).Active := True;
+      end;
    end;
+   AbrirDataSets;
+
+   CrearFicheroInformesConta;
+   CrearFicheroInformesBalances;
+   CrearFicheroGraficos;
 end;
 
 procedure TDMContaRef.DataModuleDestroy(Sender: TObject);
