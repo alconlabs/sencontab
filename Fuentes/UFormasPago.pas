@@ -90,7 +90,7 @@ type
 var WFormasPago: TWFormasPago;
 
 implementation
-uses DM, DMConta, DMControl, General, Globales, MenuPrincipal;
+uses DM, DMConta, General, Globales, MenuPrincipal;
 {$R *.DFM}
 
 const CADENA_MANUAL  = 'Seleccione AYUDA si desea obtener más información sobre el problema surgido';
@@ -163,9 +163,9 @@ end;
 
 procedure TWFormasPago.BtnNavAniadirClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), ANIADIR) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), ANIADIR) then begin
+   //   Exit;
+   //end;
 
    Navegador.Visible := False;
    eFormaPago.SetFocus;
@@ -175,9 +175,9 @@ end;
 
 procedure TWFormasPago.BtnNavBorrarClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), BORRAR) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), BORRAR) then begin
+   //   Exit;
+   //end;
 
    if QFichero.IsEmpty then Exit;
    if MessageDlg('¿Desea borrar esta forma de pago?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
@@ -191,9 +191,9 @@ end;
 
 procedure TWFormasPago.BtnNavImprimirClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), IMPRESION) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), IMPRESION) then begin
+   //   Exit;
+   //end;
 
    FormPrincipal.LanzarListado('LFormasPago.rtm', SFichero);
 end;
@@ -253,9 +253,9 @@ end;
 
 procedure TWFormasPago.RejillaDblClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), MODIFICAR) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), MODIFICAR) then begin
+   //   Exit;
+   //end;
 
    if not QFichero.IsEmpty then  begin
       Navegador.Visible := False;

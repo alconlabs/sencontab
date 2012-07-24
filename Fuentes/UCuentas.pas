@@ -270,7 +270,7 @@ const
 
 var WCuentas: TWCuentas;
 implementation
-uses DM, DMConta, DMControl, General, Globales, MenuPrincipal;
+uses DM, DMConta, General, Globales, MenuPrincipal;
 {$R *.DFM}
 
 procedure TWCuentas.PrepararQuery;
@@ -694,9 +694,9 @@ end;
 
 procedure TWCuentas.BtnNavAnadirClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), ANIADIR) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), ANIADIR) then begin
+   //   Exit;
+   //end;
 
    lAdd := True;
    try
@@ -726,9 +726,9 @@ end;
 
 procedure TWCuentas.RejillaDblClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), MODIFICAR) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), MODIFICAR) then begin
+   //   Exit;
+   //end;
 
    if not QFichero.IsEmpty then  begin
       lAdd := False;
@@ -795,9 +795,9 @@ end;
 
 procedure TWCuentas.BtnNavBorrarClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), BORRAR) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), BORRAR) then begin
+   //   Exit;
+   //end;
 
    if QFichero.IsEmpty then begin
       Exit;
@@ -898,9 +898,9 @@ end;
 
 procedure TWCuentas.BtnNavImprimirClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), IMPRESION) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), IMPRESION) then begin
+   //   Exit;
+   //end;
 
    if Paginas.PageIndex = TabGraficos then begin
       if MessageDlg('¿Desea imprimir este gráfico?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin

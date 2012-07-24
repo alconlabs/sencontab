@@ -290,7 +290,7 @@ type
     procedure CerrarDataSets;
     procedure ConectarBDEmpresa(prmCD_EMPRESA :string);
     procedure ConectarBDEmpresaAnterior(prmCD_EMPRESA :Integer);
-    procedure EjecutarSQL(Sentencia: String);
+    //procedure EjecutarSQL(Sentencia: String);
     function  ExistenRegistros(Tabla, Condicion: String): Boolean;
     function  ObtenerValor(Campo, Tabla, Condicion: String; Orden: String = ''): Variant;
     function  CreateQuery          (const prmSQL :array of string):TIBQuery;
@@ -301,7 +301,7 @@ type
 var DMRef: TDMRef;
 
 implementation
-uses General, DMControl;
+uses General;
 {$R *.DFM}
 
 function TDMRef.CreateQuery(const prmSQL :array of string):TIBQuery;
@@ -388,6 +388,10 @@ end;
 procedure TDMRef.ConectarBDEmpresa(prmCD_EMPRESA :string);
 var Q :TIBQuery;
 begin
+   {$Message Warn 'Requiere acaptación a SQL Server'}
+   //Para una determinada empresa, toma los datos de conexión, que se encontraban el la base de datos de Control.
+
+(*
    Q := TIBQuery.Create(nil);
    try Q.Database := DMControlRef.BDControl;
        Q.SQL.Add('SELECT SERVIDOR, UBICACION               ');
@@ -414,12 +418,17 @@ begin
    finally Q.Close;
            Q.Free;
    end;
+   *)
 end;
 
 procedure TDMRef.ConectarBDEmpresaAnterior(prmCD_EMPRESA :Integer);
 var NomEmpresa: string;
 begin
+   {$Message Warn 'Requiere adaptación a SQL Server`'}
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
+
+   {Para un nombre de base de datos conecta con el servidor de Control y conecta un componente de base de datos.}
+(*
    with TIBQuery.Create(nil), SQL do begin
       Close;
       Database := DmControlRef.BDControl;
@@ -453,19 +462,20 @@ begin
       Close;
       Free;
    end;
+*)
 end;
 
-procedure TDMRef.EjecutarSQL(Sentencia: String);
-var Q :TIBSQL;
-begin
-   Q := TIBSQL.Create(nil);
-   Q.DataBase := IBDSiamCont;
-   Q.SQL.Add(Sentencia);
-   try     Q.ExecQuery;
-           Q.Transaction.CommitRetaining;
-   finally Q.Free;
-   end;
-end;
+//procedure TDMRef.EjecutarSQL(Sentencia: String);
+//var Q :TIBSQL;
+//begin
+//   Q := TIBSQL.Create(nil);
+//   Q.DataBase := IBDSiamCont;
+//   Q.SQL.Add(Sentencia);
+//   try     Q.ExecQuery;
+//           Q.Transaction.CommitRetaining;
+//   finally Q.Free;
+//   end;
+//end;
 
 function TDMRef.ExistenRegistros(Tabla, Condicion: String): Boolean;
 begin

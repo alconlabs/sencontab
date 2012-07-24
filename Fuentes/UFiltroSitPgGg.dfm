@@ -1,9 +1,9 @@
 object WFiltroSitPgGg: TWFiltroSitPgGg
-  Left = 628
-  Top = 488
+  Left = 484
+  Top = 302
   BorderStyle = bsNone
-  ClientHeight = 465
-  ClientWidth = 644
+  ClientHeight = 455
+  ClientWidth = 696
   Color = 14275008
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -43,8 +43,8 @@ object WFiltroSitPgGg: TWFiltroSitPgGg
   object Formulario: TfcImageForm
     Left = 10
     Top = 10
-    Width = 624
-    Height = 445
+    Width = 676
+    Height = 435
     Align = alClient
     Picture.Data = {07544269746D617000000000}
     DragTolerance = 5
@@ -129,10 +129,10 @@ object WFiltroSitPgGg: TWFiltroSitPgGg
     ParentFont = False
   end
   object Panel5: TPanel
-    Left = 634
+    Left = 686
     Top = 10
     Width = 10
-    Height = 445
+    Height = 435
     Align = alRight
     BevelOuter = bvNone
     Color = 10720647
@@ -140,8 +140,8 @@ object WFiltroSitPgGg: TWFiltroSitPgGg
   end
   object Panel4: TPanel
     Left = 0
-    Top = 455
-    Width = 644
+    Top = 445
+    Width = 696
     Height = 10
     Align = alBottom
     BevelOuter = bvNone
@@ -152,7 +152,7 @@ object WFiltroSitPgGg: TWFiltroSitPgGg
     Left = 0
     Top = 10
     Width = 10
-    Height = 445
+    Height = 435
     Align = alLeft
     BevelOuter = bvNone
     Color = 10720647
@@ -301,7 +301,6 @@ object WFiltroSitPgGg: TWFiltroSitPgGg
           'NOMBRE'#9'25'#9'EMPRESA'#9'F')
         DataField = 'Empresa'
         DataSource = DSFiltro
-        LookupTable = DmControlRef.QEmpresas
         LookupField = 'ID_EMPRESA'
         Style = csDropDownList
         ParentFont = False
@@ -1269,7 +1268,7 @@ object WFiltroSitPgGg: TWFiltroSitPgGg
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 644
+    Width = 696
     Height = 10
     Align = alTop
     BevelOuter = bvNone

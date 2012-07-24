@@ -54,7 +54,7 @@ type
 
 var WPaises: TWPaises;
 implementation
-uses Dialogs, General, Globales, DM, DMControl, MenuPrincipal;
+uses Dialogs, General, Globales, DM, MenuPrincipal;
 {$R *.DFM}
 
 const CADENA_MANUAL  = 'Seleccione AYUDA si desea obtener más información sobre el problema surgido';
@@ -130,9 +130,9 @@ end;
 
 procedure TWPaises.BtnAddClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), ANIADIR) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), ANIADIR) then begin
+   //   Exit;
+   //end;
 
    DataGrid.SetFocus;
    try
@@ -146,9 +146,9 @@ end;
 
 procedure TWPaises.BtnDeleteClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), BORRAR) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), BORRAR) then begin
+   //   Exit;
+   //end;
 
    if QFichero.IsEmpty then Exit;
    if MessageDlg('¿Desea borrar este país?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
@@ -162,9 +162,9 @@ end;
 
 procedure TWPaises.BtnReportClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), IMPRESION) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), IMPRESION) then begin
+   //   Exit;
+   //end;
 
    FormPrincipal.LanzarListado('LPaises.rtm', SFichero);
 end;
@@ -241,9 +241,9 @@ end;
 
 procedure TWPaises.DataGridDblClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), MODIFICAR) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), MODIFICAR) then begin
+   //   Exit;
+   //end;
 
    if not QFichero.IsEmpty then  begin
       try QFichero.Edit;

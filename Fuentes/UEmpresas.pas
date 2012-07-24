@@ -63,7 +63,7 @@ type
 var FormEnterprises: TFormEnterprises;
 
 implementation
-uses cadenas, DM, DMConta, DMControl, General, Globales, UEspere, MenuPrincipal, UUtilEmpresas;
+uses cadenas, DM, DMConta, General, Globales, UEspere, MenuPrincipal, UUtilEmpresas;
 {$R *.DFM}
 
 const CADENA_BORRADO = 'Tiene asientos en el diario con ese concepto';
@@ -125,9 +125,9 @@ var
    cUbicacion, cNombreBD: String;
    nLong, i: Integer;
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), BORRAR) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), BORRAR) then begin
+   //   Exit;
+   //end;
 
    if not QFichero.IsEmpty then begin
       if MessageDlg('¿Desea borrar esta empresa?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
@@ -184,7 +184,7 @@ begin
    if ha_insertado then  begin
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with TIBSql.Create(nil), sql do begin
-         database := DmControlRef.bdcontrol;
+         //database := DmControlRef.bdcontrol;
          add('select count(*) as cuantos from empresas where upper(nombre)=upper(:nombre)');
          parambyname('nombre').AsString := QFicheroNombre.AsString;
          ExecQuery;
@@ -252,9 +252,9 @@ end;
 
 procedure TFormEnterprises.RejillaDblClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), MODIFICAR) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), MODIFICAR) then begin
+   //   Exit;
+   //end;
 
    if not QFichero.IsEmpty then  begin
       try QFichero.Edit;
@@ -324,7 +324,7 @@ begin
       cNombreEmpresa := Trim(QFicheroNombre.AsString) + ' copia ';
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with TIBSql.Create(nil), sql do begin
-         database := DmControlRef.bdcontrol;
+         //database := DmControlRef.bdcontrol;
          add('select count(*) as cuantos from empresas where upper(nombre)=upper(:nombre)');
          parambyname('nombre').AsString := cNombreEmpresa;
          ExecQuery;
@@ -403,9 +403,9 @@ var
    cUbicacion, cNombre, cServidor: String;
    i: Word;
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), ANIADIR) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), ANIADIR) then begin
+   //   Exit;
+   //end;
 
    if MessageDlg('¿Quiere hacer un duplicado de la empresa ' + Trim(QficheroNombre.AsString) + ' ?',
        mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin

@@ -129,7 +129,6 @@ object WCopiaAsientos: TWCopiaAsientos
       C1EBD4C5EDD2BEEACAB3E9C7B0E3C0ACC8A696A98879EBD5C9F2DBCCF8DFCFF6
       DDC9F2D5C0ECD0B8ECD1BCF0D8C2EBD5C3E6D2C0E7D5C4ECDBC8F0DAC8EED7C1
       F1DAC0F7E0CAE2CFC2E9D5CAF0D5C7F2D2BFF6D5C2F5D4C1DEBDAEC0A093}
-    NumGlyphs = 0
     ParentClipping = False
     ShadeStyle = fbsNormal
     TabOrder = 0
@@ -400,6 +399,7 @@ object WCopiaAsientos: TWCopiaAsientos
       5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
       6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
       526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
+    NumGlyphs = 0
     ParentClipping = False
     ParentFont = False
     ShadeStyle = fbsNormal
@@ -642,6 +642,7 @@ object WCopiaAsientos: TWCopiaAsientos
       5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
       6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
       526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
+    NumGlyphs = 0
     ParentClipping = False
     ParentFont = False
     ShadeStyle = fbsNormal
@@ -1077,13 +1078,13 @@ object WCopiaAsientos: TWCopiaAsientos
   end
   object sFiltro: TDataSource
     DataSet = QFiltro
-    Left = 440
+    Left = 368
     Top = 16
   end
   object QFiltro: TClientDataSet
     Aggregates = <>
     Params = <>
-    Left = 408
+    Left = 328
     Top = 16
   end
   object DBEmpresa: TIBDatabase
@@ -1092,14 +1093,14 @@ object WCopiaAsientos: TWCopiaAsientos
     IdleTimer = 0
     SQLDialect = 3
     TraceFlags = []
-    Left = 472
+    Left = 432
     Top = 16
   end
   object Transaccion: TIBTransaction
     Active = False
     DefaultDatabase = DBEmpresa
     AutoStopAction = saNone
-    Left = 512
+    Left = 496
     Top = 16
   end
   object QEmpresas: TIBTableSet
@@ -1162,8 +1163,8 @@ object WCopiaAsientos: TWCopiaAsientos
         '  ID_EMPRESA                     =:ID_EMPRESA                   ' +
         '   ')
     TableName = 'empresas'
-    Left = 34
-    Top = 92
+    Left = 434
+    Top = 76
     object QEmpresasNOMBRE: TIBStringField
       DisplayWidth = 40
       FieldName = 'NOMBRE'

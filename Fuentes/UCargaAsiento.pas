@@ -978,9 +978,10 @@ begin
          end;
 
          // Actualizar el valor del generador
-         if (FModoArranque = INSERCION) or (FModoArranque = DUPLICAR) or
+         if (FModoArranque = INSERCION    ) or (FModoArranque = DUPLICAR    ) or
             (FModoArranque = COBRO_FACTURA) or (FModoArranque = PAGO_FACTURA) then begin
-            DmRef.EjecutarSQL('SET GENERATOR ASIENTO TO ' + IntToStr(FAsiento - 1));
+            {$Message Warn 'Esto terminará en la Modelo correspondiente. De momento lo comentamos para poder desacernos de EjecutaSQL'}
+            //DmRef.EjecutarSQL('SET GENERATOR ASIENTO TO ' + IntToStr(FAsiento - 1));
          end;
 
       except

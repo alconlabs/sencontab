@@ -132,7 +132,7 @@ type
 var WTitulos: TWTitulos;
 
 implementation
-uses DM, DMControl, General, Globales, MenuPrincipal;
+uses DM, General, Globales, MenuPrincipal;
 {$R *.DFM}
 
 const CADENA_MANUAL  = 'Seleccione AYUDA si desea obtener más información sobre el problema surgido';
@@ -320,9 +320,9 @@ end;
 
 procedure TWTitulos.BtnNavAniadirClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), ANIADIR) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), ANIADIR) then begin
+   //   Exit;
+   //end;
 
    Navegador.Visible := False;
 
@@ -338,9 +338,9 @@ end;
 
 procedure TWTitulos.BtnNavBorrarClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), BORRAR) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), BORRAR) then begin
+   //   Exit;
+   //end;
 
    if QFichero.IsEmpty then Exit;
    
@@ -353,9 +353,9 @@ end;
 
 procedure TWTitulos.BtnNavImprimirClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), IMPRESION) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), IMPRESION) then begin
+   //   Exit;
+   //end;
 
    FormPrincipal.LanzarListado('LTitulos.rtm', SFichero);
 end;
@@ -418,9 +418,9 @@ end;
 
 procedure TWTitulos.RejillaDblClick(Sender: TObject);
 begin
-   if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), MODIFICAR) then begin
-      Exit;
-   end;
+   //if not DmControlRef.PermisoUsuario(gvID_Usuario, UpperCase(Self.Name), MODIFICAR) then begin
+   //   Exit;
+   //end;
 
    if not QFichero.IsEmpty then  begin
       Navegador.Visible := False;

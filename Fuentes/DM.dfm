@@ -2,8 +2,8 @@ object DMRef: TDMRef
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
-  Left = 638
-  Top = 232
+  Left = 629
+  Top = 256
   Height = 375
   Width = 583
   object IBDSiamCont: TIBDatabase
@@ -17,21 +17,21 @@ object DMRef: TDMRef
     IdleTimer = 0
     SQLDialect = 1
     TraceFlags = []
-    Left = 42
+    Left = 98
     Top = 8
   end
   object IBT1: TIBTransaction
     Active = True
     DefaultDatabase = IBDSiamCont
     AutoStopAction = saNone
-    Left = 112
+    Left = 168
     Top = 8
   end
   object QAuxiliar: TIBSQL
     Database = IBDSiamCont
     ParamCheck = True
     Transaction = IBT1
-    Left = 200
+    Left = 232
     Top = 8
   end
   object QProvinciasNom: TIBTableSet

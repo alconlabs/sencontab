@@ -65,7 +65,7 @@ type
 var FormProvincias: TFormProvincias;
 
 implementation
-uses DM, Dialogs, SQLExpr, IBQuery, DMControl, MenuPrincipal, Globales, SysUtils;
+uses DM, Dialogs, SQLExpr, IBQuery, MenuPrincipal, Globales, SysUtils;
 {$R *.DFM}
 
 procedure TFormProvincias.AsignaDataSources;
@@ -177,9 +177,9 @@ begin
       nrHelp  : SendMessage(Self.Handle, WM_SYSCOMMAND, SC_CONTEXTHELP, 0);
       nrClose : Close;
       nrPrinter:begin
-         if DMControlRef.PermisoUsuario(gvID_Usuario, 'WProvincias', IMPRESION) then begin
+         //if DMControlRef.PermisoUsuario(gvID_Usuario, 'WProvincias', IMPRESION) then begin
             FormPrincipal.LanzarListado('LProvincias.rtm', SProvincias);
-         end;
+         //end;
       end;//DoShowReports('CLI', nil, nil, nil, False, False, False);
       nrRefresh:begin
          HProvincias.Refresh;
@@ -245,15 +245,12 @@ procedure TFormProvincias.BtnEliminarClick(Sender: TObject);
 var TextoError :string;
     Borra      :Boolean;
 begin
-   if not DMControlRef.PermisoUsuario(gvID_Usuario, 'WPROVINCIAS', BORRAR) then begin
-      MuestraError('No tiene PERMISO para ELIMINAR registros.');
-      Exit;
-   end;
+   //if not DMControlRef.PermisoUsuario(gvID_Usuario, 'WPROVINCIAS', BORRAR) then begin
+   //   MuestraError('No tiene PERMISO para ELIMINAR registros.');
+   //   Exit;
+   //end;
 
-   if not DMControlRef.TestRunning then begin
-      Borra := MessageDlg('¿Seguro que desea eliminar el elemento seleccionado?', mtConfirmation, [mbYes, mbNo], 1) = mrYes;
-   end
-   else Borra  := True;
+   Borra := MessageDlg('¿Seguro que desea eliminar el elemento seleccionado?', mtConfirmation, [mbYes, mbNo], 1) = mrYes;
 
    if Borra then begin
       if IProvincias.Operation(okDelete, TextoError) then begin
@@ -267,10 +264,10 @@ end;
 
 procedure TFormProvincias.BtnEditarClick(Sender: TObject);
 begin
-   if not DMControlRef.PermisoUsuario(gvID_Usuario, 'WPROVINCIAS', MODIFICAR) then begin
-      MuestraError('No tiene PERMISO para MODIFICAR registros.');
-      Exit;
-   end;
+   //if not DMControlRef.PermisoUsuario(gvID_Usuario, 'WPROVINCIAS', MODIFICAR) then begin
+   //   MuestraError('No tiene PERMISO para MODIFICAR registros.');
+   //   Exit;
+   //end;
 
    if IProvincias.Operation(okEdit) then begin
       //Transaction.StartTransaction;
@@ -285,10 +282,10 @@ end;
 
 procedure TFormProvincias.BtnNuevoClick(Sender: TObject);
 begin
-   if not DMControlRef.PermisoUsuario(gvID_Usuario, 'WPROVINCIAS', ANIADIR) then begin
-      MuestraError('No tiene PERMISO para AÑADIR registros.');
-      Exit;
-   end;
+   //if not DMControlRef.PermisoUsuario(gvID_Usuario, 'WPROVINCIAS', ANIADIR) then begin
+   //   MuestraError('No tiene PERMISO para AÑADIR registros.');
+   //   Exit;
+   //end;
    
    if IProvincias.Operation(okAppend) then begin
       //Transaction.StartTransaction;
@@ -301,7 +298,7 @@ end;
 procedure TFormProvincias.BtnCancelarClick(Sender: TObject);
 begin
    if IProvincias.Operation(okCancel) then begin
-      DMControlRef.TransaccionControl.RollBack;
+      //DMControlRef.TransaccionControl.RollBack;
       EditPROVINCIA.ccMode := fmEditing;
       FormHandler.Mode     := fmNavigating;
    end;

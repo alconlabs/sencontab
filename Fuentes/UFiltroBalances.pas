@@ -83,7 +83,7 @@ type
 var WFiltroBalances: TWFiltroBalances;
 
 implementation
-uses DM, DMConta, DMControl, General, Globales, InfBalanceSumasSaldos;
+uses DM, DMConta, General, Globales, InfBalanceSumasSaldos;
 {$R *.DFM}
 
 procedure TWFiltroBalances.CrearFiltro;
@@ -141,7 +141,8 @@ begin
    lbEmpresas.Clear;
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with TIBQuery.Create(nil), SQL do begin
-      Database := DmControlRef.BDControl;
+      //Database := DmControlRef.BDControl;
+      {$Message Warn 'Requiere una adaptación a SQL Server'}
       Close;
       Clear;
       Add('SELECT NOMBRE FROM EMPRESAS');
