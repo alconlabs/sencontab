@@ -186,7 +186,7 @@ uses Dialogs, General, Globales, Cadenas, DM, DMConta, Registry, ogUtil, Wwdbgri
      UIrpf110, UIrpf115, UISoc202, Login, UPaises, UParametrizacion, UParametrizacionFacturacion,
      UPlanAnalico, UPlanContable, UPreviewForm, Proyectos, UPunteoDiario, URecalculoSaldos,
      USecciones, USubCuentas, UTiposDiario, UTitulos, UTraspasoApuntes, UTraspasoDatos,
-     Splash, Provincias, UActualizacionBD;
+     Provincias, UActualizacionBD;
 {$R *.DFM}
 
 procedure TFormPrincipal.LanzarListado(Nombre_Archivo :string;

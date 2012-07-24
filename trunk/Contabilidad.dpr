@@ -13,7 +13,6 @@ uses
   Proyectos in 'Fuentes\Proyectos.pas' {WProyectos},
   UPaises in 'Fuentes\UPaises.pas' {WPaises},
   UParametrizacionFacturacion in 'Fuentes\UParametrizacionFacturacion.pas' {WParametrizacionFacturacion},
-  Splash in 'Fuentes\Splash.pas' {FormSplash},
   UTitulos in 'Fuentes\UTitulos.pas' {WTitulos},
   UCuentas in 'Fuentes\UCuentas.pas' {WCuentas},
   UNuevaSubcuenta in 'Fuentes\UNuevaSubcuenta.pas' {WNuevaSubcuenta},
