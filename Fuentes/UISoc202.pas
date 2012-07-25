@@ -116,7 +116,7 @@ begin
    with TIbsql.Create(nil), SQL do begin
       Close;
       Clear;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Add('SELECT NOMBRE FROM PROVINCIAS');
       Add('WHERE PROVINCIA=:PROVINCIA');
       parambyname('provincia').AsString := DmRef.QParametros.FieldByName('Provincia').AsString;

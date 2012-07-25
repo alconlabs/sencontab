@@ -1391,15 +1391,11 @@ object WAmortizaciones: TWAmortizaciones
     end
   end
   object QModifica: TIBSQL
-    Database = DMRef.IBDSiamCont
     ParamCheck = True
-    Transaction = DMRef.IBT1
     Left = 48
     Top = 400
   end
   object QAmortizaciones: TIBQuery
-    Database = DMRef.IBDSiamCont
-    Transaction = DMRef.IBT1
     OnCalcFields = QAmortizacionesCalcFields
     BufferChunks = 1000
     CachedUpdates = False

@@ -85,8 +85,8 @@ object WCargaRapidaFacturas: TWCargaRapidaFacturas
       ParentFont = False
       object GroupBox2: TGroupBox
         Left = 0
-        Top = 355
-        Width = 750
+        Top = -63
+        Width = 0
         Height = 63
         Align = alBottom
         TabOrder = 3
@@ -322,8 +322,8 @@ object WCargaRapidaFacturas: TWCargaRapidaFacturas
       end
       object GroupBox3: TGroupBox
         Left = 0
-        Top = 264
-        Width = 750
+        Top = -154
+        Width = 0
         Height = 91
         Align = alBottom
         Font.Charset = ANSI_CHARSET
@@ -614,7 +614,7 @@ object WCargaRapidaFacturas: TWCargaRapidaFacturas
       object Datos: TGroupBox
         Left = 0
         Top = 128
-        Width = 750
+        Width = 0
         Height = 136
         Align = alClient
         Color = 14275008
@@ -931,7 +931,7 @@ object WCargaRapidaFacturas: TWCargaRapidaFacturas
       object GroupBox1: TGroupBox
         Left = 0
         Top = 0
-        Width = 750
+        Width = 0
         Height = 128
         Align = alTop
         TabOrder = 0
@@ -3416,13 +3416,11 @@ object WCargaRapidaFacturas: TWCargaRapidaFacturas
   end
   object Transaccion: TIBTransaction
     Active = False
-    DefaultDatabase = DMRef.IBDSiamCont
     AutoStopAction = saNone
     Left = 495
     Top = 7
   end
   object QMovimientos: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     OnCalcFields = QMovimientosCalcFields
     BufferChunks = 32
@@ -3698,9 +3696,7 @@ object WCargaRapidaFacturas: TWCargaRapidaFacturas
     Top = 7
   end
   object QSubcuentas: TIBSQL
-    Database = DMRef.IBDSiamCont
     ParamCheck = True
-    Transaction = DMRef.IBT1
     Left = 314
     Top = 16
   end

@@ -80,8 +80,8 @@ procedure TFormProvincias.FormCreate(Sender: TObject);
 begin
    //if FDataBase = nil then HProvincias.DataBase := FDataBase
    //                   else
-   HProvincias.DataBase        := DMRef.IBDSiamCont;
-   HProvincias.Transaction     := DMRef.IBDSiamCont.DefaultTransaction;
+   //TODO: HProvincias.DataBase        := DMRef.IBDSiamCont;
+   //TODO: HProvincias.Transaction     := DMRef.IBDSiamCont.DefaultTransaction;
 
    FormHandler := TccFormHandler.Create(Self);
    IProvincias := TccDBIntegrity.Create(HProvincias);
@@ -135,7 +135,7 @@ end;
 //end;
 
 function TFormProvincias.GetFirstCODIGO:string;
-var Q :TIBQuery;
+var Q :TSQLQuery;
 begin
    Q := DMRef.CreateQuery(
           ['SELECT PROVINCIA                          ',
@@ -149,7 +149,7 @@ begin
 end;
 
 function TFormProvincias.GetLastCODIGO:string;
-var Q :TIBQuery;
+var Q :TSQLQuery;
 begin
    Q := DMRef.CreateQuery(
           ['SELECT PROVINCIA                          ',

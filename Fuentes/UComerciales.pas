@@ -147,8 +147,11 @@ end;
 
 procedure TWComerciales.RefrescarBD;
 begin
-   FibQueryRefresh(DmRef.QComercial);
-   FibQueryRefresh(DmRef.QcomercialNom);
+   DmRef.QComercial.Close;
+   DmRef.QcomercialNom.Close;
+
+   DmRef.QComercial.Open;
+   DmRef.QcomercialNom.Open;
 end;
 
 procedure TWComerciales.BtnNavAniadirClick(Sender: TObject);
@@ -305,7 +308,7 @@ end;
 
 procedure TWComerciales.FormCreate(Sender: TObject);
 begin
-   ActivarTransacciones(self);
+   //ActivarTransacciones(self);
    CrearFiltro;
    FCampoOrden := 'COMERCIAL';
    PrepararQuery;

@@ -125,7 +125,9 @@ end;
 
 procedure TWPaises.RefrescarBD;
 begin
-   FIbQueryRefresh(DmRef.QPaisNom);
+   DmRef.QPaisNom.Close;
+
+   DmRef.QPaisNom.Open;
 end;
 
 procedure TWPaises.BtnAddClick(Sender: TObject);
@@ -276,7 +278,7 @@ begin
    FormManager.AddComp(BtnCancel.Name       , fmEdit  );
 
 
-   ActivarTransacciones(Self);
+   //ActivarTransacciones(Self);
    CrearFiltro;
    FCampoOrden := 'PAIS';
    PrepararQuery;

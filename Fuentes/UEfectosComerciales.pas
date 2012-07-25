@@ -96,7 +96,7 @@ var
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with TIBSQL.Create(nil), SQL do begin
          Close;
-         Database := DMRef.IBDSiamCont;
+         //TODO: Database := DMRef.IBDSiamCont;
          Clear;
          Add('select descripcion from subctas where subcuenta=:subcuenta');
          ParamByName('SUBCUENTA').AsString := FSubcuenta;
@@ -177,7 +177,7 @@ var
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with TIBSQL.Create(nil), SQL do begin
          Close;
-         Database := DMRef.IBDSiamCont;
+         //TODO: Database := DMRef.IBDSiamCont;
          Clear;
          Add('INSERT INTO DIARIO');
          Add('   (APUNTE, ASIENTO, CONTRAPARTIDA, DEBEHABER,');
@@ -230,7 +230,7 @@ var
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with TIBSQL.Create(nil), SQL do begin
          Close;
-         Database := DMRef.IBDSiamCont;
+         //TODO: Database := DMRef.IBDSiamCont;
          Clear;
          Add('SELECT DESCRIPCION FROM CONCEPTOS WHERE ID_CONCEPTOS = :ID_CONCEPTOS');
          ParamByName('ID_CONCEPTOS').AsString := QFicheroEfectosID_CONCEPTOS_RIESGO.AsString;

@@ -314,7 +314,7 @@ end;
 
 procedure TWAnaliticas.FormCreate(Sender: TObject);
 begin
-   ActivarTransacciones(self);
+   //ActivarTransacciones(self);
    CrearFiltro;
    FCampoOrden := 'CUENTA';
    PrepararQuery;
@@ -452,8 +452,11 @@ end;
 
 procedure TWAnaliticas.RefrescarBD;
 begin
-   FIbQueryRefresh(DMRef.QAnaliticas);
-   FIbQueryRefresh(DMRef.QAnaliticasNom);
+   DMRef.QAnaliticas.Close;
+   DMRef.QAnaliticasNom.Close;
+
+   DMRef.QAnaliticas.Open;
+   DMRef.QAnaliticasNom.Open;
 end;
 
 end.

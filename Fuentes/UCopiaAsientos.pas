@@ -159,7 +159,7 @@ begin
    with QBuscaSubcuentaActual, Sql do begin
       Close;
       Clear;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Add('select descripcion,nif from subctas');
       Add(' where subcuenta=:subcuenta');
       prepare;
@@ -192,7 +192,7 @@ begin
    with QBuscaAnaliticaActual, Sql do begin
       Close;
       Clear;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Add('select nombre from analiticas');
       Add(' where cuenta=:cuenta');
       prepare;
@@ -225,7 +225,7 @@ begin
    with QBuscaConceptoActual, Sql do begin
       Close;
       Clear;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Add('select * from conceptos');
       Add(' where id_conceptos=:id_conceptos');
       prepare;
@@ -266,7 +266,7 @@ begin
    nAsientoEmpresa := -99;
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with TIBSQL.Create(nil), SQL do begin
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Clear;
       Add('select * from diario where asiento>=:Asiento1 and asiento<=:asiento2 and');
       Add('  Fecha>=:Fecha1 and Fecha<=:Fecha2 ');

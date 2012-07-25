@@ -791,7 +791,7 @@ end;
 procedure TWDiario.FormCreate(Sender: TObject);
 begin
    Screen.cursor := crHourGlass;
-   ActivarTransacciones(Self);
+   //ActivarTransacciones(Self);
    CrearFiltro;
 
    Modo(Self, Naveg);
@@ -1246,14 +1246,14 @@ begin
       with QDuplicar, Sql do begin
          Close;
          Clear;
-         Database := DMRef.IBDSiamCont;
+         //TODO: Database := DMRef.IBDSiamCont;
       end;
       QDiario := TIbSql.Create(nil);
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with QDiario, Sql do begin
          Close;
          Clear;
-         Database := DMRef.IBDSiamCont;
+         //TODO: Database := DMRef.IBDSiamCont;
          Add('select * from Diario where Asiento=:asiento');
          parambyname('Asiento').AsInteger := QFicheroAsiento.AsInteger;
          ExecQuery;
@@ -1366,7 +1366,7 @@ begin
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with TIBQuery.Create(nil), SQL do begin
          Close;
-         Database := DMRef.IBDSiamCont;
+         //TODO: Database := DMRef.IBDSiamCont;
          Clear;
          Add('SELECT TIPOCUENTA FROM CUENTAS');
          Add('WHERE CUENTA = :CUENTA');
@@ -1457,7 +1457,7 @@ begin
          {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
          with QAsientos, SQL do begin
             Close;
-            Database := DMRef.IBDSiamCont;
+            //TODO: Database := DMRef.IBDSiamCont;
             Clear;
             Add('SELECT * FROM DIARIO WHERE ASIENTO = :ASIENTO');
             ParamByName('ASIENTO').AsInteger := QFicheroASIENTO.AsInteger;
@@ -1466,7 +1466,7 @@ begin
          {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
          with TIBSQL.Create(nil), SQL do begin
             Close;
-            Database := DMRef.IBDSiamCont;
+            //TODO: Database := DMRef.IBDSiamCont;
             Clear;
             Add('INSERT INTO DIARIO ');
             Add('(APUNTE, ASIENTO, COMENTARIO, CONTRAPARTIDA, DEBEHABER,');
@@ -1592,7 +1592,7 @@ begin
          {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
          with TIBSQL.Create(nil), SQL do begin
             Close;
-            Database := DMRef.IBDSiamCont;
+            //TODO: Database := DMRef.IBDSiamCont;
             Clear;
             Add('UPDATE DIARIO SET ASIENTO = :ASIENTO_NUEVO');
             Add('WHERE ASIENTO = :ASIENTO_ACTUAL');

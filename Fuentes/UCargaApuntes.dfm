@@ -2437,9 +2437,7 @@ object WCargaApuntes: TWCargaApuntes
     Top = 44
   end
   object QSubcuentas: TIBSQL
-    Database = DMRef.IBDSiamCont
     ParamCheck = True
-    Transaction = DMRef.IBT1
     Left = 344
     Top = 8
   end
@@ -2456,7 +2454,6 @@ object WCargaApuntes: TWCargaApuntes
   end
   object Transaccion: TIBTransaction
     Active = False
-    DefaultDatabase = DMRef.IBDSiamCont
     AutoStopAction = saNone
     Left = 467
     Top = 45
@@ -2468,7 +2465,6 @@ object WCargaApuntes: TWCargaApuntes
     Top = 45
   end
   object QMovimientos: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     OnCalcFields = QMovimientosCalcFields
     BufferChunks = 32

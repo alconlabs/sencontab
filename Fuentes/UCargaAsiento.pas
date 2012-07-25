@@ -4,9 +4,10 @@ uses Buttons, Classes, ComCtrls, Controls, Db, DBClient, DBCtrls, DBTables, Dial
      fcCalcEdit, fcCombo, fcImage, fcimageform, fcImgBtn, fcShapeBtn, Forms, Globales, Graphics, Grids,
      IBCustomDataSet, IBDatabase, IBQuery, IBSQL, IBTableSet, jpeg, Mask, Menus, Messages, navegadorNotarios,
      OvcBase, ovccalc, ovccaldg, ovcclcdg, OvcDbDat, OvcDbNF, OvcDbPF, ovcdlg, OvcEdCal, OvcEditF, OvcEdPop,
-     OvcEF, ovcfiler, ovcmru, OvcNbk, OvcNF, OvcPB, OvcPF, ovcstate, ovcstore, StdCtrls, SysUtils, 
+     OvcEF, ovcfiler, ovcmru, OvcNbk, OvcNF, OvcPB, OvcPF, ovcstate, ovcstore, StdCtrls, SysUtils,
      Windows, Wwdbcomb, wwdbdatetimepicker, wwdbedit, Wwdbgrid, Wwdbigrd, wwdblook, Wwdotdot, Wwintl,
-     wwSpeedButton, CustomView;
+     wwSpeedButton, CustomView, 
+     DBXpress, SqlExpr, CRSQLConnection;
 type
    TWCargaAsiento = class(TCustomView)
     EditComentario: TOvcDbPictureField;
@@ -415,7 +416,7 @@ begin
 end;
 
 function TWCargaAsiento.SelectNextApunte(prmAsiento :Integer):Integer;
-var Q :TIBQuery;
+var Q :TSQLQuery;
 begin
    Q := DMRef.CreateQuery(['SELECT MAX(APUNTE) MAXIMO    ',
                            'FROM   DIARIO                ',
@@ -433,8 +434,8 @@ var Subcta          :string;
     Factura         :string;
     CuentaAnalitica :string;
     Importe         :Double;
-    Q               :TIBQuery;
-    QAbrev          :TIBQuery;
+    Q               :TSQLQuery;
+    QAbrev          :TSQLQuery;
 begin
    FSubcuentaCobroPago := '';
    // Inserción de asiento
@@ -708,7 +709,7 @@ end;
 procedure TWCargaAsiento.FormCreate(Sender: TObject);
 var Pos1 :Integer;
 begin
-   ActivarTransacciones(Self);
+   //ActivarTransacciones(Self);
 
    CrearFiltro;
    InicializarFiltro;
@@ -835,7 +836,7 @@ begin
 end;
 
 procedure TWCargaAsiento.BtnEdtAceptarClick(Sender: TObject);
-var Q :TIBQuery;
+var Q :TSQLQuery;
 begin
    Perform(WM_NextDlgCtl, 0, 0);
    if QDiario.State in dsEditModes then begin
@@ -1358,7 +1359,7 @@ begin
 end;
 
 procedure TWCargaAsiento.BtnEdtDuplicarClick(Sender: TObject);
-var Q :TIBQuery;
+var Q :TSQLQuery;
 begin
    if (not QDiario.IsEmpty) and (MessageDlg('¿Desea duplicar el asiento ' + FormatFloat('###,###,###', QDiarioASIENTO.AsInteger) + ' ?',
            mtConfirmation, [mbYes, mbNo], 0) = mrYes) then begin

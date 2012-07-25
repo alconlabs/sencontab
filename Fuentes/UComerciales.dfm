@@ -2283,7 +2283,6 @@ object WComerciales: TWComerciales
     Top = 373
   end
   object QFichero: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -2341,7 +2340,6 @@ object WComerciales: TWComerciales
   end
   object Transaccion: TIBTransaction
     Active = False
-    DefaultDatabase = DMRef.IBDSiamCont
     AutoStopAction = saNone
     Left = 442
     Top = 325

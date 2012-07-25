@@ -323,7 +323,7 @@ end;
 procedure TWParametrizacionFacturacion.FormCreate(Sender: TObject);
 var i :Integer;
 begin
-   ActivarTransacciones(Self);
+   //ActivarTransacciones(Self);
    TabVentas.Show;
    TabVentasRegimenGeneral.Show;
 
@@ -368,7 +368,6 @@ begin
 
    try
       DMRef.QParametros.Post;
-      DMRef.QParametros.Transaction.CommitRetaining;
    except
       DatabaseError('Error al guardar los datos');
    end;
@@ -507,7 +506,7 @@ begin
       { CTO is a Concept and CTA is an Account. We need to consider only the letter number 6 }
       case TSpeedButton(Sender).Name[6] of
         'A':begin { Search for an Account }
-           SearchAccount := TFormSearchAccount.Create(DMRef.IBDSiamCont);
+           //TODO: SearchAccount := TFormSearchAccount.Create(DMRef.DB);
            try
               SearchAccount.TextSearched := CD_Field.AsString;
               if SearchAccount.ShowModal = mrOK then begin
@@ -520,7 +519,7 @@ begin
            end;
         end;
         'O':begin { Search for a Concept }
-           SearchConcept := TFormSearchConcept.Create(DMRef.IBDSiamCont);
+           //TODO: SearchConcept := TFormSearchConcept.Create(DMRef.IBDSiamCont);
            try
               SearchConcept.TextSearched := CD_Field.AsString;
               if SearchConcept.ShowModal = mrOK then begin

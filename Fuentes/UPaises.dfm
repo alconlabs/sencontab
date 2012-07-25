@@ -252,7 +252,6 @@ object WPaises: TWPaises
     Top = 162
   end
   object QFichero: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -312,7 +311,6 @@ object WPaises: TWPaises
   end
   object Transaccion: TIBTransaction
     Active = False
-    DefaultDatabase = DMRef.IBDSiamCont
     AutoStopAction = saNone
     Left = 34
     Top = 162

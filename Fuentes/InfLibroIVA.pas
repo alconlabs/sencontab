@@ -146,7 +146,7 @@ begin
    with QSubcuentas, SQL do begin
       Close;
       Clear;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Add('SELECT NIF,DESCRIPCION,PAIS,IVA,RECARGO');
       Add('FROM SUBCTAS WHERE SUBCUENTA=:SUBCUENTA');
    end;
@@ -157,7 +157,7 @@ begin
    with QFacturas, SQL do begin
       Close;
       Clear;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Add('SELECT D.IMPORTE FROM DIARIO D, CUENTAS C');
       Add('WHERE');
       Add('   D.ASIENTO = :ASIENTO AND');
@@ -264,7 +264,7 @@ begin
       with QApuntes216, SQL do begin
          Close;
          Clear;
-         Database := DMRef.IBDSiamCont;
+         //TODO: Database := DMRef.IBDSiamCont;
 
          Add('SELECT');
          Add('  DISTINCT D.ASIENTO, D.IMPORTE, D.MONEDA, D.CONTRAPARTIDA,');
@@ -348,7 +348,7 @@ begin
    with QApuntes, SQL do begin
       Close;
       Clear;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
 
       Add('SELECT');
       Add('   D.ASIENTO, D.NUMEROFACTURA, D.FECHA, D.IMPORTE, D.NIF, T.TIPOCUENTA,');

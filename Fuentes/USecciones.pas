@@ -146,8 +146,11 @@ end;
 
 procedure TWSecciones.RefrescarBD;
 begin
-   FibQueryRefresh(DmRef.QSeccion);
-   FibQueryRefresh(DmRef.QSeccionNom);
+   DmRef.QSeccion.Close;
+   DmRef.QSeccionNom.Close;
+
+   DmRef.QSeccion.Open;
+   DmRef.QSeccionNom.Open;
 end;
 
 procedure TWSecciones.BtnNavAniadirClick(Sender: TObject);
@@ -306,7 +309,7 @@ end;
 
 procedure TWSecciones.FormCreate(Sender: TObject);
 begin
-   ActivarTransacciones(self);
+   //ActivarTransacciones(self);
    CrearFiltro;
    FCampoOrden := 'ID_SECCION';
    PrepararQuery;

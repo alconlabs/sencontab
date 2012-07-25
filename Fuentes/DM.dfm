@@ -2,30 +2,16 @@ object DMRef: TDMRef
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
-  Left = 694
-  Top = 274
+  Left = 704
+  Top = 195
   Height = 709
   Width = 583
-  object IBDSiamCont: TIBDatabase
-    Params.Strings = (
-      'user_name=SYSDBA'
-      'password=masterkey')
-    LoginPrompt = False
-    IdleTimer = 0
-    SQLDialect = 1
-    TraceFlags = []
-    AllowStreamedConnected = False
-    Left = 106
-    Top = 24
-  end
   object QAuxiliar: TIBSQL
-    Database = IBDSiamCont
     ParamCheck = True
     Left = 280
     Top = 32
   end
   object QProvinciasNom: TIBTableSet
-    Database = IBDSiamCont
     BufferChunks = 1000
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -89,7 +75,6 @@ object DMRef: TDMRef
     end
   end
   object QPaisNom: TIBTableSet
-    Database = IBDSiamCont
     BufferChunks = 1000
     CachedUpdates = False
     DeleteSQL.Strings = (
@@ -143,164 +128,1039 @@ object DMRef: TDMRef
       Size = 30
     end
   end
-  object QParametros: TIBDataSet
-    Database = IBDSiamCont
-    BufferChunks = 1000
+  object QAnaliticasNom: TIBTableSet
+    BufferChunks = 32
     CachedUpdates = False
     DeleteSQL.Strings = (
-      'DELETE FROM PARAMETROS'
+      'DELETE FROM ANALITICAS'
       'WHERE'
       
-        '  ID_PARAMETROS                  =:old_ID_PARAMETROS            ' +
+        '  CUENTA                         =:old_CUENTA                   ' +
         '       ')
     InsertSQL.Strings = (
-      'INSERT INTO PARAMETROS'
+      'INSERT INTO ANALITICAS'
       
-        '  (FECHA_INICIO_APLICACION        ,FECHA_INICIO_EJERCICIO       ' +
-        '  ,FECHA_FIN_EJERCICIO            ,TANTORETPROF                 ' +
-        '  ,TANTORETARRE                   ,FECHAAMORTIZACION            ' +
-        '  ,FECHABLOQUEO                   ,SCTAREMESAEFECTOS            ' +
-        '  ,SCTAEFECTOSCOMERCIALES         ,SCTABANCO                    ' +
-        '  ,SCTAOTRASREMUN                 ,SCTAIVANORMAL                ' +
-        '  ,SCTAIVAEXENTO                  ,SCTAIVAINTRA                 ' +
-        '  ,SCTAVENTAS                     ,SCTADEVOLUCION               ' +
-        '  ,SCTADESCUENTO                  ,SCTACOMPRAS                  ' +
-        '  ,SCTAIVAREDUCIDO                ,SCTAIVASUPER                 ' +
-        '  ,SCTAIVACNORMAL                 ,SCTAIVACREDUCIDO             ' +
-        '  ,SCTAIVACSUPER                  ,SCTARECNORMAL                ' +
-        '  ,SCTARECREDUCIDO                ,SCTARECSUPER                 ' +
-        '  ,SUBCUENTA_CIERRE               ,VGENERICA                    ' +
-        '  ,SUBCAJA                        ,SCTANOMSUELDO                ' +
-        '  ,SCTANOMIRPF                    ,SCTANOMPAGO                  ' +
-        '  ,SCTANOMSSE                     ,SCTANOMSST                   ' +
-        '  ,SCTANOMCARGO                   ,SCTADTOPPV                   ' +
-        '  ,SCTADTOPPC                     ,SCTARETPROF                  ' +
-        '  ,SCTARETARRE                    ,SCTAHACIVA                   ' +
-        '  ,SCTAIVACEXENTO                 ,VGENERICAC                   ' +
-        '  ,CODPOSTAL                      ,CONTACTO                     ' +
-        '  ,NUMEROCALLE                    ,SCTAEFECTDESCONTADOS         ' +
-        '  ,SCTADEUDASDESCUENTOS           ,SCTAIVAINTRADEDUCIBLE        ' +
-        '  ,SCTAIVACINTRADEDUCIBLE         ,SCTAIVACINTRAREPERCUTIDO     ' +
-        '  ,SCTAGENINTRACOM                ,SCTAIVAEXENTOCEE             ' +
-        '  ,SCTAINTERESES                  ,SCTAEXPORTACIONES            ' +
-        '  ,LONGITUD_SUBCUENTAS            ,ID_PARAMETROS                ' +
-        '  ,TELEFONO                       ,FAX                          ' +
-        '  ,NOMBREFISCAL                   ,DIRECCION                    ' +
-        '  ,DIRECCION1                     ,POBLACION                    ' +
-        '  ,PROVINCIA                      ,DOCCLIENTE                   ' +
-        '  ,DOCPROVEEDOR                   ,DOC347                       ' +
-        '  ,SIGLAVIA                       ,ESCALERA                     ' +
-        '  ,PISO                           ,PUERTA                       ' +
-        '  ,ASIENTOS_INICIO_INTERVALO_BQDA ,ASIENTOS_FIN_INTERVALO_BQDA  ' +
-        '  ,ASIENTO_INICIO_INTERVALO_FILTRO,ASIENTO_FIN_INTERVALO_FILTRO ' +
-        '  ,ACTCOMENTARIO                  ,TRATASERIE                   ' +
-        '  ,OFFICE2003                     ,FILTROSUBCTAS                ' +
-        '  ,TIPOEMPRESA                    ,DESCCLI_CARTERAEFECTOS       ' +
-        '  ,DESCPROV_CARTERAEFECTOS        ,CTOREMESAEFECTOS             ' +
-        '  ,CTODEUDASDESCUENTOS            ,CTOEFECTOSCOMERCIALES        ' +
-        '  ,CTOPAGO                        ,CTOCOBRO                     ' +
-        '  ,CTOIVANORMAL                   ,CTOIVAEXENTO                 ' +
-        '  ,CTOIVAINTRA                    ,CTOVENTAS                    ' +
-        '  ,CTODEVOLUCION                  ,CTOCLIENTES                  ' +
-        '  ,CTODESCUENTO                   ,CTOCOMPRAS                   ' +
-        '  ,CTOIVAREDUCIDO                 ,CTO_REGULARIZACION_ESP       ' +
-        '  ,CTO_APERTURA                   ,CTOIVASUPER                  ' +
-        '  ,CTOPROVEEDORES                 ,CTOIVACNORMAL                ' +
-        '  ,CTOIVACREDUCIDO                ,CTOIVACSUPER                 ' +
-        '  ,CTORECNORMAL                   ,CTORECREDUCIDO               ' +
-        '  ,CTORECSUPER                    ,CTORECIBOVENTAS              ' +
-        '  ,DOCIMPRIMIR                    ,CTO_REGULARIZACION           ' +
-        '  ,MONEDA                         ,CTOCOBROF                    ' +
-        '  ,CTONOME                        ,CTONOMT                      ' +
-        '  ,CTODTOPPV                      ,CTODTOPPC                    ' +
-        '  ,CTORETPROF                     ,CTORETARRE                   ' +
-        '  ,CTOHACIVA                      ,CTOIVACEXENTO                ' +
-        '  ,CTOPAGOF                       ,RECARGO                      ' +
-        '  ,CTO_APERTURA_ESP               ,NIF                          ' +
-        '  ,CCC                            ,CODADMON                     ' +
-        '  ,GESTIONA_CARTERA_EFECTOS       ,FILTRO_ASIENTOS_INICIO       ' +
-        '  ,INCLUIR_ABREV                  ,MOSTRAR_FILTRO_MAYOR         ' +
-        '  ,CTOPROVINTRA                   ,ASIENTO_NOMINA_INDIVIDUAL    ' +
-        '  ,BUSQUEDA_SUBCTAS               )'
+        '  (ID_PROYECTO                    ,ID_SECCION                   ' +
+        '  ,ID_DEPARTAMENTO                ,ID_DELEGACION                ' +
+        '  ,NOMBRE                         ,CUENTA                       ' +
+        '  )'
       'VALUES'
       
-        '  (:FECHA_INICIO_APLICACION        ,:FECHA_INICIO_EJERCICIO     ' +
-        '    ,:FECHA_FIN_EJERCICIO            ,:TANTORETPROF             ' +
-        '      ,:TANTORETARRE                   ,:FECHAAMORTIZACION      ' +
-        '        ,:FECHABLOQUEO                   ,:SCTAREMESAEFECTOS    ' +
-        '          ,:SCTAEFECTOSCOMERCIALES         ,:SCTABANCO          ' +
-        '            ,:SCTAOTRASREMUN                 ,:SCTAIVANORMAL    ' +
-        '              ,:SCTAIVAEXENTO                  ,:SCTAIVAINTRA   ' +
-        '                ,:SCTAVENTAS                     ,:SCTADEVOLUCIO' +
-        'N                 ,:SCTADESCUENTO                  ,:SCTACOMPRAS' +
-        '                    ,:SCTAIVAREDUCIDO                ,:SCTAIVASU' +
-        'PER                   ,:SCTAIVACNORMAL                 ,:SCTAIVA' +
-        'CREDUCIDO               ,:SCTAIVACSUPER                  ,:SCTAR' +
-        'ECNORMAL                  ,:SCTARECREDUCIDO                ,:SCT' +
-        'ARECSUPER                   ,:SUBCUENTA_CIERRE               ,:V' +
-        'GENERICA                      ,:SUBCAJA                        ,' +
-        ':SCTANOMSUELDO                  ,:SCTANOMIRPF                   ' +
-        ' ,:SCTANOMPAGO                    ,:SCTANOMSSE                  ' +
-        '   ,:SCTANOMSST                     ,:SCTANOMCARGO              ' +
-        '     ,:SCTADTOPPV                     ,:SCTADTOPPC              ' +
-        '       ,:SCTARETPROF                    ,:SCTARETARRE           ' +
-        '         ,:SCTAHACIVA                     ,:SCTAIVACEXENTO      ' +
-        '           ,:VGENERICAC                     ,:CODPOSTAL         ' +
-        '             ,:CONTACTO                       ,:NUMEROCALLE     ' +
-        '               ,:SCTAEFECTDESCONTADOS           ,:SCTADEUDASDESC' +
-        'UENTOS           ,:SCTAIVAINTRADEDUCIBLE          ,:SCTAIVACINTR' +
-        'ADEDUCIBLE         ,:SCTAIVACINTRAREPERCUTIDO       ,:SCTAGENINT' +
-        'RACOM                ,:SCTAIVAEXENTOCEE               ,:SCTAINTE' +
-        'RESES                  ,:SCTAEXPORTACIONES              ,:LONGIT' +
-        'UD_SUBCUENTAS            ,:ID_PARAMETROS                  ,:TELE' +
-        'FONO                       ,:FAX                            ,:NO' +
-        'MBREFISCAL                   ,:DIRECCION                      ,:' +
-        'DIRECCION1                     ,:POBLACION                      ' +
-        ',:PROVINCIA                      ,:DOCCLIENTE                   ' +
-        '  ,:DOCPROVEEDOR                   ,:DOC347                     ' +
-        '    ,:SIGLAVIA                       ,:ESCALERA                 ' +
-        '      ,:PISO                           ,:PUERTA                 ' +
-        '        ,:ASIENTOS_INICIO_INTERVALO_BQDA ,:ASIENTOS_FIN_INTERVAL' +
-        'O_BQDA    ,:ASIENTO_INICIO_INTERVALO_FILTRO,:ASIENTO_FIN_INTERVA' +
-        'LO_FILTRO   ,:ACTCOMENTARIO                  ,:TRATASERIE       ' +
-        '              ,:OFFICE2003                     ,:FILTROSUBCTAS  ' +
-        '                ,:TIPOEMPRESA                    ,:DESCCLI_CARTE' +
-        'RAEFECTOS         ,:DESCPROV_CARTERAEFECTOS        ,:CTOREMESAEF' +
-        'ECTOS               ,:CTODEUDASDESCUENTOS            ,:CTOEFECTO' +
-        'SCOMERCIALES          ,:CTOPAGO                        ,:CTOCOBR' +
-        'O                       ,:CTOIVANORMAL                   ,:CTOIV' +
-        'AEXENTO                   ,:CTOIVAINTRA                    ,:CTO' +
-        'VENTAS                      ,:CTODEVOLUCION                  ,:C' +
-        'TOCLIENTES                    ,:CTODESCUENTO                   ,' +
-        ':CTOCOMPRAS                     ,:CTOIVAREDUCIDO                ' +
-        ' ,:CTO_REGULARIZACION_ESP         ,:CTO_APERTURA                ' +
-        '   ,:CTOIVASUPER                    ,:CTOPROVEEDORES            ' +
-        '     ,:CTOIVACNORMAL                  ,:CTOIVACREDUCIDO         ' +
-        '       ,:CTOIVACSUPER                   ,:CTORECNORMAL          ' +
-        '         ,:CTORECREDUCIDO                 ,:CTORECSUPER         ' +
-        '           ,:CTORECIBOVENTAS                ,:DOCIMPRIMIR       ' +
-        '             ,:CTO_REGULARIZACION             ,:MONEDA          ' +
-        '               ,:CTOCOBROF                      ,:CTONOME       ' +
-        '                 ,:CTONOMT                        ,:CTODTOPPV   ' +
-        '                   ,:CTODTOPPC                      ,:CTORETPROF' +
-        '                     ,:CTORETARRE                     ,:CTOHACIV' +
-        'A                      ,:CTOIVACEXENTO                  ,:CTOPAG' +
-        'OF                       ,:RECARGO                        ,:CTO_' +
-        'APERTURA_ESP               ,:NIF                            ,:CC' +
-        'C                            ,:CODADMON                       ,:' +
-        'GESTIONA_CARTERA_EFECTOS       ,:FILTRO_ASIENTOS_INICIO         ' +
-        ',:INCLUIR_ABREV                  ,:MOSTRAR_FILTRO_MAYOR         ' +
-        '  ,:CTOPROVINTRA                   ,:ASIENTO_NOMINA_INDIVIDUAL  ' +
-        '    ,:BUSQUEDA_SUBCTAS               )')
+        '  (:ID_PROYECTO                    ,:ID_SECCION                 ' +
+        '    ,:ID_DEPARTAMENTO                ,:ID_DELEGACION            ' +
+        '      ,:NOMBRE                         ,:CUENTA                 ' +
+        '        )')
     RefreshSQL.Strings = (
       'SELECT'
       '  *'
-      'FROM PARAMETROS'
+      'FROM ANALITICAS'
       'WHERE'
       
-        '  ID_PARAMETROS                  =?ID_PARAMETROS                ' +
+        '  CUENTA                         =?CUENTA                       ' +
         '   ')
     SelectSQL.Strings = (
+      'SELECT * FROM ANALITICAS')
+    ModifySQL.Strings = (
+      'UPDATE ANALITICAS'
+      'SET'
+      
+        '  ID_PROYECTO                    =:ID_PROYECTO                  ' +
+        '   '
+      
+        '  ,ID_SECCION                     =:ID_SECCION                  ' +
+        '    '
+      
+        '  ,ID_DEPARTAMENTO                =:ID_DEPARTAMENTO             ' +
+        '    '
+      
+        '  ,ID_DELEGACION                  =:ID_DELEGACION               ' +
+        '    '
+      
+        '  ,NOMBRE                         =:NOMBRE                      ' +
+        '    '
+      'WHERE'
+      
+        '  CUENTA                         =:CUENTA                       ' +
+        '   ')
+    TableName = 'analiticas'
+    Left = 151
+    Top = 82
+    object IBStringField45: TIBStringField
+      DisplayWidth = 30
+      FieldName = 'NOMBRE'
+      Origin = 'ANALITICAS.NOMBRE'
+      Size = 50
+    end
+    object IBStringField46: TIBStringField
+      DisplayWidth = 10
+      FieldName = 'CUENTA'
+      Origin = 'ANALITICAS.CUENTA'
+      Required = True
+      Size = 10
+    end
+    object IBStringField41: TIBStringField
+      FieldName = 'ID_PROYECTO'
+      Origin = 'ANALITICAS.ID_PROYECTO'
+      Visible = False
+      Size = 10
+    end
+    object IBStringField42: TIBStringField
+      FieldName = 'ID_SECCION'
+      Origin = 'ANALITICAS.ID_SECCION'
+      Visible = False
+      Size = 10
+    end
+    object IBStringField43: TIBStringField
+      FieldName = 'ID_DEPARTAMENTO'
+      Origin = 'ANALITICAS.ID_DEPARTAMENTO'
+      Visible = False
+      Size = 10
+    end
+    object IBStringField44: TIBStringField
+      FieldName = 'ID_DELEGACION'
+      Origin = 'ANALITICAS.ID_DELEGACION'
+      Visible = False
+      Size = 10
+    end
+  end
+  object QDelegacionNom: TIBTableSet
+    BufferChunks = 32
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'DELETE FROM DELEGACION'
+      'WHERE'
+      
+        '  ID_DELEGACION                  =:old_ID_DELEGACION            ' +
+        '       ')
+    InsertSQL.Strings = (
+      'INSERT INTO DELEGACION'
+      
+        '  (NOMBRE                         ,ID_DELEGACION                ' +
+        '  )'
+      'VALUES'
+      
+        '  (:NOMBRE                         ,:ID_DELEGACION              ' +
+        '    )')
+    RefreshSQL.Strings = (
+      'SELECT'
+      '  *'
+      'FROM DELEGACION'
+      'WHERE'
+      
+        '  ID_DELEGACION                  =?ID_DELEGACION                ' +
+        '   ')
+    SelectSQL.Strings = (
+      'SELECT * FROM DELEGACION')
+    ModifySQL.Strings = (
+      'UPDATE DELEGACION'
+      'SET'
+      
+        '  NOMBRE                         =:NOMBRE                       ' +
+        '   '
+      'WHERE'
+      
+        '  ID_DELEGACION                  =:ID_DELEGACION                ' +
+        '   ')
+    TableName = 'delegacion'
+    Left = 151
+    Top = 138
+    object QDelegacionNomNOMBRE: TIBStringField
+      DisplayWidth = 30
+      FieldName = 'NOMBRE'
+      Origin = 'DELEGACION.NOMBRE'
+      Size = 50
+    end
+    object QDelegacionNomID_DELEGACION: TIBStringField
+      DisplayLabel = 'DELEGACION'
+      DisplayWidth = 10
+      FieldName = 'ID_DELEGACION'
+      Origin = 'DELEGACION.ID_DELEGACION'
+      Required = True
+      Visible = False
+      Size = 10
+    end
+  end
+  object QDepartamentoNom: TIBTableSet
+    BufferChunks = 32
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'DELETE FROM DEPARTAMENTO'
+      'WHERE'
+      
+        '  ID_DEPARTAMENTO                =:old_ID_DEPARTAMENTO          ' +
+        '       ')
+    InsertSQL.Strings = (
+      'INSERT INTO DEPARTAMENTO'
+      
+        '  (NOMBRE                         ,ID_DEPARTAMENTO              ' +
+        '  )'
+      'VALUES'
+      
+        '  (:NOMBRE                         ,:ID_DEPARTAMENTO            ' +
+        '    )')
+    RefreshSQL.Strings = (
+      'SELECT'
+      '  *'
+      'FROM DEPARTAMENTO'
+      'WHERE'
+      
+        '  ID_DEPARTAMENTO                =?ID_DEPARTAMENTO              ' +
+        '   ')
+    SelectSQL.Strings = (
+      'SELECT * FROM DEPARTAMENTO')
+    ModifySQL.Strings = (
+      'UPDATE DEPARTAMENTO'
+      'SET'
+      
+        '  NOMBRE                         =:NOMBRE                       ' +
+        '   '
+      'WHERE'
+      
+        '  ID_DEPARTAMENTO                =:ID_DEPARTAMENTO              ' +
+        '   ')
+    TableName = 'departamento'
+    Left = 151
+    Top = 314
+    object QDepartamentoNomNOMBRE: TIBStringField
+      DisplayWidth = 30
+      FieldName = 'NOMBRE'
+      Origin = 'DEPARTAMENTO.NOMBRE'
+      Size = 50
+    end
+    object QDepartamentoNomID_DEPARTAMENTO: TIBStringField
+      DisplayLabel = 'DEPARTAMENTO'
+      DisplayWidth = 10
+      FieldName = 'ID_DEPARTAMENTO'
+      Origin = 'DEPARTAMENTO.ID_DEPARTAMENTO'
+      Required = True
+      Visible = False
+      Size = 10
+    end
+  end
+  object QProyectoNom: TIBTableSet
+    BufferChunks = 32
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'DELETE FROM PROYECTO'
+      'WHERE'
+      
+        '  ID_PROYECTO                    =:old_ID_PROYECTO              ' +
+        '       ')
+    InsertSQL.Strings = (
+      'INSERT INTO PROYECTO'
+      
+        '  (NOMBRE                         ,ID_PROYECTO                  ' +
+        '  )'
+      'VALUES'
+      
+        '  (:NOMBRE                         ,:ID_PROYECTO                ' +
+        '    )')
+    RefreshSQL.Strings = (
+      'SELECT'
+      '  *'
+      'FROM PROYECTO'
+      'WHERE'
+      
+        '  ID_PROYECTO                    =?ID_PROYECTO                  ' +
+        '   ')
+    SelectSQL.Strings = (
+      'SELECT * FROM PROYECTO')
+    ModifySQL.Strings = (
+      'UPDATE PROYECTO'
+      'SET'
+      
+        '  NOMBRE                         =:NOMBRE                       ' +
+        '   '
+      'WHERE'
+      
+        '  ID_PROYECTO                    =:ID_PROYECTO                  ' +
+        '   ')
+    TableName = 'proyecto'
+    Left = 151
+    Top = 442
+    object QProyectoNomNOMBRE: TIBStringField
+      DisplayWidth = 30
+      FieldName = 'NOMBRE'
+      Origin = 'PROYECTO.NOMBRE'
+      Size = 50
+    end
+    object QProyectoNomID_PROYECTO: TIBStringField
+      FieldName = 'ID_PROYECTO'
+      Origin = 'PROYECTO.ID_PROYECTO'
+      Required = True
+      Visible = False
+      Size = 10
+    end
+  end
+  object QSeccionNom: TIBTableSet
+    BufferChunks = 32
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'DELETE FROM SECCION'
+      'WHERE'
+      
+        '  ID_SECCION                     =:old_ID_SECCION               ' +
+        '       ')
+    InsertSQL.Strings = (
+      'INSERT INTO SECCION'
+      
+        '  (NOMBRE                         ,ID_SECCION                   ' +
+        '  )'
+      'VALUES'
+      
+        '  (:NOMBRE                         ,:ID_SECCION                 ' +
+        '    )')
+    RefreshSQL.Strings = (
+      'SELECT'
+      '  *'
+      'FROM SECCION'
+      'WHERE'
+      
+        '  ID_SECCION                     =?ID_SECCION                   ' +
+        '   ')
+    SelectSQL.Strings = (
+      'SELECT * FROM SECCION')
+    ModifySQL.Strings = (
+      'UPDATE SECCION'
+      'SET'
+      
+        '  NOMBRE                         =:NOMBRE                       ' +
+        '   '
+      'WHERE'
+      
+        '  ID_SECCION                     =:ID_SECCION                   ' +
+        '   ')
+    TableName = 'seccion'
+    Left = 151
+    Top = 506
+    object QSeccionNomNOMBRE: TIBStringField
+      DisplayWidth = 30
+      FieldName = 'NOMBRE'
+      Origin = 'SECCION.NOMBRE'
+      Size = 50
+    end
+    object QSeccionNomID_SECCION: TIBStringField
+      FieldName = 'ID_SECCION'
+      Origin = 'SECCION.ID_SECCION'
+      Required = True
+      Visible = False
+      Size = 10
+    end
+  end
+  object QDelegacion: TIBTableSet
+    BufferChunks = 32
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'DELETE FROM DELEGACION'
+      'WHERE'
+      
+        '  ID_DELEGACION                  =:old_ID_DELEGACION            ' +
+        '       ')
+    InsertSQL.Strings = (
+      'INSERT INTO DELEGACION'
+      
+        '  (NOMBRE                         ,ID_DELEGACION                ' +
+        '  )'
+      'VALUES'
+      
+        '  (:NOMBRE                         ,:ID_DELEGACION              ' +
+        '    )')
+    RefreshSQL.Strings = (
+      'SELECT'
+      '  *'
+      'FROM DELEGACION'
+      'WHERE'
+      
+        '  ID_DELEGACION                  =?ID_DELEGACION                ' +
+        '   ')
+    SelectSQL.Strings = (
+      'SELECT * FROM DELEGACION')
+    ModifySQL.Strings = (
+      'UPDATE DELEGACION'
+      'SET'
+      
+        '  NOMBRE                         =:NOMBRE                       ' +
+        '   '
+      'WHERE'
+      
+        '  ID_DELEGACION                  =:ID_DELEGACION                ' +
+        '   ')
+    TableName = 'delegacion'
+    Left = 47
+    Top = 138
+    object IBStringField1: TIBStringField
+      FieldName = 'NOMBRE'
+      Origin = 'DELEGACION.NOMBRE'
+      Size = 50
+    end
+    object IBStringField2: TIBStringField
+      FieldName = 'ID_DELEGACION'
+      Origin = 'DELEGACION.ID_DELEGACION'
+      Required = True
+      Size = 10
+    end
+  end
+  object QDepartamento: TIBTableSet
+    BufferChunks = 32
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'DELETE FROM DEPARTAMENTO'
+      'WHERE'
+      
+        '  ID_DEPARTAMENTO                =:old_ID_DEPARTAMENTO          ' +
+        '       ')
+    InsertSQL.Strings = (
+      'INSERT INTO DEPARTAMENTO'
+      
+        '  (NOMBRE                         ,ID_DEPARTAMENTO              ' +
+        '  )'
+      'VALUES'
+      
+        '  (:NOMBRE                         ,:ID_DEPARTAMENTO            ' +
+        '    )')
+    RefreshSQL.Strings = (
+      'SELECT'
+      '  *'
+      'FROM DEPARTAMENTO'
+      'WHERE'
+      
+        '  ID_DEPARTAMENTO                =?ID_DEPARTAMENTO              ' +
+        '   ')
+    SelectSQL.Strings = (
+      'SELECT * FROM DEPARTAMENTO')
+    ModifySQL.Strings = (
+      'UPDATE DEPARTAMENTO'
+      'SET'
+      
+        '  NOMBRE                         =:NOMBRE                       ' +
+        '   '
+      'WHERE'
+      
+        '  ID_DEPARTAMENTO                =:ID_DEPARTAMENTO              ' +
+        '   ')
+    TableName = 'departamento'
+    Left = 47
+    Top = 314
+    object IBStringField3: TIBStringField
+      FieldName = 'NOMBRE'
+      Origin = 'DEPARTAMENTO.NOMBRE'
+      Size = 50
+    end
+    object IBStringField4: TIBStringField
+      FieldName = 'ID_DEPARTAMENTO'
+      Origin = 'DEPARTAMENTO.ID_DEPARTAMENTO'
+      Required = True
+      Size = 10
+    end
+  end
+  object QProyecto: TIBTableSet
+    BufferChunks = 32
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'DELETE FROM PROYECTO'
+      'WHERE'
+      
+        '  ID_PROYECTO                    =:old_ID_PROYECTO              ' +
+        '       ')
+    InsertSQL.Strings = (
+      'INSERT INTO PROYECTO'
+      
+        '  (NOMBRE                         ,ID_PROYECTO                  ' +
+        '  )'
+      'VALUES'
+      
+        '  (:NOMBRE                         ,:ID_PROYECTO                ' +
+        '    )')
+    RefreshSQL.Strings = (
+      'SELECT'
+      '  *'
+      'FROM PROYECTO'
+      'WHERE'
+      
+        '  ID_PROYECTO                    =?ID_PROYECTO                  ' +
+        '   ')
+    SelectSQL.Strings = (
+      'SELECT * FROM PROYECTO')
+    ModifySQL.Strings = (
+      'UPDATE PROYECTO'
+      'SET'
+      
+        '  NOMBRE                         =:NOMBRE                       ' +
+        '   '
+      'WHERE'
+      
+        '  ID_PROYECTO                    =:ID_PROYECTO                  ' +
+        '   ')
+    TableName = 'proyecto'
+    Left = 47
+    Top = 442
+    object IBStringField5: TIBStringField
+      FieldName = 'NOMBRE'
+      Origin = 'PROYECTO.NOMBRE'
+      Size = 50
+    end
+    object IBStringField6: TIBStringField
+      FieldName = 'ID_PROYECTO'
+      Origin = 'PROYECTO.ID_PROYECTO'
+      Required = True
+      Size = 10
+    end
+  end
+  object QSeccion: TIBTableSet
+    BufferChunks = 32
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'DELETE FROM SECCION'
+      'WHERE'
+      
+        '  ID_SECCION                     =:old_ID_SECCION               ' +
+        '       ')
+    InsertSQL.Strings = (
+      'INSERT INTO SECCION'
+      
+        '  (NOMBRE                         ,ID_SECCION                   ' +
+        '  )'
+      'VALUES'
+      
+        '  (:NOMBRE                         ,:ID_SECCION                 ' +
+        '    )')
+    RefreshSQL.Strings = (
+      'SELECT'
+      '  *'
+      'FROM SECCION'
+      'WHERE'
+      
+        '  ID_SECCION                     =?ID_SECCION                   ' +
+        '   ')
+    SelectSQL.Strings = (
+      'SELECT * FROM SECCION')
+    ModifySQL.Strings = (
+      'UPDATE SECCION'
+      'SET'
+      
+        '  NOMBRE                         =:NOMBRE                       ' +
+        '   '
+      'WHERE'
+      
+        '  ID_SECCION                     =:ID_SECCION                   ' +
+        '   ')
+    TableName = 'seccion'
+    Left = 47
+    Top = 506
+    object IBStringField7: TIBStringField
+      FieldName = 'NOMBRE'
+      Origin = 'SECCION.NOMBRE'
+      Size = 50
+    end
+    object IBStringField8: TIBStringField
+      FieldName = 'ID_SECCION'
+      Origin = 'SECCION.ID_SECCION'
+      Required = True
+      Size = 10
+    end
+  end
+  object QComercial: TIBTableSet
+    BufferChunks = 32
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'DELETE FROM COMERCIALES'
+      'WHERE'
+      
+        '  COMERCIAL                      =:old_COMERCIAL                ' +
+        '       ')
+    InsertSQL.Strings = (
+      'INSERT INTO COMERCIALES'
+      
+        '  (NOMBRE                         ,COMERCIAL                    ' +
+        '  )'
+      'VALUES'
+      
+        '  (:NOMBRE                         ,:COMERCIAL                  ' +
+        '    )')
+    RefreshSQL.Strings = (
+      'SELECT'
+      '  *'
+      'FROM COMERCIALES'
+      'WHERE'
+      
+        '  COMERCIAL                      =?COMERCIAL                    ' +
+        '   ')
+    SelectSQL.Strings = (
+      'SELECT * FROM COMERCIALES')
+    ModifySQL.Strings = (
+      'UPDATE COMERCIALES'
+      'SET'
+      
+        '  NOMBRE                         =:NOMBRE                       ' +
+        '   '
+      'WHERE'
+      
+        '  COMERCIAL                      =:COMERCIAL                    ' +
+        '   ')
+    TableName = 'comerciales'
+    Left = 47
+    Top = 194
+    object QComercialNOMBRE: TIBStringField
+      FieldName = 'NOMBRE'
+      Origin = 'COMERCIALES.NOMBRE'
+      Size = 50
+    end
+    object QComercialCOMERCIAL: TIBStringField
+      FieldName = 'COMERCIAL'
+      Origin = 'COMERCIALES.COMERCIAL'
+      Required = True
+      Size = 10
+    end
+  end
+  object QcomercialNom: TIBTableSet
+    BufferChunks = 32
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'DELETE FROM COMERCIALES'
+      'WHERE'
+      
+        '  COMERCIAL                      =:old_COMERCIAL                ' +
+        '       ')
+    InsertSQL.Strings = (
+      'INSERT INTO COMERCIALES'
+      
+        '  (NOMBRE                         ,COMERCIAL                    ' +
+        '  )'
+      'VALUES'
+      
+        '  (:NOMBRE                         ,:COMERCIAL                  ' +
+        '    )')
+    RefreshSQL.Strings = (
+      'SELECT'
+      '  *'
+      'FROM COMERCIALES'
+      'WHERE'
+      
+        '  COMERCIAL                      =?COMERCIAL                    ' +
+        '   ')
+    SelectSQL.Strings = (
+      'SELECT * FROM COMERCIALES')
+    ModifySQL.Strings = (
+      'UPDATE COMERCIALES'
+      'SET'
+      
+        '  NOMBRE                         =:NOMBRE                       ' +
+        '   '
+      'WHERE'
+      
+        '  COMERCIAL                      =:COMERCIAL                    ' +
+        '   ')
+    TableName = 'comerciales'
+    Left = 151
+    Top = 194
+    object IBStringField9: TIBStringField
+      DisplayWidth = 50
+      FieldName = 'NOMBRE'
+      Origin = 'COMERCIALES.NOMBRE'
+      Size = 50
+    end
+    object IBStringField10: TIBStringField
+      FieldName = 'COMERCIAL'
+      Origin = 'COMERCIALES.COMERCIAL'
+      Required = True
+      Visible = False
+      Size = 10
+    end
+  end
+  object QFormaPago: TIBTableSet
+    BufferChunks = 32
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'DELETE FROM FORMAS'
+      'WHERE'
+      
+        '  FORMAPAGO                      =:old_FORMAPAGO                ' +
+        '       ')
+    InsertSQL.Strings = (
+      'INSERT INTO FORMAS'
+      
+        '  (DESCRIBE                       ,INTERVALO                    ' +
+        '  ,NUMVENCI                       ,FORMAPAGO                    ' +
+        '  ,CLASE                          ,OBSOLETO                     ' +
+        '  )'
+      'VALUES'
+      
+        '  (:DESCRIBE                       ,:INTERVALO                  ' +
+        '    ,:NUMVENCI                       ,:FORMAPAGO                ' +
+        '      ,:CLASE                          ,:OBSOLETO               ' +
+        '        )')
+    RefreshSQL.Strings = (
+      'SELECT'
+      '  *'
+      'FROM FORMAS'
+      'WHERE'
+      
+        '  FORMAPAGO                      =?FORMAPAGO                    ' +
+        '   ')
+    SelectSQL.Strings = (
+      'SELECT * FROM FORMAS')
+    ModifySQL.Strings = (
+      'UPDATE FORMAS'
+      'SET'
+      
+        '  DESCRIBE                       =:DESCRIBE                     ' +
+        '   '
+      
+        '  ,INTERVALO                      =:INTERVALO                   ' +
+        '    '
+      
+        '  ,NUMVENCI                       =:NUMVENCI                    ' +
+        '    '
+      
+        '  ,CLASE                          =:CLASE                       ' +
+        '    '
+      
+        '  ,OBSOLETO                       =:OBSOLETO                    ' +
+        '    '
+      'WHERE'
+      
+        '  FORMAPAGO                      =:FORMAPAGO                    ' +
+        '   ')
+    TableName = 'formas'
+    Left = 47
+    Top = 250
+    object QFormaPagoFORMAPAGO: TIBStringField
+      FieldName = 'FORMAPAGO'
+      Origin = 'FORMAS.FORMAPAGO'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object QFormaPagoCLASE: TIBStringField
+      FieldName = 'CLASE'
+      Origin = 'FORMAS.CLASE'
+      FixedChar = True
+      Size = 1
+    end
+    object QFormaPagoDESCRIBE: TIBStringField
+      FieldName = 'DESCRIBE'
+      Origin = 'FORMAS.DESCRIBE'
+      Size = 40
+    end
+    object QFormaPagoINTERVALO: TSmallintField
+      FieldName = 'INTERVALO'
+      Origin = 'FORMAS.INTERVALO'
+    end
+    object QFormaPagoNUMVENCI: TSmallintField
+      FieldName = 'NUMVENCI'
+      Origin = 'FORMAS.NUMVENCI'
+    end
+    object QFormaPagoOBSOLETO: TIBStringField
+      FieldName = 'OBSOLETO'
+      Origin = 'FORMAS.OBSOLETO'
+      FixedChar = True
+      Size = 1
+    end
+  end
+  object QFormaPagoNom: TIBTableSet
+    BufferChunks = 32
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'DELETE FROM FORMAS'
+      'WHERE'
+      
+        '  FORMAPAGO                      =:old_FORMAPAGO                ' +
+        '       ')
+    InsertSQL.Strings = (
+      'INSERT INTO FORMAS'
+      
+        '  (DESCRIBE                       ,INTERVALO                    ' +
+        '  ,NUMVENCI                       ,FORMAPAGO                    ' +
+        '  ,CLASE                          ,OBSOLETO                     ' +
+        '  )'
+      'VALUES'
+      
+        '  (:DESCRIBE                       ,:INTERVALO                  ' +
+        '    ,:NUMVENCI                       ,:FORMAPAGO                ' +
+        '      ,:CLASE                          ,:OBSOLETO               ' +
+        '        )')
+    RefreshSQL.Strings = (
+      'SELECT'
+      '  *'
+      'FROM FORMAS'
+      'WHERE'
+      
+        '  FORMAPAGO                      =?FORMAPAGO                    ' +
+        '   ')
+    SelectSQL.Strings = (
+      'SELECT * FROM FORMAS')
+    ModifySQL.Strings = (
+      'UPDATE FORMAS'
+      'SET'
+      
+        '  DESCRIBE                       =:DESCRIBE                     ' +
+        '   '
+      
+        '  ,INTERVALO                      =:INTERVALO                   ' +
+        '    '
+      
+        '  ,NUMVENCI                       =:NUMVENCI                    ' +
+        '    '
+      
+        '  ,CLASE                          =:CLASE                       ' +
+        '    '
+      
+        '  ,OBSOLETO                       =:OBSOLETO                    ' +
+        '    '
+      'WHERE'
+      
+        '  FORMAPAGO                      =:FORMAPAGO                    ' +
+        '   ')
+    TableName = 'formas'
+    Left = 151
+    Top = 250
+    object IBStringField11: TIBStringField
+      FieldName = 'FORMAPAGO'
+      Origin = 'FORMAS.FORMAPAGO'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object IBStringField12: TIBStringField
+      FieldName = 'CLASE'
+      Origin = 'FORMAS.CLASE'
+      FixedChar = True
+      Size = 1
+    end
+    object IBStringField13: TIBStringField
+      FieldName = 'DESCRIBE'
+      Origin = 'FORMAS.DESCRIBE'
+      Size = 40
+    end
+    object SmallintField1: TSmallintField
+      FieldName = 'INTERVALO'
+      Origin = 'FORMAS.INTERVALO'
+    end
+    object SmallintField2: TSmallintField
+      FieldName = 'NUMVENCI'
+      Origin = 'FORMAS.NUMVENCI'
+    end
+    object IBStringField14: TIBStringField
+      FieldName = 'OBSOLETO'
+      Origin = 'FORMAS.OBSOLETO'
+      FixedChar = True
+      Size = 1
+    end
+  end
+  object QTipoDiario: TIBTableSet
+    BufferChunks = 32
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'DELETE FROM TIPODIARIO'
+      'WHERE'
+      
+        '  TIPODIARIO                     =:old_TIPODIARIO               ' +
+        '       ')
+    InsertSQL.Strings = (
+      'INSERT INTO TIPODIARIO'
+      
+        '  (DESCRIPCION                    ,TIPODIARIO                   ' +
+        '  )'
+      'VALUES'
+      
+        '  (:DESCRIPCION                    ,:TIPODIARIO                 ' +
+        '    )')
+    RefreshSQL.Strings = (
+      'SELECT'
+      '  *'
+      'FROM TIPODIARIO'
+      'WHERE'
+      
+        '  TIPODIARIO                     =?TIPODIARIO                   ' +
+        '   ')
+    SelectSQL.Strings = (
+      'SELECT * FROM TIPODIARIO')
+    ModifySQL.Strings = (
+      'UPDATE TIPODIARIO'
+      'SET'
+      
+        '  DESCRIPCION                    =:DESCRIPCION                  ' +
+        '   '
+      'WHERE'
+      
+        '  TIPODIARIO                     =:TIPODIARIO                   ' +
+        '   ')
+    TableName = 'tipodiario'
+    Left = 47
+    Top = 562
+    object QTipoDiarioDESCRIPCION: TIBStringField
+      FieldName = 'DESCRIPCION'
+      Origin = 'TIPODIARIO.DESCRIPCION'
+      Size = 30
+    end
+    object QTipoDiarioTIPODIARIO: TIBStringField
+      FieldName = 'TIPODIARIO'
+      Origin = 'TIPODIARIO.TIPODIARIO'
+      Required = True
+      FixedChar = True
+      Size = 2
+    end
+  end
+  object QTipodiarioNom: TIBTableSet
+    BufferChunks = 32
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'DELETE FROM TIPODIARIO'
+      'WHERE'
+      
+        '  TIPODIARIO                     =:old_TIPODIARIO               ' +
+        '       ')
+    InsertSQL.Strings = (
+      'INSERT INTO TIPODIARIO'
+      
+        '  (DESCRIPCION                    ,TIPODIARIO                   ' +
+        '  )'
+      'VALUES'
+      
+        '  (:DESCRIPCION                    ,:TIPODIARIO                 ' +
+        '    )')
+    RefreshSQL.Strings = (
+      'SELECT'
+      '  *'
+      'FROM TIPODIARIO'
+      'WHERE'
+      
+        '  TIPODIARIO                     =?TIPODIARIO                   ' +
+        '   ')
+    SelectSQL.Strings = (
+      'SELECT * FROM TIPODIARIO')
+    ModifySQL.Strings = (
+      'UPDATE TIPODIARIO'
+      'SET'
+      
+        '  DESCRIPCION                    =:DESCRIPCION                  ' +
+        '   '
+      'WHERE'
+      
+        '  TIPODIARIO                     =:TIPODIARIO                   ' +
+        '   ')
+    TableName = 'tipodiario'
+    Left = 151
+    Top = 562
+    object IBStringField15: TIBStringField
+      FieldName = 'DESCRIPCION'
+      Origin = 'TIPODIARIO.DESCRIPCION'
+      Size = 30
+    end
+    object IBStringField16: TIBStringField
+      FieldName = 'TIPODIARIO'
+      Origin = 'TIPODIARIO.TIPODIARIO'
+      Required = True
+      FixedChar = True
+      Size = 2
+    end
+  end
+  object DB: TCRSQLConnection
+    ConnectionName = 'SQLServerConnection'
+    DriverName = 'SQLServer'
+    GetDriverFunc = 'getSQLDriverSQLServer'
+    LibraryName = 'dbexpsda.dll'
+    LoginPrompt = False
+    Params.Strings = (
+      'BlobSize=-1'
+      'HostName=.'
+      'DataBase=AVEZZO'
+      'DriverName=SQLServer'
+      'User_Name=sa'
+      'Password=masterkey'
+      'LongStrings=True'
+      'EnableBCD=True'
+      'FetchAll=True')
+    VendorLib = 'oledb'
+    Connected = True
+    Left = 47
+    Top = 31
+  end
+  object BDEjAnterior: TCRSQLConnection
+    ConnectionName = 'SQLServerConnection'
+    DriverName = 'SQLServer'
+    GetDriverFunc = 'getSQLDriverSQLServer'
+    LibraryName = 'dbexpsda.dll'
+    LoginPrompt = False
+    Params.Strings = (
+      'BlobSize=-1'
+      'HostName=.'
+      'DataBase=AVEZZO'
+      'DriverName=SQLServer'
+      'User_Name=sa'
+      'Password=masterkey'
+      'LongStrings=True'
+      'EnableBCD=True'
+      'FetchAll=True')
+    VendorLib = 'oledb'
+    Connected = True
+    Left = 391
+    Top = 127
+  end
+  object IBDConsolida: TCRSQLConnection
+    ConnectionName = 'SQLServerConnection'
+    DriverName = 'SQLServer'
+    GetDriverFunc = 'getSQLDriverSQLServer'
+    LibraryName = 'dbexpsda.dll'
+    LoginPrompt = False
+    Params.Strings = (
+      'BlobSize=-1'
+      'HostName=.'
+      'DataBase=AVEZZO'
+      'DriverName=SQLServer'
+      'User_Name=sa'
+      'Password=masterkey'
+      'LongStrings=True'
+      'EnableBCD=True'
+      'FetchAll=True')
+    VendorLib = 'oledb'
+    Connected = True
+    Left = 391
+    Top = 183
+  end
+  object QAnaliticas: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'SELECT * FROM ANALITICAS')
+    SQLConnection = DB
+    Left = 48
+    Top = 88
+    object QAnaliticasCUENTA: TStringField
+      FieldName = 'CUENTA'
+      FixedChar = True
+      Size = 10
+    end
+    object QAnaliticasNOMBRE: TStringField
+      FieldName = 'NOMBRE'
+      FixedChar = True
+      Size = 50
+    end
+    object QAnaliticasID_PROYECTO: TStringField
+      FieldName = 'ID_PROYECTO'
+      FixedChar = True
+      Size = 10
+    end
+    object QAnaliticasID_SECCION: TStringField
+      FieldName = 'ID_SECCION'
+      FixedChar = True
+      Size = 10
+    end
+    object QAnaliticasID_DEPARTAMENTO: TStringField
+      FieldName = 'ID_DEPARTAMENTO'
+      FixedChar = True
+      Size = 10
+    end
+    object QAnaliticasID_DELEGACION: TStringField
+      FieldName = 'ID_DELEGACION'
+      FixedChar = True
+      Size = 10
+    end
+  end
+  object QParametros: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
       'SELECT PRM.ID_PARAMETROS                          ,'
       '       PRM.LONGITUD_SUBCUENTAS                    ,'
       '       PRM.FECHA_INICIO_APLICACION                ,'
@@ -587,2512 +1447,845 @@ object DMRef: TDMRef
       'LEFT JOIN CONCEPTOS C29 ON C29.ID_CONCEPTOS = PRM.CTOHACIVA'
       'LEFT JOIN CONCEPTOS C30 ON C30.ID_CONCEPTOS = PRM.CTOCOBRO'
       'LEFT JOIN CONCEPTOS C31 ON C31.ID_CONCEPTOS = PRM.CTOPAGO')
-    ModifySQL.Strings = (
-      'UPDATE PARAMETROS'
-      'SET'
-      
-        '  FECHA_INICIO_APLICACION        =:FECHA_INICIO_APLICACION      ' +
-        '   '
-      
-        '  ,FECHA_INICIO_EJERCICIO         =:FECHA_INICIO_EJERCICIO      ' +
-        '    '
-      
-        '  ,FECHA_FIN_EJERCICIO            =:FECHA_FIN_EJERCICIO         ' +
-        '    '
-      
-        '  ,TANTORETPROF                   =:TANTORETPROF                ' +
-        '    '
-      
-        '  ,TANTORETARRE                   =:TANTORETARRE                ' +
-        '    '
-      
-        '  ,FECHAAMORTIZACION              =:FECHAAMORTIZACION           ' +
-        '    '
-      
-        '  ,FECHABLOQUEO                   =:FECHABLOQUEO                ' +
-        '    '
-      
-        '  ,SCTAREMESAEFECTOS              =:SCTAREMESAEFECTOS           ' +
-        '    '
-      
-        '  ,SCTAEFECTOSCOMERCIALES         =:SCTAEFECTOSCOMERCIALES      ' +
-        '    '
-      
-        '  ,SCTABANCO                      =:SCTABANCO                   ' +
-        '    '
-      
-        '  ,SCTAOTRASREMUN                 =:SCTAOTRASREMUN              ' +
-        '    '
-      
-        '  ,SCTAIVANORMAL                  =:SCTAIVANORMAL               ' +
-        '    '
-      
-        '  ,SCTAIVAEXENTO                  =:SCTAIVAEXENTO               ' +
-        '    '
-      
-        '  ,SCTAIVAINTRA                   =:SCTAIVAINTRA                ' +
-        '    '
-      
-        '  ,SCTAVENTAS                     =:SCTAVENTAS                  ' +
-        '    '
-      
-        '  ,SCTADEVOLUCION                 =:SCTADEVOLUCION              ' +
-        '    '
-      
-        '  ,SCTADESCUENTO                  =:SCTADESCUENTO               ' +
-        '    '
-      
-        '  ,SCTACOMPRAS                    =:SCTACOMPRAS                 ' +
-        '    '
-      
-        '  ,SCTAIVAREDUCIDO                =:SCTAIVAREDUCIDO             ' +
-        '    '
-      
-        '  ,SCTAIVASUPER                   =:SCTAIVASUPER                ' +
-        '    '
-      
-        '  ,SCTAIVACNORMAL                 =:SCTAIVACNORMAL              ' +
-        '    '
-      
-        '  ,SCTAIVACREDUCIDO               =:SCTAIVACREDUCIDO            ' +
-        '    '
-      
-        '  ,SCTAIVACSUPER                  =:SCTAIVACSUPER               ' +
-        '    '
-      
-        '  ,SCTARECNORMAL                  =:SCTARECNORMAL               ' +
-        '    '
-      
-        '  ,SCTARECREDUCIDO                =:SCTARECREDUCIDO             ' +
-        '    '
-      
-        '  ,SCTARECSUPER                   =:SCTARECSUPER                ' +
-        '    '
-      
-        '  ,SUBCUENTA_CIERRE               =:SUBCUENTA_CIERRE            ' +
-        '    '
-      
-        '  ,VGENERICA                      =:VGENERICA                   ' +
-        '    '
-      
-        '  ,SUBCAJA                        =:SUBCAJA                     ' +
-        '    '
-      
-        '  ,SCTANOMSUELDO                  =:SCTANOMSUELDO               ' +
-        '    '
-      
-        '  ,SCTANOMIRPF                    =:SCTANOMIRPF                 ' +
-        '    '
-      
-        '  ,SCTANOMPAGO                    =:SCTANOMPAGO                 ' +
-        '    '
-      
-        '  ,SCTANOMSSE                     =:SCTANOMSSE                  ' +
-        '    '
-      
-        '  ,SCTANOMSST                     =:SCTANOMSST                  ' +
-        '    '
-      
-        '  ,SCTANOMCARGO                   =:SCTANOMCARGO                ' +
-        '    '
-      
-        '  ,SCTADTOPPV                     =:SCTADTOPPV                  ' +
-        '    '
-      
-        '  ,SCTADTOPPC                     =:SCTADTOPPC                  ' +
-        '    '
-      
-        '  ,SCTARETPROF                    =:SCTARETPROF                 ' +
-        '    '
-      
-        '  ,SCTARETARRE                    =:SCTARETARRE                 ' +
-        '    '
-      
-        '  ,SCTAHACIVA                     =:SCTAHACIVA                  ' +
-        '    '
-      
-        '  ,SCTAIVACEXENTO                 =:SCTAIVACEXENTO              ' +
-        '    '
-      
-        '  ,VGENERICAC                     =:VGENERICAC                  ' +
-        '    '
-      
-        '  ,CODPOSTAL                      =:CODPOSTAL                   ' +
-        '    '
-      
-        '  ,CONTACTO                       =:CONTACTO                    ' +
-        '    '
-      
-        '  ,NUMEROCALLE                    =:NUMEROCALLE                 ' +
-        '    '
-      
-        '  ,SCTAEFECTDESCONTADOS           =:SCTAEFECTDESCONTADOS        ' +
-        '    '
-      
-        '  ,SCTADEUDASDESCUENTOS           =:SCTADEUDASDESCUENTOS        ' +
-        '    '
-      
-        '  ,SCTAIVAINTRADEDUCIBLE          =:SCTAIVAINTRADEDUCIBLE       ' +
-        '    '
-      
-        '  ,SCTAIVACINTRADEDUCIBLE         =:SCTAIVACINTRADEDUCIBLE      ' +
-        '    '
-      
-        '  ,SCTAIVACINTRAREPERCUTIDO       =:SCTAIVACINTRAREPERCUTIDO    ' +
-        '    '
-      
-        '  ,SCTAGENINTRACOM                =:SCTAGENINTRACOM             ' +
-        '    '
-      
-        '  ,SCTAIVAEXENTOCEE               =:SCTAIVAEXENTOCEE            ' +
-        '    '
-      
-        '  ,SCTAINTERESES                  =:SCTAINTERESES               ' +
-        '    '
-      
-        '  ,SCTAEXPORTACIONES              =:SCTAEXPORTACIONES           ' +
-        '    '
-      
-        '  ,LONGITUD_SUBCUENTAS            =:LONGITUD_SUBCUENTAS         ' +
-        '    '
-      
-        '  ,TELEFONO                       =:TELEFONO                    ' +
-        '    '
-      
-        '  ,FAX                            =:FAX                         ' +
-        '    '
-      
-        '  ,NOMBREFISCAL                   =:NOMBREFISCAL                ' +
-        '    '
-      
-        '  ,DIRECCION                      =:DIRECCION                   ' +
-        '    '
-      
-        '  ,DIRECCION1                     =:DIRECCION1                  ' +
-        '    '
-      
-        '  ,POBLACION                      =:POBLACION                   ' +
-        '    '
-      
-        '  ,PROVINCIA                      =:PROVINCIA                   ' +
-        '    '
-      
-        '  ,DOCCLIENTE                     =:DOCCLIENTE                  ' +
-        '    '
-      
-        '  ,DOCPROVEEDOR                   =:DOCPROVEEDOR                ' +
-        '    '
-      
-        '  ,DOC347                         =:DOC347                      ' +
-        '    '
-      
-        '  ,SIGLAVIA                       =:SIGLAVIA                    ' +
-        '    '
-      
-        '  ,ESCALERA                       =:ESCALERA                    ' +
-        '    '
-      
-        '  ,PISO                           =:PISO                        ' +
-        '    '
-      
-        '  ,PUERTA                         =:PUERTA                      ' +
-        '    '
-      
-        '  ,ASIENTOS_INICIO_INTERVALO_BQDA =:ASIENTOS_INICIO_INTERVALO_BQ' +
-        'DA  '
-      
-        '  ,ASIENTOS_FIN_INTERVALO_BQDA    =:ASIENTOS_FIN_INTERVALO_BQDA ' +
-        '    '
-      
-        '  ,ASIENTO_INICIO_INTERVALO_FILTRO=:ASIENTO_INICIO_INTERVALO_FIL' +
-        'TRO '
-      
-        '  ,ASIENTO_FIN_INTERVALO_FILTRO   =:ASIENTO_FIN_INTERVALO_FILTRO' +
-        '    '
-      
-        '  ,ACTCOMENTARIO                  =:ACTCOMENTARIO               ' +
-        '    '
-      
-        '  ,TRATASERIE                     =:TRATASERIE                  ' +
-        '    '
-      
-        '  ,OFFICE2003                     =:OFFICE2003                  ' +
-        '    '
-      
-        '  ,FILTROSUBCTAS                  =:FILTROSUBCTAS               ' +
-        '    '
-      
-        '  ,TIPOEMPRESA                    =:TIPOEMPRESA                 ' +
-        '    '
-      
-        '  ,DESCCLI_CARTERAEFECTOS         =:DESCCLI_CARTERAEFECTOS      ' +
-        '    '
-      
-        '  ,DESCPROV_CARTERAEFECTOS        =:DESCPROV_CARTERAEFECTOS     ' +
-        '    '
-      
-        '  ,CTOREMESAEFECTOS               =:CTOREMESAEFECTOS            ' +
-        '    '
-      
-        '  ,CTODEUDASDESCUENTOS            =:CTODEUDASDESCUENTOS         ' +
-        '    '
-      
-        '  ,CTOEFECTOSCOMERCIALES          =:CTOEFECTOSCOMERCIALES       ' +
-        '    '
-      
-        '  ,CTOPAGO                        =:CTOPAGO                     ' +
-        '    '
-      
-        '  ,CTOCOBRO                       =:CTOCOBRO                    ' +
-        '    '
-      
-        '  ,CTOIVANORMAL                   =:CTOIVANORMAL                ' +
-        '    '
-      
-        '  ,CTOIVAEXENTO                   =:CTOIVAEXENTO                ' +
-        '    '
-      
-        '  ,CTOIVAINTRA                    =:CTOIVAINTRA                 ' +
-        '    '
-      
-        '  ,CTOVENTAS                      =:CTOVENTAS                   ' +
-        '    '
-      
-        '  ,CTODEVOLUCION                  =:CTODEVOLUCION               ' +
-        '    '
-      
-        '  ,CTOCLIENTES                    =:CTOCLIENTES                 ' +
-        '    '
-      
-        '  ,CTODESCUENTO                   =:CTODESCUENTO                ' +
-        '    '
-      
-        '  ,CTOCOMPRAS                     =:CTOCOMPRAS                  ' +
-        '    '
-      
-        '  ,CTOIVAREDUCIDO                 =:CTOIVAREDUCIDO              ' +
-        '    '
-      
-        '  ,CTO_REGULARIZACION_ESP         =:CTO_REGULARIZACION_ESP      ' +
-        '    '
-      
-        '  ,CTO_APERTURA                   =:CTO_APERTURA                ' +
-        '    '
-      
-        '  ,CTOIVASUPER                    =:CTOIVASUPER                 ' +
-        '    '
-      
-        '  ,CTOPROVEEDORES                 =:CTOPROVEEDORES              ' +
-        '    '
-      
-        '  ,CTOIVACNORMAL                  =:CTOIVACNORMAL               ' +
-        '    '
-      
-        '  ,CTOIVACREDUCIDO                =:CTOIVACREDUCIDO             ' +
-        '    '
-      
-        '  ,CTOIVACSUPER                   =:CTOIVACSUPER                ' +
-        '    '
-      
-        '  ,CTORECNORMAL                   =:CTORECNORMAL                ' +
-        '    '
-      
-        '  ,CTORECREDUCIDO                 =:CTORECREDUCIDO              ' +
-        '    '
-      
-        '  ,CTORECSUPER                    =:CTORECSUPER                 ' +
-        '    '
-      
-        '  ,CTORECIBOVENTAS                =:CTORECIBOVENTAS             ' +
-        '    '
-      
-        '  ,DOCIMPRIMIR                    =:DOCIMPRIMIR                 ' +
-        '    '
-      
-        '  ,CTO_REGULARIZACION             =:CTO_REGULARIZACION          ' +
-        '    '
-      
-        '  ,MONEDA                         =:MONEDA                      ' +
-        '    '
-      
-        '  ,CTOCOBROF                      =:CTOCOBROF                   ' +
-        '    '
-      
-        '  ,CTONOME                        =:CTONOME                     ' +
-        '    '
-      
-        '  ,CTONOMT                        =:CTONOMT                     ' +
-        '    '
-      
-        '  ,CTODTOPPV                      =:CTODTOPPV                   ' +
-        '    '
-      
-        '  ,CTODTOPPC                      =:CTODTOPPC                   ' +
-        '    '
-      
-        '  ,CTORETPROF                     =:CTORETPROF                  ' +
-        '    '
-      
-        '  ,CTORETARRE                     =:CTORETARRE                  ' +
-        '    '
-      
-        '  ,CTOHACIVA                      =:CTOHACIVA                   ' +
-        '    '
-      
-        '  ,CTOIVACEXENTO                  =:CTOIVACEXENTO               ' +
-        '    '
-      
-        '  ,CTOPAGOF                       =:CTOPAGOF                    ' +
-        '    '
-      
-        '  ,RECARGO                        =:RECARGO                     ' +
-        '    '
-      
-        '  ,CTO_APERTURA_ESP               =:CTO_APERTURA_ESP            ' +
-        '    '
-      
-        '  ,NIF                            =:NIF                         ' +
-        '    '
-      
-        '  ,CCC                            =:CCC                         ' +
-        '    '
-      
-        '  ,CODADMON                       =:CODADMON                    ' +
-        '    '
-      
-        '  ,GESTIONA_CARTERA_EFECTOS       =:GESTIONA_CARTERA_EFECTOS    ' +
-        '    '
-      
-        '  ,FILTRO_ASIENTOS_INICIO         =:FILTRO_ASIENTOS_INICIO      ' +
-        '    '
-      
-        '  ,INCLUIR_ABREV                  =:INCLUIR_ABREV               ' +
-        '    '
-      
-        '  ,MOSTRAR_FILTRO_MAYOR           =:MOSTRAR_FILTRO_MAYOR        ' +
-        '    '
-      
-        '  ,CTOPROVINTRA                   =:CTOPROVINTRA                ' +
-        '    '
-      
-        '  ,ASIENTO_NOMINA_INDIVIDUAL      =:ASIENTO_NOMINA_INDIVIDUAL   ' +
-        '    '
-      
-        '  ,BUSQUEDA_SUBCTAS               =:BUSQUEDA_SUBCTAS            ' +
-        '    '
-      ','
-      
-        '  ID_PARAMETROS                  =:ID_PARAMETROS                ' +
-        '   '
-      'WHERE'
-      
-        '  ID_PARAMETROS                  =:old_ID_PARAMETROS            ' +
-        '       ')
-    Left = 284
-    Top = 128
-    object QParametrosID_PARAMETROS: TSmallintField
+    SQLConnection = DB
+    Left = 288
+    Top = 136
+    object QParametrosID_PARAMETROS: TIntegerField
       FieldName = 'ID_PARAMETROS'
-      Origin = 'PARAMETROS.ID_PARAMETROS'
-      Required = True
     end
-    object QParametrosLONGITUD_SUBCUENTAS: TSmallintField
+    object QParametrosLONGITUD_SUBCUENTAS: TIntegerField
       FieldName = 'LONGITUD_SUBCUENTAS'
-      Origin = 'PARAMETROS.LONGITUD_SUBCUENTAS'
     end
-    object QParametrosFECHA_INICIO_APLICACION: TDateTimeField
+    object QParametrosFECHA_INICIO_APLICACION: TSQLTimeStampField
       FieldName = 'FECHA_INICIO_APLICACION'
-      Origin = 'PARAMETROS.FECHA_INICIO_APLICACION'
     end
-    object QParametrosFECHA_INICIO_EJERCICIO: TDateTimeField
+    object QParametrosFECHA_INICIO_EJERCICIO: TSQLTimeStampField
       FieldName = 'FECHA_INICIO_EJERCICIO'
-      Origin = 'PARAMETROS.FECHA_INICIO_EJERCICIO'
     end
-    object QParametrosFECHA_FIN_EJERCICIO: TDateTimeField
+    object QParametrosFECHA_FIN_EJERCICIO: TSQLTimeStampField
       FieldName = 'FECHA_FIN_EJERCICIO'
-      Origin = 'PARAMETROS.FECHA_FIN_EJERCICIO'
     end
-    object QParametrosCTO_REGULARIZACION: TIBStringField
+    object QParametrosCTO_REGULARIZACION: TStringField
       FieldName = 'CTO_REGULARIZACION'
-      Origin = 'PARAMETROS.CTO_REGULARIZACION'
       FixedChar = True
       Size = 3
     end
-    object QParametrosSUBCUENTA_CIERRE: TIBStringField
+    object QParametrosSUBCUENTA_CIERRE: TStringField
       FieldName = 'SUBCUENTA_CIERRE'
-      Origin = 'PARAMETROS.SUBCUENTA_CIERRE'
       Size = 10
     end
-    object QParametrosMONEDA: TIBStringField
+    object QParametrosMONEDA: TStringField
       FieldName = 'MONEDA'
-      Origin = 'PARAMETROS.MONEDA'
       Size = 1
     end
-    object QParametrosNOMBREFISCAL: TIBStringField
+    object QParametrosNOMBREFISCAL: TStringField
       FieldName = 'NOMBREFISCAL'
-      Origin = 'PARAMETROS.NOMBREFISCAL'
       Size = 80
     end
-    object QParametrosDIRECCION: TIBStringField
+    object QParametrosDIRECCION: TStringField
       FieldName = 'DIRECCION'
-      Origin = 'PARAMETROS.DIRECCION'
       Size = 40
     end
-    object QParametrosDIRECCION1: TIBStringField
+    object QParametrosDIRECCION1: TStringField
       FieldName = 'DIRECCION1'
-      Origin = 'PARAMETROS.DIRECCION1'
       Size = 40
     end
-    object QParametrosPOBLACION: TIBStringField
+    object QParametrosPOBLACION: TStringField
       FieldName = 'POBLACION'
-      Origin = 'PARAMETROS.POBLACION'
       Size = 40
     end
-    object QParametrosCODPOSTAL: TIBStringField
+    object QParametrosCODPOSTAL: TStringField
       FieldName = 'CODPOSTAL'
-      Origin = 'PARAMETROS.CODPOSTAL'
       Size = 10
     end
-    object QParametrosPROVINCIA: TIBStringField
+    object QParametrosPROVINCIA: TStringField
       FieldName = 'PROVINCIA'
-      Origin = 'PARAMETROS.PROVINCIA'
       FixedChar = True
       Size = 2
     end
-    object QParametrosNIF: TIBStringField
+    object QParametrosNIF: TStringField
       FieldName = 'NIF'
-      Origin = 'PARAMETROS.NIF'
       Size = 15
     end
-    object QParametrosCONTACTO: TIBStringField
+    object QParametrosCONTACTO: TStringField
       FieldName = 'CONTACTO'
-      Origin = 'PARAMETROS.CONTACTO'
       Size = 50
     end
-    object QParametrosDOCCLIENTE: TIBStringField
+    object QParametrosDOCCLIENTE: TStringField
       FieldName = 'DOCCLIENTE'
-      Origin = 'PARAMETROS.DOCCLIENTE'
       Size = 100
     end
-    object QParametrosDOCPROVEEDOR: TIBStringField
+    object QParametrosDOCPROVEEDOR: TStringField
       FieldName = 'DOCPROVEEDOR'
-      Origin = 'PARAMETROS.DOCPROVEEDOR'
       Size = 100
     end
-    object QParametrosDOC347: TIBStringField
+    object QParametrosDOC347: TStringField
       FieldName = 'DOC347'
-      Origin = 'PARAMETROS.DOC347'
       Size = 100
     end
-    object QParametrosFECHABLOQUEO: TDateTimeField
+    object QParametrosFECHABLOQUEO: TSQLTimeStampField
       FieldName = 'FECHABLOQUEO'
-      Origin = 'PARAMETROS.FECHABLOQUEO'
     end
-    object QParametrosCTO_APERTURA: TIBStringField
+    object QParametrosCTO_APERTURA: TStringField
       FieldName = 'CTO_APERTURA'
-      Origin = 'PARAMETROS.CTO_APERTURA'
       FixedChar = True
       Size = 3
     end
-    object QParametrosCTO_REGULARIZACION_ESP: TIBStringField
+    object QParametrosCTO_REGULARIZACION_ESP: TStringField
       FieldName = 'CTO_REGULARIZACION_ESP'
-      Origin = 'PARAMETROS.CTO_REGULARIZACION_ESP'
       FixedChar = True
       Size = 3
     end
-    object QParametrosFECHAAMORTIZACION: TDateTimeField
+    object QParametrosFECHAAMORTIZACION: TSQLTimeStampField
       FieldName = 'FECHAAMORTIZACION'
-      Origin = 'PARAMETROS.FECHAAMORTIZACION'
     end
-    object QParametrosRECARGO: TIBStringField
+    object QParametrosRECARGO: TStringField
       FieldName = 'RECARGO'
-      Origin = 'PARAMETROS.RECARGO'
       FixedChar = True
       Size = 1
     end
-    object QParametrosCTO_APERTURA_ESP: TIBStringField
+    object QParametrosCTO_APERTURA_ESP: TStringField
       FieldName = 'CTO_APERTURA_ESP'
-      Origin = 'PARAMETROS.CTO_APERTURA_ESP'
       FixedChar = True
       Size = 3
     end
-    object QParametrosSCTAIVANORMAL: TIBStringField
+    object QParametrosSCTAIVANORMAL: TStringField
       FieldName = 'SCTAIVANORMAL'
-      Origin = 'PARAMETROS.SCTAIVANORMAL'
       Size = 10
     end
-    object QParametrosSCTAIVANORMAL_DS: TIBStringField
+    object QParametrosSCTAIVANORMAL_DS: TStringField
       FieldName = 'SCTAIVANORMAL_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTAIVAREDUCIDO: TIBStringField
+    object QParametrosSCTAIVAREDUCIDO: TStringField
       FieldName = 'SCTAIVAREDUCIDO'
-      Origin = 'PARAMETROS.SCTAIVAREDUCIDO'
       Size = 10
     end
-    object QParametrosSCTAIVAREDUCIDO_DS: TIBStringField
+    object QParametrosSCTAIVAREDUCIDO_DS: TStringField
       FieldName = 'SCTAIVAREDUCIDO_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTAIVASUPER: TIBStringField
+    object QParametrosSCTAIVASUPER: TStringField
       FieldName = 'SCTAIVASUPER'
-      Origin = 'PARAMETROS.SCTAIVASUPER'
       Size = 10
     end
-    object QParametrosSCTAIVASUPER_DS: TIBStringField
+    object QParametrosSCTAIVASUPER_DS: TStringField
       FieldName = 'SCTAIVASUPER_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTAIVAEXENTO: TIBStringField
+    object QParametrosSCTAIVAEXENTO: TStringField
       FieldName = 'SCTAIVAEXENTO'
-      Origin = 'PARAMETROS.SCTAIVAEXENTO'
       Size = 10
     end
-    object QParametrosSCTAIVAEXENTO_DS: TIBStringField
+    object QParametrosSCTAIVAEXENTO_DS: TStringField
       FieldName = 'SCTAIVAEXENTO_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTAIVAINTRADEDUCIBLE: TIBStringField
+    object QParametrosSCTAIVAINTRADEDUCIBLE: TStringField
       FieldName = 'SCTAIVAINTRADEDUCIBLE'
-      Origin = 'PARAMETROS.SCTAIVAINTRADEDUCIBLE'
       Size = 10
     end
-    object QParametrosSCTAIVAINTRADEDUCIBLE_DS: TIBStringField
+    object QParametrosSCTAIVAINTRADEDUCIBLE_DS: TStringField
       FieldName = 'SCTAIVAINTRADEDUCIBLE_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTAIVAINTRA: TIBStringField
+    object QParametrosSCTAIVAINTRA: TStringField
       FieldName = 'SCTAIVAINTRA'
-      Origin = 'PARAMETROS.SCTAIVAINTRA'
       Size = 10
     end
-    object QParametrosSCTAIVAINTRA_DS: TIBStringField
+    object QParametrosSCTAIVAINTRA_DS: TStringField
       FieldName = 'SCTAIVAINTRA_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTAVENTAS: TIBStringField
+    object QParametrosSCTAVENTAS: TStringField
       FieldName = 'SCTAVENTAS'
-      Origin = 'PARAMETROS.SCTAVENTAS'
       Size = 10
     end
-    object QParametrosSCTAVENTAS_DS: TIBStringField
+    object QParametrosSCTAVENTAS_DS: TStringField
       FieldName = 'SCTAVENTAS_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTADEVOLUCION: TIBStringField
+    object QParametrosSCTADEVOLUCION: TStringField
       FieldName = 'SCTADEVOLUCION'
-      Origin = 'PARAMETROS.SCTADEVOLUCION'
       Size = 10
     end
-    object QParametrosSCTADEVOLUCION_DS: TIBStringField
+    object QParametrosSCTADEVOLUCION_DS: TStringField
       FieldName = 'SCTADEVOLUCION_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTARECNORMAL: TIBStringField
+    object QParametrosSCTARECNORMAL: TStringField
       FieldName = 'SCTARECNORMAL'
-      Origin = 'PARAMETROS.SCTARECNORMAL'
       Size = 10
     end
-    object QParametrosSCTARECNORMAL_DS: TIBStringField
+    object QParametrosSCTARECNORMAL_DS: TStringField
       FieldName = 'SCTARECNORMAL_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTARECREDUCIDO: TIBStringField
+    object QParametrosSCTARECREDUCIDO: TStringField
       FieldName = 'SCTARECREDUCIDO'
-      Origin = 'PARAMETROS.SCTARECREDUCIDO'
       Size = 10
     end
-    object QParametrosSCTARECREDUCIDO_DS: TIBStringField
+    object QParametrosSCTARECREDUCIDO_DS: TStringField
       FieldName = 'SCTARECREDUCIDO_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTARECSUPER: TIBStringField
+    object QParametrosSCTARECSUPER: TStringField
       FieldName = 'SCTARECSUPER'
-      Origin = 'PARAMETROS.SCTARECSUPER'
       Size = 10
     end
-    object QParametrosSCTARECSUPER_DS: TIBStringField
+    object QParametrosSCTARECSUPER_DS: TStringField
       FieldName = 'SCTARECSUPER_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosVGENERICA: TIBStringField
+    object QParametrosVGENERICA: TStringField
       FieldName = 'VGENERICA'
-      Origin = 'PARAMETROS.VGENERICA'
       Size = 10
     end
-    object QParametrosVGENERICA_DS: TIBStringField
+    object QParametrosVGENERICA_DS: TStringField
       FieldName = 'VGENERICA_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSUBCAJA: TIBStringField
+    object QParametrosSUBCAJA: TStringField
       FieldName = 'SUBCAJA'
-      Origin = 'PARAMETROS.SUBCAJA'
       Size = 10
     end
-    object QParametrosSUBCAJA_DS: TIBStringField
+    object QParametrosSUBCAJA_DS: TStringField
       FieldName = 'SUBCAJA_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTAIVAEXENTOCEE: TIBStringField
+    object QParametrosSCTAIVAEXENTOCEE: TStringField
       FieldName = 'SCTAIVAEXENTOCEE'
-      Origin = 'PARAMETROS.SCTAIVAEXENTOCEE'
       Size = 10
     end
-    object QParametrosSCTAIVAEXENTOCEE_DS: TIBStringField
+    object QParametrosSCTAIVAEXENTOCEE_DS: TStringField
       FieldName = 'SCTAIVAEXENTOCEE_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTAINTERESES: TIBStringField
+    object QParametrosSCTAINTERESES: TStringField
       FieldName = 'SCTAINTERESES'
-      Origin = 'PARAMETROS.SCTAINTERESES'
       Size = 10
     end
-    object QParametrosSCTAINTERESES_DS: TIBStringField
+    object QParametrosSCTAINTERESES_DS: TStringField
       FieldName = 'SCTAINTERESES_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTAEXPORTACIONES: TIBStringField
+    object QParametrosSCTAEXPORTACIONES: TStringField
       FieldName = 'SCTAEXPORTACIONES'
-      Origin = 'PARAMETROS.SCTAEXPORTACIONES'
       Size = 10
     end
-    object QParametrosSCTAEXPORTACIONES_DS: TIBStringField
+    object QParametrosSCTAEXPORTACIONES_DS: TStringField
       FieldName = 'SCTAEXPORTACIONES_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTAIVACNORMAL: TIBStringField
+    object QParametrosSCTAIVACNORMAL: TStringField
       FieldName = 'SCTAIVACNORMAL'
-      Origin = 'PARAMETROS.SCTAIVACNORMAL'
       Size = 10
     end
-    object QParametrosSCTAIVACNORMAL_DS: TIBStringField
+    object QParametrosSCTAIVACNORMAL_DS: TStringField
       FieldName = 'SCTAIVACNORMAL_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTAIVACREDUCIDO: TIBStringField
+    object QParametrosSCTAIVACREDUCIDO: TStringField
       FieldName = 'SCTAIVACREDUCIDO'
-      Origin = 'PARAMETROS.SCTAIVACREDUCIDO'
       Size = 10
     end
-    object QParametrosSCTAIVACREDUCIDO_DS: TIBStringField
+    object QParametrosSCTAIVACREDUCIDO_DS: TStringField
       FieldName = 'SCTAIVACREDUCIDO_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTAIVACSUPER: TIBStringField
+    object QParametrosSCTAIVACSUPER: TStringField
       FieldName = 'SCTAIVACSUPER'
-      Origin = 'PARAMETROS.SCTAIVACSUPER'
       Size = 10
     end
-    object QParametrosSCTAIVACSUPER_DS: TIBStringField
+    object QParametrosSCTAIVACSUPER_DS: TStringField
       FieldName = 'SCTAIVACSUPER_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTAIVACEXENTO: TIBStringField
+    object QParametrosSCTAIVACEXENTO: TStringField
       FieldName = 'SCTAIVACEXENTO'
-      Origin = 'PARAMETROS.SCTAIVACEXENTO'
       Size = 10
     end
-    object QParametrosSCTAIVACEXENTO_DS: TIBStringField
+    object QParametrosSCTAIVACEXENTO_DS: TStringField
       FieldName = 'SCTAIVACEXENTO_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTACOMPRAS: TIBStringField
+    object QParametrosSCTACOMPRAS: TStringField
       FieldName = 'SCTACOMPRAS'
-      Origin = 'PARAMETROS.SCTACOMPRAS'
       Size = 10
     end
-    object QParametrosSCTACOMPRAS_DS: TIBStringField
+    object QParametrosSCTACOMPRAS_DS: TStringField
       FieldName = 'SCTACOMPRAS_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTAIVACINTRADEDUCIBLE: TIBStringField
+    object QParametrosSCTAIVACINTRADEDUCIBLE: TStringField
       FieldName = 'SCTAIVACINTRADEDUCIBLE'
-      Origin = 'PARAMETROS.SCTAIVACINTRADEDUCIBLE'
       Size = 10
     end
-    object QParametrosSCTAIVACINTRADEDUCIBLE_DS: TIBStringField
+    object QParametrosSCTAIVACINTRADEDUCIBLE_DS: TStringField
       FieldName = 'SCTAIVACINTRADEDUCIBLE_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTAIVACINTRAREPERCUTIDO: TIBStringField
+    object QParametrosSCTAIVACINTRAREPERCUTIDO: TStringField
       FieldName = 'SCTAIVACINTRAREPERCUTIDO'
-      Origin = 'PARAMETROS.SCTAIVACINTRAREPERCUTIDO'
       Size = 10
     end
-    object QParametrosSCTAIVACINTRAREPERCUTIDO_DS: TIBStringField
+    object QParametrosSCTAIVACINTRAREPERCUTIDO_DS: TStringField
       FieldName = 'SCTAIVACINTRAREPERCUTIDO_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosVGENERICAC: TIBStringField
+    object QParametrosVGENERICAC: TStringField
       FieldName = 'VGENERICAC'
-      Origin = 'PARAMETROS.VGENERICAC'
       Size = 10
     end
-    object QParametrosVGENERICAC_DS: TIBStringField
+    object QParametrosVGENERICAC_DS: TStringField
       FieldName = 'VGENERICAC_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTAEFECTOSCOMERCIALES: TIBStringField
+    object QParametrosSCTAEFECTOSCOMERCIALES: TStringField
       FieldName = 'SCTAEFECTOSCOMERCIALES'
-      Origin = 'PARAMETROS.SCTAEFECTOSCOMERCIALES'
       Size = 10
     end
-    object QParametrosSCTAEFECTOSCOMERCIALES_DS: TIBStringField
+    object QParametrosSCTAEFECTOSCOMERCIALES_DS: TStringField
       FieldName = 'SCTAEFECTOSCOMERCIALES_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTAEFECTDESCONTADOS: TIBStringField
+    object QParametrosSCTAEFECTDESCONTADOS: TStringField
       FieldName = 'SCTAEFECTDESCONTADOS'
-      Origin = 'PARAMETROS.SCTAEFECTDESCONTADOS'
       Size = 10
     end
-    object QParametrosSCTAEFECTDESCONTADOS_DS: TIBStringField
+    object QParametrosSCTAEFECTDESCONTADOS_DS: TStringField
       FieldName = 'SCTAEFECTDESCONTADOS_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTADEUDASDESCUENTOS: TIBStringField
+    object QParametrosSCTADEUDASDESCUENTOS: TStringField
       FieldName = 'SCTADEUDASDESCUENTOS'
-      Origin = 'PARAMETROS.SCTADEUDASDESCUENTOS'
       Size = 10
     end
-    object QParametrosSCTADEUDASDESCUENTOS_DS: TIBStringField
+    object QParametrosSCTADEUDASDESCUENTOS_DS: TStringField
       FieldName = 'SCTADEUDASDESCUENTOS_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTAREMESAEFECTOS: TIBStringField
+    object QParametrosSCTAREMESAEFECTOS: TStringField
       FieldName = 'SCTAREMESAEFECTOS'
-      Origin = 'PARAMETROS.SCTAREMESAEFECTOS'
       Size = 10
     end
-    object QParametrosSCTAREMESAEFECTOS_DS: TIBStringField
+    object QParametrosSCTAREMESAEFECTOS_DS: TStringField
       FieldName = 'SCTAREMESAEFECTOS_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTADTOPPV: TIBStringField
+    object QParametrosSCTADTOPPV: TStringField
       FieldName = 'SCTADTOPPV'
-      Origin = 'PARAMETROS.SCTADTOPPV'
       Size = 10
     end
-    object QParametrosSCTADTOPPV_DS: TIBStringField
+    object QParametrosSCTADTOPPV_DS: TStringField
       FieldName = 'SCTADTOPPV_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTADTOPPC: TIBStringField
+    object QParametrosSCTADTOPPC: TStringField
       FieldName = 'SCTADTOPPC'
-      Origin = 'PARAMETROS.SCTADTOPPC'
       Size = 10
     end
-    object QParametrosSCTADTOPPC_DS: TIBStringField
+    object QParametrosSCTADTOPPC_DS: TStringField
       FieldName = 'SCTADTOPPC_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTARETPROF: TIBStringField
+    object QParametrosSCTARETPROF: TStringField
       FieldName = 'SCTARETPROF'
-      Origin = 'PARAMETROS.SCTARETPROF'
       Size = 10
     end
-    object QParametrosSCTARETPROF_DS: TIBStringField
+    object QParametrosSCTARETPROF_DS: TStringField
       FieldName = 'SCTARETPROF_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTARETARRE: TIBStringField
+    object QParametrosSCTARETARRE: TStringField
       FieldName = 'SCTARETARRE'
-      Origin = 'PARAMETROS.SCTARETARRE'
       Size = 10
     end
-    object QParametrosSCTARETARRE_DS: TIBStringField
+    object QParametrosSCTARETARRE_DS: TStringField
       FieldName = 'SCTARETARRE_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTAHACIVA: TIBStringField
+    object QParametrosSCTAHACIVA: TStringField
       FieldName = 'SCTAHACIVA'
-      Origin = 'PARAMETROS.SCTAHACIVA'
       Size = 10
     end
-    object QParametrosSCTAHACIVA_DS: TIBStringField
+    object QParametrosSCTAHACIVA_DS: TStringField
       FieldName = 'SCTAHACIVA_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTAGENINTRACOM: TIBStringField
+    object QParametrosSCTAGENINTRACOM: TStringField
       FieldName = 'SCTAGENINTRACOM'
-      Origin = 'PARAMETROS.SCTAGENINTRACOM'
       Size = 10
     end
-    object QParametrosSCTAGENINTRACOM_DS: TIBStringField
+    object QParametrosSCTAGENINTRACOM_DS: TStringField
       FieldName = 'SCTAGENINTRACOM_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosSCTABANCO: TIBStringField
+    object QParametrosSCTABANCO: TStringField
       FieldName = 'SCTABANCO'
-      Origin = 'PARAMETROS.SCTABANCO'
       Size = 10
     end
-    object QParametrosSCTABANCO_DS: TIBStringField
+    object QParametrosSCTABANCO_DS: TStringField
       FieldName = 'SCTABANCO_DS'
-      Origin = 'SUBCTAS.DESCRIPCION'
       Size = 80
     end
-    object QParametrosCTOIVANORMAL: TIBStringField
+    object QParametrosCTOIVANORMAL: TStringField
       FieldName = 'CTOIVANORMAL'
-      Origin = 'PARAMETROS.CTOIVANORMAL'
       Size = 3
     end
-    object QParametrosCTOIVANORMAL_DS: TIBStringField
+    object QParametrosCTOIVANORMAL_DS: TStringField
       FieldName = 'CTOIVANORMAL_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTOIVAREDUCIDO: TIBStringField
+    object QParametrosCTOIVAREDUCIDO: TStringField
       FieldName = 'CTOIVAREDUCIDO'
-      Origin = 'PARAMETROS.CTOIVAREDUCIDO'
       Size = 3
     end
-    object QParametrosCTOIVAREDUCIDO_DS: TIBStringField
+    object QParametrosCTOIVAREDUCIDO_DS: TStringField
       FieldName = 'CTOIVAREDUCIDO_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTOIVASUPER: TIBStringField
+    object QParametrosCTOIVASUPER: TStringField
       FieldName = 'CTOIVASUPER'
-      Origin = 'PARAMETROS.CTOIVASUPER'
       Size = 3
     end
-    object QParametrosCTOIVASUPER_DS: TIBStringField
+    object QParametrosCTOIVASUPER_DS: TStringField
       FieldName = 'CTOIVASUPER_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTOIVAEXENTO: TIBStringField
+    object QParametrosCTOIVAEXENTO: TStringField
       FieldName = 'CTOIVAEXENTO'
-      Origin = 'PARAMETROS.CTOIVAEXENTO'
       Size = 3
     end
-    object QParametrosCTOIVAEXENTO_DS: TIBStringField
+    object QParametrosCTOIVAEXENTO_DS: TStringField
       FieldName = 'CTOIVAEXENTO_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTOIVAINTRA: TIBStringField
+    object QParametrosCTOIVAINTRA: TStringField
       FieldName = 'CTOIVAINTRA'
-      Origin = 'PARAMETROS.CTOIVAINTRA'
       Size = 3
     end
-    object QParametrosCTOIVAINTRA_DS: TIBStringField
+    object QParametrosCTOIVAINTRA_DS: TStringField
       FieldName = 'CTOIVAINTRA_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTOVENTAS: TIBStringField
+    object QParametrosCTOVENTAS: TStringField
       FieldName = 'CTOVENTAS'
-      Origin = 'PARAMETROS.CTOVENTAS'
       Size = 3
     end
-    object QParametrosCTOVENTAS_DS: TIBStringField
+    object QParametrosCTOVENTAS_DS: TStringField
       FieldName = 'CTOVENTAS_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTODEVOLUCION: TIBStringField
+    object QParametrosCTODEVOLUCION: TStringField
       FieldName = 'CTODEVOLUCION'
-      Origin = 'PARAMETROS.CTODEVOLUCION'
       Size = 3
     end
-    object QParametrosCTODEVOLUCION_DS: TIBStringField
+    object QParametrosCTODEVOLUCION_DS: TStringField
       FieldName = 'CTODEVOLUCION_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTOCLIENTES: TIBStringField
+    object QParametrosCTOCLIENTES: TStringField
       FieldName = 'CTOCLIENTES'
-      Origin = 'PARAMETROS.CTOCLIENTES'
       Size = 3
     end
-    object QParametrosCTOCLIENTES_DS: TIBStringField
+    object QParametrosCTOCLIENTES_DS: TStringField
       FieldName = 'CTOCLIENTES_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTORECNORMAL: TIBStringField
+    object QParametrosCTORECNORMAL: TStringField
       FieldName = 'CTORECNORMAL'
-      Origin = 'PARAMETROS.CTORECNORMAL'
       Size = 3
     end
-    object QParametrosCTORECNORMAL_DS: TIBStringField
+    object QParametrosCTORECNORMAL_DS: TStringField
       FieldName = 'CTORECNORMAL_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTORECREDUCIDO: TIBStringField
+    object QParametrosCTORECREDUCIDO: TStringField
       FieldName = 'CTORECREDUCIDO'
-      Origin = 'PARAMETROS.CTORECREDUCIDO'
       Size = 3
     end
-    object QParametrosCTORECREDUCIDO_DS: TIBStringField
+    object QParametrosCTORECREDUCIDO_DS: TStringField
       FieldName = 'CTORECREDUCIDO_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTORECSUPER: TIBStringField
+    object QParametrosCTORECSUPER: TStringField
       FieldName = 'CTORECSUPER'
-      Origin = 'PARAMETROS.CTORECSUPER'
       Size = 3
     end
-    object QParametrosCTORECSUPER_DS: TIBStringField
+    object QParametrosCTORECSUPER_DS: TStringField
       FieldName = 'CTORECSUPER_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTOCOBROF: TIBStringField
+    object QParametrosCTOCOBROF: TStringField
       FieldName = 'CTOCOBROF'
-      Origin = 'PARAMETROS.CTOCOBROF'
       Size = 3
     end
-    object QParametrosCTOCOBROF_DS: TIBStringField
+    object QParametrosCTOCOBROF_DS: TStringField
       FieldName = 'CTOCOBROF_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTORECIBOVENTAS: TIBStringField
+    object QParametrosCTORECIBOVENTAS: TStringField
       FieldName = 'CTORECIBOVENTAS'
-      Origin = 'PARAMETROS.CTORECIBOVENTAS'
       Size = 3
     end
-    object QParametrosCTORECIBOVENTAS_DS: TIBStringField
+    object QParametrosCTORECIBOVENTAS_DS: TStringField
       FieldName = 'CTORECIBOVENTAS_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTOIVACNORMAL: TIBStringField
+    object QParametrosCTOIVACNORMAL: TStringField
       FieldName = 'CTOIVACNORMAL'
-      Origin = 'PARAMETROS.CTOIVACNORMAL'
       Size = 3
     end
-    object QParametrosCTOIVACNORMAL_DS: TIBStringField
+    object QParametrosCTOIVACNORMAL_DS: TStringField
       FieldName = 'CTOIVACNORMAL_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTOIVACREDUCIDO: TIBStringField
+    object QParametrosCTOIVACREDUCIDO: TStringField
       FieldName = 'CTOIVACREDUCIDO'
-      Origin = 'PARAMETROS.CTOIVACREDUCIDO'
       Size = 3
     end
-    object QParametrosCTOIVACREDUCIDO_DS: TIBStringField
+    object QParametrosCTOIVACREDUCIDO_DS: TStringField
       FieldName = 'CTOIVACREDUCIDO_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTOIVACSUPER: TIBStringField
+    object QParametrosCTOIVACSUPER: TStringField
       FieldName = 'CTOIVACSUPER'
-      Origin = 'PARAMETROS.CTOIVACSUPER'
       Size = 3
     end
-    object QParametrosCTOIVACSUPER_DS: TIBStringField
+    object QParametrosCTOIVACSUPER_DS: TStringField
       FieldName = 'CTOIVACSUPER_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTOIVACEXENTO: TIBStringField
+    object QParametrosCTOIVACEXENTO: TStringField
       FieldName = 'CTOIVACEXENTO'
-      Origin = 'PARAMETROS.CTOIVACEXENTO'
       Size = 3
     end
-    object QParametrosCTOIVACEXENTO_DS: TIBStringField
+    object QParametrosCTOIVACEXENTO_DS: TStringField
       FieldName = 'CTOIVACEXENTO_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTOCOMPRAS: TIBStringField
+    object QParametrosCTOCOMPRAS: TStringField
       FieldName = 'CTOCOMPRAS'
-      Origin = 'PARAMETROS.CTOCOMPRAS'
       Size = 3
     end
-    object QParametrosCTOCOMPRAS_DS: TIBStringField
+    object QParametrosCTOCOMPRAS_DS: TStringField
       FieldName = 'CTOCOMPRAS_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTOPROVEEDORES: TIBStringField
+    object QParametrosCTOPROVEEDORES: TStringField
       FieldName = 'CTOPROVEEDORES'
-      Origin = 'PARAMETROS.CTOPROVEEDORES'
       Size = 3
     end
-    object QParametrosCTOPROVEEDORES_DS: TIBStringField
+    object QParametrosCTOPROVEEDORES_DS: TStringField
       FieldName = 'CTOPROVEEDORES_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTOPROVINTRA: TIBStringField
+    object QParametrosCTOPROVINTRA: TStringField
       FieldName = 'CTOPROVINTRA'
-      Origin = 'PARAMETROS.CTOPROVINTRA'
       FixedChar = True
       Size = 3
     end
-    object QParametrosCTOPROVINTRA_DS: TIBStringField
+    object QParametrosCTOPROVINTRA_DS: TStringField
       FieldName = 'CTOPROVINTRA_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTOPAGOF: TIBStringField
+    object QParametrosCTOPAGOF: TStringField
       FieldName = 'CTOPAGOF'
-      Origin = 'PARAMETROS.CTOPAGOF'
       Size = 3
     end
-    object QParametrosCTOPAGOF_DS: TIBStringField
+    object QParametrosCTOPAGOF_DS: TStringField
       FieldName = 'CTOPAGOF_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTOEFECTOSCOMERCIALES: TIBStringField
+    object QParametrosCTOEFECTOSCOMERCIALES: TStringField
       FieldName = 'CTOEFECTOSCOMERCIALES'
-      Origin = 'PARAMETROS.CTOEFECTOSCOMERCIALES'
       Size = 3
     end
-    object QParametrosCTOEFECTOSCOMERCIALES_DS: TIBStringField
+    object QParametrosCTOEFECTOSCOMERCIALES_DS: TStringField
       FieldName = 'CTOEFECTOSCOMERCIALES_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTODEUDASDESCUENTOS: TIBStringField
+    object QParametrosCTODEUDASDESCUENTOS: TStringField
       FieldName = 'CTODEUDASDESCUENTOS'
-      Origin = 'PARAMETROS.CTODEUDASDESCUENTOS'
       Size = 3
     end
-    object QParametrosCTODEUDASDESCUENTOS_DS: TIBStringField
+    object QParametrosCTODEUDASDESCUENTOS_DS: TStringField
       FieldName = 'CTODEUDASDESCUENTOS_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTOREMESAEFECTOS: TIBStringField
+    object QParametrosCTOREMESAEFECTOS: TStringField
       FieldName = 'CTOREMESAEFECTOS'
-      Origin = 'PARAMETROS.CTOREMESAEFECTOS'
       Size = 3
     end
-    object QParametrosCTOREMESAEFECTOS_DS: TIBStringField
+    object QParametrosCTOREMESAEFECTOS_DS: TStringField
       FieldName = 'CTOREMESAEFECTOS_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTODTOPPV: TIBStringField
+    object QParametrosCTODTOPPV: TStringField
       FieldName = 'CTODTOPPV'
-      Origin = 'PARAMETROS.CTODTOPPV'
       Size = 3
     end
-    object QParametrosCTODTOPPV_DS: TIBStringField
+    object QParametrosCTODTOPPV_DS: TStringField
       FieldName = 'CTODTOPPV_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTODTOPPC: TIBStringField
+    object QParametrosCTODTOPPC: TStringField
       FieldName = 'CTODTOPPC'
-      Origin = 'PARAMETROS.CTODTOPPC'
       Size = 3
     end
-    object QParametrosCTODTOPPC_DS: TIBStringField
+    object QParametrosCTODTOPPC_DS: TStringField
       FieldName = 'CTODTOPPC_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTORETPROF: TIBStringField
+    object QParametrosCTORETPROF: TStringField
       FieldName = 'CTORETPROF'
-      Origin = 'PARAMETROS.CTORETPROF'
       Size = 3
     end
-    object QParametrosCTORETPROF_DS: TIBStringField
+    object QParametrosCTORETPROF_DS: TStringField
       FieldName = 'CTORETPROF_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTORETARRE: TIBStringField
+    object QParametrosCTORETARRE: TStringField
       FieldName = 'CTORETARRE'
-      Origin = 'PARAMETROS.CTORETARRE'
       Size = 3
     end
-    object QParametrosCTORETARRE_DS: TIBStringField
+    object QParametrosCTORETARRE_DS: TStringField
       FieldName = 'CTORETARRE_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTOHACIVA: TIBStringField
+    object QParametrosCTOHACIVA: TStringField
       FieldName = 'CTOHACIVA'
-      Origin = 'PARAMETROS.CTOHACIVA'
       Size = 3
     end
-    object QParametrosCTOHACIVA_DS: TIBStringField
+    object QParametrosCTOHACIVA_DS: TStringField
       FieldName = 'CTOHACIVA_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTOCOBRO: TIBStringField
+    object QParametrosCTOCOBRO: TStringField
       FieldName = 'CTOCOBRO'
-      Origin = 'PARAMETROS.CTOCOBRO'
       Size = 3
     end
-    object QParametrosCTOCOBRO_DS: TIBStringField
+    object QParametrosCTOCOBRO_DS: TStringField
       FieldName = 'CTOCOBRO_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosCTOPAGO: TIBStringField
+    object QParametrosCTOPAGO: TStringField
       FieldName = 'CTOPAGO'
-      Origin = 'PARAMETROS.CTOPAGO'
       Size = 3
     end
-    object QParametrosCTOPAGO_DS: TIBStringField
+    object QParametrosCTOPAGO_DS: TStringField
       FieldName = 'CTOPAGO_DS'
-      Origin = 'CONCEPTOS.DESCRIPCION'
+      FixedChar = True
       Size = 30
     end
-    object QParametrosSCTADESCUENTO: TIBStringField
+    object QParametrosSCTADESCUENTO: TStringField
       FieldName = 'SCTADESCUENTO'
-      Origin = 'PARAMETROS.SCTADESCUENTO'
       Size = 10
     end
-    object QParametrosCTODESCUENTO: TIBStringField
+    object QParametrosCTODESCUENTO: TStringField
       FieldName = 'CTODESCUENTO'
-      Origin = 'PARAMETROS.CTODESCUENTO'
       Size = 3
     end
-    object QParametrosCTONOME: TIBStringField
+    object QParametrosCTONOME: TStringField
       FieldName = 'CTONOME'
-      Origin = 'PARAMETROS.CTONOME'
       Size = 3
     end
-    object QParametrosCTONOMT: TIBStringField
+    object QParametrosCTONOMT: TStringField
       FieldName = 'CTONOMT'
-      Origin = 'PARAMETROS.CTONOMT'
       Size = 3
     end
-    object QParametrosSCTANOMSUELDO: TIBStringField
+    object QParametrosSCTANOMSUELDO: TStringField
       FieldName = 'SCTANOMSUELDO'
-      Origin = 'PARAMETROS.SCTANOMSUELDO'
       Size = 10
     end
-    object QParametrosSCTANOMIRPF: TIBStringField
+    object QParametrosSCTANOMIRPF: TStringField
       FieldName = 'SCTANOMIRPF'
-      Origin = 'PARAMETROS.SCTANOMIRPF'
       Size = 10
     end
-    object QParametrosSCTANOMPAGO: TIBStringField
+    object QParametrosSCTANOMPAGO: TStringField
       FieldName = 'SCTANOMPAGO'
-      Origin = 'PARAMETROS.SCTANOMPAGO'
       Size = 10
     end
-    object QParametrosSCTANOMSSE: TIBStringField
+    object QParametrosSCTANOMSSE: TStringField
       FieldName = 'SCTANOMSSE'
-      Origin = 'PARAMETROS.SCTANOMSSE'
       Size = 10
     end
-    object QParametrosSCTANOMSST: TIBStringField
+    object QParametrosSCTANOMSST: TStringField
       FieldName = 'SCTANOMSST'
-      Origin = 'PARAMETROS.SCTANOMSST'
       Size = 10
     end
-    object QParametrosSCTANOMCARGO: TIBStringField
+    object QParametrosSCTANOMCARGO: TStringField
       FieldName = 'SCTANOMCARGO'
-      Origin = 'PARAMETROS.SCTANOMCARGO'
       Size = 10
     end
-    object QParametrosTANTORETPROF: TFloatField
+    object QParametrosTANTORETPROF: TBCDField
       FieldName = 'TANTORETPROF'
-      Origin = 'PARAMETROS.TANTORETPROF'
+      Precision = 14
+      Size = 3
     end
-    object QParametrosTANTORETARRE: TFloatField
+    object QParametrosTANTORETARRE: TBCDField
       FieldName = 'TANTORETARRE'
-      Origin = 'PARAMETROS.TANTORETARRE'
+      Precision = 14
+      Size = 3
     end
-    object QParametrosTELEFONO: TIBStringField
+    object QParametrosTELEFONO: TStringField
       FieldName = 'TELEFONO'
-      Origin = 'PARAMETROS.TELEFONO'
       Size = 16
     end
-    object QParametrosFAX: TIBStringField
+    object QParametrosFAX: TStringField
       FieldName = 'FAX'
-      Origin = 'PARAMETROS.FAX'
       Size = 16
     end
-    object QParametrosDOCIMPRIMIR: TIBStringField
+    object QParametrosDOCIMPRIMIR: TStringField
       FieldName = 'DOCIMPRIMIR'
-      Origin = 'PARAMETROS.DOCIMPRIMIR'
       FixedChar = True
       Size = 1
     end
-    object QParametrosSIGLAVIA: TIBStringField
+    object QParametrosSIGLAVIA: TStringField
       FieldName = 'SIGLAVIA'
-      Origin = 'PARAMETROS.SIGLAVIA'
       FixedChar = True
       Size = 2
     end
-    object QParametrosNUMEROCALLE: TIBStringField
+    object QParametrosNUMEROCALLE: TStringField
       FieldName = 'NUMEROCALLE'
-      Origin = 'PARAMETROS.NUMEROCALLE'
       FixedChar = True
       Size = 4
     end
-    object QParametrosESCALERA: TIBStringField
+    object QParametrosESCALERA: TStringField
       FieldName = 'ESCALERA'
-      Origin = 'PARAMETROS.ESCALERA'
       FixedChar = True
       Size = 2
     end
-    object QParametrosPISO: TIBStringField
+    object QParametrosPISO: TStringField
       FieldName = 'PISO'
-      Origin = 'PARAMETROS.PISO'
       FixedChar = True
       Size = 2
     end
-    object QParametrosPUERTA: TIBStringField
+    object QParametrosPUERTA: TStringField
       FieldName = 'PUERTA'
-      Origin = 'PARAMETROS.PUERTA'
       FixedChar = True
       Size = 2
     end
-    object QParametrosCCC: TIBStringField
+    object QParametrosCCC: TStringField
       FieldName = 'CCC'
-      Origin = 'PARAMETROS.CCC'
       Size = 23
     end
-    object QParametrosCODADMON: TIBStringField
+    object QParametrosCODADMON: TStringField
       FieldName = 'CODADMON'
-      Origin = 'PARAMETROS.CODADMON'
       FixedChar = True
       Size = 5
     end
-    object QParametrosGESTIONA_CARTERA_EFECTOS: TIBStringField
+    object QParametrosGESTIONA_CARTERA_EFECTOS: TStringField
       FieldName = 'GESTIONA_CARTERA_EFECTOS'
-      Origin = 'PARAMETROS.GESTIONA_CARTERA_EFECTOS'
       FixedChar = True
       Size = 1
     end
-    object QParametrosFILTRO_ASIENTOS_INICIO: TIBStringField
+    object QParametrosFILTRO_ASIENTOS_INICIO: TStringField
       FieldName = 'FILTRO_ASIENTOS_INICIO'
-      Origin = 'PARAMETROS.FILTRO_ASIENTOS_INICIO'
       FixedChar = True
       Size = 1
     end
-    object QParametrosINCLUIR_ABREV: TIBStringField
+    object QParametrosINCLUIR_ABREV: TStringField
       FieldName = 'INCLUIR_ABREV'
-      Origin = 'PARAMETROS.INCLUIR_ABREV'
       FixedChar = True
       Size = 1
     end
-    object QParametrosASIENTOS_INICIO_INTERVALO_BQDA: TSmallintField
+    object QParametrosASIENTOS_INICIO_INTERVALO_BQDA: TIntegerField
       FieldName = 'ASIENTOS_INICIO_INTERVALO_BQDA'
-      Origin = 'PARAMETROS.ASIENTOS_INICIO_INTERVALO_BQDA'
     end
-    object QParametrosASIENTOS_FIN_INTERVALO_BQDA: TSmallintField
+    object QParametrosASIENTOS_FIN_INTERVALO_BQDA: TIntegerField
       FieldName = 'ASIENTOS_FIN_INTERVALO_BQDA'
-      Origin = 'PARAMETROS.ASIENTOS_FIN_INTERVALO_BQDA'
     end
-    object QParametrosMOSTRAR_FILTRO_MAYOR: TIBStringField
+    object QParametrosMOSTRAR_FILTRO_MAYOR: TStringField
       FieldName = 'MOSTRAR_FILTRO_MAYOR'
-      Origin = 'PARAMETROS.MOSTRAR_FILTRO_MAYOR'
       FixedChar = True
       Size = 1
     end
-    object QParametrosASIENTO_INICIO_INTERVALO_FILTRO: TSmallintField
+    object QParametrosASIENTO_INICIO_INTERVALO_FILTRO: TIntegerField
       FieldName = 'ASIENTO_INICIO_INTERVALO_FILTRO'
-      Origin = 'PARAMETROS.ASIENTO_INICIO_INTERVALO_FILTRO'
     end
-    object QParametrosASIENTO_FIN_INTERVALO_FILTRO: TSmallintField
+    object QParametrosASIENTO_FIN_INTERVALO_FILTRO: TIntegerField
       FieldName = 'ASIENTO_FIN_INTERVALO_FILTRO'
-      Origin = 'PARAMETROS.ASIENTO_FIN_INTERVALO_FILTRO'
     end
-    object QParametrosASIENTO_NOMINA_INDIVIDUAL: TIBStringField
+    object QParametrosASIENTO_NOMINA_INDIVIDUAL: TStringField
       FieldName = 'ASIENTO_NOMINA_INDIVIDUAL'
-      Origin = 'PARAMETROS.ASIENTO_NOMINA_INDIVIDUAL'
       FixedChar = True
       Size = 1
     end
-    object QParametrosBUSQUEDA_SUBCTAS: TIBStringField
+    object QParametrosBUSQUEDA_SUBCTAS: TStringField
       FieldName = 'BUSQUEDA_SUBCTAS'
-      Origin = 'PARAMETROS.BUSQUEDA_SUBCTAS'
       FixedChar = True
       Size = 1
     end
-    object QParametrosSCTAOTRASREMUN: TIBStringField
+    object QParametrosSCTAOTRASREMUN: TStringField
       FieldName = 'SCTAOTRASREMUN'
-      Origin = 'PARAMETROS.SCTAOTRASREMUN'
       Size = 10
     end
-    object QParametrosDESCPROV_CARTERAEFECTOS: TIBStringField
+    object QParametrosDESCPROV_CARTERAEFECTOS: TStringField
       FieldName = 'DESCPROV_CARTERAEFECTOS'
-      Origin = 'PARAMETROS.DESCPROV_CARTERAEFECTOS'
       FixedChar = True
       Size = 1
     end
-    object QParametrosDESCCLI_CARTERAEFECTOS: TIBStringField
+    object QParametrosDESCCLI_CARTERAEFECTOS: TStringField
       FieldName = 'DESCCLI_CARTERAEFECTOS'
-      Origin = 'PARAMETROS.DESCCLI_CARTERAEFECTOS'
       FixedChar = True
       Size = 1
     end
-    object QParametrosTIPOEMPRESA: TIBStringField
+    object QParametrosTIPOEMPRESA: TStringField
       FieldName = 'TIPOEMPRESA'
-      Origin = 'PARAMETROS.TIPOEMPRESA'
       FixedChar = True
       Size = 1
     end
-    object QParametrosFILTROSUBCTAS: TIBStringField
+    object QParametrosFILTROSUBCTAS: TStringField
       FieldName = 'FILTROSUBCTAS'
-      Origin = 'PARAMETROS.FILTROSUBCTAS'
       FixedChar = True
       Size = 3
     end
-    object QParametrosOFFICE2003: TIBStringField
+    object QParametrosOFFICE2003: TStringField
       FieldName = 'OFFICE2003'
-      Origin = 'PARAMETROS.OFFICE2003'
       FixedChar = True
       Size = 1
     end
-    object QParametrosTRATASERIE: TIBStringField
+    object QParametrosTRATASERIE: TStringField
       FieldName = 'TRATASERIE'
-      Origin = 'PARAMETROS.TRATASERIE'
       FixedChar = True
       Size = 1
     end
-    object QParametrosACTCOMENTARIO: TIBStringField
+    object QParametrosACTCOMENTARIO: TStringField
       FieldName = 'ACTCOMENTARIO'
-      Origin = 'PARAMETROS.ACTCOMENTARIO'
       FixedChar = True
       Size = 1
     end
-  end
-  object QAnaliticas: TIBTableSet
-    Database = IBDSiamCont
-    BufferChunks = 32
-    CachedUpdates = False
-    DeleteSQL.Strings = (
-      'DELETE FROM ANALITICAS'
-      'WHERE'
-      
-        '  CUENTA                         =:old_CUENTA                   ' +
-        '       ')
-    InsertSQL.Strings = (
-      'INSERT INTO ANALITICAS'
-      
-        '  (ID_PROYECTO                    ,ID_SECCION                   ' +
-        '  ,ID_DEPARTAMENTO                ,ID_DELEGACION                ' +
-        '  ,NOMBRE                         ,CUENTA                       ' +
-        '  )'
-      'VALUES'
-      
-        '  (:ID_PROYECTO                    ,:ID_SECCION                 ' +
-        '    ,:ID_DEPARTAMENTO                ,:ID_DELEGACION            ' +
-        '      ,:NOMBRE                         ,:CUENTA                 ' +
-        '        )')
-    RefreshSQL.Strings = (
-      'SELECT'
-      '  *'
-      'FROM ANALITICAS'
-      'WHERE'
-      
-        '  CUENTA                         =?CUENTA                       ' +
-        '   ')
-    SelectSQL.Strings = (
-      'SELECT * FROM ANALITICAS')
-    ModifySQL.Strings = (
-      'UPDATE ANALITICAS'
-      'SET'
-      
-        '  ID_PROYECTO                    =:ID_PROYECTO                  ' +
-        '   '
-      
-        '  ,ID_SECCION                     =:ID_SECCION                  ' +
-        '    '
-      
-        '  ,ID_DEPARTAMENTO                =:ID_DEPARTAMENTO             ' +
-        '    '
-      
-        '  ,ID_DELEGACION                  =:ID_DELEGACION               ' +
-        '    '
-      
-        '  ,NOMBRE                         =:NOMBRE                      ' +
-        '    '
-      'WHERE'
-      
-        '  CUENTA                         =:CUENTA                       ' +
-        '   ')
-    TableName = 'analiticas'
-    Left = 47
-    Top = 82
-    object QAnaliticasCUENTA: TIBStringField
-      DisplayWidth = 10
-      FieldName = 'CUENTA'
-      Origin = 'ANALITICAS.CUENTA'
-      Required = True
-      Size = 10
-    end
-    object QAnaliticasNOMBRE: TIBStringField
-      DisplayWidth = 30
-      FieldName = 'NOMBRE'
-      Origin = 'ANALITICAS.NOMBRE'
-      Size = 50
-    end
-    object QAnaliticasID_PROYECTO: TIBStringField
-      FieldName = 'ID_PROYECTO'
-      Origin = 'ANALITICAS.ID_PROYECTO'
-      Visible = False
-      Size = 10
-    end
-    object QAnaliticasID_SECCION: TIBStringField
-      FieldName = 'ID_SECCION'
-      Origin = 'ANALITICAS.ID_SECCION'
-      Visible = False
-      Size = 10
-    end
-    object QAnaliticasID_DEPARTAMENTO: TIBStringField
-      FieldName = 'ID_DEPARTAMENTO'
-      Origin = 'ANALITICAS.ID_DEPARTAMENTO'
-      Visible = False
-      Size = 10
-    end
-    object QAnaliticasID_DELEGACION: TIBStringField
-      FieldName = 'ID_DELEGACION'
-      Origin = 'ANALITICAS.ID_DELEGACION'
-      Visible = False
-      Size = 10
-    end
-  end
-  object QAnaliticasNom: TIBTableSet
-    Database = IBDSiamCont
-    BufferChunks = 32
-    CachedUpdates = False
-    DeleteSQL.Strings = (
-      'DELETE FROM ANALITICAS'
-      'WHERE'
-      
-        '  CUENTA                         =:old_CUENTA                   ' +
-        '       ')
-    InsertSQL.Strings = (
-      'INSERT INTO ANALITICAS'
-      
-        '  (ID_PROYECTO                    ,ID_SECCION                   ' +
-        '  ,ID_DEPARTAMENTO                ,ID_DELEGACION                ' +
-        '  ,NOMBRE                         ,CUENTA                       ' +
-        '  )'
-      'VALUES'
-      
-        '  (:ID_PROYECTO                    ,:ID_SECCION                 ' +
-        '    ,:ID_DEPARTAMENTO                ,:ID_DELEGACION            ' +
-        '      ,:NOMBRE                         ,:CUENTA                 ' +
-        '        )')
-    RefreshSQL.Strings = (
-      'SELECT'
-      '  *'
-      'FROM ANALITICAS'
-      'WHERE'
-      
-        '  CUENTA                         =?CUENTA                       ' +
-        '   ')
-    SelectSQL.Strings = (
-      'SELECT * FROM ANALITICAS')
-    ModifySQL.Strings = (
-      'UPDATE ANALITICAS'
-      'SET'
-      
-        '  ID_PROYECTO                    =:ID_PROYECTO                  ' +
-        '   '
-      
-        '  ,ID_SECCION                     =:ID_SECCION                  ' +
-        '    '
-      
-        '  ,ID_DEPARTAMENTO                =:ID_DEPARTAMENTO             ' +
-        '    '
-      
-        '  ,ID_DELEGACION                  =:ID_DELEGACION               ' +
-        '    '
-      
-        '  ,NOMBRE                         =:NOMBRE                      ' +
-        '    '
-      'WHERE'
-      
-        '  CUENTA                         =:CUENTA                       ' +
-        '   ')
-    TableName = 'analiticas'
-    Left = 151
-    Top = 82
-    object IBStringField45: TIBStringField
-      DisplayWidth = 30
-      FieldName = 'NOMBRE'
-      Origin = 'ANALITICAS.NOMBRE'
-      Size = 50
-    end
-    object IBStringField46: TIBStringField
-      DisplayWidth = 10
-      FieldName = 'CUENTA'
-      Origin = 'ANALITICAS.CUENTA'
-      Required = True
-      Size = 10
-    end
-    object IBStringField41: TIBStringField
-      FieldName = 'ID_PROYECTO'
-      Origin = 'ANALITICAS.ID_PROYECTO'
-      Visible = False
-      Size = 10
-    end
-    object IBStringField42: TIBStringField
-      FieldName = 'ID_SECCION'
-      Origin = 'ANALITICAS.ID_SECCION'
-      Visible = False
-      Size = 10
-    end
-    object IBStringField43: TIBStringField
-      FieldName = 'ID_DEPARTAMENTO'
-      Origin = 'ANALITICAS.ID_DEPARTAMENTO'
-      Visible = False
-      Size = 10
-    end
-    object IBStringField44: TIBStringField
-      FieldName = 'ID_DELEGACION'
-      Origin = 'ANALITICAS.ID_DELEGACION'
-      Visible = False
-      Size = 10
-    end
-  end
-  object QDelegacionNom: TIBTableSet
-    Database = IBDSiamCont
-    BufferChunks = 32
-    CachedUpdates = False
-    DeleteSQL.Strings = (
-      'DELETE FROM DELEGACION'
-      'WHERE'
-      
-        '  ID_DELEGACION                  =:old_ID_DELEGACION            ' +
-        '       ')
-    InsertSQL.Strings = (
-      'INSERT INTO DELEGACION'
-      
-        '  (NOMBRE                         ,ID_DELEGACION                ' +
-        '  )'
-      'VALUES'
-      
-        '  (:NOMBRE                         ,:ID_DELEGACION              ' +
-        '    )')
-    RefreshSQL.Strings = (
-      'SELECT'
-      '  *'
-      'FROM DELEGACION'
-      'WHERE'
-      
-        '  ID_DELEGACION                  =?ID_DELEGACION                ' +
-        '   ')
-    SelectSQL.Strings = (
-      'SELECT * FROM DELEGACION')
-    ModifySQL.Strings = (
-      'UPDATE DELEGACION'
-      'SET'
-      
-        '  NOMBRE                         =:NOMBRE                       ' +
-        '   '
-      'WHERE'
-      
-        '  ID_DELEGACION                  =:ID_DELEGACION                ' +
-        '   ')
-    TableName = 'delegacion'
-    Left = 151
-    Top = 138
-    object QDelegacionNomNOMBRE: TIBStringField
-      DisplayWidth = 30
-      FieldName = 'NOMBRE'
-      Origin = 'DELEGACION.NOMBRE'
-      Size = 50
-    end
-    object QDelegacionNomID_DELEGACION: TIBStringField
-      DisplayLabel = 'DELEGACION'
-      DisplayWidth = 10
-      FieldName = 'ID_DELEGACION'
-      Origin = 'DELEGACION.ID_DELEGACION'
-      Required = True
-      Visible = False
-      Size = 10
-    end
-  end
-  object QDepartamentoNom: TIBTableSet
-    Database = IBDSiamCont
-    BufferChunks = 32
-    CachedUpdates = False
-    DeleteSQL.Strings = (
-      'DELETE FROM DEPARTAMENTO'
-      'WHERE'
-      
-        '  ID_DEPARTAMENTO                =:old_ID_DEPARTAMENTO          ' +
-        '       ')
-    InsertSQL.Strings = (
-      'INSERT INTO DEPARTAMENTO'
-      
-        '  (NOMBRE                         ,ID_DEPARTAMENTO              ' +
-        '  )'
-      'VALUES'
-      
-        '  (:NOMBRE                         ,:ID_DEPARTAMENTO            ' +
-        '    )')
-    RefreshSQL.Strings = (
-      'SELECT'
-      '  *'
-      'FROM DEPARTAMENTO'
-      'WHERE'
-      
-        '  ID_DEPARTAMENTO                =?ID_DEPARTAMENTO              ' +
-        '   ')
-    SelectSQL.Strings = (
-      'SELECT * FROM DEPARTAMENTO')
-    ModifySQL.Strings = (
-      'UPDATE DEPARTAMENTO'
-      'SET'
-      
-        '  NOMBRE                         =:NOMBRE                       ' +
-        '   '
-      'WHERE'
-      
-        '  ID_DEPARTAMENTO                =:ID_DEPARTAMENTO              ' +
-        '   ')
-    TableName = 'departamento'
-    Left = 151
-    Top = 314
-    object QDepartamentoNomNOMBRE: TIBStringField
-      DisplayWidth = 30
-      FieldName = 'NOMBRE'
-      Origin = 'DEPARTAMENTO.NOMBRE'
-      Size = 50
-    end
-    object QDepartamentoNomID_DEPARTAMENTO: TIBStringField
-      DisplayLabel = 'DEPARTAMENTO'
-      DisplayWidth = 10
-      FieldName = 'ID_DEPARTAMENTO'
-      Origin = 'DEPARTAMENTO.ID_DEPARTAMENTO'
-      Required = True
-      Visible = False
-      Size = 10
-    end
-  end
-  object QProyectoNom: TIBTableSet
-    Database = IBDSiamCont
-    BufferChunks = 32
-    CachedUpdates = False
-    DeleteSQL.Strings = (
-      'DELETE FROM PROYECTO'
-      'WHERE'
-      
-        '  ID_PROYECTO                    =:old_ID_PROYECTO              ' +
-        '       ')
-    InsertSQL.Strings = (
-      'INSERT INTO PROYECTO'
-      
-        '  (NOMBRE                         ,ID_PROYECTO                  ' +
-        '  )'
-      'VALUES'
-      
-        '  (:NOMBRE                         ,:ID_PROYECTO                ' +
-        '    )')
-    RefreshSQL.Strings = (
-      'SELECT'
-      '  *'
-      'FROM PROYECTO'
-      'WHERE'
-      
-        '  ID_PROYECTO                    =?ID_PROYECTO                  ' +
-        '   ')
-    SelectSQL.Strings = (
-      'SELECT * FROM PROYECTO')
-    ModifySQL.Strings = (
-      'UPDATE PROYECTO'
-      'SET'
-      
-        '  NOMBRE                         =:NOMBRE                       ' +
-        '   '
-      'WHERE'
-      
-        '  ID_PROYECTO                    =:ID_PROYECTO                  ' +
-        '   ')
-    TableName = 'proyecto'
-    Left = 151
-    Top = 442
-    object QProyectoNomNOMBRE: TIBStringField
-      DisplayWidth = 30
-      FieldName = 'NOMBRE'
-      Origin = 'PROYECTO.NOMBRE'
-      Size = 50
-    end
-    object QProyectoNomID_PROYECTO: TIBStringField
-      FieldName = 'ID_PROYECTO'
-      Origin = 'PROYECTO.ID_PROYECTO'
-      Required = True
-      Visible = False
-      Size = 10
-    end
-  end
-  object QSeccionNom: TIBTableSet
-    Database = IBDSiamCont
-    BufferChunks = 32
-    CachedUpdates = False
-    DeleteSQL.Strings = (
-      'DELETE FROM SECCION'
-      'WHERE'
-      
-        '  ID_SECCION                     =:old_ID_SECCION               ' +
-        '       ')
-    InsertSQL.Strings = (
-      'INSERT INTO SECCION'
-      
-        '  (NOMBRE                         ,ID_SECCION                   ' +
-        '  )'
-      'VALUES'
-      
-        '  (:NOMBRE                         ,:ID_SECCION                 ' +
-        '    )')
-    RefreshSQL.Strings = (
-      'SELECT'
-      '  *'
-      'FROM SECCION'
-      'WHERE'
-      
-        '  ID_SECCION                     =?ID_SECCION                   ' +
-        '   ')
-    SelectSQL.Strings = (
-      'SELECT * FROM SECCION')
-    ModifySQL.Strings = (
-      'UPDATE SECCION'
-      'SET'
-      
-        '  NOMBRE                         =:NOMBRE                       ' +
-        '   '
-      'WHERE'
-      
-        '  ID_SECCION                     =:ID_SECCION                   ' +
-        '   ')
-    TableName = 'seccion'
-    Left = 151
-    Top = 506
-    object QSeccionNomNOMBRE: TIBStringField
-      DisplayWidth = 30
-      FieldName = 'NOMBRE'
-      Origin = 'SECCION.NOMBRE'
-      Size = 50
-    end
-    object QSeccionNomID_SECCION: TIBStringField
-      FieldName = 'ID_SECCION'
-      Origin = 'SECCION.ID_SECCION'
-      Required = True
-      Visible = False
-      Size = 10
-    end
-  end
-  object QDelegacion: TIBTableSet
-    Database = IBDSiamCont
-    BufferChunks = 32
-    CachedUpdates = False
-    DeleteSQL.Strings = (
-      'DELETE FROM DELEGACION'
-      'WHERE'
-      
-        '  ID_DELEGACION                  =:old_ID_DELEGACION            ' +
-        '       ')
-    InsertSQL.Strings = (
-      'INSERT INTO DELEGACION'
-      
-        '  (NOMBRE                         ,ID_DELEGACION                ' +
-        '  )'
-      'VALUES'
-      
-        '  (:NOMBRE                         ,:ID_DELEGACION              ' +
-        '    )')
-    RefreshSQL.Strings = (
-      'SELECT'
-      '  *'
-      'FROM DELEGACION'
-      'WHERE'
-      
-        '  ID_DELEGACION                  =?ID_DELEGACION                ' +
-        '   ')
-    SelectSQL.Strings = (
-      'SELECT * FROM DELEGACION')
-    ModifySQL.Strings = (
-      'UPDATE DELEGACION'
-      'SET'
-      
-        '  NOMBRE                         =:NOMBRE                       ' +
-        '   '
-      'WHERE'
-      
-        '  ID_DELEGACION                  =:ID_DELEGACION                ' +
-        '   ')
-    TableName = 'delegacion'
-    Left = 47
-    Top = 138
-    object IBStringField1: TIBStringField
-      FieldName = 'NOMBRE'
-      Origin = 'DELEGACION.NOMBRE'
-      Size = 50
-    end
-    object IBStringField2: TIBStringField
-      FieldName = 'ID_DELEGACION'
-      Origin = 'DELEGACION.ID_DELEGACION'
-      Required = True
-      Size = 10
-    end
-  end
-  object QDepartamento: TIBTableSet
-    Database = IBDSiamCont
-    BufferChunks = 32
-    CachedUpdates = False
-    DeleteSQL.Strings = (
-      'DELETE FROM DEPARTAMENTO'
-      'WHERE'
-      
-        '  ID_DEPARTAMENTO                =:old_ID_DEPARTAMENTO          ' +
-        '       ')
-    InsertSQL.Strings = (
-      'INSERT INTO DEPARTAMENTO'
-      
-        '  (NOMBRE                         ,ID_DEPARTAMENTO              ' +
-        '  )'
-      'VALUES'
-      
-        '  (:NOMBRE                         ,:ID_DEPARTAMENTO            ' +
-        '    )')
-    RefreshSQL.Strings = (
-      'SELECT'
-      '  *'
-      'FROM DEPARTAMENTO'
-      'WHERE'
-      
-        '  ID_DEPARTAMENTO                =?ID_DEPARTAMENTO              ' +
-        '   ')
-    SelectSQL.Strings = (
-      'SELECT * FROM DEPARTAMENTO')
-    ModifySQL.Strings = (
-      'UPDATE DEPARTAMENTO'
-      'SET'
-      
-        '  NOMBRE                         =:NOMBRE                       ' +
-        '   '
-      'WHERE'
-      
-        '  ID_DEPARTAMENTO                =:ID_DEPARTAMENTO              ' +
-        '   ')
-    TableName = 'departamento'
-    Left = 47
-    Top = 314
-    object IBStringField3: TIBStringField
-      FieldName = 'NOMBRE'
-      Origin = 'DEPARTAMENTO.NOMBRE'
-      Size = 50
-    end
-    object IBStringField4: TIBStringField
-      FieldName = 'ID_DEPARTAMENTO'
-      Origin = 'DEPARTAMENTO.ID_DEPARTAMENTO'
-      Required = True
-      Size = 10
-    end
-  end
-  object QProyecto: TIBTableSet
-    Database = IBDSiamCont
-    BufferChunks = 32
-    CachedUpdates = False
-    DeleteSQL.Strings = (
-      'DELETE FROM PROYECTO'
-      'WHERE'
-      
-        '  ID_PROYECTO                    =:old_ID_PROYECTO              ' +
-        '       ')
-    InsertSQL.Strings = (
-      'INSERT INTO PROYECTO'
-      
-        '  (NOMBRE                         ,ID_PROYECTO                  ' +
-        '  )'
-      'VALUES'
-      
-        '  (:NOMBRE                         ,:ID_PROYECTO                ' +
-        '    )')
-    RefreshSQL.Strings = (
-      'SELECT'
-      '  *'
-      'FROM PROYECTO'
-      'WHERE'
-      
-        '  ID_PROYECTO                    =?ID_PROYECTO                  ' +
-        '   ')
-    SelectSQL.Strings = (
-      'SELECT * FROM PROYECTO')
-    ModifySQL.Strings = (
-      'UPDATE PROYECTO'
-      'SET'
-      
-        '  NOMBRE                         =:NOMBRE                       ' +
-        '   '
-      'WHERE'
-      
-        '  ID_PROYECTO                    =:ID_PROYECTO                  ' +
-        '   ')
-    TableName = 'proyecto'
-    Left = 47
-    Top = 442
-    object IBStringField5: TIBStringField
-      FieldName = 'NOMBRE'
-      Origin = 'PROYECTO.NOMBRE'
-      Size = 50
-    end
-    object IBStringField6: TIBStringField
-      FieldName = 'ID_PROYECTO'
-      Origin = 'PROYECTO.ID_PROYECTO'
-      Required = True
-      Size = 10
-    end
-  end
-  object QSeccion: TIBTableSet
-    Database = IBDSiamCont
-    BufferChunks = 32
-    CachedUpdates = False
-    DeleteSQL.Strings = (
-      'DELETE FROM SECCION'
-      'WHERE'
-      
-        '  ID_SECCION                     =:old_ID_SECCION               ' +
-        '       ')
-    InsertSQL.Strings = (
-      'INSERT INTO SECCION'
-      
-        '  (NOMBRE                         ,ID_SECCION                   ' +
-        '  )'
-      'VALUES'
-      
-        '  (:NOMBRE                         ,:ID_SECCION                 ' +
-        '    )')
-    RefreshSQL.Strings = (
-      'SELECT'
-      '  *'
-      'FROM SECCION'
-      'WHERE'
-      
-        '  ID_SECCION                     =?ID_SECCION                   ' +
-        '   ')
-    SelectSQL.Strings = (
-      'SELECT * FROM SECCION')
-    ModifySQL.Strings = (
-      'UPDATE SECCION'
-      'SET'
-      
-        '  NOMBRE                         =:NOMBRE                       ' +
-        '   '
-      'WHERE'
-      
-        '  ID_SECCION                     =:ID_SECCION                   ' +
-        '   ')
-    TableName = 'seccion'
-    Left = 47
-    Top = 506
-    object IBStringField7: TIBStringField
-      FieldName = 'NOMBRE'
-      Origin = 'SECCION.NOMBRE'
-      Size = 50
-    end
-    object IBStringField8: TIBStringField
-      FieldName = 'ID_SECCION'
-      Origin = 'SECCION.ID_SECCION'
-      Required = True
-      Size = 10
-    end
-  end
-  object QComercial: TIBTableSet
-    Database = IBDSiamCont
-    BufferChunks = 32
-    CachedUpdates = False
-    DeleteSQL.Strings = (
-      'DELETE FROM COMERCIALES'
-      'WHERE'
-      
-        '  COMERCIAL                      =:old_COMERCIAL                ' +
-        '       ')
-    InsertSQL.Strings = (
-      'INSERT INTO COMERCIALES'
-      
-        '  (NOMBRE                         ,COMERCIAL                    ' +
-        '  )'
-      'VALUES'
-      
-        '  (:NOMBRE                         ,:COMERCIAL                  ' +
-        '    )')
-    RefreshSQL.Strings = (
-      'SELECT'
-      '  *'
-      'FROM COMERCIALES'
-      'WHERE'
-      
-        '  COMERCIAL                      =?COMERCIAL                    ' +
-        '   ')
-    SelectSQL.Strings = (
-      'SELECT * FROM COMERCIALES')
-    ModifySQL.Strings = (
-      'UPDATE COMERCIALES'
-      'SET'
-      
-        '  NOMBRE                         =:NOMBRE                       ' +
-        '   '
-      'WHERE'
-      
-        '  COMERCIAL                      =:COMERCIAL                    ' +
-        '   ')
-    TableName = 'comerciales'
-    Left = 47
-    Top = 194
-    object QComercialNOMBRE: TIBStringField
-      FieldName = 'NOMBRE'
-      Origin = 'COMERCIALES.NOMBRE'
-      Size = 50
-    end
-    object QComercialCOMERCIAL: TIBStringField
-      FieldName = 'COMERCIAL'
-      Origin = 'COMERCIALES.COMERCIAL'
-      Required = True
-      Size = 10
-    end
-  end
-  object QcomercialNom: TIBTableSet
-    Database = IBDSiamCont
-    BufferChunks = 32
-    CachedUpdates = False
-    DeleteSQL.Strings = (
-      'DELETE FROM COMERCIALES'
-      'WHERE'
-      
-        '  COMERCIAL                      =:old_COMERCIAL                ' +
-        '       ')
-    InsertSQL.Strings = (
-      'INSERT INTO COMERCIALES'
-      
-        '  (NOMBRE                         ,COMERCIAL                    ' +
-        '  )'
-      'VALUES'
-      
-        '  (:NOMBRE                         ,:COMERCIAL                  ' +
-        '    )')
-    RefreshSQL.Strings = (
-      'SELECT'
-      '  *'
-      'FROM COMERCIALES'
-      'WHERE'
-      
-        '  COMERCIAL                      =?COMERCIAL                    ' +
-        '   ')
-    SelectSQL.Strings = (
-      'SELECT * FROM COMERCIALES')
-    ModifySQL.Strings = (
-      'UPDATE COMERCIALES'
-      'SET'
-      
-        '  NOMBRE                         =:NOMBRE                       ' +
-        '   '
-      'WHERE'
-      
-        '  COMERCIAL                      =:COMERCIAL                    ' +
-        '   ')
-    TableName = 'comerciales'
-    Left = 151
-    Top = 194
-    object IBStringField9: TIBStringField
-      DisplayWidth = 50
-      FieldName = 'NOMBRE'
-      Origin = 'COMERCIALES.NOMBRE'
-      Size = 50
-    end
-    object IBStringField10: TIBStringField
-      FieldName = 'COMERCIAL'
-      Origin = 'COMERCIALES.COMERCIAL'
-      Required = True
-      Visible = False
-      Size = 10
-    end
-  end
-  object QFormaPago: TIBTableSet
-    Database = IBDSiamCont
-    BufferChunks = 32
-    CachedUpdates = False
-    DeleteSQL.Strings = (
-      'DELETE FROM FORMAS'
-      'WHERE'
-      
-        '  FORMAPAGO                      =:old_FORMAPAGO                ' +
-        '       ')
-    InsertSQL.Strings = (
-      'INSERT INTO FORMAS'
-      
-        '  (DESCRIBE                       ,INTERVALO                    ' +
-        '  ,NUMVENCI                       ,FORMAPAGO                    ' +
-        '  ,CLASE                          ,OBSOLETO                     ' +
-        '  )'
-      'VALUES'
-      
-        '  (:DESCRIBE                       ,:INTERVALO                  ' +
-        '    ,:NUMVENCI                       ,:FORMAPAGO                ' +
-        '      ,:CLASE                          ,:OBSOLETO               ' +
-        '        )')
-    RefreshSQL.Strings = (
-      'SELECT'
-      '  *'
-      'FROM FORMAS'
-      'WHERE'
-      
-        '  FORMAPAGO                      =?FORMAPAGO                    ' +
-        '   ')
-    SelectSQL.Strings = (
-      'SELECT * FROM FORMAS')
-    ModifySQL.Strings = (
-      'UPDATE FORMAS'
-      'SET'
-      
-        '  DESCRIBE                       =:DESCRIBE                     ' +
-        '   '
-      
-        '  ,INTERVALO                      =:INTERVALO                   ' +
-        '    '
-      
-        '  ,NUMVENCI                       =:NUMVENCI                    ' +
-        '    '
-      
-        '  ,CLASE                          =:CLASE                       ' +
-        '    '
-      
-        '  ,OBSOLETO                       =:OBSOLETO                    ' +
-        '    '
-      'WHERE'
-      
-        '  FORMAPAGO                      =:FORMAPAGO                    ' +
-        '   ')
-    TableName = 'formas'
-    Left = 47
-    Top = 250
-    object QFormaPagoFORMAPAGO: TIBStringField
-      FieldName = 'FORMAPAGO'
-      Origin = 'FORMAS.FORMAPAGO'
-      Required = True
-      FixedChar = True
-      Size = 3
-    end
-    object QFormaPagoCLASE: TIBStringField
-      FieldName = 'CLASE'
-      Origin = 'FORMAS.CLASE'
-      FixedChar = True
-      Size = 1
-    end
-    object QFormaPagoDESCRIBE: TIBStringField
-      FieldName = 'DESCRIBE'
-      Origin = 'FORMAS.DESCRIBE'
-      Size = 40
-    end
-    object QFormaPagoINTERVALO: TSmallintField
-      FieldName = 'INTERVALO'
-      Origin = 'FORMAS.INTERVALO'
-    end
-    object QFormaPagoNUMVENCI: TSmallintField
-      FieldName = 'NUMVENCI'
-      Origin = 'FORMAS.NUMVENCI'
-    end
-    object QFormaPagoOBSOLETO: TIBStringField
-      FieldName = 'OBSOLETO'
-      Origin = 'FORMAS.OBSOLETO'
-      FixedChar = True
-      Size = 1
-    end
-  end
-  object QFormaPagoNom: TIBTableSet
-    Database = IBDSiamCont
-    BufferChunks = 32
-    CachedUpdates = False
-    DeleteSQL.Strings = (
-      'DELETE FROM FORMAS'
-      'WHERE'
-      
-        '  FORMAPAGO                      =:old_FORMAPAGO                ' +
-        '       ')
-    InsertSQL.Strings = (
-      'INSERT INTO FORMAS'
-      
-        '  (DESCRIBE                       ,INTERVALO                    ' +
-        '  ,NUMVENCI                       ,FORMAPAGO                    ' +
-        '  ,CLASE                          ,OBSOLETO                     ' +
-        '  )'
-      'VALUES'
-      
-        '  (:DESCRIBE                       ,:INTERVALO                  ' +
-        '    ,:NUMVENCI                       ,:FORMAPAGO                ' +
-        '      ,:CLASE                          ,:OBSOLETO               ' +
-        '        )')
-    RefreshSQL.Strings = (
-      'SELECT'
-      '  *'
-      'FROM FORMAS'
-      'WHERE'
-      
-        '  FORMAPAGO                      =?FORMAPAGO                    ' +
-        '   ')
-    SelectSQL.Strings = (
-      'SELECT * FROM FORMAS')
-    ModifySQL.Strings = (
-      'UPDATE FORMAS'
-      'SET'
-      
-        '  DESCRIBE                       =:DESCRIBE                     ' +
-        '   '
-      
-        '  ,INTERVALO                      =:INTERVALO                   ' +
-        '    '
-      
-        '  ,NUMVENCI                       =:NUMVENCI                    ' +
-        '    '
-      
-        '  ,CLASE                          =:CLASE                       ' +
-        '    '
-      
-        '  ,OBSOLETO                       =:OBSOLETO                    ' +
-        '    '
-      'WHERE'
-      
-        '  FORMAPAGO                      =:FORMAPAGO                    ' +
-        '   ')
-    TableName = 'formas'
-    Left = 151
-    Top = 250
-    object IBStringField11: TIBStringField
-      FieldName = 'FORMAPAGO'
-      Origin = 'FORMAS.FORMAPAGO'
-      Required = True
-      FixedChar = True
-      Size = 3
-    end
-    object IBStringField12: TIBStringField
-      FieldName = 'CLASE'
-      Origin = 'FORMAS.CLASE'
-      FixedChar = True
-      Size = 1
-    end
-    object IBStringField13: TIBStringField
-      FieldName = 'DESCRIBE'
-      Origin = 'FORMAS.DESCRIBE'
-      Size = 40
-    end
-    object SmallintField1: TSmallintField
-      FieldName = 'INTERVALO'
-      Origin = 'FORMAS.INTERVALO'
-    end
-    object SmallintField2: TSmallintField
-      FieldName = 'NUMVENCI'
-      Origin = 'FORMAS.NUMVENCI'
-    end
-    object IBStringField14: TIBStringField
-      FieldName = 'OBSOLETO'
-      Origin = 'FORMAS.OBSOLETO'
-      FixedChar = True
-      Size = 1
-    end
-  end
-  object QTipoDiario: TIBTableSet
-    Database = IBDSiamCont
-    BufferChunks = 32
-    CachedUpdates = False
-    DeleteSQL.Strings = (
-      'DELETE FROM TIPODIARIO'
-      'WHERE'
-      
-        '  TIPODIARIO                     =:old_TIPODIARIO               ' +
-        '       ')
-    InsertSQL.Strings = (
-      'INSERT INTO TIPODIARIO'
-      
-        '  (DESCRIPCION                    ,TIPODIARIO                   ' +
-        '  )'
-      'VALUES'
-      
-        '  (:DESCRIPCION                    ,:TIPODIARIO                 ' +
-        '    )')
-    RefreshSQL.Strings = (
-      'SELECT'
-      '  *'
-      'FROM TIPODIARIO'
-      'WHERE'
-      
-        '  TIPODIARIO                     =?TIPODIARIO                   ' +
-        '   ')
-    SelectSQL.Strings = (
-      'SELECT * FROM TIPODIARIO')
-    ModifySQL.Strings = (
-      'UPDATE TIPODIARIO'
-      'SET'
-      
-        '  DESCRIPCION                    =:DESCRIPCION                  ' +
-        '   '
-      'WHERE'
-      
-        '  TIPODIARIO                     =:TIPODIARIO                   ' +
-        '   ')
-    TableName = 'tipodiario'
-    Left = 47
-    Top = 562
-    object QTipoDiarioDESCRIPCION: TIBStringField
-      FieldName = 'DESCRIPCION'
-      Origin = 'TIPODIARIO.DESCRIPCION'
-      Size = 30
-    end
-    object QTipoDiarioTIPODIARIO: TIBStringField
-      FieldName = 'TIPODIARIO'
-      Origin = 'TIPODIARIO.TIPODIARIO'
-      Required = True
-      FixedChar = True
-      Size = 2
-    end
-  end
-  object QTipodiarioNom: TIBTableSet
-    Database = IBDSiamCont
-    BufferChunks = 32
-    CachedUpdates = False
-    DeleteSQL.Strings = (
-      'DELETE FROM TIPODIARIO'
-      'WHERE'
-      
-        '  TIPODIARIO                     =:old_TIPODIARIO               ' +
-        '       ')
-    InsertSQL.Strings = (
-      'INSERT INTO TIPODIARIO'
-      
-        '  (DESCRIPCION                    ,TIPODIARIO                   ' +
-        '  )'
-      'VALUES'
-      
-        '  (:DESCRIPCION                    ,:TIPODIARIO                 ' +
-        '    )')
-    RefreshSQL.Strings = (
-      'SELECT'
-      '  *'
-      'FROM TIPODIARIO'
-      'WHERE'
-      
-        '  TIPODIARIO                     =?TIPODIARIO                   ' +
-        '   ')
-    SelectSQL.Strings = (
-      'SELECT * FROM TIPODIARIO')
-    ModifySQL.Strings = (
-      'UPDATE TIPODIARIO'
-      'SET'
-      
-        '  DESCRIPCION                    =:DESCRIPCION                  ' +
-        '   '
-      'WHERE'
-      
-        '  TIPODIARIO                     =:TIPODIARIO                   ' +
-        '   ')
-    TableName = 'tipodiario'
-    Left = 151
-    Top = 562
-    object IBStringField15: TIBStringField
-      FieldName = 'DESCRIPCION'
-      Origin = 'TIPODIARIO.DESCRIPCION'
-      Size = 30
-    end
-    object IBStringField16: TIBStringField
-      FieldName = 'TIPODIARIO'
-      Origin = 'TIPODIARIO.TIPODIARIO'
-      Required = True
-      FixedChar = True
-      Size = 2
-    end
-  end
-  object IBDConsolida: TIBDatabase
-    Params.Strings = (
-      'user_name=SYSDBA'
-      'password=masterkey')
-    LoginPrompt = False
-    DefaultTransaction = IBTConsolida
-    IdleTimer = 0
-    SQLDialect = 1
-    TraceFlags = []
-    Left = 392
-    Top = 184
-  end
-  object IBTConsolida: TIBTransaction
-    Active = False
-    DefaultDatabase = IBDConsolida
-    AutoStopAction = saNone
-    Left = 490
-    Top = 184
-  end
-  object TransBdEjanterior: TIBTransaction
-    Active = False
-    DefaultDatabase = BDEjAnterior
-    AutoStopAction = saNone
-    Left = 490
-    Top = 136
-  end
-  object BDEjAnterior: TIBDatabase
-    Params.Strings = (
-      'user_name=SYSDBA'
-      'password=masterkey')
-    LoginPrompt = False
-    DefaultTransaction = TransBdEjanterior
-    IdleTimer = 0
-    SQLDialect = 1
-    TraceFlags = []
-    Left = 392
-    Top = 136
-  end
-  object DB: TCRSQLConnection
-    ConnectionName = 'SQLServerConnection'
-    DriverName = 'SQLServer'
-    GetDriverFunc = 'getSQLDriverSQLServer'
-    LibraryName = 'dbexpsda.dll'
-    LoginPrompt = False
-    Params.Strings = (
-      'BlobSize=-1'
-      'HostName=.'
-      'DataBase=AVEZZO'
-      'DriverName=SQLServer'
-      'User_Name=sa'
-      'Password=masterkey'
-      'LongStrings=True'
-      'EnableBCD=True'
-      'FetchAll=True')
-    VendorLib = 'oledb'
-    Connected = True
-    Left = 39
-    Top = 23
-  end
-  object IBT1: TIBTransaction
-    Active = False
-    DefaultDatabase = IBDSiamCont
-    AutoStopAction = saNone
-    Left = 176
-    Top = 24
   end
 end

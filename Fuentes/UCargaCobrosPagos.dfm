@@ -86,7 +86,7 @@ object WCargaCobrosPagos: TWCargaCobrosPagos
       object Datos: TGroupBox
         Left = 0
         Top = 97
-        Width = 739
+        Width = 0
         Height = 218
         Align = alClient
         Color = 14275008
@@ -337,7 +337,7 @@ object WCargaCobrosPagos: TWCargaCobrosPagos
       object GroupBox1: TGroupBox
         Left = 0
         Top = 0
-        Width = 739
+        Width = 0
         Height = 97
         Align = alTop
         Font.Charset = ANSI_CHARSET
@@ -561,8 +561,8 @@ object WCargaCobrosPagos: TWCargaCobrosPagos
       end
       object GroupBox2: TGroupBox
         Left = 0
-        Top = 315
-        Width = 739
+        Top = -103
+        Width = 0
         Height = 103
         Align = alBottom
         Color = 14275008
@@ -2631,13 +2631,11 @@ object WCargaCobrosPagos: TWCargaCobrosPagos
   end
   object Transaccion: TIBTransaction
     Active = False
-    DefaultDatabase = DMRef.IBDSiamCont
     AutoStopAction = saNone
     Left = 495
     Top = 7
   end
   object QMovimientos: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     OnCalcFields = QMovimientosCalcFields
     BufferChunks = 32
@@ -3011,9 +3009,7 @@ object WCargaCobrosPagos: TWCargaCobrosPagos
     Top = 10
   end
   object QDiario: TIBSQL
-    Database = DMRef.IBDSiamCont
     ParamCheck = True
-    Transaction = DMRef.IBT1
     Left = 408
     Top = 10
   end

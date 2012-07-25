@@ -2968,7 +2968,6 @@ object WTitulos: TWTitulos
     Top = 373
   end
   object QFichero: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     OnCalcFields = QFicheroCalcFields
     BufferChunks = 32
@@ -3181,7 +3180,6 @@ object WTitulos: TWTitulos
   end
   object Transaccion: TIBTransaction
     Active = False
-    DefaultDatabase = DMRef.IBDSiamCont
     AutoStopAction = saNone
     Left = 442
     Top = 325

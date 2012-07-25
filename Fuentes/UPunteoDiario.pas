@@ -134,7 +134,7 @@ begin
       QModifica := TIBSQL.Create(nil);
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with QModifica, SQL do begin
-         database := DmRef.IBDSiamCont;
+         //TODO: database := DmRef.IBDSiamCont;
          Clear;
          Add('update diario set punteo=:punteo,asientopunteo=:asiento');
          Add('where id_diario=:id_diario');
@@ -144,7 +144,7 @@ begin
       QConsultaCuantos := TIBQuery.Create(nil);
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with QConsultaCuantos, SQL do begin
-         database := DmRef.IBDSiamCont;
+         //TODO: database := DmRef.IBDSiamCont;
          Clear;
          Add('select count(*) as cuantos from diario');
          Add('where subcuenta=:subcuenta and');
@@ -165,7 +165,7 @@ begin
       QConsulta := TIBQuery.Create(nil);
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with QConsulta, SQL do begin
-         database := DmRef.IBDSiamCont;
+         //TODO: database := DmRef.IBDSiamCont;
          Clear;
          Add('select id_diario,asiento from diario');
          Add('where subcuenta=:subcuenta and');
@@ -184,7 +184,7 @@ begin
       end;
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with TIBQuery.Create(nil), SQL do begin
-         database := DmRef.IBDSiamCont;
+         //TODO: database := DmRef.IBDSiamCont;
          Clear;
          Add('select id_diario,asiento,subcuenta,importe,debehaber,numerofactura');
          Add('from diario');

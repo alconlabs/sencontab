@@ -171,7 +171,7 @@ procedure TWCargaCobrosPagos.ActualizarCarteraEfectos(ID_Cartera: Integer);
 begin
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with TIBSQL.Create(nil), SQL do begin
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Close;
       Clear;
       Add('UPDATE CARTERAEFECTOS SET');
@@ -517,7 +517,7 @@ begin
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with QDiario, SQL do begin
       Close;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Clear;
       Add('INSERT INTO DIARIO                                           ');
       Add('(ASIENTO, APUNTE, CONTRAPARTIDA, DEBEHABER, FECHA,           ');
@@ -565,7 +565,7 @@ procedure TWCargaCobrosPagos.PuntearApunte(ID_Diario: Integer);
 begin
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with TIBSQL.Create(nil), SQL do begin
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Close;
       Clear;
       Add('UPDATE DIARIO SET PUNTEO = "S"');
@@ -735,7 +735,7 @@ begin
    Paginas.Height := 441;
    Paginas.Width  := 742;
 
-   ActivarTransacciones(Self);
+   //ActivarTransacciones(Self);
 
    // Búsqueda subcuenta
    if DMRef.QParametros.FieldByName('BUSQUEDA_SUBCTAS').AsString = 'D' then  begin
@@ -866,7 +866,7 @@ begin
          {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
          with TIBSql.Create(nil), sql do begin
             Close;
-            Database := DMRef.IBDSiamCont;
+            //TODO: Database := DMRef.IBDSiamCont;
             Clear;
             add('delete from diario where asiento=:asiento');
             parambyname('asiento').AsInteger := QMovimientos.FieldByName('asiento').AsInteger;
@@ -961,7 +961,7 @@ begin
          QCobrosPagosSITUACION.AsString          := '';
          {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
          with TIBQuery.Create(nil), SQL do begin
-            Database := DMRef.IBDSiamCont;
+            //TODO: Database := DMRef.IBDSiamCont;
             Close;
             Clear;
             Add('SELECT NUMEROFACTURA, SUBCUENTA, CUENTA_ANALITICA, IMPORTE');
@@ -1035,7 +1035,7 @@ begin
          QCobrosPagosSITUACION.AsString          := FSituacion;
          {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
          with TIBQuery.Create(nil), SQL do begin
-            Database := DMRef.IBDSiamCont;
+            //TODO: Database := DMRef.IBDSiamCont;
             Close;
             Clear;
             Add('SELECT SUBCUENTA, ABREVIATURA FROM SUBCTAS');
@@ -1150,7 +1150,7 @@ begin
    if not (QCobrosPagos.IsEmpty) and (QCobrosPagosID_CONCEPTOS.AsString <> '') then   begin
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with TIBQuery.Create(nil), SQL do begin
-         Database := DMRef.IBDSiamCont;
+         //TODO: Database := DMRef.IBDSiamCont;
          Close;
          Clear;
          Add('SELECT * FROM CONCEPTOS WHERE ID_CONCEPTOS = :ID_CONCEPTOS');

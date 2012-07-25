@@ -250,7 +250,6 @@ object WProyectos: TWProyectos
     Top = 189
   end
   object QFichero: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -309,7 +308,6 @@ object WProyectos: TWProyectos
   end
   object Transaccion: TIBTransaction
     Active = False
-    DefaultDatabase = DMRef.IBDSiamCont
     AutoStopAction = saNone
     Left = 66
     Top = 141

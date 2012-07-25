@@ -147,8 +147,11 @@ end;
 
 procedure TWDelegaciones.RefrescarBD;
 begin
-   FibQueryRefresh(DmRef.QDelegacion);
-   FibQueryRefresh(DmRef.QDelegacionNom);
+   DmRef.QDelegacion.Close;
+   DmRef.QDelegacionNom.Close;
+
+   DmRef.QDelegacion.Open;
+   DmRef.QDelegacionNom.Open;
 end;
 
 procedure TWDelegaciones.BtnNavAniadirClick(Sender: TObject);
@@ -305,7 +308,7 @@ end;
 
 procedure TWDelegaciones.FormCreate(Sender: TObject);
 begin
-   ActivarTransacciones(self);
+   //ActivarTransacciones(self);
    CrearFiltro;
    FCampoOrden := 'ID_DELEGACION';
    PrepararQuery;

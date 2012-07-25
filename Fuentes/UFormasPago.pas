@@ -308,7 +308,7 @@ end;
 
 procedure TWFormasPago.FormCreate(Sender: TObject);
 begin
-   ActivarTransacciones(self);
+   //ActivarTransacciones(self);
    CrearFiltro;
    FCampoOrden := 'FORMAPAGO';
    PrepararQuery;
@@ -451,8 +451,11 @@ end;
 
 procedure TWFormasPago.RefrescarBD;
 begin
-   FIbQueryRefresh(DMRef.QFormaPago);
-   FIbQueryRefresh(DMRef.QFormaPagoNom);
+   DMRef.QFormaPago.Close;
+   DMRef.QFormaPagoNom.Close;
+
+   DMRef.QFormaPago.Open;
+   DMRef.QFormaPagoNom.Open;
 end;
 
 procedure TWFormasPago.QFicheroNewRecord(DataSet: TDataSet);

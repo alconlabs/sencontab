@@ -10,7 +10,6 @@ type
       Paginas:          TOvcNotebook;
       Label2:           TLabel;
       Shape1:           TShape;
-      OvcController1:   TOvcController;
       Panel5:           TPanel;
       Panel3:           TPanel;
       Panel4:           TPanel;
@@ -193,7 +192,7 @@ end;
 
 procedure TWParametrizacion.FormCreate(Sender: TObject);
 begin
-   ActivarTransacciones(Self);
+   //ActivarTransacciones(Self);
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with CDSFiltro do begin
       Active := False;
@@ -310,7 +309,6 @@ begin
 
    try
       DMRef.QParametros.Post;
-      DMRef.QParametros.Transaction.CommitRetaining;
       //DmControlRef.QControl.Post;
       //DmControlRef.QControl.Transaction.CommitRetaining;
    except
@@ -352,13 +350,10 @@ begin
    DMRef.QParametros.Open;
    //DMRef.QParametros.Regenerar := True;
    //FIbQueryRefresh(DMRef.QParametros);
-   {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-   with DMRef.QParametros do begin
-      if not (state in dseditmodes) then begin
-         edit;
-      end;
+   if not (DMRef.QParametros.State in dseditmodes) then begin
+      DMRef.QParametros.Edit;
    end;
-
+   
    {if not (DmControlRef.QControl.State in dsEditModes) then   begin
       DmControlRef.QControl.Edit;
    end;}
@@ -368,35 +363,26 @@ end;
 
 procedure TWParametrizacion.PermSPClientesClick(Sender: TObject);
 begin
-   {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-   with OpenDialog do begin
-      Title      := 'SELECCIONE CARTA DE RECLAMACION A CLIENTES';
-      InitialDir := gvDirectorio;
-      Execute;
-      DMRef.QParametros.FieldByName('DocCliente').AsString := filename;
-   end;
+   OpenDialog.Title      := 'SELECCIONE CARTA DE RECLAMACION A CLIENTES';
+   OpenDialog.InitialDir := gvDirectorio;
+   OpenDialog.Execute;
+   DMRef.QParametros.FieldByName('DocCliente').AsString := OpenDialog.Filename;
 end;
 
 procedure TWParametrizacion.PermSPProveedorClick(Sender: TObject);
 begin
-   {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-   with OpenDialog do begin
-      Title      := 'SELECCIONE CARTA DE PAGOS A PROVEEDORES';
-      InitialDir := gvDirectorio;
-      Execute;
-      DMRef.QParametros.FieldByName('DocProveedor').AsString := filename;
-   end;
+   OpenDialog.Title      := 'SELECCIONE CARTA DE PAGOS A PROVEEDORES';
+   OpenDialog.InitialDir := gvDirectorio;
+   OpenDialog.Execute;
+   DMRef.QParametros.FieldByName('DocProveedor').AsString := OpenDialog.Filename;
 end;
 
 procedure TWParametrizacion.PermSP347Click(Sender: TObject);
 begin
-   {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-   with OpenDialog do begin
-      Title      := 'SELECCIONE CARTA DE OPERACIONES CON TERCEROS (347)';
-      InitialDir := gvDirectorio;
-      Execute;
-      DMRef.QParametros.FieldByName('Doc347').AsString := filename;
-   end;
+   OpenDialog.Title      := 'SELECCIONE CARTA DE OPERACIONES CON TERCEROS (347)';
+   OpenDialog.InitialDir := gvDirectorio;
+   OpenDialog.Execute;
+   DMRef.QParametros.FieldByName('Doc347').AsString := OpenDialog.Filename;
 end;
 
 end.
