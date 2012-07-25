@@ -571,7 +571,7 @@ begin
       QSelEfectos := TIBQuery.Create(nil);
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with QSelEfectos, SQL do begin
-         Database := DMRef.IBDSiamCont;
+         //TODO: Database := DMRef.IBDSiamCont;
          Close;
          Clear;
          Add('SELECT FEMISION FROM CARTERAEFECTOS');
@@ -684,7 +684,7 @@ begin
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with QAux, SQL do begin
       Close;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Clear;
       Add('INSERT INTO DIARIO');
       Add('(APUNTE, ASIENTO, MONEDA, FECHA, IMPORTE, DEBEHABER,');
@@ -786,7 +786,7 @@ begin
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with QAux, SQL do begin
          Close;
-         Database := DMRef.IBDSiamCont;
+         //TODO: Database := DMRef.IBDSiamCont;
          Clear;
          Add('INSERT INTO DIARIO');
          Add('(APUNTE, ASIENTO, COMENTARIO, CONTRAPARTIDA, DEBEHABER,');
@@ -837,7 +837,7 @@ begin
          {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
          with QAbrevSubctas, SQL do begin
             Close;
-            Database := DMRef.IBDSiamCont;
+            //TODO: Database := DMRef.IBDSiamCont;
             Clear;
             Add('SELECT SUBCUENTA, ABREVIATURA FROM SUBCTAS');
             Add('WHERE SUBCUENTA = :SUBCUENTA');
@@ -1635,7 +1635,7 @@ begin
          {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
          with QSubcuentas, SQL do begin
             Close;
-            Database := DMRef.IBDSiamCont;
+            //TODO: Database := DMRef.IBDSiamCont;
             Clear;
             Add('SELECT S.DESCRIPCION, S.DIRECCION, S.DIRECCION1, S.NUMERO,');
             Add('       S.POBLACION, S.CODPOSTAL, PR.NOMBRE NOMPROVINCIA   ');
@@ -1856,7 +1856,7 @@ begin
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with QAsientos, SQL do begin
          Close;
-         Database := DMRef.IBDSiamCont;
+         //TODO: Database := DMRef.IBDSiamCont;
          Clear;
          Add('SELECT * FROM DIARIO WHERE ASIENTO = :ASIENTO');
       end;
@@ -1866,7 +1866,7 @@ begin
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with QInsDiario, SQL do begin
          Close;
-         Database := DMRef.IBDSiamCont;
+         //TODO: Database := DMRef.IBDSiamCont;
          Clear;
          Add('INSERT INTO DIARIO ');
          Add('(APUNTE, ASIENTO, COMENTARIO, CONTRAPARTIDA, DEBEHABER,');
@@ -2007,7 +2007,7 @@ begin
       QOrigen := TibDataset.Create(nil);
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with QOrigen, selectSql do begin
-         Database    := DMRef.IBDSiamCont;
+         //TODO: Database    := DMRef.IBDSiamCont;
          Transaction := Transaccion;
          Clear;
          add('select * from carteraefectos where id_carteraefectos=:id_carteraefectos');

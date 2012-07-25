@@ -146,8 +146,11 @@ end;
 
 procedure TWDepartamentos.RefrescarBD;
 begin
-   FibQueryRefresh(DmRef.QDepartamento);
-   FibQueryRefresh(DmRef.QDepartamentoNom);
+   DmRef.QDepartamento.Close;
+   DmRef.QDepartamentoNom.Close;
+
+   DmRef.QDepartamento.Open;
+   DmRef.QDepartamentoNom.Open;
 end;
 
 procedure TWDepartamentos.BtnNavAniadirClick(Sender: TObject);
@@ -305,7 +308,7 @@ end;
 
 procedure TWDepartamentos.FormCreate(Sender: TObject);
 begin
-   ActivarTransacciones(self);
+   //ActivarTransacciones(self);
    CrearFiltro;
    FCampoOrden := 'ID_DEPARTAMENTO';
    PrepararQuery;

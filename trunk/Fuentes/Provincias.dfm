@@ -628,8 +628,6 @@ object FormProvincias: TFormProvincias
     Top = 121
   end
   object HProvincias: TIBTable
-    Database = DMRef.IBDSiamCont
-    Transaction = DMRef.IBT1
     BufferChunks = 1000
     CachedUpdates = False
     TableName = 'PROVINCIAS'

@@ -147,8 +147,11 @@ end;
 
 procedure TWGrupos.RefrescarBD;
 begin
-   FIbQueryRefresh(DmContaRef.QGrupos);
-   FIbQueryRefresh(DmContaRef.QGruposDesc);
+   DmContaRef.QGrupos.Close;
+   DmContaRef.QGruposDesc.Close;
+
+   DmContaRef.QGrupos.Open;
+   DmContaRef.QGruposDesc.Open;
 end;
 
 procedure TWGrupos.BtnNavAniadirClick(Sender: TObject);
@@ -313,7 +316,7 @@ end;
 
 procedure TWGrupos.FormCreate(Sender: TObject);
 begin
-   ActivarTransacciones(self);
+   //ActivarTransacciones(self);
    CrearFiltro;
    FCampoOrden := 'Grupo';
    PrepararQuery;

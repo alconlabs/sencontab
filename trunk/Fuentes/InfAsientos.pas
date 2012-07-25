@@ -220,7 +220,7 @@ begin
    with QSubcuentas, SQL do begin
       Close;
       Clear;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Add('SELECT');
       Add('   SUBCUENTA, DESCRIPCION, ABREVIATURA');
       Add('FROM SUBCTAS');
@@ -234,7 +234,7 @@ begin
    with QConceptos, SQL do begin
       Close;
       Clear;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Add('SELECT ID_CONCEPTOS,DESCRIPCION,TIPOCONTABILIDAD');
       Add('FROM CONCEPTOS');
       Add('WHERE ID_CONCEPTOS = :ID_CONCEPTOS');
@@ -247,7 +247,7 @@ begin
    with QApuntes, SQL do begin
       Close;
       Clear;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
 
       Add('SELECT');
       Add('   D.APUNTE, D.SUBCUENTA, D.FECHA, D.CONTRAPARTIDA, D.IMPORTE,');
@@ -265,7 +265,7 @@ begin
    with QAsientos, SQL do begin
       Close;
       Clear;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
 
       Add('SELECT');
       Add('   DISTINCT D.ASIENTO, D.FECHA');

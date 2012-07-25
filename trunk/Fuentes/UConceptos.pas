@@ -169,8 +169,11 @@ end;
 
 procedure TWConceptos.RefrescarBD;
 begin
-   FIbQueryRefresh(DmContaRef.QConceptos);
-   FIbQueryRefresh(DmContaRef.QConceptosDesc);
+   DmContaRef.QConceptos.Close;
+   DmContaRef.QConceptosDesc.Close;
+
+   DmContaRef.QConceptos.Open;
+   DmContaRef.QConceptosDesc.Open;
 end;
 
 procedure TWConceptos.BtnNavAniadirClick(Sender: TObject);
@@ -321,7 +324,7 @@ end;
 
 procedure TWConceptos.FormCreate(Sender: TObject);
 begin
-   ActivarTransacciones(self);
+   //ActivarTransacciones(self);
    CrearFiltro;
    FCampoOrden := 'ID_CONCEPTOS';
    PrepararQuery;

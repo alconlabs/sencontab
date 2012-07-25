@@ -1,5 +1,7 @@
 program Contabilidad;
 
+{%ToDo 'Contabilidad.todo'}
+
 uses
   Forms,
   ogfirst,

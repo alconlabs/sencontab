@@ -1,6 +1,6 @@
 object WParametrizacion: TWParametrizacion
-  Left = 535
-  Top = 310
+  Left = 441
+  Top = 275
   BorderStyle = bsNone
   Caption = 'Parametrizaci'#243'n'
   ClientHeight = 504
@@ -76,7 +76,6 @@ object WParametrizacion: TWParametrizacion
     ActiveTabFont.Name = 'Tahoma'
     ActiveTabFont.Style = [fsBold]
     PageUsesTabColor = False
-    Controller = OvcController1
     Color = 14275008
     Font.Charset = ANSI_CHARSET
     Font.Color = clNavy
@@ -390,7 +389,6 @@ object WParametrizacion: TWParametrizacion
           FieldType = ftString
           AutoSize = False
           CaretOvr.Shape = csBlock
-          Controller = OvcController1
           EFColors.Disabled.BackColor = clWindow
           EFColors.Disabled.TextColor = clGrayText
           EFColors.Error.BackColor = clRed
@@ -418,7 +416,6 @@ object WParametrizacion: TWParametrizacion
           FieldType = ftString
           AutoSize = False
           CaretOvr.Shape = csBlock
-          Controller = OvcController1
           EFColors.Disabled.BackColor = clWindow
           EFColors.Disabled.TextColor = clGrayText
           EFColors.Error.BackColor = clRed
@@ -445,7 +442,6 @@ object WParametrizacion: TWParametrizacion
           FieldType = ftString
           AutoSize = False
           CaretOvr.Shape = csBlock
-          Controller = OvcController1
           EFColors.Disabled.BackColor = clWindow
           EFColors.Disabled.TextColor = clGrayText
           EFColors.Error.BackColor = clRed
@@ -473,7 +469,6 @@ object WParametrizacion: TWParametrizacion
           FieldType = ftString
           AutoSize = False
           CaretOvr.Shape = csBlock
-          Controller = OvcController1
           EFColors.Disabled.BackColor = clWindow
           EFColors.Disabled.TextColor = clGrayText
           EFColors.Error.BackColor = clRed
@@ -501,7 +496,6 @@ object WParametrizacion: TWParametrizacion
           FieldType = ftString
           AutoSize = False
           CaretOvr.Shape = csBlock
-          Controller = OvcController1
           EFColors.Disabled.BackColor = clWindow
           EFColors.Disabled.TextColor = clGrayText
           EFColors.Error.BackColor = clRed
@@ -558,7 +552,6 @@ object WParametrizacion: TWParametrizacion
           FieldType = ftString
           AutoSize = False
           CaretOvr.Shape = csBlock
-          Controller = OvcController1
           EFColors.Disabled.BackColor = clWindow
           EFColors.Disabled.TextColor = clGrayText
           EFColors.Error.BackColor = clRed
@@ -586,7 +579,6 @@ object WParametrizacion: TWParametrizacion
           FieldType = ftString
           AutoSize = False
           CaretOvr.Shape = csBlock
-          Controller = OvcController1
           EFColors.Disabled.BackColor = clWindow
           EFColors.Disabled.TextColor = clGrayText
           EFColors.Error.BackColor = clRed
@@ -614,7 +606,6 @@ object WParametrizacion: TWParametrizacion
           FieldType = ftString
           AutoSize = False
           CaretOvr.Shape = csBlock
-          Controller = OvcController1
           EFColors.Disabled.BackColor = clWindow
           EFColors.Disabled.TextColor = clGrayText
           EFColors.Error.BackColor = clRed
@@ -642,7 +633,6 @@ object WParametrizacion: TWParametrizacion
           FieldType = ftFloat
           AutoSize = False
           CaretOvr.Shape = csBlock
-          Controller = OvcController1
           EFColors.Disabled.BackColor = clWindow
           EFColors.Disabled.TextColor = clGrayText
           EFColors.Error.BackColor = clRed
@@ -689,7 +679,6 @@ object WParametrizacion: TWParametrizacion
           FieldType = ftSmallint
           AutoSize = False
           CaretOvr.Shape = csBlock
-          Controller = OvcController1
           EFColors.Disabled.BackColor = clWindow
           EFColors.Disabled.TextColor = clGrayText
           EFColors.Error.BackColor = clRed
@@ -1021,7 +1010,6 @@ object WParametrizacion: TWParametrizacion
           FieldType = ftString
           AutoSize = False
           CaretOvr.Shape = csBlock
-          Controller = OvcController1
           EFColors.Disabled.BackColor = clWindow
           EFColors.Disabled.TextColor = clGrayText
           EFColors.Error.BackColor = clRed
@@ -1049,7 +1037,6 @@ object WParametrizacion: TWParametrizacion
           FieldType = ftString
           AutoSize = False
           CaretOvr.Shape = csBlock
-          Controller = OvcController1
           EFColors.Disabled.BackColor = clWindow
           EFColors.Disabled.TextColor = clGrayText
           EFColors.Error.BackColor = clRed
@@ -1077,7 +1064,6 @@ object WParametrizacion: TWParametrizacion
           FieldType = ftString
           AutoSize = False
           CaretOvr.Shape = csBlock
-          Controller = OvcController1
           EFColors.Disabled.BackColor = clWindow
           EFColors.Disabled.TextColor = clGrayText
           EFColors.Error.BackColor = clRed
@@ -1105,7 +1091,6 @@ object WParametrizacion: TWParametrizacion
           FieldType = ftString
           AutoSize = False
           CaretOvr.Shape = csBlock
-          Controller = OvcController1
           EFColors.Disabled.BackColor = clWindow
           EFColors.Disabled.TextColor = clGrayText
           EFColors.Error.BackColor = clRed
@@ -1133,7 +1118,6 @@ object WParametrizacion: TWParametrizacion
           FieldType = ftString
           AutoSize = False
           CaretOvr.Shape = csBlock
-          Controller = OvcController1
           EFColors.Disabled.BackColor = clWindow
           EFColors.Disabled.TextColor = clGrayText
           EFColors.Error.BackColor = clRed
@@ -1161,7 +1145,6 @@ object WParametrizacion: TWParametrizacion
           FieldType = ftString
           AutoSize = False
           CaretOvr.Shape = csBlock
-          Controller = OvcController1
           EFColors.Disabled.BackColor = clWindow
           EFColors.Disabled.TextColor = clGrayText
           EFColors.Error.BackColor = clRed
@@ -1189,7 +1172,6 @@ object WParametrizacion: TWParametrizacion
           FieldType = ftString
           AutoSize = False
           CaretOvr.Shape = csBlock
-          Controller = OvcController1
           EFColors.Disabled.BackColor = clWindow
           EFColors.Disabled.TextColor = clGrayText
           EFColors.Error.BackColor = clRed
@@ -1319,7 +1301,6 @@ object WParametrizacion: TWParametrizacion
             FieldType = ftSmallint
             AutoSize = False
             CaretOvr.Shape = csBlock
-            Controller = OvcController1
             EFColors.Disabled.BackColor = clWindow
             EFColors.Disabled.TextColor = clGrayText
             EFColors.Error.BackColor = clRed
@@ -1348,7 +1329,6 @@ object WParametrizacion: TWParametrizacion
             FieldType = ftSmallint
             AutoSize = False
             CaretOvr.Shape = csBlock
-            Controller = OvcController1
             EFColors.Disabled.BackColor = clWindow
             EFColors.Disabled.TextColor = clGrayText
             EFColors.Error.BackColor = clRed
@@ -1377,7 +1357,6 @@ object WParametrizacion: TWParametrizacion
             FieldType = ftSmallint
             AutoSize = False
             CaretOvr.Shape = csBlock
-            Controller = OvcController1
             EFColors.Disabled.BackColor = clWindow
             EFColors.Disabled.TextColor = clGrayText
             EFColors.Error.BackColor = clRed
@@ -1406,7 +1385,6 @@ object WParametrizacion: TWParametrizacion
             FieldType = ftSmallint
             AutoSize = False
             CaretOvr.Shape = csBlock
-            Controller = OvcController1
             EFColors.Disabled.BackColor = clWindow
             EFColors.Disabled.TextColor = clGrayText
             EFColors.Error.BackColor = clRed
@@ -1522,7 +1500,6 @@ object WParametrizacion: TWParametrizacion
           DataSource = DSFichero
           FieldType = ftString
           CaretOvr.Shape = csBlock
-          Controller = OvcController1
           EFColors.Disabled.BackColor = clWindow
           EFColors.Disabled.TextColor = clGrayText
           EFColors.Error.BackColor = clRed
@@ -2719,7 +2696,6 @@ object WParametrizacion: TWParametrizacion
             FieldType = ftString
             AutoSize = False
             CaretOvr.Shape = csBlock
-            Controller = OvcController1
             EFColors.Disabled.BackColor = clWindow
             EFColors.Disabled.TextColor = clGrayText
             EFColors.Error.BackColor = clRed
@@ -2747,7 +2723,6 @@ object WParametrizacion: TWParametrizacion
             FieldType = ftString
             AutoSize = False
             CaretOvr.Shape = csBlock
-            Controller = OvcController1
             EFColors.Disabled.BackColor = clWindow
             EFColors.Disabled.TextColor = clGrayText
             EFColors.Error.BackColor = clRed
@@ -2775,7 +2750,6 @@ object WParametrizacion: TWParametrizacion
             FieldType = ftString
             AutoSize = False
             CaretOvr.Shape = csBlock
-            Controller = OvcController1
             EFColors.Disabled.BackColor = clWindow
             EFColors.Disabled.TextColor = clGrayText
             EFColors.Error.BackColor = clRed
@@ -2889,7 +2863,6 @@ object WParametrizacion: TWParametrizacion
       C1EBD4C5EDD2BEEACAB3E9C7B0E3C0ACC8A696A98879EBD5C9F2DBCCF8DFCFF6
       DDC9F2D5C0ECD0B8ECD1BCF0D8C2EBD5C3E6D2C0E7D5C4ECDBC8F0DAC8EED7C1
       F1DAC0F7E0CAE2CFC2E9D5CAF0D5C7F2D2BFF6D5C2F5D4C1DEBDAEC0A093}
-    NumGlyphs = 0
     ParentClipping = False
     ShadeStyle = fbsNormal
     TabOrder = 4
@@ -3130,6 +3103,7 @@ object WParametrizacion: TWParametrizacion
       5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
       6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
       526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
+    NumGlyphs = 0
     ParentClipping = False
     ParentFont = False
     ShadeStyle = fbsNormal
@@ -3370,6 +3344,7 @@ object WParametrizacion: TWParametrizacion
       5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
       6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
       526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
+    NumGlyphs = 0
     ParentClipping = False
     ParentFont = False
     ShadeStyle = fbsNormal
@@ -3398,21 +3373,6 @@ object WParametrizacion: TWParametrizacion
     DataSet = DMRef.QParametros
     Left = 585
     Top = 5
-  end
-  object OvcController1: TOvcController
-    EntryCommands.TableList = (
-      'Default'
-      True
-      ()
-      'WordStar'
-      False
-      ()
-      'Grid'
-      False
-      ())
-    Epoch = 2000
-    Left = 704
-    Top = 8
   end
   object CDSFiltro: TClientDataSet
     Aggregates = <>

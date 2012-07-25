@@ -3,7 +3,8 @@ interface
 uses Classes, Controls, Dialogs, Forms, Graphics, Messages, SysUtils, Windows,
      IBQuery, IBDatabase, IBSQL, IBTableSet,
      wwclient, Wwtable, IBCustomDataSet, DB, DBTables, DBClient,
-     ccMemTable;
+     ccMemTable, 
+     DBXpress, SqlExpr, CRSQLConnection;
 type
    TDMContaRef = class(TDataModule)
       QGrupos: TIBTableSet;
@@ -288,19 +289,18 @@ type
       function Obtener_Contador(prmTabla, prmCampo, prmContador: String): Integer;
       procedure ActualizarNumeroGasto(Gasto: Integer);
       function GetDescripcionApunte(DescripConcepto, NumeroFactura, Serie: String;
-         Ejercicio: Integer; ComentarioApunte, AbrevSubcta: String): String;
+                                    Ejercicio: Integer; ComentarioApunte, AbrevSubcta: String): String;
       function ObtenerNumeroAsiento: Integer;
       function ObtenerNumeroAsientoOtraBD(BaseDatos: TibDatabase): Integer;
       procedure ObtenerFiltrosDiario(var nPrimerAsiento, nUltimoAsiento: Integer;
-         var dPrimeraFecha, dUltimaFecha: TDatetime);
-      function ObtenerUltimoAsientoSubcuenta(Subcuenta: String;
-         FechaIni, FechaFin: TDateTime): Integer;
+                                     var dPrimeraFecha, dUltimaFecha: TDatetime);
+      function ObtenerUltimoAsientoSubcuenta(Subcuenta: String; FechaIni, FechaFin: TDateTime): Integer;
       function Dame_Contador(contador: String): Integer;
       procedure Actualizar_Contador(contador: String; Valor: Integer);
       procedure RefrescarSubcuentas(Subcuenta: String);
       function Pertenece_Analitica(CuentaAnalitica, FiltroCuenta, FiltroCuentaH,
-         FiltroDelegacion, FiltroDepartamento, FiltroSeccion, FiltroProyecto: String;
-         BaseDatos: TIBDatabase = nil): Boolean;
+                                   FiltroDelegacion, FiltroDepartamento, FiltroSeccion, FiltroProyecto: String;
+                                   BaseDatos: TCRSQLConnection = nil): Boolean;
       function ObtenerTipoSubcuenta(Subcuenta: String): String;
       function AsientoBloqueado(FechaAsiento: TDateTime): Boolean;
       function FechaAsientoPerteneceEjercicio(FechaAsiento: TDateTime): Boolean;
@@ -331,82 +331,149 @@ begin
    TipoCuenta := ObtenerTipoSubcuenta(Subcuenta);
 
 
-   FIbQueryRefresh(QSubCuentas);
-   FIbQueryRefresh(QSubCuentasDesc);
+   QSubCuentas.Close;
+   QSubcuentas.Open;
+   
+   QSubCuentasDesc.Close;
+   QSubcuentasDesc.Open;
 
    if TipoCuenta = 'C' then begin
-      FibQueryRefresh(QSubCtaClientes);
-      FibQueryRefresh(QSubCtaClientesDesc);
-      FibQueryRefresh(QSubCtaClientesProv);
-      FibQueryRefresh(QSubCtaClientesProvDesc);
-      FibQueryRefresh(QSubCtaCobrosPagos);
-      FibQueryRefresh(QSubCtaCobrosPagosDesc);
-      FibQueryRefresh(QSubCtaCarteraEfectos);
-      FibQueryRefresh(QSubCtaCarteraEfectosDesc);
+      QSubCtaClientes.Close;
+      QSubCtaClientesDesc.Close;
+      QSubCtaClientesProv.Close;
+      QSubCtaClientesProvDesc.Close;
+      QSubCtaCobrosPagos.Close;
+      QSubCtaCobrosPagosDesc.Close;
+      QSubCtaCarteraEfectos.Close;
+      QSubCtaCarteraEfectosDesc.Close;
+
+      QSubCtaClientes.Open;
+      QSubCtaClientesDesc.Open;
+      QSubCtaClientesProv.Open;
+      QSubCtaClientesProvDesc.Open;
+      QSubCtaCobrosPagos.Open;
+      QSubCtaCobrosPagosDesc.Open;
+      QSubCtaCarteraEfectos.Open;
+      QSubCtaCarteraEfectosDesc.Open;
    end else
    if TipoCuenta = 'P' then begin
-      FIbQueryRefresh(QSubCTAProveedores);
-      FIbQueryRefresh(QSubCTAProveedoresDesc);
-      FIbQueryRefresh(QSubCTAProveedoresBancos);
-      FIbQueryRefresh(QSubCTAProveedoresBancosDesc);
-      FibQueryRefresh(QSubCtaClientesProv);
-      FibQueryRefresh(QSubCtaClientesProvDesc);
-      FibQueryRefresh(QSubCtaCobrosPagos);
-      FibQueryRefresh(QSubCtaCobrosPagosDesc);
-      FibQueryRefresh(QSubCtaCarteraEfectos);
-      FibQueryRefresh(QSubCtaCarteraEfectosDesc);
+      QSubCTAProveedores.Close;
+      QSubCTAProveedoresDesc.Close;
+      QSubCTAProveedoresBancos.Close;
+      QSubCTAProveedoresBancosDesc.Close;
+      QSubCtaClientesProv.Close;
+      QSubCtaClientesProvDesc.Close;
+      QSubCtaCobrosPagos.Close;
+      QSubCtaCobrosPagosDesc.Close;
+      QSubCtaCarteraEfectos.Close;
+      QSubCtaCarteraEfectosDesc.Close;
+
+      QSubCTAProveedores.Open;
+      QSubCTAProveedoresDesc.Open;
+      QSubCTAProveedoresBancos.Open;
+      QSubCTAProveedoresBancosDesc.Open;
+      QSubCtaClientesProv.Open;
+      QSubCtaClientesProvDesc.Open;
+      QSubCtaCobrosPagos.Open;
+      QSubCtaCobrosPagosDesc.Open;
+      QSubCtaCarteraEfectos.Open;
+      QSubCtaCarteraEfectosDesc.Open;
    end else
    if TipoCuenta = 'R' then begin
-      FIbQueryRefresh(QSubCTAIVARepercutido);
-      FIbQueryRefresh(QSubCTAIVARepercutidoDesc);
-      FIbQueryRefresh(QSubCTAIVARepercutidoIntra);
-      FIbQueryRefresh(QSubCTAIVARepercutidoIntraDesc);
+      QSubCTAIVARepercutido.Close;
+      QSubCTAIVARepercutidoDesc.Close;
+      QSubCTAIVARepercutidoIntra.Close;
+      QSubCTAIVARepercutidoIntraDesc.Close;
+
+      QSubCTAIVARepercutido.Open;
+      QSubCTAIVARepercutidoDesc.Open;
+      QSubCTAIVARepercutidoIntra.Open;
+      QSubCTAIVARepercutidoIntraDesc.Open;
    end else
    if TipoCuenta = 'S' then begin
-      FIbQueryRefresh(QSubCTAIVADeducible);
-      FIbQueryRefresh(QSubCTAIVADeducibleDesc);
-      FIbQueryRefresh(QSubCTAIVADeducibleIntra);
-      FIbQueryRefresh(QSubCTAIVADeducibleIntraDesc);
+      QSubCTAIVADeducible.Close;
+      QSubCTAIVADeducibleDesc.Close;
+      QSubCTAIVADeducibleIntra.Close;
+      QSubCTAIVADeducibleIntraDesc.Close;
+
+      QSubCTAIVADeducible.Open;
+      QSubCTAIVADeducibleDesc.Open;
+      QSubCTAIVADeducibleIntra.Open;
+      QSubCTAIVADeducibleIntraDesc.Open;
    end else
    if TipoCuenta = 'M' then begin
-      FIbQueryRefresh(QSubCTAAmortGastos);
-      FIbQueryRefresh(QSubCTAAmortGastosDesc);
-      FIbQueryRefresh(QSubCTAAmort);
-      FIbQueryRefresh(QSubCTAAmortDesc);
+      QSubCTAAmortGastos.Close;
+      QSubCTAAmortGastosDesc.Close;
+      QSubCTAAmort.Close;
+      QSubCTAAmortDesc.Close;
+
+      QSubCTAAmortGastos.Open;
+      QSubCTAAmortGastosDesc.Open;
+      QSubCTAAmort.Open;
+      QSubCTAAmortDesc.Open;
    end else
    if TipoCuenta = 'I' then begin
-      FIbQueryRefresh(QSubCTAAmortGastos);
-      FIbQueryRefresh(QSubCTAAmortGastosDesc);
-      FIbQueryRefresh(QSubCTAAmort);
-      FIbQueryRefresh(QSubCTAAmortDesc);
+      QSubCTAAmortGastos.Close;
+      QSubCTAAmortGastosDesc.Close;
+      QSubCTAAmort.Close;
+      QSubCTAAmortDesc.Close;
+
+      QSubCTAAmortGastos.Open;
+      QSubCTAAmortGastosDesc.Open;
+      QSubCTAAmort.Open;
+      QSubCTAAmortDesc.Open;
    end else
    if TipoCuenta = 'B' then begin
-      FIbQueryRefresh(QSubCTABanco);
-      FIbQueryRefresh(QSubCTABancoDesc);
-      FibQueryRefresh(QSubCtaCobrosPagos);
-      FibQueryRefresh(QSubCtaCobrosPagosDesc);
-      FibQueryRefresh(QSubCtaCarteraEfectos);
-      FibQueryRefresh(QSubCtaCarteraEfectosDesc);
-      FIbQueryRefresh(QSubCTAProveedoresBancos);
-      FIbQueryRefresh(QSubCTAProveedoresBancosDesc);
+      QSubCTABanco.Close;
+      QSubCTABancoDesc.Close;
+      QSubCtaCobrosPagos.Close;
+      QSubCtaCobrosPagosDesc.Close;
+      QSubCtaCarteraEfectos.Close;
+      QSubCtaCarteraEfectosDesc.Close;
+      QSubCTAProveedoresBancos.Close;
+      QSubCTAProveedoresBancosDesc.Close;
+
+      QSubCTABanco.Open;
+      QSubCTABancoDesc.Open;
+      QSubCtaCobrosPagos.Open;
+      QSubCtaCobrosPagosDesc.Open;
+      QSubCtaCarteraEfectos.Open;
+      QSubCtaCarteraEfectosDesc.Open;
+      QSubCTAProveedoresBancos.Open;
+      QSubCTAProveedoresBancosDesc.Open;
    end else
    if TipoCuenta = 'V' then begin
-      FIbQueryRefresh(QSubCTAVentas);
-      FIbQueryRefresh(QSubCTAVentasDesc);
+      QSubCTAVentas.Close;
+      QSubCTAVentasDesc.Close;
+
+      QSubCTAVentas.Open;
+      QSubCTAVentasDesc.Open;
    end else
    if TipoCuenta = 'A' then begin
-      FIbQueryRefresh(QSubCTAAmortGastos);
-      FIbQueryRefresh(QSubCTAAmortGastosDesc);
-      FIbQueryRefresh(QSubCTAGastos);
-      FIbQueryRefresh(QSubCTAGastosDesc);
-      FIbQueryRefresh(QSubCTACompra);
-      FIbQueryRefresh(QSubCTACompraDesc);
-      FibQueryRefresh(QSubCtaCobrosPagos);
-      FibQueryRefresh(QSubCtaCobrosPagosDesc);
+      QSubCTAAmortGastos.Close;
+      QSubCTAAmortGastosDesc.Close;
+      QSubCTAGastos.Close;
+      QSubCTAGastosDesc.Close;
+      QSubCTACompra.Close;
+      QSubCTACompraDesc.Close;
+      QSubCtaCobrosPagos.Close;
+      QSubCtaCobrosPagosDesc.Close;
+
+      QSubCTAAmortGastos.Open;
+      QSubCTAAmortGastosDesc.Open;
+      QSubCTAGastos.Open;
+      QSubCTAGastosDesc.Open;
+      QSubCTACompra.Open;
+      QSubCTACompraDesc.Open;
+      QSubCtaCobrosPagos.Open;
+      QSubCtaCobrosPagosDesc.Open;
    end else
    if TipoCuenta = 'N' then begin
-      FIbQueryRefresh(QSubCTANominas);
-      FIbQueryRefresh(QSubCTANominasDesc);
+      QSubCTANominas.Close;
+      QSubCTANominasDesc.Close;
+
+      QSubCTANominas.Open;
+      QSubCTANominasDesc.Open;
    end else
    if TipoCuenta = 'O' then begin
    end;
@@ -448,15 +515,16 @@ begin
 end;
 
 function TDMContaRef.ObtenerNumeroAsiento: Integer;
-var Q :TIBSQL;
+var Q :TSQLQuery;
 begin
-   Q := TIBSQL.Create(Self);
-   Q.Database := DMRef.IBDSiamCont;
+   Q := TSQLQuery.Create(Self);
+   Q.SQLConnection := DMRef.DB;
    Q.SQL.Add('EXECUTE PROCEDURE Dame_NumeroAsiento');
-   try try Q.ExecQuery;
-           Result := Q.FieldByName('ASIENTO').AsInteger;
-       except Result := -1;
-       end;
+   try
+      try Q.Open;
+          Result := Q.FieldByName('ASIENTO').AsInteger;
+      except Result := -1;
+      end;
    finally Q.Free;
    end;
 end;
@@ -524,7 +592,7 @@ end;
 
 function TDMContaRef.Pertenece_Analitica(CuentaAnalitica, FiltroCuenta, FiltroCuentaH,
    FiltroDelegacion, FiltroDepartamento, FiltroSeccion, FiltroProyecto: String;
-   BaseDatos: TIBDatabase = nil): Boolean;
+   BaseDatos: TCRSQLConnection = nil): Boolean;
 var Pertenece: Boolean;
 begin
    Pertenece := True;
@@ -533,10 +601,10 @@ begin
       (FiltroSeccion <> '') or (FiltroProyecto <> '') then begin
       QFiltroAnaliticas.Close;
       if BaseDatos = nil then begin
-         QFiltroAnaliticas.Database := DMRef.IBDSiamCont;
+         //TODO: QFiltroAnaliticas.Database := DMRef.IBDSiamCont;
       end
       else begin
-         QFiltroAnaliticas.Database := BaseDatos;
+         //TODO: QFiltroAnaliticas.Database := BaseDatos;
       end;
       QFiltroAnaliticas.Transaction := QFiltroAnaliticas.Database.DefaultTransaction;
       QFiltroAnaliticas.SQL.Clear;
@@ -596,7 +664,9 @@ end;
 
 procedure TDMContaRef.AbrirDatasets;
 begin
-   QueryOpen(QGrupos, 'SELECT Grupo, Descripcion ' + 'FROM Grupos ORDER BY Grupo');
+   {$Message Warn 'No debe ser necesario en Absoluto mantener todos los DataSet abiertos siempre'}
+
+(*   QueryOpen(QGrupos, 'SELECT Grupo, Descripcion ' + 'FROM Grupos ORDER BY Grupo');
    QueryOpen(QGruposDesc, 'SELECT Grupo, Descripcion ' + 'FROM Grupos ORDER BY Descripcion');
    QueryOpen(QSubCuentas, 'SELECT SubCuenta, Descripcion, Abreviatura ' +
       'FROM SubCtas WHERE OBSOLETO <> "S" ORDER BY SubCuenta');
@@ -701,6 +771,7 @@ begin
    QueryOpen(QSubCtaCarteraEfectosDesc, 'SELECT SUBCUENTA, DESCRIPCION FROM SUBCTAS_CLIENTES ' +
       'UNION ' + 'SELECT SUBCUENTA, DESCRIPCION FROM SUBCTAS_PROVEEDOR ' +
       'UNION ' + 'SELECT SUBCUENTA, DESCRIPCION FROM SUBCTAS_BANCO ' + 'ORDER BY 2');
+   *)
 end;
 
 procedure TDMContaRef.CerrarDataSets;
@@ -902,18 +973,7 @@ begin
 end;
 
 procedure TDMContaRef.DataModuleCreate(Sender: TObject);
-var i :Word;
 begin
-   for i := 0 to (ComponentCount - 1) do begin
-      if (Components[i] is TibTransaction) then begin
-         TibTransaction(Components[i]).Active := False;
-         TibTransaction(Components[i]).Params.Clear;
-         TibTransaction(Components[i]).Params.Add('Read_committed');
-         TibTransaction(Components[i]).Params.Add('Rec_version'   );
-         TibTransaction(Components[i]).Params.Add('Write'         );
-         TibTransaction(Components[i]).Active := True;
-      end;
-   end;
    AbrirDataSets;
 
    CrearFicheroInformesConta;
@@ -940,7 +1000,7 @@ procedure TDMContaRef.ObtenerFiltrosDiario(var nPrimerAsiento, nUltimoAsiento: I
 var Q :TIBSQL;
 begin
    Q := TIBSql.Create(nil);
-   Q.Database := DmRef.IBDSiamCont;
+   //TODO :Q.Database := DmRef.IBDSiamCont;
    try
       Q.SQL.Add('execute procedure dame_primer_asiento');
       Q.ExecQuery;
@@ -972,7 +1032,7 @@ function TDMContaRef.ObtenerTipoSubcuenta(Subcuenta: String): String;
 var Q :TIBQuery;
 begin
    Q := TIBQuery.Create(nil);
-   Q.Database := DMRef.IBDSiamCont;
+   //TODO: Q.Database := DMRef.IBDSiamCont;
    Q.SQL.Add('SELECT TIPOCUENTA FROM CUENTAS WHERE CUENTA = :CUENTA');
    Q.ParamByName('CUENTA').AsString := Copy(Subcuenta, 1, 3);
    try
@@ -1033,7 +1093,7 @@ function TDMContaRef.ObtenerUltimoAsientoSubcuenta(Subcuenta: String; FechaIni, 
 var Q :TIBQuery;
 begin
    Q := TIBQuery.Create(nil);
-   Q.Database := DMRef.IBDSiamCont;
+   //TODO: Q.Database := DMRef.IBDSiamCont;
    Q.SQL.Add('SELECT ASIENTO FROM DIARIO');
    Q.SQL.Add('WHERE FECHA >= :FECHAINI AND FECHA <= :FECHAFIN AND');
    Q.SQL.Add('      SUBCUENTA = :SUBCUENTA');

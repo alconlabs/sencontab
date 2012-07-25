@@ -2442,7 +2442,6 @@ object WAnaliticas: TWAnaliticas
     Top = 53
   end
   object QFichero: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     OnCalcFields = QFicheroCalcFields
     BufferChunks = 32
@@ -2584,7 +2583,6 @@ object WAnaliticas: TWAnaliticas
   end
   object Transaccion: TIBTransaction
     Active = False
-    DefaultDatabase = DMRef.IBDSiamCont
     AutoStopAction = saNone
     Left = 602
     Top = 53

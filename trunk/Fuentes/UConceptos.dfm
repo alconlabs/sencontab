@@ -2518,7 +2518,6 @@ object WConceptos: TWConceptos
     Top = 53
   end
   object QFichero: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     OnCalcFields = QFicheroCalcFields
     OnNewRecord = QFicheroNewRecord
@@ -2650,7 +2649,6 @@ object WConceptos: TWConceptos
   end
   object Transaccion: TIBTransaction
     Active = False
-    DefaultDatabase = DMRef.IBDSiamCont
     AutoStopAction = saNone
     Left = 602
     Top = 53

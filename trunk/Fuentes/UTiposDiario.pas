@@ -146,8 +146,11 @@ end;
 
 procedure TWTiposDiario.RefrescarBD;
 begin
-   FibQueryRefresh(DmRef.QTipoDiario);
-   FibQueryRefresh(DmRef.QTipodiarioNom);
+   DmRef.QTipoDiario.Close;
+   DmRef.QTipodiarioNom.Close;
+
+   DmRef.QTipoDiario.Open;
+   DmRef.QTipodiarioNom.Open;
 end;
 
 procedure TWTiposDiario.BtnNavAniadirClick(Sender: TObject);
@@ -306,7 +309,7 @@ end;
 
 procedure TWTiposDiario.FormCreate(Sender: TObject);
 begin
-   ActivarTransacciones(self);
+   //ActivarTransacciones(self);
    CrearFiltro;
    FCampoOrden := 'TIPODIARIO';
    PrepararQuery;

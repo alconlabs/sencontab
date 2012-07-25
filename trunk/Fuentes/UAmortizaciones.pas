@@ -267,7 +267,7 @@ procedure TWAmortizaciones.BtnEdtAceptarClick(Sender: TObject);
       with TIBSql.Create(nil), Sql do begin
          Close;
          Clear;
-         database := DmRef.IBDSiamCont;
+         {TODO : database := DmRef.IBDSiamCont;}
          Add('select a.*,c.tipocuenta from amortiza a,cuentas c');
          Add('where Substr(a.SUBCUENTA,1,3)=c.cuenta and ');
          Add(' ((c.tipocuenta="M") or (c.tipocuenta="I"))');
@@ -412,8 +412,7 @@ procedure TWAmortizaciones.BtnEdtAceptarClick(Sender: TObject);
       DMRef.QParametros.edit;
       DmRef.QParametros.FieldByName('FechaAmortizacion').AsDateTime :=
          CdsFiltro.FieldByName('Fecha').AsDateTime;
-      DmRef.QParametros.post;
-      DmRef.QParametros.Transaction.CommitRetaining;
+      DmRef.QParametros.Post;
       Caratula.Cerrar;
       Caratula.Free;
       MessageDlg('Generación de asientos finalizada correctamente', mtConfirmation, [mbOK], 0);
@@ -461,7 +460,7 @@ procedure TWAmortizaciones.BtnEdtAceptarClick(Sender: TObject);
 
       QAmortizaciones.Close;
       QAmortizaciones.SQL.Clear;
-      QAmortizaciones.Database := DmRef.IBDSiamCont;
+      //TODO: QAmortizaciones.Database := DmRef.IBDSiamCont;
       QAmortizaciones.SQL.Add('SELECT                                                         ');
       QAmortizaciones.SQL.Add('    A.*, S.DESCRIPCION, C.TIPOCUENTA                           ');
       QAmortizaciones.SQL.Add('FROM AMORTIZA A, CUENTAS C, SUBCTAS S                          ');
@@ -568,7 +567,7 @@ procedure TWAmortizaciones.BtnEdtAceptarClick(Sender: TObject);
       with QAmortizaciones, SQL do begin
          Close;
          Clear;
-         database := DmRef.IBDSiamCont;
+         //TODO: database := DmRef.IBDSiamCont;
          Add('SELECT                                                         ');
          Add('    A.*, S.DESCRIPCION, C.TIPOCUENTA                           ');
          Add('FROM AMORTIZA A, CUENTAS C, SUBCTAS S                          ');

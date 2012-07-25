@@ -207,7 +207,7 @@ begin
    if FAsiento <> 0 then  begin
      {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with TIBQuery.Create(nil), SQL do begin
-         Database := DMRef.IBDSiamCont;
+         //TODO: Database := DMRef.IBDSiamCont;
          Close;
          Clear;
          Add('SELECT FECHA FROM DIARIO WHERE ASIENTO = :ASIENTO');
@@ -242,7 +242,7 @@ begin
    if FAsiento <> 0 then  begin
      {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with TIBQuery.Create(nil), SQL do begin
-         Database := DMRef.IBDSiamCont;
+         //TODO: Database := DMRef.IBDSiamCont;
          Close;
          Clear;
          Add('SELECT FECHA FROM DIARIO WHERE ASIENTO = :ASIENTO');
@@ -308,7 +308,7 @@ begin
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with TIBQuery.Create(nil), SQL do begin
       Close;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Clear;
       Add('SELECT TIPOASIENTO FROM DIARIO WHERE ASIENTO = :ASIENTO');
       ParamByName('ASIENTO').AsInteger := FAsiento;
@@ -340,7 +340,7 @@ begin
       AsientoBorrado := False;
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with TIBSQL.Create(nil), SQL do begin
-         Database := DMRef.IBDSiamCont;
+         //TODO: Database := DMRef.IBDSiamCont;
          Close;
          Clear;
          Add('SELECT FECHA FROM DIARIO WHERE ASIENTO = :ASIENTO');

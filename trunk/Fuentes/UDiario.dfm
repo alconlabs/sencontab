@@ -4016,7 +4016,6 @@ object WDiario: TWDiario
     Top = 363
   end
   object QFichero: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     OnCalcFields = QFicheroCalcFields
     BufferChunks = 32
@@ -4398,7 +4397,6 @@ object WDiario: TWDiario
   end
   object Transaccion: TIBTransaction
     Active = False
-    DefaultDatabase = DMRef.IBDSiamCont
     AutoStopAction = saNone
     Left = 685
     Top = 363

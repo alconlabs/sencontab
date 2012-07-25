@@ -1,6 +1,7 @@
 unit DMBalances;
 interface
-uses SysUtils, Classes, DB, ccMemTable, DBTables, IBDataBase;
+uses SysUtils, Classes, DB, ccMemTable, DBTables, IBDataBase, 
+     DBXpress, SqlExpr, CRSQLConnection;
 
 type
   TWhatConnection = (wcEjAnterior, wcSiamCont, wcConsolida);
@@ -536,7 +537,7 @@ function TDMBlnc.PerteneceAnalitica(prmCuentaAnalitica :string;
                                     FiltroSeccion      :string;
                                     FiltroProyecto     :string;
                                     prmConexion        :TWhatConnection):Boolean;
-var Q :TIBQuery;
+var Q :TSQLQuery;
 begin
    if (FiltroCuenta       <> '') or
       (FiltroDelegacion   <> '') or
@@ -597,13 +598,13 @@ procedure TDMBlnc.ProcesaInfBalanceSituacion(prmTipoInforme             :Integer
                                              prmEmpresaAnterior         :Integer);
 var
    // quita la espera Caratula             :TEspere;
-   QCuentas             :TIBQuery;
-   QTitulos             :TIBQuery;
-   QGrupos              :TIBQuery;
-   QDiario              :TIBQuery;
-   QDiarioConsolida     :TIBQuery;
-   QConsolida           :TIBQuery;
-   QSaldoAnteriorCuenta :TIBQuery;
+   QCuentas             :TSQLQuery;
+   QTitulos             :TSQLQuery;
+   QGrupos              :TSQLQuery;
+   QDiario              :TSQLQuery;
+   QDiarioConsolida     :TSQLQuery;
+   QConsolida           :TSQLQuery;
+   QSaldoAnteriorCuenta :TSQLQuery;
    
    nIndice              :Integer;
    MesInicio            :Integer;
@@ -696,17 +697,17 @@ begin
    
    { Selección de títulos }
    QTitulos := DMRef.CreateQuery(['SELECT * FROM TITULOS ORDER BY TITULO']);
-   QTitulos.Prepare;
+   QTitulos.PrepareStatement;
    QTitulos.Open;
 
    { Selección de grupos }
    QGrupos := DMRef.CreateQuery(['SELECT * FROM GRUPOS ORDER BY GRUPO']);
-   QGrupos.Prepare;
+   QGrupos.PrepareStatement;
    QGrupos.Open;
 
    { Selección de cuentas }
    QCuentas := DMRef.CreateQuery(['SELECT * FROM CUENTAS ORDER BY CUENTA']);
-   QCuentas.Prepare;
+   QCuentas.PrepareStatement;
    QCuentas.Open;
 
    if prmEmpresaAnterior <> 0 then begin
@@ -787,8 +788,8 @@ begin
             for IndCons := 0 to prmEmpresas.Count - 1 do begin
                DMRef.ConectarBDEmpresa(prmEmpresas.Strings[IndCons]);
                QConsolida.Close;
-               QConsolida.Database    := DMRef.IBDConsolida;
-               QConsolida.Transaction := DmRef.IBDConsolida.DefaultTransaction;
+               //TODO: QConsolida.Database    := DMRef.IBDConsolida;
+               //TODO: QConsolida.Transaction := DmRef.IBDConsolida.DefaultTransaction;
                QConsolida.SQL.Clear;
                QConsolida.SQL.Add('SELECT * FROM CUENTAS WHERE CUENTA = :prmCUENTA');
                QConsolida.ParamByName('CUENTA').AsString := QCuentas.FieldByName('prmCUENTA').AsString;
@@ -1124,12 +1125,11 @@ begin
       nTotHb := 0;
 
       { Selecciona los apuntes de la empresa actual }
-      QDiario := TIBQuery.Create(nil);
+      QDiario := TSQLQuery.Create(nil);
       QDiario.Close;
       QDiario.SQL.Clear;
-      QDiario.Database    := DMRef.IBDSiamCont;
-      QDiario.Transaction := DMRef.IBDSiamCont.DefaultTransaction;
-      //QDiario.Add('SELECT CAST(SUM(D.IMPORTE) AS NUMERIC(15, 2)) SUMA, D.MONEDA, D.CUENTA_ANALITICA,');
+      //TODO: QDiario.SQLConnection := DMRef.IBDSiamCont;
+      //TODO: QDiario.Transaction := DMRef.IBDSiamCont.DefaultTransaction;
       QDiario.SQL.Add('SELECT D.IMPORTE, D.MONEDA, D.CUENTA_ANALITICA,');
       if prmTipoConcepto <> 'T' then begin
          QDiario.SQL.Add('T.TIPOCONTABILIDAD,');
@@ -1159,7 +1159,7 @@ begin
       QDiario.ParamByName('FECHAINICIAL').AsDateTime := prmFechaInicial;
       QDiario.ParamByName('FECHAFINAL'  ).AsDateTime := prmFechaFinal;
 
-      QDiario.Prepare;
+      QDiario.PrepareStatement;
       QDiario.Open;
 
       HInfBalCuentas.IndexName := '';
@@ -1289,7 +1289,7 @@ begin
          QDiarioConsolida.ParamByName('FECHAINICIAL').AsDateTime := prmFechaInicial;
          QDiarioConsolida.ParamByName('FECHAFINAL'  ).AsDateTime := prmFechaFinal;
 
-         QDiarioConsolida.Prepare;
+         QDiarioConsolida.PrepareStatement;
          QDiarioConsolida.Open;
 
          HInfBalCuentas.IndexName := '';
@@ -1454,8 +1454,8 @@ begin
                   for IndCons := 0 to prmEmpresas.Count - 1 do begin
                      DMRef.ConectarBDEmpresa(prmEmpresas.Strings[IndCons]);
                      QConsolida.Close;
-                     QConsolida.Database    := DmRef.IBDConsolida;
-                     QConsolida.Transaction := DmRef.IBDConsolida.DefaultTransaction;
+                     //TODO: QConsolida.SQLConnection := DmRef.IBDConsolida;
+                     //TODO: QConsolida.Transaction := DmRef.IBDConsolida.DefaultTransaction;
                      QConsolida.SQL.Clear;
                      QConsolida.SQL.Add('SELECT * FROM CUENTAS WHERE CUENTA = :CUENTA');
                      QConsolida.ParamByName('CUENTA').AsString := QCuentas.FieldByName('CUENTA').AsString;

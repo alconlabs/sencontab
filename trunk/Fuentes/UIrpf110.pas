@@ -147,7 +147,7 @@ begin
    with TIbsql.Create(nil), SQL do begin
       Close;
       Clear;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Add('SELECT NOMBRE FROM PROVINCIAS');
       Add('WHERE PROVINCIA=:PROVINCIA');
       parambyname('provincia').AsString := DmRef.QParametros.FieldByName('Provincia').AsString;
@@ -566,7 +566,7 @@ begin
    with TIbSql.Create(nil), sql do begin
       Close;
       Clear;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Add('select sum(importe) as suma from diario where subcuenta=:subcuenta and debehaber="D"');
       Add(' and Fecha>=:FechaIni and Fecha<=:FechaFin');
       parambyname('FechaIni').AsDateTime := FechaIni;
@@ -592,7 +592,7 @@ begin
       // Rendimientos de las actividades económicas: IMP. PERCEPCIONES
       Close;
       Clear;
-      Database := DmRef.IBDSiamCont;
+      //TODO: Database := DmRef.IBDSiamCont;
       Add('SELECT SUM(D.IMPORTE) AS SUMA FROM DIARIO D, CUENTAS C1, CUENTAS C2,Conceptos T');
       Add('WHERE');
       Add('   C1.TIPOCUENTA = "A" AND');
@@ -614,7 +614,7 @@ begin
       // Rendimientos de las actividades económicas: IMP. RETENCIONES
       Close;
       Clear;
-      Database := DmRef.IBDSiamCont;
+      //TODO: Database := DmRef.IBDSiamCont;
       Add('SELECT SUM(D.IMPORTE) AS SUMA FROM DIARIO D,Conceptos T');
       Add('WHERE');
       Add('   D.SUBCUENTA = :SUBCUENTA AND');

@@ -98,8 +98,8 @@ object WCargaRapidaNominas: TWCargaRapidaNominas
       ParentFont = False
       object GroupBox7: TGroupBox
         Left = 0
-        Top = 191
-        Width = 739
+        Top = -227
+        Width = 0
         Height = 135
         Align = alBottom
         Caption = ' AsientoTrabajador '
@@ -478,8 +478,8 @@ object WCargaRapidaNominas: TWCargaRapidaNominas
       end
       object GroupBox8: TGroupBox
         Left = 0
-        Top = 326
-        Width = 739
+        Top = -92
+        Width = 0
         Height = 92
         Align = alBottom
         Caption = ' Asiento Empresa '
@@ -757,7 +757,7 @@ object WCargaRapidaNominas: TWCargaRapidaNominas
       object Datos: TGroupBox
         Left = 0
         Top = 0
-        Width = 739
+        Width = 0
         Height = 191
         Align = alClient
         Color = 14275008
@@ -2766,7 +2766,6 @@ object WCargaRapidaNominas: TWCargaRapidaNominas
   end
   object Transaccion: TIBTransaction
     Active = False
-    DefaultDatabase = DMRef.IBDSiamCont
     AutoStopAction = saNone
     Left = 467
     Top = 5
@@ -2778,7 +2777,6 @@ object WCargaRapidaNominas: TWCargaRapidaNominas
     Top = 5
   end
   object QMovimientos: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     OnCalcFields = QMovimientosCalcFields
     BufferChunks = 32

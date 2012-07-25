@@ -322,7 +322,7 @@ begin
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with TIBSQL.Create(nil), SQL do begin
       Close;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
 
       Clear;
       Add('SELECT SUBCUENTA, DESCRIPCION FROM SUBCTAS_NOMINAS');
@@ -406,7 +406,7 @@ begin
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with TIBQuery.Create(nil), SQL do begin
          Close;
-         Database := DMRef.IBDSiamCont;
+         //TODO: Database := DMRef.IBDSiamCont;
          Clear;
          Add('SELECT * FROM DIARIO WHERE ASIENTO = :ASIENTO ORDER BY APUNTE');
          ParamByName('ASIENTO').AsInteger := FAsientoEmpresa;
@@ -439,7 +439,7 @@ begin
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with TIBQuery.Create(nil), SQL do begin
       Close;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Clear;
       Add('SELECT * FROM DIARIO WHERE ASIENTO = :ASIENTO ORDER BY APUNTE');
       ParamByName('ASIENTO').AsInteger := FAsientoNomina;
@@ -510,7 +510,7 @@ begin
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with TIBSQL.Create(nil), SQL do begin
       Close;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Clear;
       Add('DELETE FROM DIARIO WHERE ASIENTO = :ASIENTO');
       ParamByName('ASIENTO').AsInteger := Asiento;
@@ -526,7 +526,7 @@ begin
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with TIBSQL.Create(nil), SQL do begin
       Close;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Clear;
       Add('DELETE FROM NOMINAS WHERE ASIENTO = :ASIENTO');
       ParamByName('ASIENTO').AsInteger := Asiento;
@@ -649,7 +649,7 @@ begin
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with QNominas, SQL do begin
       Close;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Clear;
       Add('INSERT INTO NOMINAS (ASIENTO, NOMINA, IRPF, SSOCIAL, NETO, SUBCUENTA, NOMINA_EMPLEADO)');
       Add('VALUES');
@@ -661,7 +661,7 @@ begin
    with TIBSql.Create(nil), sql do begin
       Close;
       Clear;
-      Database := DmRef.IbdSiamcont;
+      //TODO: Database := DmRef.IbdSiamcont;
       Add('insert into diario(tipoasiento, asientonomina, asiento,apunte,id_conceptos,');
       if not empty(QFichero.FieldByName('COMENTARIO').AsString) then   begin
          Add('comentario,');
@@ -1014,7 +1014,7 @@ begin
          {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
          with TIBSql.Create(nil), sql do begin
             Close;
-            Database := DMRef.IBDSiamCont;
+            //TODO: Database := DMRef.IBDSiamCont;
             Clear;
             add('delete from diario where asiento=:asiento');
             parambyname('asiento').AsInteger := QMovimientos.FieldByName('asiento').AsInteger;
@@ -1057,7 +1057,7 @@ procedure TWCargaRapidaNominas.FormCreate(Sender: TObject);
 var
    Pos1: Integer;
 begin
-   ActivarTransacciones(Self);
+   //ActivarTransacciones(Self);
 
    Paginas.Height := 441;
    Paginas.Width  := 742;

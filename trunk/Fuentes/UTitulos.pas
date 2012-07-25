@@ -140,18 +140,15 @@ const CADENA_MANUAL  = 'Seleccione AYUDA si desea obtener más información sobre 
 
 procedure TWTitulos.CrearFiltro;
 begin
-   {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-   with TbFiltro, FieldDefs do begin
-      active := False;
-      Clear;
-      Add('BTitulo', ftString, 2, False);
-      Add('BDescripcion', ftstring, 50, False);
-      CreateDataSet;
-      active := True;
-      append;
-      FieldByName('BTitulo').AsString      := '';
-      FieldByName('BDescripcion').AsString := '';
-   end;
+   TbFiltro.Active := False;
+   TbFiltro.FieldDefs.Clear;
+   TbFiltro.FieldDefs.Add('BTitulo', ftString, 2, False);
+   TbFiltro.FieldDefs.Add('BDescripcion', ftstring, 50, False);
+   TbFiltro.CreateDataSet;
+   TbFiltro.Active := True;
+   TbFiltro.Append;
+   TbFiltro.FieldByName('BTitulo').AsString      := '';
+   TbFiltro.FieldByName('BDescripcion').AsString := '';
 end;
 
 procedure TWTitulos.PrepararQuery;
@@ -204,7 +201,7 @@ var
 begin
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with TIBQuery.Create(nil), SQL do begin
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
 
       // Comprobar que existe el grupo
       Close;
@@ -477,7 +474,7 @@ end;
 
 procedure TWTitulos.FormCreate(Sender: TObject);
 begin
-   ActivarTransacciones(self);
+   //ActivarTransacciones(self);
    CrearFiltro;
    FCampoOrden := 'TITULO';
    PrepararQuery;
@@ -599,13 +596,10 @@ end;
 
 procedure TWTitulos.VerTabla(Sender: TObject);
 begin
-   {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
-   with TbFiltro do begin
-      Edit;
-      FieldByName('BTitulo').AsString      := '';
-      FieldByName('BDescripcion').AsString := '';
-      Post;
-   end;
+   TbFiltro.Edit;
+   TbFiltro.FieldByName('BTitulo'     ).AsString := '';
+   TbFiltro.FieldByName('BDescripcion').AsString := '';
+   TbFiltro.Post;
    PrepararQuery;
 end;
 

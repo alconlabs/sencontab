@@ -63,8 +63,8 @@ procedure TWCierreEjercicio.ActualizarAcumulados_Cuentas_Subctas;
 begin
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with TIBQuery.Create(nil), SQL do begin
-      Database    := DMRef.IBDSiamCont;
-      Transaction := DmRef.IBDSiamCont.DefaultTransaction;
+      //TODO: Database    := DMRef.IBDSiamCont;
+      //TODO: Transaction := DmRef.IBDSiamCont.DefaultTransaction;
       Clear;
 
       // Actualizar acumulados de CUENTAS
@@ -155,7 +155,7 @@ begin
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with TIBQuery.Create(nil), SQL do begin
       Close;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Clear;
       Add('UPDATE AMORTIZA SET                     ');
       Add('   VEJPINICIO = VEJPINICIO + VEJAINICIO,');
@@ -181,7 +181,7 @@ begin
    QInsApunte := TIBQuery.Create(nil);
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with QInsApunte, SQL do begin
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Clear;
       Add('INSERT INTO DIARIO                                           ');
       Add('(APUNTE, ASIENTO, COMENTARIO, CONTRAPARTIDA, DEBEHABER,      ');
@@ -196,7 +196,7 @@ begin
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with QSubcuentas, SQL do begin
       Close;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Clear;
       Add('SELECT S.SUBCUENTA FROM SUBCTAS S                     ');
       Add('WHERE (S.SUBCUENTA LIKE "6%") OR (SUBCUENTA LIKE "7%")');
@@ -209,7 +209,7 @@ begin
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with QAsientos, SQL do begin
       Close;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Clear;
       Add('SELECT D.IMPORTE, D.DEBEHABER ');
       Add('FROM DIARIO D, CONCEPTOS C                                       ');
@@ -430,7 +430,7 @@ begin
    QInsApunte := TIBQuery.Create(nil);
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with QInsApunte, SQL do begin
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Clear;
       Add('INSERT INTO DIARIO                                           ');
       Add('(APUNTE, ASIENTO, COMENTARIO, CONTRAPARTIDA, DEBEHABER,      ');
@@ -445,7 +445,7 @@ begin
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with QSubcuentas, SQL do begin
       Close;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Clear;
       Add('SELECT S.SUBCUENTA FROM SUBCTAS S                           ');
       Add('WHERE NOT ((S.SUBCUENTA LIKE "6%") OR (SUBCUENTA LIKE "7%"))');
@@ -458,7 +458,7 @@ begin
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with QAsientos, SQL do begin
       Close;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Clear;
       Add('SELECT D.IMPORTE, D.DEBEHABER ');
       Add('FROM DIARIO D, CONCEPTOS C                                       ');
@@ -760,8 +760,8 @@ procedure TWCierreEjercicio.BorrarAsientos;
 begin
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with TIBSQL.Create(nil), SQL do begin
-      Database    := DMRef.IBDSiamCont;
-      Transaction := DmRef.IBDSiamCont.DefaultTransaction;
+      //TODO: Database    := DMRef.IBDSiamCont;
+      //TODO: Transaction := DmRef.IBDSiamCont.DefaultTransaction;
 
       // Desactivar triggers
       Close;
@@ -809,8 +809,8 @@ procedure TWCierreEjercicio.CambiarFechasNuevoEjercicio;
 begin
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with TIBSQL.Create(nil), SQL do begin
-      Database    := DMRef.IBDSiamCont;
-      Transaction := DmRef.IBDSiamCont.DefaultTransaction;
+      //TODO: Database    := DMRef.IBDSiamCont;
+      //TODO: Transaction := DmRef.IBDSiamCont.DefaultTransaction;
 
       // Actualizar fechas ejercicio
       Close;
@@ -841,8 +841,8 @@ begin
    QAsientos := TIBQuery.Create(nil);
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with QAsientos, SQL do begin
-      Database    := DMRef.IBDSiamCont;
-      Transaction := DmRef.IBDSiamCont.DefaultTransaction;
+      //TODO: Database    := DMRef.IBDSiamCont;
+      //TODO: Transaction := DmRef.IBDSiamCont.DefaultTransaction;
       Close;
       Clear;
       Add('SELECT * FROM DIARIO                           ');
@@ -852,8 +852,8 @@ begin
 
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with TIBSQL.Create(nil), SQL do begin
-      Database    := DMRef.IBDSiamCont;
-      Transaction := DmRef.IBDSiamCont.DefaultTransaction;
+      //TODO: Database    := DMRef.IBDSiamCont;
+      //TODO: Transaction := DmRef.IBDSiamCont.DefaultTransaction;
 
       // Desactivar triggers
       Close;

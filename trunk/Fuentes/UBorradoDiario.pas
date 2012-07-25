@@ -164,7 +164,7 @@ begin
       end;
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with TIBSQL.Create(nil), SQL do begin
-         database := DmRef.IBDSiamCont;
+         //TODO: database := DmRef.IBDSiamCont;
          Clear;
          Add('delete from diario');
          Add('where asiento in (select asiento from diario ');

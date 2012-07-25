@@ -122,7 +122,7 @@ begin
    with QConceptos, SQL do begin
       Close;
       Clear;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Add('SELECT TIPOCONTABILIDAD');
       Add('FROM CONCEPTOS');
       Add('WHERE ID_CONCEPTOS = :ID_CONCEPTOS');
@@ -135,7 +135,7 @@ begin
    with QCuentas, SQL do begin
       Close;
       Clear;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
 
       Add('SELECT');
       Add('   CUENTA, DESCRIPCION, TIPOCUENTA');
@@ -151,7 +151,7 @@ begin
    with QApuntes, SQL do begin
       Close;
       Clear;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
 
       Add('SELECT');
       Add('   D.ASIENTO, D.APUNTE, D.NUMEROFACTURA, D.FECHA, D.DEBEHABER,');
@@ -318,8 +318,8 @@ begin
          with QApuntes do begin
             DMRef.ConectarBDEmpresa(Empresas.Strings[IndCons]);
             Close;
-            Database    := DMRef.IBDConsolida;
-            Transaction := DMRef.IBDConsolida.DefaultTransaction;
+            //TODO: Database    := DMRef.IBDConsolida;
+            //TODO: Transaction := DMRef.IBDConsolida.DefaultTransaction;
 
             // PARÁMETROS
             ParamByName('FECHAINICIAL').AsDateTime := FechaInicial;
@@ -355,8 +355,8 @@ begin
             while not EOF do begin
                if not FieldByName('ID_CONCEPTOS').IsNull then   begin
                   QConceptos.Close;
-                  QConceptos.Database    := DMRef.IBDConsolida;
-                  QConceptos.Transaction := DMRef.IBDConsolida.DefaultTransaction;
+                  //TODO: QConceptos.Database    := DMRef.IBDConsolida;
+                  //TODO: QConceptos.Transaction := DMRef.IBDConsolida.DefaultTransaction;
                   QConceptos.ParamByName('ID_CONCEPTOS').AsString := FieldByName('ID_CONCEPTOS').AsString;
                   QConceptos.Open;
                   if (TipoConcepto <> 'T') and (QConceptos.FieldByName(

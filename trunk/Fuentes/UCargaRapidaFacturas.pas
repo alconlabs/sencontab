@@ -215,7 +215,7 @@ begin
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with QSelSubcuenta, SQL do begin
          Close;
-         Database := DMRef.IBDSiamCont;
+         //TODO: Database := DMRef.IBDSiamCont;
          Clear;
          Add('SELECT * FROM SUBCTAS WHERE SUBCUENTA = :SUBCUENTA');
          ParamByName('SUBCUENTA').AsString := QGastosSBCTA_IVA.AsString;
@@ -260,7 +260,7 @@ begin
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with QSelSubcuenta, SQL do begin
          Close;
-         Database := DMRef.IBDSiamCont;
+         //TODO: Database := DMRef.IBDSiamCont;
          Clear;
          Add('SELECT * FROM SUBCTAS WHERE SUBCUENTA = :SUBCUENTA');
          ParamByName('SUBCUENTA').AsString := QGastosSBCTA_IVA.AsString;
@@ -696,7 +696,7 @@ begin
    else begin
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with TIBSql.Create(nil), SQL do begin
-         Database := DMRef.IBDSiamCont;
+         //TODO: Database := DMRef.IBDSiamCont;
          Clear;
          Add('select asiento from diario');
          Add(' where subcuenta=:subcuenta and numerofactura=:numerofactura');
@@ -747,7 +747,7 @@ begin
 
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with QSubcuentas, SQL do begin
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Close;
       Clear;
       Add('select descripcion,iva,recargo,profesional,arrendador,contrapartida,');
@@ -809,7 +809,7 @@ begin
    QDiario := TIBSql.Create(nil);
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with QDiario, Sql do begin
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Close;
       Clear;
       Add('INSERT INTO DIARIO ');
@@ -1931,7 +1931,7 @@ begin
    //  Paginas.Height := 441;
    //  Paginas.Width := 742;
 
-   ActivarTransacciones(Self);
+   //ActivarTransacciones(Self);
 
    // Longitud subcuentas
    dblSubcuenta.MaxLength   := DmRef.QParametros.FieldByName('Longitud_Subcuentas').AsInteger;
@@ -2257,7 +2257,7 @@ begin
          {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
          with TIBSql.Create(nil), sql do begin
             Close;
-            Database := DMRef.IBDSiamCont;
+            //TODO: Database := DMRef.IBDSiamCont;
             Clear;
             Add('DELETE FROM DIARIO WHERE ASIENTO = :prmASIENTO');
             ParamByName('prmASIENTO').AsInteger := QMovimientos.FieldByName('ASIENTO').AsInteger;
@@ -2617,7 +2617,7 @@ begin
          {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
          with QSelSubcuenta, SQL do begin
             Close;
-            Database := DMRef.IBDSiamCont;
+            //TODO: Database := DMRef.IBDSiamCont;
             Clear;
             Add('SELECT * FROM SUBCTAS WHERE SUBCUENTA = :SUBCUENTA');
             ParamByName('SUBCUENTA').AsString := QGastosSBCTA_IVA.AsString;
@@ -2694,7 +2694,7 @@ begin
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with QSelSubcuenta, SQL do begin
          Close;
-         Database := DMRef.IBDSiamCont;
+         //TODO: Database := DMRef.IBDSiamCont;
          Clear;
          Add('SELECT * FROM SUBCTAS WHERE SUBCUENTA = :SUBCUENTA');
          ParamByName('SUBCUENTA').AsString := QGastosSBCTA_IVA.AsString;

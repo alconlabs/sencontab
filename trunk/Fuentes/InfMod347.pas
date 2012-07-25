@@ -148,7 +148,7 @@ begin
    with QProvincias, SQL do begin
       Close;
       Clear;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Add('SELECT CODIGO, NOMBRE FROM PROVINCIAS');
       Add('WHERE PROVINCIA = :PROVINCIA');
       Prepare;
@@ -210,7 +210,7 @@ begin
    with QApuntes, SQL do begin
       Close;
       Clear;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Add('SELECT D.SUBCUENTA, D.DEBEHABER,S.NIF,');
       Add(' T.TIPOCONTABILIDAD,T.TIPOCONCEPTO,D.MONEDA, D.IMPORTE,S.PROVINCIA, ');
       aDD(' D.CUENTA_ANALITICA,S.PAIS,S.DESCRIPCION,C.TIPOCUENTA,S.ARRENDADOR,');

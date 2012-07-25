@@ -8038,7 +8038,6 @@ object WSubCuentas: TWSubCuentas
     Top = 13
   end
   object QFichero: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     AfterEdit = QFicheroAfterEdit
     AfterScroll = QFicheroAfterScroll
@@ -8949,7 +8948,6 @@ object WSubCuentas: TWSubCuentas
   end
   object Transaccion: TIBTransaction
     Active = False
-    DefaultDatabase = DMRef.IBDSiamCont
     AutoStopAction = saNone
     Left = 35
     Top = 13
@@ -8979,7 +8977,6 @@ object WSubCuentas: TWSubCuentas
     Epoch = 2000
   end
   object QIVAR: TIBDataSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 1000
     CachedUpdates = False
@@ -8997,7 +8994,6 @@ object WSubCuentas: TWSubCuentas
     end
   end
   object QIVAS: TIBDataSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 1000
     CachedUpdates = False
@@ -9005,7 +9001,6 @@ object WSubCuentas: TWSubCuentas
     Top = 313
   end
   object QAmortiza: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     OnNewRecord = QAmortizaNewRecord
     BufferChunks = 32
@@ -9240,7 +9235,6 @@ object WSubCuentas: TWSubCuentas
     end
   end
   object QDiario: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     OnCalcFields = QDiarioCalcFields
     BufferChunks = 32
@@ -9596,7 +9590,6 @@ object WSubCuentas: TWSubCuentas
     Top = 41
   end
   object QProvincias: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -9662,7 +9655,6 @@ object WSubCuentas: TWSubCuentas
     end
   end
   object QSubcuentaPago: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -10058,7 +10050,6 @@ object WSubCuentas: TWSubCuentas
     end
   end
   object QMovimientos: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     OnCalcFields = QMovimientosCalcFields
     BufferChunks = 32

@@ -69,8 +69,8 @@ begin
       try
          {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
          with TIBSQL.Create(nil), SQL do begin
-            Database    := DMRef.IBDSiamCont;
-            Transaction := DmRef.IBDSiamCont.DefaultTransaction;
+            //TODO: Database    := DMRef.IBDSiamCont;
+            //TODO: Transaction := DmRef.IBDSiamCont.DefaultTransaction;
             Clear;
             Add('execute procedure RecalculoSaldos (:EJERCICIO)');
             Params.ByName('EJERCICIO').AsInteger := eEjercicio.AsInteger;

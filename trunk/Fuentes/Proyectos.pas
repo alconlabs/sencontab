@@ -115,8 +115,11 @@ end;
 
 procedure TWProyectos.RefrescarBD;
 begin
-   FibQueryRefresh(DmRef.QProyecto);
-   FibQueryRefresh(DmRef.QProyectoNom);
+   DmRef.QProyecto.Close;
+   DmRef.QProyectoNom.Close;
+
+   DmRef.QProyecto.Open;
+   DmRef.QProyectoNom.Open;
 end;
 
 procedure TWProyectos.BtnAppendClick(Sender: TObject);
@@ -245,7 +248,7 @@ begin
    FormManager.AddComp(BtnSave.Name         , fmEdit  );
    FormManager.AddComp(BtnCancel.Name       , fmEdit  );
 
-   ActivarTransacciones(Self);
+   //ActivarTransacciones(Self);
    CrearFiltro;
    FCampoOrden := 'ID_PROYECTO';
    PrepararQuery;

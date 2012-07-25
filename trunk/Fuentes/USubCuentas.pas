@@ -891,7 +891,7 @@ begin
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with TIBQuery.Create(nil), SQL do begin
       Close;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Clear;
       Add('SELECT GRUPO1, GRUPO2 FROM CUENTAS WHERE CUENTA = :CUENTA');
       ParamByName('CUENTA').AsString := Copy(QFicheroSUBCUENTA.AsString, 1, 3);
@@ -1341,7 +1341,7 @@ begin
          {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
          with TIBSQL.Create(nil), SQL do begin
             Clear;
-            database := DMRef.IBDSiamCont;
+            //TODO: database := DMRef.IBDSiamCont;
             add('select tipocuenta from cuentas');
             add('where cuenta = :cuenta');
             params.byname('cuenta').AsString := Copy(Trim(QFicheroSUBCUENTA.AsString), 1, 3);
@@ -1504,7 +1504,7 @@ begin
          {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
          with TIBSql.Create(nil), sql do begin
             Close;
-            Database := DMRef.IBDSiamCont;
+            //TODO: Database := DMRef.IBDSiamCont;
             Add('delete from amortiza where subcuenta=:subcuenta');
             parambyname('subcuenta').AsString := Subcta;
             ExecQuery;
@@ -1991,7 +1991,7 @@ begin
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with QAbrevSubctas, SQL do begin
       Close;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Clear;
       Add('SELECT SUBCUENTA, ABREVIATURA FROM SUBCTAS');
       Add('WHERE SUBCUENTA = :SUBCUENTA');
@@ -2149,7 +2149,7 @@ begin
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with TIBSQL.Create(nil), SQL do begin
       Clear;
-      database := DMRef.IBDSiamCont;
+      //TODO: database := DMRef.IBDSiamCont;
       add('select tipocuenta from cuentas');
       add('where cuenta = :cuenta');
       params.byname('cuenta').AsString := Copy(Trim(QFicheroSUBCUENTA.AsString), 1, 3);
@@ -2341,7 +2341,7 @@ begin
          QOrigen := TibDataset.Create(nil);
          {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
          with QOrigen, selectSql do begin
-            Database    := DMRef.IBDSiamCont;
+            //TODO: Database    := DMRef.IBDSiamCont;
             Transaction := Transaccion;
             Clear;
             add('select * from subctas where subcuenta=:subcuenta');

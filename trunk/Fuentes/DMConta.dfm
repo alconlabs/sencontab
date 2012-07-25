@@ -2,12 +2,11 @@ object DMContaRef: TDMContaRef
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
-  Left = 647
-  Top = 261
+  Left = 415
+  Top = 250
   Height = 607
   Width = 1098
   object QGrupos: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -59,7 +58,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QGruposDesc: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -112,13 +110,11 @@ object DMContaRef: TDMContaRef
   end
   object Transaccion: TIBTransaction
     Active = False
-    DefaultDatabase = DMRef.IBDSiamCont
     AutoStopAction = saNone
     Left = 35
     Top = 7
   end
   object QSubCuentas: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -450,7 +446,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCuentasDesc: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -782,7 +777,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QConceptosDesc: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -848,7 +842,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCTAGastos: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -1175,7 +1168,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCTAGastosDesc: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -1502,7 +1494,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCTABanco: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -1829,7 +1820,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCTABancoDesc: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -2393,7 +2383,6 @@ object DMContaRef: TDMContaRef
     Top = 7
   end
   object QSubCTAProveedores: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -2720,7 +2709,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCTAProveedoresDesc: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -3047,7 +3035,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCTAIVADeducibleDesc: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -3374,7 +3361,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCTAIVADeducible: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -3701,7 +3687,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCTACompraDesc: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -4028,7 +4013,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCTACompra: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -4355,7 +4339,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCTAIVARepercutido: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -4682,7 +4665,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCTAIVARepercutidoDesc: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -5009,7 +4991,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCTAVentas: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -5336,7 +5317,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCTAVentasDesc: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -5663,7 +5643,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCTAAmortGastos: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -5990,7 +5969,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCTAAmortGastosDesc: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -6317,7 +6295,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCTAAmort: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -6644,7 +6621,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCTAAmortDesc: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -6971,7 +6947,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCtaClientes: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -7298,7 +7273,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCtaClientesDesc: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -7625,14 +7599,11 @@ object DMContaRef: TDMContaRef
     end
   end
   object QContadores: TIBSQL
-    Database = DMRef.IBDSiamCont
     ParamCheck = True
-    Transaction = DMRef.IBT1
-    Left = 301
-    Top = 7
+    Left = 485
+    Top = 15
   end
   object QConceptos: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -7833,7 +7804,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCtaClientesProv: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -8163,7 +8133,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCtaClientesProvDesc: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -8499,7 +8468,6 @@ object DMContaRef: TDMContaRef
     Top = 483
   end
   object QSubCTANominas: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -8826,7 +8794,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCTANominasDesc: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -9153,7 +9120,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCtaCobrosPagos: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -9481,7 +9447,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCtaCobrosPagosDesc: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -9809,7 +9774,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCTAIVADeducibleIntra: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -10137,7 +10101,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCTAIVADeducibleIntraDesc: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -10465,7 +10428,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCTAIVARepercutidoIntraDesc: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -10793,7 +10755,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCTAIVARepercutidoIntra: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -11127,8 +11088,6 @@ object DMContaRef: TDMContaRef
     Top = 483
   end
   object QInfDiario: TIBTableSet
-    Database = DMRef.IBDSiamCont
-    Transaction = DMRef.IBT1
     OnCalcFields = QInfDiarioCalcFields
     BufferChunks = 32
     CachedUpdates = False
@@ -11410,7 +11369,6 @@ object DMContaRef: TDMContaRef
     Top = 7
   end
   object QSubCtaCarteraEfectosDesc: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -11738,7 +11696,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCtaCarteraEfectos: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -12106,7 +12063,6 @@ object DMContaRef: TDMContaRef
     Top = 7
   end
   object QSubCTAProveedoresBancos: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
@@ -12434,7 +12390,6 @@ object DMContaRef: TDMContaRef
     end
   end
   object QSubCTAProveedoresBancosDesc: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False

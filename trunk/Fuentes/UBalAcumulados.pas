@@ -116,7 +116,7 @@ begin
    with QSubcuentas, SQL do begin
       Close;
       Clear;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Add('SELECT DESCRIPCION FROM SUBCTAS');
       Add('WHERE SUBCUENTA = :SUBCUENTA');
       Prepare;
@@ -128,7 +128,7 @@ begin
    with QCuentas, SQL do begin
       Close;
       Clear;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Add('SELECT DESCRIPCION FROM CUENTAS');
       Add('WHERE CUENTA = :CUENTA');
       Prepare;
@@ -194,7 +194,7 @@ begin
    end;
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with TIBSQL.Create(nil), SQL do begin
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Clear;
       Add('SELECT D.IMPORTE,D.MONEDA,D.DEBEHABER,D.FECHA,D.SUBCUENTA');
       if QFiltro.FieldByName('TipoConcepto').AsString <> 'T' then begin

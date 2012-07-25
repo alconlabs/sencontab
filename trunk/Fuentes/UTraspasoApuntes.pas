@@ -95,7 +95,7 @@ begin
    if MessageDlg(Msg, mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with TIBSQL.Create(nil), SQL do begin
-         Database := DmRef.IBDSiamCont;
+         //TODO: Database := DmRef.IBDSiamCont;
 
          // Actualizar DIARIO
          Close;

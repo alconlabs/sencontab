@@ -9,12 +9,12 @@ type TModo        = (Naveg, Edita);
 var MascaraImportes, MascaraImportesORPHEUS: String;
 
 procedure PonerTipoConta(TipoConcepto: String);
-procedure ActivarTransacciones(Ventana: TForm);
+//procedure ActivarTransacciones(Ventana: TForm);
 //procedure CargaImagenesMensaje(Mensaje: TMensaje);
 procedure FibQueryOpen(Query: TIBTableSet; select: String);
-procedure FIbQueryRefresh(Query: TIBTableSet);
+//procedure FIbQueryRefresh(Query: TIBTableSet);
 procedure Modo(F : TForm; Modo: TModo);
-procedure QueryOpen(Query: TIBTableSet; select: String);
+//procedure QueryOpen(Query: TIBTableSet; select: String);
 procedure Moneda(F: TForm; Moneda: String);
 function ConversionImporte(Importe: Double; MonedaActual, MonedaFinal: String): Double;
 function RoundToDecimal(Value :Extended; Places :Integer; Bankers :Boolean):Extended;
@@ -35,21 +35,21 @@ uses fcImgBtn, fctreeview, Globales, IBDataBase, IBQuery, NavegadorNotarios, Ovc
      ppCtrls, Math, Graphics, OvcDbNF, OvcDbSF, OvcDbPF, TypInfo, wwdbcomb, wwDBEdit, wwdbdlg, Wwdbgrid,
      wwdblook, wwdbspin,wwkeycb, wwRiched;
 
-procedure ActivarTransacciones(Ventana :TForm);
-var
-   j: Word;
-begin
-   for j := 0 to (Ventana.ComponentCount - 1) do begin
-      if (Ventana.Components[j] is TibTransaction) then begin
-         TibTransaction(Ventana.Components[j]).Active := False;
-         TibTransaction(Ventana.Components[j]).Params.Clear;
-         TibTransaction(Ventana.Components[j]).Params.Add('Read_committed');
-         TibTransaction(Ventana.Components[j]).Params.Add('Rec_version');
-         TibTransaction(Ventana.Components[j]).Params.Add('Write');
-         TibTransaction(Ventana.Components[j]).Active := True;
-      end;
-   end;
-end;
+//procedure ActivarTransacciones(Ventana :TForm);
+//var
+//   j: Word;
+//begin
+//   for j := 0 to (Ventana.ComponentCount - 1) do begin
+//      if (Ventana.Components[j] is TibTransaction) then begin
+//         TibTransaction(Ventana.Components[j]).Active := False;
+//         TibTransaction(Ventana.Components[j]).Params.Clear;
+//         TibTransaction(Ventana.Components[j]).Params.Add('Read_committed');
+//         TibTransaction(Ventana.Components[j]).Params.Add('Rec_version');
+//         TibTransaction(Ventana.Components[j]).Params.Add('Write');
+//         TibTransaction(Ventana.Components[j]).Active := True;
+//      end;
+//   end;
+//end;
 
 //procedure CargaImagenesMensaje(Mensaje: TMensaje);
 //begin
@@ -66,11 +66,11 @@ begin
    Query.Open;
 end;
 
-procedure FIbQueryRefresh(Query: TIbTableSet);
-begin
-   Query.Close;
-   Query.Open;
-end;
+//procedure FIbQueryRefresh(Query: TIbTableSet);
+//begin
+//   Query.Close;
+//   Query.Open;
+//end;
 
 procedure Modo(F: TForm; Modo: TModo);
 var
@@ -617,15 +617,15 @@ begin
    end;
 end;
 
-procedure QueryOpen(Query :TIBTableSet; Select :String);
-begin
-   Query.Close;
-   if Trim(Select) <> '' then begin
-      Query.SelectSQL.Clear;
-      Query.SelectSQL.Add(Select);
-   end;
-   Query.Open;
-end;
+//procedure QueryOpen(Query :TIBTableSet; Select :String);
+//begin
+//   Query.Close;
+//   if Trim(Select) <> '' then begin
+//      Query.SelectSQL.Clear;
+//      Query.SelectSQL.Add(Select);
+//   end;
+//   Query.Open;
+//end;
 
 function ConversionImporte(Importe: Double;
    MonedaActual, MonedaFinal: String): Double;

@@ -130,7 +130,7 @@ begin
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with TIBQuery.Create(nil), SQL do begin
       Close;
-      Database := DmRef.IBDSiamCont;
+      //TODO: Database := DmRef.IBDSiamCont;
       Clear;
       Add('SELECT * FROM FORMAS WHERE FORMAPAGO = :FORMAPAGO');
       ParamByName('FORMAPAGO').AsString := FFormaPago;
@@ -292,7 +292,7 @@ begin
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with TIBSQL.Create(nil), SQL do begin
       Close;
-      Database := DmRef.IBDSiamCont;
+      //TODO: Database := DmRef.IBDSiamCont;
       Clear;
       Add('INSERT INTO CARTERAEFECTOS');
       Add('(SUBCUENTA, SITUACION, FEMISION, IMPORTE, FACTCLIENT,');
@@ -387,7 +387,7 @@ end;
 
 procedure TWVencimientos.FormCreate(Sender: TObject);
 begin
-   ActivarTransacciones(self);
+   //ActivarTransacciones(self);
    Modo(Self, Naveg);
    Navegador.Visible := True;
 end;

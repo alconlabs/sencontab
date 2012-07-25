@@ -250,7 +250,7 @@ begin
    with TIBSql.Create(nil), sql do begin
       Close;
       Clear;
-      Database := DmRef.IbdSiamcont;
+      //TODO: Database := DmRef.IbdSiamcont;
       Add('insert into diario(asiento,apunte,id_conceptos,');
       if not empty(QFichero.FieldByName('COMENTARIO').AsString) then begin
          Add('comentario,');
@@ -367,7 +367,7 @@ begin
          {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
          with TIBSql.Create(nil), sql do begin
             Close;
-            Database := DMRef.IBDSiamCont;
+            //TODO: Database := DMRef.IBDSiamCont;
             Clear;
             add('delete from diario where asiento=:asiento');
             parambyname('asiento').AsInteger := QMovimientos.FieldByName('asiento').AsInteger;
@@ -407,7 +407,7 @@ procedure TWCargaApuntes.FormCreate(Sender: TObject);
 var
    Pos1: Integer;
 begin
-   ActivarTransacciones(Self);
+   //ActivarTransacciones(Self);
 
    Paginas.Height := 441;
    Paginas.Width  := 742;
@@ -799,7 +799,7 @@ begin
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with TIBQuery.Create(nil), SQL do begin
          Close;
-         Database := DMRef.IBDSiamCont;
+         //TODO: Database := DMRef.IBDSiamCont;
          Clear;
          Add('SELECT SUBCUENTA, CONTRAPARTIDA FROM CONCEPTOS');
          Add('WHERE ID_CONCEPTOS = :ID_CONCEPTOS');

@@ -1718,7 +1718,7 @@ object WCargaAsiento: TWCargaAsiento
       object Panel2: TPanel
         Left = 0
         Top = 0
-        Width = 738
+        Width = 0
         Height = 48
         Align = alTop
         BevelOuter = bvNone
@@ -3828,13 +3828,11 @@ object WCargaAsiento: TWCargaAsiento
   end
   object Transaccion: TIBTransaction
     Active = False
-    DefaultDatabase = DMRef.IBDSiamCont
     AutoStopAction = saNone
     Left = 315
     Top = 9
   end
   object QDiario: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     AfterPost = QDiarioAfterPost
     AfterScroll = QDiarioAfterScroll
@@ -4159,7 +4157,6 @@ object WCargaAsiento: TWCargaAsiento
     Top = 17
   end
   object QSubCuentas: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     BeforeOpen = QSubCuentasBeforeOpen
     OnCalcFields = QSubCuentasCalcFields
@@ -4226,8 +4223,6 @@ object WCargaAsiento: TWCargaAsiento
     end
   end
   object QMovimientos: TIBTableSet
-    Database = DMRef.IBDSiamCont
-    Transaction = DMRef.IBT1
     OnCalcFields = QMovimientosCalcFields
     BufferChunks = 32
     CachedUpdates = False
@@ -4456,9 +4451,7 @@ object WCargaAsiento: TWCargaAsiento
     end
   end
   object QConceptos: TIBSQL
-    Database = DMRef.IBDSiamCont
     ParamCheck = True
-    Transaction = DMRef.IBT1
     Left = 432
     Top = 56
   end

@@ -3,7 +3,8 @@ interface
 uses Buttons, Classes, comctrls, Controls, CheckLst, DB, DBClient, DBCtrls, DBGrids, Dialogs, ExtCtrls,
      fcButton, fcImage, fcimageform, fcImgBtn, Forms, Graphics, Grids, IBDatabase, IBQuery, IBSQL, jpeg, Mask,
      Messages, OvcBase, OvcEF, OvcNF, OvcPB, StdCtrls, SysUtils, WinProcs, WinTypes, wwclearpanel, Wwdbcomb,
-     wwdbdatetimepicker, wwdbedit, wwdblook, Wwdotdot, Wwkeycb, wwSpeedButton, CustomView;
+     wwdbdatetimepicker, wwdbedit, wwdblook, Wwdotdot, Wwkeycb, wwSpeedButton, CustomView,
+     FMTBcd, SqlExpr;
 
 type
    TWBalExplotacion = class(TCustomView)
@@ -99,20 +100,30 @@ end;
 
 procedure TWBalExplotacion.BtnEdtProcesarClick(Sender: TObject);
 var
-   Empresas:  TStringList;
-   Caratula:  TEspere;
-   nImportes: Double;
-   I:         Integer;
-   aMeses:    array[1..12] of Double;
-   CuentaAnalitica, cCuenta: String;
-   lPrimero:  Boolean;
-   nMesIni, nMesFin: Integer;
-   nValorDif: Double;
-   QSelAnaliticas, QCuentas, QDiario: TIBQuery;
-   nIngresosActual, nIngresosAnterior, nGastosActual, nGastosAnterior: Double;
-   nIngresos, nGastos: Double;
-   FechaInicial, FechaFinal, FechaImpresion: TDateTime;
-   IndCons:   Integer;
+   Empresas         :TStringList;
+   Caratula         :TEspere;
+   nImportes        :Double;
+   i                :Integer;
+   aMeses           :array[1..12] of Double;
+   CuentaAnalitica  :string;
+   cCuenta          :string;
+   lPrimero         :Boolean;
+   nMesIni          :Integer;
+   nMesFin          :Integer;
+   nValorDif        :Double;
+   QSelAnaliticas   :TSQLQuery;
+   QCuentas         :TSQLQuery;
+   QDiario          :TSQLQuery;
+   nIngresosActual  :Double;
+   nIngresosAnterior:Double;
+   nGastosActual    :Double;
+   nGastosAnterior  :Double;
+   nIngresos        :Double;
+   nGastos          :Double;
+   FechaInicial     :TDateTime;
+   FechaFinal       :TDateTime;
+   FechaImpresion   :TDateTime;
+   IndCons          :Integer;
 begin
    // Pasamos al siguiente registro para que el ultimo campo se guarde correctamente
    Perform(wm_NextDlgCtl, 0, 0);
@@ -144,15 +155,15 @@ begin
    end;
 
    // Selección de datos de cuenta
-   QCuentas := TIBQuery.Create(nil);
+   QCuentas := TSQLQuery.Create(nil);
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with QCuentas, SQL do begin
       Close;
       Clear;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Add('SELECT * FROM CUENTAS');
       Add('WHERE CUENTA>=:CUENTA1 AND CUENTA<=:CUENTA2');
-      Prepare;
+      PrepareStatement;
    end;
 
    // Selección de datos de cuentas analíticas
@@ -174,12 +185,12 @@ begin
       post;
    end;
 
-   QSelAnaliticas := TIBQuery.Create(nil);
+   QSelAnaliticas := TSQLQuery.Create(nil);
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with QSelAnaliticas, SQL do begin
       Close;
       Clear;
-      Database := DmRef.IBDSiamCont;
+      //TODO: Database := DmRef.IBDSiamCont;
       Add('SELECT cuenta,nombre FROM ANALITICAS');
       Add('ORDER BY 1');
       Open;
@@ -218,12 +229,12 @@ begin
 
 
    // Selección de datos de diario
-   QDiario := TIBQuery.Create(nil);
+   QDiario := TSQLQuery.Create(nil);
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with QDiario, SQL do begin
       Close;
       Clear;
-      Database := DMRef.IBDSiamCont;
+      //TODO: Database := DMRef.IBDSiamCont;
       Add('SELECT D.SUBCUENTA,SUM(D.IMPORTE) SUMA,D.DEBEHABER, D.CUENTA_ANALITICA');
       if QFiltro.FieldByName('TipoConcepto').AsString <> 'T' then begin
          Add(',T.TIPOCONTABILIDAD');
@@ -236,7 +247,7 @@ begin
       if QFiltro.FieldByName('TipoConcepto').AsString <> 'T' then begin
          Add(',T.TIPOCONTABILIDAD');
       end;
-      Prepare;
+      PrepareStatement;
    end;
 
    // Carga de datos a partir de Cuentas
@@ -333,8 +344,8 @@ begin
 
       // Carga de datos 700
       QDiario.Close;
-      QDiario.Database    := DMRef.IBDSiamCont;
-      QDiario.Transaction := DmRef.IBDSiamCont.DefaultTransaction;
+      //TODO: QDiario.Database    := DMRef.IBDSiamCont;
+      //TODO: QDiario.Transaction := DmRef.IBDSiamCont.DefaultTransaction;
       QDiario.parambyname('Subcuenta1').AsString := '7' + Replicate('0', gvLongitudSubcuenta - 1);
       QDiario.parambyname('Subcuenta2').AsString := '7' + Replicate('9', gvLongitudSubcuenta - 1);
       QDiario.parambyname('Fecha1').AsDateTime := QFiltro.FieldByName('FechaDesde').AsDateTime;
@@ -460,8 +471,8 @@ begin
          // Carga de datos a partir de Cuentas
          // 1º Carga de 700
          QCuentas.Close;
-         QCuentas.Database    := DmRef.IBDConsolida;
-         Qcuentas.Transaction := DmRef.IBDConsolida.DefaultTransaction;
+         //TODO: QCuentas.SQLConnection := DmRef.IBDConsolida;
+         //TODO: QCuentas.Transaction := DmRef.IBDConsolida.DefaultTransaction;
          QCuentas.parambyname('Cuenta1').AsString := '700';
          QCuentas.parambyname('Cuenta2').AsString := '799';
          QCuentas.Open;
@@ -513,8 +524,8 @@ begin
 
          // 2º Carga de 600
          QCuentas.Close;
-         QCuentas.Database    := DmRef.IBDConsolida;
-         Qcuentas.Transaction := DmRef.IBDConsolida.DefaultTransaction;
+         //TODO: QCuentas.Database    := DmRef.IBDConsolida;
+         //TODO: Qcuentas.Transaction := DmRef.IBDConsolida.DefaultTransaction;
          QCuentas.parambyname('Cuenta1').AsString := '600';
          QCuentas.parambyname('Cuenta2').AsString := '699';
          QCuentas.Open;
@@ -563,8 +574,8 @@ begin
 
          // Carga de datos 700
          QDiario.Close;
-         QDiario.Database    := DmRef.IBDConsolida;
-         QDiario.Transaction := DmRef.IBDConsolida.DefaultTransaction;
+         //TODO: QDiario.Database    := DmRef.IBDConsolida;
+         //TODO: QDiario.Transaction := DmRef.IBDConsolida.DefaultTransaction;
          QDiario.parambyname('Subcuenta1').AsString := '7' + Replicate('0', gvLongitudSubcuenta - 1);
          QDiario.parambyname('Subcuenta2').AsString := '7' + Replicate('9', gvLongitudSubcuenta - 1);
          QDiario.parambyname('Fecha1').AsDateTime := QFiltro.FieldByName('FechaDesde').AsDateTime;
@@ -627,8 +638,8 @@ begin
          // Saldo Anterior para las cuentas de ingresos
          if oSaldos.Checked then   begin
             QCuentas.Close;
-            QCuentas.Database    := DmRef.IBDConsolida;
-            Qcuentas.Transaction := DmRef.IBDConsolida.DefaultTransaction;
+            //TODO: QCuentas.Database    := DmRef.IBDConsolida;
+            //TODO: Qcuentas.Transaction := DmRef.IBDConsolida.DefaultTransaction;
             QCuentas.parambyname('Cuenta1').AsString := '700';
             QCuentas.parambyname('Cuenta2').AsString := '799';
             QCuentas.Open;
@@ -717,8 +728,8 @@ begin
 
       // Carga de datos 600
       QDiario.Close;
-      QDiario.Database    := DMRef.IBDSiamCont;
-      QDiario.Transaction := DMRef.IBDSiamCont.DefaultTransaction;
+      //TODO: QDiario.Database    := DMRef.IBDSiamCont;
+      //TODO: QDiario.Transaction := DMRef.IBDSiamCont.DefaultTransaction;
       QDiario.parambyname('Subcuenta1').AsString := '6' + Replicate('0', gvLongitudSubcuenta - 1);
       QDiario.parambyname('Subcuenta2').AsString := '6' + Replicate('9', gvLongitudSubcuenta - 1);
       QDiario.parambyname('Fecha1').AsDateTime := QFiltro.FieldByName('FechaDesde').AsDateTime;
@@ -785,8 +796,8 @@ begin
       // Saldo Anterior debo sacarlo de la cuenta
       if oSaldos.Checked then   begin
          QCuentas.Close;
-         QCuentas.Database    := DmRef.IBDSiamCont;
-         Qcuentas.Transaction := DmRef.IBDSiamCont.DefaultTransaction;
+         //TODO: QCuentas.Database    := DmRef.IBDSiamCont;
+         //TODO: Qcuentas.Transaction := DmRef.IBDSiamCont.DefaultTransaction;
          QCuentas.parambyname('Cuenta1').AsString := '600';
          QCuentas.parambyname('Cuenta2').AsString := '699';
          QCuentas.Open;
@@ -871,8 +882,8 @@ begin
          end;
          // Carga de datos 600
          QDiario.Close;
-         QDiario.Database    := DMRef.IBDConsolida;
-         QDiario.Transaction := DMRef.IBDConsolida.DefaultTransaction;
+         //TODO: QDiario.Database    := DMRef.IBDConsolida;
+         //TODO: QDiario.Transaction := DMRef.IBDConsolida.DefaultTransaction;
          QDiario.parambyname('Subcuenta1').AsString := '6' + Replicate('0', gvLongitudSubcuenta - 1);
          QDiario.parambyname('Subcuenta2').AsString := '6' + Replicate('9', gvLongitudSubcuenta - 1);
          QDiario.parambyname('Fecha1').AsDateTime := QFiltro.FieldByName('FechaDesde').AsDateTime;
@@ -940,8 +951,8 @@ begin
          // Saldo Anterior debo sacarlo de la cuenta
          if oSaldos.Checked then   begin
             QCuentas.Close;
-            QCuentas.Database    := DmRef.IBDConsolida;
-            Qcuentas.Transaction := DmRef.IBDConsolida.DefaultTransaction;
+            //TODO: QCuentas.Database    := DmRef.IBDConsolida;
+            //TODO: Qcuentas.Transaction := DmRef.IBDConsolida.DefaultTransaction;
             QCuentas.parambyname('Cuenta1').AsString := '600';
             QCuentas.parambyname('Cuenta2').AsString := '699';
             QCuentas.Open;
