@@ -2,10 +2,10 @@ object DMRef: TDMRef
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
-  Left = 704
-  Top = 195
-  Height = 709
-  Width = 583
+  Left = 445
+  Top = 209
+  Height = 560
+  Width = 657
   object QAuxiliar: TIBSQL
     ParamCheck = True
     Left = 280
@@ -1072,7 +1072,6 @@ object DMRef: TDMRef
       'EnableBCD=True'
       'FetchAll=True')
     VendorLib = 'oledb'
-    Connected = True
     Left = 47
     Top = 31
   end
@@ -1093,7 +1092,6 @@ object DMRef: TDMRef
       'EnableBCD=True'
       'FetchAll=True')
     VendorLib = 'oledb'
-    Connected = True
     Left = 391
     Top = 127
   end
