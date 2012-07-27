@@ -40,16 +40,6 @@ implementation
 
 uses Controls, Dialogs, ShellAPI, Forms,
      MenuPrincipal, DM, DMConta;
-  //Windows;
-  //Messages,
-  //SysUtils,
-  //Classes,
-  //Graphics
-  //Controls,
-  //Dialogs,
-  //Registry,
-  //Menus,
-  //StdCtrls,
 
 constructor TMainController.Create();
 begin

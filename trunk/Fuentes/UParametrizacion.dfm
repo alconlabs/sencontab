@@ -1,10 +1,10 @@
 object WParametrizacion: TWParametrizacion
-  Left = 441
-  Top = 275
+  Left = 363
+  Top = 231
   BorderStyle = bsNone
   Caption = 'Parametrizaci'#243'n'
   ClientHeight = 504
-  ClientWidth = 792
+  ClientWidth = 921
   Color = 14275008
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -24,7 +24,7 @@ object WParametrizacion: TWParametrizacion
   object Formulario: TfcImageForm
     Left = 10
     Top = 10
-    Width = 772
+    Width = 782
     Height = 484
     Align = alClient
     Picture.Data = {07544269746D617000000000}
@@ -32,7 +32,7 @@ object WParametrizacion: TWParametrizacion
     RegionData = {00000000}
   end
   object Label2: TLabel
-    Left = 22
+    Left = 54
     Top = 13
     Width = 134
     Height = 19
@@ -65,183 +65,597 @@ object WParametrizacion: TWParametrizacion
     Font.Style = [fsBold]
     ParentFont = False
   end
-  object Paginas: TOvcNotebook
-    Left = 22
-    Top = 37
-    Width = 749
-    Height = 417
-    ActiveTabFont.Charset = ANSI_CHARSET
-    ActiveTabFont.Color = clNavy
-    ActiveTabFont.Height = -11
-    ActiveTabFont.Name = 'Tahoma'
-    ActiveTabFont.Style = [fsBold]
-    PageUsesTabColor = False
-    Color = 14275008
-    Font.Charset = ANSI_CHARSET
-    Font.Color = clNavy
-    Font.Height = -12
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 0
-    object General: TOvcTabPage
-      Tag = 1
-      Caption = '&General'
-      TabColor = 14275008
-      TextColor = clNavy
-      object GBFiscales: TGroupBox
-        Left = 0
-        Top = 0
-        Width = 746
-        Height = 394
-        Align = alClient
+  object fcIBCerrar: TSpeedButton
+    Left = 21
+    Top = 13
+    Width = 24
+    Height = 17
+    Cursor = crHandPoint
+    Glyph.Data = {
+      16050000424D160500000000000036040000280000000E0000000E0000000100
+      080000000000E000000000000000000000000001000000000000000000000000
+      80000080000000808000800000008000800080800000C0C0C000C0DCC000F0CA
+      A6000020400000206000002080000020A0000020C0000020E000004000000040
+      20000040400000406000004080000040A0000040C0000040E000006000000060
+      20000060400000606000006080000060A0000060C0000060E000008000000080
+      20000080400000806000008080000080A0000080C0000080E00000A0000000A0
+      200000A0400000A0600000A0800000A0A00000A0C00000A0E00000C0000000C0
+      200000C0400000C0600000C0800000C0A00000C0C00000C0E00000E0000000E0
+      200000E0400000E0600000E0800000E0A00000E0C00000E0E000400000004000
+      20004000400040006000400080004000A0004000C0004000E000402000004020
+      20004020400040206000402080004020A0004020C0004020E000404000004040
+      20004040400040406000404080004040A0004040C0004040E000406000004060
+      20004060400040606000406080004060A0004060C0004060E000408000004080
+      20004080400040806000408080004080A0004080C0004080E00040A0000040A0
+      200040A0400040A0600040A0800040A0A00040A0C00040A0E00040C0000040C0
+      200040C0400040C0600040C0800040C0A00040C0C00040C0E00040E0000040E0
+      200040E0400040E0600040E0800040E0A00040E0C00040E0E000800000008000
+      20008000400080006000800080008000A0008000C0008000E000802000008020
+      20008020400080206000802080008020A0008020C0008020E000804000008040
+      20008040400080406000804080008040A0008040C0008040E000806000008060
+      20008060400080606000806080008060A0008060C0008060E000808000008080
+      20008080400080806000808080008080A0008080C0008080E00080A0000080A0
+      200080A0400080A0600080A0800080A0A00080A0C00080A0E00080C0000080C0
+      200080C0400080C0600080C0800080C0A00080C0C00080C0E00080E0000080E0
+      200080E0400080E0600080E0800080E0A00080E0C00080E0E000C0000000C000
+      2000C0004000C0006000C0008000C000A000C000C000C000E000C0200000C020
+      2000C0204000C0206000C0208000C020A000C020C000C020E000C0400000C040
+      2000C0404000C0406000C0408000C040A000C040C000C040E000C0600000C060
+      2000C0604000C0606000C0608000C060A000C060C000C060E000C0800000C080
+      2000C0804000C0806000C0808000C080A000C080C000C080E000C0A00000C0A0
+      2000C0A04000C0A06000C0A08000C0A0A000C0A0C000C0A0E000C0C00000C0C0
+      2000C0C04000C0C06000C0C08000C0C0A000F0FBFF00A4A0A000808080000000
+      FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00F6F6F6F6F6F6
+      F6F6F6F6F6F6F6F60000F6F6F6F6EEA69D9DA6EEF6F6F6F60000F6F6F6A5A6AE
+      EFEFAEA6A507F6F60000F6F6A59EA7EFEFEFEFA79EA507F60000F6AE555E010D
+      EFEF0D015E55AEF60000F69D565F0101464601015F569DF60000F65557575F01
+      0D0D015F575755F60000F65456575F0D01010D5F575654F60000F65D4D570101
+      01010101574D5DF60000F6A54C550B0BA7A70B0B554CA5F60000F6075C4C5EEF
+      F6F6EF5E4C5CF6F60000F6F6075C4B545555544B5C07F6F60000F6F6F607A55C
+      53535CA507F6F6F60000F6F6F6F6F6F6F6F6F6F6F6F6F6F60000}
+    OnClick = fcIBCerrarClick
+  end
+  object PageControl: TPageControl
+    Left = 16
+    Top = 40
+    Width = 769
+    Height = 457
+    ActivePage = TabSheetDocumentos
+    TabOrder = 5
+    object TabSheetGeneral: TTabSheet
+      Caption = 'General'
+      object LabelNif: TLabel
+        Left = 451
+        Top = 14
+        Width = 25
+        Height = 14
+        Caption = 'N.I.F.'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clNavy
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = [fsBold]
         ParentFont = False
+      end
+      object LabelDireccion: TLabel
+        Left = 74
+        Top = 52
+        Width = 133
+        Height = 14
+        Caption = 'Nombre de la v'#237'a p'#250'blica'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object LabelPostal: TLabel
+        Left = 18
+        Top = 88
+        Width = 48
+        Height = 14
+        Caption = 'C. Postal'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object LabelPoblacion: TLabel
+        Left = 111
+        Top = 88
+        Width = 53
+        Height = 14
+        Caption = 'Poblaci'#243'n'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object LabelProvincia: TLabel
+        Left = 451
+        Top = 88
+        Width = 50
+        Height = 14
+        Caption = 'Provincia'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label1: TLabel
+        Left = 451
+        Top = 127
+        Width = 49
+        Height = 14
+        Caption = 'Tel'#233'fono'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label3: TLabel
+        Left = 610
+        Top = 127
+        Width = 18
+        Height = 14
+        Caption = 'Fax'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label9: TLabel
+        Left = 18
+        Top = 127
+        Width = 115
+        Height = 14
+        Caption = 'Persona de Contacto'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label19: TLabel
+        Left = 18
+        Top = 14
+        Width = 412
+        Height = 14
+        Caption = 
+          'Nombre Fiscal (Si es Persona Fisica,  (Apellidos, Nombre) coma o' +
+          'bligatoria)'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label60: TLabel
+        Left = 547
+        Top = 167
+        Width = 82
+        Height = 14
+        AutoSize = False
+        Caption = 'Asiento actual'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+        WordWrap = True
+      end
+      object lLongSubcuentas: TLabel
+        Left = 451
+        Top = 167
+        Width = 78
+        Height = 14
+        Caption = 'Long. Subctas'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label20: TLabel
+        Left = 656
+        Top = 14
+        Width = 44
+        Height = 14
+        Caption = 'Moneda'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label74: TLabel
+        Left = 18
+        Top = 167
+        Width = 123
+        Height = 14
+        Caption = 'Cod. Admon. Hacienda'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label84: TLabel
+        Left = 171
+        Top = 167
+        Width = 233
+        Height = 14
+        Caption = 'C.C.C. para Hacienda, formato con guiones'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label85: TLabel
+        Left = 18
+        Top = 52
+        Width = 46
+        Height = 14
+        Caption = 'Sigla V'#237'a'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label86: TLabel
+        Left = 451
+        Top = 52
+        Width = 44
+        Height = 14
+        Caption = 'N'#250'mero'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label87: TLabel
+        Left = 502
+        Top = 52
+        Width = 46
+        Height = 14
+        Caption = 'Escalera'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label88: TLabel
+        Left = 560
+        Top = 52
+        Width = 24
+        Height = 14
+        Caption = 'Piso'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label90: TLabel
+        Left = 610
+        Top = 52
+        Width = 36
+        Height = 14
+        Caption = 'Puerta'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label4: TLabel
+        Left = 572
+        Top = 14
+        Width = 76
+        Height = 14
+        Caption = 'Tipo Empresa'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label6: TLabel
+        Left = 641
+        Top = 167
+        Width = 96
+        Height = 14
+        Caption = 'Filtro Subcuentas'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object EditNombreFiscal: TDBEdit
+        Left = 18
+        Top = 27
+        Width = 417
+        Height = 20
+        AutoSize = False
+        DataField = 'NOMBREFISCAL'
+        DataSource = DSFichero
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
         TabOrder = 0
-        object LabelNif: TLabel
-          Left = 451
-          Top = 14
-          Width = 25
-          Height = 14
-          Caption = 'N.I.F.'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clNavy
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
-        object LabelDireccion: TLabel
-          Left = 74
-          Top = 52
-          Width = 133
-          Height = 14
-          Caption = 'Nombre de la v'#237'a p'#250'blica'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clNavy
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
-        object LabelPostal: TLabel
-          Left = 18
-          Top = 88
-          Width = 48
-          Height = 14
-          Caption = 'C. Postal'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clNavy
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
-        object LabelPoblacion: TLabel
-          Left = 111
-          Top = 88
-          Width = 53
-          Height = 14
-          Caption = 'Poblaci'#243'n'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clNavy
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
-        object LabelProvincia: TLabel
-          Left = 451
-          Top = 88
-          Width = 50
-          Height = 14
-          Caption = 'Provincia'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clNavy
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
-        object Label1: TLabel
-          Left = 451
-          Top = 127
-          Width = 49
-          Height = 14
-          Caption = 'Tel'#233'fono'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clNavy
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
-        object Label3: TLabel
-          Left = 610
-          Top = 127
-          Width = 18
-          Height = 14
-          Caption = 'Fax'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clNavy
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
-        object Label9: TLabel
-          Left = 18
-          Top = 127
-          Width = 115
-          Height = 14
-          Caption = 'Persona de Contacto'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clNavy
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
-        object Label19: TLabel
-          Left = 18
-          Top = 14
-          Width = 412
-          Height = 14
-          Caption = 
-            'Nombre Fiscal (Si es Persona Fisica,  (Apellidos, Nombre) coma o' +
-            'bligatoria)'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clNavy
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
-        object Label60: TLabel
-          Left = 547
-          Top = 167
-          Width = 82
-          Height = 14
-          AutoSize = False
-          Caption = 'Asiento actual'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clNavy
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          ParentFont = False
-          WordWrap = True
-        end
-        object lLongSubcuentas: TLabel
-          Left = 451
-          Top = 167
+      end
+      object EditNIF: TDBEdit
+        Left = 451
+        Top = 27
+        Width = 109
+        Height = 20
+        AutoSize = False
+        DataField = 'NIF'
+        DataSource = DSFichero
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 1
+      end
+      object CampoDireccion: TDBEdit
+        Left = 74
+        Top = 65
+        Width = 361
+        Height = 20
+        AutoSize = False
+        DataField = 'DIRECCION'
+        DataSource = DSFichero
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 2
+      end
+      object CampoCodPostal: TDBEdit
+        Left = 18
+        Top = 101
+        Width = 85
+        Height = 20
+        AutoSize = False
+        DataField = 'CODPOSTAL'
+        DataSource = DSFichero
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 3
+      end
+      object CampoPoblacion: TDBEdit
+        Left = 111
+        Top = 101
+        Width = 324
+        Height = 20
+        AutoSize = False
+        DataField = 'POBLACION'
+        DataSource = DSFichero
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 4
+      end
+      object DBLookupComboProvincia: TwwDBLookupCombo
+        Left = 451
+        Top = 101
+        Width = 272
+        Height = 20
+        AutoSize = False
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        CharCase = ecUpperCase
+        DropDownAlignment = taLeftJustify
+        Selected.Strings = (
+          'NOMBRE'#9'20'#9'NOMBRE')
+        DataField = 'PROVINCIA'
+        DataSource = DSFichero
+        LookupTable = DMRef.QProvinciasNom
+        LookupField = 'PROVINCIA'
+        Style = csDropDownList
+        ParentFont = False
+        TabOrder = 5
+        AutoDropDown = True
+        ShowButton = True
+        SeqSearchOptions = [ssoEnabled, ssoCaseSensitive]
+        PreciseEditRegion = False
+        AllowClearKey = True
+        ShowMatchText = True
+      end
+      object OvcDbPictureField2: TDBEdit
+        Left = 451
+        Top = 140
+        Width = 130
+        Height = 20
+        AutoSize = False
+        DataField = 'TELEFONO'
+        DataSource = DSFichero
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 6
+      end
+      object OvcDbPictureField3: TDBEdit
+        Left = 18
+        Top = 140
+        Width = 417
+        Height = 20
+        AutoSize = False
+        DataField = 'CONTACTO'
+        DataSource = DSFichero
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 7
+      end
+      object OvcDbPictureField6: TDBEdit
+        Left = 610
+        Top = 140
+        Width = 113
+        Height = 20
+        AutoSize = False
+        DataField = 'FAX'
+        DataSource = DSFichero
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 8
+      end
+      object eAsiento: TDBEdit
+        Left = 547
+        Top = 181
+        Width = 82
+        Height = 20
+        AutoSize = False
+        DataField = 'Asiento'
+        DataSource = DSFiltro
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 9
+      end
+      object DBCheckBox3: TDBCheckBox
+        Left = 18
+        Top = 277
+        Width = 209
+        Height = 17
+        Caption = 'Asiento recargo individualizado'
+        DataField = 'RECARGO'
+        DataSource = DSFichero
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 10
+        ValueChecked = 'S'
+        ValueUnchecked = 'N'
+      end
+      object eLongSubcuenta: TDBEdit
+        Left = 473
+        Top = 181
+        Width = 35
+        Height = 20
+        AutoSize = False
+        DataField = 'LONGITUD_SUBCUENTAS'
+        DataSource = DSFichero
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 11
+      end
+      object eMoneda: TwwDBComboBox
+        Left = 656
+        Top = 27
+        Width = 67
+        Height = 20
+        ShowButton = True
+        Style = csDropDownList
+        MapList = True
+        AllowClearKey = False
+        ShowMatchText = True
+        AutoSize = False
+        DataField = 'MONEDA'
+        DataSource = DSFichero
+        DropDownCount = 8
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ItemHeight = 0
+        Items.Strings = (
+          'PESETA'#9'P'
+          'EURO'#9'E')
+        ItemIndex = 1
+        ParentFont = False
+        Sorted = False
+        TabOrder = 12
+        UnboundDataType = wwDefault
+      end
+      object GroupBox2: TGroupBox
+        Left = 18
+        Top = 206
+        Width = 417
+        Height = 59
+        Caption = ' Fecha de '
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 13
+        object Label48: TLabel
+          Left = 13
+          Top = 16
           Width = 78
           Height = 14
-          Caption = 'Long. Subctas'
+          Caption = 'Inicio Ejercicio'
           Font.Charset = ANSI_CHARSET
           Font.Color = clNavy
           Font.Height = -11
@@ -249,12 +663,12 @@ object WParametrizacion: TWParametrizacion
           Font.Style = [fsBold]
           ParentFont = False
         end
-        object Label20: TLabel
-          Left = 656
-          Top = 14
-          Width = 44
+        object Label49: TLabel
+          Left = 113
+          Top = 16
+          Width = 65
           Height = 14
-          Caption = 'Moneda'
+          Caption = 'Fin Ejercicio'
           Font.Charset = ANSI_CHARSET
           Font.Color = clNavy
           Font.Height = -11
@@ -262,103 +676,12 @@ object WParametrizacion: TWParametrizacion
           Font.Style = [fsBold]
           ParentFont = False
         end
-        object Label74: TLabel
-          Left = 18
-          Top = 167
-          Width = 123
+        object Label46: TLabel
+          Left = 203
+          Top = 16
+          Width = 93
           Height = 14
-          Caption = 'Cod. Admon. Hacienda'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clNavy
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
-        object Label84: TLabel
-          Left = 171
-          Top = 167
-          Width = 233
-          Height = 14
-          Caption = 'C.C.C. para Hacienda, formato con guiones'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clNavy
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
-        object Label85: TLabel
-          Left = 18
-          Top = 52
-          Width = 46
-          Height = 14
-          Caption = 'Sigla V'#237'a'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clNavy
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
-        object Label86: TLabel
-          Left = 451
-          Top = 52
-          Width = 44
-          Height = 14
-          Caption = 'N'#250'mero'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clNavy
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
-        object Label87: TLabel
-          Left = 502
-          Top = 52
-          Width = 46
-          Height = 14
-          Caption = 'Escalera'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clNavy
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
-        object Label88: TLabel
-          Left = 560
-          Top = 52
-          Width = 24
-          Height = 14
-          Caption = 'Piso'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clNavy
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
-        object Label90: TLabel
-          Left = 610
-          Top = 52
-          Width = 36
-          Height = 14
-          Caption = 'Puerta'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clNavy
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
-        object Label4: TLabel
-          Left = 572
-          Top = 14
-          Width = 76
-          Height = 14
-          Caption = 'Tipo Empresa'
+          Caption = 'Ult. Amortizaci'#243'n'
           Font.Charset = ANSI_CHARSET
           Font.Color = clNavy
           Font.Height = -11
@@ -366,158 +689,754 @@ object WParametrizacion: TWParametrizacion
           Font.Style = [fsBold]
           ParentFont = False
         end
-        object Label6: TLabel
-          Left = 641
-          Top = 167
-          Width = 96
+        object Label5: TLabel
+          Left = 316
+          Top = 16
+          Width = 79
           Height = 14
-          Caption = 'Filtro Subcuentas'
-          Font.Charset = DEFAULT_CHARSET
+          Caption = 'Bloqueo Diario'
+          Font.Charset = ANSI_CHARSET
           Font.Color = clNavy
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
           ParentFont = False
         end
-        object eNombreFiscal: TOvcDbPictureField
-          Left = 18
-          Top = 27
-          Width = 417
+        object eFechaInicioEjer: TwwDBDateTimePicker
+          Left = 11
+          Top = 30
+          Width = 89
           Height = 20
-          DataField = 'NOMBREFISCAL'
-          DataSource = DSFichero
-          FieldType = ftString
           AutoSize = False
-          CaretOvr.Shape = csBlock
-          EFColors.Disabled.BackColor = clWindow
-          EFColors.Disabled.TextColor = clGrayText
-          EFColors.Error.BackColor = clRed
-          EFColors.Error.TextColor = clBlack
-          EFColors.Highlight.BackColor = clHighlight
-          EFColors.Highlight.TextColor = clHighlightText
-          Epoch = 1900
-          Font.Charset = DEFAULT_CHARSET
+          CalendarAttributes.Font.Charset = DEFAULT_CHARSET
+          CalendarAttributes.Font.Color = clWindowText
+          CalendarAttributes.Font.Height = -11
+          CalendarAttributes.Font.Name = 'MS Sans Serif'
+          CalendarAttributes.Font.Style = []
+          ButtonStyle = cbsCustom
+          DataField = 'FECHA_INICIO_EJERCICIO'
+          DataSource = DSFichero
+          Date = 37257.000000000000000000
+          Epoch = 1950
+          ButtonGlyph.Data = {
+            36030000424D3603000000000000360000002800000010000000100000000100
+            18000000000000030000120B0000120B00000000000000000000008080008080
+            0080800080800080800080800080800080800080800080800080800080800080
+            80008080008080008080FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F
+            7FFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F00
+            00FFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFFFFFFFFFFFFFF7F7F7F
+            7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F
+            7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFF
+            FFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFFFFFFFFFFFFFF0000FF
+            FFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F
+            7F0000FFFFFFFFFFFFFFFFFFFF7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F
+            7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFF
+            FFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F
+            7FFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F00
+            00FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFFFFFFFFFFFFFF7F7F7F
+            7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F
+            7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F7F7FFF
+            FFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F
+            7F0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000FF0000
+            FF0000FF0000FF0000FF0000BFBFBFBFBFBFBFBFBFBFBFBFFF0000FF0000FF00
+            00FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF
+            0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000}
+          Font.Charset = ANSI_CHARSET
           Font.Color = clBlack
           Font.Height = -11
-          Font.Name = 'Arial'
+          Font.Name = 'Tahoma'
           Font.Style = []
-          MaxLength = 80
           ParentFont = False
-          PictureMask = '!'
+          ShowButton = True
           TabOrder = 0
         end
-        object CampoNif: TOvcDbPictureField
-          Left = 451
-          Top = 27
-          Width = 109
+        object eFechaFinEjer: TwwDBDateTimePicker
+          Left = 107
+          Top = 30
+          Width = 89
           Height = 20
-          DataField = 'NIF'
-          DataSource = DSFichero
-          FieldType = ftString
           AutoSize = False
-          CaretOvr.Shape = csBlock
-          EFColors.Disabled.BackColor = clWindow
-          EFColors.Disabled.TextColor = clGrayText
-          EFColors.Error.BackColor = clRed
-          EFColors.Error.TextColor = clBlack
-          EFColors.Highlight.BackColor = clHighlight
-          EFColors.Highlight.TextColor = clHighlightText
-          Epoch = 1900
-          Font.Charset = DEFAULT_CHARSET
+          CalendarAttributes.Font.Charset = DEFAULT_CHARSET
+          CalendarAttributes.Font.Color = clWindowText
+          CalendarAttributes.Font.Height = -11
+          CalendarAttributes.Font.Name = 'MS Sans Serif'
+          CalendarAttributes.Font.Style = []
+          ButtonStyle = cbsCustom
+          DataField = 'FECHA_FIN_EJERCICIO'
+          DataSource = DSFichero
+          Date = 37621.000000000000000000
+          Epoch = 1950
+          ButtonGlyph.Data = {
+            36030000424D3603000000000000360000002800000010000000100000000100
+            18000000000000030000120B0000120B00000000000000000000008080008080
+            0080800080800080800080800080800080800080800080800080800080800080
+            80008080008080008080FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F
+            7FFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F00
+            00FFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFFFFFFFFFFFFFF7F7F7F
+            7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F
+            7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFF
+            FFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFFFFFFFFFFFFFF0000FF
+            FFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F
+            7F0000FFFFFFFFFFFFFFFFFFFF7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F
+            7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFF
+            FFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F
+            7FFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F00
+            00FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFFFFFFFFFFFFFF7F7F7F
+            7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F
+            7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F7F7FFF
+            FFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F
+            7F0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000FF0000
+            FF0000FF0000FF0000FF0000BFBFBFBFBFBFBFBFBFBFBFBFFF0000FF0000FF00
+            00FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF
+            0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000}
+          Font.Charset = ANSI_CHARSET
           Font.Color = clBlack
           Font.Height = -11
-          Font.Name = 'Arial'
+          Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          PictureMask = '!'
+          ShowButton = True
           TabOrder = 1
         end
-        object CampoDireccion: TOvcDbPictureField
-          Left = 74
-          Top = 65
-          Width = 361
+        object eFechaInicio: TwwDBDateTimePicker
+          Left = 203
+          Top = 30
+          Width = 98
           Height = 20
-          DataField = 'DIRECCION'
-          DataSource = DSFichero
-          FieldType = ftString
           AutoSize = False
-          CaretOvr.Shape = csBlock
-          EFColors.Disabled.BackColor = clWindow
-          EFColors.Disabled.TextColor = clGrayText
-          EFColors.Error.BackColor = clRed
-          EFColors.Error.TextColor = clBlack
-          EFColors.Highlight.BackColor = clHighlight
-          EFColors.Highlight.TextColor = clHighlightText
-          Epoch = 1900
+          CalendarAttributes.Font.Charset = DEFAULT_CHARSET
+          CalendarAttributes.Font.Color = clWindowText
+          CalendarAttributes.Font.Height = -11
+          CalendarAttributes.Font.Name = 'MS Sans Serif'
+          CalendarAttributes.Font.Style = []
+          ButtonStyle = cbsCustom
+          DataField = 'FECHAAMORTIZACION'
+          DataSource = DSFichero
+          Date = 37621.000000000000000000
+          Epoch = 1950
+          ButtonGlyph.Data = {
+            36030000424D3603000000000000360000002800000010000000100000000100
+            18000000000000030000120B0000120B00000000000000000000008080008080
+            0080800080800080800080800080800080800080800080800080800080800080
+            80008080008080008080FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F
+            7FFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F00
+            00FFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFFFFFFFFFFFFFF7F7F7F
+            7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F
+            7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFF
+            FFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFFFFFFFFFFFFFF0000FF
+            FFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F
+            7F0000FFFFFFFFFFFFFFFFFFFF7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F
+            7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFF
+            FFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F
+            7FFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F00
+            00FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFFFFFFFFFFFFFF7F7F7F
+            7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F
+            7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F7F7FFF
+            FFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F
+            7F0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000FF0000
+            FF0000FF0000FF0000FF0000BFBFBFBFBFBFBFBFBFBFBFBFFF0000FF0000FF00
+            00FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF
+            0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000}
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          ShowButton = True
+          TabOrder = 2
+        end
+        object wwDBDateTimePicker1: TwwDBDateTimePicker
+          Left = 307
+          Top = 30
+          Width = 98
+          Height = 20
+          AutoSize = False
+          CalendarAttributes.Font.Charset = DEFAULT_CHARSET
+          CalendarAttributes.Font.Color = clWindowText
+          CalendarAttributes.Font.Height = -11
+          CalendarAttributes.Font.Name = 'MS Sans Serif'
+          CalendarAttributes.Font.Style = []
+          ButtonStyle = cbsCustom
+          DataField = 'FECHABLOQUEO'
+          DataSource = DSFichero
+          Date = 37469.000000000000000000
+          Epoch = 1950
+          ButtonGlyph.Data = {
+            36030000424D3603000000000000360000002800000010000000100000000100
+            18000000000000030000120B0000120B00000000000000000000008080008080
+            0080800080800080800080800080800080800080800080800080800080800080
+            80008080008080008080FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F
+            7FFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F00
+            00FFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFFFFFFFFFFFFFF7F7F7F
+            7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F
+            7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFF
+            FFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFFFFFFFFFFFFFF0000FF
+            FFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F
+            7F0000FFFFFFFFFFFFFFFFFFFF7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F
+            7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFF
+            FFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F
+            7FFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F00
+            00FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFFFFFFFFFFFFFF7F7F7F
+            7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F
+            7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F7F7FFF
+            FFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F
+            7F0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000FF0000
+            FF0000FF0000FF0000FF0000BFBFBFBFBFBFBFBFBFBFBFBFFF0000FF0000FF00
+            00FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF
+            0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000}
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          ShowButton = True
+          TabOrder = 3
+        end
+      end
+      object OvcDbPictureField1: TDBEdit
+        Left = 18
+        Top = 65
+        Width = 45
+        Height = 20
+        AutoSize = False
+        DataField = 'SIGLAVIA'
+        DataSource = DSFichero
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 14
+      end
+      object OvcDbPictureField4: TDBEdit
+        Left = 451
+        Top = 65
+        Width = 45
+        Height = 20
+        AutoSize = False
+        DataField = 'NUMEROCALLE'
+        DataSource = DSFichero
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 15
+      end
+      object OvcDbPictureField9: TDBEdit
+        Left = 502
+        Top = 65
+        Width = 45
+        Height = 20
+        AutoSize = False
+        DataField = 'ESCALERA'
+        DataSource = DSFichero
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 16
+      end
+      object OvcDbPictureField10: TDBEdit
+        Left = 559
+        Top = 65
+        Width = 27
+        Height = 20
+        AutoSize = False
+        DataField = 'PISO'
+        DataSource = DSFichero
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 17
+      end
+      object OvcDbPictureField11: TDBEdit
+        Left = 610
+        Top = 65
+        Width = 37
+        Height = 20
+        AutoSize = False
+        DataField = 'PUERTA'
+        DataSource = DSFichero
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 18
+      end
+      object OvcDbPictureField12: TDBEdit
+        Left = 39
+        Top = 181
+        Width = 63
+        Height = 20
+        AutoSize = False
+        DataField = 'CODADMON'
+        DataSource = DSFichero
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 19
+      end
+      object OvcDbPictureField13: TDBEdit
+        Left = 171
+        Top = 181
+        Width = 264
+        Height = 20
+        AutoSize = False
+        DataField = 'CCC'
+        DataSource = DSFichero
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 20
+      end
+      object DBCheckBox2: TDBCheckBox
+        Left = 18
+        Top = 312
+        Width = 209
+        Height = 17
+        Caption = 'Gestiona cartera de efectos'
+        DataField = 'GESTIONA_CARTERA_EFECTOS'
+        DataSource = DSFichero
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 21
+        ValueChecked = 'S'
+        ValueUnchecked = 'N'
+      end
+      object DBCheckBox5: TDBCheckBox
+        Left = 18
+        Top = 347
+        Width = 263
+        Height = 17
+        Caption = 'Incluir abrev. subcta en descripci'#243'n apunte'
+        DataField = 'INCLUIR_ABREV'
+        DataSource = DSFichero
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 22
+        ValueChecked = 'S'
+        ValueUnchecked = 'N'
+      end
+      object GroupBox16: TGroupBox
+        Left = 451
+        Top = 206
+        Width = 287
+        Height = 163
+        Caption = ' Intervalos Asientos '
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 23
+        object Label76: TLabel
+          Left = 167
+          Top = 20
+          Width = 29
+          Height = 14
+          Caption = 'Inicio'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clNavy
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label80: TLabel
+          Left = 239
+          Top = 20
+          Width = 16
+          Height = 14
+          Caption = 'Fin'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clNavy
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label91: TLabel
+          Left = 15
+          Top = 37
+          Width = 101
+          Height = 14
+          Caption = 'B'#250'squeda Asiento'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clNavy
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label92: TLabel
+          Left = 15
+          Top = 66
+          Width = 74
+          Height = 14
+          Caption = 'Filtro Asiento'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clNavy
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object eAsientosInicio: TDBEdit
+          Left = 158
+          Top = 34
+          Width = 47
+          Height = 20
+          AutoSize = False
+          DataField = 'ASIENTOS_INICIO_INTERVALO_BQDA'
+          DataSource = DSFichero
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
-          MaxLength = 40
           ParentFont = False
-          PictureMask = '!'
+          TabOrder = 0
+        end
+        object eAsientosFin: TDBEdit
+          Left = 224
+          Top = 34
+          Width = 47
+          Height = 20
+          AutoSize = False
+          DataField = 'ASIENTOS_FIN_INTERVALO_BQDA'
+          DataSource = DSFichero
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 1
+        end
+        object OvcDbNumericField3: TDBEdit
+          Left = 158
+          Top = 63
+          Width = 47
+          Height = 20
+          AutoSize = False
+          DataField = 'ASIENTO_INICIO_INTERVALO_FILTRO'
+          DataSource = DSFichero
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 2
+        end
+        object OvcDbNumericField4: TDBEdit
+          Left = 224
+          Top = 63
+          Width = 47
+          Height = 20
+          AutoSize = False
+          DataField = 'ASIENTO_FIN_INTERVALO_FILTRO'
+          DataSource = DSFichero
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 3
+        end
+        object DBCheckBox4: TDBCheckBox
+          Left = 15
+          Top = 125
+          Width = 209
+          Height = 19
+          Caption = 'Filtro asientos al inicio de ejercicio'
+          DataField = 'FILTRO_ASIENTOS_INICIO'
+          DataSource = DSFichero
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clNavy
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
           TabOrder = 5
+          ValueChecked = 'S'
+          ValueUnchecked = 'N'
         end
-        object CampoCodPostal: TOvcDbPictureField
-          Left = 18
-          Top = 101
-          Width = 85
-          Height = 20
-          DataField = 'CODPOSTAL'
+        object DBCheckBox6: TDBCheckBox
+          Left = 15
+          Top = 96
+          Width = 209
+          Height = 17
+          Caption = 'Mostrar filtro de mayor'
+          DataField = 'MOSTRAR_FILTRO_MAYOR'
           DataSource = DSFichero
-          FieldType = ftString
-          AutoSize = False
-          CaretOvr.Shape = csBlock
-          EFColors.Disabled.BackColor = clWindow
-          EFColors.Disabled.TextColor = clGrayText
-          EFColors.Error.BackColor = clRed
-          EFColors.Error.TextColor = clBlack
-          EFColors.Highlight.BackColor = clHighlight
-          EFColors.Highlight.TextColor = clHighlightText
-          Epoch = 1900
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
+          Font.Color = clNavy
           Font.Height = -11
           Font.Name = 'Arial'
-          Font.Style = []
-          MaxLength = 10
+          Font.Style = [fsBold]
           ParentFont = False
-          PictureMask = '!'
-          TabOrder = 10
+          TabOrder = 4
+          ValueChecked = 'S'
+          ValueUnchecked = 'N'
         end
-        object CampoPoblacion: TOvcDbPictureField
-          Left = 111
-          Top = 101
-          Width = 324
-          Height = 20
-          DataField = 'POBLACION'
-          DataSource = DSFichero
-          FieldType = ftString
-          AutoSize = False
-          CaretOvr.Shape = csBlock
-          EFColors.Disabled.BackColor = clWindow
-          EFColors.Disabled.TextColor = clGrayText
-          EFColors.Error.BackColor = clRed
-          EFColors.Error.TextColor = clBlack
-          EFColors.Highlight.BackColor = clHighlight
-          EFColors.Highlight.TextColor = clHighlightText
-          Epoch = 1900
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
+      end
+      object DBRadioGroup1: TDBRadioGroup
+        Left = 312
+        Top = 274
+        Width = 123
+        Height = 95
+        Caption = ' B'#250'squeda Subctas '
+        DataField = 'BUSQUEDA_SUBCTAS'
+        DataSource = DSFichero
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        Items.Strings = (
+          'Por Subcuenta'
+          'Por Descripci'#243'n')
+        ParentFont = False
+        TabOrder = 24
+        Values.Strings = (
+          'S'
+          'D')
+      end
+      object eTipoEmpresa: TwwDBComboBox
+        Left = 572
+        Top = 27
+        Width = 76
+        Height = 20
+        ShowButton = True
+        Style = csDropDownList
+        MapList = True
+        AllowClearKey = False
+        ShowMatchText = True
+        AutoSize = False
+        DataField = 'TIPOEMPRESA'
+        DataSource = DSFichero
+        DropDownCount = 8
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ItemHeight = 0
+        Items.Strings = (
+          'F'#205'SICA'#9'F'
+          'JUR'#205'DICA'#9'J')
+        ItemIndex = 1
+        ParentFont = False
+        Sorted = False
+        TabOrder = 25
+        UnboundDataType = wwDefault
+      end
+      object eFiltroSubctas: TDBEdit
+        Left = 656
+        Top = 181
+        Width = 67
+        Height = 21
+        DataField = 'FILTROSUBCTAS'
+        DataSource = DSFichero
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 26
+      end
+      object DBCheckBox8: TDBCheckBox
+        Left = 18
+        Top = 294
+        Width = 255
+        Height = 17
+        Caption = 'No modifica comentario en carga asientos'
+        DataField = 'ACTCOMENTARIO'
+        DataSource = DSFichero
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 27
+        ValueChecked = 'S'
+        ValueUnchecked = 'N'
+      end
+      object DBCheckBox9: TDBCheckBox
+        Left = 18
+        Top = 365
+        Width = 209
+        Height = 17
+        Caption = 'Serie y ejercicio en facturas'
+        DataField = 'TRATASERIE'
+        DataSource = DSFichero
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 28
+        ValueChecked = 'S'
+        ValueUnchecked = 'N'
+      end
+    end
+    object TabSheetNominas: TTabSheet
+      Caption = 'N'#243'minas'
+      ImageIndex = 1
+      object GroupBox7: TGroupBox
+        Left = 0
+        Top = 0
+        Width = 761
+        Height = 205
+        Align = alTop
+        Caption = ' Asiento Trabajador'
+        TabOrder = 0
+        object Label37: TLabel
+          Left = 19
+          Top = 26
+          Width = 182
+          Height = 14
+          Caption = 'Subcuenta de Sueldos y salarios '
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clNavy
           Font.Height = -11
           Font.Name = 'Arial'
-          Font.Style = []
-          MaxLength = 40
+          Font.Style = [fsBold]
           ParentFont = False
-          PictureMask = '!'
-          TabOrder = 11
         end
-        object DBLookupComboProvincia: TwwDBLookupCombo
-          Left = 451
-          Top = 101
-          Width = 272
-          Height = 20
+        object Label38: TLabel
+          Left = 19
+          Top = 76
+          Width = 140
+          Height = 14
+          Caption = 'Subcuenta de Seg. Social '
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clNavy
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label39: TLabel
+          Left = 387
+          Top = 76
+          Width = 168
+          Height = 14
+          Caption = 'Subcuenta de Hacienda I.R.P.F. '
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clNavy
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label40: TLabel
+          Left = 19
+          Top = 125
+          Width = 176
+          Height = 14
+          Caption = 'Subcuenta de Pago de N'#243'minas '
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clNavy
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label41: TLabel
+          Left = 387
+          Top = 125
+          Width = 119
+          Height = 14
+          Caption = 'Concepto de Asiento '
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clNavy
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object DBText22: TDBText
+          Left = 668
+          Top = 125
+          Width = 65
+          Height = 14
+          Alignment = taRightJustify
+          DataField = 'CTONOMT'
+          DataSource = DSFichero
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clNavy
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label100: TLabel
+          Left = 387
+          Top = 26
+          Width = 202
+          Height = 14
+          Caption = 'Subcuenta de otras remuneraciones'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clNavy
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object CBSUBCUENTA18: TwwDBLookupCombo
+          Left = 19
+          Top = 40
+          Width = 96
+          Height = 21
           AutoSize = False
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -527,1723 +1446,558 @@ object WParametrizacion: TWParametrizacion
           CharCase = ecUpperCase
           DropDownAlignment = taLeftJustify
           Selected.Strings = (
-            'NOMBRE'#9'20'#9'NOMBRE')
-          DataField = 'PROVINCIA'
+            'SUBCUENTA'#9'10'#9'SUBCUENTA'
+            'DESCRIPCION'#9'40'#9'DESCRIPCION')
+          DataField = 'SCTANOMSUELDO'
           DataSource = DSFichero
-          LookupTable = DMRef.QProvinciasNom
-          LookupField = 'PROVINCIA'
+          LookupTable = DMContaRef.QSubCTAGastos
+          LookupField = 'SUBCUENTA'
+          Options = [loColLines, loTitles]
           Style = csDropDownList
           ParentFont = False
-          TabOrder = 12
+          TabOrder = 0
           AutoDropDown = True
           ShowButton = True
-          SeqSearchOptions = [ssoEnabled, ssoCaseSensitive]
           PreciseEditRegion = False
           AllowClearKey = True
           ShowMatchText = True
         end
-        object OvcDbPictureField2: TOvcDbPictureField
-          Left = 451
-          Top = 140
-          Width = 130
-          Height = 20
-          DataField = 'TELEFONO'
-          DataSource = DSFichero
-          FieldType = ftString
-          AutoSize = False
-          CaretOvr.Shape = csBlock
-          EFColors.Disabled.BackColor = clWindow
-          EFColors.Disabled.TextColor = clGrayText
-          EFColors.Error.BackColor = clRed
-          EFColors.Error.TextColor = clBlack
-          EFColors.Highlight.BackColor = clHighlight
-          EFColors.Highlight.TextColor = clHighlightText
-          Epoch = 1900
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = []
-          MaxLength = 16
-          ParentFont = False
-          PictureMask = 'X'
-          TabOrder = 14
-        end
-        object OvcDbPictureField3: TOvcDbPictureField
-          Left = 18
-          Top = 140
-          Width = 417
-          Height = 20
-          DataField = 'CONTACTO'
-          DataSource = DSFichero
-          FieldType = ftString
-          AutoSize = False
-          CaretOvr.Shape = csBlock
-          EFColors.Disabled.BackColor = clWindow
-          EFColors.Disabled.TextColor = clGrayText
-          EFColors.Error.BackColor = clRed
-          EFColors.Error.TextColor = clBlack
-          EFColors.Highlight.BackColor = clHighlight
-          EFColors.Highlight.TextColor = clHighlightText
-          Epoch = 1900
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = []
-          MaxLength = 50
-          ParentFont = False
-          PictureMask = '!'
-          TabOrder = 13
-        end
-        object OvcDbPictureField6: TOvcDbPictureField
-          Left = 610
-          Top = 140
-          Width = 113
-          Height = 20
-          DataField = 'FAX'
-          DataSource = DSFichero
-          FieldType = ftString
-          AutoSize = False
-          CaretOvr.Shape = csBlock
-          EFColors.Disabled.BackColor = clWindow
-          EFColors.Disabled.TextColor = clGrayText
-          EFColors.Error.BackColor = clRed
-          EFColors.Error.TextColor = clBlack
-          EFColors.Highlight.BackColor = clHighlight
-          EFColors.Highlight.TextColor = clHighlightText
-          Epoch = 1900
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = []
-          MaxLength = 16
-          ParentFont = False
-          PictureMask = 'X'
-          TabOrder = 15
-        end
-        object eAsiento: TOvcDbNumericField
-          Left = 547
-          Top = 181
-          Width = 82
-          Height = 20
-          DataField = 'Asiento'
-          DataSource = DSFiltro
-          FieldType = ftFloat
-          AutoSize = False
-          CaretOvr.Shape = csBlock
-          EFColors.Disabled.BackColor = clWindow
-          EFColors.Disabled.TextColor = clGrayText
-          EFColors.Error.BackColor = clRed
-          EFColors.Error.TextColor = clBlack
-          EFColors.Highlight.BackColor = clHighlight
-          EFColors.Highlight.TextColor = clHighlightText
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = []
-          Options = [efoCaretToEnd]
-          ParentFont = False
-          PictureMask = '###,###,###'
-          TabOrder = 19
-          RangeHigh = {E275587FED2AB1ECFE7F}
-          RangeLow = {E275587FED2AB1ECFEFF}
-        end
-        object DBCheckBox3: TDBCheckBox
-          Left = 18
-          Top = 277
-          Width = 209
-          Height = 17
-          Caption = 'Asiento recargo individualizado'
-          DataField = 'RECARGO'
-          DataSource = DSFichero
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clNavy
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 22
-          ValueChecked = 'S'
-          ValueUnchecked = 'N'
-        end
-        object eLongSubcuenta: TOvcDbNumericField
-          Left = 473
-          Top = 181
-          Width = 35
-          Height = 20
-          DataField = 'LONGITUD_SUBCUENTAS'
-          DataSource = DSFichero
-          FieldType = ftSmallint
-          AutoSize = False
-          CaretOvr.Shape = csBlock
-          EFColors.Disabled.BackColor = clWindow
-          EFColors.Disabled.TextColor = clGrayText
-          EFColors.Error.BackColor = clRed
-          EFColors.Error.TextColor = clBlack
-          EFColors.Highlight.BackColor = clHighlight
-          EFColors.Highlight.TextColor = clHighlightText
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          Options = [efoCaretToEnd, efoTrimBlanks]
-          ParentFont = False
-          PictureMask = '##'
-          TabOrder = 18
-          RangeHigh = {FF7F0000000000000000}
-          RangeLow = {0080FFFF000000000000}
-        end
-        object eMoneda: TwwDBComboBox
-          Left = 656
-          Top = 27
-          Width = 67
-          Height = 20
-          ShowButton = True
-          Style = csDropDownList
-          MapList = True
-          AllowClearKey = False
-          ShowMatchText = True
-          AutoSize = False
-          DataField = 'MONEDA'
-          DataSource = DSFichero
-          DropDownCount = 8
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ItemHeight = 0
-          Items.Strings = (
-            'PESETA'#9'P'
-            'EURO'#9'E')
-          ItemIndex = 1
-          ParentFont = False
-          Sorted = False
-          TabOrder = 3
-          UnboundDataType = wwDefault
-        end
-        object GroupBox2: TGroupBox
-          Left = 18
-          Top = 206
-          Width = 417
-          Height = 59
-          Caption = ' Fecha de '
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clNavy
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 21
-          object Label48: TLabel
-            Left = 13
-            Top = 16
-            Width = 78
-            Height = 14
-            Caption = 'Inicio Ejercicio'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clNavy
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object Label49: TLabel
-            Left = 113
-            Top = 16
-            Width = 65
-            Height = 14
-            Caption = 'Fin Ejercicio'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clNavy
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object Label46: TLabel
-            Left = 203
-            Top = 16
-            Width = 93
-            Height = 14
-            Caption = 'Ult. Amortizaci'#243'n'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clNavy
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object Label5: TLabel
-            Left = 316
-            Top = 16
-            Width = 79
-            Height = 14
-            Caption = 'Bloqueo Diario'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clNavy
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object eFechaInicioEjer: TwwDBDateTimePicker
-            Left = 11
-            Top = 30
-            Width = 89
-            Height = 20
-            AutoSize = False
-            CalendarAttributes.Font.Charset = DEFAULT_CHARSET
-            CalendarAttributes.Font.Color = clWindowText
-            CalendarAttributes.Font.Height = -11
-            CalendarAttributes.Font.Name = 'MS Sans Serif'
-            CalendarAttributes.Font.Style = []
-            ButtonStyle = cbsCustom
-            DataField = 'FECHA_INICIO_EJERCICIO'
-            DataSource = DSFichero
-            Date = 37257.000000000000000000
-            Epoch = 1950
-            ButtonGlyph.Data = {
-              36030000424D3603000000000000360000002800000010000000100000000100
-              18000000000000030000120B0000120B00000000000000000000008080008080
-              0080800080800080800080800080800080800080800080800080800080800080
-              80008080008080008080FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-              FFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F
-              7FFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F00
-              00FFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFFFFFFFFFFFFFF7F7F7F
-              7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F
-              7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFF
-              FFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFFFFFFFFFFFFFF0000FF
-              FFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F
-              7F0000FFFFFFFFFFFFFFFFFFFF7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F
-              7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFF
-              FFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F
-              7FFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F00
-              00FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFFFFFFFFFFFFFF7F7F7F
-              7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F
-              7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F7F7FFF
-              FFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-              FFFFFFFFFFFFFFFFFFFFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F
-              7F0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000FF0000
-              FF0000FF0000FF0000FF0000BFBFBFBFBFBFBFBFBFBFBFBFFF0000FF0000FF00
-              00FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF
-              0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000}
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            ShowButton = True
-            TabOrder = 0
-          end
-          object eFechaFinEjer: TwwDBDateTimePicker
-            Left = 107
-            Top = 30
-            Width = 89
-            Height = 20
-            AutoSize = False
-            CalendarAttributes.Font.Charset = DEFAULT_CHARSET
-            CalendarAttributes.Font.Color = clWindowText
-            CalendarAttributes.Font.Height = -11
-            CalendarAttributes.Font.Name = 'MS Sans Serif'
-            CalendarAttributes.Font.Style = []
-            ButtonStyle = cbsCustom
-            DataField = 'FECHA_FIN_EJERCICIO'
-            DataSource = DSFichero
-            Date = 37621.000000000000000000
-            Epoch = 1950
-            ButtonGlyph.Data = {
-              36030000424D3603000000000000360000002800000010000000100000000100
-              18000000000000030000120B0000120B00000000000000000000008080008080
-              0080800080800080800080800080800080800080800080800080800080800080
-              80008080008080008080FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-              FFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F
-              7FFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F00
-              00FFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFFFFFFFFFFFFFF7F7F7F
-              7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F
-              7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFF
-              FFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFFFFFFFFFFFFFF0000FF
-              FFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F
-              7F0000FFFFFFFFFFFFFFFFFFFF7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F
-              7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFF
-              FFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F
-              7FFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F00
-              00FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFFFFFFFFFFFFFF7F7F7F
-              7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F
-              7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F7F7FFF
-              FFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-              FFFFFFFFFFFFFFFFFFFFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F
-              7F0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000FF0000
-              FF0000FF0000FF0000FF0000BFBFBFBFBFBFBFBFBFBFBFBFFF0000FF0000FF00
-              00FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF
-              0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000}
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            ShowButton = True
-            TabOrder = 1
-          end
-          object eFechaInicio: TwwDBDateTimePicker
-            Left = 203
-            Top = 30
-            Width = 98
-            Height = 20
-            AutoSize = False
-            CalendarAttributes.Font.Charset = DEFAULT_CHARSET
-            CalendarAttributes.Font.Color = clWindowText
-            CalendarAttributes.Font.Height = -11
-            CalendarAttributes.Font.Name = 'MS Sans Serif'
-            CalendarAttributes.Font.Style = []
-            ButtonStyle = cbsCustom
-            DataField = 'FECHAAMORTIZACION'
-            DataSource = DSFichero
-            Date = 37621.000000000000000000
-            Epoch = 1950
-            ButtonGlyph.Data = {
-              36030000424D3603000000000000360000002800000010000000100000000100
-              18000000000000030000120B0000120B00000000000000000000008080008080
-              0080800080800080800080800080800080800080800080800080800080800080
-              80008080008080008080FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-              FFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F
-              7FFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F00
-              00FFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFFFFFFFFFFFFFF7F7F7F
-              7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F
-              7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFF
-              FFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFFFFFFFFFFFFFF0000FF
-              FFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F
-              7F0000FFFFFFFFFFFFFFFFFFFF7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F
-              7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFF
-              FFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F
-              7FFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F00
-              00FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFFFFFFFFFFFFFF7F7F7F
-              7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F
-              7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F7F7FFF
-              FFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-              FFFFFFFFFFFFFFFFFFFFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F
-              7F0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000FF0000
-              FF0000FF0000FF0000FF0000BFBFBFBFBFBFBFBFBFBFBFBFFF0000FF0000FF00
-              00FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF
-              0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000}
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            ShowButton = True
-            TabOrder = 2
-          end
-          object wwDBDateTimePicker1: TwwDBDateTimePicker
-            Left = 307
-            Top = 30
-            Width = 98
-            Height = 20
-            AutoSize = False
-            CalendarAttributes.Font.Charset = DEFAULT_CHARSET
-            CalendarAttributes.Font.Color = clWindowText
-            CalendarAttributes.Font.Height = -11
-            CalendarAttributes.Font.Name = 'MS Sans Serif'
-            CalendarAttributes.Font.Style = []
-            ButtonStyle = cbsCustom
-            DataField = 'FECHABLOQUEO'
-            DataSource = DSFichero
-            Date = 37469.000000000000000000
-            Epoch = 1950
-            ButtonGlyph.Data = {
-              36030000424D3603000000000000360000002800000010000000100000000100
-              18000000000000030000120B0000120B00000000000000000000008080008080
-              0080800080800080800080800080800080800080800080800080800080800080
-              80008080008080008080FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-              FFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F
-              7FFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F00
-              00FFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFFFFFFFFFFFFFF7F7F7F
-              7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F
-              7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFF
-              FFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFFFFFFFFFFFFFF0000FF
-              FFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F
-              7F0000FFFFFFFFFFFFFFFFFFFF7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F
-              7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFF
-              FFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F
-              7FFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F00
-              00FFFFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFFFFFFFFFFFFFF7F7F7F
-              7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F
-              7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F7F7FFF
-              FFFFFFFFFF7F7F7FFFFFFFFFFFFF7F7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-              FFFFFFFFFFFFFFFFFFFFFFFF7F7F7F0000FFFFFFFF7F7F7F0000FFFFFFFF7F7F
-              7F0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000FF0000
-              FF0000FF0000FF0000FF0000BFBFBFBFBFBFBFBFBFBFBFBFFF0000FF0000FF00
-              00FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF
-              0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000}
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            ShowButton = True
-            TabOrder = 3
-          end
-        end
-        object OvcDbPictureField1: TOvcDbPictureField
-          Left = 18
-          Top = 65
-          Width = 45
-          Height = 20
-          DataField = 'SIGLAVIA'
-          DataSource = DSFichero
-          FieldType = ftString
-          AutoSize = False
-          CaretOvr.Shape = csBlock
-          EFColors.Disabled.BackColor = clWindow
-          EFColors.Disabled.TextColor = clGrayText
-          EFColors.Error.BackColor = clRed
-          EFColors.Error.TextColor = clBlack
-          EFColors.Highlight.BackColor = clHighlight
-          EFColors.Highlight.TextColor = clHighlightText
-          Epoch = 1900
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = []
-          MaxLength = 2
-          ParentFont = False
-          PictureMask = '!'
-          TabOrder = 4
-        end
-        object OvcDbPictureField4: TOvcDbPictureField
-          Left = 451
-          Top = 65
-          Width = 45
-          Height = 20
-          DataField = 'NUMEROCALLE'
-          DataSource = DSFichero
-          FieldType = ftString
-          AutoSize = False
-          CaretOvr.Shape = csBlock
-          EFColors.Disabled.BackColor = clWindow
-          EFColors.Disabled.TextColor = clGrayText
-          EFColors.Error.BackColor = clRed
-          EFColors.Error.TextColor = clBlack
-          EFColors.Highlight.BackColor = clHighlight
-          EFColors.Highlight.TextColor = clHighlightText
-          Epoch = 1900
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = []
-          MaxLength = 4
-          ParentFont = False
-          PictureMask = '!'
-          TabOrder = 6
-        end
-        object OvcDbPictureField9: TOvcDbPictureField
-          Left = 502
-          Top = 65
-          Width = 45
-          Height = 20
-          DataField = 'ESCALERA'
-          DataSource = DSFichero
-          FieldType = ftString
-          AutoSize = False
-          CaretOvr.Shape = csBlock
-          EFColors.Disabled.BackColor = clWindow
-          EFColors.Disabled.TextColor = clGrayText
-          EFColors.Error.BackColor = clRed
-          EFColors.Error.TextColor = clBlack
-          EFColors.Highlight.BackColor = clHighlight
-          EFColors.Highlight.TextColor = clHighlightText
-          Epoch = 1900
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = []
-          MaxLength = 2
-          ParentFont = False
-          PictureMask = '!'
-          TabOrder = 7
-        end
-        object OvcDbPictureField10: TOvcDbPictureField
-          Left = 559
-          Top = 65
-          Width = 27
-          Height = 20
-          DataField = 'PISO'
-          DataSource = DSFichero
-          FieldType = ftString
-          AutoSize = False
-          CaretOvr.Shape = csBlock
-          EFColors.Disabled.BackColor = clWindow
-          EFColors.Disabled.TextColor = clGrayText
-          EFColors.Error.BackColor = clRed
-          EFColors.Error.TextColor = clBlack
-          EFColors.Highlight.BackColor = clHighlight
-          EFColors.Highlight.TextColor = clHighlightText
-          Epoch = 1900
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = []
-          MaxLength = 2
-          ParentFont = False
-          PictureMask = '!'
-          TabOrder = 8
-        end
-        object OvcDbPictureField11: TOvcDbPictureField
-          Left = 610
-          Top = 65
-          Width = 37
-          Height = 20
-          DataField = 'PUERTA'
-          DataSource = DSFichero
-          FieldType = ftString
-          AutoSize = False
-          CaretOvr.Shape = csBlock
-          EFColors.Disabled.BackColor = clWindow
-          EFColors.Disabled.TextColor = clGrayText
-          EFColors.Error.BackColor = clRed
-          EFColors.Error.TextColor = clBlack
-          EFColors.Highlight.BackColor = clHighlight
-          EFColors.Highlight.TextColor = clHighlightText
-          Epoch = 1900
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = []
-          MaxLength = 2
-          ParentFont = False
-          PictureMask = '!'
-          TabOrder = 9
-        end
-        object OvcDbPictureField12: TOvcDbPictureField
-          Left = 39
-          Top = 181
-          Width = 63
-          Height = 20
-          DataField = 'CODADMON'
-          DataSource = DSFichero
-          FieldType = ftString
-          AutoSize = False
-          CaretOvr.Shape = csBlock
-          EFColors.Disabled.BackColor = clWindow
-          EFColors.Disabled.TextColor = clGrayText
-          EFColors.Error.BackColor = clRed
-          EFColors.Error.TextColor = clBlack
-          EFColors.Highlight.BackColor = clHighlight
-          EFColors.Highlight.TextColor = clHighlightText
-          Epoch = 1900
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = []
-          MaxLength = 5
-          ParentFont = False
-          PictureMask = '!'
-          TabOrder = 16
-        end
-        object OvcDbPictureField13: TOvcDbPictureField
-          Left = 171
-          Top = 181
-          Width = 264
-          Height = 20
-          DataField = 'CCC'
-          DataSource = DSFichero
-          FieldType = ftString
-          AutoSize = False
-          CaretOvr.Shape = csBlock
-          EFColors.Disabled.BackColor = clWindow
-          EFColors.Disabled.TextColor = clGrayText
-          EFColors.Error.BackColor = clRed
-          EFColors.Error.TextColor = clBlack
-          EFColors.Highlight.BackColor = clHighlight
-          EFColors.Highlight.TextColor = clHighlightText
-          Epoch = 1900
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = []
-          MaxLength = 23
-          Options = [efoCaretToEnd]
-          ParentFont = False
-          PictureMask = 'XXXX-XXXX-XX-XXXXXXXXXX'
-          TabOrder = 17
-        end
-        object DBCheckBox2: TDBCheckBox
-          Left = 18
-          Top = 312
-          Width = 209
-          Height = 17
-          Caption = 'Gestiona cartera de efectos'
-          DataField = 'GESTIONA_CARTERA_EFECTOS'
-          DataSource = DSFichero
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clNavy
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 24
-          ValueChecked = 'S'
-          ValueUnchecked = 'N'
-        end
-        object DBCheckBox5: TDBCheckBox
-          Left = 18
-          Top = 347
-          Width = 263
-          Height = 17
-          Caption = 'Incluir abrev. subcta en descripci'#243'n apunte'
-          DataField = 'INCLUIR_ABREV'
-          DataSource = DSFichero
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clNavy
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 25
-          ValueChecked = 'S'
-          ValueUnchecked = 'N'
-        end
-        object GroupBox16: TGroupBox
-          Left = 451
-          Top = 206
-          Width = 287
-          Height = 163
-          Caption = ' Intervalos Asientos '
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clNavy
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 28
-          object Label76: TLabel
-            Left = 167
-            Top = 20
-            Width = 29
-            Height = 14
-            Caption = 'Inicio'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clNavy
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object Label80: TLabel
-            Left = 239
-            Top = 20
-            Width = 16
-            Height = 14
-            Caption = 'Fin'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clNavy
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object Label91: TLabel
-            Left = 15
-            Top = 37
-            Width = 101
-            Height = 14
-            Caption = 'B'#250'squeda Asiento'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clNavy
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object Label92: TLabel
-            Left = 15
-            Top = 66
-            Width = 74
-            Height = 14
-            Caption = 'Filtro Asiento'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clNavy
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object eAsientosInicio: TOvcDbNumericField
-            Left = 158
-            Top = 34
-            Width = 47
-            Height = 20
-            DataField = 'ASIENTOS_INICIO_INTERVALO_BQDA'
-            DataSource = DSFichero
-            FieldType = ftSmallint
-            AutoSize = False
-            CaretOvr.Shape = csBlock
-            EFColors.Disabled.BackColor = clWindow
-            EFColors.Disabled.TextColor = clGrayText
-            EFColors.Error.BackColor = clRed
-            EFColors.Error.TextColor = clBlack
-            EFColors.Highlight.BackColor = clHighlight
-            EFColors.Highlight.TextColor = clHighlightText
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = []
-            Options = [efoCaretToEnd, efoTrimBlanks]
-            ParentFont = False
-            PictureMask = 'iiiiii'
-            TabOrder = 0
-            RangeHigh = {FF7F0000000000000000}
-            RangeLow = {0080FFFF000000000000}
-          end
-          object eAsientosFin: TOvcDbNumericField
-            Left = 224
-            Top = 34
-            Width = 47
-            Height = 20
-            DataField = 'ASIENTOS_FIN_INTERVALO_BQDA'
-            DataSource = DSFichero
-            FieldType = ftSmallint
-            AutoSize = False
-            CaretOvr.Shape = csBlock
-            EFColors.Disabled.BackColor = clWindow
-            EFColors.Disabled.TextColor = clGrayText
-            EFColors.Error.BackColor = clRed
-            EFColors.Error.TextColor = clBlack
-            EFColors.Highlight.BackColor = clHighlight
-            EFColors.Highlight.TextColor = clHighlightText
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = []
-            Options = [efoCaretToEnd, efoTrimBlanks]
-            ParentFont = False
-            PictureMask = 'iiiiii'
-            TabOrder = 1
-            RangeHigh = {FF7F0000000000000000}
-            RangeLow = {0080FFFF000000000000}
-          end
-          object OvcDbNumericField3: TOvcDbNumericField
-            Left = 158
-            Top = 63
-            Width = 47
-            Height = 20
-            DataField = 'ASIENTO_INICIO_INTERVALO_FILTRO'
-            DataSource = DSFichero
-            FieldType = ftSmallint
-            AutoSize = False
-            CaretOvr.Shape = csBlock
-            EFColors.Disabled.BackColor = clWindow
-            EFColors.Disabled.TextColor = clGrayText
-            EFColors.Error.BackColor = clRed
-            EFColors.Error.TextColor = clBlack
-            EFColors.Highlight.BackColor = clHighlight
-            EFColors.Highlight.TextColor = clHighlightText
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = []
-            Options = [efoCaretToEnd, efoTrimBlanks]
-            ParentFont = False
-            PictureMask = 'iiiiii'
-            TabOrder = 2
-            RangeHigh = {FF7F0000000000000000}
-            RangeLow = {0080FFFF000000000000}
-          end
-          object OvcDbNumericField4: TOvcDbNumericField
-            Left = 224
-            Top = 63
-            Width = 47
-            Height = 20
-            DataField = 'ASIENTO_FIN_INTERVALO_FILTRO'
-            DataSource = DSFichero
-            FieldType = ftSmallint
-            AutoSize = False
-            CaretOvr.Shape = csBlock
-            EFColors.Disabled.BackColor = clWindow
-            EFColors.Disabled.TextColor = clGrayText
-            EFColors.Error.BackColor = clRed
-            EFColors.Error.TextColor = clBlack
-            EFColors.Highlight.BackColor = clHighlight
-            EFColors.Highlight.TextColor = clHighlightText
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = []
-            Options = [efoCaretToEnd, efoTrimBlanks]
-            ParentFont = False
-            PictureMask = 'iiiiii'
-            TabOrder = 3
-            RangeHigh = {FF7F0000000000000000}
-            RangeLow = {0080FFFF000000000000}
-          end
-          object DBCheckBox4: TDBCheckBox
-            Left = 15
-            Top = 125
-            Width = 209
-            Height = 19
-            Caption = 'Filtro asientos al inicio de ejercicio'
-            DataField = 'FILTRO_ASIENTOS_INICIO'
-            DataSource = DSFichero
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clNavy
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = [fsBold]
-            ParentFont = False
-            TabOrder = 5
-            ValueChecked = 'S'
-            ValueUnchecked = 'N'
-          end
-          object DBCheckBox6: TDBCheckBox
-            Left = 15
-            Top = 96
-            Width = 209
-            Height = 17
-            Caption = 'Mostrar filtro de mayor'
-            DataField = 'MOSTRAR_FILTRO_MAYOR'
-            DataSource = DSFichero
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clNavy
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = [fsBold]
-            ParentFont = False
-            TabOrder = 4
-            ValueChecked = 'S'
-            ValueUnchecked = 'N'
-          end
-        end
-        object DBRadioGroup1: TDBRadioGroup
-          Left = 312
-          Top = 274
-          Width = 123
-          Height = 95
-          Caption = ' B'#250'squeda Subctas '
-          DataField = 'BUSQUEDA_SUBCTAS'
-          DataSource = DSFichero
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clNavy
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          Items.Strings = (
-            'Por Subcuenta'
-            'Por Descripci'#243'n')
-          ParentFont = False
-          TabOrder = 27
-          Values.Strings = (
-            'S'
-            'D')
-        end
-        object eTipoEmpresa: TwwDBComboBox
-          Left = 572
-          Top = 27
-          Width = 76
-          Height = 20
-          ShowButton = True
-          Style = csDropDownList
-          MapList = True
-          AllowClearKey = False
-          ShowMatchText = True
-          AutoSize = False
-          DataField = 'TIPOEMPRESA'
-          DataSource = DSFichero
-          DropDownCount = 8
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ItemHeight = 0
-          Items.Strings = (
-            'F'#205'SICA'#9'F'
-            'JUR'#205'DICA'#9'J')
-          ItemIndex = 1
-          ParentFont = False
-          Sorted = False
-          TabOrder = 2
-          UnboundDataType = wwDefault
-        end
-        object eFiltroSubctas: TOvcDbPictureField
-          Left = 656
-          Top = 181
-          Width = 67
+        object wwDBLookupCombo19: TwwDBLookupCombo
+          Left = 114
+          Top = 40
+          Width = 252
           Height = 21
-          DataField = 'FILTROSUBCTAS'
-          DataSource = DSFichero
-          FieldType = ftString
-          CaretOvr.Shape = csBlock
-          EFColors.Disabled.BackColor = clWindow
-          EFColors.Disabled.TextColor = clGrayText
-          EFColors.Error.BackColor = clRed
-          EFColors.Error.TextColor = clBlack
-          EFColors.Highlight.BackColor = clHighlight
-          EFColors.Highlight.TextColor = clHighlightText
-          Font.Charset = ANSI_CHARSET
+          AutoSize = False
+          Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
-          Font.Name = 'Tahoma'
+          Font.Name = 'Arial'
           Font.Style = []
-          MaxLength = 3
-          ParentFont = False
-          PictureMask = '!'
-          TabOrder = 20
-        end
-        object DBCheckBox8: TDBCheckBox
-          Left = 18
-          Top = 294
-          Width = 255
-          Height = 17
-          Caption = 'No modifica comentario en carga asientos'
-          DataField = 'ACTCOMENTARIO'
+          CharCase = ecUpperCase
+          DropDownAlignment = taLeftJustify
+          Selected.Strings = (
+            'DESCRIPCION'#9'40'#9'DESCRIPCION'
+            'SUBCUENTA'#9'10'#9'SUBCUENTA')
+          DataField = 'SCTANOMSUELDO'
           DataSource = DSFichero
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clNavy
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
+          LookupTable = DMContaRef.QSubCTAGastosDesc
+          LookupField = 'SUBCUENTA'
+          Options = [loColLines, loTitles]
+          Style = csDropDownList
           ParentFont = False
-          TabOrder = 23
-          ValueChecked = 'S'
-          ValueUnchecked = 'N'
-        end
-        object DBCheckBox9: TDBCheckBox
-          Left = 18
-          Top = 365
-          Width = 209
-          Height = 17
-          Caption = 'Serie y ejercicio en facturas'
-          DataField = 'TRATASERIE'
-          DataSource = DSFichero
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clNavy
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 26
-          ValueChecked = 'S'
-          ValueUnchecked = 'N'
-        end
-      end
-    end
-    object Nominas: TOvcTabPage
-      Tag = 1
-      Caption = '&N'#243'minas'
-      TabColor = 14275008
-      TextColor = clNavy
-      object GroupBox13: TGroupBox
-        Left = 0
-        Top = 0
-        Width = 746
-        Height = 394
-        Align = alClient
-        Color = 14275008
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clNavy
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentColor = False
-        ParentFont = False
-        TabOrder = 0
-        object GroupBox7: TGroupBox
-          Left = 2
-          Top = 15
-          Width = 742
-          Height = 205
-          Align = alTop
-          Caption = ' Asiento Trabajador'
-          TabOrder = 0
-          object Label37: TLabel
-            Left = 19
-            Top = 26
-            Width = 182
-            Height = 14
-            Caption = 'Subcuenta de Sueldos y salarios '
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clNavy
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object Label38: TLabel
-            Left = 19
-            Top = 76
-            Width = 140
-            Height = 14
-            Caption = 'Subcuenta de Seg. Social '
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clNavy
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object Label39: TLabel
-            Left = 387
-            Top = 76
-            Width = 168
-            Height = 14
-            Caption = 'Subcuenta de Hacienda I.R.P.F. '
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clNavy
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object Label40: TLabel
-            Left = 19
-            Top = 125
-            Width = 176
-            Height = 14
-            Caption = 'Subcuenta de Pago de N'#243'minas '
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clNavy
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object Label41: TLabel
-            Left = 387
-            Top = 125
-            Width = 119
-            Height = 14
-            Caption = 'Concepto de Asiento '
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clNavy
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object DBText22: TDBText
-            Left = 668
-            Top = 125
-            Width = 65
-            Height = 14
-            Alignment = taRightJustify
-            DataField = 'CTONOMT'
-            DataSource = DSFichero
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clNavy
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object Label100: TLabel
-            Left = 387
-            Top = 26
-            Width = 202
-            Height = 14
-            Caption = 'Subcuenta de otras remuneraciones'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clNavy
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object CBSUBCUENTA18: TwwDBLookupCombo
-            Left = 19
-            Top = 40
-            Width = 96
-            Height = 21
-            AutoSize = False
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = []
-            CharCase = ecUpperCase
-            DropDownAlignment = taLeftJustify
-            Selected.Strings = (
-              'SUBCUENTA'#9'10'#9'SUBCUENTA'
-              'DESCRIPCION'#9'40'#9'DESCRIPCION')
-            DataField = 'SCTANOMSUELDO'
-            DataSource = DSFichero
-            LookupTable = DMContaRef.QSubCTAGastos
-            LookupField = 'SUBCUENTA'
-            Options = [loColLines, loTitles]
-            Style = csDropDownList
-            ParentFont = False
-            TabOrder = 0
-            AutoDropDown = True
-            ShowButton = True
-            PreciseEditRegion = False
-            AllowClearKey = True
-            ShowMatchText = True
-          end
-          object wwDBLookupCombo19: TwwDBLookupCombo
-            Left = 114
-            Top = 40
-            Width = 252
-            Height = 21
-            AutoSize = False
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = []
-            CharCase = ecUpperCase
-            DropDownAlignment = taLeftJustify
-            Selected.Strings = (
-              'DESCRIPCION'#9'40'#9'DESCRIPCION'
-              'SUBCUENTA'#9'10'#9'SUBCUENTA')
-            DataField = 'SCTANOMSUELDO'
-            DataSource = DSFichero
-            LookupTable = DMContaRef.QSubCTAGastosDesc
-            LookupField = 'SUBCUENTA'
-            Options = [loColLines, loTitles]
-            Style = csDropDownList
-            ParentFont = False
-            TabOrder = 1
-            AutoDropDown = True
-            ShowButton = True
-            PreciseEditRegion = False
-            AllowClearKey = True
-            ShowMatchText = True
-          end
-          object CBSUBCUENTA19: TwwDBLookupCombo
-            Left = 19
-            Top = 90
-            Width = 96
-            Height = 21
-            AutoSize = False
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = []
-            CharCase = ecUpperCase
-            DropDownAlignment = taLeftJustify
-            Selected.Strings = (
-              'SUBCUENTA'#9'10'#9'SUBCUENTA'
-              'DESCRIPCION'#9'40'#9'DESCRIPCION')
-            DataField = 'SCTANOMSST'
-            DataSource = DSFichero
-            LookupTable = DMContaRef.QSubCuentas
-            LookupField = 'SUBCUENTA'
-            Options = [loColLines, loTitles]
-            Style = csDropDownList
-            ParentFont = False
-            TabOrder = 4
-            AutoDropDown = True
-            ShowButton = True
-            PreciseEditRegion = False
-            AllowClearKey = True
-            ShowMatchText = True
-          end
-          object wwDBLookupCombo49: TwwDBLookupCombo
-            Left = 114
-            Top = 90
-            Width = 252
-            Height = 21
-            AutoSize = False
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = []
-            CharCase = ecUpperCase
-            DropDownAlignment = taLeftJustify
-            Selected.Strings = (
-              'DESCRIPCION'#9'40'#9'DESCRIPCION'
-              'SUBCUENTA'#9'10'#9'SUBCUENTA')
-            DataField = 'SCTANOMSST'
-            DataSource = DSFichero
-            LookupTable = DMContaRef.QSubCuentasDesc
-            LookupField = 'SUBCUENTA'
-            Options = [loColLines, loTitles]
-            Style = csDropDownList
-            ParentFont = False
-            TabOrder = 5
-            AutoDropDown = True
-            ShowButton = True
-            PreciseEditRegion = False
-            AllowClearKey = True
-            ShowMatchText = True
-          end
-          object CBSUBCUENTA20: TwwDBLookupCombo
-            Left = 387
-            Top = 90
-            Width = 96
-            Height = 21
-            AutoSize = False
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = []
-            CharCase = ecUpperCase
-            DropDownAlignment = taLeftJustify
-            Selected.Strings = (
-              'SUBCUENTA'#9'10'#9'SUBCUENTA'
-              'DESCRIPCION'#9'40'#9'DESCRIPCION')
-            DataField = 'SCTANOMIRPF'
-            DataSource = DSFichero
-            LookupTable = DMContaRef.QSubCuentas
-            LookupField = 'SUBCUENTA'
-            Options = [loColLines, loTitles]
-            Style = csDropDownList
-            ParentFont = False
-            TabOrder = 6
-            AutoDropDown = True
-            ShowButton = True
-            PreciseEditRegion = False
-            AllowClearKey = True
-            ShowMatchText = True
-          end
-          object wwDBLookupCombo51: TwwDBLookupCombo
-            Left = 481
-            Top = 90
-            Width = 252
-            Height = 21
-            AutoSize = False
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = []
-            CharCase = ecUpperCase
-            DropDownAlignment = taLeftJustify
-            Selected.Strings = (
-              'DESCRIPCION'#9'40'#9'DESCRIPCION'
-              'SUBCUENTA'#9'10'#9'SUBCUENTA')
-            DataField = 'SCTANOMIRPF'
-            DataSource = DSFichero
-            LookupTable = DMContaRef.QSubCuentasDesc
-            LookupField = 'SUBCUENTA'
-            Options = [loColLines, loTitles]
-            Style = csDropDownList
-            ParentFont = False
-            TabOrder = 7
-            AutoDropDown = True
-            ShowButton = True
-            PreciseEditRegion = False
-            AllowClearKey = True
-            ShowMatchText = True
-          end
-          object CBSUBCUENTA21: TwwDBLookupCombo
-            Left = 19
-            Top = 139
-            Width = 96
-            Height = 21
-            AutoSize = False
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = []
-            CharCase = ecUpperCase
-            DropDownAlignment = taLeftJustify
-            Selected.Strings = (
-              'SUBCUENTA'#9'10'#9'SUBCUENTA'
-              'DESCRIPCION'#9'40'#9'DESCRIPCION')
-            DataField = 'SCTANOMPAGO'
-            DataSource = DSFichero
-            LookupTable = DMContaRef.QSubCTANominas
-            LookupField = 'SUBCUENTA'
-            Options = [loColLines, loTitles]
-            Style = csDropDownList
-            ParentFont = False
-            TabOrder = 8
-            AutoDropDown = True
-            ShowButton = True
-            PreciseEditRegion = False
-            AllowClearKey = True
-            ShowMatchText = True
-          end
-          object wwDBLookupCombo53: TwwDBLookupCombo
-            Left = 114
-            Top = 139
-            Width = 252
-            Height = 21
-            AutoSize = False
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = []
-            CharCase = ecUpperCase
-            DropDownAlignment = taLeftJustify
-            Selected.Strings = (
-              'DESCRIPCION'#9'40'#9'DESCRIPCION'
-              'SUBCUENTA'#9'10'#9'SUBCUENTA')
-            DataField = 'SCTANOMPAGO'
-            DataSource = DSFichero
-            LookupTable = DMContaRef.QSubCTANominasDesc
-            LookupField = 'SUBCUENTA'
-            Options = [loColLines, loTitles]
-            Style = csDropDownList
-            ParentFont = False
-            TabOrder = 9
-            AutoDropDown = True
-            ShowButton = True
-            PreciseEditRegion = False
-            AllowClearKey = True
-            ShowMatchText = True
-          end
-          object wwDBLookupCombo55: TwwDBLookupCombo
-            Left = 387
-            Top = 139
-            Width = 346
-            Height = 21
-            AutoSize = False
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = []
-            CharCase = ecUpperCase
-            DropDownAlignment = taLeftJustify
-            Selected.Strings = (
-              'DESCRIPCION'#9'35'#9'DESCRIPCION'#9'F'
-              'ID_CONCEPTOS'#9'3'#9'CONCEPTO'#9'F')
-            DataField = 'CTONOMT'
-            DataSource = DSFichero
-            LookupTable = DMContaRef.QConceptosDesc
-            LookupField = 'ID_CONCEPTOS'
-            Options = [loColLines, loTitles]
-            Style = csDropDownList
-            ParentFont = False
-            TabOrder = 10
-            AutoDropDown = True
-            ShowButton = True
-            PreciseEditRegion = False
-            AllowClearKey = True
-            ShowMatchText = True
-          end
-          object DBCheckBox7: TDBCheckBox
-            Left = 19
-            Top = 174
-            Width = 193
-            Height = 17
-            Caption = 'Asiento n'#243'mina individualizado'
-            DataField = 'ASIENTO_NOMINA_INDIVIDUAL'
-            DataSource = DSFichero
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clNavy
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = [fsBold]
-            ParentFont = False
-            TabOrder = 11
-            ValueChecked = 'S'
-            ValueUnchecked = 'N'
-          end
-          object CBSUBCUENTA39: TwwDBLookupCombo
-            Left = 387
-            Top = 40
-            Width = 96
-            Height = 21
-            AutoSize = False
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = []
-            CharCase = ecUpperCase
-            DropDownAlignment = taLeftJustify
-            Selected.Strings = (
-              'SUBCUENTA'#9'10'#9'SUBCUENTA'
-              'DESCRIPCION'#9'40'#9'DESCRIPCION')
-            DataField = 'SCTAOTRASREMUN'
-            DataSource = DSFichero
-            LookupTable = DMContaRef.QSubCTAGastos
-            LookupField = 'SUBCUENTA'
-            Options = [loColLines, loTitles]
-            Style = csDropDownList
-            ParentFont = False
-            TabOrder = 2
-            AutoDropDown = True
-            ShowButton = True
-            PreciseEditRegion = False
-            AllowClearKey = True
-            ShowMatchText = True
-          end
-          object wwDBLookupCombo35: TwwDBLookupCombo
-            Left = 481
-            Top = 40
-            Width = 252
-            Height = 21
-            AutoSize = False
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = []
-            CharCase = ecUpperCase
-            DropDownAlignment = taLeftJustify
-            Selected.Strings = (
-              'DESCRIPCION'#9'40'#9'DESCRIPCION'
-              'SUBCUENTA'#9'10'#9'SUBCUENTA')
-            DataField = 'SCTAOTRASREMUN'
-            DataSource = DSFichero
-            LookupTable = DMContaRef.QSubCTAGastosDesc
-            LookupField = 'SUBCUENTA'
-            Options = [loColLines, loTitles]
-            Style = csDropDownList
-            ParentFont = False
-            TabOrder = 3
-            AutoDropDown = True
-            ShowButton = True
-            PreciseEditRegion = False
-            AllowClearKey = True
-            ShowMatchText = True
-          end
-        end
-        object GroupBox8: TGroupBox
-          Left = 2
-          Top = 226
-          Width = 742
-          Height = 166
-          Align = alBottom
-          Caption = ' Asiento Empresa '
           TabOrder = 1
-          object Label43: TLabel
-            Left = 123
-            Top = 21
-            Width = 230
-            Height = 14
-            Caption = 'Subcuenta de Gasto Seg. Social Empresa  '
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clNavy
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object Label44: TLabel
-            Left = 123
-            Top = 66
-            Width = 146
-            Height = 14
-            Caption = 'Subcuenta de Seg. Social   '
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clNavy
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object Label50: TLabel
-            Left = 123
-            Top = 113
-            Width = 119
-            Height = 14
-            Caption = 'Concepto de Asiento '
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clNavy
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object DBText23: TDBText
-            Left = 403
-            Top = 113
-            Width = 65
-            Height = 14
-            Alignment = taRightJustify
-            DataField = 'CTONOME'
-            DataSource = DSFichero
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clNavy
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object CBSUBCUENTA22: TwwDBLookupCombo
-            Left = 122
-            Top = 35
-            Width = 96
-            Height = 21
-            AutoSize = False
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = []
-            CharCase = ecUpperCase
-            DropDownAlignment = taLeftJustify
-            Selected.Strings = (
-              'SUBCUENTA'#9'10'#9'SUBCUENTA'
-              'DESCRIPCION'#9'40'#9'DESCRIPCION')
-            DataField = 'SCTANOMCARGO'
-            DataSource = DSFichero
-            LookupTable = DMContaRef.QSubCTAGastos
-            LookupField = 'SUBCUENTA'
-            Options = [loColLines, loTitles]
-            Style = csDropDownList
-            ParentFont = False
-            TabOrder = 0
-            AutoDropDown = True
-            ShowButton = True
-            PreciseEditRegion = False
-            AllowClearKey = True
-            ShowMatchText = True
-          end
-          object wwDBLookupCombo57: TwwDBLookupCombo
-            Left = 218
-            Top = 35
-            Width = 252
-            Height = 21
-            AutoSize = False
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = []
-            CharCase = ecUpperCase
-            DropDownAlignment = taLeftJustify
-            Selected.Strings = (
-              'DESCRIPCION'#9'40'#9'DESCRIPCION'
-              'SUBCUENTA'#9'10'#9'SUBCUENTA')
-            DataField = 'SCTANOMCARGO'
-            DataSource = DSFichero
-            LookupTable = DMContaRef.QSubCTAGastosDesc
-            LookupField = 'SUBCUENTA'
-            Options = [loColLines, loTitles]
-            Style = csDropDownList
-            ParentFont = False
-            TabOrder = 1
-            AutoDropDown = True
-            ShowButton = True
-            PreciseEditRegion = False
-            AllowClearKey = True
-            ShowMatchText = True
-          end
-          object CBSUBCUENTA23: TwwDBLookupCombo
-            Left = 122
-            Top = 80
-            Width = 96
-            Height = 21
-            AutoSize = False
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = []
-            CharCase = ecUpperCase
-            DropDownAlignment = taLeftJustify
-            Selected.Strings = (
-              'SUBCUENTA'#9'10'#9'SUBCUENTA'
-              'DESCRIPCION'#9'40'#9'DESCRIPCION')
-            DataField = 'SCTANOMSSE'
-            DataSource = DSFichero
-            LookupTable = DMContaRef.QSubCuentas
-            LookupField = 'SUBCUENTA'
-            Options = [loColLines, loTitles]
-            Style = csDropDownList
-            ParentFont = False
-            TabOrder = 2
-            AutoDropDown = True
-            ShowButton = True
-            PreciseEditRegion = False
-            AllowClearKey = True
-            ShowMatchText = True
-          end
-          object wwDBLookupCombo59: TwwDBLookupCombo
-            Left = 218
-            Top = 80
-            Width = 252
-            Height = 21
-            AutoSize = False
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = []
-            CharCase = ecUpperCase
-            DropDownAlignment = taLeftJustify
-            Selected.Strings = (
-              'DESCRIPCION'#9'40'#9'DESCRIPCION'
-              'SUBCUENTA'#9'10'#9'SUBCUENTA')
-            DataField = 'SCTANOMSSE'
-            DataSource = DSFichero
-            LookupTable = DMContaRef.QSubCuentasDesc
-            LookupField = 'SUBCUENTA'
-            Options = [loColLines, loTitles]
-            Style = csDropDownList
-            ParentFont = False
-            TabOrder = 3
-            AutoDropDown = True
-            ShowButton = True
-            PreciseEditRegion = False
-            AllowClearKey = True
-            ShowMatchText = True
-          end
-          object wwDBLookupCombo61: TwwDBLookupCombo
-            Left = 122
-            Top = 126
-            Width = 348
-            Height = 21
-            AutoSize = False
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = []
-            CharCase = ecUpperCase
-            DropDownAlignment = taLeftJustify
-            Selected.Strings = (
-              'DESCRIPCION'#9'35'#9'DESCRIPCION'#9'F'
-              'ID_CONCEPTOS'#9'3'#9'CONCEPTO'#9'F')
-            DataField = 'CTONOME'
-            DataSource = DSFichero
-            LookupTable = DMContaRef.QConceptosDesc
-            LookupField = 'ID_CONCEPTOS'
-            Options = [loColLines, loTitles]
-            Style = csDropDownList
-            ParentFont = False
-            TabOrder = 4
-            AutoDropDown = True
-            ShowButton = True
-            PreciseEditRegion = False
-            AllowClearKey = True
-            ShowMatchText = True
-          end
+          AutoDropDown = True
+          ShowButton = True
+          PreciseEditRegion = False
+          AllowClearKey = True
+          ShowMatchText = True
+        end
+        object CBSUBCUENTA19: TwwDBLookupCombo
+          Left = 19
+          Top = 90
+          Width = 96
+          Height = 21
+          AutoSize = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          CharCase = ecUpperCase
+          DropDownAlignment = taLeftJustify
+          Selected.Strings = (
+            'SUBCUENTA'#9'10'#9'SUBCUENTA'
+            'DESCRIPCION'#9'40'#9'DESCRIPCION')
+          DataField = 'SCTANOMSST'
+          DataSource = DSFichero
+          LookupTable = DMContaRef.QSubCuentas
+          LookupField = 'SUBCUENTA'
+          Options = [loColLines, loTitles]
+          Style = csDropDownList
+          ParentFont = False
+          TabOrder = 4
+          AutoDropDown = True
+          ShowButton = True
+          PreciseEditRegion = False
+          AllowClearKey = True
+          ShowMatchText = True
+        end
+        object wwDBLookupCombo49: TwwDBLookupCombo
+          Left = 114
+          Top = 90
+          Width = 252
+          Height = 21
+          AutoSize = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          CharCase = ecUpperCase
+          DropDownAlignment = taLeftJustify
+          Selected.Strings = (
+            'DESCRIPCION'#9'40'#9'DESCRIPCION'
+            'SUBCUENTA'#9'10'#9'SUBCUENTA')
+          DataField = 'SCTANOMSST'
+          DataSource = DSFichero
+          LookupTable = DMContaRef.QSubCuentasDesc
+          LookupField = 'SUBCUENTA'
+          Options = [loColLines, loTitles]
+          Style = csDropDownList
+          ParentFont = False
+          TabOrder = 5
+          AutoDropDown = True
+          ShowButton = True
+          PreciseEditRegion = False
+          AllowClearKey = True
+          ShowMatchText = True
+        end
+        object CBSUBCUENTA20: TwwDBLookupCombo
+          Left = 387
+          Top = 90
+          Width = 96
+          Height = 21
+          AutoSize = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          CharCase = ecUpperCase
+          DropDownAlignment = taLeftJustify
+          Selected.Strings = (
+            'SUBCUENTA'#9'10'#9'SUBCUENTA'
+            'DESCRIPCION'#9'40'#9'DESCRIPCION')
+          DataField = 'SCTANOMIRPF'
+          DataSource = DSFichero
+          LookupTable = DMContaRef.QSubCuentas
+          LookupField = 'SUBCUENTA'
+          Options = [loColLines, loTitles]
+          Style = csDropDownList
+          ParentFont = False
+          TabOrder = 6
+          AutoDropDown = True
+          ShowButton = True
+          PreciseEditRegion = False
+          AllowClearKey = True
+          ShowMatchText = True
+        end
+        object wwDBLookupCombo51: TwwDBLookupCombo
+          Left = 481
+          Top = 90
+          Width = 252
+          Height = 21
+          AutoSize = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          CharCase = ecUpperCase
+          DropDownAlignment = taLeftJustify
+          Selected.Strings = (
+            'DESCRIPCION'#9'40'#9'DESCRIPCION'
+            'SUBCUENTA'#9'10'#9'SUBCUENTA')
+          DataField = 'SCTANOMIRPF'
+          DataSource = DSFichero
+          LookupTable = DMContaRef.QSubCuentasDesc
+          LookupField = 'SUBCUENTA'
+          Options = [loColLines, loTitles]
+          Style = csDropDownList
+          ParentFont = False
+          TabOrder = 7
+          AutoDropDown = True
+          ShowButton = True
+          PreciseEditRegion = False
+          AllowClearKey = True
+          ShowMatchText = True
+        end
+        object CBSUBCUENTA21: TwwDBLookupCombo
+          Left = 19
+          Top = 139
+          Width = 96
+          Height = 21
+          AutoSize = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          CharCase = ecUpperCase
+          DropDownAlignment = taLeftJustify
+          Selected.Strings = (
+            'SUBCUENTA'#9'10'#9'SUBCUENTA'
+            'DESCRIPCION'#9'40'#9'DESCRIPCION')
+          DataField = 'SCTANOMPAGO'
+          DataSource = DSFichero
+          LookupTable = DMContaRef.QSubCTANominas
+          LookupField = 'SUBCUENTA'
+          Options = [loColLines, loTitles]
+          Style = csDropDownList
+          ParentFont = False
+          TabOrder = 8
+          AutoDropDown = True
+          ShowButton = True
+          PreciseEditRegion = False
+          AllowClearKey = True
+          ShowMatchText = True
+        end
+        object wwDBLookupCombo53: TwwDBLookupCombo
+          Left = 114
+          Top = 139
+          Width = 252
+          Height = 21
+          AutoSize = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          CharCase = ecUpperCase
+          DropDownAlignment = taLeftJustify
+          Selected.Strings = (
+            'DESCRIPCION'#9'40'#9'DESCRIPCION'
+            'SUBCUENTA'#9'10'#9'SUBCUENTA')
+          DataField = 'SCTANOMPAGO'
+          DataSource = DSFichero
+          LookupTable = DMContaRef.QSubCTANominasDesc
+          LookupField = 'SUBCUENTA'
+          Options = [loColLines, loTitles]
+          Style = csDropDownList
+          ParentFont = False
+          TabOrder = 9
+          AutoDropDown = True
+          ShowButton = True
+          PreciseEditRegion = False
+          AllowClearKey = True
+          ShowMatchText = True
+        end
+        object wwDBLookupCombo55: TwwDBLookupCombo
+          Left = 387
+          Top = 139
+          Width = 346
+          Height = 21
+          AutoSize = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          CharCase = ecUpperCase
+          DropDownAlignment = taLeftJustify
+          Selected.Strings = (
+            'DESCRIPCION'#9'35'#9'DESCRIPCION'#9'F'
+            'ID_CONCEPTOS'#9'3'#9'CONCEPTO'#9'F')
+          DataField = 'CTONOMT'
+          DataSource = DSFichero
+          LookupTable = DMContaRef.QConceptosDesc
+          LookupField = 'ID_CONCEPTOS'
+          Options = [loColLines, loTitles]
+          Style = csDropDownList
+          ParentFont = False
+          TabOrder = 10
+          AutoDropDown = True
+          ShowButton = True
+          PreciseEditRegion = False
+          AllowClearKey = True
+          ShowMatchText = True
+        end
+        object DBCheckBox7: TDBCheckBox
+          Left = 19
+          Top = 174
+          Width = 193
+          Height = 17
+          Caption = 'Asiento n'#243'mina individualizado'
+          DataField = 'ASIENTO_NOMINA_INDIVIDUAL'
+          DataSource = DSFichero
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clNavy
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 11
+          ValueChecked = 'S'
+          ValueUnchecked = 'N'
+        end
+        object CBSUBCUENTA39: TwwDBLookupCombo
+          Left = 387
+          Top = 40
+          Width = 96
+          Height = 21
+          AutoSize = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          CharCase = ecUpperCase
+          DropDownAlignment = taLeftJustify
+          Selected.Strings = (
+            'SUBCUENTA'#9'10'#9'SUBCUENTA'
+            'DESCRIPCION'#9'40'#9'DESCRIPCION')
+          DataField = 'SCTAOTRASREMUN'
+          DataSource = DSFichero
+          LookupTable = DMContaRef.QSubCTAGastos
+          LookupField = 'SUBCUENTA'
+          Options = [loColLines, loTitles]
+          Style = csDropDownList
+          ParentFont = False
+          TabOrder = 2
+          AutoDropDown = True
+          ShowButton = True
+          PreciseEditRegion = False
+          AllowClearKey = True
+          ShowMatchText = True
+        end
+        object wwDBLookupCombo35: TwwDBLookupCombo
+          Left = 481
+          Top = 40
+          Width = 252
+          Height = 21
+          AutoSize = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          CharCase = ecUpperCase
+          DropDownAlignment = taLeftJustify
+          Selected.Strings = (
+            'DESCRIPCION'#9'40'#9'DESCRIPCION'
+            'SUBCUENTA'#9'10'#9'SUBCUENTA')
+          DataField = 'SCTAOTRASREMUN'
+          DataSource = DSFichero
+          LookupTable = DMContaRef.QSubCTAGastosDesc
+          LookupField = 'SUBCUENTA'
+          Options = [loColLines, loTitles]
+          Style = csDropDownList
+          ParentFont = False
+          TabOrder = 3
+          AutoDropDown = True
+          ShowButton = True
+          PreciseEditRegion = False
+          AllowClearKey = True
+          ShowMatchText = True
+        end
+      end
+      object GroupBox8: TGroupBox
+        Left = 0
+        Top = 263
+        Width = 761
+        Height = 166
+        Align = alBottom
+        Caption = ' Asiento Empresa '
+        TabOrder = 1
+        object Label43: TLabel
+          Left = 123
+          Top = 21
+          Width = 230
+          Height = 14
+          Caption = 'Subcuenta de Gasto Seg. Social Empresa  '
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clNavy
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label44: TLabel
+          Left = 123
+          Top = 66
+          Width = 146
+          Height = 14
+          Caption = 'Subcuenta de Seg. Social   '
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clNavy
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label50: TLabel
+          Left = 123
+          Top = 113
+          Width = 119
+          Height = 14
+          Caption = 'Concepto de Asiento '
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clNavy
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object DBText23: TDBText
+          Left = 403
+          Top = 113
+          Width = 65
+          Height = 14
+          Alignment = taRightJustify
+          DataField = 'CTONOME'
+          DataSource = DSFichero
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clNavy
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object CBSUBCUENTA22: TwwDBLookupCombo
+          Left = 122
+          Top = 35
+          Width = 96
+          Height = 21
+          AutoSize = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          CharCase = ecUpperCase
+          DropDownAlignment = taLeftJustify
+          Selected.Strings = (
+            'SUBCUENTA'#9'10'#9'SUBCUENTA'
+            'DESCRIPCION'#9'40'#9'DESCRIPCION')
+          DataField = 'SCTANOMCARGO'
+          DataSource = DSFichero
+          LookupTable = DMContaRef.QSubCTAGastos
+          LookupField = 'SUBCUENTA'
+          Options = [loColLines, loTitles]
+          Style = csDropDownList
+          ParentFont = False
+          TabOrder = 0
+          AutoDropDown = True
+          ShowButton = True
+          PreciseEditRegion = False
+          AllowClearKey = True
+          ShowMatchText = True
+        end
+        object wwDBLookupCombo57: TwwDBLookupCombo
+          Left = 218
+          Top = 35
+          Width = 252
+          Height = 21
+          AutoSize = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          CharCase = ecUpperCase
+          DropDownAlignment = taLeftJustify
+          Selected.Strings = (
+            'DESCRIPCION'#9'40'#9'DESCRIPCION'
+            'SUBCUENTA'#9'10'#9'SUBCUENTA')
+          DataField = 'SCTANOMCARGO'
+          DataSource = DSFichero
+          LookupTable = DMContaRef.QSubCTAGastosDesc
+          LookupField = 'SUBCUENTA'
+          Options = [loColLines, loTitles]
+          Style = csDropDownList
+          ParentFont = False
+          TabOrder = 1
+          AutoDropDown = True
+          ShowButton = True
+          PreciseEditRegion = False
+          AllowClearKey = True
+          ShowMatchText = True
+        end
+        object CBSUBCUENTA23: TwwDBLookupCombo
+          Left = 122
+          Top = 80
+          Width = 96
+          Height = 21
+          AutoSize = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          CharCase = ecUpperCase
+          DropDownAlignment = taLeftJustify
+          Selected.Strings = (
+            'SUBCUENTA'#9'10'#9'SUBCUENTA'
+            'DESCRIPCION'#9'40'#9'DESCRIPCION')
+          DataField = 'SCTANOMSSE'
+          DataSource = DSFichero
+          LookupTable = DMContaRef.QSubCuentas
+          LookupField = 'SUBCUENTA'
+          Options = [loColLines, loTitles]
+          Style = csDropDownList
+          ParentFont = False
+          TabOrder = 2
+          AutoDropDown = True
+          ShowButton = True
+          PreciseEditRegion = False
+          AllowClearKey = True
+          ShowMatchText = True
+        end
+        object wwDBLookupCombo59: TwwDBLookupCombo
+          Left = 218
+          Top = 80
+          Width = 252
+          Height = 21
+          AutoSize = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          CharCase = ecUpperCase
+          DropDownAlignment = taLeftJustify
+          Selected.Strings = (
+            'DESCRIPCION'#9'40'#9'DESCRIPCION'
+            'SUBCUENTA'#9'10'#9'SUBCUENTA')
+          DataField = 'SCTANOMSSE'
+          DataSource = DSFichero
+          LookupTable = DMContaRef.QSubCuentasDesc
+          LookupField = 'SUBCUENTA'
+          Options = [loColLines, loTitles]
+          Style = csDropDownList
+          ParentFont = False
+          TabOrder = 3
+          AutoDropDown = True
+          ShowButton = True
+          PreciseEditRegion = False
+          AllowClearKey = True
+          ShowMatchText = True
+        end
+        object wwDBLookupCombo61: TwwDBLookupCombo
+          Left = 122
+          Top = 126
+          Width = 348
+          Height = 21
+          AutoSize = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          CharCase = ecUpperCase
+          DropDownAlignment = taLeftJustify
+          Selected.Strings = (
+            'DESCRIPCION'#9'35'#9'DESCRIPCION'#9'F'
+            'ID_CONCEPTOS'#9'3'#9'CONCEPTO'#9'F')
+          DataField = 'CTONOME'
+          DataSource = DSFichero
+          LookupTable = DMContaRef.QConceptosDesc
+          LookupField = 'ID_CONCEPTOS'
+          Options = [loColLines, loTitles]
+          Style = csDropDownList
+          ParentFont = False
+          TabOrder = 4
+          AutoDropDown = True
+          ShowButton = True
+          PreciseEditRegion = False
+          AllowClearKey = True
+          ShowMatchText = True
         end
       end
     end
-    object Cierre: TOvcTabPage
-      Tag = 1
-      Caption = 'Cierre &Ejercicio'
-      TabColor = 14275008
-      TextColor = clNavy
+    object TabSheetCierreEjercicio: TTabSheet
+      Caption = 'Cierre Ejercicio'
+      ImageIndex = 2
       object GroupBox12: TGroupBox
         Left = 40
         Top = 56
@@ -2556,11 +2310,9 @@ object WParametrizacion: TWParametrizacion
         end
       end
     end
-    object Documentos: TOvcTabPage
-      Tag = 1
-      Caption = '&Documentos'
-      TabColor = 14275008
-      TextColor = clNavy
+    object TabSheetDocumentos: TTabSheet
+      Caption = 'Documentos'
+      ImageIndex = 3
       object GroupBox3: TGroupBox
         Left = 34
         Top = 129
@@ -2686,85 +2438,52 @@ object WParametrizacion: TWParametrizacion
             NumGlyphs = 2
             OnClick = PermSP347Click
           end
-          object OvcDbPictureField5: TOvcDbPictureField
+          object OvcDbPictureField5: TDBEdit
             Left = 192
             Top = 19
             Width = 442
             Height = 20
+            AutoSize = False
             DataField = 'DOCCLIENTE'
             DataSource = DSFichero
-            FieldType = ftString
-            AutoSize = False
-            CaretOvr.Shape = csBlock
-            EFColors.Disabled.BackColor = clWindow
-            EFColors.Disabled.TextColor = clGrayText
-            EFColors.Error.BackColor = clRed
-            EFColors.Error.TextColor = clBlack
-            EFColors.Highlight.BackColor = clHighlight
-            EFColors.Highlight.TextColor = clHighlightText
-            Epoch = 1900
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clBlack
             Font.Height = -11
             Font.Name = 'Arial'
             Font.Style = []
-            MaxLength = 100
             ParentFont = False
-            PictureMask = 'X'
             TabOrder = 0
           end
-          object OvcDbPictureField7: TOvcDbPictureField
+          object OvcDbPictureField7: TDBEdit
             Left = 192
             Top = 46
             Width = 442
             Height = 20
+            AutoSize = False
             DataField = 'DOCPROVEEDOR'
             DataSource = DSFichero
-            FieldType = ftString
-            AutoSize = False
-            CaretOvr.Shape = csBlock
-            EFColors.Disabled.BackColor = clWindow
-            EFColors.Disabled.TextColor = clGrayText
-            EFColors.Error.BackColor = clRed
-            EFColors.Error.TextColor = clBlack
-            EFColors.Highlight.BackColor = clHighlight
-            EFColors.Highlight.TextColor = clHighlightText
-            Epoch = 1900
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clBlack
             Font.Height = -11
             Font.Name = 'Arial'
             Font.Style = []
-            MaxLength = 100
             ParentFont = False
-            PictureMask = 'X'
             TabOrder = 1
           end
-          object OvcDbPictureField8: TOvcDbPictureField
+          object OvcDbPictureField8: TDBEdit
             Left = 192
             Top = 73
             Width = 442
             Height = 20
+            AutoSize = False
             DataField = 'DOC347'
             DataSource = DSFichero
-            FieldType = ftString
-            AutoSize = False
-            CaretOvr.Shape = csBlock
-            EFColors.Disabled.BackColor = clWindow
-            EFColors.Disabled.TextColor = clGrayText
-            EFColors.Error.BackColor = clRed
-            EFColors.Error.TextColor = clBlack
-            EFColors.Highlight.BackColor = clHighlight
-            EFColors.Highlight.TextColor = clHighlightText
-            Epoch = 1900
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clBlack
             Font.Height = -11
             Font.Name = 'Arial'
             Font.Style = []
-            MaxLength = 100
             ParentFont = False
-            PictureMask = 'X'
             TabOrder = 2
           end
         end
@@ -2784,14 +2503,14 @@ object WParametrizacion: TWParametrizacion
     end
   end
   object Panel5: TPanel
-    Left = 782
+    Left = 911
     Top = 10
     Width = 10
     Height = 484
     Align = alRight
     BevelOuter = bvNone
     Color = 10720647
-    TabOrder = 1
+    TabOrder = 0
   end
   object Panel3: TPanel
     Left = 0
@@ -2801,572 +2520,209 @@ object WParametrizacion: TWParametrizacion
     Align = alLeft
     BevelOuter = bvNone
     Color = 10720647
-    TabOrder = 2
+    TabOrder = 1
   end
   object Panel4: TPanel
     Left = 0
     Top = 494
-    Width = 792
+    Width = 921
     Height = 10
     Align = alBottom
     BevelOuter = bvNone
     Color = 10720647
-    TabOrder = 3
-  end
-  object fcIBCerrar: TfcImageBtn
-    Left = 749
-    Top = 13
-    Width = 24
-    Height = 17
-    Cursor = crHandPoint
-    Color = clNone
-    DitherColor = clWhite
-    DitherStyle = dsDither
-    Image.Data = {
-      424DFE0400000000000036000000280000001800000011000000010018000000
-      0000C8040000000000000000000000000000000000007F645A62473D42281C35
-      1B0F3C2216472D21472F23432B1F331D112D170B342114463326473427382518
-      362314442F204A3625453120402C1A3D2C193D2D1C3B2D1B3427172D2214997F
-      798369626B50465E42375B3E30593C2E53382A4F35294B3327564035533F3441
-      2D22473125523B2C5138285C443254402E533F2D48331E422D18473321412E1F
-      34251C352A22C3A7A0B3968D997C6E8365547B5A4A7F5F4C8564548568598D72
-      648B7367826A5E745C50846B5B927867886D59836853836B558C765D8C735981
-      684E7A5F4A624B3B47342C3F2F28D9B8A8D9B8A5CEAB97BD9981B58F77B69177
-      B08C74A4846D82624F8468579B8170B69C8BBA9F8B9A7D687B5C457E60459E80
-      63B69778C4A180BC9978A9886E8C6D58674C3E523A2ED5B09AE0BAA2E1B9A0D7
-      AF92D5AB8ED3AB8EC39C80A9866C4E2E1743240F735542BDA28DB497825F4128
-      391A015E3C1FB48F6DCAA37DD7AE87D2A883C19A7AA782687D5D4A5D4031DBB3
-      97E1B99DDDB396CFA483CEA180D4A988CEA787BF9A7E7B594142230C4D301B92
-      77628D705B46280F46270E896749D7AD88DDAF86DFAF85D8AA81CA9D7BB1866B
-      86614D5F3D2DE0B699E6BC9FE2B697D3A685CA9D7BCEA481D2AB8BD2AD91A586
-      6D6346314126124F3524452A16351A056E523ABD9D80DFB590D8A87ED5A379D3
-      A27AC69876AD8267845E4C5E3B2DDEB69AE3BB9EE4BB9BDBB08FCFA483CAA180
-      CCA688CCAB91BA9D888369584A33232F1A0B250E00452D1B927A66D0B299CDA7
-      84C3976EC89A71D2A57FC49879A47C637B5A4A5C3F31E5BEA2E0BA9CDCB295D4
-      AB8BCAA180C39C7CC49F83C5A68DD2B4A1927A684631222411022D1809604C3B
-      A7917FC3A991CBA684C19871CFA47DDFB590C9A2829E7A627758495B4135E1BA
-      9EE2BC9ED8AE91C49B7BC09776CCA585D0AC8EC7A98EB295806F57453C271838
-      25163F2A1B4834237B6553BEA48CC4A481C8A47CCDA67FD2AB85C7A181A5846A
-      765A49543D2EDDB598E3BB9EE0B797D5AA89D0A683D3AA89CBA585B9997C8266
-      4E462E18452F1D796553735D4B3A220E452E188F775BCFB18ED0AC86CDA981CB
-      A680BF9C7AA28265785D495A4131DFB696E3BA99E2B895DAAE89D6AB84D3A984
-      C49E7BB18E6D694B2E43280E654B33B49C84A98F774F361C3D2207795D3ECBAE
-      89CCAC83CBA87DC8A47CBE9A76A381637A5C435C3F2AE4BD9DE1BB99D9B18ECF
-      A580CEA37CCEA57EC59F7CB895738D6E4F7E6146957A60C0A78DC0A58A937759
-      816445957957BB9D7AC1A17DCAA77FCCA880C59F7CA986657C5B41573821E9C7
-      AAE5C1A3DBB595D0AA88CFA784D2AC89D2AE8ACCAB8AC8AA8DC2A58ABFA48AC2
-      A98FC9AE93CAAE90C7AB89C5A987BFA385C7AA8BD1B18ED6B28ED0AA88B89274
-      8A664E61412AECCDB6EBCCB3E8C7ADE4C2A4E2BF9EE3C09FE2C0A2DEC0A3EDD0
-      B5E0C7ADD6BEA6D5BDA5D9C0A6DBC1A3DFC3A4E3C7A9D8C0A8DEC4ACE2C4A9E0
-      BEA0DBB799CCA78DA6846D82614DEBD2C2EFD5C4F4D9C5F3D7BFEFD1B8EBCEB3
-      EBCDB4EAD0B8F0D8C2E3CEB9E2CCBAE9D4BFE9D2BCE0C8B0E4CCB0EDD6BCE6D2
-      C1EBD4C5EDD2BEEACAB3E9C7B0E3C0ACC8A696A98879EBD5C9F2DBCCF8DFCFF6
-      DDC9F2D5C0ECD0B8ECD1BCF0D8C2EBD5C3E6D2C0E7D5C4ECDBC8F0DAC8EED7C1
-      F1DAC0F7E0CAE2CFC2E9D5CAF0D5C7F2D2BFF6D5C2F5D4C1DEBDAEC0A093}
-    ParentClipping = False
-    ShadeStyle = fbsNormal
-    TabOrder = 4
-    TextOptions.Alignment = taCenter
-    TextOptions.VAlignment = vaVCenter
-    TransparentColor = clNone
-    OnClick = fcIBCerrarClick
-    RegionData = {
-      4000000020000000010000000200000020000000000000000000000018000000
-      1100000001000000000000001800000001000000000000000100000018000000
-      11000000}
-    DownRegionData = {00000000}
-  end
-  object BtnEdtAceptar: TfcImageBtn
-    Left = 598
-    Top = 460
-    Width = 83
-    Height = 25
-    Cursor = crHandPoint
-    Caption = 'Ac&eptar'
-    Color = clNone
-    DitherColor = clWhite
-    DitherStyle = dsDither
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clNavy
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    Image.Data = {
-      424D5E1A0000000000003600000028000000520000001B000000010018000000
-      0000281A0000000000000000000000000000000000006B5D526B5D526B5D526B
-      5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
-      6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
-      526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B
-      5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
-      6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
-      526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B
-      5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
-      6B5D526B5D526B5D526B5D5200006B5D526B5D526B5D526B5D526B5D526B5D52
-      6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
-      526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B
-      5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
-      6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
-      526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B
-      5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
-      6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
-      526B5D5200006B5D526B5D52A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A596846B5D526B5D5200006B5D
-      526B5D52A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A596846B5D526B5D5200006B5D526B5D52A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A596846B5D526B5D5200006B5D526B5D52A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A596846B5D
-      526B5D5200006B5D526B5D52A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A596846B5D526B5D5200006B5D
-      526B5D52A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A596846B5D526B5D5200006B5D526B5D52A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A596846B5D526B5D5200006B5D526B5D52A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A596846B5D
-      526B5D5200006B5D526B5D52A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A596846B5D526B5D5200006B5D
-      526B5D52A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A596846B5D526B5D5200006B5D526B5D52A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A596846B5D526B5D5200006B5D526B5D52A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A596846B5D
-      526B5D5200006B5D526B5D52A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A596846B5D526B5D5200006B5D
-      526B5D52A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A596846B5D526B5D5200006B5D526B5D52A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A596846B5D526B5D5200006B5D526B5D52A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A596846B5D
-      526B5D5200006B5D526B5D52A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A596846B5D526B5D5200006B5D
-      526B5D52A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A596846B5D526B5D5200006B5D526B5D52A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A596846B5D526B5D5200006B5D526B5D52A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A596846B5D
-      526B5D5200006B5D526B5D52A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A596846B5D526B5D5200006B5D
-      526B5D52A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A596846B5D526B5D5200006B5D526B5D52A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A596846B5D526B5D5200006B5D526B5D526B5D526B5D526B5D526B5D52
-      6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
-      526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B
-      5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
-      6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
-      526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B
-      5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
-      6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
-      526B5D5200006B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
-      526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B
-      5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
-      6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
-      526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B
-      5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
-      6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
-      526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
-    NumGlyphs = 0
-    ParentClipping = False
-    ParentFont = False
-    ShadeStyle = fbsNormal
-    TabOrder = 5
-    TextOptions.Alignment = taCenter
-    TextOptions.VAlignment = vaVCenter
-    TransparentColor = clLime
-    OnClick = BtnEdtAceptarClick
-    RegionData = {
-      3000000020000000010000000100000010000000000000000000000053000000
-      1900000000000000000000005300000019000000}
-    DownRegionData = {00000000}
-  end
-  object BtnEdtCancelar: TfcImageBtn
-    Left = 689
-    Top = 460
-    Width = 83
-    Height = 25
-    Cursor = crHandPoint
-    Caption = '&Cancelar'
-    Color = clNone
-    DitherColor = clWhite
-    DitherStyle = dsDither
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clNavy
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    Image.Data = {
-      424D5E1A0000000000003600000028000000520000001B000000010018000000
-      0000281A0000000000000000000000000000000000006B5D526B5D526B5D526B
-      5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
-      6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
-      526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B
-      5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
-      6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
-      526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B
-      5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
-      6B5D526B5D526B5D526B5D5200006B5D526B5D526B5D526B5D526B5D526B5D52
-      6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
-      526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B
-      5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
-      6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
-      526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B
-      5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
-      6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
-      526B5D5200006B5D526B5D52A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A596846B5D526B5D5200006B5D
-      526B5D52A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A596846B5D526B5D5200006B5D526B5D52A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A596846B5D526B5D5200006B5D526B5D52A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A596846B5D
-      526B5D5200006B5D526B5D52A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A596846B5D526B5D5200006B5D
-      526B5D52A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A596846B5D526B5D5200006B5D526B5D52A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A596846B5D526B5D5200006B5D526B5D52A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A596846B5D
-      526B5D5200006B5D526B5D52A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A596846B5D526B5D5200006B5D
-      526B5D52A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A596846B5D526B5D5200006B5D526B5D52A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A596846B5D526B5D5200006B5D526B5D52A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A596846B5D
-      526B5D5200006B5D526B5D52A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A596846B5D526B5D5200006B5D
-      526B5D52A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A596846B5D526B5D5200006B5D526B5D52A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A596846B5D526B5D5200006B5D526B5D52A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A596846B5D
-      526B5D5200006B5D526B5D52A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A596846B5D526B5D5200006B5D
-      526B5D52A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A596846B5D526B5D5200006B5D526B5D52A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A596846B5D526B5D5200006B5D526B5D52A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A596846B5D
-      526B5D5200006B5D526B5D52A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A596846B5D526B5D5200006B5D
-      526B5D52A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A596846B5D526B5D5200006B5D526B5D52A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A596
-      84A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684A5
-      9684A59684A59684A59684A59684A59684A59684A59684A59684A59684A59684
-      A59684A596846B5D526B5D5200006B5D526B5D526B5D526B5D526B5D526B5D52
-      6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
-      526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B
-      5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
-      6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
-      526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B
-      5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
-      6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
-      526B5D5200006B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
-      526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B
-      5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
-      6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
-      526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B
-      5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
-      6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
-      526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
-    NumGlyphs = 0
-    ParentClipping = False
-    ParentFont = False
-    ShadeStyle = fbsNormal
-    TabOrder = 6
-    TextOptions.Alignment = taCenter
-    TextOptions.VAlignment = vaVCenter
-    TransparentColor = clLime
-    OnClick = BtnEdtCancelarClick
-    RegionData = {
-      3000000020000000010000000100000010000000000000000000000053000000
-      1900000000000000000000005300000019000000}
-    DownRegionData = {00000000}
+    TabOrder = 2
   end
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 792
+    Width = 921
     Height = 10
     Align = alTop
     BevelOuter = bvNone
     Color = 10720647
-    TabOrder = 7
+    TabOrder = 3
+  end
+  object PnlBtn: TPanel
+    Left = 792
+    Top = 10
+    Width = 119
+    Height = 484
+    Align = alRight
+    BevelInner = bvLowered
+    BorderStyle = bsSingle
+    Color = clSilver
+    TabOrder = 4
+    object BtnCancelar: TBitBtn
+      Left = 7
+      Top = 140
+      Width = 98
+      Height = 25
+      Caption = '&Cancelar'
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+      OnClick = BtnCancelarClick
+      Glyph.Data = {
+        36060000424D3606000000000000360400002800000020000000100000000100
+        0800000000000002000000000000000000000001000000000000000000000000
+        80000080000000808000800000008000800080800000C0C0C000C0DCC000F0CA
+        A6000020400000206000002080000020A0000020C0000020E000004000000040
+        20000040400000406000004080000040A0000040C0000040E000006000000060
+        20000060400000606000006080000060A0000060C0000060E000008000000080
+        20000080400000806000008080000080A0000080C0000080E00000A0000000A0
+        200000A0400000A0600000A0800000A0A00000A0C00000A0E00000C0000000C0
+        200000C0400000C0600000C0800000C0A00000C0C00000C0E00000E0000000E0
+        200000E0400000E0600000E0800000E0A00000E0C00000E0E000400000004000
+        20004000400040006000400080004000A0004000C0004000E000402000004020
+        20004020400040206000402080004020A0004020C0004020E000404000004040
+        20004040400040406000404080004040A0004040C0004040E000406000004060
+        20004060400040606000406080004060A0004060C0004060E000408000004080
+        20004080400040806000408080004080A0004080C0004080E00040A0000040A0
+        200040A0400040A0600040A0800040A0A00040A0C00040A0E00040C0000040C0
+        200040C0400040C0600040C0800040C0A00040C0C00040C0E00040E0000040E0
+        200040E0400040E0600040E0800040E0A00040E0C00040E0E000800000008000
+        20008000400080006000800080008000A0008000C0008000E000802000008020
+        20008020400080206000802080008020A0008020C0008020E000804000008040
+        20008040400080406000804080008040A0008040C0008040E000806000008060
+        20008060400080606000806080008060A0008060C0008060E000808000008080
+        20008080400080806000808080008080A0008080C0008080E00080A0000080A0
+        200080A0400080A0600080A0800080A0A00080A0C00080A0E00080C0000080C0
+        200080C0400080C0600080C0800080C0A00080C0C00080C0E00080E0000080E0
+        200080E0400080E0600080E0800080E0A00080E0C00080E0E000C0000000C000
+        2000C0004000C0006000C0008000C000A000C000C000C000E000C0200000C020
+        2000C0204000C0206000C0208000C020A000C020C000C020E000C0400000C040
+        2000C0404000C0406000C0408000C040A000C040C000C040E000C0600000C060
+        2000C0604000C0606000C0608000C060A000C060C000C060E000C0800000C080
+        2000C0804000C0806000C0808000C080A000C080C000C080E000C0A00000C0A0
+        2000C0A04000C0A06000C0A08000C0A0A000C0A0C000C0A0E000C0C00000C0C0
+        2000C0C04000C0C06000C0C08000C0C0A000F0FBFF00A4A0A000808080000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00FDFDFDFDFD0B
+        0A0A0A0A0AFDFDFDFDFDFDFDFDFDFDA4A4A4A4A4A4FDFDFDFDFDFDFDFD010B01
+        010D0101010A0AFDFDFDFDFDFDA4A4A4A4A4A4A4A4A4A4FDFDFDFDFD01010E0E
+        0E0D0D0D0101010AFDFDFDFDA4A4070707A4A4A4A4A4A4A4FDFDFD010D0F0E0E
+        010A0A01010101010AFDFDA4A4070707A4A4A4A4A4A4A4A4A4FDFD010F0F0F0D
+        0BFDFD010A0101010AFDFDA4070707A4A4FDFDA4A4A4A4A4A4FD0C0D0F0F0E0F
+        0101FDFD010A0101010AA4A407070707A4A4FDFDA4A4A4A4A4A4010F0F0F010E
+        0F0101FDFD010101010AA4070707A40707A4A4FDFDA4A4A4A4A40B0F0F010D01
+        0E0F0101FDFD0A0D010AA40707A4A4A40707A4A4FDFDA4A4A4A40B0F0F01FD0D
+        010E0E0101FD0A0D010AA40707A4FDA4A40707A4A4FDA4A4A4A4010F170DFDFD
+        0D010E0E010B010E010AA40707A4FDFDA4A40707A4A4A407A4A40C0E170F01FD
+        FD0D010E0E0D0E0E010BA4070707A4FDFDA4A40707A40707A4A4FD0C17170F01
+        FDFD0C010E0E0E0E0BFDFDA4070707A4FDFDA4A407070707A4FDFD0C0E17170F
+        0D01010F0F0F0E0101FDFDA407070707A4A4A407070707A4A4FDFDFD0C0E1717
+        170F0F0F0F0F0D01FDFDFDFDA4070707070707070707A4A4FDFDFDFDFD0C0C0E
+        0F0F0F0E0D0101FDFDFDFDFDFDA4A40707070707A4A4A4FDFDFDFDFDFDFDFD0C
+        010B0B0101FDFDFDFDFDFDFDFDFDFDA4A4A4A4A4A4FDFDFDFDFD}
+      Layout = blGlyphRight
+      NumGlyphs = 2
+    end
+    object BtnAceptar: TBitBtn
+      Left = 7
+      Top = 168
+      Width = 98
+      Height = 25
+      Caption = '&Aceptar'
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 1
+      OnClick = BtnAceptarClick
+      Glyph.Data = {
+        36060000424D3606000000000000360400002800000020000000100000000100
+        0800000000000002000000000000000000000001000000000000000000000000
+        80000080000000808000800000008000800080800000C0C0C000C0DCC000F0CA
+        A6000020400000206000002080000020A0000020C0000020E000004000000040
+        20000040400000406000004080000040A0000040C0000040E000006000000060
+        20000060400000606000006080000060A0000060C0000060E000008000000080
+        20000080400000806000008080000080A0000080C0000080E00000A0000000A0
+        200000A0400000A0600000A0800000A0A00000A0C00000A0E00000C0000000C0
+        200000C0400000C0600000C0800000C0A00000C0C00000C0E00000E0000000E0
+        200000E0400000E0600000E0800000E0A00000E0C00000E0E000400000004000
+        20004000400040006000400080004000A0004000C0004000E000402000004020
+        20004020400040206000402080004020A0004020C0004020E000404000004040
+        20004040400040406000404080004040A0004040C0004040E000406000004060
+        20004060400040606000406080004060A0004060C0004060E000408000004080
+        20004080400040806000408080004080A0004080C0004080E00040A0000040A0
+        200040A0400040A0600040A0800040A0A00040A0C00040A0E00040C0000040C0
+        200040C0400040C0600040C0800040C0A00040C0C00040C0E00040E0000040E0
+        200040E0400040E0600040E0800040E0A00040E0C00040E0E000800000008000
+        20008000400080006000800080008000A0008000C0008000E000802000008020
+        20008020400080206000802080008020A0008020C0008020E000804000008040
+        20008040400080406000804080008040A0008040C0008040E000806000008060
+        20008060400080606000806080008060A0008060C0008060E000808000008080
+        20008080400080806000808080008080A0008080C0008080E00080A0000080A0
+        200080A0400080A0600080A0800080A0A00080A0C00080A0E00080C0000080C0
+        200080C0400080C0600080C0800080C0A00080C0C00080C0E00080E0000080E0
+        200080E0400080E0600080E0800080E0A00080E0C00080E0E000C0000000C000
+        2000C0004000C0006000C0008000C000A000C000C000C000E000C0200000C020
+        2000C0204000C0206000C0208000C020A000C020C000C020E000C0400000C040
+        2000C0404000C0406000C0408000C040A000C040C000C040E000C0600000C060
+        2000C0604000C0606000C0608000C060A000C060C000C060E000C0800000C080
+        2000C0804000C0806000C0808000C080A000C080C000C080E000C0A00000C0A0
+        2000C0A04000C0A06000C0A08000C0A0A000C0A0C000C0A0E000C0C00000C0C0
+        2000C0C04000C0C06000C0C08000C0C0A000F0FBFF00A4A0A000808080000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00FDFD92929292
+        9292929292FDFDFDFDFDFDFD070707070707070707FDFDFDFDFDFDFD92E4E4E4
+        0B9CE4E492FDFDFDFDFDFDFD07070707A407070707FDFDFDFDFDFDFD92EDED0C
+        0D0BEDE492FDFDFDFDFDFDFD070707A4A4A4070707FDFDFDFDFDFDFD929B0C0E
+        0E0D4BE492FDFDFDFDFDFDFD0707A4FFFFA4070707FDFDFDFDFDFDFD92010E0D
+        540E015392FDFDFDFDFDFDFD07A4FFA4A4FFA40707FDFDFDFDFDFDFD0B0F0D55
+        A5540E0149FDFDFDFDFDFDFDA4FFA40707A4FFA4FFFDFDFDFDFDFD0B0F0F555D
+        FF5D0D0E0BFDFDFDFDFDFDA4FFFFA407FF07A4FFA4FDFDFDFDFD0B0E0F0E9CE4
+        E4E44C0E0BFDFDFDFDFDA4FFFFA40707070707FFA4FDFDFDFDFD0B0D0E0B9292
+        92924A0C0F0BFDFDFDFDA4A4FFA40707070707A4FFA4FDFDFDFDFD0B0BFDFDFD
+        FDFDFD0B0D0E0BFDFDFDFDA4A4FDFDFDFDFDFDA4A4FFA4FDFDFDFDFDFDFDFDFD
+        FDFDFDFD0B0F0E0BFDFDFDFDFDFDFDFDFDFDFDFDA4FFFFA4FDFDFDFDFDFDFDFD
+        FDFDFDFD0B0C0F0D0BFDFDFDFDFDFDFDFDFDFDFDA4A4FFA4A4FDFDFDFDFDFDFD
+        FDFDFDFDFD0B0F0F0BFDFDFDFDFDFDFDFDFDFDFDFDA4FFFFA4FDFDFDFDFDFDFD
+        FDFDFDFDFDFD0B0F0E0BFDFDFDFDFDFDFDFDFDFDFDFDA4FFFFA4FDFDFDFDFDFD
+        FDFDFDFDFDFD0B0D0D0BFDFDFDFDFDFDFDFDFDFDFDFDA4A4A4A4FDFDFDFDFDFD
+        FDFDFDFDFDFDFD0B0BFDFDFDFDFDFDFDFDFDFDFDFDFDFDA4A4FD}
+      Layout = blGlyphRight
+      NumGlyphs = 2
+    end
+    object BtnEdit: TBitBtn
+      Left = 7
+      Top = 20
+      Width = 98
+      Height = 25
+      Caption = '&Editar'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
+      Glyph.Data = {
+        DE010000424DDE01000000000000760000002800000024000000120000000100
+        0400000000006801000000000000000000001000000000000000000000000000
+        8000008000000080800080000000800080008080000080808000C0C0C0000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+        3333333333333333333333330000333333333333333333333333333333333333
+        0000333333333333333333333333333333333333000033333333333333333333
+        3333333333333333000033333333333333333333333333333333333300003FFF
+        FFFFFFFFFFFFFF3FFFFFFFFFFFFFFFFF000033CCCCCCCCCCCCCCF33373333333
+        333333F30000333CCCCCCCCCCCCF33333733333333333F3300003333CCCCCCCC
+        CCF33333337333333333F333000033333CCCCCCCCF33333333373333333F3333
+        0000333333CCCCCCF33333333333733333F3333300003333333CCCCF33333333
+        333337333F333333000033333333CCF33333333333333373F333333300003333
+        33333F33333333333333333F3333333300003333333333333333333333333333
+        3333333300003333333333333333333333333333333333330000333333333333
+        3333333333333333333333330000333333333333333333333333333333333333
+        0000}
+      Layout = blGlyphRight
+      NumGlyphs = 2
+    end
   end
   object DSFichero: TDataSource
     AutoEdit = False

@@ -9,9 +9,9 @@ type
     LabelProfiles: TLabel;
     LabelUserProfiles: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure LabelMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
     procedure LabelEnterprisesMouseLeave(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure LabelEnterprisesMouseEnter(Sender: TObject);
   protected
   private
     function  AnyFormEditing:Boolean;
@@ -77,15 +77,6 @@ begin
    //{$ENDIF}
 end;
 
-procedure TFormMenuAdmin.LabelMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
-begin
-   LabelEnterprises.Font.Style  := [];
-   LabelUsers.Font.Style        := [];
-   LabelProfiles.Font.Style     := [];
-   LabelUserProfiles.Font.Style := [];
-   TLabel(Sender).Font.Style    := [fsUnderline];
-end;
-
 procedure TFormMenuAdmin.LabelEnterprisesMouseLeave(Sender: TObject);
 begin
    TLabel(Sender).Font.Style := [];
@@ -95,6 +86,15 @@ procedure TFormMenuAdmin.FormShow(Sender: TObject);
 begin
    Self.Top  := 0;
    Self.Left := 0;
+end;
+
+procedure TFormMenuAdmin.LabelEnterprisesMouseEnter(Sender: TObject);
+begin
+   LabelEnterprises.Font.Style  := [];
+   LabelUsers.Font.Style        := [];
+   LabelProfiles.Font.Style     := [];
+   LabelUserProfiles.Font.Style := [];
+   TLabel(Sender).Font.Style    := [fsUnderline];
 end;
 
 end.

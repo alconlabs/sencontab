@@ -37,7 +37,7 @@ object FormMenuAdmin: TFormMenuAdmin
     Font.Name = 'Arial'
     Font.Style = []
     ParentFont = False
-    OnMouseMove = LabelMouseMove
+    OnMouseEnter = LabelEnterprisesMouseEnter
     OnMouseLeave = LabelEnterprisesMouseLeave
   end
   object LabelUsers: TLabel
@@ -56,7 +56,7 @@ object FormMenuAdmin: TFormMenuAdmin
     ParentFont = False
     ParentShowHint = False
     ShowHint = False
-    OnMouseMove = LabelMouseMove
+    OnMouseEnter = LabelEnterprisesMouseEnter
     OnMouseLeave = LabelEnterprisesMouseLeave
   end
   object LabelProfiles: TLabel
@@ -77,7 +77,7 @@ object FormMenuAdmin: TFormMenuAdmin
     ParentFont = False
     ParentShowHint = False
     ShowHint = False
-    OnMouseMove = LabelMouseMove
+    OnMouseEnter = LabelEnterprisesMouseEnter
     OnMouseLeave = LabelEnterprisesMouseLeave
   end
   object LabelUserProfiles: TLabel
@@ -98,7 +98,7 @@ object FormMenuAdmin: TFormMenuAdmin
     ParentFont = False
     ParentShowHint = False
     ShowHint = False
-    OnMouseMove = LabelMouseMove
+    OnMouseEnter = LabelEnterprisesMouseEnter
     OnMouseLeave = LabelEnterprisesMouseLeave
   end
 end
