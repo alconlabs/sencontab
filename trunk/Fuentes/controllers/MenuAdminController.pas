@@ -8,8 +8,7 @@ uses Classes, DBController,
      UsersController,
      ProfilesController,
      UserClass;
-
-
+     
 type
   TMenuAdminController = class(TCustomController)
   private

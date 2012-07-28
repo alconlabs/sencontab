@@ -2,9 +2,17 @@ unit Utilidades;
 
 interface
 
-uses Windows, dbTables, db, Controls, Graphics, Classes;
+uses Windows, dbTables, db, Controls, Graphics, Classes, Menus;
 
 type TTipoCampo = (tcString, tcInteger, tcBoolean, tcFloat, tcDate);
+
+     TDelegate = class(TComponent)
+     private
+        FOnClick :TNotifyEvent;
+     public
+        property OnClick :TNotifyEvent read FOnClick write FOnClick stored False;
+        function Execute :Boolean;
+     end;
 
 procedure ccPlayKeystroke(Handle: HWND; VKChar: word; VKShift: Word);
 function  RevisaCadenaSQL(Cadena:string; TipoCampo:TTipoCampo;Conteniendo:Boolean):string;
@@ -25,6 +33,18 @@ procedure ccWriteText(      ACanvas :TCanvas; ARect     :TRect;  DX, DY: Integer
 
 implementation
 uses SysUtils, Messages, Math;
+
+{ TDelegate }
+
+function TDelegate.Execute:Boolean;
+begin
+   Result := Assigned(FOnClick);
+   
+   if Assigned(FOnClick) then begin
+      FOnClick(Self);
+   end;
+end;
+
 
 function ccFillField(Field :TStringField; Character :Char):string;
 var Mascara :string;

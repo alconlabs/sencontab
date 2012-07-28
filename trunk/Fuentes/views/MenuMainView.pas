@@ -4,13 +4,99 @@ uses Messages, SysUtils, Classes, Forms, Graphics, Buttons, Menus, ExtCtrls,
      ComCtrls, Controls, ImgList, StdCtrls, CustomView;
 type
   TFormMenuMain = class(TCustomView)
-    LabelEnterprises: TLabel;
-    LabelUsers: TLabel;
-    LabelUserProfiles: TLabel;
+    MainMenuOptions: TPopupMenu;
+    MenuItemMaestros: TMenuItem;
+    MenuItemTiposDiario: TMenuItem;
+    MenuItemFormasPago: TMenuItem;
+    MenuItemN994: TMenuItem;
+    MenuItemComerciales: TMenuItem;
+    MenuItem2997: TMenuItem;
+    MenuItemConceptos: TMenuItem;
+    MenuItemProvincias: TMenuItem;
+    MenuItemPaises: TMenuItem;
+    MenuItem29911: TMenuItem;
+    MenuItemSalir: TMenuItem;
+    MenuItemPlanContable: TMenuItem;
+    MenuItemTitulos: TMenuItem;
+    MenuItemGrupos: TMenuItem;
+    MenuItemCuentas: TMenuItem;
+    MenuItemSubCuentas: TMenuItem;
+    MenuItemN1: TMenuItem;
+    MenuItemImpresionPlanContable: TMenuItem;
+    MenuItemPlanAnalitica: TMenuItem;
+    MenuItemDelegaciones: TMenuItem;
+    MenuItemDepartamentos: TMenuItem;
+    MenuItemSecciones: TMenuItem;
+    MenuItemProyectos: TMenuItem;
+    MenuItemN6: TMenuItem;
+    MenuItemCuentasAnaliticas: TMenuItem;
+    MenuItemN13: TMenuItem;
+    MenuItemImpresionPlanAnalitica: TMenuItem;
+    MenuItemDiario: TMenuItem;
+    MenuItemCargaAsientos: TMenuItem;
+    MenuItemCargaRapidaAsientos: TMenuItem;
+    MenuItemFacturasVenta: TMenuItem;
+    MenuItemFacturasCompra: TMenuItem;
+    MenuItemCargaSimplificada: TMenuItem;
+    MenuItemNominas: TMenuItem;
+    MenuItemCobrosPagos: TMenuItem;
+    MenuItemN4: TMenuItem;
+    MenuItemListadoAsientos: TMenuItem;
+    MenuItemMayor: TMenuItem;
+    MenuItemN3: TMenuItem;
+    MenuItemRecalculoSaldos: TMenuItem;
+    MenuItemBorradoGeneralAsientos: TMenuItem;
+    MenuItemTraspasoApuntesEntreCuentas: TMenuItem;
+    MenuItemCopiaAsientosEntreEmpresas: TMenuItem;
+    MenuItemN5: TMenuItem;
+    MenuItemPunteoAutomaticoAsientos: TMenuItem;
+    MenuitemBalances: TMenuItem;
+    MenuItemSumasYSaldos: TMenuItem;
+    MenuItemSituacion: TMenuItem;
+    MenuItemPerdidasYGanancias: TMenuItem;
+    MenuItemN2: TMenuItem;
+    MenuItemAcumulados: TMenuItem;
+    MenuItemExplotacion: TMenuItem;
+    MenuItemImpuestos: TMenuItem;
+    MenuItemIVA: TMenuItem;
+    MenuItemModelo300: TMenuItem;
+    MenuItemLibroFacturasEmitidas: TMenuItem;
+    MenuItemLibroFacturasRecibidas: TMenuItem;
+    MenuItemLibroFacturasBienesInversion: TMenuItem;
+    MenuItemN10: TMenuItem;
+    MenuItemOperacionesTerceros347: TMenuItem;
+    MenuItemOperacionesCEE: TMenuItem;
+    MenuItemN11: TMenuItem;
+    MenuItemIRPF110: TMenuItem;
+    MenuItemIRPF115: TMenuItem;
+    MenuItemN12: TMenuItem;
+    MenuItemImpuestoSociedades202: TMenuItem;
+    MenuItemGestion: TMenuItem;
+    MenuItemCarteraEfectos: TMenuItem;
+    MenuItemN16: TMenuItem;
+    MenuItemAmortizaciones: TMenuItem;
+    MenuItemN18: TMenuItem;
+    MenuItemCierreEjercicio: TMenuItem;
+    MenuItemProcesoAutomatizado: TMenuItem;
+    MenuItemHerramientas: TMenuItem;
+    MenuItemEnlaceContable: TMenuItem;
+    MenuItemParametrizacion: TMenuItem;
+    MenuItemGeneral: TMenuItem;
+    MenuItemFacturacion: TMenuItem;
+    MenuItemImportacion: TMenuItem;
+    MenuItemTraspasoDatos: TMenuItem;
+    MenuItemActualizacion: TMenuItem;
+    MenuItemVentana: TMenuItem;
+    MenuItemAyuda: TMenuItem;
+    MenuItemContabilidad: TMenuItem;
+    MenuItemN15: TMenuItem;
+    MenuItemConectarseA: TMenuItem;
+    MenuItemComprobarActualizaciones: TMenuItem;
+    MenuItemN14: TMenuItem;
+    MenuItemAcercaDe: TMenuItem;
+    TreeViewMenu: TTreeView;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure LabelEnterprisesMouseLeave(Sender: TObject);
-    procedure FormShow(Sender: TObject);
-    procedure LabelEnterprisesMouseEnter(Sender: TObject);
+    //procedure FormShow(Sender: TObject);
   protected
   private
     function  AnyFormEditing:Boolean;
@@ -76,23 +162,10 @@ begin
    //{$ENDIF}
 end;
 
-procedure TFormMenuMain.LabelEnterprisesMouseLeave(Sender: TObject);
-begin
-   TLabel(Sender).Font.Style := [];
-end;
-
-procedure TFormMenuMain.FormShow(Sender: TObject);
-begin
-   Self.Top  := 0;
-   Self.Left := 0;
-end;
-
-procedure TFormMenuMain.LabelEnterprisesMouseEnter(Sender: TObject);
-begin
-   LabelEnterprises.Font.Style  := [];
-   LabelUsers.Font.Style        := [];
-   LabelUserProfiles.Font.Style := [];
-   TLabel(Sender).Font.Style    := [fsUnderline];
-end;
+//procedure TFormMenuMain.FormShow(Sender: TObject);
+//begin
+//   Self.Top  := 0;
+//   Self.Left := 0;
+//end;
 
 end.

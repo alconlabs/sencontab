@@ -289,7 +289,7 @@ end;
 
 procedure TWParametrizacion.FormShow(Sender: TObject);
 begin
-   SetBounds(0, FormPrincipal.Panel1.Top + FormPrincipal.Panel1.Height + 1, Width, Height);
+   //SetBounds(0, FormPrincipal.Panel1.Top + FormPrincipal.Panel1.Height + 1, Width, Height);
 
    DMRef.QParametros.Close;
    DMRef.QParametros.Open;

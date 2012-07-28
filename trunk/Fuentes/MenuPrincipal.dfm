@@ -1,6 +1,6 @@
 object FormPrincipal: TFormPrincipal
-  Left = 396
-  Top = 251
+  Left = 740
+  Top = 299
   Width = 638
   Height = 436
   BorderIcons = [biSystemMenu, biMinimize, biMaximize, biHelp]
@@ -186,7 +186,6 @@ object FormPrincipal: TFormPrincipal
       Layout = blGlyphRight
       ParentShowHint = False
       ShowHint = True
-      OnClick = MenuItemCuentasCuentasClick
     end
     object BtnSubCuentas: TSpeedButton
       Left = 45
@@ -265,7 +264,6 @@ object FormPrincipal: TFormPrincipal
       Layout = blGlyphRight
       ParentShowHint = False
       ShowHint = True
-      OnClick = MenuItemSubCuentasClick
     end
     object BtnCargaAsientos: TSpeedButton
       Left = 127
@@ -344,7 +342,6 @@ object FormPrincipal: TFormPrincipal
       Layout = blGlyphRight
       ParentShowHint = False
       ShowHint = True
-      OnClick = MenuItemCargaAsientosClick
     end
     object BtnCargaNominas: TSpeedButton
       Left = 279
@@ -423,7 +420,6 @@ object FormPrincipal: TFormPrincipal
       Layout = blGlyphRight
       ParentShowHint = False
       ShowHint = True
-      OnClick = MenuItemNominasClick
     end
     object BtnListadoAsientos: TSpeedButton
       Left = 462
@@ -502,7 +498,6 @@ object FormPrincipal: TFormPrincipal
       Layout = blGlyphRight
       ParentShowHint = False
       ShowHint = True
-      OnClick = MenuItemListadoAsientosClick
     end
     object BtnListadoMayor: TSpeedButton
       Left = 500
@@ -581,7 +576,6 @@ object FormPrincipal: TFormPrincipal
       Layout = blGlyphRight
       ParentShowHint = False
       ShowHint = True
-      OnClick = MenuItemMayorClick
     end
     object BtnCargaFacturasCompra: TSpeedButton
       Left = 203
@@ -660,7 +654,6 @@ object FormPrincipal: TFormPrincipal
       Layout = blGlyphRight
       ParentShowHint = False
       ShowHint = True
-      OnClick = MenuItemFacturasCompraClick
     end
     object BtnCargaFacturasVenta: TSpeedButton
       Left = 165
@@ -739,7 +732,6 @@ object FormPrincipal: TFormPrincipal
       Layout = blGlyphRight
       ParentShowHint = False
       ShowHint = True
-      OnClick = MenuItemFacturasVentaClick
     end
     object BtnCargaSimplificada: TSpeedButton
       Left = 241
@@ -818,7 +810,6 @@ object FormPrincipal: TFormPrincipal
       Layout = blGlyphRight
       ParentShowHint = False
       ShowHint = True
-      OnClick = MenuItemCargaSimplificadaClick
     end
     object BtnCargaCobrosPagos: TSpeedButton
       Left = 317
@@ -897,7 +888,6 @@ object FormPrincipal: TFormPrincipal
       Layout = blGlyphRight
       ParentShowHint = False
       ShowHint = True
-      OnClick = MenuItemCobrosPagosClick
     end
   end
   object ImageList: TImageList
@@ -3020,7 +3010,7 @@ object FormPrincipal: TFormPrincipal
     OpenDataSource = False
     UserName = 'Enlace2'
     Left = 350
-    Top = 222
+    Top = 238
   end
   object MenuPrincipal: TMainMenu
     AutoHotkeys = maManual
@@ -3030,33 +3020,27 @@ object FormPrincipal: TFormPrincipal
       Caption = '&Maestros'
       object MenuItemTiposDiario: TMenuItem
         Caption = 'Tipos de Diario'
-        OnClick = MenuItemTiposDiarioClick
       end
       object MenuItemFormasPago: TMenuItem
         Caption = 'Formas de Pago'
-        OnClick = MenuItemFormasPagoClick
       end
       object MenuItemN994: TMenuItem
         Caption = '-'
       end
       object MenuItemComerciales: TMenuItem
         Caption = 'Comerciales'
-        OnClick = MenuItemComercialesClick
       end
       object MenuItem2997: TMenuItem
         Caption = '-'
       end
       object MenuItemConceptos: TMenuItem
         Caption = '&Conceptos'
-        OnClick = MenuItemConceptosClick
       end
       object MenuItemProvincias: TMenuItem
         Caption = 'Provincias'
-        OnClick = MenuItemProvinciasClick
       end
       object MenuItemPaises: TMenuItem
         Caption = 'Pa'#237'ses'
-        OnClick = MenuItemPaisesClick
       end
       object MenuItem29911: TMenuItem
         Caption = '-'
@@ -3070,88 +3054,71 @@ object FormPrincipal: TFormPrincipal
       Caption = 'Plan &Contable'
       object MenuItemTitulos: TMenuItem
         Caption = 'T'#237'tulos'
-        OnClick = MenuItemTitulosClick
       end
       object MenuItemGrupos: TMenuItem
         Caption = 'Grupos'
-        OnClick = MenuItemGruposClick
       end
       object MenuItemCuentas: TMenuItem
         Caption = 'Cuentas'
-        OnClick = MenuItemCuentasCuentasClick
       end
       object MenuItemSubCuentas: TMenuItem
         Caption = 'Subcuentas'
-        OnClick = MenuItemSubCuentasClick
       end
       object MenuItemN1: TMenuItem
         Caption = '-'
       end
       object MenuItemImpresionPlanContable: TMenuItem
         Caption = 'Impresi'#243'n Plan Contable'
-        OnClick = MenuItemImpresionPlanContableClick
       end
     end
     object MenuItemPlanAnalitica: TMenuItem
       Caption = '&Plan Anal'#237'tica'
       object MenuItemDelegaciones: TMenuItem
         Caption = 'Delegaciones'
-        OnClick = MenuItemDelegacionesClick
       end
       object MenuItemDepartamentos: TMenuItem
         Caption = 'Departamentos'
-        OnClick = MenuItemDepartamentosClick
       end
       object MenuItemSecciones: TMenuItem
         Caption = 'Secciones'
-        OnClick = MenuItemSeccionesClick
       end
       object MenuItemProyectos: TMenuItem
         Caption = 'Proyectos'
-        OnClick = MenuItemProyectosClick
       end
       object MenuItemN6: TMenuItem
         Caption = '-'
       end
       object MenuItemCuentasAnaliticas: TMenuItem
         Caption = 'Cuentas Anal'#237'ticas'
-        OnClick = MeMenuItemCuentasAnaliticasClick
       end
       object MenuItemN13: TMenuItem
         Caption = '-'
       end
       object MenuItemImpresionPlanAnalitica: TMenuItem
         Caption = 'Impresi'#243'n Plan Anal'#237'tica'
-        OnClick = MenuItemImpresionPlanAnaliticaClick
       end
     end
     object MenuItemDiario: TMenuItem
       Caption = '&Diario'
       object MenuItemCargaAsientos: TMenuItem
         Caption = 'Carga de asientos'
-        OnClick = MenuItemCargaAsientosClick
       end
       object MenuItemCargaRapidaAsientos: TMenuItem
         Caption = 'Carga R'#225'pida de Asientos'
         object MenuItemFacturasVenta: TMenuItem
           Caption = 'Facturas de Venta'
-          OnClick = MenuItemFacturasVentaClick
         end
         object MenuItemFacturasCompra: TMenuItem
           Caption = 'Facturas de Compra'
-          OnClick = MenuItemFacturasCompraClick
         end
         object MenuItemCargaSimplificada: TMenuItem
           Caption = 'Carga Simplificada'
-          OnClick = MenuItemCargaSimplificadaClick
         end
         object MenuItemNominas: TMenuItem
           Caption = 'N'#243'minas'
-          OnClick = MenuItemNominasClick
         end
         object MenuItemCobrosPagos: TMenuItem
           Caption = 'Cobros / Pagos'
-          OnClick = MenuItemCobrosPagosClick
         end
       end
       object MenuItemN4: TMenuItem
@@ -3159,63 +3126,51 @@ object FormPrincipal: TFormPrincipal
       end
       object MenuItemListadoAsientos: TMenuItem
         Caption = 'Listado de Asientos'
-        OnClick = MenuItemListadoAsientosClick
       end
       object MenuItemMayor: TMenuItem
         Caption = 'Mayor'
-        OnClick = MenuItemMayorClick
       end
       object MenuItemN3: TMenuItem
         Caption = '-'
       end
       object MenuItemRecalculoSaldos: TMenuItem
         Caption = 'Rec'#225'lculo de Saldos'
-        OnClick = MenuItemRecalculoSaldosClick
       end
       object MenuItemBorradoGeneralAsientos: TMenuItem
         Caption = 'Borrado General de Asientos'
-        OnClick = MenuItemBorradoGeneralAsientosClick
       end
       object MenuItemTraspasoApuntesEntreSubcuentas: TMenuItem
         Caption = 'Traspaso de Apuntes entre Subcuentas'
-        OnClick = MenuItemTraspasoApuntesEntreCuentasClick
       end
       object MenuItemCopiaAsientosEntreEmpresas: TMenuItem
         Caption = 'Copia de Asientos entre Empresas'
-        OnClick = MenuItemCopiaAsientosEntreEmpresas
       end
       object MenuItemN5: TMenuItem
         Caption = '-'
       end
       object MenuItemPunteoAutomaticoAsientos: TMenuItem
         Caption = 'Punteo Autom'#225'tico de Asientos'
-        OnClick = MenuItemPunteoAutomaticoAsientos
       end
     end
     object MenuitemBalances: TMenuItem
       Caption = '&Balances'
       object MenuItemSumasYSaldos: TMenuItem
         Caption = 'Sumas y Saldos'
-        OnClick = MenuItemSumasYSaldosClick
       end
       object MenuItemSituacion: TMenuItem
         Caption = 'Situaci'#243'n'
-        OnClick = MenuItemSituacionClick
       end
       object MenuItemPerdidasYGanancias: TMenuItem
         Caption = 'P'#233'rdidas y Ganancias'
-        OnClick = MenuItemPerdidasYGananciasClick
       end
       object MenuItemN2: TMenuItem
         Caption = '-'
       end
       object MenuItemAcumulados: TMenuItem
         Caption = 'Acumulados'
-        OnClick = MenuItemAcumuladosClick
       end
       object MenuItemExplotacion: TMenuItem
         Caption = 'Explotaci'#243'n'
-        OnClick = MenuItemExplotacionClick
       end
     end
     object MenuItemImpuestos: TMenuItem
@@ -3224,19 +3179,15 @@ object FormPrincipal: TFormPrincipal
         Caption = 'I.V.A.'
         object MenuItemModelo300: TMenuItem
           Caption = 'Modelo (300)'
-          OnClick = MenuItemModelo300Click
         end
         object MenuItemLibroFacturasEmitidas: TMenuItem
           Caption = 'Libro de Facturas Emitidas '
-          OnClick = MenuItemLibroFacturasEmitidasClick
         end
         object MenuItemLibroFacturasRecibidas: TMenuItem
           Caption = 'Libro de Facturas Recibidas'
-          OnClick = MenuItemLibroFacturasRecibidasClick
         end
         object MenuItemLibroFacturasBienesInversion: TMenuItem
           Caption = 'Libro de Facturas Bienes de Inversi'#243'n'
-          OnClick = MenuItemLibroFacturasBienesInversion
         end
       end
       object MenuItemN10: TMenuItem
@@ -3244,43 +3195,36 @@ object FormPrincipal: TFormPrincipal
       end
       object MenuItemOperacionesTerceros347: TMenuItem
         Caption = 'Operaciones con Terceros (347)'
-        OnClick = MenuItemOperacionesTerceros347Click
       end
       object MenuItemOperacionesCEE: TMenuItem
         Caption = 'Operaciones con la CEE (349, 216)'
-        OnClick = MenuItemOperacionesCEEClick
       end
       object MenuItemN11: TMenuItem
         Caption = '-'
       end
       object MenuItemIRPF110: TMenuItem
         Caption = 'I.R.P.F. (110)'
-        OnClick = MenuItemIRPF110Click
       end
       object MenuItemIRPF115: TMenuItem
         Caption = 'I.R.P.F. (115)'
-        OnClick = MenuItemIRPF115Click
       end
       object MenuItemN12: TMenuItem
         Caption = '-'
       end
       object MenuItemImpuestoSociedades202: TMenuItem
         Caption = 'Impuesto de Sociedades (202)'
-        OnClick = MenuItemImpuestoSociedades202Click
       end
     end
     object MenuItemGestion: TMenuItem
       Caption = '&Gesti'#243'n'
       object MenuItemCarteraEfectos: TMenuItem
         Caption = 'Cartera de Efectos'
-        OnClick = MenuItemCarteraEfectosClick
       end
       object MenuItemN16: TMenuItem
         Caption = '-'
       end
       object MenuItemAmortizaciones: TMenuItem
         Caption = 'Amortizaciones'
-        OnClick = MenuItemAmortizacionesClick
       end
       object MenuItemN18: TMenuItem
         Caption = '-'
@@ -3289,7 +3233,6 @@ object FormPrincipal: TFormPrincipal
         Caption = 'Cierre de Ejercicio'
         object MenuItemProcesoAutomatizado: TMenuItem
           Caption = 'Proceso Automatizado'
-          OnClick = MenuItemProcesoAutomatizadoClick
         end
       end
     end
@@ -3297,30 +3240,24 @@ object FormPrincipal: TFormPrincipal
       Caption = '&Herramientas'
       object MenuItemEnlaceContable: TMenuItem
         Caption = 'Enlace Contable'
-        OnClick = MenuItemEnlaceContableClick
       end
       object MenuItemParametrizacion: TMenuItem
         Caption = 'Parametrizaci'#243'n'
         object MenuItemGeneral: TMenuItem
           Caption = 'General'
-          OnClick = MenuItemGeneralClick
         end
         object MenuItemFacturacion: TMenuItem
           Caption = 'Facturaci'#243'n'
-          OnClick = MenuItemFacturacionClick
         end
       end
       object MenuItemImportacion: TMenuItem
         Caption = 'Importacion'
-        OnClick = MenuItemImportacionClick
       end
       object MenuItemTraspasoDatos: TMenuItem
         Caption = 'Traspaso de Datos'
-        OnClick = MenuItemTraspasoDatosClick
       end
       object MenuItemActualizacionDB: TMenuItem
         Caption = 'Actualizaci'#243'n de la Base de Datos'
-        OnClick = MenuItemActualizacionDBClick
       end
     end
     object MenuItemVentana: TMenuItem
@@ -3336,7 +3273,6 @@ object FormPrincipal: TFormPrincipal
       end
       object MenuItemConectarseA: TMenuItem
         Caption = 'Conectarse a la web'
-        OnClick = MenuItemConectarseAClick
       end
       object MenuItemComprobarActualizaciones: TMenuItem
         Caption = 'Comprobar Actualizaciones '

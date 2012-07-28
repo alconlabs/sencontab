@@ -155,8 +155,9 @@ begin
       //FMenuMain.ShowView;
       Application.CreateForm(TDMRef, DMRef);
       Application.CreateForm(TDMContaRef, DMContaRef);
-      Application.CreateForm(TFormPrincipal, FormPrincipal);
-      FormPrincipal.Show;
+      //Application.CreateForm(TFormPrincipal, FormPrincipal);
+      FMenuMain.ShowView;
+      //FormPrincipal.Show;
       Application.Run;
    end
    else Exit;
