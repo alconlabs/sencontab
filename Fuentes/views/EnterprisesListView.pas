@@ -26,6 +26,8 @@ implementation
 procedure TFormEnterprisesListView.FormShow(Sender: TObject);
 begin
    DoubleBuffered := True;
+   ListView.SetFocus;
+   ListView.Selected := ListView.Items[0];
 end;
 
 procedure TFormEnterprisesListView.FormKeyPress(Sender: TObject; var Key: Char);

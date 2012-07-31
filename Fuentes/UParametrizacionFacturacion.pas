@@ -2,7 +2,7 @@ unit UParametrizacionFacturacion;
 interface
 uses Buttons, Windows, SysUtils, Messages, DB, Graphics, Classes,
      Forms, StdCtrls, DBCtrls, Controls, ExtCtrls, ComCtrls, Mask,
-     FormHandler, CustomView;
+     CustomView;
 type
   TWParametrizacionFacturacion = class(TCustomView)
     DSFichero: TDataSource;
@@ -305,7 +305,6 @@ type
     procedure FormShow(Sender: TObject);
     procedure BtnSearchClick(Sender: TObject);
   private
-    FormManager :TccFormHandler;
     procedure ShowTheChangedFields(AFieldName :string);
   public
   end;
@@ -327,15 +326,76 @@ begin
    TabVentas.Show;
    TabVentasRegimenGeneral.Show;
 
-   FormManager := TccFormHandler.Create(Self);
-   { Add all the TSpeedButton in the form to the FormManager List with Modifier fmEdit }
-   for i := 0 to ComponentCount - 1 do begin
-      if Components[i] is TSpeedButton then begin
-         FormManager.AddComp(TSpeedButton(Components[i]).Name, fmEdit);
-      end;
-   end;
 
-   FormManager.Mode := fmEdit;
+   { Add all the TSpeedButton in the form to the ModeList with Modifier fmEdit }
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTADTOPPV              , fmEdit));
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTODTOPPV               , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTADTOPPC              , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTODTOPPC               , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTARETPROF             , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTORETPROF              , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTORETARRE              , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTARETARRE             , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTOHACIVA               , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTOCOBRO                , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTOPAGO                 , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTAHACIVA              , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTAGENINTRACOM         , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTABANCO               , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTAEFECTOSCOMERCIALES  , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTAEFECTDESCONTADOS    , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTADEUDASDESCUENTOS    , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTAREMESAEFECTOS       , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTOEFECTOSCOMERCIALES   , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTODEUDASDESCUENTOS     , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTOREMESAEFECTOS        , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTAIVACNORMAL          , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTAIVACREDUCIDO        , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTAIVACSUPER           , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTAIVACEXENTO          , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTACOMPRAS             , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTAIVACINTRADEDUCIBLE  , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTAIVACINTRAREPERCUTIDO, fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchVGENERICAC              , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTOIVACNORMAL           , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTOIVACREDUCIDO         , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTOIVACSUPER            , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTOIVACEXENTO           , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTOCOMPRAS              , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTOPROVEEDORES          , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTOPROVINTRA            , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTOPAGOF                , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTAIVANORMAL           , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTAIVAREDUCIDO         , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTAIVASUPER            , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTAIVAEXENTO           , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTAIVAINTRADEDUCIBLE   , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTAIVAINTRA            , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTAVENTAS              , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTADEVOLUCION          , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTOIVANORMAL            , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTOIVASUPER             , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTOIVAEXENTO            , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTOIVAINTRA             , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTOVENTAS               , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTODEVOLUCION           , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTOCLIENTES             , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTOIVAREDUCIDO          , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTARECNORMAL           , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTARECREDUCIDO         , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTARECSUPER            , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTORECNORMAL            , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTORECREDUCIDO          , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTORECSUPER             , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTOCOBROF               , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTOSearchCTORECIBOVENTAS         , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchVGENERICA               , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSUBCAJA                 , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTAIVAEXENTOCEE        , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTAINTERESES           , fmEdit));  
+   ModeList.Add(TComponentMode.Create(BtnCTASearchSCTAEXPORTACIONES       , fmEdit));  
+
+   Mode := fmEdit;                                                                          
 end;
 
 procedure TWParametrizacionFacturacion.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -354,7 +414,6 @@ procedure TWParametrizacionFacturacion.FormClose(Sender: TObject; var Action: TC
 begin
    if DMRef.QParametros.State = dsBrowse then begin
       Action := caFree;
-      FormManager.Free;
    end
    else begin
       MessageBeep(0);
@@ -371,7 +430,7 @@ begin
    except
       DatabaseError('Error al guardar los datos');
    end;
-   FormManager.Mode := fmBrowse;
+   Mode := fmView;
    Close;
 end;
 
@@ -396,14 +455,14 @@ begin
    end;
 
    if Canceled then begin
-      FormManager.Mode := fmBrowse;
+      Mode := fmView;
       Close;
    end;
 end;
 
 procedure TWParametrizacionFacturacion.FormShow(Sender: TObject);
 begin
-   FormManager.Mode := fmEdit;
+   Mode := fmEdit;
    DMRef.QParametros.Close;
    DMRef.QParametros.Open;
    if not (DMRef.QParametros.State in dsEditModes) then begin

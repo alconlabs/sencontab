@@ -3,7 +3,7 @@ interface
 uses Buttons, Classes, Controls, DB, Forms, Graphics, Messages, SysUtils, WinProcs, WinTypes, DBClient,
      ExtCtrls, Grids, IBCustomDataSet, IBDatabase, IBTableSet,
      NavegadorNotarios, StdCtrls, DBGrids, ComCtrls, DBCtrls, Mask,
-     FormHandler, CustomView;
+     CustomView;
 
 type
    TWProyectos = class(TCustomView)
@@ -44,7 +44,6 @@ type
     procedure FormShow(Sender: TObject);
    private
     FCampoOrden :string;
-    FormManager :TccFormHandler;
     procedure CrearFiltro;
     procedure PrepararQuery;
     procedure RefrescarBD;
@@ -134,7 +133,7 @@ begin
    except
       DatabaseError('No se ha podido insertar un nuevo proyecto.' + #13 +CADENA_MANUAL);
    end;
-   FormManager.Mode := fmEdit;
+   Mode := fmEdit;
 end;
 
 procedure TWProyectos.BtnDeleteClick(Sender: TObject);
@@ -190,7 +189,7 @@ begin
 
    RefrescarBD;
 
-   FormManager.Mode := fmBrowse;
+   Mode := fmView;
    DataGrid.SetFocus;
    if ha_insertado then begin
       if not (TbFiltro.State in dsEditModes) then begin
@@ -214,7 +213,7 @@ begin
       try    QFichero.Cancel;
       except DatabaseError('No se ha podido cancelar la operación.' + #13 + CADENA_MANUAL);
       end;
-      FormManager.Mode := fmBrowse;
+      Mode := fmView;
    end;
 end;
 
@@ -228,31 +227,30 @@ begin
       try QFichero.Edit;
       except MessageDlg('No se puede editar el registro seleccionado.' + #13 + CADENA_MANUAL, mtInformation, [mbOK], 0);
       end;
-      FormManager.Mode := fmEdit;
+      Mode := fmView;
       EditCD_PROYECTO.SetFocus;
    end;
 end;
 
 procedure TWProyectos.FormCreate(Sender: TObject);
 begin
-   FormManager := TccFormHandler.Create(Self);
-   FormManager.AddComp(EditCD_PROYECTO.Name , fmEdit );
-   FormManager.AddComp(EditDS_PROYECTO.Name , fmEdit );
+   ModeList.Add(TComponentMode.Create(EditCD_PROYECTO , fmEdit));
+   ModeList.Add(TComponentMode.Create(EditDS_PROYECTO , fmEdit));
 
-   FormManager.AddComp(DataGrid.Name        , fmBrowse);
-   FormManager.AddComp(BtnAppend.Name       , fmBrowse);
-   FormManager.AddComp(BtnModify.Name       , fmBrowse);
-   FormManager.AddComp(BtnDelete.Name       , fmBrowse);
-   FormManager.AddComp(BtnReport.Name       , fmBrowse);
+   ModeList.Add(TComponentMode.Create(DataGrid    , fmView));
+   ModeList.Add(TComponentMode.Create(BtnAppend   , fmView));
+   ModeList.Add(TComponentMode.Create(BtnModify   , fmView));
+   ModeList.Add(TComponentMode.Create(BtnDelete   , fmView));
+   ModeList.Add(TComponentMode.Create(BtnReport   , fmView));
 
-   FormManager.AddComp(BtnSave.Name         , fmEdit  );
-   FormManager.AddComp(BtnCancel.Name       , fmEdit  );
+   ModeList.Add(TComponentMode.Create(BtnSave     , fmEdit));
+   ModeList.Add(TComponentMode.Create(BtnCancel   , fmEdit));
 
    //ActivarTransacciones(Self);
    CrearFiltro;
    FCampoOrden := 'ID_PROYECTO';
    PrepararQuery;
-   FormManager.Mode := fmBrowse;
+   Mode := fmView;
 end;
 
 procedure TWProyectos.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -301,7 +299,6 @@ begin
    if QFichero.State = dsBrowse then begin
       Action := caFree;
       WProyectos := nil;
-      FormManager.Free;
    end
    else begin
       MessageBeep(0);
@@ -320,8 +317,8 @@ end;
 
 procedure TWProyectos.FormShow(Sender: TObject);
 begin
-   FormManager.Mode := fmEdit;
-   FormManager.Mode := fmBrowse;
+   Mode := fmEdit;
+   Mode := fmView;
 end;
 
 end.

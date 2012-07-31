@@ -2,7 +2,7 @@ unit MenuMainController;
 
 interface
 
-uses Classes, DBController, ComCtrls, Menus,
+uses Classes, DBController, ComCtrls, Menus, 
      CustomController,
      MenuMainView,
      CurrentConfigClass,
@@ -202,9 +202,6 @@ begin
     FView.MenuItemImportacion.OnClick                  := MenuOptionImportacion;
     FView.MenuItemActualizacion.OnClick                := MenuOptionActualizacion;
     {----------------------------------------------------------------------}
-    
-
-
 
    FView.AppleIcons := [aiClose];
    FView.AppleIconsVisibles := [aiClose];
@@ -724,7 +721,6 @@ begin
    WActualizacionBD := nil;
 end;
 
-
 procedure TMenuMainController.CreateMenuOptions(prmTreeView :TTreeView;
                                                 prmMenuItem :TMenuItem;
                                                 prmNode     :TTreeNode);
@@ -742,6 +738,7 @@ begin
         Delegate := TDelegate.Create(prmTreeView);
         Delegate.OnClick := prmMenuItem.Items[i].OnClick;
         Node.Data := Delegate;
+        BoldTreeNode(prmNode, True);
         { Recursive calling }
         CreateMenuOptions(prmTreeView, prmMenuItem.Items[i], Node);
       end

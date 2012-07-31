@@ -2,7 +2,7 @@ unit Utilidades;
 
 interface
 
-uses Windows, dbTables, db, Controls, Graphics, Classes, Menus;
+uses Windows, dbTables, db, Controls, Graphics, Classes, Menus, ComCtrls, CommCtrl;
 
 type TTipoCampo = (tcString, tcInteger, tcBoolean, tcFloat, tcDate);
 
@@ -13,7 +13,7 @@ type TTipoCampo = (tcString, tcInteger, tcBoolean, tcFloat, tcDate);
         property OnClick :TNotifyEvent read FOnClick write FOnClick stored False;
         function Execute :Boolean;
      end;
-
+procedure BoldTreeNode(TreeNode :TTreeNode; Value :Boolean);
 procedure ccPlayKeystroke(Handle: HWND; VKChar: word; VKShift: Word);
 function  RevisaCadenaSQL(Cadena:string; TipoCampo:TTipoCampo;Conteniendo:Boolean):string;
 function  RevisaCadenaFiltro(Cadena:string; TipoCampo:TTipoCampo;Conteniendo:Boolean):string;
@@ -43,6 +43,25 @@ begin
    if Assigned(FOnClick) then begin
       FOnClick(Self);
    end;
+end;
+
+procedure BoldTreeNode(TreeNode :TTreeNode; Value :Boolean);
+var
+   TreeItem :TTVItem;
+begin
+   if not Assigned(treeNode) then Exit;
+
+   with TreeItem do begin
+      hItem := TreeNode.ItemId;
+      StateMask := TVIS_BOLD;
+      Mask := TVIF_HANDLE or TVIF_STATE;
+      if Value then
+         State := TVIS_BOLD
+      else
+         State := 0;
+   end;
+
+   TreeView_SetItem(TreeNode.Handle, TreeItem) ;
 end;
 
 
