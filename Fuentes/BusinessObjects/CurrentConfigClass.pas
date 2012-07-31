@@ -25,6 +25,7 @@ type
     FAPPLICATION       :string;
     FCD_PROFILE        :string;
     FCD_ENTERPRISE     :string;
+    function GetRunningDirectory :string;
   protected
   public
     constructor Create; virtual;
@@ -37,11 +38,12 @@ type
     property APPLICATION       :string        read FAPPLICATION       write FAPPLICATION;
     property CD_PROFILE        :string        read FCD_PROFILE        write FCD_PROFILE;
     property CD_ENTERPRISE     :string        read FCD_ENTERPRISE     write FCD_ENTERPRISE;
+    property RunningDirectory  :string        read GetRunningDirectory;
   published
   end;
 
 implementation
-uses SysUtils, TypInfo;
+uses SysUtils, TypInfo, Forms;
 
 { TOption }
 constructor TCurrentConfig.Create;
@@ -62,7 +64,6 @@ procedure TCurrentConfig.CreateDBConfiguration(prmDBConfiguration :TSdaDBConfig)
 begin
    FDBConnection := TDBController.Create(prmDBConfiguration);
    DBConnection.DBConfig.HostName := FCD_ENTERPRISE;
-
 end;
 
 destructor TCurrentConfig.Destroy;
@@ -75,6 +76,11 @@ begin
    DBConnection.DBConfig.HostName := FCD_ENTERPRISE;
    DBConnection.OpenConnection;
    {$Message Warn 'Falta Cargar la Lista de Options del Perfil y Aplicarla'}
+end;
+
+function TCurrentConfig.GetRunningDirectory:string;
+begin
+   Result := ExtractFilePath(Forms.Application.ExeName);
 end;
 
 end.

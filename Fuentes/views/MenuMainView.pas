@@ -80,8 +80,8 @@ type
     MenuItemProcesoAutomatizado: TMenuItem;
     MenuItemHerramientas: TMenuItem;
     MenuItemEnlaceContable: TMenuItem;
-    MenuItemParametrizacion: TMenuItem;
-    MenuItemGeneral: TMenuItem;
+    MenuItemParameters: TMenuItem;
+    MenuItemParametersEnterprise: TMenuItem;
     MenuItemFacturacion: TMenuItem;
     MenuItemImportacion: TMenuItem;
     MenuItemTraspasoDatos: TMenuItem;

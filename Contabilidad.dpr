@@ -106,6 +106,7 @@ uses
   EditProfileView in 'Fuentes\views\EditProfileView.pas' {EditProfileView},
   EnterprisesListView in 'Fuentes\views\EnterprisesListView.pas' {FormEnterprisesListView},
   MenuMainView in 'Fuentes\views\MenuMainView.pas' {FormMenuMain},
+  ParametersEnterpriseView in 'Fuentes\views\ParametersEnterpriseView.pas' {ParametersEnterpriseView},
   ______CONTROLLERS______ in 'Fuentes\______CONTROLLERS______.pas',
   CustomController in 'Fuentes\controllers\CustomController.pas',
   MainControllerClass in 'Fuentes\Controllers\MainControllerClass.pas',
@@ -118,6 +119,7 @@ uses
   ProfilesController in 'Fuentes\controllers\ProfilesController.pas',
   EnterprisesListController in 'Fuentes\controllers\EnterprisesListController.pas',
   MenuMainController in 'Fuentes\controllers\MenuMainController.pas',
+  ParametersEnterpriseController in 'Fuentes\controllers\ParametersEnterpriseController.pas',
   ______CUSTOM_MODELS______ in 'Fuentes\______CUSTOM_MODELS______.pas',
   CustomModel in 'Fuentes\models\CustomModel.pas',
   CustomEnterprisesModel in 'Fuentes\models\CustomEnterprisesModel.pas',
@@ -136,6 +138,7 @@ uses
   ProfilesModel in 'Fuentes\models\ProfilesModel.pas',
   OptionsModel in 'Fuentes\models\OptionsModel.pas',
   ProfileOptionsModel in 'Fuentes\models\ProfileOptionsModel.pas',
+  DMParametersEnterprise in 'Fuentes\models\DMParametersEnterprise.pas' {DataModuleParametersEnterprise: TDataModule},
   ______TOOLS______ in 'Fuentes\______TOOLS______.pas',
   LabelCaptionForm in 'Fuentes\Tools\LabelCaptionForm.pas',
   ccStr in 'Fuentes\Tools\ccStr.pas',
@@ -216,7 +219,6 @@ var FOldHelpEvent: THelpEvent;  {this shall to be in the MainControllerclass}
 begin
   Application.Initialize;
   Application.Title := 'Contabilidad';
-
 
   MainController := TMainController.Create;
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++
