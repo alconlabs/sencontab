@@ -2,15 +2,11 @@ unit DM;
 interface
 uses Classes, Controls, Db, Dialogs, Forms, Graphics,IBQuery, Messages, SysUtils, Variants, Windows,
      Globales, DBXpress, SqlExpr, CRSQLConnection, IBCustomDataSet, IBTableSet, IBSQL,
-  FMTBcd;
+     FMTBcd, DBClient, SimpleDS;
 type
   TDMRef = class(TDataModule)
     QAuxiliar:      TIBSQL;
-    QProvinciasNom: TIBTableSet;
     QPaisNom:       TIBTableSet;
-    QProvinciasNomPROVINCIA: TIBStringField;
-    QProvinciasNomNOMBRE: TIBStringField;
-    QProvinciasNomCODIGO: TIBStringField;
     QPaisNomPAIS:   TIBStringField;
     QPaisNomNOMBRE: TIBStringField;
     QAnaliticasNom: TIBTableSet;
@@ -80,7 +76,7 @@ type
     QAnaliticasID_SECCION: TStringField;
     QAnaliticasID_DEPARTAMENTO: TStringField;
     QAnaliticasID_DELEGACION: TStringField;
-    QParametros: TSQLQuery;
+    QParametros: TSimpleDataSet;
     QParametrosID_PARAMETROS: TIntegerField;
     QParametrosLONGITUD_SUBCUENTAS: TIntegerField;
     QParametrosFECHA_INICIO_APLICACION: TSQLTimeStampField;
@@ -278,6 +274,10 @@ type
     QParametrosOFFICE2003: TStringField;
     QParametrosTRATASERIE: TStringField;
     QParametrosACTCOMENTARIO: TStringField;
+    QProvinciasNom: TSimpleDataSet;
+    QProvinciasNomPROVINCIA: TStringField;
+    QProvinciasNomNOMBRE: TStringField;
+    QProvinciasNomCODIGO: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   protected

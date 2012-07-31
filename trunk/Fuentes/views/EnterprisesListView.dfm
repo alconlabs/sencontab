@@ -68,6 +68,7 @@ object FormEnterprisesListView: TFormEnterprisesListView
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
+    ModalResult = 1
     ParentFont = False
     TabOrder = 1
   end

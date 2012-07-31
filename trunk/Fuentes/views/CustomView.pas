@@ -1,17 +1,22 @@
 unit CustomView;
 interface
 uses Forms, Messages, Windows, Graphics, Classes, ImgList, Controls, ComCtrls,
-     Dialogs, ExtCtrls, Buttons, StdCtrls, LabelCaptionForm;
+     Dialogs, ExtCtrls, Buttons, StdCtrls, Contnrs, LabelCaptionForm;
 
-const DELAY_SHORT =        400;
-      DELAY_LONG  =       3000;
-      DELAY_NEVER = 2147483647;
+const DELAY_SHORT    =        400;
+      DELAY_LONG     =       3000;
+      DELAY_NEVER    = 2147483647;
+      COLOR_ACTIVE   = $04E4E4E4;
+      COLOR_INACTIVE = $00D9D1C0;
 
       ImageIndex_User     = 0;
       ImageIndex_UserPlus = 1;
       ImageIndex_Profile  = 2;
 
+
 type
+   TMode = (fmView, fmEdit, fmFixed);
+   
    TAppleButton = (abGray, abRed      , abYellow      , abGreen,
                            abRedSignum, abYellowSignum, abGreenSignum);
    TShowedButtons = (sbClose, sbMinimized, sbMaximized);
@@ -20,11 +25,56 @@ type
 
    TViewState = (vsEdit, vsInsert);
 
+   TBeforeChangeModeEvent = procedure(Value :TMode) of object;
+   TAfterChangeModeEvent  = procedure(Value :TMode) of object;
+
    TccListColumn = class(TListColumn)
    private
      FColumnName :string;
    public
      property ColumnName :string read FColumnName write FColumnName;
+   end;
+
+   TComponentMode = class(TPersistent)
+   private
+     FComponent :TComponent;
+     FMode      :TMode;
+   public
+     constructor Create;                                       overload;
+     constructor Create(AComponent :TComponent; AMode :TMode); overload;
+     property Component :TComponent read FComponent write FComponent;
+     property Mode      :TMode      read FMode      write FMode;
+   end;
+
+   TComponentModeList = class(TObjectList)
+   private
+   protected
+     procedure SetObject(Index :Integer; Item: TComponentMode);
+     function  GetObject(Index :Integer):TComponentMode;
+   public
+     constructor Create; overload;
+     function  Add(Obj :TComponentMode):Integer;
+     procedure Insert(Index :Integer; Obj :TComponentMode);
+     property  Components[Index :Integer]:TComponentMode read GetObject write SetObject; default;
+   {    ----From TList
+     procedure Clear;
+     procedure Pack;
+     procedure Sort(Compare: TListSortCompare);
+     property Capacity: Integer read FCapacity write SetCapacity;
+     property Count: Integer read FCount write SetCount;
+
+     ---From TObjectList
+     function  Add(AObject: TObject): Integer;
+     procedure Insert(Index: Integer; AObject: TObject);
+     function  Extract(Item: TObject): TObject;
+     function  Remove(AObject: TObject): Integer;
+
+     function  First :TObject;
+     function  Last  :TObject;
+
+     function  IndexOf(AObject: TObject): Integer;
+     function  FindInstanceOf(AClass: TClass; AExact: Boolean = True; AStartAt: Integer = 0): Integer;
+    }
    end;
 
    TCustomView = class(TForm)
@@ -46,34 +96,61 @@ type
      procedure TimerMessageTimer(Sender: TObject);
      procedure FormMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
    private
+     FComponentModeList   :TComponentModeList;
+     FModal               :Boolean;
+     FAutoModal           :Boolean;
+     FFormMode            :TMode;
+     FBeforeChangeMode    :TBeforeChangeModeEvent;
+     FAfterChangeMode     :TAfterChangeModeEvent;
      FAppleIcons          :TAppleIcons;
      FAppleIconsVisibles  :TAppleIcons;
      FAppleButtonsIconics :Boolean;
      FLabelCaption        :TLabelCaptionForm;
      FLabelMessage        :TLabelCaptionForm;
+     procedure SetFormMode(Value :TMode);
      procedure SetAppleIcons(Value :TAppleIcons);
      procedure SetAppleIconsVisibles(Value :TAppleIcons);
      procedure SetSystemButtonsIconics;
      procedure SetSystemButtonsColored;
+     procedure SetModal(Value :Boolean);
+     procedure MakeFormModal(Modal :Boolean);
+     procedure ChangeMode(Value :TMode); // Change the mode of all the components in the form.
    protected
      FHEIGHT_FROM_BOTTOM :Integer;
      procedure Paint; override;
+     procedure DoBeforeChangeMode(Value :TMode); virtual;
+     procedure DoAfterChangeMode(Value :TMode); virtual;
      //procedure WMNCHitTest(var Msg: TWMNCHitTest) ; message WM_NCHitTest;
    public
      constructor Create(AOwner: TComponent); override;
+     destructor  Destroy; override;
      procedure ShowMessage(AErrorMessage :string);
      procedure CustomViewMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+     {properties}
+     property Mode               :TMode       read FFormMode           write SetFormMode default fmView;
+     property Modal              :Boolean     read FModal              write SetModal    default False;
+     property AutoModal          :Boolean     read FAutoModal          write FAutoModal  default True;
      property AppleIcons         :TAppleIcons read FAppleIcons         write SetAppleIcons;
      property AppleIconsVisibles :TAppleIcons read FAppleIconsVisibles write SetAppleIconsVisibles;
+     property ModeList           :TComponentModeList read FComponentModeList write FComponentModeList;
+     {events}
+     property BeforeChangeMode :TBeforeChangeModeEvent read FBeforeChangeMode write FBeforeChangeMode;
+     property AfterChangeMode  :TAfterChangeModeEvent  read FAfterChangeMode  write FAfterChangeMode;
    end;
 
 implementation
 {$R *.DFM}
-uses SysUtils;
+uses SysUtils, Menus,
+     DBCtrls;
 
 constructor TCustomView.Create(AOwner: TComponent);
 begin
    inherited;
+
+   FAutoModal    := True;
+
+   FComponentModeList := TComponentModeList.Create;
+   
    FHEIGHT_FROM_BOTTOM := 30;
    //SetSystemButtonsColored;
    { Message label for the caption }
@@ -120,6 +197,13 @@ begin
    FLabelMessage.SendToBack;
    FLabelMessage.OnMouseDown := CustomViewMouseDown;
 end;
+
+destructor TCustomView.Destroy;
+begin
+   FComponentModeList.Free;
+   inherited;
+end;
+
 
 //procedure TCustomView.WMNCHitTest(var Msg: TWMNCHitTest);
 //begin
@@ -228,6 +312,199 @@ begin
       SetSystemButtonsColored;
 end;
 
+procedure TCustomView.DoBeforeChangeMode(Value :TMode);
+begin
+  if Assigned(FBeforeChangeMode) then BeforeChangeMode(Value);
+end;
+
+procedure TCustomView.DoAfterChangeMode(Value :TMode);
+begin
+  if Assigned(FAfterChangeMode) then AfterChangeMode(Value);
+end;
+
+procedure TCustomView.MakeFormModal(Modal :Boolean);
+var i :Integer;
+    j :Integer;
+begin
+   if Application.MainForm = nil then Exit;
+   with Application.MainForm do begin
+        for i := 0 to ComponentCount -1 do begin
+            if (Components[i] is TMainMenu) then begin {this shall be now a TreeView}
+               with TMainMenu(Components[i]) do begin
+                    for j  := 0 to Items.Count -1 do begin
+                        { Los Menús desactivados por cuestión de usuario llevan un Tag 99}
+                        TMenuItem(Items[j]).Enabled := not(Modal) and (TMenuItem(Items[j]).Tag <> 99);
+                    end;
+               end;
+            end else
+            if (Components[i] is TToolBar) then begin
+                 TToolBar(Components[i]).Enabled := not(Modal);
+            end;
+        end;
+        if Modal then begin
+           for i := 0 to MDIChildCount - 1 do begin
+               if MDIChildren[i].Active = False then MDIChildren[i].Enabled := not(Modal);
+           end;
+        end
+        else begin
+            for i := 0 to MDIChildCount - 1 do MDIChildren[i].Enabled := True;
+        end;
+   end;
+end;
+
+procedure TCustomView.SetModal(Value :Boolean);
+begin
+   if FModal <> Value then begin
+      FModal := Value;
+      MakeFormModal(Value);
+      //TccForm(Application.MainForm).FccCurrentMode := Value;
+   end;
+end;
+
+
+
+procedure TCustomView.ChangeMode(Value :TMode);
+var i :Integer;
+begin
+  {The Form }
+   case FFormMode of
+      fmEdit :begin
+         for i := 0 to FComponentModeList.Count - 1 do begin
+            {The component }
+            case FComponentModeList.Components[i].Mode of
+               fmEdit   :begin
+                 { A C T I V A T E }
+                 if FComponentModeList.Components[i].Component is TSpeedButton then begin
+                    TSpeedButton(FComponentModeList.Components[i].Component).Enabled := True;
+                 end else
+                 if FComponentModeList.Components[i].Component is TDBEdit then begin
+                    TDBEdit(FComponentModeList.Components[i].Component).ReadOnly := False;
+                    TDBEdit(FComponentModeList.Components[i].Component).TabStop  := True;
+                    TDBEdit(FComponentModeList.Components[i].Component).Ctl3D    := True;
+                    TDBEdit(FComponentModeList.Components[i].Component).Color    := COLOR_ACTIVE;
+                 end else
+                 if FComponentModeList.Components[i].Component is TDBRadioGroup then begin
+                    TDBRadioGroup(FComponentModeList.Components[i].Component).ReadOnly := False;
+                 end else
+                 if FComponentModeList.Components[i].Component is TDBCheckBox then begin
+                    TDBCheckBox(FComponentModeList.Components[i].Component).ReadOnly := False;
+                 end else
+               end;
+               fmView:begin
+                  { D E A C T I V A T E }
+                  if FComponentModeList.Components[i].Component is TSpeedButton then begin
+                    TSpeedButton(FComponentModeList.Components[i].Component).Enabled := False;
+                 end else
+                 if FComponentModeList.Components[i].Component is TDBEdit then begin
+                    TDBEdit(FComponentModeList.Components[i].Component).ReadOnly := True;
+                    TDBEdit(FComponentModeList.Components[i].Component).TabStop  := False;
+                    TDBEdit(FComponentModeList.Components[i].Component).Ctl3D    := False;
+                    TDBEdit(FComponentModeList.Components[i].Component).Color    := COLOR_INACTIVE;
+                 end else
+                 if FComponentModeList.Components[i].Component is TDBRadioGroup then begin
+                    TDBRadioGroup(FComponentModeList.Components[i].Component).ReadOnly := True;
+                 end else
+                 if FComponentModeList.Components[i].Component is TDBCheckBox then begin
+                    TDBCheckBox(FComponentModeList.Components[i].Component).ReadOnly := True;
+                 end else
+
+               end;
+            end;
+         end;
+      end;
+      fmView:begin
+         for i := 0 to FComponentModeList.Count - 1 do begin
+            {The component }
+            case FComponentModeList.Components[i].Mode of
+               fmEdit    :begin
+                  { D E A C T I V A T E }
+                  if FComponentModeList.Components[i].Component is TSpeedButton then begin
+                    TSpeedButton(FComponentModeList.Components[i].Component).Enabled := False;
+                 end else
+                 if FComponentModeList.Components[i].Component is TDBEdit then begin
+                    TDBEdit(FComponentModeList.Components[i].Component).ReadOnly := True;
+                    TDBEdit(FComponentModeList.Components[i].Component).TabStop  := False;
+                    TDBEdit(FComponentModeList.Components[i].Component).Ctl3D    := False;
+                    TDBEdit(FComponentModeList.Components[i].Component).Color    := COLOR_INACTIVE;
+                 end else
+                 if FComponentModeList.Components[i].Component is TDBRadioGroup then begin
+                    TDBRadioGroup(FComponentModeList.Components[i].Component).ReadOnly := True;
+                 end else
+                 if FComponentModeList.Components[i].Component is TDBCheckBox then begin
+                    TDBCheckBox(FComponentModeList.Components[i].Component).ReadOnly := True;
+                 end else
+               end;
+               fmView :begin
+                  { A C T I V A T E }
+                  if FComponentModeList.Components[i].Component is TSpeedButton then begin
+                    TSpeedButton(FComponentModeList.Components[i].Component).Enabled := True;
+                 end else
+                 if FComponentModeList.Components[i].Component is TDBEdit then begin
+                    TDBEdit(FComponentModeList.Components[i].Component).ReadOnly := False;
+                    TDBEdit(FComponentModeList.Components[i].Component).TabStop  := True;
+                    TDBEdit(FComponentModeList.Components[i].Component).Ctl3D    := True;
+                    TDBEdit(FComponentModeList.Components[i].Component).Color    := COLOR_ACTIVE;
+                 end else
+                 if FComponentModeList.Components[i].Component is TDBRadioGroup then begin
+                    TDBRadioGroup(FComponentModeList.Components[i].Component).ReadOnly := False;
+                 end else
+                 if FComponentModeList.Components[i].Component is TDBCheckBox then begin
+                    TDBCheckBox(FComponentModeList.Components[i].Component).ReadOnly := False;
+                 end else
+               end;
+            end;
+         end;
+      end;
+   end;
+
+
+
+
+
+(*   
+   with OwnerForm do begin
+        for i := 0 to ComponentCount - 1 do begin
+            if Components[i] is TControl then TControl(Components[i]).WindowProc(TMessage(Msg));
+            if (Components[i] is TccCustomMaskEdit  ) then TccCustomMaskEdit  (Components[i]).ccCurrentMode := Value else
+            if (Components[i] is TccDBLookupComboBox) then TccDBLookupComboBox(Components[i]).ccCurrentMode := Value else
+            if (Components[i] is TccDBGrid          ) then TccDBGrid          (Components[i]).ccCurrentMode := Value else
+            if (Components[i] is TccBtnPanel        ) then TccBtnPanel        (Components[i]).ccCurrentMode := Value else
+            if (Components[i] is TccResButton       ) then TccResButton       (Components[i]).ccCurrentMode := Value else
+            if (Components[i] is TScrollBox         ) then begin
+               for j := 0 to TScrollBox(Components[i]).ComponentCount -1 do begin
+                   if (TScrollBox(Components[i]).Components[j] is TccCustomMaskEdit  ) then TccCustomMaskEdit  (TScrollBox(Components[i]).Components[j]).ccCurrentMode := Value else
+                   if (TScrollBox(Components[i]).Components[j] is TccDBCheckBox      ) then TccDBCheckBox      (TScrollBox(Components[i]).Components[j]).ccCurrentMode := Value else
+                   if (TScrollBox(Components[i]).Components[j] is TccDBRadioGroup    ) then TccDBRadioGroup    (TScrollBox(Components[i]).Components[j]).ccCurrentMode := Value else
+                   if (TScrollBox(Components[i]).Components[j] is TccDBLookupComboBox) then TccDBLookupComboBox(TScrollBox(Components[i]).Components[j]).ccCurrentMode := Value else
+                   if (TScrollBox(Components[i]).Components[j] is TccBtnPanel        ) then TccBtnPanel        (TScrollBox(Components[i]).Components[j]).ccCurrentMode := Value else
+                   if (TScrollBox(Components[i]).Components[j] is TccResButton       ) then TccResButton       (TScrollBox(Components[i]).Components[j]).ccCurrentMode := Value else
+                   if (TScrollBox(Components[i]).Components[j] is TccDBGrid          ) then TccDBGrid          (TScrollBox(Components[i]).Components[j]).ccCurrentMode := Value ;
+               end;
+            end else
+            if (Components[i] is TccDBCheckBox   ) then TccDBCheckBox   (Components[i]).ccCurrentMode := Value else
+            if (Components[i] is TccDBRadioGroup ) then TccDBRadioGroup (Components[i]).ccCurrentMode := Value;
+        end;
+   end;*)
+end;
+
+procedure TCustomView.SetFormMode(Value :TMode);
+begin
+   //if FFormMode <> Value then begin
+      FFormMode := Value;
+      DoBeforeChangeMode(Value);
+      ChangeMode(Value);
+      DoAfterChangeMode(Value);
+      if FAutoModal then begin
+         case FFormMode of
+              fmEdit :Modal := True;
+              fmView :Modal := False;
+         end;
+      end;
+      //TccForm(Application.MainForm).FccCurrentMode := Value;
+   //end;
+end;
+
+
 procedure TCustomView.SetAppleIcons(Value: TAppleIcons);
 begin
   if FAppleIcons <> Value then begin
@@ -304,6 +581,46 @@ begin
 end;
 
 
+{ TComponentMode }
+
+constructor TComponentMode.Create;
+begin
+   FComponent := nil;
+   FMode      := fmFixed;
+end;
+
+constructor TComponentMode.Create(AComponent: TComponent; AMode: TMode);
+begin
+   FComponent := AComponent;
+   FMode      := AMode;
+end;
+
+{ TComponentModeList }
+constructor TComponentModeList.Create;
+begin
+   inherited Create;
+   OwnsObjects := True;
+end;
+
+function TComponentModeList.Add(Obj: TComponentMode): Integer;
+begin
+   Result := inherited Add(Obj);
+end;
+
+function TComponentModeList.GetObject(Index: Integer): TComponentMode;
+begin
+   Result := inherited Items[Index] as TComponentMode;
+end;
+
+procedure TComponentModeList.Insert(Index: Integer; Obj: TComponentMode);
+begin
+   inherited Insert(Index, Obj);
+end;
+
+procedure TComponentModeList.SetObject(Index: Integer; Item: TComponentMode);
+begin
+   inherited Items[Index] := Item;
+end;
 
 end.
 

@@ -1,6 +1,6 @@
 object WParametrizacionFacturacion: TWParametrizacionFacturacion
-  Left = 402
-  Top = 154
+  Left = 547
+  Top = 240
   BorderIcons = []
   BorderStyle = bsToolWindow
   Caption = 'Parametros de Facturaci'#243'n'

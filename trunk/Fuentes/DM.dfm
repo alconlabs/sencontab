@@ -2,77 +2,14 @@ object DMRef: TDMRef
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
-  Left = 445
-  Top = 209
+  Left = 711
+  Top = 216
   Height = 560
   Width = 657
   object QAuxiliar: TIBSQL
     ParamCheck = True
-    Left = 280
+    Left = 464
     Top = 32
-  end
-  object QProvinciasNom: TIBTableSet
-    BufferChunks = 1000
-    CachedUpdates = False
-    DeleteSQL.Strings = (
-      'DELETE FROM PROVINCIAS'
-      'WHERE'
-      
-        '  PROVINCIA                      =:old_PROVINCIA                ' +
-        '       ')
-    InsertSQL.Strings = (
-      'INSERT INTO PROVINCIAS'
-      
-        '  (PROVINCIA                      ,NOMBRE                       ' +
-        '  ,CODIGO                         )'
-      'VALUES'
-      
-        '  (:PROVINCIA                      ,:NOMBRE                     ' +
-        '    ,:CODIGO                         )')
-    RefreshSQL.Strings = (
-      'SELECT'
-      '  *'
-      'FROM PROVINCIAS'
-      'WHERE'
-      
-        '  PROVINCIA                      =?PROVINCIA                    ' +
-        '   ')
-    SelectSQL.Strings = (
-      'SELECT * FROM PROVINCIAS')
-    ModifySQL.Strings = (
-      'UPDATE PROVINCIAS'
-      'SET'
-      
-        '  NOMBRE                         =:NOMBRE                       ' +
-        '   '
-      
-        '  ,CODIGO                         =:CODIGO                      ' +
-        '    '
-      'WHERE'
-      
-        '  PROVINCIA                      =:PROVINCIA                    ' +
-        '   ')
-    TableName = 'provincias'
-    Left = 286
-    Top = 184
-    object QProvinciasNomPROVINCIA: TIBStringField
-      FieldName = 'PROVINCIA'
-      Origin = 'PROVINCIAS.PROVINCIA'
-      Required = True
-      FixedChar = True
-      Size = 2
-    end
-    object QProvinciasNomNOMBRE: TIBStringField
-      FieldName = 'NOMBRE'
-      Origin = 'PROVINCIAS.NOMBRE'
-      Size = 25
-    end
-    object QProvinciasNomCODIGO: TIBStringField
-      FieldName = 'CODIGO'
-      Origin = 'PROVINCIAS.CODIGO'
-      FixedChar = True
-      Size = 2
-    end
   end
   object QPaisNom: TIBTableSet
     BufferChunks = 1000
@@ -113,8 +50,8 @@ object DMRef: TDMRef
         '  PAIS                           =:PAIS                         ' +
         '   ')
     TableName = 'PAISES'
-    Left = 154
-    Top = 376
+    Left = 370
+    Top = 32
     object QPaisNomPAIS: TIBStringField
       FieldName = 'PAIS'
       Origin = 'PAISES.PAIS'
@@ -376,8 +313,8 @@ object DMRef: TDMRef
         '  ID_PROYECTO                    =:ID_PROYECTO                  ' +
         '   ')
     TableName = 'proyecto'
-    Left = 151
-    Top = 442
+    Left = 367
+    Top = 98
     object QProyectoNomNOMBRE: TIBStringField
       DisplayWidth = 30
       FieldName = 'NOMBRE'
@@ -431,8 +368,8 @@ object DMRef: TDMRef
         '  ID_SECCION                     =:ID_SECCION                   ' +
         '   ')
     TableName = 'seccion'
-    Left = 151
-    Top = 506
+    Left = 367
+    Top = 162
     object QSeccionNomNOMBRE: TIBStringField
       DisplayWidth = 30
       FieldName = 'NOMBRE'
@@ -592,8 +529,8 @@ object DMRef: TDMRef
         '  ID_PROYECTO                    =:ID_PROYECTO                  ' +
         '   ')
     TableName = 'proyecto'
-    Left = 47
-    Top = 442
+    Left = 287
+    Top = 98
     object IBStringField5: TIBStringField
       FieldName = 'NOMBRE'
       Origin = 'PROYECTO.NOMBRE'
@@ -645,8 +582,8 @@ object DMRef: TDMRef
         '  ID_SECCION                     =:ID_SECCION                   ' +
         '   ')
     TableName = 'seccion'
-    Left = 47
-    Top = 506
+    Left = 287
+    Top = 162
     object IBStringField7: TIBStringField
       FieldName = 'NOMBRE'
       Origin = 'SECCION.NOMBRE'
@@ -986,8 +923,8 @@ object DMRef: TDMRef
         '  TIPODIARIO                     =:TIPODIARIO                   ' +
         '   ')
     TableName = 'tipodiario'
-    Left = 47
-    Top = 562
+    Left = 287
+    Top = 218
     object QTipoDiarioDESCRIPCION: TIBStringField
       FieldName = 'DESCRIPCION'
       Origin = 'TIPODIARIO.DESCRIPCION'
@@ -1040,8 +977,8 @@ object DMRef: TDMRef
         '  TIPODIARIO                     =:TIPODIARIO                   ' +
         '   ')
     TableName = 'tipodiario'
-    Left = 151
-    Top = 562
+    Left = 367
+    Top = 218
     object IBStringField15: TIBStringField
       FieldName = 'DESCRIPCION'
       Origin = 'TIPODIARIO.DESCRIPCION'
@@ -1072,6 +1009,7 @@ object DMRef: TDMRef
       'EnableBCD=True'
       'FetchAll=True')
     VendorLib = 'oledb'
+    Connected = True
     Left = 47
     Top = 31
   end
@@ -1092,7 +1030,7 @@ object DMRef: TDMRef
       'EnableBCD=True'
       'FetchAll=True')
     VendorLib = 'oledb'
-    Left = 391
+    Left = 567
     Top = 127
   end
   object IBDConsolida: TCRSQLConnection
@@ -1113,7 +1051,7 @@ object DMRef: TDMRef
       'FetchAll=True')
     VendorLib = 'oledb'
     Connected = True
-    Left = 391
+    Left = 567
     Top = 183
   end
   object QAnaliticas: TSQLQuery
@@ -1155,298 +1093,243 @@ object DMRef: TDMRef
       Size = 10
     end
   end
-  object QParametros: TSQLQuery
-    MaxBlobSize = -1
+  object QParametros: TSimpleDataSet
+    Active = True
+    Aggregates = <>
+    Connection = DB
+    DataSet.CommandText = 
+      'SELECT PRM.ID_PARAMETROS                          ,'#13#10'       PRM.' +
+      'LONGITUD_SUBCUENTAS                    ,'#13#10'       PRM.FECHA_INICI' +
+      'O_APLICACION                ,'#13#10'       PRM.FECHA_INICIO_EJERCICIO' +
+      '                 ,'#13#10'       PRM.FECHA_FIN_EJERCICIO              ' +
+      '      ,'#13#10'       PRM.CTO_REGULARIZACION                     ,'#13#10'  ' +
+      '     PRM.SUBCUENTA_CIERRE                       ,'#13#10'       PRM.MO' +
+      'NEDA                                 ,'#13#10'       PRM.NOMBREFISCAL ' +
+      '                          ,'#13#10'       PRM.DIRECCION               ' +
+      '               ,'#13#10'       PRM.DIRECCION1                         ' +
+      '    ,'#13#10'       PRM.POBLACION                              ,'#13#10'    ' +
+      '   PRM.CODPOSTAL                              ,'#13#10'       PRM.PROV' +
+      'INCIA                              ,'#13#10'       PRM.NIF            ' +
+      '                        ,'#13#10'       PRM.CONTACTO                  ' +
+      '             ,'#13#10'       PRM.DOCCLIENTE                           ' +
+      '  ,'#13#10'       PRM.DOCPROVEEDOR                           ,'#13#10'      ' +
+      ' PRM.DOC347                                 ,'#13#10'       PRM.FECHAB' +
+      'LOQUEO                           ,'#13#10'       PRM.CTO_APERTURA     ' +
+      '                      ,'#13#10'       PRM.CTO_REGULARIZACION_ESP      ' +
+      '           ,'#13#10'       PRM.FECHAAMORTIZACION                      ' +
+      ','#13#10'       PRM.RECARGO                                ,'#13#10'       P' +
+      'RM.CTO_APERTURA_ESP                       ,'#13#10'       PRM.SCTAIVAN' +
+      'ORMAL                          ,'#13#10'       S01.DESCRIPCION SCTAIVA' +
+      'NORMAL_DS           ,'#13#10'       PRM.SCTAIVAREDUCIDO               ' +
+      '         ,'#13#10'       S02.DESCRIPCION SCTAIVAREDUCIDO_DS         ,'#13 +
+      #10'       PRM.SCTAIVASUPER                           ,'#13#10'       S03' +
+      '.DESCRIPCION SCTAIVASUPER_DS            ,'#13#10'       PRM.SCTAIVAEXE' +
+      'NTO                          ,'#13#10'       S04.DESCRIPCION SCTAIVAEX' +
+      'ENTO_DS           ,'#13#10'       PRM.SCTAIVAINTRADEDUCIBLE           ' +
+      '       ,'#13#10'       S05.DESCRIPCION SCTAIVAINTRADEDUCIBLE_DS   ,'#13#10' ' +
+      '      PRM.SCTAIVAINTRA                           ,'#13#10'       S06.D' +
+      'ESCRIPCION SCTAIVAINTRA_DS            ,'#13#10'       PRM.SCTAVENTAS  ' +
+      '                           ,'#13#10'       S07.DESCRIPCION SCTAVENTAS_' +
+      'DS              ,'#13#10'       PRM.SCTADEVOLUCION                    ' +
+      '     ,'#13#10'       S08.DESCRIPCION SCTADEVOLUCION_DS          ,'#13#10'   ' +
+      '    PRM.SCTARECNORMAL                          ,'#13#10'       S09.DES' +
+      'CRIPCION SCTARECNORMAL_DS           ,'#13#10'       PRM.SCTARECREDUCID' +
+      'O                        ,'#13#10'       S10.DESCRIPCION SCTARECREDUCI' +
+      'DO_DS         ,'#13#10'       PRM.SCTARECSUPER                        ' +
+      '   ,'#13#10'       S11.DESCRIPCION SCTARECSUPER_DS            ,'#13#10'     ' +
+      '  PRM.VGENERICA                              ,'#13#10'       S12.DESCR' +
+      'IPCION VGENERICA_DS               ,'#13#10'       PRM.SUBCAJA         ' +
+      '                       ,'#13#10'       S13.DESCRIPCION SUBCAJA_DS     ' +
+      '            ,'#13#10'       PRM.SCTAIVAEXENTOCEE                      ' +
+      ' ,'#13#10'       S14.DESCRIPCION SCTAIVAEXENTOCEE_DS        ,'#13#10'       ' +
+      'PRM.SCTAINTERESES                          ,'#13#10'       S15.DESCRIP' +
+      'CION SCTAINTERESES_DS           ,'#13#10'       PRM.SCTAEXPORTACIONES ' +
+      '                     ,'#13#10'       S16.DESCRIPCION SCTAEXPORTACIONES' +
+      '_DS       ,'#13#10'       PRM.SCTAIVACNORMAL                         ,' +
+      #13#10'       S17.DESCRIPCION SCTAIVACNORMAL_DS          ,'#13#10'       PR' +
+      'M.SCTAIVACREDUCIDO                       ,'#13#10'       S18.DESCRIPCI' +
+      'ON SCTAIVACREDUCIDO_DS        ,'#13#10'       PRM.SCTAIVACSUPER       ' +
+      '                   ,'#13#10'       S19.DESCRIPCION SCTAIVACSUPER_DS   ' +
+      '        ,'#13#10'       PRM.SCTAIVACEXENTO                         ,'#13#10 +
+      '       S20.DESCRIPCION SCTAIVACEXENTO_DS          ,'#13#10'       PRM.' +
+      'SCTACOMPRAS                            ,'#13#10'       S21.DESCRIPCION' +
+      ' SCTACOMPRAS_DS             ,'#13#10'       PRM.SCTAIVACINTRADEDUCIBLE' +
+      '                 ,'#13#10'       S22.DESCRIPCION SCTAIVACINTRADEDUCIBL' +
+      'E_DS  ,'#13#10'       PRM.SCTAIVACINTRAREPERCUTIDO               ,'#13#10'  ' +
+      '     S23.DESCRIPCION SCTAIVACINTRAREPERCUTIDO_DS,'#13#10'       PRM.VG' +
+      'ENERICAC                             ,'#13#10'       S24.DESCRIPCION V' +
+      'GENERICAC_DS              ,'#13#10'       PRM.SCTAEFECTOSCOMERCIALES  ' +
+      '               ,'#13#10'       S25.DESCRIPCION SCTAEFECTOSCOMERCIALES_' +
+      'DS  ,'#13#10'       PRM.SCTAEFECTDESCONTADOS                   ,'#13#10'    ' +
+      '   S26.DESCRIPCION SCTAEFECTDESCONTADOS_DS    ,'#13#10'       PRM.SCTA' +
+      'DEUDASDESCUENTOS                   ,'#13#10'       S27.DESCRIPCION SCT' +
+      'ADEUDASDESCUENTOS_DS    ,'#13#10'       PRM.SCTAREMESAEFECTOS         ' +
+      '             ,'#13#10'       S28.DESCRIPCION SCTAREMESAEFECTOS_DS     ' +
+      '  ,'#13#10'       PRM.SCTADTOPPV                             ,'#13#10'      ' +
+      ' S29.DESCRIPCION SCTADTOPPV_DS              ,'#13#10'       PRM.SCTADT' +
+      'OPPC                             ,'#13#10'       S30.DESCRIPCION SCTAD' +
+      'TOPPC_DS              ,'#13#10'       PRM.SCTARETPROF                 ' +
+      '           ,'#13#10'       S31.DESCRIPCION SCTARETPROF_DS             ' +
+      ','#13#10'       PRM.SCTARETARRE                            ,'#13#10'       S' +
+      '32.DESCRIPCION SCTARETARRE_DS             ,'#13#10'       PRM.SCTAHACI' +
+      'VA                             ,'#13#10'       S33.DESCRIPCION SCTAHAC' +
+      'IVA_DS              ,'#13#10'       PRM.SCTAGENINTRACOM               ' +
+      '         ,'#13#10'       S34.DESCRIPCION SCTAGENINTRACOM_DS         ,'#13 +
+      #10'       PRM.SCTABANCO                              ,'#13#10'       S35' +
+      '.DESCRIPCION SCTABANCO_DS               ,'#13#10'       PRM.CTOIVANORM' +
+      'AL                           ,'#13#10'       C01.DESCRIPCION CTOIVANOR' +
+      'MAL_DS            ,'#13#10'       PRM.CTOIVAREDUCIDO                  ' +
+      '       ,'#13#10'       C02.DESCRIPCION CTOIVAREDUCIDO_DS          ,'#13#10' ' +
+      '      PRM.CTOIVASUPER                            ,'#13#10'       C03.D' +
+      'ESCRIPCION CTOIVASUPER_DS             ,'#13#10'       PRM.CTOIVAEXENTO' +
+      '                           ,'#13#10'       C04.DESCRIPCION CTOIVAEXENT' +
+      'O_DS            ,'#13#10'       PRM.CTOIVAINTRA                       ' +
+      '     ,'#13#10'       C05.DESCRIPCION CTOIVAINTRA_DS             ,'#13#10'   ' +
+      '    PRM.CTOVENTAS                              ,'#13#10'       C06.DES' +
+      'CRIPCION CTOVENTAS_DS               ,'#13#10'       PRM.CTODEVOLUCION ' +
+      '                         ,'#13#10'       C07.DESCRIPCION CTODEVOLUCION' +
+      '_DS           ,'#13#10'       PRM.CTOCLIENTES                         ' +
+      '   ,'#13#10'       C08.DESCRIPCION CTOCLIENTES_DS             ,'#13#10'     ' +
+      '  PRM.CTORECNORMAL                           ,'#13#10'       C09.DESCR' +
+      'IPCION CTORECNORMAL_DS            ,'#13#10'       PRM.CTORECREDUCIDO  ' +
+      '                       ,'#13#10'       C10.DESCRIPCION CTORECREDUCIDO_' +
+      'DS          ,'#13#10'       PRM.CTORECSUPER                           ' +
+      ' ,'#13#10'       C11.DESCRIPCION CTORECSUPER_DS             ,'#13#10'       ' +
+      'PRM.CTOCOBROF                              ,'#13#10'       C12.DESCRIP' +
+      'CION CTOCOBROF_DS               ,'#13#10'       PRM.CTORECIBOVENTAS   ' +
+      '                     ,'#13#10'       C13.DESCRIPCION CTORECIBOVENTAS_D' +
+      'S         ,'#13#10'       PRM.CTOIVACNORMAL                          ,' +
+      #13#10'       C14.DESCRIPCION CTOIVACNORMAL_DS           ,'#13#10'       PR' +
+      'M.CTOIVACREDUCIDO                        ,'#13#10'       C15.DESCRIPCI' +
+      'ON CTOIVACREDUCIDO_DS         ,'#13#10'       PRM.CTOIVACSUPER        ' +
+      '                   ,'#13#10'       C16.DESCRIPCION CTOIVACSUPER_DS    ' +
+      '        ,'#13#10'       PRM.CTOIVACEXENTO                          ,'#13#10 +
+      '       C17.DESCRIPCION CTOIVACEXENTO_DS           ,'#13#10'       PRM.' +
+      'CTOCOMPRAS                             ,'#13#10'       C18.DESCRIPCION' +
+      ' CTOCOMPRAS_DS              ,'#13#10'       PRM.CTOPROVEEDORES        ' +
+      '                 ,'#13#10'       C19.DESCRIPCION CTOPROVEEDORES_DS    ' +
+      '      ,'#13#10'       PRM.CTOPROVINTRA                           ,'#13#10'  ' +
+      '     C20.DESCRIPCION CTOPROVINTRA_DS            ,'#13#10'       PRM.CT' +
+      'OPAGOF                               ,'#13#10'       C21.DESCRIPCION C' +
+      'TOPAGOF_DS                ,'#13#10'       PRM.CTOEFECTOSCOMERCIALES   ' +
+      '               ,'#13#10'       C22.DESCRIPCION CTOEFECTOSCOMERCIALES_D' +
+      'S   ,'#13#10'       PRM.CTODEUDASDESCUENTOS                    ,'#13#10'    ' +
+      '   C23.DESCRIPCION CTODEUDASDESCUENTOS_DS     ,'#13#10'       PRM.CTOR' +
+      'EMESAEFECTOS                       ,'#13#10'       C24.DESCRIPCION CTO' +
+      'REMESAEFECTOS_DS        ,'#13#10'       PRM.CTODTOPPV                 ' +
+      '             ,'#13#10'       C25.DESCRIPCION CTODTOPPV_DS             ' +
+      '  ,'#13#10'       PRM.CTODTOPPC                              ,'#13#10'      ' +
+      ' C26.DESCRIPCION CTODTOPPC_DS               ,'#13#10'       PRM.CTORET' +
+      'PROF                             ,'#13#10'       C27.DESCRIPCION CTORE' +
+      'TPROF_DS              ,'#13#10'       PRM.CTORETARRE                  ' +
+      '           ,'#13#10'       C28.DESCRIPCION CTORETARRE_DS              ' +
+      ','#13#10'       PRM.CTOHACIVA                              ,'#13#10'       C' +
+      '29.DESCRIPCION CTOHACIVA_DS               ,'#13#10'       PRM.CTOCOBRO' +
+      '                               ,'#13#10'       C30.DESCRIPCION CTOCOBR' +
+      'O_DS                ,'#13#10'       PRM.CTOPAGO                       ' +
+      '         ,'#13#10'       C31.DESCRIPCION CTOPAGO_DS                 ,'#13 +
+      #10'       PRM.SCTADESCUENTO                          ,'#13#10'       PRM' +
+      '.CTODESCUENTO                           ,'#13#10'       PRM.CTONOME   ' +
+      '                             ,'#13#10'       PRM.CTONOMT              ' +
+      '                  ,'#13#10'       PRM.SCTANOMSUELDO                   ' +
+      '       ,'#13#10'       PRM.SCTANOMIRPF                            ,'#13#10' ' +
+      '      PRM.SCTANOMPAGO                            ,'#13#10'       PRM.S' +
+      'CTANOMSSE                             ,'#13#10'       PRM.SCTANOMSST  ' +
+      '                           ,'#13#10'       PRM.SCTANOMCARGO           ' +
+      '                ,'#13#10'       PRM.TANTORETPROF                      ' +
+      '     ,'#13#10'       PRM.TANTORETARRE                           ,'#13#10'   ' +
+      '    PRM.TELEFONO                               ,'#13#10'       PRM.FAX' +
+      '                                    ,'#13#10'       PRM.DOCIMPRIMIR   ' +
+      '                         ,'#13#10'       PRM.SIGLAVIA                 ' +
+      '              ,'#13#10'       PRM.NUMEROCALLE                         ' +
+      '   ,'#13#10'       PRM.ESCALERA                               ,'#13#10'     ' +
+      '  PRM.PISO                                   ,'#13#10'       PRM.PUERT' +
+      'A                                 ,'#13#10'       PRM.CCC             ' +
+      '                       ,'#13#10'       PRM.CODADMON                   ' +
+      '            ,'#13#10'       PRM.GESTIONA_CARTERA_EFECTOS              ' +
+      ' ,'#13#10'       PRM.FILTRO_ASIENTOS_INICIO                 ,'#13#10'       ' +
+      'PRM.INCLUIR_ABREV                          ,'#13#10'       PRM.ASIENTO' +
+      'S_INICIO_INTERVALO_BQDA         ,'#13#10'       PRM.ASIENTOS_FIN_INTER' +
+      'VALO_BQDA            ,'#13#10'       PRM.MOSTRAR_FILTRO_MAYOR         ' +
+      '          ,'#13#10'       PRM.ASIENTO_INICIO_INTERVALO_FILTRO        ,' +
+      #13#10'       PRM.ASIENTO_FIN_INTERVALO_FILTRO           ,'#13#10'       PR' +
+      'M.ASIENTO_NOMINA_INDIVIDUAL              ,'#13#10'       PRM.BUSQUEDA_' +
+      'SUBCTAS                       ,'#13#10'       PRM.SCTAOTRASREMUN      ' +
+      '                   ,'#13#10'       PRM.DESCPROV_CARTERAEFECTOS        ' +
+      '        ,'#13#10'       PRM.DESCCLI_CARTERAEFECTOS                 ,'#13#10 +
+      '       PRM.TIPOEMPRESA                            ,'#13#10'       PRM.' +
+      'FILTROSUBCTAS                          ,'#13#10'       PRM.OFFICE2003 ' +
+      '                            ,'#13#10'       PRM.TRATASERIE            ' +
+      '                 ,'#13#10'       PRM.ACTCOMENTARIO'#13#10'FROM PARAMETROS PR' +
+      'M'#13#10'LEFT JOIN SUBCTAS S01 ON S01.SUBCUENTA = PRM.SCTAIVANORMAL'#13#10'L' +
+      'EFT JOIN SUBCTAS S02 ON S02.SUBCUENTA = PRM.SCTAIVAREDUCIDO'#13#10'LEF' +
+      'T JOIN SUBCTAS S03 ON S03.SUBCUENTA = PRM.SCTAIVASUPER'#13#10'LEFT JOI' +
+      'N SUBCTAS S04 ON S04.SUBCUENTA = PRM.SCTAIVAEXENTO'#13#10'LEFT JOIN SU' +
+      'BCTAS S05 ON S05.SUBCUENTA = PRM.SCTAIVAINTRADEDUCIBLE'#13#10'LEFT JOI' +
+      'N SUBCTAS S06 ON S06.SUBCUENTA = PRM.SCTAIVAINTRA'#13#10'LEFT JOIN SUB' +
+      'CTAS S07 ON S07.SUBCUENTA = PRM.SCTAVENTAS'#13#10'LEFT JOIN SUBCTAS S0' +
+      '8 ON S08.SUBCUENTA = PRM.SCTADEVOLUCION'#13#10'LEFT JOIN SUBCTAS S09 O' +
+      'N S09.SUBCUENTA = PRM.SCTARECNORMAL'#13#10'LEFT JOIN SUBCTAS S10 ON S1' +
+      '0.SUBCUENTA = PRM.SCTARECREDUCIDO'#13#10'LEFT JOIN SUBCTAS S11 ON S11.' +
+      'SUBCUENTA = PRM.SCTARECSUPER'#13#10'LEFT JOIN SUBCTAS S12 ON S12.SUBCU' +
+      'ENTA = PRM.VGENERICA'#13#10'LEFT JOIN SUBCTAS S13 ON S13.SUBCUENTA = P' +
+      'RM.SUBCAJA'#13#10'LEFT JOIN SUBCTAS S14 ON S14.SUBCUENTA = PRM.SCTAIVA' +
+      'EXENTOCEE'#13#10'LEFT JOIN SUBCTAS S15 ON S15.SUBCUENTA = PRM.SCTAINTE' +
+      'RESES'#13#10'LEFT JOIN SUBCTAS S16 ON S16.SUBCUENTA = PRM.SCTAEXPORTAC' +
+      'IONES'#13#10'LEFT JOIN SUBCTAS S17 ON S17.SUBCUENTA = PRM.SCTAIVACNORM' +
+      'AL'#13#10'LEFT JOIN SUBCTAS S18 ON S18.SUBCUENTA = PRM.SCTAIVACREDUCID' +
+      'O'#13#10'LEFT JOIN SUBCTAS S19 ON S19.SUBCUENTA = PRM.SCTAIVACSUPER'#13#10'L' +
+      'EFT JOIN SUBCTAS S20 ON S20.SUBCUENTA = PRM.SCTAIVACEXENTO'#13#10'LEFT' +
+      ' JOIN SUBCTAS S21 ON S21.SUBCUENTA = PRM.SCTACOMPRAS'#13#10'LEFT JOIN ' +
+      'SUBCTAS S22 ON S22.SUBCUENTA = PRM.SCTAIVACINTRADEDUCIBLE'#13#10'LEFT ' +
+      'JOIN SUBCTAS S23 ON S23.SUBCUENTA = PRM.SCTAIVACINTRAREPERCUTIDO' +
+      #13#10'LEFT JOIN SUBCTAS S24 ON S24.SUBCUENTA = PRM.VGENERICAC'#13#10'LEFT ' +
+      'JOIN SUBCTAS S25 ON S25.SUBCUENTA = PRM.SCTAEFECTOSCOMERCIALES'#13#10 +
+      'LEFT JOIN SUBCTAS S26 ON S26.SUBCUENTA = PRM.SCTAEFECTDESCONTADO' +
+      'S'#13#10'LEFT JOIN SUBCTAS S27 ON S27.SUBCUENTA = PRM.SCTADEUDASDESCUE' +
+      'NTOS'#13#10'LEFT JOIN SUBCTAS S28 ON S28.SUBCUENTA = PRM.SCTAREMESAEFE' +
+      'CTOS'#13#10'LEFT JOIN SUBCTAS S29 ON S29.SUBCUENTA = PRM.SCTADTOPPV'#13#10'L' +
+      'EFT JOIN SUBCTAS S30 ON S30.SUBCUENTA = PRM.SCTADTOPPC'#13#10'LEFT JOI' +
+      'N SUBCTAS S31 ON S31.SUBCUENTA = PRM.SCTARETPROF'#13#10'LEFT JOIN SUBC' +
+      'TAS S32 ON S32.SUBCUENTA = PRM.SCTARETARRE'#13#10'LEFT JOIN SUBCTAS S3' +
+      '3 ON S33.SUBCUENTA = PRM.SCTAHACIVA'#13#10'LEFT JOIN SUBCTAS S34 ON S3' +
+      '4.SUBCUENTA = PRM.SCTAGENINTRACOM'#13#10'LEFT JOIN SUBCTAS S35 ON S35.' +
+      'SUBCUENTA = PRM.SCTABANCO'#13#10'LEFT JOIN CONCEPTOS C01 ON C01.ID_CON' +
+      'CEPTOS = PRM.CTOIVANORMAL'#13#10'LEFT JOIN CONCEPTOS C02 ON C02.ID_CON' +
+      'CEPTOS = PRM.CTOIVAREDUCIDO'#13#10'LEFT JOIN CONCEPTOS C03 ON C03.ID_C' +
+      'ONCEPTOS = PRM.CTOIVASUPER'#13#10'LEFT JOIN CONCEPTOS C04 ON C04.ID_CO' +
+      'NCEPTOS = PRM.CTOIVAEXENTO'#13#10'LEFT JOIN CONCEPTOS C05 ON C05.ID_CO' +
+      'NCEPTOS = PRM.CTOIVAINTRA'#13#10'LEFT JOIN CONCEPTOS C06 ON C06.ID_CON' +
+      'CEPTOS = PRM.CTOVENTAS'#13#10'LEFT JOIN CONCEPTOS C07 ON C07.ID_CONCEP' +
+      'TOS = PRM.CTODEVOLUCION'#13#10'LEFT JOIN CONCEPTOS C08 ON C08.ID_CONCE' +
+      'PTOS = PRM.CTOCLIENTES'#13#10'LEFT JOIN CONCEPTOS C09 ON C09.ID_CONCEP' +
+      'TOS = PRM.CTORECNORMAL'#13#10'LEFT JOIN CONCEPTOS C10 ON C10.ID_CONCEP' +
+      'TOS = PRM.CTORECREDUCIDO'#13#10'LEFT JOIN CONCEPTOS C11 ON C11.ID_CONC' +
+      'EPTOS = PRM.CTORECSUPER'#13#10'LEFT JOIN CONCEPTOS C12 ON C12.ID_CONCE' +
+      'PTOS = PRM.CTOCOBROF'#13#10'LEFT JOIN CONCEPTOS C13 ON C13.ID_CONCEPTO' +
+      'S = PRM.CTORECIBOVENTAS'#13#10'LEFT JOIN CONCEPTOS C14 ON C14.ID_CONCE' +
+      'PTOS = PRM.CTOIVACNORMAL'#13#10'LEFT JOIN CONCEPTOS C15 ON C15.ID_CONC' +
+      'EPTOS = PRM.CTOIVACREDUCIDO'#13#10'LEFT JOIN CONCEPTOS C16 ON C16.ID_C' +
+      'ONCEPTOS = PRM.CTOIVACSUPER'#13#10'LEFT JOIN CONCEPTOS C17 ON C17.ID_C' +
+      'ONCEPTOS = PRM.CTOIVACEXENTO'#13#10'LEFT JOIN CONCEPTOS C18 ON C18.ID_' +
+      'CONCEPTOS = PRM.CTOCOMPRAS'#13#10'LEFT JOIN CONCEPTOS C19 ON C19.ID_CO' +
+      'NCEPTOS = PRM.CTOPROVEEDORES'#13#10'LEFT JOIN CONCEPTOS C20 ON C20.ID_' +
+      'CONCEPTOS = PRM.CTOPROVINTRA'#13#10'LEFT JOIN CONCEPTOS C21 ON C21.ID_' +
+      'CONCEPTOS = PRM.CTOPAGOF'#13#10'LEFT JOIN CONCEPTOS C22 ON C22.ID_CONC' +
+      'EPTOS = PRM.CTOEFECTOSCOMERCIALES'#13#10'LEFT JOIN CONCEPTOS C23 ON C2' +
+      '3.ID_CONCEPTOS = PRM.CTODEUDASDESCUENTOS'#13#10'LEFT JOIN CONCEPTOS C2' +
+      '4 ON C24.ID_CONCEPTOS = PRM.CTOREMESAEFECTOS'#13#10'LEFT JOIN CONCEPTO' +
+      'S C25 ON C25.ID_CONCEPTOS = PRM.CTODTOPPV'#13#10'LEFT JOIN CONCEPTOS C' +
+      '26 ON C26.ID_CONCEPTOS = PRM.CTODTOPPC'#13#10'LEFT JOIN CONCEPTOS C27 ' +
+      'ON C27.ID_CONCEPTOS = PRM.CTORETPROF'#13#10'LEFT JOIN CONCEPTOS C28 ON' +
+      ' C28.ID_CONCEPTOS = PRM.CTORETARRE'#13#10'LEFT JOIN CONCEPTOS C29 ON C' +
+      '29.ID_CONCEPTOS = PRM.CTOHACIVA'#13#10'LEFT JOIN CONCEPTOS C30 ON C30.' +
+      'ID_CONCEPTOS = PRM.CTOCOBRO'#13#10'LEFT JOIN CONCEPTOS C31 ON C31.ID_C' +
+      'ONCEPTOS = PRM.CTOPAGO'#13#10
+    DataSet.MaxBlobSize = -1
+    DataSet.Params = <>
     Params = <>
-    SQL.Strings = (
-      'SELECT PRM.ID_PARAMETROS                          ,'
-      '       PRM.LONGITUD_SUBCUENTAS                    ,'
-      '       PRM.FECHA_INICIO_APLICACION                ,'
-      '       PRM.FECHA_INICIO_EJERCICIO                 ,'
-      '       PRM.FECHA_FIN_EJERCICIO                    ,'
-      '       PRM.CTO_REGULARIZACION                     ,'
-      '       PRM.SUBCUENTA_CIERRE                       ,'
-      '       PRM.MONEDA                                 ,'
-      '       PRM.NOMBREFISCAL                           ,'
-      '       PRM.DIRECCION                              ,'
-      '       PRM.DIRECCION1                             ,'
-      '       PRM.POBLACION                              ,'
-      '       PRM.CODPOSTAL                              ,'
-      '       PRM.PROVINCIA                              ,'
-      '       PRM.NIF                                    ,'
-      '       PRM.CONTACTO                               ,'
-      '       PRM.DOCCLIENTE                             ,'
-      '       PRM.DOCPROVEEDOR                           ,'
-      '       PRM.DOC347                                 ,'
-      '       PRM.FECHABLOQUEO                           ,'
-      '       PRM.CTO_APERTURA                           ,'
-      '       PRM.CTO_REGULARIZACION_ESP                 ,'
-      '       PRM.FECHAAMORTIZACION                      ,'
-      '       PRM.RECARGO                                ,'
-      '       PRM.CTO_APERTURA_ESP                       ,'
-      '       PRM.SCTAIVANORMAL                          ,'
-      '       S01.DESCRIPCION SCTAIVANORMAL_DS           ,'
-      '       PRM.SCTAIVAREDUCIDO                        ,'
-      '       S02.DESCRIPCION SCTAIVAREDUCIDO_DS         ,'
-      '       PRM.SCTAIVASUPER                           ,'
-      '       S03.DESCRIPCION SCTAIVASUPER_DS            ,'
-      '       PRM.SCTAIVAEXENTO                          ,'
-      '       S04.DESCRIPCION SCTAIVAEXENTO_DS           ,'
-      '       PRM.SCTAIVAINTRADEDUCIBLE                  ,'
-      '       S05.DESCRIPCION SCTAIVAINTRADEDUCIBLE_DS   ,'
-      '       PRM.SCTAIVAINTRA                           ,'
-      '       S06.DESCRIPCION SCTAIVAINTRA_DS            ,'
-      '       PRM.SCTAVENTAS                             ,'
-      '       S07.DESCRIPCION SCTAVENTAS_DS              ,'
-      '       PRM.SCTADEVOLUCION                         ,'
-      '       S08.DESCRIPCION SCTADEVOLUCION_DS          ,'
-      '       PRM.SCTARECNORMAL                          ,'
-      '       S09.DESCRIPCION SCTARECNORMAL_DS           ,'
-      '       PRM.SCTARECREDUCIDO                        ,'
-      '       S10.DESCRIPCION SCTARECREDUCIDO_DS         ,'
-      '       PRM.SCTARECSUPER                           ,'
-      '       S11.DESCRIPCION SCTARECSUPER_DS            ,'
-      '       PRM.VGENERICA                              ,'
-      '       S12.DESCRIPCION VGENERICA_DS               ,'
-      '       PRM.SUBCAJA                                ,'
-      '       S13.DESCRIPCION SUBCAJA_DS                 ,'
-      '       PRM.SCTAIVAEXENTOCEE                       ,'
-      '       S14.DESCRIPCION SCTAIVAEXENTOCEE_DS        ,'
-      '       PRM.SCTAINTERESES                          ,'
-      '       S15.DESCRIPCION SCTAINTERESES_DS           ,'
-      '       PRM.SCTAEXPORTACIONES                      ,'
-      '       S16.DESCRIPCION SCTAEXPORTACIONES_DS       ,'
-      '       PRM.SCTAIVACNORMAL                         ,'
-      '       S17.DESCRIPCION SCTAIVACNORMAL_DS          ,'
-      '       PRM.SCTAIVACREDUCIDO                       ,'
-      '       S18.DESCRIPCION SCTAIVACREDUCIDO_DS        ,'
-      '       PRM.SCTAIVACSUPER                          ,'
-      '       S19.DESCRIPCION SCTAIVACSUPER_DS           ,'
-      '       PRM.SCTAIVACEXENTO                         ,'
-      '       S20.DESCRIPCION SCTAIVACEXENTO_DS          ,'
-      '       PRM.SCTACOMPRAS                            ,'
-      '       S21.DESCRIPCION SCTACOMPRAS_DS             ,'
-      '       PRM.SCTAIVACINTRADEDUCIBLE                 ,'
-      '       S22.DESCRIPCION SCTAIVACINTRADEDUCIBLE_DS  ,'
-      '       PRM.SCTAIVACINTRAREPERCUTIDO               ,'
-      '       S23.DESCRIPCION SCTAIVACINTRAREPERCUTIDO_DS,'
-      '       PRM.VGENERICAC                             ,'
-      '       S24.DESCRIPCION VGENERICAC_DS              ,'
-      '       PRM.SCTAEFECTOSCOMERCIALES                 ,'
-      '       S25.DESCRIPCION SCTAEFECTOSCOMERCIALES_DS  ,'
-      '       PRM.SCTAEFECTDESCONTADOS                   ,'
-      '       S26.DESCRIPCION SCTAEFECTDESCONTADOS_DS    ,'
-      '       PRM.SCTADEUDASDESCUENTOS                   ,'
-      '       S27.DESCRIPCION SCTADEUDASDESCUENTOS_DS    ,'
-      '       PRM.SCTAREMESAEFECTOS                      ,'
-      '       S28.DESCRIPCION SCTAREMESAEFECTOS_DS       ,'
-      '       PRM.SCTADTOPPV                             ,'
-      '       S29.DESCRIPCION SCTADTOPPV_DS              ,'
-      '       PRM.SCTADTOPPC                             ,'
-      '       S30.DESCRIPCION SCTADTOPPC_DS              ,'
-      '       PRM.SCTARETPROF                            ,'
-      '       S31.DESCRIPCION SCTARETPROF_DS             ,'
-      '       PRM.SCTARETARRE                            ,'
-      '       S32.DESCRIPCION SCTARETARRE_DS             ,'
-      '       PRM.SCTAHACIVA                             ,'
-      '       S33.DESCRIPCION SCTAHACIVA_DS              ,'
-      '       PRM.SCTAGENINTRACOM                        ,'
-      '       S34.DESCRIPCION SCTAGENINTRACOM_DS         ,'
-      '       PRM.SCTABANCO                              ,'
-      '       S35.DESCRIPCION SCTABANCO_DS               ,'
-      '       PRM.CTOIVANORMAL                           ,'
-      '       C01.DESCRIPCION CTOIVANORMAL_DS            ,'
-      '       PRM.CTOIVAREDUCIDO                         ,'
-      '       C02.DESCRIPCION CTOIVAREDUCIDO_DS          ,'
-      '       PRM.CTOIVASUPER                            ,'
-      '       C03.DESCRIPCION CTOIVASUPER_DS             ,'
-      '       PRM.CTOIVAEXENTO                           ,'
-      '       C04.DESCRIPCION CTOIVAEXENTO_DS            ,'
-      '       PRM.CTOIVAINTRA                            ,'
-      '       C05.DESCRIPCION CTOIVAINTRA_DS             ,'
-      '       PRM.CTOVENTAS                              ,'
-      '       C06.DESCRIPCION CTOVENTAS_DS               ,'
-      '       PRM.CTODEVOLUCION                          ,'
-      '       C07.DESCRIPCION CTODEVOLUCION_DS           ,'
-      '       PRM.CTOCLIENTES                            ,'
-      '       C08.DESCRIPCION CTOCLIENTES_DS             ,'
-      '       PRM.CTORECNORMAL                           ,'
-      '       C09.DESCRIPCION CTORECNORMAL_DS            ,'
-      '       PRM.CTORECREDUCIDO                         ,'
-      '       C10.DESCRIPCION CTORECREDUCIDO_DS          ,'
-      '       PRM.CTORECSUPER                            ,'
-      '       C11.DESCRIPCION CTORECSUPER_DS             ,'
-      '       PRM.CTOCOBROF                              ,'
-      '       C12.DESCRIPCION CTOCOBROF_DS               ,'
-      '       PRM.CTORECIBOVENTAS                        ,'
-      '       C13.DESCRIPCION CTORECIBOVENTAS_DS         ,'
-      '       PRM.CTOIVACNORMAL                          ,'
-      '       C14.DESCRIPCION CTOIVACNORMAL_DS           ,'
-      '       PRM.CTOIVACREDUCIDO                        ,'
-      '       C15.DESCRIPCION CTOIVACREDUCIDO_DS         ,'
-      '       PRM.CTOIVACSUPER                           ,'
-      '       C16.DESCRIPCION CTOIVACSUPER_DS            ,'
-      '       PRM.CTOIVACEXENTO                          ,'
-      '       C17.DESCRIPCION CTOIVACEXENTO_DS           ,'
-      '       PRM.CTOCOMPRAS                             ,'
-      '       C18.DESCRIPCION CTOCOMPRAS_DS              ,'
-      '       PRM.CTOPROVEEDORES                         ,'
-      '       C19.DESCRIPCION CTOPROVEEDORES_DS          ,'
-      '       PRM.CTOPROVINTRA                           ,'
-      '       C20.DESCRIPCION CTOPROVINTRA_DS            ,'
-      '       PRM.CTOPAGOF                               ,'
-      '       C21.DESCRIPCION CTOPAGOF_DS                ,'
-      '       PRM.CTOEFECTOSCOMERCIALES                  ,'
-      '       C22.DESCRIPCION CTOEFECTOSCOMERCIALES_DS   ,'
-      '       PRM.CTODEUDASDESCUENTOS                    ,'
-      '       C23.DESCRIPCION CTODEUDASDESCUENTOS_DS     ,'
-      '       PRM.CTOREMESAEFECTOS                       ,'
-      '       C24.DESCRIPCION CTOREMESAEFECTOS_DS        ,'
-      '       PRM.CTODTOPPV                              ,'
-      '       C25.DESCRIPCION CTODTOPPV_DS               ,'
-      '       PRM.CTODTOPPC                              ,'
-      '       C26.DESCRIPCION CTODTOPPC_DS               ,'
-      '       PRM.CTORETPROF                             ,'
-      '       C27.DESCRIPCION CTORETPROF_DS              ,'
-      '       PRM.CTORETARRE                             ,'
-      '       C28.DESCRIPCION CTORETARRE_DS              ,'
-      '       PRM.CTOHACIVA                              ,'
-      '       C29.DESCRIPCION CTOHACIVA_DS               ,'
-      '       PRM.CTOCOBRO                               ,'
-      '       C30.DESCRIPCION CTOCOBRO_DS                ,'
-      '       PRM.CTOPAGO                                ,'
-      '       C31.DESCRIPCION CTOPAGO_DS                 ,'
-      '       PRM.SCTADESCUENTO                          ,'
-      '       PRM.CTODESCUENTO                           ,'
-      '       PRM.CTONOME                                ,'
-      '       PRM.CTONOMT                                ,'
-      '       PRM.SCTANOMSUELDO                          ,'
-      '       PRM.SCTANOMIRPF                            ,'
-      '       PRM.SCTANOMPAGO                            ,'
-      '       PRM.SCTANOMSSE                             ,'
-      '       PRM.SCTANOMSST                             ,'
-      '       PRM.SCTANOMCARGO                           ,'
-      '       PRM.TANTORETPROF                           ,'
-      '       PRM.TANTORETARRE                           ,'
-      '       PRM.TELEFONO                               ,'
-      '       PRM.FAX                                    ,'
-      '       PRM.DOCIMPRIMIR                            ,'
-      '       PRM.SIGLAVIA                               ,'
-      '       PRM.NUMEROCALLE                            ,'
-      '       PRM.ESCALERA                               ,'
-      '       PRM.PISO                                   ,'
-      '       PRM.PUERTA                                 ,'
-      '       PRM.CCC                                    ,'
-      '       PRM.CODADMON                               ,'
-      '       PRM.GESTIONA_CARTERA_EFECTOS               ,'
-      '       PRM.FILTRO_ASIENTOS_INICIO                 ,'
-      '       PRM.INCLUIR_ABREV                          ,'
-      '       PRM.ASIENTOS_INICIO_INTERVALO_BQDA         ,'
-      '       PRM.ASIENTOS_FIN_INTERVALO_BQDA            ,'
-      '       PRM.MOSTRAR_FILTRO_MAYOR                   ,'
-      '       PRM.ASIENTO_INICIO_INTERVALO_FILTRO        ,'
-      '       PRM.ASIENTO_FIN_INTERVALO_FILTRO           ,'
-      '       PRM.ASIENTO_NOMINA_INDIVIDUAL              ,'
-      '       PRM.BUSQUEDA_SUBCTAS                       ,'
-      '       PRM.SCTAOTRASREMUN                         ,'
-      '       PRM.DESCPROV_CARTERAEFECTOS                ,'
-      '       PRM.DESCCLI_CARTERAEFECTOS                 ,'
-      '       PRM.TIPOEMPRESA                            ,'
-      '       PRM.FILTROSUBCTAS                          ,'
-      '       PRM.OFFICE2003                             ,'
-      '       PRM.TRATASERIE                             ,'
-      '       PRM.ACTCOMENTARIO'
-      'FROM PARAMETROS PRM'
-      'LEFT JOIN SUBCTAS S01 ON S01.SUBCUENTA = PRM.SCTAIVANORMAL'
-      'LEFT JOIN SUBCTAS S02 ON S02.SUBCUENTA = PRM.SCTAIVAREDUCIDO'
-      'LEFT JOIN SUBCTAS S03 ON S03.SUBCUENTA = PRM.SCTAIVASUPER'
-      'LEFT JOIN SUBCTAS S04 ON S04.SUBCUENTA = PRM.SCTAIVAEXENTO'
-      
-        'LEFT JOIN SUBCTAS S05 ON S05.SUBCUENTA = PRM.SCTAIVAINTRADEDUCIB' +
-        'LE'
-      'LEFT JOIN SUBCTAS S06 ON S06.SUBCUENTA = PRM.SCTAIVAINTRA'
-      'LEFT JOIN SUBCTAS S07 ON S07.SUBCUENTA = PRM.SCTAVENTAS'
-      'LEFT JOIN SUBCTAS S08 ON S08.SUBCUENTA = PRM.SCTADEVOLUCION'
-      'LEFT JOIN SUBCTAS S09 ON S09.SUBCUENTA = PRM.SCTARECNORMAL'
-      'LEFT JOIN SUBCTAS S10 ON S10.SUBCUENTA = PRM.SCTARECREDUCIDO'
-      'LEFT JOIN SUBCTAS S11 ON S11.SUBCUENTA = PRM.SCTARECSUPER'
-      'LEFT JOIN SUBCTAS S12 ON S12.SUBCUENTA = PRM.VGENERICA'
-      'LEFT JOIN SUBCTAS S13 ON S13.SUBCUENTA = PRM.SUBCAJA'
-      'LEFT JOIN SUBCTAS S14 ON S14.SUBCUENTA = PRM.SCTAIVAEXENTOCEE'
-      'LEFT JOIN SUBCTAS S15 ON S15.SUBCUENTA = PRM.SCTAINTERESES'
-      'LEFT JOIN SUBCTAS S16 ON S16.SUBCUENTA = PRM.SCTAEXPORTACIONES'
-      'LEFT JOIN SUBCTAS S17 ON S17.SUBCUENTA = PRM.SCTAIVACNORMAL'
-      'LEFT JOIN SUBCTAS S18 ON S18.SUBCUENTA = PRM.SCTAIVACREDUCIDO'
-      'LEFT JOIN SUBCTAS S19 ON S19.SUBCUENTA = PRM.SCTAIVACSUPER'
-      'LEFT JOIN SUBCTAS S20 ON S20.SUBCUENTA = PRM.SCTAIVACEXENTO'
-      'LEFT JOIN SUBCTAS S21 ON S21.SUBCUENTA = PRM.SCTACOMPRAS'
-      
-        'LEFT JOIN SUBCTAS S22 ON S22.SUBCUENTA = PRM.SCTAIVACINTRADEDUCI' +
-        'BLE'
-      
-        'LEFT JOIN SUBCTAS S23 ON S23.SUBCUENTA = PRM.SCTAIVACINTRAREPERC' +
-        'UTIDO'
-      'LEFT JOIN SUBCTAS S24 ON S24.SUBCUENTA = PRM.VGENERICAC'
-      
-        'LEFT JOIN SUBCTAS S25 ON S25.SUBCUENTA = PRM.SCTAEFECTOSCOMERCIA' +
-        'LES'
-      
-        'LEFT JOIN SUBCTAS S26 ON S26.SUBCUENTA = PRM.SCTAEFECTDESCONTADO' +
-        'S'
-      
-        'LEFT JOIN SUBCTAS S27 ON S27.SUBCUENTA = PRM.SCTADEUDASDESCUENTO' +
-        'S'
-      'LEFT JOIN SUBCTAS S28 ON S28.SUBCUENTA = PRM.SCTAREMESAEFECTOS'
-      'LEFT JOIN SUBCTAS S29 ON S29.SUBCUENTA = PRM.SCTADTOPPV'
-      'LEFT JOIN SUBCTAS S30 ON S30.SUBCUENTA = PRM.SCTADTOPPC'
-      'LEFT JOIN SUBCTAS S31 ON S31.SUBCUENTA = PRM.SCTARETPROF'
-      'LEFT JOIN SUBCTAS S32 ON S32.SUBCUENTA = PRM.SCTARETARRE'
-      'LEFT JOIN SUBCTAS S33 ON S33.SUBCUENTA = PRM.SCTAHACIVA'
-      'LEFT JOIN SUBCTAS S34 ON S34.SUBCUENTA = PRM.SCTAGENINTRACOM'
-      'LEFT JOIN SUBCTAS S35 ON S35.SUBCUENTA = PRM.SCTABANCO'
-      'LEFT JOIN CONCEPTOS C01 ON C01.ID_CONCEPTOS = PRM.CTOIVANORMAL'
-      'LEFT JOIN CONCEPTOS C02 ON C02.ID_CONCEPTOS = PRM.CTOIVAREDUCIDO'
-      'LEFT JOIN CONCEPTOS C03 ON C03.ID_CONCEPTOS = PRM.CTOIVASUPER'
-      'LEFT JOIN CONCEPTOS C04 ON C04.ID_CONCEPTOS = PRM.CTOIVAEXENTO'
-      'LEFT JOIN CONCEPTOS C05 ON C05.ID_CONCEPTOS = PRM.CTOIVAINTRA'
-      'LEFT JOIN CONCEPTOS C06 ON C06.ID_CONCEPTOS = PRM.CTOVENTAS'
-      'LEFT JOIN CONCEPTOS C07 ON C07.ID_CONCEPTOS = PRM.CTODEVOLUCION'
-      'LEFT JOIN CONCEPTOS C08 ON C08.ID_CONCEPTOS = PRM.CTOCLIENTES'
-      'LEFT JOIN CONCEPTOS C09 ON C09.ID_CONCEPTOS = PRM.CTORECNORMAL'
-      'LEFT JOIN CONCEPTOS C10 ON C10.ID_CONCEPTOS = PRM.CTORECREDUCIDO'
-      'LEFT JOIN CONCEPTOS C11 ON C11.ID_CONCEPTOS = PRM.CTORECSUPER'
-      'LEFT JOIN CONCEPTOS C12 ON C12.ID_CONCEPTOS = PRM.CTOCOBROF'
-      
-        'LEFT JOIN CONCEPTOS C13 ON C13.ID_CONCEPTOS = PRM.CTORECIBOVENTA' +
-        'S'
-      'LEFT JOIN CONCEPTOS C14 ON C14.ID_CONCEPTOS = PRM.CTOIVACNORMAL'
-      
-        'LEFT JOIN CONCEPTOS C15 ON C15.ID_CONCEPTOS = PRM.CTOIVACREDUCID' +
-        'O'
-      'LEFT JOIN CONCEPTOS C16 ON C16.ID_CONCEPTOS = PRM.CTOIVACSUPER'
-      'LEFT JOIN CONCEPTOS C17 ON C17.ID_CONCEPTOS = PRM.CTOIVACEXENTO'
-      'LEFT JOIN CONCEPTOS C18 ON C18.ID_CONCEPTOS = PRM.CTOCOMPRAS'
-      'LEFT JOIN CONCEPTOS C19 ON C19.ID_CONCEPTOS = PRM.CTOPROVEEDORES'
-      'LEFT JOIN CONCEPTOS C20 ON C20.ID_CONCEPTOS = PRM.CTOPROVINTRA'
-      'LEFT JOIN CONCEPTOS C21 ON C21.ID_CONCEPTOS = PRM.CTOPAGOF'
-      
-        'LEFT JOIN CONCEPTOS C22 ON C22.ID_CONCEPTOS = PRM.CTOEFECTOSCOME' +
-        'RCIALES'
-      
-        'LEFT JOIN CONCEPTOS C23 ON C23.ID_CONCEPTOS = PRM.CTODEUDASDESCU' +
-        'ENTOS'
-      
-        'LEFT JOIN CONCEPTOS C24 ON C24.ID_CONCEPTOS = PRM.CTOREMESAEFECT' +
-        'OS'
-      'LEFT JOIN CONCEPTOS C25 ON C25.ID_CONCEPTOS = PRM.CTODTOPPV'
-      'LEFT JOIN CONCEPTOS C26 ON C26.ID_CONCEPTOS = PRM.CTODTOPPC'
-      'LEFT JOIN CONCEPTOS C27 ON C27.ID_CONCEPTOS = PRM.CTORETPROF'
-      'LEFT JOIN CONCEPTOS C28 ON C28.ID_CONCEPTOS = PRM.CTORETARRE'
-      'LEFT JOIN CONCEPTOS C29 ON C29.ID_CONCEPTOS = PRM.CTOHACIVA'
-      'LEFT JOIN CONCEPTOS C30 ON C30.ID_CONCEPTOS = PRM.CTOCOBRO'
-      'LEFT JOIN CONCEPTOS C31 ON C31.ID_CONCEPTOS = PRM.CTOPAGO')
-    SQLConnection = DB
-    Left = 288
+    Left = 464
     Top = 136
     object QParametrosID_PARAMETROS: TIntegerField
       FieldName = 'ID_PARAMETROS'
@@ -2284,6 +2167,34 @@ object DMRef: TDMRef
       FieldName = 'ACTCOMENTARIO'
       FixedChar = True
       Size = 1
+    end
+  end
+  object QProvinciasNom: TSimpleDataSet
+    Active = True
+    Aggregates = <>
+    Connection = DB
+    DataSet.CommandText = 
+      'SELECT PROVINCIA, '#13#10'               NOMBRE   , '#13#10'               C' +
+      'ODIGO '#13#10'FROM PROVINCIAS'
+    DataSet.MaxBlobSize = -1
+    DataSet.Params = <>
+    Params = <>
+    Left = 464
+    Top = 200
+    object QProvinciasNomPROVINCIA: TStringField
+      FieldName = 'PROVINCIA'
+      FixedChar = True
+      Size = 2
+    end
+    object QProvinciasNomNOMBRE: TStringField
+      FieldName = 'NOMBRE'
+      FixedChar = True
+      Size = 25
+    end
+    object QProvinciasNomCODIGO: TStringField
+      FieldName = 'CODIGO'
+      FixedChar = True
+      Size = 2
     end
   end
 end

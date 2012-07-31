@@ -25,7 +25,7 @@ type
    public
    end;
                   
-var FormLoginView :TFormLoginView;
+//var FormLoginView :TFormLoginView;
 
 implementation
 {$R *.DFM}

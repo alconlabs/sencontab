@@ -303,8 +303,8 @@ end;
 
 procedure TWTiposDiario.FormShow(Sender: TObject);
 begin
-   SetBounds(0, FormPrincipal.Panel1.Top + FormPrincipal.Panel1.Height + 1, Width, Height);
-   FiltroBCodigo.SetFocus;
+   //SetBounds(0, FormPrincipal.Panel1.Top + FormPrincipal.Panel1.Height + 1, Width, Height);
+   //FiltroBCodigo.SetFocus;
 end;
 
 procedure TWTiposDiario.FormCreate(Sender: TObject);

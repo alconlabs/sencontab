@@ -3,7 +3,7 @@ interface
 uses Buttons, DBClient, IBDatabase, IBCustomDataSet, IBTableSet, Forms,
      StdCtrls, Grids, Controls, windows, ExtCtrls, Graphics, Classes,
      SysUtils, Messages, DB, Mask, DBCtrls, DBGrids, ComCtrls,
-     FormHandler, CustomView;
+     CustomView;
 
 type
    TWPaises = class(TCustomView)
@@ -44,7 +44,6 @@ type
     procedure BtnReportClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
    private
-    FormManager :TccFormHandler;
     FCampoOrden: String;
     procedure CrearFiltro;
     procedure PrepararQuery;
@@ -143,7 +142,7 @@ begin
    except
       DatabaseError('No se ha podido insertar un nuevo país.' + #13 + CADENA_MANUAL);
    end;
-   FormManager.Mode := fmEdit;
+   Mode := fmEdit;
 end;
 
 procedure TWPaises.BtnDeleteClick(Sender: TObject);
@@ -205,7 +204,7 @@ begin
 
    RefrescarBD;
 
-   FormManager.Mode := fmBrowse;
+   Mode := fmView;
    DataGrid.SetFocus;
    if ha_insertado then  begin
       if not (TbFiltro.State in dsEditModes) then begin
@@ -236,7 +235,7 @@ begin
    else Canceled := False;
 
    if Canceled then begin
-      FormManager.Mode := fmBrowse;
+      Mode := fmView;
       DataGrid.SetFocus;
    end;
 end;
@@ -251,38 +250,31 @@ begin
       try QFichero.Edit;
       except MessageDlg('No se puede editar el registro seleccionado.' + #13 + CADENA_MANUAL, mtInformation, [mbOK], 0);
       end;
-      FormManager.Mode := fmEdit;
+      Mode := fmEdit;
       EditCD_PAIS.SetFocus;
    end;
 end;
 
 procedure TWPaises.FormCreate(Sender: TObject);
 begin
-   FormManager := TccFormHandler.Create(Self);
+   ModeList.Add(TComponentMode.Create(EditCD_PAIS , fmEdit));
+   ModeList.Add(TComponentMode.Create(EditDS_PAIS , fmEdit));
 
-   FormManager.AddComp(EditCD_PAIS.Name , fmEdit );
-   FormManager.AddComp(EditDS_PAIS.Name , fmEdit );
+   ModeList.Add(TComponentMode.Create(DataGrid    , fmView));
+   ModeList.Add(TComponentMode.Create(BtnAdd      , fmView));
+   ModeList.Add(TComponentMode.Create(BtnModify   , fmView));
+   ModeList.Add(TComponentMode.Create(BtnDelete   , fmView));
+   ModeList.Add(TComponentMode.Create(BtnReport   , fmView));
 
-   FormManager.AddComp(DataGrid.Name        , fmBrowse);
-   //FormManager.AddComp(BtnCopy.Name         , fmBrowse);
-   //FormManager.AddComp(BtnPaste.Name        , fmBrowse);
-
-   FormManager.AddComp(BtnAdd.Name          , fmBrowse);
-   //FormManager.AddComp(BtnDuplicate.Name    , fmBrowse);
-   FormManager.AddComp(BtnModify.Name       , fmBrowse);
-   FormManager.AddComp(BtnDelete.Name       , fmBrowse);
-   //FormManager.AddComp(BtnReload.Name       , fmBrowse);
-   FormManager.AddComp(BtnReport.Name       , fmBrowse);
-
-   FormManager.AddComp(BtnSave.Name         , fmEdit  );
-   FormManager.AddComp(BtnCancel.Name       , fmEdit  );
+   ModeList.Add(TComponentMode.Create(BtnSave     , fmEdit));
+   ModeList.Add(TComponentMode.Create(BtnCancel   , fmEdit));
 
 
    //ActivarTransacciones(Self);
    CrearFiltro;
    FCampoOrden := 'PAIS';
    PrepararQuery;
-   FormManager.Mode := fmBrowse;
+   Mode := fmView;
 end;
 
 procedure TWPaises.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -322,7 +314,6 @@ begin
       Action := caFree;
       //Formulario.Free;
       //Formulario := nil;
-      FormManager.Free;
       WPaises    := nil;
    end
    else begin
@@ -343,8 +334,8 @@ end;
 
 procedure TWPaises.FormShow(Sender: TObject);
 begin
-   FormManager.Mode := fmEdit;
-   FormManager.Mode := fmBrowse;
+   Mode := fmEdit;
+   Mode := fmView;
 end;
 
 end.
