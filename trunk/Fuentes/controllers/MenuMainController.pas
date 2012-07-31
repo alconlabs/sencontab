@@ -18,6 +18,7 @@ type
     FUsersController       :TUsersController;
     procedure CreateMenuOptions(prmTreeView :TTreeView; prmMenuItem :TMenuItem; prmNode :TTreeNode);
     {----------------------------------------------------------------------}
+    procedure MenuOptionParametersEnterprise(Sender: TObject);
     procedure MenuOptionGrupos(Sender: TObject);
     procedure MenuOptionProvincias(Sender: TObject);
     procedure MenuOptionPaises(Sender: TObject);
@@ -27,7 +28,6 @@ type
     procedure MenuOptionSubCuentas(Sender: TObject);
     procedure MenuOptionListadoAsientos(Sender: TObject);
     procedure MenuOptionMayor(Sender: TObject);
-    procedure MenuOptionGeneral(Sender: TObject);
     procedure MenuOptionFacturacion(Sender: TObject);
     procedure MenuOptionRecalculoSaldos(Sender: TObject);
     procedure MenuOptionTraspasoApuntesEntreCuentas(Sender: TObject);
@@ -88,12 +88,13 @@ type
 
 implementation
 uses Forms, Controls, SysUtils, Utilidades, CustomView, Globales,
+     ParametersEnterpriseController,
      UAmortizaciones, UAnaliticas, UBalAcumulados, UBalExplotacion, UBorradoDiario,
      UCargaApuntes, UCargaCobrosPagos, UCargaRapidaFacturas, UCargaRapidaNominas, UCarteraEfectos,
      UCierreEjercicio, UComerciales, UConceptos, UCopiaAsientos, UCuentas, UDelegaciones, UDepartamentos,
      UDiario, UEmpresas, UEnlaceContable, UEspere, UFiltro347, UFiltroBalances, UFiltroLibroFacturasEmitidas,
      UFiltroListadosAsientos, UFiltroListadosMayor, UFiltroSitPgGg, UFormasPago, UGrupos, UImportacion,
-     UIrpf110, UIrpf115, UISoc202, UPaises, UParametrizacion, UParametrizacionFacturacion,
+     UIrpf110, UIrpf115, UISoc202, UPaises, UParametrizacionFacturacion,
      UPlanAnalico, UPlanContable, UPreviewForm, Proyectos, UPunteoDiario, URecalculoSaldos,
      USecciones, USubCuentas, UTiposDiario, UTitulos, UTraspasoApuntes, UTraspasoDatos,
      Provincias, UActualizacionBD;
@@ -148,6 +149,7 @@ begin
    {----------------------------------------------------------------------}
    { Assignament of Delegates to the Menu Items.                          }
    {----------------------------------------------------------------------}
+    FView.MenuItemParametersEnterprise.OnClick         := MenuOptionParametersEnterprise;
     FView.MenuItemGrupos.OnClick                       := MenuOptionGrupos;
     FView.MenuItemProvincias.OnClick                   := MenuOptionProvincias;
     FView.MenuItemPaises.OnClick                       := MenuOptionPaises;
@@ -157,7 +159,6 @@ begin
     FView.MenuItemSubCuentas.OnClick                   := MenuOptionSubCuentas;
     FView.MenuItemListadoAsientos.OnClick              := MenuOptionListadoAsientos;
     FView.MenuItemMayor.OnClick                        := MenuOptionMayor;
-    FView.MenuItemGeneral.OnClick                      := MenuOptionGeneral;
     FView.MenuItemFacturacion.OnClick                  := MenuOptionFacturacion;
     FView.MenuItemRecalculoSaldos.OnClick              := MenuOptionRecalculoSaldos;
     FView.MenuItemTraspasoApuntesEntreCuentas.OnClick  := MenuOptionTraspasoApuntesEntreCuentas;
@@ -292,14 +293,21 @@ begin
    WFiltroListadosMayor := nil;
 end;
 
-procedure TMenuMainController.MenuOptionGeneral(Sender: TObject);
+procedure TMenuMainController.MenuOptionParametersEnterprise(Sender: TObject);
 begin
+   with TParametersEnterpriseController.Create(FCurrentConfig) do begin
+      try
+         ShowView;
+      finally
+         Free;
+      end;
+   end;
    {$Message Warn '11ª Ventana para Test}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WPARAMETRIZACION') then Exit;
-   if not Assigned(WParametrizacion) then WParametrizacion := TWParametrizacion.Create(nil);
-   WParametrizacion.ShowModal;
-   WParametrizacion.Free;
-   WParametrizacion := nil;
+   //if not Assigned(WParametrizacion) then WParametrizacion := TWParametrizacion.Create(nil);
+   //WParametrizacion.ShowModal;
+   //WParametrizacion.Free;
+   //WParametrizacion := nil;
 end;
 
 procedure TMenuMainController.MenuOptionFacturacion(Sender: TObject);
