@@ -1,6 +1,6 @@
 object FormSearchAccount: TFormSearchAccount
-  Left = 409
-  Top = 184
+  Left = 583
+  Top = 170
   Width = 762
   Height = 497
   BorderIcons = []
@@ -24,7 +24,7 @@ object FormSearchAccount: TFormSearchAccount
     Left = 0
     Top = 48
     Width = 754
-    Height = 381
+    Height = 374
     Align = alClient
     BorderStyle = bsNone
     Color = 14275008
@@ -218,7 +218,7 @@ object FormSearchAccount: TFormSearchAccount
   end
   object Panel1: TPanel
     Left = 0
-    Top = 429
+    Top = 422
     Width = 754
     Height = 41
     Align = alBottom
@@ -266,18 +266,16 @@ object FormSearchAccount: TFormSearchAccount
   object DataSource: TDataSource
     AutoEdit = False
     DataSet = Query
-    Left = 180
-    Top = 142
+    Left = 316
+    Top = 134
   end
   object Query: TIBQuery
-    Database = DMRef.IBDSiamCont
-    Transaction = DMRef.IBT1
     BufferChunks = 1000
     CachedUpdates = False
     SQL.Strings = (
       'select SUBCUENTA, DESCRIPCION from SUBCTAS')
-    Left = 136
-    Top = 144
+    Left = 256
+    Top = 136
     object QuerySUBCUENTA: TIBStringField
       FieldName = 'SUBCUENTA'
       Origin = 'SUBCTAS.SUBCUENTA'

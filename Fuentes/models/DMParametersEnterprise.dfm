@@ -1,7 +1,7 @@
 object DataModuleParametersEnterprise: TDataModuleParametersEnterprise
   OldCreateOrder = False
-  Left = 975
-  Top = 179
+  Left = 799
+  Top = 625
   Height = 283
   Width = 400
   object NoUse: TCRSQLConnection
@@ -260,8 +260,8 @@ object DataModuleParametersEnterprise: TDataModuleParametersEnterprise
     DataSet.MaxBlobSize = -1
     DataSet.Params = <>
     Params = <>
-    Left = 176
-    Top = 40
+    Left = 168
+    Top = 16
     object QParametrosID_PARAMETROS: TIntegerField
       FieldName = 'ID_PARAMETROS'
     end
@@ -1100,7 +1100,7 @@ object DataModuleParametersEnterprise: TDataModuleParametersEnterprise
       Size = 1
     end
   end
-  object QProvinciasNom: TSimpleDataSet
+  object LProvincias: TSimpleDataSet
     Aggregates = <>
     Connection = NoUse
     DataSet.CommandText = 
@@ -1109,19 +1109,19 @@ object DataModuleParametersEnterprise: TDataModuleParametersEnterprise
     DataSet.MaxBlobSize = -1
     DataSet.Params = <>
     Params = <>
-    Left = 176
-    Top = 104
-    object QProvinciasNomPROVINCIA: TStringField
+    Left = 168
+    Top = 64
+    object LProvinciasPROVINCIA: TStringField
       FieldName = 'PROVINCIA'
       FixedChar = True
       Size = 2
     end
-    object QProvinciasNomNOMBRE: TStringField
+    object LProvinciasNOMBRE: TStringField
       FieldName = 'NOMBRE'
       FixedChar = True
       Size = 25
     end
-    object QProvinciasNomCODIGO: TStringField
+    object LProvinciasCODIGO: TStringField
       FieldName = 'CODIGO'
       FixedChar = True
       Size = 2

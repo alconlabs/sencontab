@@ -137,22 +137,22 @@ end;
 
 procedure TMainController.ShowMenuMain(prmUser :TUser);
 var EnterpriseSelected :Boolean;
+    CD_ENTERPRISE      :string;
+    CD_PROFILE         :string;
 begin
    FEnterprisesList := TEnterprisesListController.Create(DBMain, prmUser);
    try
       EnterpriseSelected := FEnterprisesList.ShowView;
+      if EnterpriseSelected then begin
+         CD_ENTERPRISE := FEnterprisesList.CD_ENTERPRISE;
+         CD_PROFILE    := FEnterprisesList.CD_PROFILE   ;
+      end;
    finally
       FEnterprisesList.Free;
    end;
 
    if EnterpriseSelected then begin
-      FMenuMain := TMenuMainController.Create(DBMain, prmUser,
-                                              FEnterprisesList.CD_ENTERPRISE,
-                                              FEnterprisesList.CD_PROFILE   ,
-                                              'ACCOUNTING'                  );
-
-      //FMainMenu.DBController := DBMainController;
-      //FMenuMain.ShowView;
+      FMenuMain := TMenuMainController.Create(DBMain, prmUser, CD_ENTERPRISE, CD_PROFILE, 'ACCOUNTING');
       Application.CreateForm(TDMRef, DMRef);
       Application.CreateForm(TDMContaRef, DMContaRef);
       //Application.CreateForm(TFormPrincipal, FormPrincipal);

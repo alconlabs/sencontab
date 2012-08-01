@@ -13,17 +13,21 @@ type
     FConfiguration :TCurrentConfig;
     DM             :TDataModuleParametersEnterprise;
     FView          :TParametersEnterpriseView;
-    //FModel         :TUsersModel;
     procedure InitializeView;
   protected
     {Delegate declarations}
     procedure OnShowForm        (Sender :TObject);
-    procedure OnClick_Edit(Sender :TObject);
+    procedure OnClick_Modify(Sender :TObject);
     procedure OnClick_Accept(Sender :TObject);
     procedure OnClick_Cancel(Sender :TObject);
-    procedure OnClick_BtnSPClientes(Sender :TObject);
-    procedure OnClick_BtnSPProveedores(Sender :TObject);
-    procedure OnClick_BtnSP347(Sender :TObject);
+    procedure OnClick_BtnDOCCliente(Sender :TObject);
+    procedure OnClick_BtnDOCProveedor(Sender :TObject);
+    procedure OnClick_BtnDOC347(Sender :TObject);
+    procedure OnClick_BtnFECHA_INICIO_EJERCICIO(Sender :TObject);
+    procedure OnClick_BtnFECHA_FIN_EJERCICIO(Sender :TObject);
+    procedure OnClick_BtnFECHAAMORTIZACION(Sender :TObject);
+    procedure OnClick_BtnFECHABLOQUEO(Sender :TObject);
+   
   public
     constructor Create(prmConfig :TCurrentConfig); reintroduce;
     destructor  Destroy; override;
@@ -31,7 +35,7 @@ type
   end;
 
 implementation
-uses Forms, SysUtils, Dialogs, DB, Windows, Messages,
+uses Forms, SysUtils, Dialogs, DB, Windows, Messages, 
      CustomView;
 
 constructor TParametersEnterpriseController.Create(prmConfig :TCurrentConfig); 
@@ -44,24 +48,21 @@ begin
    DM.Initialize(prmConfig.DBConnection);
 
    Application.CreateForm(TParametersEnterpriseView, FView);
-   FView.DataSource.DataSet := DM.QParametros;
+
+   FView.DataSource.DataSet  := DM.QParametros;
+   FView.SProvincias.DataSet := DM.LProvincias;
+
    FView.AppleIcons := [aiClose];
    FView.AppleIconsVisibles := [aiClose];
 
    InitializeView;
 
    FView.Mode := fmView;
-
-
-
-   //FModel := TUsersModel.Create(DBCtlr.DBConnection.Connection);
-   //FModel.Open;
-
 end;
 
 destructor TParametersEnterpriseController.Destroy;
 begin
-   //FModel.Free;
+   DM.Free;
    FView.Free;
 end;
 
@@ -82,12 +83,13 @@ end;
 
 procedure TParametersEnterpriseController.OnShowForm(Sender: TObject);
 begin
-   //FView.EditSearchText.SetFocus;
-   //FView.EditSearchText.SelectAll;
+   FView.TabSheetGeneral.Show;
+   FView.EditNOMBREFISCAL.SetFocus;
 end;
 
 procedure TParametersEnterpriseController.InitializeView;
 begin
+
    FView.ModeList.Add(TComponentMode.Create(FView.EditNOMBREFISCAL                   , fmEdit));
    FView.ModeList.Add(TComponentMode.Create(FView.EditSIGLAVIA                       , fmEdit));
    FView.ModeList.Add(TComponentMode.Create(FView.EditDIRECCION                      , fmEdit));
@@ -125,13 +127,14 @@ begin
    FView.ModeList.Add(TComponentMode.Create(FView.RadioGroupBUSQUEDA_SUBCTAS         , fmEdit));
    FView.ModeList.Add(TComponentMode.Create(FView.CheckBoxMOSTRAR_FILTRO_MAYOR       , fmEdit));
    FView.ModeList.Add(TComponentMode.Create(FView.CheckBoxFILTRO_ASIENTOS_INICIO     , fmEdit));
-   FView.ModeList.Add(TComponentMode.Create(FView.BtnEdit                            , fmView));
+   FView.ModeList.Add(TComponentMode.Create(FView.BtnModify                          , fmView));
    FView.ModeList.Add(TComponentMode.Create(FView.BtnAccept                          , fmEdit));
    FView.ModeList.Add(TComponentMode.Create(FView.BtnCancel                          , fmEdit));
    FView.ModeList.Add(TComponentMode.Create(FView.BtnFECHA_INICIO_EJERCICIO          , fmEdit));
    FView.ModeList.Add(TComponentMode.Create(FView.BtnFECHA_FIN_EJERCICIO             , fmEdit));
    FView.ModeList.Add(TComponentMode.Create(FView.BtnFECHAAMORTIZACION               , fmEdit));
    FView.ModeList.Add(TComponentMode.Create(FView.BtnFECHABLOQUEO                    , fmEdit));
+   FView.ModeList.Add(TComponentMode.Create(FView.CheckBoxASIENTO_NOMINA_INDIVIDUAL  , fmEdit));
 
    FView.ModeList.Add(TComponentMode.Create(FView.BtnDocCliente                      , fmEdit));
    FView.ModeList.Add(TComponentMode.Create(FView.BtnDocProveedor                    , fmEdit));
@@ -140,18 +143,27 @@ begin
    FView.ModeList.Add(TComponentMode.Create(FView.EditDOCPROVEEDOR                   , fmFixed));
    FView.ModeList.Add(TComponentMode.Create(FView.EditDOC347                         , fmFixed));
 
+   FView.BtnModify.OnClick       := OnClick_Modify;
+   FView.BtnAccept.OnClick       := OnClick_Accept;
+   FView.BtnCancel.OnClick       := OnClick_Cancel;
+   FView.BtnDOCCliente.OnClick   := OnClick_BtnDOCCliente;
+   FView.BtnDOCProveedor.OnClick := OnClick_BtnDOCProveedor;
+   FView.BtnDOC347.OnClick       := OnClick_BtnDOC347;
+
+   FView.BtnFECHA_INICIO_EJERCICIO.OnClick := OnClick_BtnFECHA_INICIO_EJERCICIO;
+   FView.BtnFECHA_FIN_EJERCICIO.OnClick    := OnClick_BtnFECHA_FIN_EJERCICIO;
+   FView.BtnFECHAAMORTIZACION.OnClick      := OnClick_BtnFECHAAMORTIZACION;
+   FView.BtnFECHABLOQUEO.OnClick           := OnClick_BtnFECHABLOQUEO;
 
 
-
-
-   FView.CBSUBCUENTA18.MaxLength := DM.QParametros.FieldByName('LONGITUD_SUBCUENTAS').AsInteger;
-   FView.CBSUBCUENTA19.MaxLength := DM.QParametros.FieldByName('LONGITUD_SUBCUENTAS').AsInteger;
-   FView.CBSUBCUENTA20.MaxLength := DM.QParametros.FieldByName('LONGITUD_SUBCUENTAS').AsInteger;
-   FView.CBSUBCUENTA21.MaxLength := DM.QParametros.FieldByName('LONGITUD_SUBCUENTAS').AsInteger;
-   FView.CBSUBCUENTA22.MaxLength := DM.QParametros.FieldByName('LONGITUD_SUBCUENTAS').AsInteger;
-   FView.CBSUBCUENTA23.MaxLength := DM.QParametros.FieldByName('LONGITUD_SUBCUENTAS').AsInteger;
-   FView.CBSUBCUENTA29.MaxLength := DM.QParametros.FieldByName('LONGITUD_SUBCUENTAS').AsInteger;
-   FView.CBSUBCUENTA39.MaxLength := DM.QParametros.FieldByName('LONGITUD_SUBCUENTAS').AsInteger;
+   FView.CBSUBCUENTA18.MaxLength := DM.QParametrosLONGITUD_SUBCUENTAS.AsInteger;
+   FView.CBSUBCUENTA19.MaxLength := DM.QParametrosLONGITUD_SUBCUENTAS.AsInteger;
+   FView.CBSUBCUENTA20.MaxLength := DM.QParametrosLONGITUD_SUBCUENTAS.AsInteger;
+   FView.CBSUBCUENTA21.MaxLength := DM.QParametrosLONGITUD_SUBCUENTAS.AsInteger;
+   FView.CBSUBCUENTA22.MaxLength := DM.QParametrosLONGITUD_SUBCUENTAS.AsInteger;
+   FView.CBSUBCUENTA23.MaxLength := DM.QParametrosLONGITUD_SUBCUENTAS.AsInteger;
+   FView.CBSUBCUENTA29.MaxLength := DM.QParametrosLONGITUD_SUBCUENTAS.AsInteger;
+   FView.CBSUBCUENTA39.MaxLength := DM.QParametrosLONGITUD_SUBCUENTAS.AsInteger;
 
    { Toma el Asiento actual mediante la llamada a DMContaRef.Dame_Contador('asiento');
    { y apunta el mismo valor en AsientoOld, para luego comprobar si ha cambiado.       }
@@ -166,7 +178,7 @@ begin
    //CDSFiltro.FieldByName('asientoOld').AsInteger := CDSFiltro.FieldByName('Asiento').AsInteger;
 end;
 
-procedure TParametersEnterpriseController.OnClick_Edit(Sender :TObject);
+procedure TParametersEnterpriseController.OnClick_Modify(Sender :TObject);
 begin
    FView.Mode := fmEdit;
    DM.QParametros.Edit;
@@ -240,17 +252,7 @@ begin
    //end;
 end;
 
-
-
-procedure TParametersEnterpriseController.OnClick_BtnSP347(Sender: TObject);
-begin
-   FView.OpenDialog.Title      := 'SELECCIONE CARTA DE OPERACIONES CON TERCEROS (347)';
-   FView.OpenDialog.InitialDir := FConfiguration.RunningDirectory;
-   FView.OpenDialog.Execute;
-   DM.QParametrosDOC347.AsString := FView.OpenDialog.Filename;
-end;
-
-procedure TParametersEnterpriseController.OnClick_BtnSPClientes(Sender: TObject);
+procedure TParametersEnterpriseController.OnClick_BtnDOCCliente(Sender: TObject);
 begin
    FView.OpenDialog.Title      := 'SELECCIONE CARTA DE RECLAMACION A CLIENTES';
    FView.OpenDialog.InitialDir := FConfiguration.RunningDirectory;
@@ -258,12 +260,44 @@ begin
    DM.QParametrosDOCCLIENTE.AsString := FView.OpenDialog.Filename;
 end;
 
-procedure TParametersEnterpriseController.OnClick_BtnSPProveedores(Sender: TObject);
+procedure TParametersEnterpriseController.OnClick_BtnDOCProveedor(Sender: TObject);
 begin
    FView.OpenDialog.Title      := 'SELECCIONE CARTA DE PAGOS A PROVEEDORES';
    FView.OpenDialog.InitialDir := FConfiguration.RunningDirectory;
    FView.OpenDialog.Execute;
    DM.QParametrosDOCPROVEEDOR.AsString := FView.OpenDialog.Filename;
+end;
+
+procedure TParametersEnterpriseController.OnClick_BtnDOC347(Sender: TObject);
+begin
+   FView.OpenDialog.Title      := 'SELECCIONE CARTA DE OPERACIONES CON TERCEROS (347)';
+   FView.OpenDialog.InitialDir := FConfiguration.RunningDirectory;
+   FView.OpenDialog.Execute;
+   DM.QParametrosDOC347.AsString := FView.OpenDialog.Filename;
+end;
+
+procedure TParametersEnterpriseController.OnClick_BtnFECHA_FIN_EJERCICIO(Sender: TObject);
+begin
+   {$Message Warn 'P E N D I E N T E'}
+   Dialogs.ShowMessage('Esto está pendiente');
+end;
+
+procedure TParametersEnterpriseController.OnClick_BtnFECHA_INICIO_EJERCICIO(Sender: TObject);
+begin
+   {$Message Warn 'P E N D I E N T E'}
+   Dialogs.ShowMessage('Esto está pendiente');
+end;
+
+procedure TParametersEnterpriseController.OnClick_BtnFECHAAMORTIZACION(Sender: TObject);
+begin
+   {$Message Warn 'P E N D I E N T E'}
+   Dialogs.ShowMessage('Esto está pendiente');
+end;
+
+procedure TParametersEnterpriseController.OnClick_BtnFECHABLOQUEO(Sender: TObject);
+begin
+   {$Message Warn 'P E N D I E N T E'}
+   Dialogs.ShowMessage('Esto está pendiente');
 end;
 
 end.

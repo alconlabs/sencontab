@@ -43,7 +43,7 @@ type
   end;
 
 implementation
-uses SysUtils, TypInfo, Forms;
+uses SysUtils, TypInfo, Forms, Dialogs;
 
 { TOption }
 constructor TCurrentConfig.Create;
@@ -63,7 +63,7 @@ end;
 procedure TCurrentConfig.CreateDBConfiguration(prmDBConfiguration :TSdaDBConfig);
 begin
    FDBConnection := TDBController.Create(prmDBConfiguration);
-   DBConnection.DBConfig.HostName := FCD_ENTERPRISE;
+   DBConnection.DBConfig.DataBase := FCD_ENTERPRISE;
 end;
 
 destructor TCurrentConfig.Destroy;
