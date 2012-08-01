@@ -4,7 +4,7 @@ interface
 
 uses
   SysUtils, Classes, DBXpress, DB, SqlExpr, CRSQLConnection, DBClient, SimpleDS,
-  DBController;
+  DBController, FMTBcd;
 
 type
   TDataModuleParametersEnterprise = class(TDataModule)
@@ -207,10 +207,10 @@ type
     QParametrosOFFICE2003: TStringField;
     QParametrosTRATASERIE: TStringField;
     QParametrosACTCOMENTARIO: TStringField;
-    QProvinciasNom: TSimpleDataSet;
-    QProvinciasNomPROVINCIA: TStringField;
-    QProvinciasNomNOMBRE: TStringField;
-    QProvinciasNomCODIGO: TStringField;
+    LProvincias: TSimpleDataSet;
+    LProvinciasPROVINCIA: TStringField;
+    LProvinciasNOMBRE: TStringField;
+    LProvinciasCODIGO: TStringField;
   private
     DB :TCRSQLConnection;
   public
@@ -230,11 +230,11 @@ uses DBConnection;
 
 procedure TDataModuleParametersEnterprise.Initialize(ADBController: TDBController);
 begin
-   QParametros.Connection    := ADBController.DBConnection.Connection;
+   QParametros.Connection := ADBController.DBConnection.Connection;
    QParametros.Open;
 
-   QProvinciasNom.Connection := ADBController.DBConnection.Connection;
-   QProvinciasNom.Open;
+   LProvincias.Connection := ADBController.DBConnection.Connection;
+   LProvincias.Open;
 end;
 
 end.

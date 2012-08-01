@@ -1,5 +1,7 @@
 unit InfAsientos;
+
 interface
+
 uses comctrls, Controls, Db, Forms, General, Globales, Graphics, IBQuery, IbSql, SysUtils, UEspere;
 
 procedure LanzarInfAsientos(AsientoInicial           ,

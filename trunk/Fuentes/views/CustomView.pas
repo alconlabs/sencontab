@@ -389,6 +389,12 @@ begin
                  if FComponentModeList.Components[i].Component is TDBCheckBox then begin
                     TDBCheckBox(FComponentModeList.Components[i].Component).ReadOnly := False;
                  end else
+                 if FComponentModeList.Components[i].Component is TDBLookupComboBox then begin
+                    TDBLookupComboBox(FComponentModeList.Components[i].Component).ReadOnly := False;
+                    TDBLookupComboBox(FComponentModeList.Components[i].Component).TabStop  := True;
+                    TDBLookupComboBox(FComponentModeList.Components[i].Component).Ctl3D    := True;
+                    TDBLookupComboBox(FComponentModeList.Components[i].Component).Color    := COLOR_ACTIVE;
+                 end else
                end;
                fmView:begin
                   { D E A C T I V A T E }
@@ -407,7 +413,12 @@ begin
                  if FComponentModeList.Components[i].Component is TDBCheckBox then begin
                     TDBCheckBox(FComponentModeList.Components[i].Component).ReadOnly := True;
                  end else
-
+                 if FComponentModeList.Components[i].Component is TDBLookupComboBox then begin
+                    TDBLookupComboBox(FComponentModeList.Components[i].Component).ReadOnly := True;
+                    TDBLookupComboBox(FComponentModeList.Components[i].Component).TabStop  := False;
+                    TDBLookupComboBox(FComponentModeList.Components[i].Component).Ctl3D    := False;
+                    TDBLookupComboBox(FComponentModeList.Components[i].Component).Color    := COLOR_INACTIVE;
+                 end else
                end;
             end;
          end;
@@ -433,6 +444,12 @@ begin
                  if FComponentModeList.Components[i].Component is TDBCheckBox then begin
                     TDBCheckBox(FComponentModeList.Components[i].Component).ReadOnly := True;
                  end else
+                 if FComponentModeList.Components[i].Component is TDBLookupComboBox then begin
+                    TDBLookupComboBox(FComponentModeList.Components[i].Component).ReadOnly := True;
+                    TDBLookupComboBox(FComponentModeList.Components[i].Component).TabStop  := False;
+                    TDBLookupComboBox(FComponentModeList.Components[i].Component).Ctl3D    := False;
+                    TDBLookupComboBox(FComponentModeList.Components[i].Component).Color    := COLOR_INACTIVE;
+                 end else
                end;
                fmView :begin
                   { A C T I V A T E }
@@ -450,6 +467,12 @@ begin
                  end else
                  if FComponentModeList.Components[i].Component is TDBCheckBox then begin
                     TDBCheckBox(FComponentModeList.Components[i].Component).ReadOnly := False;
+                 end else
+                 if FComponentModeList.Components[i].Component is TDBLookupComboBox then begin
+                    TDBLookupComboBox(FComponentModeList.Components[i].Component).ReadOnly := False;
+                    TDBLookupComboBox(FComponentModeList.Components[i].Component).TabStop  := True;
+                    TDBLookupComboBox(FComponentModeList.Components[i].Component).Ctl3D    := True;
+                    TDBLookupComboBox(FComponentModeList.Components[i].Component).Color    := COLOR_ACTIVE;
                  end else
                end;
             end;

@@ -108,6 +108,7 @@ begin
    inherited Create(ADBController);
    FCurrentConfig := TCurrentConfig.Create();
    FCurrentConfig.CreateUserAuthenticated(AUser);
+   ADBController.DBConfig.DataBase := prmCD_ENTERPRISE;
    FCurrentConfig.CreateDBConfiguration(ADBController.DBConfig);
    FCurrentConfig.APPLICATION   := prmAPPLICATION;
    FCurrentConfig.CD_ENTERPRISE := prmCD_ENTERPRISE;

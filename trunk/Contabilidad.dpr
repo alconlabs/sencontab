@@ -12,6 +12,7 @@ uses
   UParametrizacion in 'Fuentes\UParametrizacion.pas' {WParametrizacion},
   UParametrizacionFacturacion in 'Fuentes\UParametrizacionFacturacion.pas' {WParametrizacionFacturacion},
   Proyectos in 'Fuentes\Proyectos.pas' {WProyectos},
+  Provincias in 'Fuentes\Provincias.pas' {FormProvincias},
   UPaises in 'Fuentes\UPaises.pas' {WPaises},
   MenuPrincipal in 'Fuentes\MenuPrincipal.pas' {FormPrincipal},
   Globales in 'Fuentes\Globales.pas',
@@ -64,7 +65,6 @@ uses
   UGeneracionAsiento in 'Fuentes\UGeneracionAsiento.pas' {WGeneracionAsiento},
   UCalculadora in 'Fuentes\UCalculadora.pas' {WCalculadora},
   UImportacion in 'Fuentes\UImportacion.pas' {WImportacion},
-  Provincias in 'Fuentes\Provincias.pas' {FormProvincias},
   UFiltroListadosAsientos in 'Fuentes\UFiltroListadosAsientos.pas' {WFiltroListadosAsientos},
   UFiltro347 in 'Fuentes\UFiltro347.pas' {WFiltro347},
   UFiltroMayorSubcuenta in 'Fuentes\UFiltroMayorSubcuenta.pas' {WFiltroMayorSubcuenta},
@@ -72,7 +72,6 @@ uses
   UFiltroBalances in 'Fuentes\UFiltroBalances.pas' {WFiltroBalances},
   UFiltroLibroFacturasEmitidas in 'Fuentes\UFiltroLibroFacturasEmitidas.pas' {WFiltroLibroFactEmitidas},
   UFiltroListadosMayor in 'Fuentes\UFiltroListadosMayor.pas' {WFiltroListadosMayor},
-  InfAsientos in 'Fuentes\InfAsientos.pas',
   InfMayor in 'Fuentes\InfMayor.pas',
   InfLibroIVA in 'Fuentes\InfLibroIVA.pas',
   InfMod347 in 'Fuentes\InfMod347.pas',
@@ -140,6 +139,7 @@ uses
   ProfileOptionsModel in 'Fuentes\models\ProfileOptionsModel.pas',
   DMParametersEnterprise in 'Fuentes\models\DMParametersEnterprise.pas' {DataModuleParametersEnterprise: TDataModule},
   ______TOOLS______ in 'Fuentes\______TOOLS______.pas',
+  InfAsientos in 'Fuentes\InfAsientos.pas',
   LabelCaptionForm in 'Fuentes\Tools\LabelCaptionForm.pas',
   ccStr in 'Fuentes\Tools\ccStr.pas',
   D6OnHelpFix in 'Fuentes\Tools\D6OnHelpFix.pas',
@@ -212,8 +212,6 @@ begin
 end;
 //********************************************************************
 
-
-
 var MainController :TMainController;
 var FOldHelpEvent: THelpEvent;  {this shall to be in the MainControllerclass}
 begin
@@ -238,15 +236,9 @@ begin
 
   try
     MainController.Run;
-    //Application.Run;
     //MemChk;
   finally
     MainController.Free;
   end;
-
-  //Application.CreateForm(TDMControlRef, DMControlRef);
-  //Application.CreateForm(TFormPrincipal, FormPrincipal);
-  //Application.CreateForm(TFormLoginView, FormLoginView);
-
 end.
 

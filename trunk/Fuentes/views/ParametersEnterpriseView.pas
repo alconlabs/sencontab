@@ -37,7 +37,7 @@ type
     EditDIRECCION: TDBEdit;
     EditCODPOSTAL: TDBEdit;
     EditPOBLACION: TDBEdit;
-    EditPROVINCIA: TwwDBLookupCombo;
+    EditPROVINCIA: TDBLookupComboBox;
     EditTELEFONO: TDBEdit;
     EditCONTACTO: TDBEdit;
     EditFAX: TDBEdit;
@@ -95,7 +95,7 @@ type
     CBSUBCUENTA21: TwwDBLookupCombo;
     wwDBLookupCombo53: TwwDBLookupCombo;
     wwDBLookupCombo55: TwwDBLookupCombo;
-    DBCheckBox7: TDBCheckBox;
+    CheckBoxASIENTO_NOMINA_INDIVIDUAL: TDBCheckBox;
     CBSUBCUENTA39: TwwDBLookupCombo;
     wwDBLookupCombo35: TwwDBLookupCombo;
     GroupBox8: TGroupBox;
@@ -142,7 +142,7 @@ type
     DataSource: TDataSource;
     BtnCancel: TSpeedButton;
     BtnAccept: TSpeedButton;
-    BtnEdit: TSpeedButton;
+    BtnModify: TSpeedButton;
     RadioGroupMONEDA: TDBRadioGroup;
     RadioGroupTIPOEMPRESA: TDBRadioGroup;
     BtnFECHA_INICIO_EJERCICIO: TSpeedButton;
@@ -150,21 +150,15 @@ type
     BtnFECHAAMORTIZACION: TSpeedButton;
     BtnFECHABLOQUEO: TSpeedButton;
     CBImprimir: TDBCheckBox;
-    procedure FormShow(Sender: TObject);
+    SProvincias: TDataSource;
     procedure PageControlChanging(Sender: TObject; var AllowChange: Boolean);
   private
   public
   end;
 
 implementation
-uses DMConta, General, InfAsientos, ststrs, MenuPrincipal;
+uses InfAsientos;
 {$R *.DFM}
-
-procedure TParametersEnterpriseView.FormShow(Sender: TObject);
-begin
-   TabSheetGeneral.Show;
-   EditNOMBREFISCAL.SetFocus;
-end;
 
 procedure TParametersEnterpriseView.PageControlChanging(Sender: TObject; var AllowChange: Boolean);
 begin

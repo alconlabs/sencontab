@@ -1,6 +1,6 @@
 object ParametersEnterpriseView: TParametersEnterpriseView
-  Left = 412
-  Top = 261
+  Left = 455
+  Top = 301
   BorderStyle = bsNone
   Caption = 'Parametros de la Empresa'
   ClientHeight = 549
@@ -11,10 +11,8 @@ object ParametersEnterpriseView: TParametersEnterpriseView
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
-  FormStyle = fsStayOnTop
   KeyPreview = True
   OldCreateOrder = False
-  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Label89: TLabel
@@ -68,13 +66,13 @@ object ParametersEnterpriseView: TParametersEnterpriseView
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object BtnEdit: TSpeedButton
+    object BtnModify: TSpeedButton
       Left = 16
       Top = 72
       Width = 83
       Height = 25
       Cursor = crHandPoint
-      Caption = 'E&ditar'
+      Caption = '&Modificar'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clNavy
       Font.Height = -11
@@ -88,7 +86,7 @@ object ParametersEnterpriseView: TParametersEnterpriseView
     Top = 48
     Width = 769
     Height = 457
-    ActivePage = TabSheetDocumentos
+    ActivePage = TabSheetNominas
     TabOrder = 1
     OnChanging = PageControlChanging
     object TabSheetGeneral: TTabSheet
@@ -437,33 +435,25 @@ object ParametersEnterpriseView: TParametersEnterpriseView
         ParentFont = False
         TabOrder = 11
       end
-      object EditPROVINCIA: TwwDBLookupCombo
+      object EditPROVINCIA: TDBLookupComboBox
         Left = 451
         Top = 101
         Width = 272
-        Height = 20
-        AutoSize = False
+        Height = 22
+        DataField = 'PROVINCIA'
+        DataSource = DataSource
+        DropDownRows = 8
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = []
-        CharCase = ecUpperCase
-        DropDownAlignment = taLeftJustify
-        Selected.Strings = (
-          'NOMBRE'#9'20'#9'NOMBRE')
-        DataField = 'PROVINCIA'
-        DataSource = DataSource
-        LookupField = 'PROVINCIA'
-        Style = csDropDownList
+        KeyField = 'CODIGO'
+        ListField = 'NOMBRE'
+        ListSource = SProvincias
+        NullValueKey = 16462
         ParentFont = False
         TabOrder = 12
-        AutoDropDown = True
-        ShowButton = True
-        SeqSearchOptions = [ssoEnabled, ssoCaseSensitive]
-        PreciseEditRegion = False
-        AllowClearKey = True
-        ShowMatchText = True
       end
       object EditTELEFONO: TDBEdit
         Left = 451
@@ -1606,7 +1596,7 @@ object ParametersEnterpriseView: TParametersEnterpriseView
           AllowClearKey = True
           ShowMatchText = True
         end
-        object DBCheckBox7: TDBCheckBox
+        object CheckBoxASIENTO_NOMINA_INDIVIDUAL: TDBCheckBox
           Left = 19
           Top = 174
           Width = 193
@@ -2415,13 +2405,18 @@ object ParametersEnterpriseView: TParametersEnterpriseView
   object OpenDialog: TOpenDialog
     DefaultExt = 'doc'
     Filter = 'Ficheros DOC (*.doc)|*.doc|Todos              (*.*)|*.*'
-    Left = 414
+    Left = 262
     Top = 4
   end
   object DataSource: TDataSource
     AutoEdit = False
-    DataSet = DMRef.QParametros
-    Left = 481
+    DataSet = DataModuleParametersEnterprise.QParametros
+    Left = 369
+    Top = 5
+  end
+  object SProvincias: TDataSource
+    AutoEdit = False
+    Left = 441
     Top = 5
   end
 end
