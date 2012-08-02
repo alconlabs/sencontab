@@ -310,7 +310,7 @@ type
   end;
 
 implementation
-uses Dialogs, General, Globales, MenuPrincipal, SearchAccount,
+uses Dialogs, General, Globales, MenuPrincipal, SearchAccountController,
      IBCustomDataSet, SearchConcept, DM;
 {$R *.DFM}
 
@@ -525,7 +525,7 @@ begin
 end;
 
 procedure TWParametrizacionFacturacion.BtnSearchClick(Sender: TObject);
-var SearchAccount :TFormSearchAccount;
+var //SearchAccount :TFormSearchAccount;
     SearchConcept :TFormSearchConcept;
     i            :Integer;
     BtnName      :string;
@@ -566,16 +566,16 @@ begin
       case TSpeedButton(Sender).Name[6] of
         'A':begin { Search for an Account }
            //TODO: SearchAccount := TFormSearchAccount.Create(DMRef.DB);
-           try
-              SearchAccount.TextSearched := CD_Field.AsString;
-              if SearchAccount.ShowModal = mrOK then begin
-                 CD_Field.AsString := SearchAccount.CD_ACCOUNT;
-                 DS_Field.AsString := SearchAccount.DS_ACCOUNT;
-                 ShowTheChangedFields(BtnName);
-              end;
-           finally
-              FreeAndNil(SearchAccount);
-           end;
+           //try
+           //   SearchAccount.TextSearched := CD_Field.AsString;
+           //   if SearchAccount.ShowModal = mrOK then begin
+           //      CD_Field.AsString := SearchAccount.CD_ACCOUNT;
+           //      DS_Field.AsString := SearchAccount.DS_ACCOUNT;
+           //      ShowTheChangedFields(BtnName);
+           //   end;
+           //finally
+           //   FreeAndNil(SearchAccount);
+           //end;
         end;
         'O':begin { Search for a Concept }
            //TODO: SearchConcept := TFormSearchConcept.Create(DMRef.IBDSiamCont);

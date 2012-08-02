@@ -13,7 +13,6 @@ const DELAY_SHORT    =        400;
       ImageIndex_UserPlus = 1;
       ImageIndex_Profile  = 2;
 
-
 type
    TMode = (fmView, fmEdit, fmFixed);
    
@@ -77,6 +76,8 @@ type
     }
    end;
 
+   {$Message Warn 'avoid the Closing or Minimizing of a form without confirm or cancel the changes'}
+
    TCustomView = class(TForm)
      ImageListAppleWindow: TImageList;
      ImageClose: TImage;
@@ -95,6 +96,7 @@ type
      procedure ImageMaximizeClick(Sender: TObject);
      procedure TimerMessageTimer(Sender: TObject);
      procedure FormMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+     procedure DoShow; override;
    private
      FComponentModeList   :TComponentModeList;
      FModal               :Boolean;
@@ -150,7 +152,6 @@ begin
    FAutoModal    := True;
 
    FComponentModeList := TComponentModeList.Create;
-   
    FHEIGHT_FROM_BOTTOM := 30;
    //SetSystemButtonsColored;
    { Message label for the caption }
@@ -203,7 +204,6 @@ begin
    FComponentModeList.Free;
    inherited;
 end;
-
 
 //procedure TCustomView.WMNCHitTest(var Msg: TWMNCHitTest);
 //begin
@@ -479,35 +479,6 @@ begin
          end;
       end;
    end;
-
-
-
-
-
-(*   
-   with OwnerForm do begin
-        for i := 0 to ComponentCount - 1 do begin
-            if Components[i] is TControl then TControl(Components[i]).WindowProc(TMessage(Msg));
-            if (Components[i] is TccCustomMaskEdit  ) then TccCustomMaskEdit  (Components[i]).ccCurrentMode := Value else
-            if (Components[i] is TccDBLookupComboBox) then TccDBLookupComboBox(Components[i]).ccCurrentMode := Value else
-            if (Components[i] is TccDBGrid          ) then TccDBGrid          (Components[i]).ccCurrentMode := Value else
-            if (Components[i] is TccBtnPanel        ) then TccBtnPanel        (Components[i]).ccCurrentMode := Value else
-            if (Components[i] is TccResButton       ) then TccResButton       (Components[i]).ccCurrentMode := Value else
-            if (Components[i] is TScrollBox         ) then begin
-               for j := 0 to TScrollBox(Components[i]).ComponentCount -1 do begin
-                   if (TScrollBox(Components[i]).Components[j] is TccCustomMaskEdit  ) then TccCustomMaskEdit  (TScrollBox(Components[i]).Components[j]).ccCurrentMode := Value else
-                   if (TScrollBox(Components[i]).Components[j] is TccDBCheckBox      ) then TccDBCheckBox      (TScrollBox(Components[i]).Components[j]).ccCurrentMode := Value else
-                   if (TScrollBox(Components[i]).Components[j] is TccDBRadioGroup    ) then TccDBRadioGroup    (TScrollBox(Components[i]).Components[j]).ccCurrentMode := Value else
-                   if (TScrollBox(Components[i]).Components[j] is TccDBLookupComboBox) then TccDBLookupComboBox(TScrollBox(Components[i]).Components[j]).ccCurrentMode := Value else
-                   if (TScrollBox(Components[i]).Components[j] is TccBtnPanel        ) then TccBtnPanel        (TScrollBox(Components[i]).Components[j]).ccCurrentMode := Value else
-                   if (TScrollBox(Components[i]).Components[j] is TccResButton       ) then TccResButton       (TScrollBox(Components[i]).Components[j]).ccCurrentMode := Value else
-                   if (TScrollBox(Components[i]).Components[j] is TccDBGrid          ) then TccDBGrid          (TScrollBox(Components[i]).Components[j]).ccCurrentMode := Value ;
-               end;
-            end else
-            if (Components[i] is TccDBCheckBox   ) then TccDBCheckBox   (Components[i]).ccCurrentMode := Value else
-            if (Components[i] is TccDBRadioGroup ) then TccDBRadioGroup (Components[i]).ccCurrentMode := Value;
-        end;
-   end;*)
 end;
 
 procedure TCustomView.SetFormMode(Value :TMode);
@@ -580,6 +551,15 @@ begin
    Perform(wm_SysCommand, sc_DragMove, 0);
 end;
 
+procedure TCustomView.DoShow;
+begin
+  inherited;
+  if Assigned(Application.MainForm) then begin
+     SetBounds(Application.MainForm.Left + Application.MainForm.Width, 10, Width, Height);
+  end;
+end;
+
+
 procedure TCustomView.CustomViewMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
    FormMouseDown(Sender, Button, Shift, X, Y);
@@ -644,6 +624,7 @@ procedure TComponentModeList.SetObject(Index: Integer; Item: TComponentMode);
 begin
    inherited Items[Index] := Item;
 end;
+
 
 end.
 

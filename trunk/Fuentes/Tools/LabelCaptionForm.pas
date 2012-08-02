@@ -31,7 +31,7 @@ type
 
 implementation
 
-uses Windows;
+uses Windows, Controls;
 
 constructor TLabelCaptionForm.Create(AOwner: TComponent);
 begin
@@ -43,6 +43,7 @@ begin
   FColorTwo   := clGray;
 
   Transparent := True;
+  Anchors := [akLeft, akTop, akRight, akBottom];
 end;
 
 constructor TLabelCaptionForm.CreateCaption(AOwner: TComponent);

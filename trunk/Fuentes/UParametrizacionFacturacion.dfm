@@ -1,6 +1,6 @@
 object WParametrizacionFacturacion: TWParametrizacionFacturacion
-  Left = 547
-  Top = 240
+  Left = 548
+  Top = 241
   BorderIcons = []
   BorderStyle = bsToolWindow
   Caption = 'Parametros de Facturaci'#243'n'
@@ -65,7 +65,7 @@ object WParametrizacionFacturacion: TWParametrizacionFacturacion
     Top = 0
     Width = 778
     Height = 454
-    ActivePage = TabVentas
+    ActivePage = TabOtras
     Align = alClient
     TabOrder = 1
     object TabVentas: TTabSheet
@@ -75,7 +75,7 @@ object WParametrizacionFacturacion: TWParametrizacionFacturacion
         Top = 0
         Width = 770
         Height = 426
-        ActivePage = TabVentasRegimenGeneral
+        ActivePage = TabVentasRecEquivalencia
         Align = alClient
         TabOrder = 0
         TabPosition = tpBottom
@@ -3981,7 +3981,7 @@ object WParametrizacionFacturacion: TWParametrizacionFacturacion
   object DSFichero: TDataSource
     AutoEdit = False
     DataSet = DMRef.QParametros
-    Left = 441
-    Top = 5
+    Left = 313
+    Top = 53
   end
 end
