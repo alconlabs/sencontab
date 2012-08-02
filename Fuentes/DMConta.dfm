@@ -2,8 +2,8 @@ object DMContaRef: TDMContaRef
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
-  Left = 200
-  Top = 291
+  Left = 201
+  Top = 292
   Height = 607
   Width = 1098
   object QGrupos: TIBTableSet

@@ -1,6 +1,6 @@
 object ParametersEnterpriseView: TParametersEnterpriseView
-  Left = 455
-  Top = 301
+  Left = 456
+  Top = 302
   BorderStyle = bsNone
   Caption = 'Parametros de la Empresa'
   ClientHeight = 549

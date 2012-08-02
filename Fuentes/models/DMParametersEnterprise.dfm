@@ -1,7 +1,7 @@
 object DataModuleParametersEnterprise: TDataModuleParametersEnterprise
   OldCreateOrder = False
-  Left = 799
-  Top = 625
+  Left = 800
+  Top = 626
   Height = 283
   Width = 400
   object NoUse: TCRSQLConnection

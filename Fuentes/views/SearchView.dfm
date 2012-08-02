@@ -1,11 +1,11 @@
 object SearchView: TSearchView
-  Left = 612
-  Top = 235
-  Width = 762
-  Height = 523
+  Left = 613
+  Top = 236
+  Width = 284
+  Height = 328
   BorderIcons = []
   Caption = 'Formulario de B'#250'squeda'
-  Color = clBtnFace
+  Color = 10991483
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clBlack
   Font.Height = -11
@@ -15,13 +15,13 @@ object SearchView: TSearchView
   OldCreateOrder = True
   Position = poScreenCenter
   DesignSize = (
-    754
-    489)
+    276
+    294)
   PixelsPerInch = 96
   TextHeight = 13
   object BtnCancel: TSpeedButton
-    Left = 561
-    Top = 450
+    Left = 83
+    Top = 255
     Width = 83
     Height = 25
     Cursor = crHandPoint
@@ -35,8 +35,8 @@ object SearchView: TSearchView
     ParentFont = False
   end
   object BtnAccept: TSpeedButton
-    Left = 654
-    Top = 450
+    Left = 176
+    Top = 255
     Width = 83
     Height = 25
     Cursor = crHandPoint
@@ -50,30 +50,24 @@ object SearchView: TSearchView
     ParentFont = False
   end
   object PanelGround: TPanel
-    Left = 0
+    Left = 2
     Top = 32
-    Width = 754
-    Height = 401
+    Width = 273
+    Height = 206
     Anchors = [akLeft, akTop, akRight, akBottom]
+    BevelOuter = bvNone
     TabOrder = 0
-    object MemoQuery: TMemo
-      Left = 6
-      Top = 105
-      Width = 730
-      Height = 295
-      Lines.Strings = (
-        'MemoQuery')
-      TabOrder = 0
-      Visible = False
-    end
+    DesignSize = (
+      273
+      206)
     object DBGrid: TDBGrid
-      Left = 1
-      Top = 49
-      Width = 752
-      Height = 351
+      Left = 0
+      Top = 48
+      Width = 273
+      Height = 158
       Align = alClient
       BorderStyle = bsNone
-      Color = 14275008
+      Color = 10991483
       Ctl3D = True
       DataSource = DataSource
       Font.Charset = DEFAULT_CHARSET
@@ -89,36 +83,22 @@ object SearchView: TSearchView
       TabOrder = 1
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clBlack
-      TitleFont.Height = -11
-      TitleFont.Name = 'MS Sans Serif'
+      TitleFont.Height = -12
+      TitleFont.Name = 'Arial'
       TitleFont.Style = []
-      Columns = <
-        item
-          Expanded = False
-          FieldName = 'SUBCUENTA'
-          Title.Caption = 'Cuenta'
-          Title.Color = clWhite
-          Width = 145
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'DESCRIPCION'
-          Title.Caption = 'Descripci'#243'n'
-          Title.Color = clWhite
-          Width = 459
-          Visible = True
-        end>
     end
     object PanelArriba: TPanel
-      Left = 1
-      Top = 1
-      Width = 752
+      Left = 0
+      Top = 0
+      Width = 273
       Height = 48
       Align = alTop
-      Color = 14275008
+      Color = 12026747
       TabOrder = 2
-      object ccResButton1: TSpeedButton
+      DesignSize = (
+        273
+        48)
+      object BtnImageSearch: TSpeedButton
         Left = 0
         Top = 1
         Width = 50
@@ -228,17 +208,29 @@ object SearchView: TSearchView
       object EditSearchText: TEdit
         Left = 73
         Top = 14
-        Width = 656
+        Width = 177
         Height = 21
+        Anchors = [akLeft, akTop, akRight, akBottom]
         BevelInner = bvNone
         BevelOuter = bvNone
         TabOrder = 0
       end
     end
+    object MemoQuery: TMemo
+      Left = 6
+      Top = 137
+      Width = 264
+      Height = 52
+      Anchors = [akLeft, akTop, akRight, akBottom]
+      Lines.Strings = (
+        'MemoQuery')
+      TabOrder = 0
+      Visible = False
+    end
   end
   object DataSource: TDataSource
     AutoEdit = False
-    Left = 300
-    Top = 158
+    Left = 68
+    Top = 110
   end
 end

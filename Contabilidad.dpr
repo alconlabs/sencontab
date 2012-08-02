@@ -79,7 +79,6 @@ uses
   InfBalanceSituacion in 'Fuentes\InfBalanceSituacion.pas',
   ccChildForm in 'Fuentes\ccChildForm.pas' {ccFormChild},
   ccDBIntegrity in 'Fuentes\ccDBIntegrity.pas',
-  SearchAccount in 'Fuentes\SearchAccount.pas' {FormSearchAccount},
   SearchConcept in 'Fuentes\SearchConcept.pas' {FormSearchConcept},
   WizardGestEnterprises in 'Fuentes\WizardGestEnterprises.pas' {FormWizardGestEnterprises},
   WizardConnectDB in 'Fuentes\WizardConnectDB.pas' {WizardConnectDB},
@@ -109,6 +108,7 @@ uses
   SearchView in 'Fuentes\views\SearchView.pas' {SearchView},
   ______CONTROLLERS______ in 'Fuentes\______CONTROLLERS______.pas',
   CustomController in 'Fuentes\controllers\CustomController.pas',
+  CustomSearchController in 'Fuentes\controllers\CustomSearchController.pas',
   MainControllerClass in 'Fuentes\Controllers\MainControllerClass.pas',
   ConfigurationClass in 'Fuentes\Controllers\ConfigurationClass.pas',
   DBController in 'Fuentes\Controllers\DBController.pas',
@@ -148,9 +148,6 @@ uses
   D6OnHelpFix in 'Fuentes\Tools\D6OnHelpFix.pas',
   Utilidades in 'Fuentes\Tools\Utilidades.pas',
   HashCriptography in 'Fuentes\Tools\HashCriptography.pas';
-
-
-
 
 {$R *.RES}
 
