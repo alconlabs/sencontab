@@ -106,6 +106,7 @@ uses
   EnterprisesListView in 'Fuentes\views\EnterprisesListView.pas' {FormEnterprisesListView},
   MenuMainView in 'Fuentes\views\MenuMainView.pas' {FormMenuMain},
   ParametersEnterpriseView in 'Fuentes\views\ParametersEnterpriseView.pas' {ParametersEnterpriseView},
+  SearchView in 'Fuentes\views\SearchView.pas' {SearchView},
   ______CONTROLLERS______ in 'Fuentes\______CONTROLLERS______.pas',
   CustomController in 'Fuentes\controllers\CustomController.pas',
   MainControllerClass in 'Fuentes\Controllers\MainControllerClass.pas',
@@ -119,6 +120,7 @@ uses
   EnterprisesListController in 'Fuentes\controllers\EnterprisesListController.pas',
   MenuMainController in 'Fuentes\controllers\MenuMainController.pas',
   ParametersEnterpriseController in 'Fuentes\controllers\ParametersEnterpriseController.pas',
+  SearchAccountController in 'Fuentes\controllers\SearchAccountController.pas',
   ______CUSTOM_MODELS______ in 'Fuentes\______CUSTOM_MODELS______.pas',
   CustomModel in 'Fuentes\models\CustomModel.pas',
   CustomEnterprisesModel in 'Fuentes\models\CustomEnterprisesModel.pas',
@@ -138,6 +140,7 @@ uses
   OptionsModel in 'Fuentes\models\OptionsModel.pas',
   ProfileOptionsModel in 'Fuentes\models\ProfileOptionsModel.pas',
   DMParametersEnterprise in 'Fuentes\models\DMParametersEnterprise.pas' {DataModuleParametersEnterprise: TDataModule},
+  DMSearch in 'Fuentes\models\DMSearch.pas' {DataModuleSearch: TDataModule},
   ______TOOLS______ in 'Fuentes\______TOOLS______.pas',
   InfAsientos in 'Fuentes\InfAsientos.pas',
   LabelCaptionForm in 'Fuentes\Tools\LabelCaptionForm.pas',
@@ -145,6 +148,9 @@ uses
   D6OnHelpFix in 'Fuentes\Tools\D6OnHelpFix.pas',
   Utilidades in 'Fuentes\Tools\Utilidades.pas',
   HashCriptography in 'Fuentes\Tools\HashCriptography.pas';
+
+
+
 
 {$R *.RES}
 

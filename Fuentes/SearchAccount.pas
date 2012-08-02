@@ -95,16 +95,6 @@ begin
    if FOrderFieldName = 'SUBCUENTA'         then Result := 'SUBCTAS.SUBCUENTA'       else
 	  if FOrderFieldName = 'DESCRIPCION'       then Result := 'SUBCTAS.DESCRIPCION'     else
    raise Exception.Create('Bad definition on field list for the search.');
-
-   //if prmFieldName = 'CD_UNIDAD_COMPRA'  then Result := 'ARTICULOS.CD_UNIDAD_COMPRA'  else
-   //if prmFieldName = 'CD_UNIDAD_CONSUMO' then Result := 'ARTICULOS.CD_UNIDAD_CONSUMO' else
-   //if prmFieldName = 'CD_MADERA'         then Result := 'ARTICULOS.CD_MADERA'         else
-   //if prmFieldName = 'ALTO'              then Result := 'ARTICULOS.ALTO'              else
-   //if prmFieldName = 'ANCHO'             then Result := 'ARTICULOS.ANCHO'             else
-   //if prmFieldName = 'GRUESO'            then Result := 'ARTICULOS.GRUESO'            else
-   //if prmFieldName = 'PRECIO_ESTANDAR'   then Result := 'ARTICULOS.PRECIO_ESTANDAR'   else
-   //if prmFieldName = 'CD_TIPOARTICULO'   then Result := 'ARTICULOS.CD_TIPOARTICULO'   else
-   //Result := '***(COMPRUEBA EL NOMBRE DEL CAMPO)*** ERROR';
 end;
 
 procedure TFormSearchAccount.BtnAcceptClick(Sender: TObject);
