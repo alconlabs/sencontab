@@ -27,6 +27,7 @@ type
     procedure OnClick_BtnFECHA_FIN_EJERCICIO(Sender :TObject);
     procedure OnClick_BtnFECHAAMORTIZACION(Sender :TObject);
     procedure OnClick_BtnFECHABLOQUEO(Sender :TObject);
+    procedure OnClick_BtnSearchSCTANOMSUELDO(Sender :TObject);
    
   public
     constructor Create(prmConfig :TCurrentConfig); reintroduce;
@@ -36,7 +37,7 @@ type
 
 implementation
 uses Forms, SysUtils, Dialogs, DB, Windows, Messages, 
-     CustomView;
+     CustomView, SearchAccountController;
 
 constructor TParametersEnterpriseController.Create(prmConfig :TCurrentConfig); 
 begin
@@ -139,9 +140,10 @@ begin
    FView.ModeList.Add(TComponentMode.Create(FView.BtnDocCliente                      , fmEdit));
    FView.ModeList.Add(TComponentMode.Create(FView.BtnDocProveedor                    , fmEdit));
    FView.ModeList.Add(TComponentMode.Create(FView.BtnDoc347                          , fmEdit));
-   FView.ModeList.Add(TComponentMode.Create(FView.EditDOCCLIENTE                     , fmFixed));
-   FView.ModeList.Add(TComponentMode.Create(FView.EditDOCPROVEEDOR                   , fmFixed));
-   FView.ModeList.Add(TComponentMode.Create(FView.EditDOC347                         , fmFixed));
+   FView.ModeList.Add(TComponentMode.Create(FView.EditDOCCLIENTE                     , fmEdit));
+   FView.ModeList.Add(TComponentMode.Create(FView.EditDOCPROVEEDOR                   , fmEdit));
+   FView.ModeList.Add(TComponentMode.Create(FView.EditDOC347                         , fmEdit));
+   FView.ModeList.Add(TComponentMode.Create(FView.BtnSearchSCTANOMSUELDO             , fmEdit));
 
    FView.BtnModify.OnClick       := OnClick_Modify;
    FView.BtnAccept.OnClick       := OnClick_Accept;
@@ -154,7 +156,7 @@ begin
    FView.BtnFECHA_FIN_EJERCICIO.OnClick    := OnClick_BtnFECHA_FIN_EJERCICIO;
    FView.BtnFECHAAMORTIZACION.OnClick      := OnClick_BtnFECHAAMORTIZACION;
    FView.BtnFECHABLOQUEO.OnClick           := OnClick_BtnFECHABLOQUEO;
-
+   FView.BtnSearchSCTANOMSUELDO.OnClick    := OnClick_BtnSearchSCTANOMSUELDO;
 
    FView.CBSUBCUENTA18.MaxLength := DM.QParametrosLONGITUD_SUBCUENTAS.AsInteger;
    FView.CBSUBCUENTA19.MaxLength := DM.QParametrosLONGITUD_SUBCUENTAS.AsInteger;
@@ -298,6 +300,18 @@ procedure TParametersEnterpriseController.OnClick_BtnFECHABLOQUEO(Sender: TObjec
 begin
    {$Message Warn 'P E N D I E N T E'}
    Dialogs.ShowMessage('Esto está pendiente');
+end;
+
+procedure TParametersEnterpriseController.OnClick_BtnSearchSCTANOMSUELDO(Sender: TObject);
+begin
+   with TSearchAccountController.Create(FConfiguration) do begin
+      try
+        ShowView;
+        DM.QParametrosSCTANOMSUELDO.AsString := SUBCUENTA;
+      finally
+        Free;
+      end;
+   end;
 end;
 
 end.

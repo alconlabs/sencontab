@@ -151,6 +151,7 @@ type
     BtnFECHABLOQUEO: TSpeedButton;
     CBImprimir: TDBCheckBox;
     SProvincias: TDataSource;
+    BtnSearchSCTANOMSUELDO: TSpeedButton;
     procedure PageControlChanging(Sender: TObject; var AllowChange: Boolean);
   private
   public
