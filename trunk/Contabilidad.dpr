@@ -9,7 +9,6 @@ uses
   DM in 'Fuentes\DM.pas' {DMRef: TDataModule},
   DMConta in 'Fuentes\DMConta.pas' {DMContaRef: TDataModule},
   DMBalances in 'Fuentes\DMBalances.pas' {DMBlnc: TDataModule},
-  UParametrizacion in 'Fuentes\UParametrizacion.pas' {WParametrizacion},
   UParametrizacionFacturacion in 'Fuentes\UParametrizacionFacturacion.pas' {WParametrizacionFacturacion},
   Proyectos in 'Fuentes\Proyectos.pas' {WProyectos},
   Provincias in 'Fuentes\Provincias.pas' {FormProvincias},

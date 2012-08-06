@@ -21,7 +21,6 @@ object DataModuleParametersEnterprise: TDataModuleParametersEnterprise
       'EnableBCD=True'
       'FetchAll=True')
     VendorLib = 'oledb'
-    Connected = True
     Left = 47
     Top = 31
   end
@@ -1162,6 +1161,53 @@ object DataModuleParametersEnterprise: TDataModuleParametersEnterprise
       FieldName = 'CODIGO'
       FixedChar = True
       Size = 2
+    end
+  end
+  object LConceptos: TSimpleDataSet
+    Aggregates = <>
+    Connection = NoUse
+    DataSet.CommandText = 
+      'SELECT ID_CONCEPTOS, '#13#10'               DESCRIPCION, '#13#10'           ' +
+      '    TIPOCONTABILIDAD, '#13#10'               TIPOCONCEPTO, '#13#10'         ' +
+      '      OBSOLETO, '#13#10'               SUBCUENTA, '#13#10'               CON' +
+      'TRAPARTIDA '#13#10'FROM CONCEPTOS'#13#10'WHERE OBSOLETO = '#39'N'#39
+    DataSet.MaxBlobSize = -1
+    DataSet.Params = <>
+    Params = <>
+    Left = 240
+    Top = 64
+    object LConceptosID_CONCEPTOS: TStringField
+      FieldName = 'ID_CONCEPTOS'
+      FixedChar = True
+      Size = 3
+    end
+    object LConceptosDESCRIPCION: TStringField
+      FieldName = 'DESCRIPCION'
+      FixedChar = True
+      Size = 30
+    end
+    object LConceptosTIPOCONTABILIDAD: TStringField
+      FieldName = 'TIPOCONTABILIDAD'
+      FixedChar = True
+      Size = 1
+    end
+    object LConceptosTIPOCONCEPTO: TStringField
+      FieldName = 'TIPOCONCEPTO'
+      FixedChar = True
+      Size = 1
+    end
+    object LConceptosOBSOLETO: TStringField
+      FieldName = 'OBSOLETO'
+      FixedChar = True
+      Size = 1
+    end
+    object LConceptosSUBCUENTA: TStringField
+      FieldName = 'SUBCUENTA'
+      Size = 10
+    end
+    object LConceptosCONTRAPARTIDA: TStringField
+      FieldName = 'CONTRAPARTIDA'
+      Size = 10
     end
   end
 end

@@ -219,6 +219,14 @@ type
     QParametrosSCTANOMSSE_DS: TStringField;
     QParametrosSCTANOMIRPF_DS: TStringField;
     QParametrosSUBCUENTA_CIERRE_DS: TStringField;
+    LConceptos: TSimpleDataSet;
+    LConceptosID_CONCEPTOS: TStringField;
+    LConceptosDESCRIPCION: TStringField;
+    LConceptosTIPOCONTABILIDAD: TStringField;
+    LConceptosTIPOCONCEPTO: TStringField;
+    LConceptosOBSOLETO: TStringField;
+    LConceptosSUBCUENTA: TStringField;
+    LConceptosCONTRAPARTIDA: TStringField;
     procedure QParametrosCalcFields(DataSet: TDataSet);
   private
     DB :TCRSQLConnection;
@@ -257,6 +265,9 @@ begin
 
    LProvincias.Connection := ADBController.DBConnection.Connection;
    LProvincias.Open;
+
+   LConceptos.Connection := ADBController.DBConnection.Connection;
+   LConceptos.Open;
 end;
 
 procedure TDataModuleParametersEnterprise.QParametrosCalcFields(DataSet: TDataSet);
