@@ -1,10 +1,10 @@
 object ParametersEnterpriseView: TParametersEnterpriseView
-  Left = 477
+  Left = 509
   Top = 205
   BorderStyle = bsNone
   Caption = 'Parametros de la Empresa'
   ClientHeight = 549
-  ClientWidth = 921
+  ClientWidth = 889
   Color = 14275008
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -29,7 +29,7 @@ object ParametersEnterpriseView: TParametersEnterpriseView
     ParentFont = False
   end
   object PnlBtn: TPanel
-    Left = 802
+    Left = 770
     Top = 0
     Width = 119
     Height = 549
@@ -39,8 +39,8 @@ object ParametersEnterpriseView: TParametersEnterpriseView
     Color = clSilver
     TabOrder = 0
     object BtnCancel: TSpeedButton
-      Left = 16
-      Top = 464
+      Left = 8
+      Top = 416
       Width = 83
       Height = 25
       Cursor = crHandPoint
@@ -53,8 +53,8 @@ object ParametersEnterpriseView: TParametersEnterpriseView
       ParentFont = False
     end
     object BtnAccept: TSpeedButton
-      Left = 16
-      Top = 424
+      Left = 8
+      Top = 456
       Width = 83
       Height = 25
       Cursor = crHandPoint
@@ -82,7 +82,7 @@ object ParametersEnterpriseView: TParametersEnterpriseView
     end
   end
   object PageControl: TPageControl
-    Left = 16
+    Left = 0
     Top = 48
     Width = 769
     Height = 457

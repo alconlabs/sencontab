@@ -89,13 +89,13 @@ type
 implementation
 uses Forms, Controls, SysUtils, Utilidades, CustomView, Globales,
      ParametersEnterpriseController,
+     ParametersInvoicingController,
      UAmortizaciones, UAnaliticas, UBalAcumulados, UBalExplotacion, UBorradoDiario,
      UCargaApuntes, UCargaCobrosPagos, UCargaRapidaFacturas, UCargaRapidaNominas, UCarteraEfectos,
      UCierreEjercicio, UComerciales, UConceptos, UCopiaAsientos, UCuentas, UDelegaciones, UDepartamentos,
      UDiario, UEmpresas, UEnlaceContable, UEspere, UFiltro347, UFiltroBalances, UFiltroLibroFacturasEmitidas,
      UFiltroListadosAsientos, UFiltroListadosMayor, UFiltroSitPgGg, UFormasPago, UGrupos, UImportacion,
-     UIrpf110, UIrpf115, UISoc202, UPaises, UParametrizacionFacturacion,
-     UPlanAnalico, UPlanContable, UPreviewForm, Proyectos, UPunteoDiario, URecalculoSaldos,
+     UIrpf110, UIrpf115, UISoc202, UPaises,      UPlanAnalico, UPlanContable, UPreviewForm, Proyectos, UPunteoDiario, URecalculoSaldos,
      USecciones, USubCuentas, UTiposDiario, UTitulos, UTraspasoApuntes, UTraspasoDatos,
      Provincias, UActualizacionBD;
 
@@ -312,16 +312,22 @@ begin
 end;
 
 procedure TMenuMainController.MenuOptionFacturacion(Sender: TObject);
-var ParametersFact :TWParametrizacionFacturacion;
 begin
+   with TParametersInvoicingController.Create(FCurrentConfig) do begin
+      try
+         ShowView;
+      finally
+         Free;
+      end;
+   end;
    {$Message Warn '12ª Ventana para Test}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WPARAMETRIZACION') then Exit;
-   ParametersFact := TWParametrizacionFacturacion.Create(Application);
-   try
-      ParametersFact.ShowModal;
-   finally
-      ParametersFact.Free;
-   end;
+   //ParametersFact := TWParametrizacionFacturacion.Create(Application);
+   //try
+   //   ParametersFact.ShowModal;
+   //finally
+   //   ParametersFact.Free;
+   //end;
 end;
 
 procedure TMenuMainController.MenuOptionRecalculoSaldos(Sender: TObject);
