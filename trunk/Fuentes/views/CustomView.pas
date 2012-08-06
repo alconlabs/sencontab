@@ -128,6 +128,7 @@ type
      destructor  Destroy; override;
      procedure ShowMessage(AErrorMessage :string);
      procedure CustomViewMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+     function  Validate :Boolean;
      {properties}
      property Mode               :TMode       read FFormMode           write SetFormMode default fmView;
      property Modal              :Boolean     read FModal              write SetModal    default False;
@@ -625,6 +626,11 @@ begin
    inherited Items[Index] := Item;
 end;
 
+
+function TCustomView.Validate: Boolean;
+begin
+   Result := True;
+end;
 
 end.
 

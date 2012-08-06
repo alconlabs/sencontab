@@ -1,6 +1,6 @@
 object ParametersEnterpriseView: TParametersEnterpriseView
-  Left = 456
-  Top = 302
+  Left = 477
+  Top = 205
   BorderStyle = bsNone
   Caption = 'Parametros de la Empresa'
   ClientHeight = 549
@@ -1234,7 +1234,7 @@ object ParametersEnterpriseView: TParametersEnterpriseView
         Caption = ' Asiento Trabajador'
         TabOrder = 0
         object Label37: TLabel
-          Left = 19
+          Left = 44
           Top = 26
           Width = 182
           Height = 14
@@ -1247,7 +1247,7 @@ object ParametersEnterpriseView: TParametersEnterpriseView
           ParentFont = False
         end
         object Label38: TLabel
-          Left = 19
+          Left = 43
           Top = 76
           Width = 140
           Height = 14
@@ -1260,7 +1260,7 @@ object ParametersEnterpriseView: TParametersEnterpriseView
           ParentFont = False
         end
         object Label39: TLabel
-          Left = 387
+          Left = 419
           Top = 76
           Width = 168
           Height = 14
@@ -1273,7 +1273,7 @@ object ParametersEnterpriseView: TParametersEnterpriseView
           ParentFont = False
         end
         object Label40: TLabel
-          Left = 19
+          Left = 43
           Top = 125
           Width = 176
           Height = 14
@@ -1298,7 +1298,7 @@ object ParametersEnterpriseView: TParametersEnterpriseView
           Font.Style = [fsBold]
           ParentFont = False
         end
-        object DBText22: TDBText
+        object TextCTONOMT: TDBText
           Left = 668
           Top = 125
           Width = 65
@@ -1314,7 +1314,7 @@ object ParametersEnterpriseView: TParametersEnterpriseView
           ParentFont = False
         end
         object Label100: TLabel
-          Left = 387
+          Left = 419
           Top = 26
           Width = 202
           Height = 14
@@ -1327,8 +1327,8 @@ object ParametersEnterpriseView: TParametersEnterpriseView
           ParentFont = False
         end
         object BtnSearchSCTANOMSUELDO: TSpeedButton
-          Left = 342
-          Top = 14
+          Left = 19
+          Top = 38
           Width = 22
           Height = 20
           Cursor = crHandPoint
@@ -1353,245 +1353,253 @@ object ParametersEnterpriseView: TParametersEnterpriseView
           NumGlyphs = 2
           ParentFont = False
         end
-        object CBSUBCUENTA18: TwwDBLookupCombo
-          Left = 19
-          Top = 40
+        object TextSCTANOMSUELDO: TDBText
+          Left = 44
+          Top = 42
           Width = 96
-          Height = 21
-          AutoSize = False
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = []
-          CharCase = ecUpperCase
-          DropDownAlignment = taLeftJustify
-          Selected.Strings = (
-            'SUBCUENTA'#9'10'#9'SUBCUENTA'
-            'DESCRIPCION'#9'40'#9'DESCRIPCION')
+          Height = 20
           DataField = 'SCTANOMSUELDO'
           DataSource = DataSource
-          LookupTable = DMContaRef.QSubCTAGastos
-          LookupField = 'SUBCUENTA'
-          Options = [loColLines, loTitles]
-          Style = csDropDownList
-          ParentFont = False
-          TabOrder = 0
-          AutoDropDown = True
-          ShowButton = True
-          PreciseEditRegion = False
-          AllowClearKey = True
-          ShowMatchText = True
-        end
-        object wwDBLookupCombo19: TwwDBLookupCombo
-          Left = 114
-          Top = 40
-          Width = 252
-          Height = 21
-          AutoSize = False
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
-          CharCase = ecUpperCase
-          DropDownAlignment = taLeftJustify
-          Selected.Strings = (
-            'DESCRIPCION'#9'40'#9'DESCRIPCION'
-            'SUBCUENTA'#9'10'#9'SUBCUENTA')
-          DataField = 'SCTANOMSUELDO'
-          DataSource = DataSource
-          LookupTable = DMContaRef.QSubCTAGastosDesc
-          LookupField = 'SUBCUENTA'
-          Options = [loColLines, loTitles]
-          Style = csDropDownList
           ParentFont = False
-          TabOrder = 1
-          AutoDropDown = True
-          ShowButton = True
-          PreciseEditRegion = False
-          AllowClearKey = True
-          ShowMatchText = True
         end
-        object CBSUBCUENTA19: TwwDBLookupCombo
-          Left = 19
-          Top = 90
+        object TextSCTANOMSUELDO_DS: TDBText
+          Left = 139
+          Top = 42
+          Width = 225
+          Height = 20
+          DataField = 'SCTANOMSUELDO_DS'
+          DataSource = DataSource
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          ParentFont = False
+        end
+        object TextSCTANOMSST: TDBText
+          Left = 43
+          Top = 92
           Width = 96
           Height = 21
-          AutoSize = False
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = []
-          CharCase = ecUpperCase
-          DropDownAlignment = taLeftJustify
-          Selected.Strings = (
-            'SUBCUENTA'#9'10'#9'SUBCUENTA'
-            'DESCRIPCION'#9'40'#9'DESCRIPCION')
           DataField = 'SCTANOMSST'
           DataSource = DataSource
-          LookupTable = DMContaRef.QSubCuentas
-          LookupField = 'SUBCUENTA'
-          Options = [loColLines, loTitles]
-          Style = csDropDownList
-          ParentFont = False
-          TabOrder = 4
-          AutoDropDown = True
-          ShowButton = True
-          PreciseEditRegion = False
-          AllowClearKey = True
-          ShowMatchText = True
-        end
-        object wwDBLookupCombo49: TwwDBLookupCombo
-          Left = 114
-          Top = 90
-          Width = 252
-          Height = 21
-          AutoSize = False
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
-          CharCase = ecUpperCase
-          DropDownAlignment = taLeftJustify
-          Selected.Strings = (
-            'DESCRIPCION'#9'40'#9'DESCRIPCION'
-            'SUBCUENTA'#9'10'#9'SUBCUENTA')
-          DataField = 'SCTANOMSST'
-          DataSource = DataSource
-          LookupTable = DMContaRef.QSubCuentasDesc
-          LookupField = 'SUBCUENTA'
-          Options = [loColLines, loTitles]
-          Style = csDropDownList
           ParentFont = False
-          TabOrder = 5
-          AutoDropDown = True
-          ShowButton = True
-          PreciseEditRegion = False
-          AllowClearKey = True
-          ShowMatchText = True
         end
-        object CBSUBCUENTA20: TwwDBLookupCombo
-          Left = 387
-          Top = 90
+        object TextSCTANOMSST_DS: TDBText
+          Left = 138
+          Top = 92
+          Width = 223
+          Height = 21
+          DataField = 'SCTANOMSST_DS'
+          DataSource = DataSource
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          ParentFont = False
+        end
+        object BtnSearchSCTANOMSST: TSpeedButton
+          Left = 17
+          Top = 86
+          Width = 22
+          Height = 20
+          Cursor = crHandPoint
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clNavy
+          Font.Height = -12
+          Font.Name = 'Fixedsys'
+          Font.Style = [fsBold]
+          Glyph.Data = {
+            76010000424D7601000000000000760000002800000020000000100000000100
+            04000000000000010000130B0000130B00001000000000000000000000000000
+            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+            333333333333333333FF33333333333330003FF3FFFFF3333777003000003333
+            300077F777773F333777E00BFBFB033333337773333F7F33333FE0BFBF000333
+            330077F3337773F33377E0FBFBFBF033330077F3333FF7FFF377E0BFBF000000
+            333377F3337777773F3FE0FBFBFBFBFB039977F33FFFFFFF7377E0BF00000000
+            339977FF777777773377000BFB03333333337773FF733333333F333000333333
+            3300333777333333337733333333333333003333333333333377333333333333
+            333333333333333333FF33333333333330003333333333333777333333333333
+            3000333333333333377733333333333333333333333333333333}
+          NumGlyphs = 2
+          ParentFont = False
+        end
+        object TextSCTANOMPAGO: TDBText
+          Left = 43
+          Top = 141
           Width = 96
           Height = 21
-          AutoSize = False
+          DataField = 'SCTANOMPAGO'
+          DataSource = DataSource
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
-          CharCase = ecUpperCase
-          DropDownAlignment = taLeftJustify
-          Selected.Strings = (
-            'SUBCUENTA'#9'10'#9'SUBCUENTA'
-            'DESCRIPCION'#9'40'#9'DESCRIPCION')
-          DataField = 'SCTANOMIRPF'
-          DataSource = DataSource
-          LookupTable = DMContaRef.QSubCuentas
-          LookupField = 'SUBCUENTA'
-          Options = [loColLines, loTitles]
-          Style = csDropDownList
           ParentFont = False
-          TabOrder = 6
-          AutoDropDown = True
-          ShowButton = True
-          PreciseEditRegion = False
-          AllowClearKey = True
-          ShowMatchText = True
         end
-        object wwDBLookupCombo51: TwwDBLookupCombo
-          Left = 481
-          Top = 90
-          Width = 252
+        object TextSCTANOMPAGO_DS: TDBText
+          Left = 138
+          Top = 141
+          Width = 223
           Height = 21
-          AutoSize = False
+          DataField = 'SCTANOMPAGO_DS'
+          DataSource = DataSource
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
-          CharCase = ecUpperCase
-          DropDownAlignment = taLeftJustify
-          Selected.Strings = (
-            'DESCRIPCION'#9'40'#9'DESCRIPCION'
-            'SUBCUENTA'#9'10'#9'SUBCUENTA')
-          DataField = 'SCTANOMIRPF'
-          DataSource = DataSource
-          LookupTable = DMContaRef.QSubCuentasDesc
-          LookupField = 'SUBCUENTA'
-          Options = [loColLines, loTitles]
-          Style = csDropDownList
           ParentFont = False
-          TabOrder = 7
-          AutoDropDown = True
-          ShowButton = True
-          PreciseEditRegion = False
-          AllowClearKey = True
-          ShowMatchText = True
         end
-        object CBSUBCUENTA21: TwwDBLookupCombo
-          Left = 19
-          Top = 139
+        object BtnSearchSCTANOMPAGO: TSpeedButton
+          Left = 17
+          Top = 134
+          Width = 22
+          Height = 20
+          Cursor = crHandPoint
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clNavy
+          Font.Height = -12
+          Font.Name = 'Fixedsys'
+          Font.Style = [fsBold]
+          Glyph.Data = {
+            76010000424D7601000000000000760000002800000020000000100000000100
+            04000000000000010000130B0000130B00001000000000000000000000000000
+            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+            333333333333333333FF33333333333330003FF3FFFFF3333777003000003333
+            300077F777773F333777E00BFBFB033333337773333F7F33333FE0BFBF000333
+            330077F3337773F33377E0FBFBFBF033330077F3333FF7FFF377E0BFBF000000
+            333377F3337777773F3FE0FBFBFBFBFB039977F33FFFFFFF7377E0BF00000000
+            339977FF777777773377000BFB03333333337773FF733333333F333000333333
+            3300333777333333337733333333333333003333333333333377333333333333
+            333333333333333333FF33333333333330003333333333333777333333333333
+            3000333333333333377733333333333333333333333333333333}
+          NumGlyphs = 2
+          ParentFont = False
+        end
+        object TextSCTANOMIRPF: TDBText
+          Left = 419
+          Top = 92
           Width = 96
           Height = 21
-          AutoSize = False
+          DataField = 'SCTANOMIRPF'
+          DataSource = DataSource
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
-          CharCase = ecUpperCase
-          DropDownAlignment = taLeftJustify
-          Selected.Strings = (
-            'SUBCUENTA'#9'10'#9'SUBCUENTA'
-            'DESCRIPCION'#9'40'#9'DESCRIPCION')
-          DataField = 'SCTANOMPAGO'
-          DataSource = DataSource
-          LookupTable = DMContaRef.QSubCTANominas
-          LookupField = 'SUBCUENTA'
-          Options = [loColLines, loTitles]
-          Style = csDropDownList
           ParentFont = False
-          TabOrder = 8
-          AutoDropDown = True
-          ShowButton = True
-          PreciseEditRegion = False
-          AllowClearKey = True
-          ShowMatchText = True
         end
-        object wwDBLookupCombo53: TwwDBLookupCombo
-          Left = 114
-          Top = 139
-          Width = 252
+        object TextSCTANOMIRPF_DS: TDBText
+          Left = 513
+          Top = 92
+          Width = 224
           Height = 21
-          AutoSize = False
+          DataField = 'SCTANOMIRPF_DS'
+          DataSource = DataSource
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
-          CharCase = ecUpperCase
-          DropDownAlignment = taLeftJustify
-          Selected.Strings = (
-            'DESCRIPCION'#9'40'#9'DESCRIPCION'
-            'SUBCUENTA'#9'10'#9'SUBCUENTA')
-          DataField = 'SCTANOMPAGO'
-          DataSource = DataSource
-          LookupTable = DMContaRef.QSubCTANominasDesc
-          LookupField = 'SUBCUENTA'
-          Options = [loColLines, loTitles]
-          Style = csDropDownList
           ParentFont = False
-          TabOrder = 9
-          AutoDropDown = True
-          ShowButton = True
-          PreciseEditRegion = False
-          AllowClearKey = True
-          ShowMatchText = True
+        end
+        object TextSCTAOTRASREMUN: TDBText
+          Left = 419
+          Top = 42
+          Width = 96
+          Height = 21
+          DataField = 'SCTAOTRASREMUN'
+          DataSource = DataSource
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          ParentFont = False
+        end
+        object TextSCTAOTRASREMUN_DS: TDBText
+          Left = 513
+          Top = 42
+          Width = 224
+          Height = 21
+          DataField = 'SCTAOTRASREMUN_DS'
+          DataSource = DataSource
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          ParentFont = False
+        end
+        object BtnSearchSCTAOTRASREMUN: TSpeedButton
+          Left = 393
+          Top = 30
+          Width = 22
+          Height = 20
+          Cursor = crHandPoint
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clNavy
+          Font.Height = -12
+          Font.Name = 'Fixedsys'
+          Font.Style = [fsBold]
+          Glyph.Data = {
+            76010000424D7601000000000000760000002800000020000000100000000100
+            04000000000000010000130B0000130B00001000000000000000000000000000
+            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+            333333333333333333FF33333333333330003FF3FFFFF3333777003000003333
+            300077F777773F333777E00BFBFB033333337773333F7F33333FE0BFBF000333
+            330077F3337773F33377E0FBFBFBF033330077F3333FF7FFF377E0BFBF000000
+            333377F3337777773F3FE0FBFBFBFBFB039977F33FFFFFFF7377E0BF00000000
+            339977FF777777773377000BFB03333333337773FF733333333F333000333333
+            3300333777333333337733333333333333003333333333333377333333333333
+            333333333333333333FF33333333333330003333333333333777333333333333
+            3000333333333333377733333333333333333333333333333333}
+          NumGlyphs = 2
+          ParentFont = False
+        end
+        object BtnSearchSCTANOMIRPF: TSpeedButton
+          Left = 393
+          Top = 78
+          Width = 22
+          Height = 20
+          Cursor = crHandPoint
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clNavy
+          Font.Height = -12
+          Font.Name = 'Fixedsys'
+          Font.Style = [fsBold]
+          Glyph.Data = {
+            76010000424D7601000000000000760000002800000020000000100000000100
+            04000000000000010000130B0000130B00001000000000000000000000000000
+            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+            333333333333333333FF33333333333330003FF3FFFFF3333777003000003333
+            300077F777773F333777E00BFBFB033333337773333F7F33333FE0BFBF000333
+            330077F3337773F33377E0FBFBFBF033330077F3333FF7FFF377E0BFBF000000
+            333377F3337777773F3FE0FBFBFBFBFB039977F33FFFFFFF7377E0BF00000000
+            339977FF777777773377000BFB03333333337773FF733333333F333000333333
+            3300333777333333337733333333333333003333333333333377333333333333
+            333333333333333333FF33333333333330003333333333333777333333333333
+            3000333333333333377733333333333333333333333333333333}
+          NumGlyphs = 2
+          ParentFont = False
         end
         object wwDBLookupCombo55: TwwDBLookupCombo
           Left = 387
@@ -1616,7 +1624,7 @@ object ParametersEnterpriseView: TParametersEnterpriseView
           Options = [loColLines, loTitles]
           Style = csDropDownList
           ParentFont = False
-          TabOrder = 10
+          TabOrder = 0
           AutoDropDown = True
           ShowButton = True
           PreciseEditRegion = False
@@ -1637,69 +1645,9 @@ object ParametersEnterpriseView: TParametersEnterpriseView
           Font.Name = 'Arial'
           Font.Style = [fsBold]
           ParentFont = False
-          TabOrder = 11
+          TabOrder = 1
           ValueChecked = 'S'
           ValueUnchecked = 'N'
-        end
-        object CBSUBCUENTA39: TwwDBLookupCombo
-          Left = 387
-          Top = 40
-          Width = 96
-          Height = 21
-          AutoSize = False
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = []
-          CharCase = ecUpperCase
-          DropDownAlignment = taLeftJustify
-          Selected.Strings = (
-            'SUBCUENTA'#9'10'#9'SUBCUENTA'
-            'DESCRIPCION'#9'40'#9'DESCRIPCION')
-          DataField = 'SCTAOTRASREMUN'
-          DataSource = DataSource
-          LookupTable = DMContaRef.QSubCTAGastos
-          LookupField = 'SUBCUENTA'
-          Options = [loColLines, loTitles]
-          Style = csDropDownList
-          ParentFont = False
-          TabOrder = 2
-          AutoDropDown = True
-          ShowButton = True
-          PreciseEditRegion = False
-          AllowClearKey = True
-          ShowMatchText = True
-        end
-        object wwDBLookupCombo35: TwwDBLookupCombo
-          Left = 481
-          Top = 40
-          Width = 252
-          Height = 21
-          AutoSize = False
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = []
-          CharCase = ecUpperCase
-          DropDownAlignment = taLeftJustify
-          Selected.Strings = (
-            'DESCRIPCION'#9'40'#9'DESCRIPCION'
-            'SUBCUENTA'#9'10'#9'SUBCUENTA')
-          DataField = 'SCTAOTRASREMUN'
-          DataSource = DataSource
-          LookupTable = DMContaRef.QSubCTAGastosDesc
-          LookupField = 'SUBCUENTA'
-          Options = [loColLines, loTitles]
-          Style = csDropDownList
-          ParentFont = False
-          TabOrder = 3
-          AutoDropDown = True
-          ShowButton = True
-          PreciseEditRegion = False
-          AllowClearKey = True
-          ShowMatchText = True
         end
       end
       object GroupBox8: TGroupBox
@@ -1711,7 +1659,7 @@ object ParametersEnterpriseView: TParametersEnterpriseView
         Caption = ' Asiento Empresa '
         TabOrder = 1
         object Label43: TLabel
-          Left = 123
+          Left = 147
           Top = 21
           Width = 230
           Height = 14
@@ -1724,7 +1672,7 @@ object ParametersEnterpriseView: TParametersEnterpriseView
           ParentFont = False
         end
         object Label44: TLabel
-          Left = 123
+          Left = 147
           Top = 66
           Width = 146
           Height = 14
@@ -1749,7 +1697,7 @@ object ParametersEnterpriseView: TParametersEnterpriseView
           Font.Style = [fsBold]
           ParentFont = False
         end
-        object DBText23: TDBText
+        object TextCTONOME: TDBText
           Left = 403
           Top = 113
           Width = 65
@@ -1764,125 +1712,115 @@ object ParametersEnterpriseView: TParametersEnterpriseView
           Font.Style = [fsBold]
           ParentFont = False
         end
-        object CBSUBCUENTA22: TwwDBLookupCombo
-          Left = 122
-          Top = 35
+        object TextSCTANOMCARGO: TDBText
+          Left = 146
+          Top = 37
           Width = 96
           Height = 21
-          AutoSize = False
+          DataField = 'SCTANOMCARGO'
+          DataSource = DataSource
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
-          CharCase = ecUpperCase
-          DropDownAlignment = taLeftJustify
-          Selected.Strings = (
-            'SUBCUENTA'#9'10'#9'SUBCUENTA'
-            'DESCRIPCION'#9'40'#9'DESCRIPCION')
-          DataField = 'SCTANOMCARGO'
-          DataSource = DataSource
-          LookupTable = DMContaRef.QSubCTAGastos
-          LookupField = 'SUBCUENTA'
-          Options = [loColLines, loTitles]
-          Style = csDropDownList
           ParentFont = False
-          TabOrder = 0
-          AutoDropDown = True
-          ShowButton = True
-          PreciseEditRegion = False
-          AllowClearKey = True
-          ShowMatchText = True
         end
-        object wwDBLookupCombo57: TwwDBLookupCombo
-          Left = 218
-          Top = 35
+        object TextSCTANOMCARGO_DS: TDBText
+          Left = 242
+          Top = 37
           Width = 252
           Height = 21
-          AutoSize = False
+          DataField = 'SCTANOMCARGO_DS'
+          DataSource = DataSource
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
-          CharCase = ecUpperCase
-          DropDownAlignment = taLeftJustify
-          Selected.Strings = (
-            'DESCRIPCION'#9'40'#9'DESCRIPCION'
-            'SUBCUENTA'#9'10'#9'SUBCUENTA')
-          DataField = 'SCTANOMCARGO'
-          DataSource = DataSource
-          LookupTable = DMContaRef.QSubCTAGastosDesc
-          LookupField = 'SUBCUENTA'
-          Options = [loColLines, loTitles]
-          Style = csDropDownList
           ParentFont = False
-          TabOrder = 1
-          AutoDropDown = True
-          ShowButton = True
-          PreciseEditRegion = False
-          AllowClearKey = True
-          ShowMatchText = True
         end
-        object CBSUBCUENTA23: TwwDBLookupCombo
-          Left = 122
-          Top = 80
+        object TextSCTANOMSSE: TDBText
+          Left = 146
+          Top = 82
           Width = 96
           Height = 21
-          AutoSize = False
+          DataField = 'SCTANOMSSE'
+          DataSource = DataSource
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
-          CharCase = ecUpperCase
-          DropDownAlignment = taLeftJustify
-          Selected.Strings = (
-            'SUBCUENTA'#9'10'#9'SUBCUENTA'
-            'DESCRIPCION'#9'40'#9'DESCRIPCION')
-          DataField = 'SCTANOMSSE'
-          DataSource = DataSource
-          LookupTable = DMContaRef.QSubCuentas
-          LookupField = 'SUBCUENTA'
-          Options = [loColLines, loTitles]
-          Style = csDropDownList
           ParentFont = False
-          TabOrder = 2
-          AutoDropDown = True
-          ShowButton = True
-          PreciseEditRegion = False
-          AllowClearKey = True
-          ShowMatchText = True
         end
-        object wwDBLookupCombo59: TwwDBLookupCombo
-          Left = 218
-          Top = 80
+        object TextSCTANOMSSE_DS: TDBText
+          Left = 242
+          Top = 82
           Width = 252
           Height = 21
-          AutoSize = False
+          DataField = 'SCTANOMSSE_DS'
+          DataSource = DataSource
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
-          CharCase = ecUpperCase
-          DropDownAlignment = taLeftJustify
-          Selected.Strings = (
-            'DESCRIPCION'#9'40'#9'DESCRIPCION'
-            'SUBCUENTA'#9'10'#9'SUBCUENTA')
-          DataField = 'SCTANOMSSE'
-          DataSource = DataSource
-          LookupTable = DMContaRef.QSubCuentasDesc
-          LookupField = 'SUBCUENTA'
-          Options = [loColLines, loTitles]
-          Style = csDropDownList
           ParentFont = False
-          TabOrder = 3
-          AutoDropDown = True
-          ShowButton = True
-          PreciseEditRegion = False
-          AllowClearKey = True
-          ShowMatchText = True
+        end
+        object BtnSearchSCTANOMCARGO: TSpeedButton
+          Left = 121
+          Top = 30
+          Width = 22
+          Height = 20
+          Cursor = crHandPoint
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clNavy
+          Font.Height = -12
+          Font.Name = 'Fixedsys'
+          Font.Style = [fsBold]
+          Glyph.Data = {
+            76010000424D7601000000000000760000002800000020000000100000000100
+            04000000000000010000130B0000130B00001000000000000000000000000000
+            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+            333333333333333333FF33333333333330003FF3FFFFF3333777003000003333
+            300077F777773F333777E00BFBFB033333337773333F7F33333FE0BFBF000333
+            330077F3337773F33377E0FBFBFBF033330077F3333FF7FFF377E0BFBF000000
+            333377F3337777773F3FE0FBFBFBFBFB039977F33FFFFFFF7377E0BF00000000
+            339977FF777777773377000BFB03333333337773FF733333333F333000333333
+            3300333777333333337733333333333333003333333333333377333333333333
+            333333333333333333FF33333333333330003333333333333777333333333333
+            3000333333333333377733333333333333333333333333333333}
+          NumGlyphs = 2
+          ParentFont = False
+        end
+        object BtnSearchSCTANOMSSE: TSpeedButton
+          Left = 121
+          Top = 78
+          Width = 22
+          Height = 20
+          Cursor = crHandPoint
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clNavy
+          Font.Height = -12
+          Font.Name = 'Fixedsys'
+          Font.Style = [fsBold]
+          Glyph.Data = {
+            76010000424D7601000000000000760000002800000020000000100000000100
+            04000000000000010000130B0000130B00001000000000000000000000000000
+            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+            333333333333333333FF33333333333330003FF3FFFFF3333777003000003333
+            300077F777773F333777E00BFBFB033333337773333F7F33333FE0BFBF000333
+            330077F3337773F33377E0FBFBFBF033330077F3333FF7FFF377E0BFBF000000
+            333377F3337777773F3FE0FBFBFBFBFB039977F33FFFFFFF7377E0BF00000000
+            339977FF777777773377000BFB03333333337773FF733333333F333000333333
+            3300333777333333337733333333333333003333333333333377333333333333
+            333333333333333333FF33333333333330003333333333333777333333333333
+            3000333333333333377733333333333333333333333333333333}
+          NumGlyphs = 2
+          ParentFont = False
         end
         object wwDBLookupCombo61: TwwDBLookupCombo
           Left = 122
@@ -1907,7 +1845,7 @@ object ParametersEnterpriseView: TParametersEnterpriseView
           Options = [loColLines, loTitles]
           Style = csDropDownList
           ParentFont = False
-          TabOrder = 4
+          TabOrder = 0
           AutoDropDown = True
           ShowButton = True
           PreciseEditRegion = False
@@ -1943,6 +1881,61 @@ object ParametersEnterpriseView: TParametersEnterpriseView
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object TextSUBCUENTA_CIERRE: TDBText
+          Left = 139
+          Top = 163
+          Width = 96
+          Height = 21
+          DataField = 'SUBCUENTA_CIERRE'
+          DataSource = DataSource
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          ParentFont = False
+        end
+        object TextSUBCUENTA_CIERRE_DS: TDBText
+          Left = 235
+          Top = 163
+          Width = 284
+          Height = 21
+          DataField = 'SUBCUENTA_CIERRE_DS'
+          DataSource = DataSource
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          ParentFont = False
+        end
+        object BtnSearchSUBCUENTA_CIERRE: TSpeedButton
+          Left = 113
+          Top = 158
+          Width = 22
+          Height = 20
+          Cursor = crHandPoint
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clNavy
+          Font.Height = -12
+          Font.Name = 'Fixedsys'
+          Font.Style = [fsBold]
+          Glyph.Data = {
+            76010000424D7601000000000000760000002800000020000000100000000100
+            04000000000000010000130B0000130B00001000000000000000000000000000
+            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+            333333333333333333FF33333333333330003FF3FFFFF3333777003000003333
+            300077F777773F333777E00BFBFB033333337773333F7F33333FE0BFBF000333
+            330077F3337773F33377E0FBFBFBF033330077F3333FF7FFF377E0BFBF000000
+            333377F3337777773F3FE0FBFBFBFBFB039977F33FFFFFFF7377E0BF00000000
+            339977FF777777773377000BFB03333333337773FF733333333F333000333333
+            3300333777333333337733333333333333003333333333333377333333333333
+            333333333333333333FF33333333333330003333333333333777333333333333
+            3000333333333333377733333333333333333333333333333333}
+          NumGlyphs = 2
           ParentFont = False
         end
         object GroupBox14: TGroupBox
@@ -2168,66 +2161,6 @@ object ParametersEnterpriseView: TParametersEnterpriseView
             PreciseEditRegion = False
             AllowClearKey = False
           end
-        end
-        object CBSUBCUENTA29: TwwDBLookupCombo
-          Left = 139
-          Top = 161
-          Width = 96
-          Height = 21
-          AutoSize = False
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = []
-          CharCase = ecUpperCase
-          DropDownAlignment = taLeftJustify
-          Selected.Strings = (
-            'SUBCUENTA'#9'10'#9'SUBCUENTA'
-            'DESCRIPCION'#9'40'#9'DESCRIPCION')
-          DataField = 'SUBCUENTA_CIERRE'
-          DataSource = DataSource
-          LookupTable = DMContaRef.QSubCuentas
-          LookupField = 'SUBCUENTA'
-          Options = [loColLines, loTitles]
-          Style = csDropDownList
-          ParentFont = False
-          TabOrder = 2
-          AutoDropDown = True
-          ShowButton = True
-          PreciseEditRegion = False
-          AllowClearKey = True
-          ShowMatchText = True
-        end
-        object wwDBLookupCombo17: TwwDBLookupCombo
-          Left = 235
-          Top = 161
-          Width = 284
-          Height = 21
-          AutoSize = False
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = []
-          CharCase = ecUpperCase
-          DropDownAlignment = taLeftJustify
-          Selected.Strings = (
-            'DESCRIPCION'#9'40'#9'DESCRIPCION'
-            'SUBCUENTA'#9'10'#9'SUBCUENTA')
-          DataField = 'SUBCUENTA_CIERRE'
-          DataSource = DataSource
-          LookupTable = DMContaRef.QSubCuentasDesc
-          LookupField = 'SUBCUENTA'
-          Options = [loColLines, loTitles]
-          Style = csDropDownList
-          ParentFont = False
-          TabOrder = 3
-          AutoDropDown = True
-          ShowButton = True
-          PreciseEditRegion = False
-          AllowClearKey = True
-          ShowMatchText = True
         end
       end
     end

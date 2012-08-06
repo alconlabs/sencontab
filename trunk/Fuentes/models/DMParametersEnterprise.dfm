@@ -1,7 +1,7 @@
 object DataModuleParametersEnterprise: TDataModuleParametersEnterprise
   OldCreateOrder = False
-  Left = 800
-  Top = 626
+  Left = 801
+  Top = 628
   Height = 283
   Width = 400
   object NoUse: TCRSQLConnection
@@ -29,237 +29,94 @@ object DataModuleParametersEnterprise: TDataModuleParametersEnterprise
     Aggregates = <>
     Connection = NoUse
     DataSet.CommandText = 
-      'SELECT PRM.ID_PARAMETROS                          ,'#13#10'       PRM.' +
-      'LONGITUD_SUBCUENTAS                    ,'#13#10'       PRM.FECHA_INICI' +
-      'O_APLICACION                ,'#13#10'       PRM.FECHA_INICIO_EJERCICIO' +
-      '                 ,'#13#10'       PRM.FECHA_FIN_EJERCICIO              ' +
-      '      ,'#13#10'       PRM.CTO_REGULARIZACION                     ,'#13#10'  ' +
-      '     PRM.SUBCUENTA_CIERRE                       ,'#13#10'       PRM.MO' +
-      'NEDA                                 ,'#13#10'       PRM.NOMBREFISCAL ' +
-      '                          ,'#13#10'       PRM.DIRECCION               ' +
-      '               ,'#13#10'       PRM.DIRECCION1                         ' +
-      '    ,'#13#10'       PRM.POBLACION                              ,'#13#10'    ' +
-      '   PRM.CODPOSTAL                              ,'#13#10'       PRM.PROV' +
-      'INCIA                              ,'#13#10'       PRM.NIF            ' +
-      '                        ,'#13#10'       PRM.CONTACTO                  ' +
-      '             ,'#13#10'       PRM.DOCCLIENTE                           ' +
-      '  ,'#13#10'       PRM.DOCPROVEEDOR                           ,'#13#10'      ' +
-      ' PRM.DOC347                                 ,'#13#10'       PRM.FECHAB' +
-      'LOQUEO                           ,'#13#10'       PRM.CTO_APERTURA     ' +
-      '                      ,'#13#10'       PRM.CTO_REGULARIZACION_ESP      ' +
-      '           ,'#13#10'       PRM.FECHAAMORTIZACION                      ' +
-      ','#13#10'       PRM.RECARGO                                ,'#13#10'       P' +
-      'RM.CTO_APERTURA_ESP                       ,'#13#10'       PRM.SCTAIVAN' +
-      'ORMAL                          ,'#13#10'       S01.DESCRIPCION SCTAIVA' +
-      'NORMAL_DS           ,'#13#10'       PRM.SCTAIVAREDUCIDO               ' +
-      '         ,'#13#10'       S02.DESCRIPCION SCTAIVAREDUCIDO_DS         ,'#13 +
-      #10'       PRM.SCTAIVASUPER                           ,'#13#10'       S03' +
-      '.DESCRIPCION SCTAIVASUPER_DS            ,'#13#10'       PRM.SCTAIVAEXE' +
-      'NTO                          ,'#13#10'       S04.DESCRIPCION SCTAIVAEX' +
-      'ENTO_DS           ,'#13#10'       PRM.SCTAIVAINTRADEDUCIBLE           ' +
-      '       ,'#13#10'       S05.DESCRIPCION SCTAIVAINTRADEDUCIBLE_DS   ,'#13#10' ' +
-      '      PRM.SCTAIVAINTRA                           ,'#13#10'       S06.D' +
-      'ESCRIPCION SCTAIVAINTRA_DS            ,'#13#10'       PRM.SCTAVENTAS  ' +
-      '                           ,'#13#10'       S07.DESCRIPCION SCTAVENTAS_' +
-      'DS              ,'#13#10'       PRM.SCTADEVOLUCION                    ' +
-      '     ,'#13#10'       S08.DESCRIPCION SCTADEVOLUCION_DS          ,'#13#10'   ' +
-      '    PRM.SCTARECNORMAL                          ,'#13#10'       S09.DES' +
-      'CRIPCION SCTARECNORMAL_DS           ,'#13#10'       PRM.SCTARECREDUCID' +
-      'O                        ,'#13#10'       S10.DESCRIPCION SCTARECREDUCI' +
-      'DO_DS         ,'#13#10'       PRM.SCTARECSUPER                        ' +
-      '   ,'#13#10'       S11.DESCRIPCION SCTARECSUPER_DS            ,'#13#10'     ' +
-      '  PRM.VGENERICA                              ,'#13#10'       S12.DESCR' +
-      'IPCION VGENERICA_DS               ,'#13#10'       PRM.SUBCAJA         ' +
-      '                       ,'#13#10'       S13.DESCRIPCION SUBCAJA_DS     ' +
-      '            ,'#13#10'       PRM.SCTAIVAEXENTOCEE                      ' +
-      ' ,'#13#10'       S14.DESCRIPCION SCTAIVAEXENTOCEE_DS        ,'#13#10'       ' +
-      'PRM.SCTAINTERESES                          ,'#13#10'       S15.DESCRIP' +
-      'CION SCTAINTERESES_DS           ,'#13#10'       PRM.SCTAEXPORTACIONES ' +
-      '                     ,'#13#10'       S16.DESCRIPCION SCTAEXPORTACIONES' +
-      '_DS       ,'#13#10'       PRM.SCTAIVACNORMAL                         ,' +
-      #13#10'       S17.DESCRIPCION SCTAIVACNORMAL_DS          ,'#13#10'       PR' +
-      'M.SCTAIVACREDUCIDO                       ,'#13#10'       S18.DESCRIPCI' +
-      'ON SCTAIVACREDUCIDO_DS        ,'#13#10'       PRM.SCTAIVACSUPER       ' +
-      '                   ,'#13#10'       S19.DESCRIPCION SCTAIVACSUPER_DS   ' +
-      '        ,'#13#10'       PRM.SCTAIVACEXENTO                         ,'#13#10 +
-      '       S20.DESCRIPCION SCTAIVACEXENTO_DS          ,'#13#10'       PRM.' +
-      'SCTACOMPRAS                            ,'#13#10'       S21.DESCRIPCION' +
-      ' SCTACOMPRAS_DS             ,'#13#10'       PRM.SCTAIVACINTRADEDUCIBLE' +
-      '                 ,'#13#10'       S22.DESCRIPCION SCTAIVACINTRADEDUCIBL' +
-      'E_DS  ,'#13#10'       PRM.SCTAIVACINTRAREPERCUTIDO               ,'#13#10'  ' +
-      '     S23.DESCRIPCION SCTAIVACINTRAREPERCUTIDO_DS,'#13#10'       PRM.VG' +
-      'ENERICAC                             ,'#13#10'       S24.DESCRIPCION V' +
-      'GENERICAC_DS              ,'#13#10'       PRM.SCTAEFECTOSCOMERCIALES  ' +
-      '               ,'#13#10'       S25.DESCRIPCION SCTAEFECTOSCOMERCIALES_' +
-      'DS  ,'#13#10'       PRM.SCTAEFECTDESCONTADOS                   ,'#13#10'    ' +
-      '   S26.DESCRIPCION SCTAEFECTDESCONTADOS_DS    ,'#13#10'       PRM.SCTA' +
-      'DEUDASDESCUENTOS                   ,'#13#10'       S27.DESCRIPCION SCT' +
-      'ADEUDASDESCUENTOS_DS    ,'#13#10'       PRM.SCTAREMESAEFECTOS         ' +
-      '             ,'#13#10'       S28.DESCRIPCION SCTAREMESAEFECTOS_DS     ' +
-      '  ,'#13#10'       PRM.SCTADTOPPV                             ,'#13#10'      ' +
-      ' S29.DESCRIPCION SCTADTOPPV_DS              ,'#13#10'       PRM.SCTADT' +
-      'OPPC                             ,'#13#10'       S30.DESCRIPCION SCTAD' +
-      'TOPPC_DS              ,'#13#10'       PRM.SCTARETPROF                 ' +
-      '           ,'#13#10'       S31.DESCRIPCION SCTARETPROF_DS             ' +
-      ','#13#10'       PRM.SCTARETARRE                            ,'#13#10'       S' +
-      '32.DESCRIPCION SCTARETARRE_DS             ,'#13#10'       PRM.SCTAHACI' +
-      'VA                             ,'#13#10'       S33.DESCRIPCION SCTAHAC' +
-      'IVA_DS              ,'#13#10'       PRM.SCTAGENINTRACOM               ' +
-      '         ,'#13#10'       S34.DESCRIPCION SCTAGENINTRACOM_DS         ,'#13 +
-      #10'       PRM.SCTABANCO                              ,'#13#10'       S35' +
-      '.DESCRIPCION SCTABANCO_DS               ,'#13#10'       PRM.CTOIVANORM' +
-      'AL                           ,'#13#10'       C01.DESCRIPCION CTOIVANOR' +
-      'MAL_DS            ,'#13#10'       PRM.CTOIVAREDUCIDO                  ' +
-      '       ,'#13#10'       C02.DESCRIPCION CTOIVAREDUCIDO_DS          ,'#13#10' ' +
-      '      PRM.CTOIVASUPER                            ,'#13#10'       C03.D' +
-      'ESCRIPCION CTOIVASUPER_DS             ,'#13#10'       PRM.CTOIVAEXENTO' +
-      '                           ,'#13#10'       C04.DESCRIPCION CTOIVAEXENT' +
-      'O_DS            ,'#13#10'       PRM.CTOIVAINTRA                       ' +
-      '     ,'#13#10'       C05.DESCRIPCION CTOIVAINTRA_DS             ,'#13#10'   ' +
-      '    PRM.CTOVENTAS                              ,'#13#10'       C06.DES' +
-      'CRIPCION CTOVENTAS_DS               ,'#13#10'       PRM.CTODEVOLUCION ' +
-      '                         ,'#13#10'       C07.DESCRIPCION CTODEVOLUCION' +
-      '_DS           ,'#13#10'       PRM.CTOCLIENTES                         ' +
-      '   ,'#13#10'       C08.DESCRIPCION CTOCLIENTES_DS             ,'#13#10'     ' +
-      '  PRM.CTORECNORMAL                           ,'#13#10'       C09.DESCR' +
-      'IPCION CTORECNORMAL_DS            ,'#13#10'       PRM.CTORECREDUCIDO  ' +
-      '                       ,'#13#10'       C10.DESCRIPCION CTORECREDUCIDO_' +
-      'DS          ,'#13#10'       PRM.CTORECSUPER                           ' +
-      ' ,'#13#10'       C11.DESCRIPCION CTORECSUPER_DS             ,'#13#10'       ' +
-      'PRM.CTOCOBROF                              ,'#13#10'       C12.DESCRIP' +
-      'CION CTOCOBROF_DS               ,'#13#10'       PRM.CTORECIBOVENTAS   ' +
-      '                     ,'#13#10'       C13.DESCRIPCION CTORECIBOVENTAS_D' +
-      'S         ,'#13#10'       PRM.CTOIVACNORMAL                          ,' +
-      #13#10'       C14.DESCRIPCION CTOIVACNORMAL_DS           ,'#13#10'       PR' +
-      'M.CTOIVACREDUCIDO                        ,'#13#10'       C15.DESCRIPCI' +
-      'ON CTOIVACREDUCIDO_DS         ,'#13#10'       PRM.CTOIVACSUPER        ' +
-      '                   ,'#13#10'       C16.DESCRIPCION CTOIVACSUPER_DS    ' +
-      '        ,'#13#10'       PRM.CTOIVACEXENTO                          ,'#13#10 +
-      '       C17.DESCRIPCION CTOIVACEXENTO_DS           ,'#13#10'       PRM.' +
-      'CTOCOMPRAS                             ,'#13#10'       C18.DESCRIPCION' +
-      ' CTOCOMPRAS_DS              ,'#13#10'       PRM.CTOPROVEEDORES        ' +
-      '                 ,'#13#10'       C19.DESCRIPCION CTOPROVEEDORES_DS    ' +
-      '      ,'#13#10'       PRM.CTOPROVINTRA                           ,'#13#10'  ' +
-      '     C20.DESCRIPCION CTOPROVINTRA_DS            ,'#13#10'       PRM.CT' +
-      'OPAGOF                               ,'#13#10'       C21.DESCRIPCION C' +
-      'TOPAGOF_DS                ,'#13#10'       PRM.CTOEFECTOSCOMERCIALES   ' +
-      '               ,'#13#10'       C22.DESCRIPCION CTOEFECTOSCOMERCIALES_D' +
-      'S   ,'#13#10'       PRM.CTODEUDASDESCUENTOS                    ,'#13#10'    ' +
-      '   C23.DESCRIPCION CTODEUDASDESCUENTOS_DS     ,'#13#10'       PRM.CTOR' +
-      'EMESAEFECTOS                       ,'#13#10'       C24.DESCRIPCION CTO' +
-      'REMESAEFECTOS_DS        ,'#13#10'       PRM.CTODTOPPV                 ' +
-      '             ,'#13#10'       C25.DESCRIPCION CTODTOPPV_DS             ' +
-      '  ,'#13#10'       PRM.CTODTOPPC                              ,'#13#10'      ' +
-      ' C26.DESCRIPCION CTODTOPPC_DS               ,'#13#10'       PRM.CTORET' +
-      'PROF                             ,'#13#10'       C27.DESCRIPCION CTORE' +
-      'TPROF_DS              ,'#13#10'       PRM.CTORETARRE                  ' +
-      '           ,'#13#10'       C28.DESCRIPCION CTORETARRE_DS              ' +
-      ','#13#10'       PRM.CTOHACIVA                              ,'#13#10'       C' +
-      '29.DESCRIPCION CTOHACIVA_DS               ,'#13#10'       PRM.CTOCOBRO' +
-      '                               ,'#13#10'       C30.DESCRIPCION CTOCOBR' +
-      'O_DS                ,'#13#10'       PRM.CTOPAGO                       ' +
-      '         ,'#13#10'       C31.DESCRIPCION CTOPAGO_DS                 ,'#13 +
-      #10'       PRM.SCTADESCUENTO                          ,'#13#10'       PRM' +
-      '.CTODESCUENTO                           ,'#13#10'       PRM.CTONOME   ' +
-      '                             ,'#13#10'       PRM.CTONOMT              ' +
-      '                  ,'#13#10'       PRM.SCTANOMSUELDO                   ' +
-      '       ,'#13#10'       PRM.SCTANOMIRPF                            ,'#13#10' ' +
-      '      PRM.SCTANOMPAGO                            ,'#13#10'       PRM.S' +
-      'CTANOMSSE                             ,'#13#10'       PRM.SCTANOMSST  ' +
-      '                           ,'#13#10'       PRM.SCTANOMCARGO           ' +
-      '                ,'#13#10'       PRM.TANTORETPROF                      ' +
-      '     ,'#13#10'       PRM.TANTORETARRE                           ,'#13#10'   ' +
-      '    PRM.TELEFONO                               ,'#13#10'       PRM.FAX' +
-      '                                    ,'#13#10'       PRM.DOCIMPRIMIR   ' +
-      '                         ,'#13#10'       PRM.SIGLAVIA                 ' +
-      '              ,'#13#10'       PRM.NUMEROCALLE                         ' +
-      '   ,'#13#10'       PRM.ESCALERA                               ,'#13#10'     ' +
-      '  PRM.PISO                                   ,'#13#10'       PRM.PUERT' +
-      'A                                 ,'#13#10'       PRM.CCC             ' +
-      '                       ,'#13#10'       PRM.CODADMON                   ' +
-      '            ,'#13#10'       PRM.GESTIONA_CARTERA_EFECTOS              ' +
-      ' ,'#13#10'       PRM.FILTRO_ASIENTOS_INICIO                 ,'#13#10'       ' +
-      'PRM.INCLUIR_ABREV                          ,'#13#10'       PRM.ASIENTO' +
-      'S_INICIO_INTERVALO_BQDA         ,'#13#10'       PRM.ASIENTOS_FIN_INTER' +
-      'VALO_BQDA            ,'#13#10'       PRM.MOSTRAR_FILTRO_MAYOR         ' +
-      '          ,'#13#10'       PRM.ASIENTO_INICIO_INTERVALO_FILTRO        ,' +
-      #13#10'       PRM.ASIENTO_FIN_INTERVALO_FILTRO           ,'#13#10'       PR' +
-      'M.ASIENTO_NOMINA_INDIVIDUAL              ,'#13#10'       PRM.BUSQUEDA_' +
-      'SUBCTAS                       ,'#13#10'       PRM.SCTAOTRASREMUN      ' +
-      '                   ,'#13#10'       PRM.DESCPROV_CARTERAEFECTOS        ' +
-      '        ,'#13#10'       PRM.DESCCLI_CARTERAEFECTOS                 ,'#13#10 +
-      '       PRM.TIPOEMPRESA                            ,'#13#10'       PRM.' +
-      'FILTROSUBCTAS                          ,'#13#10'       PRM.OFFICE2003 ' +
-      '                            ,'#13#10'       PRM.TRATASERIE            ' +
-      '                 ,'#13#10'       PRM.ACTCOMENTARIO'#13#10'FROM PARAMETROS PR' +
-      'M'#13#10'LEFT JOIN SUBCTAS S01 ON S01.SUBCUENTA = PRM.SCTAIVANORMAL'#13#10'L' +
-      'EFT JOIN SUBCTAS S02 ON S02.SUBCUENTA = PRM.SCTAIVAREDUCIDO'#13#10'LEF' +
-      'T JOIN SUBCTAS S03 ON S03.SUBCUENTA = PRM.SCTAIVASUPER'#13#10'LEFT JOI' +
-      'N SUBCTAS S04 ON S04.SUBCUENTA = PRM.SCTAIVAEXENTO'#13#10'LEFT JOIN SU' +
-      'BCTAS S05 ON S05.SUBCUENTA = PRM.SCTAIVAINTRADEDUCIBLE'#13#10'LEFT JOI' +
-      'N SUBCTAS S06 ON S06.SUBCUENTA = PRM.SCTAIVAINTRA'#13#10'LEFT JOIN SUB' +
-      'CTAS S07 ON S07.SUBCUENTA = PRM.SCTAVENTAS'#13#10'LEFT JOIN SUBCTAS S0' +
-      '8 ON S08.SUBCUENTA = PRM.SCTADEVOLUCION'#13#10'LEFT JOIN SUBCTAS S09 O' +
-      'N S09.SUBCUENTA = PRM.SCTARECNORMAL'#13#10'LEFT JOIN SUBCTAS S10 ON S1' +
-      '0.SUBCUENTA = PRM.SCTARECREDUCIDO'#13#10'LEFT JOIN SUBCTAS S11 ON S11.' +
-      'SUBCUENTA = PRM.SCTARECSUPER'#13#10'LEFT JOIN SUBCTAS S12 ON S12.SUBCU' +
-      'ENTA = PRM.VGENERICA'#13#10'LEFT JOIN SUBCTAS S13 ON S13.SUBCUENTA = P' +
-      'RM.SUBCAJA'#13#10'LEFT JOIN SUBCTAS S14 ON S14.SUBCUENTA = PRM.SCTAIVA' +
-      'EXENTOCEE'#13#10'LEFT JOIN SUBCTAS S15 ON S15.SUBCUENTA = PRM.SCTAINTE' +
-      'RESES'#13#10'LEFT JOIN SUBCTAS S16 ON S16.SUBCUENTA = PRM.SCTAEXPORTAC' +
-      'IONES'#13#10'LEFT JOIN SUBCTAS S17 ON S17.SUBCUENTA = PRM.SCTAIVACNORM' +
-      'AL'#13#10'LEFT JOIN SUBCTAS S18 ON S18.SUBCUENTA = PRM.SCTAIVACREDUCID' +
-      'O'#13#10'LEFT JOIN SUBCTAS S19 ON S19.SUBCUENTA = PRM.SCTAIVACSUPER'#13#10'L' +
-      'EFT JOIN SUBCTAS S20 ON S20.SUBCUENTA = PRM.SCTAIVACEXENTO'#13#10'LEFT' +
-      ' JOIN SUBCTAS S21 ON S21.SUBCUENTA = PRM.SCTACOMPRAS'#13#10'LEFT JOIN ' +
-      'SUBCTAS S22 ON S22.SUBCUENTA = PRM.SCTAIVACINTRADEDUCIBLE'#13#10'LEFT ' +
-      'JOIN SUBCTAS S23 ON S23.SUBCUENTA = PRM.SCTAIVACINTRAREPERCUTIDO' +
-      #13#10'LEFT JOIN SUBCTAS S24 ON S24.SUBCUENTA = PRM.VGENERICAC'#13#10'LEFT ' +
-      'JOIN SUBCTAS S25 ON S25.SUBCUENTA = PRM.SCTAEFECTOSCOMERCIALES'#13#10 +
-      'LEFT JOIN SUBCTAS S26 ON S26.SUBCUENTA = PRM.SCTAEFECTDESCONTADO' +
-      'S'#13#10'LEFT JOIN SUBCTAS S27 ON S27.SUBCUENTA = PRM.SCTADEUDASDESCUE' +
-      'NTOS'#13#10'LEFT JOIN SUBCTAS S28 ON S28.SUBCUENTA = PRM.SCTAREMESAEFE' +
-      'CTOS'#13#10'LEFT JOIN SUBCTAS S29 ON S29.SUBCUENTA = PRM.SCTADTOPPV'#13#10'L' +
-      'EFT JOIN SUBCTAS S30 ON S30.SUBCUENTA = PRM.SCTADTOPPC'#13#10'LEFT JOI' +
-      'N SUBCTAS S31 ON S31.SUBCUENTA = PRM.SCTARETPROF'#13#10'LEFT JOIN SUBC' +
-      'TAS S32 ON S32.SUBCUENTA = PRM.SCTARETARRE'#13#10'LEFT JOIN SUBCTAS S3' +
-      '3 ON S33.SUBCUENTA = PRM.SCTAHACIVA'#13#10'LEFT JOIN SUBCTAS S34 ON S3' +
-      '4.SUBCUENTA = PRM.SCTAGENINTRACOM'#13#10'LEFT JOIN SUBCTAS S35 ON S35.' +
-      'SUBCUENTA = PRM.SCTABANCO'#13#10'LEFT JOIN CONCEPTOS C01 ON C01.ID_CON' +
-      'CEPTOS = PRM.CTOIVANORMAL'#13#10'LEFT JOIN CONCEPTOS C02 ON C02.ID_CON' +
-      'CEPTOS = PRM.CTOIVAREDUCIDO'#13#10'LEFT JOIN CONCEPTOS C03 ON C03.ID_C' +
-      'ONCEPTOS = PRM.CTOIVASUPER'#13#10'LEFT JOIN CONCEPTOS C04 ON C04.ID_CO' +
-      'NCEPTOS = PRM.CTOIVAEXENTO'#13#10'LEFT JOIN CONCEPTOS C05 ON C05.ID_CO' +
-      'NCEPTOS = PRM.CTOIVAINTRA'#13#10'LEFT JOIN CONCEPTOS C06 ON C06.ID_CON' +
-      'CEPTOS = PRM.CTOVENTAS'#13#10'LEFT JOIN CONCEPTOS C07 ON C07.ID_CONCEP' +
-      'TOS = PRM.CTODEVOLUCION'#13#10'LEFT JOIN CONCEPTOS C08 ON C08.ID_CONCE' +
-      'PTOS = PRM.CTOCLIENTES'#13#10'LEFT JOIN CONCEPTOS C09 ON C09.ID_CONCEP' +
-      'TOS = PRM.CTORECNORMAL'#13#10'LEFT JOIN CONCEPTOS C10 ON C10.ID_CONCEP' +
-      'TOS = PRM.CTORECREDUCIDO'#13#10'LEFT JOIN CONCEPTOS C11 ON C11.ID_CONC' +
-      'EPTOS = PRM.CTORECSUPER'#13#10'LEFT JOIN CONCEPTOS C12 ON C12.ID_CONCE' +
-      'PTOS = PRM.CTOCOBROF'#13#10'LEFT JOIN CONCEPTOS C13 ON C13.ID_CONCEPTO' +
-      'S = PRM.CTORECIBOVENTAS'#13#10'LEFT JOIN CONCEPTOS C14 ON C14.ID_CONCE' +
-      'PTOS = PRM.CTOIVACNORMAL'#13#10'LEFT JOIN CONCEPTOS C15 ON C15.ID_CONC' +
-      'EPTOS = PRM.CTOIVACREDUCIDO'#13#10'LEFT JOIN CONCEPTOS C16 ON C16.ID_C' +
-      'ONCEPTOS = PRM.CTOIVACSUPER'#13#10'LEFT JOIN CONCEPTOS C17 ON C17.ID_C' +
-      'ONCEPTOS = PRM.CTOIVACEXENTO'#13#10'LEFT JOIN CONCEPTOS C18 ON C18.ID_' +
-      'CONCEPTOS = PRM.CTOCOMPRAS'#13#10'LEFT JOIN CONCEPTOS C19 ON C19.ID_CO' +
-      'NCEPTOS = PRM.CTOPROVEEDORES'#13#10'LEFT JOIN CONCEPTOS C20 ON C20.ID_' +
-      'CONCEPTOS = PRM.CTOPROVINTRA'#13#10'LEFT JOIN CONCEPTOS C21 ON C21.ID_' +
-      'CONCEPTOS = PRM.CTOPAGOF'#13#10'LEFT JOIN CONCEPTOS C22 ON C22.ID_CONC' +
-      'EPTOS = PRM.CTOEFECTOSCOMERCIALES'#13#10'LEFT JOIN CONCEPTOS C23 ON C2' +
-      '3.ID_CONCEPTOS = PRM.CTODEUDASDESCUENTOS'#13#10'LEFT JOIN CONCEPTOS C2' +
-      '4 ON C24.ID_CONCEPTOS = PRM.CTOREMESAEFECTOS'#13#10'LEFT JOIN CONCEPTO' +
-      'S C25 ON C25.ID_CONCEPTOS = PRM.CTODTOPPV'#13#10'LEFT JOIN CONCEPTOS C' +
-      '26 ON C26.ID_CONCEPTOS = PRM.CTODTOPPC'#13#10'LEFT JOIN CONCEPTOS C27 ' +
-      'ON C27.ID_CONCEPTOS = PRM.CTORETPROF'#13#10'LEFT JOIN CONCEPTOS C28 ON' +
-      ' C28.ID_CONCEPTOS = PRM.CTORETARRE'#13#10'LEFT JOIN CONCEPTOS C29 ON C' +
-      '29.ID_CONCEPTOS = PRM.CTOHACIVA'#13#10'LEFT JOIN CONCEPTOS C30 ON C30.' +
-      'ID_CONCEPTOS = PRM.CTOCOBRO'#13#10'LEFT JOIN CONCEPTOS C31 ON C31.ID_C' +
-      'ONCEPTOS = PRM.CTOPAGO'#13#10
+      'SELECT ID_PARAMETROS                  ,'#13#10'       LONGITUD_SUBCUEN' +
+      'TAS            ,'#13#10'       FECHA_INICIO_APLICACION        ,'#13#10'     ' +
+      '  FECHA_INICIO_EJERCICIO         ,'#13#10'       FECHA_FIN_EJERCICIO  ' +
+      '          ,'#13#10'       CTO_REGULARIZACION             ,'#13#10'       SUB' +
+      'CUENTA_CIERRE               ,'#13#10'       MONEDA                    ' +
+      '     ,'#13#10'       NOMBREFISCAL                   ,'#13#10'       DIRECCIO' +
+      'N                      ,'#13#10'       DIRECCION1                     ' +
+      ','#13#10'       POBLACION                      ,'#13#10'       CODPOSTAL    ' +
+      '                  ,'#13#10'       PROVINCIA                      ,'#13#10'  ' +
+      '     NIF                            ,'#13#10'       CONTACTO          ' +
+      '             ,'#13#10'       DOCCLIENTE                     ,'#13#10'       ' +
+      'DOCPROVEEDOR                   ,'#13#10'       DOC347                 ' +
+      '        ,'#13#10'       FECHABLOQUEO                   ,'#13#10'       CTO_A' +
+      'PERTURA                   ,'#13#10'       CTO_REGULARIZACION_ESP      ' +
+      '   ,'#13#10'       FECHAAMORTIZACION              ,'#13#10'       RECARGO   ' +
+      '                     ,'#13#10'       CTO_APERTURA_ESP               ,'#13 +
+      #10'       SCTAIVANORMAL                  ,'#13#10'       SCTAIVASUPER   ' +
+      '                ,'#13#10'       SCTAIVAREDUCIDO                ,'#13#10'    ' +
+      '   SCTAIVAEXENTO                  ,'#13#10'       SCTAIVAINTRADEDUCIBL' +
+      'E          ,'#13#10'       SCTAIVAINTRA                   ,'#13#10'       SC' +
+      'TAVENTAS                     ,'#13#10'       SCTADEVOLUCION           ' +
+      '      ,'#13#10'       SCTARECNORMAL                  ,'#13#10'       SCTAREC' +
+      'REDUCIDO                ,'#13#10'       SCTARECSUPER                  ' +
+      ' ,'#13#10'       VGENERICA                      ,'#13#10'       SUBCAJA     ' +
+      '                   ,'#13#10'       SCTAIVAEXENTOCEE               ,'#13#10' ' +
+      '      SCTAINTERESES                  ,'#13#10'       SCTAEXPORTACIONES' +
+      '              ,'#13#10'       SCTAIVACNORMAL                 ,'#13#10'      ' +
+      ' SCTAIVACREDUCIDO               ,'#13#10'       SCTAIVACSUPER         ' +
+      '         ,'#13#10'       SCTAIVACEXENTO                 ,'#13#10'       SCTA' +
+      'COMPRAS                    ,'#13#10'       SCTAIVACINTRADEDUCIBLE     ' +
+      '    ,'#13#10'       SCTAIVACINTRAREPERCUTIDO       ,'#13#10'       VGENERICA' +
+      'C                     ,'#13#10'       SCTAEFECTOSCOMERCIALES         ,' +
+      #13#10'       SCTAEFECTDESCONTADOS           ,'#13#10'       SCTADEUDASDESC' +
+      'UENTOS           ,'#13#10'       SCTAREMESAEFECTOS              ,'#13#10'   ' +
+      '    SCTADTOPPV                     ,'#13#10'       SCTADTOPPC         ' +
+      '            ,'#13#10'       SCTARETPROF                    ,'#13#10'       S' +
+      'CTARETARRE                    ,'#13#10'       SCTAHACIVA              ' +
+      '       ,'#13#10'       SCTAGENINTRACOM                ,'#13#10'       SCTABA' +
+      'NCO                      ,'#13#10'       SCTANOMSUELDO                ' +
+      '  ,'#13#10'       CTOIVANORMAL                   ,'#13#10'       CTOIVAREDUC' +
+      'IDO                 ,'#13#10'       CTOIVASUPER                    ,'#13#10 +
+      '       CTOIVAEXENTO                   ,'#13#10'       CTOIVAINTRA     ' +
+      '               ,'#13#10'       CTOVENTAS                      ,'#13#10'     ' +
+      '  CTODEVOLUCION                  ,'#13#10'       CTOCLIENTES          ' +
+      '          ,'#13#10'       CTORECNORMAL                   ,'#13#10'       CTO' +
+      'RECREDUCIDO                 ,'#13#10'       CTORECSUPER               ' +
+      '     ,'#13#10'       CTOCOBROF                      ,'#13#10'       CTORECIB' +
+      'OVENTAS                ,'#13#10'       CTOIVACNORMAL                  ' +
+      ','#13#10'       CTOIVACREDUCIDO                ,'#13#10'       CTOIVACSUPER ' +
+      '                  ,'#13#10'       CTOIVACEXENTO                  ,'#13#10'  ' +
+      '     CTOCOMPRAS                     ,'#13#10'       CTOPROVEEDORES    ' +
+      '             ,'#13#10'       CTOPROVINTRA                   ,'#13#10'       ' +
+      'CTOPAGOF                       ,'#13#10'       CTOEFECTOSCOMERCIALES  ' +
+      '        ,'#13#10'       CTODEUDASDESCUENTOS            ,'#13#10'       CTORE' +
+      'MESAEFECTOS               ,'#13#10'       CTODTOPPV                   ' +
+      '   ,'#13#10'       CTODTOPPC                      ,'#13#10'       CTORETPROF' +
+      '                     ,'#13#10'       CTORETARRE                     ,'#13 +
+      #10'       CTOHACIVA                      ,'#13#10'       CTOCOBRO       ' +
+      '                ,'#13#10'       CTOPAGO                        ,'#13#10'    ' +
+      '   SCTADESCUENTO                  ,'#13#10'       CTODESCUENTO        ' +
+      '           ,'#13#10'       CTONOME                        ,'#13#10'       CT' +
+      'ONOMT                        ,'#13#10'       SCTANOMIRPF              ' +
+      '      ,'#13#10'       SCTANOMPAGO                    ,'#13#10'       SCTANOM' +
+      'SSE                     ,'#13#10'       SCTANOMSST                    ' +
+      ' ,'#13#10'       SCTANOMCARGO                   ,'#13#10'       TANTORETPROF' +
+      '                   ,'#13#10'       TANTORETARRE                   ,'#13#10' ' +
+      '      TELEFONO                       ,'#13#10'       FAX              ' +
+      '              ,'#13#10'       DOCIMPRIMIR                    ,'#13#10'      ' +
+      ' SIGLAVIA                       ,'#13#10'       NUMEROCALLE           ' +
+      '         ,'#13#10'       ESCALERA                       ,'#13#10'       PISO' +
+      '                           ,'#13#10'       PUERTA                     ' +
+      '    ,'#13#10'       CCC                            ,'#13#10'       CODADMON ' +
+      '                      ,'#13#10'       GESTIONA_CARTERA_EFECTOS       ,' +
+      #13#10'       FILTRO_ASIENTOS_INICIO         ,'#13#10'       INCLUIR_ABREV ' +
+      '                 ,'#13#10'       ASIENTOS_INICIO_INTERVALO_BQDA ,'#13#10'   ' +
+      '    ASIENTOS_FIN_INTERVALO_BQDA    ,'#13#10'       MOSTRAR_FILTRO_MAYO' +
+      'R           ,'#13#10'       ASIENTO_INICIO_INTERVALO_FILTRO,'#13#10'       A' +
+      'SIENTO_FIN_INTERVALO_FILTRO   ,'#13#10'       ASIENTO_NOMINA_INDIVIDUA' +
+      'L      ,'#13#10'       BUSQUEDA_SUBCTAS               ,'#13#10'       SCTAOT' +
+      'RASREMUN                 ,'#13#10'       DESCPROV_CARTERAEFECTOS      ' +
+      '  ,'#13#10'       DESCCLI_CARTERAEFECTOS         ,'#13#10'       TIPOEMPRESA' +
+      '                    ,'#13#10'       FILTROSUBCTAS                  ,'#13#10 +
+      '       OFFICE2003                     ,'#13#10'       TRATASERIE      ' +
+      '               ,'#13#10'       ACTCOMENTARIO'#13#10'FROM PARAMETROS'#13#10
     DataSet.MaxBlobSize = -1
     DataSet.Params = <>
     Params = <>
+    OnCalcFields = QParametrosCalcFields
     Left = 168
     Top = 16
     object QParametrosID_PARAMETROS: TIntegerField
@@ -366,451 +223,559 @@ object DataModuleParametersEnterprise: TDataModuleParametersEnterprise
       Size = 10
     end
     object QParametrosSCTAIVANORMAL_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTAIVANORMAL_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTAIVAREDUCIDO: TStringField
       FieldName = 'SCTAIVAREDUCIDO'
       Size = 10
     end
     object QParametrosSCTAIVAREDUCIDO_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTAIVAREDUCIDO_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTAIVASUPER: TStringField
       FieldName = 'SCTAIVASUPER'
       Size = 10
     end
     object QParametrosSCTAIVASUPER_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTAIVASUPER_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTAIVAEXENTO: TStringField
       FieldName = 'SCTAIVAEXENTO'
       Size = 10
     end
     object QParametrosSCTAIVAEXENTO_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTAIVAEXENTO_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTAIVAINTRADEDUCIBLE: TStringField
       FieldName = 'SCTAIVAINTRADEDUCIBLE'
       Size = 10
     end
     object QParametrosSCTAIVAINTRADEDUCIBLE_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTAIVAINTRADEDUCIBLE_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTAIVAINTRA: TStringField
       FieldName = 'SCTAIVAINTRA'
       Size = 10
     end
     object QParametrosSCTAIVAINTRA_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTAIVAINTRA_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTAVENTAS: TStringField
       FieldName = 'SCTAVENTAS'
       Size = 10
     end
     object QParametrosSCTAVENTAS_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTAVENTAS_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTADEVOLUCION: TStringField
       FieldName = 'SCTADEVOLUCION'
       Size = 10
     end
     object QParametrosSCTADEVOLUCION_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTADEVOLUCION_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTARECNORMAL: TStringField
       FieldName = 'SCTARECNORMAL'
       Size = 10
     end
     object QParametrosSCTARECNORMAL_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTARECNORMAL_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTARECREDUCIDO: TStringField
       FieldName = 'SCTARECREDUCIDO'
       Size = 10
     end
     object QParametrosSCTARECREDUCIDO_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTARECREDUCIDO_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTARECSUPER: TStringField
       FieldName = 'SCTARECSUPER'
       Size = 10
     end
     object QParametrosSCTARECSUPER_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTARECSUPER_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosVGENERICA: TStringField
       FieldName = 'VGENERICA'
       Size = 10
     end
     object QParametrosVGENERICA_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'VGENERICA_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSUBCAJA: TStringField
       FieldName = 'SUBCAJA'
       Size = 10
     end
     object QParametrosSUBCAJA_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SUBCAJA_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTAIVAEXENTOCEE: TStringField
       FieldName = 'SCTAIVAEXENTOCEE'
       Size = 10
     end
     object QParametrosSCTAIVAEXENTOCEE_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTAIVAEXENTOCEE_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTAINTERESES: TStringField
       FieldName = 'SCTAINTERESES'
       Size = 10
     end
     object QParametrosSCTAINTERESES_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTAINTERESES_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTAEXPORTACIONES: TStringField
       FieldName = 'SCTAEXPORTACIONES'
       Size = 10
     end
     object QParametrosSCTAEXPORTACIONES_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTAEXPORTACIONES_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTAIVACNORMAL: TStringField
       FieldName = 'SCTAIVACNORMAL'
       Size = 10
     end
     object QParametrosSCTAIVACNORMAL_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTAIVACNORMAL_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTAIVACREDUCIDO: TStringField
       FieldName = 'SCTAIVACREDUCIDO'
       Size = 10
     end
     object QParametrosSCTAIVACREDUCIDO_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTAIVACREDUCIDO_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTAIVACSUPER: TStringField
       FieldName = 'SCTAIVACSUPER'
       Size = 10
     end
     object QParametrosSCTAIVACSUPER_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTAIVACSUPER_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTAIVACEXENTO: TStringField
       FieldName = 'SCTAIVACEXENTO'
       Size = 10
     end
     object QParametrosSCTAIVACEXENTO_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTAIVACEXENTO_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTACOMPRAS: TStringField
       FieldName = 'SCTACOMPRAS'
       Size = 10
     end
     object QParametrosSCTACOMPRAS_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTACOMPRAS_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTAIVACINTRADEDUCIBLE: TStringField
       FieldName = 'SCTAIVACINTRADEDUCIBLE'
       Size = 10
     end
     object QParametrosSCTAIVACINTRADEDUCIBLE_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTAIVACINTRADEDUCIBLE_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTAIVACINTRAREPERCUTIDO: TStringField
       FieldName = 'SCTAIVACINTRAREPERCUTIDO'
       Size = 10
     end
     object QParametrosSCTAIVACINTRAREPERCUTIDO_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTAIVACINTRAREPERCUTIDO_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosVGENERICAC: TStringField
       FieldName = 'VGENERICAC'
       Size = 10
     end
     object QParametrosVGENERICAC_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'VGENERICAC_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTAEFECTOSCOMERCIALES: TStringField
       FieldName = 'SCTAEFECTOSCOMERCIALES'
       Size = 10
     end
     object QParametrosSCTAEFECTOSCOMERCIALES_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTAEFECTOSCOMERCIALES_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTAEFECTDESCONTADOS: TStringField
       FieldName = 'SCTAEFECTDESCONTADOS'
       Size = 10
     end
     object QParametrosSCTAEFECTDESCONTADOS_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTAEFECTDESCONTADOS_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTADEUDASDESCUENTOS: TStringField
       FieldName = 'SCTADEUDASDESCUENTOS'
       Size = 10
     end
     object QParametrosSCTADEUDASDESCUENTOS_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTADEUDASDESCUENTOS_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTAREMESAEFECTOS: TStringField
       FieldName = 'SCTAREMESAEFECTOS'
       Size = 10
     end
     object QParametrosSCTAREMESAEFECTOS_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTAREMESAEFECTOS_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTADTOPPV: TStringField
       FieldName = 'SCTADTOPPV'
       Size = 10
     end
     object QParametrosSCTADTOPPV_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTADTOPPV_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTADTOPPC: TStringField
       FieldName = 'SCTADTOPPC'
       Size = 10
     end
     object QParametrosSCTADTOPPC_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTADTOPPC_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTARETPROF: TStringField
       FieldName = 'SCTARETPROF'
       Size = 10
     end
     object QParametrosSCTARETPROF_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTARETPROF_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTARETARRE: TStringField
       FieldName = 'SCTARETARRE'
       Size = 10
     end
     object QParametrosSCTARETARRE_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTARETARRE_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTAHACIVA: TStringField
       FieldName = 'SCTAHACIVA'
       Size = 10
     end
     object QParametrosSCTAHACIVA_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTAHACIVA_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTAGENINTRACOM: TStringField
       FieldName = 'SCTAGENINTRACOM'
       Size = 10
     end
     object QParametrosSCTAGENINTRACOM_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTAGENINTRACOM_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosSCTABANCO: TStringField
       FieldName = 'SCTABANCO'
       Size = 10
     end
     object QParametrosSCTABANCO_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'SCTABANCO_DS'
       Size = 80
+      Calculated = True
     end
     object QParametrosCTOIVANORMAL: TStringField
       FieldName = 'CTOIVANORMAL'
       Size = 3
     end
     object QParametrosCTOIVANORMAL_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTOIVANORMAL_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTOIVAREDUCIDO: TStringField
       FieldName = 'CTOIVAREDUCIDO'
       Size = 3
     end
     object QParametrosCTOIVAREDUCIDO_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTOIVAREDUCIDO_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTOIVASUPER: TStringField
       FieldName = 'CTOIVASUPER'
       Size = 3
     end
     object QParametrosCTOIVASUPER_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTOIVASUPER_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTOIVAEXENTO: TStringField
       FieldName = 'CTOIVAEXENTO'
       Size = 3
     end
     object QParametrosCTOIVAEXENTO_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTOIVAEXENTO_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTOIVAINTRA: TStringField
       FieldName = 'CTOIVAINTRA'
       Size = 3
     end
     object QParametrosCTOIVAINTRA_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTOIVAINTRA_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTOVENTAS: TStringField
       FieldName = 'CTOVENTAS'
       Size = 3
     end
     object QParametrosCTOVENTAS_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTOVENTAS_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTODEVOLUCION: TStringField
       FieldName = 'CTODEVOLUCION'
       Size = 3
     end
     object QParametrosCTODEVOLUCION_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTODEVOLUCION_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTOCLIENTES: TStringField
       FieldName = 'CTOCLIENTES'
       Size = 3
     end
     object QParametrosCTOCLIENTES_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTOCLIENTES_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTORECNORMAL: TStringField
       FieldName = 'CTORECNORMAL'
       Size = 3
     end
     object QParametrosCTORECNORMAL_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTORECNORMAL_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTORECREDUCIDO: TStringField
       FieldName = 'CTORECREDUCIDO'
       Size = 3
     end
     object QParametrosCTORECREDUCIDO_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTORECREDUCIDO_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTORECSUPER: TStringField
       FieldName = 'CTORECSUPER'
       Size = 3
     end
     object QParametrosCTORECSUPER_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTORECSUPER_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTOCOBROF: TStringField
       FieldName = 'CTOCOBROF'
       Size = 3
     end
     object QParametrosCTOCOBROF_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTOCOBROF_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTORECIBOVENTAS: TStringField
       FieldName = 'CTORECIBOVENTAS'
       Size = 3
     end
     object QParametrosCTORECIBOVENTAS_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTORECIBOVENTAS_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTOIVACNORMAL: TStringField
       FieldName = 'CTOIVACNORMAL'
       Size = 3
     end
     object QParametrosCTOIVACNORMAL_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTOIVACNORMAL_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTOIVACREDUCIDO: TStringField
       FieldName = 'CTOIVACREDUCIDO'
       Size = 3
     end
     object QParametrosCTOIVACREDUCIDO_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTOIVACREDUCIDO_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTOIVACSUPER: TStringField
       FieldName = 'CTOIVACSUPER'
       Size = 3
     end
     object QParametrosCTOIVACSUPER_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTOIVACSUPER_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTOIVACEXENTO: TStringField
       FieldName = 'CTOIVACEXENTO'
       Size = 3
     end
     object QParametrosCTOIVACEXENTO_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTOIVACEXENTO_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTOCOMPRAS: TStringField
       FieldName = 'CTOCOMPRAS'
       Size = 3
     end
     object QParametrosCTOCOMPRAS_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTOCOMPRAS_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTOPROVEEDORES: TStringField
       FieldName = 'CTOPROVEEDORES'
       Size = 3
     end
     object QParametrosCTOPROVEEDORES_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTOPROVEEDORES_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTOPROVINTRA: TStringField
       FieldName = 'CTOPROVINTRA'
@@ -818,108 +783,132 @@ object DataModuleParametersEnterprise: TDataModuleParametersEnterprise
       Size = 3
     end
     object QParametrosCTOPROVINTRA_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTOPROVINTRA_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTOPAGOF: TStringField
       FieldName = 'CTOPAGOF'
       Size = 3
     end
     object QParametrosCTOPAGOF_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTOPAGOF_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTOEFECTOSCOMERCIALES: TStringField
       FieldName = 'CTOEFECTOSCOMERCIALES'
       Size = 3
     end
     object QParametrosCTOEFECTOSCOMERCIALES_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTOEFECTOSCOMERCIALES_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTODEUDASDESCUENTOS: TStringField
       FieldName = 'CTODEUDASDESCUENTOS'
       Size = 3
     end
     object QParametrosCTODEUDASDESCUENTOS_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTODEUDASDESCUENTOS_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTOREMESAEFECTOS: TStringField
       FieldName = 'CTOREMESAEFECTOS'
       Size = 3
     end
     object QParametrosCTOREMESAEFECTOS_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTOREMESAEFECTOS_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTODTOPPV: TStringField
       FieldName = 'CTODTOPPV'
       Size = 3
     end
     object QParametrosCTODTOPPV_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTODTOPPV_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTODTOPPC: TStringField
       FieldName = 'CTODTOPPC'
       Size = 3
     end
     object QParametrosCTODTOPPC_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTODTOPPC_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTORETPROF: TStringField
       FieldName = 'CTORETPROF'
       Size = 3
     end
     object QParametrosCTORETPROF_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTORETPROF_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTORETARRE: TStringField
       FieldName = 'CTORETARRE'
       Size = 3
     end
     object QParametrosCTORETARRE_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTORETARRE_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTOHACIVA: TStringField
       FieldName = 'CTOHACIVA'
       Size = 3
     end
     object QParametrosCTOHACIVA_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTOHACIVA_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTOCOBRO: TStringField
       FieldName = 'CTOCOBRO'
       Size = 3
     end
     object QParametrosCTOCOBRO_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTOCOBRO_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosCTOPAGO: TStringField
       FieldName = 'CTOPAGO'
       Size = 3
     end
     object QParametrosCTOPAGO_DS: TStringField
+      FieldKind = fkCalculated
       FieldName = 'CTOPAGO_DS'
       FixedChar = True
       Size = 30
+      Calculated = True
     end
     object QParametrosSCTADESCUENTO: TStringField
       FieldName = 'SCTADESCUENTO'
@@ -1098,6 +1087,54 @@ object DataModuleParametersEnterprise: TDataModuleParametersEnterprise
       FieldName = 'ACTCOMENTARIO'
       FixedChar = True
       Size = 1
+    end
+    object QParametrosSCTANOMSUELDO_DS: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'SCTANOMSUELDO_DS'
+      Size = 80
+      Calculated = True
+    end
+    object QParametrosSCTANOMSST_DS: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'SCTANOMSST_DS'
+      Size = 80
+      Calculated = True
+    end
+    object QParametrosSCTANOMPAGO_DS: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'SCTANOMPAGO_DS'
+      Size = 80
+      Calculated = True
+    end
+    object QParametrosSCTAOTRASREMUN_DS: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'SCTAOTRASREMUN_DS'
+      Size = 80
+      Calculated = True
+    end
+    object QParametrosSCTANOMCARGO_DS: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'SCTANOMCARGO_DS'
+      Size = 80
+      Calculated = True
+    end
+    object QParametrosSCTANOMSSE_DS: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'SCTANOMSSE_DS'
+      Size = 80
+      Calculated = True
+    end
+    object QParametrosSCTANOMIRPF_DS: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'SCTANOMIRPF_DS'
+      Size = 80
+      Calculated = True
+    end
+    object QParametrosSUBCUENTA_CIERRE_DS: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'SUBCUENTA_CIERRE_DS'
+      Size = 80
+      Calculated = True
     end
   end
   object LProvincias: TSimpleDataSet
