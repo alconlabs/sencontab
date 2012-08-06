@@ -4,7 +4,7 @@ uses Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs, S
      DBCtrls, ExtCtrls, DB, Buttons, ComCtrls, DBClient, Mask,
      CustomView,
      DMParametersEnterprise, 
-     wwdbedit, Wwdotdot, wwdbdatetimepicker, Wwdbcomb, wwdblook;
+     wwdblook;
 type
   TParametersEnterpriseView = class(TCustomView)
     OpenDialog: TOpenDialog;
@@ -84,29 +84,29 @@ type
     Label39: TLabel;
     Label40: TLabel;
     Label41: TLabel;
-    DBText22: TDBText;
+    TextCTONOMT: TDBText;
     Label100: TLabel;
-    CBSUBCUENTA18: TwwDBLookupCombo;
-    wwDBLookupCombo19: TwwDBLookupCombo;
-    CBSUBCUENTA19: TwwDBLookupCombo;
-    wwDBLookupCombo49: TwwDBLookupCombo;
-    CBSUBCUENTA20: TwwDBLookupCombo;
-    wwDBLookupCombo51: TwwDBLookupCombo;
-    CBSUBCUENTA21: TwwDBLookupCombo;
-    wwDBLookupCombo53: TwwDBLookupCombo;
+    TextSCTANOMSUELDO: TDBText;
+    TextSCTANOMSUELDO_DS: TDBText;
+    TextSCTANOMSST: TDBText;
+    TextSCTANOMSST_DS: TDBText;
+    TextSCTANOMIRPF: TDBText;
+    TextSCTANOMIRPF_DS: TDBText;
+    TextSCTANOMPAGO: TDBText;
+    TextSCTANOMPAGO_DS: TDBText;
     wwDBLookupCombo55: TwwDBLookupCombo;
     CheckBoxASIENTO_NOMINA_INDIVIDUAL: TDBCheckBox;
-    CBSUBCUENTA39: TwwDBLookupCombo;
-    wwDBLookupCombo35: TwwDBLookupCombo;
+    TextSCTAOTRASREMUN: TDBText;
+    TextSCTAOTRASREMUN_DS: TDBText;
     GroupBox8: TGroupBox;
     Label43: TLabel;
     Label44: TLabel;
     Label50: TLabel;
-    DBText23: TDBText;
-    CBSUBCUENTA22: TwwDBLookupCombo;
-    wwDBLookupCombo57: TwwDBLookupCombo;
-    CBSUBCUENTA23: TwwDBLookupCombo;
-    wwDBLookupCombo59: TwwDBLookupCombo;
+    TextCTONOME: TDBText;
+    TextSCTANOMCARGO: TDBText;
+    TextSCTANOMCARGO_DS: TDBText;
+    TextSCTANOMSSE: TDBText;
+    TextSCTANOMSSE_DS: TDBText;
     wwDBLookupCombo61: TwwDBLookupCombo;
     TabSheetCierreEjercicio: TTabSheet;
     GroupBox12: TGroupBox;
@@ -125,8 +125,8 @@ type
     DBText32: TDBText;
     wwDBLookupCombo62: TwwDBLookupCombo;
     wwDBLookupCombo64: TwwDBLookupCombo;
-    CBSUBCUENTA29: TwwDBLookupCombo;
-    wwDBLookupCombo17: TwwDBLookupCombo;
+    TextSUBCUENTA_CIERRE: TDBText;
+    TextSUBCUENTA_CIERRE_DS: TDBText;
     TabSheetDocumentos: TTabSheet;
     GroupBox3: TGroupBox;
     GroupBox11: TGroupBox;
@@ -152,6 +152,13 @@ type
     CBImprimir: TDBCheckBox;
     SProvincias: TDataSource;
     BtnSearchSCTANOMSUELDO: TSpeedButton;
+    BtnSearchSCTANOMSST: TSpeedButton;
+    BtnSearchSCTANOMPAGO: TSpeedButton;
+    BtnSearchSCTAOTRASREMUN: TSpeedButton;
+    BtnSearchSCTANOMIRPF: TSpeedButton;
+    BtnSearchSCTANOMCARGO: TSpeedButton;
+    BtnSearchSCTANOMSSE: TSpeedButton;
+    BtnSearchSUBCUENTA_CIERRE: TSpeedButton;
     procedure PageControlChanging(Sender: TObject; var AllowChange: Boolean);
   private
   public

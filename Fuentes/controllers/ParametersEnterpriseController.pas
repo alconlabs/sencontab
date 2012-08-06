@@ -27,7 +27,7 @@ type
     procedure OnClick_BtnFECHA_FIN_EJERCICIO(Sender :TObject);
     procedure OnClick_BtnFECHAAMORTIZACION(Sender :TObject);
     procedure OnClick_BtnFECHABLOQUEO(Sender :TObject);
-    procedure OnClick_BtnSearchSCTANOMSUELDO(Sender :TObject);
+    procedure OnClick_BtnSearchAccount(Sender :TObject);
    
   public
     constructor Create(prmConfig :TCurrentConfig); reintroduce;
@@ -36,7 +36,7 @@ type
   end;
 
 implementation
-uses Forms, SysUtils, Dialogs, DB, Windows, Messages, 
+uses Forms, SysUtils, Dialogs, DB, Windows, Messages, Buttons, 
      CustomView, SearchAccountController;
 
 constructor TParametersEnterpriseController.Create(prmConfig :TCurrentConfig); 
@@ -140,10 +140,17 @@ begin
    FView.ModeList.Add(TComponentMode.Create(FView.BtnDocCliente                      , fmEdit));
    FView.ModeList.Add(TComponentMode.Create(FView.BtnDocProveedor                    , fmEdit));
    FView.ModeList.Add(TComponentMode.Create(FView.BtnDoc347                          , fmEdit));
-   FView.ModeList.Add(TComponentMode.Create(FView.EditDOCCLIENTE                     , fmEdit));
-   FView.ModeList.Add(TComponentMode.Create(FView.EditDOCPROVEEDOR                   , fmEdit));
-   FView.ModeList.Add(TComponentMode.Create(FView.EditDOC347                         , fmEdit));
+   FView.ModeList.Add(TComponentMode.Create(FView.EditDOCCLIENTE                     , fmFixed));
+   FView.ModeList.Add(TComponentMode.Create(FView.EditDOCPROVEEDOR                   , fmFixed));
+   FView.ModeList.Add(TComponentMode.Create(FView.EditDOC347                         , fmFixed));
    FView.ModeList.Add(TComponentMode.Create(FView.BtnSearchSCTANOMSUELDO             , fmEdit));
+   FView.ModeList.Add(TComponentMode.Create(FView.BtnSearchSCTANOMSST                , fmEdit));
+   FView.ModeList.Add(TComponentMode.Create(FView.BtnSearchSCTANOMPAGO               , fmEdit));
+   FView.ModeList.Add(TComponentMode.Create(FView.BtnSearchSCTAOTRASREMUN            , fmEdit));
+   FView.ModeList.Add(TComponentMode.Create(FView.BtnSearchSCTANOMIRPF               , fmEdit));
+   FView.ModeList.Add(TComponentMode.Create(FView.BtnSearchSCTANOMCARGO              , fmEdit));
+   FView.ModeList.Add(TComponentMode.Create(FView.BtnSearchSCTANOMSSE                , fmEdit));
+   FView.ModeList.Add(TComponentMode.Create(FView.BtnSearchSUBCUENTA_CIERRE          , fmEdit));
 
    FView.BtnModify.OnClick       := OnClick_Modify;
    FView.BtnAccept.OnClick       := OnClick_Accept;
@@ -156,16 +163,14 @@ begin
    FView.BtnFECHA_FIN_EJERCICIO.OnClick    := OnClick_BtnFECHA_FIN_EJERCICIO;
    FView.BtnFECHAAMORTIZACION.OnClick      := OnClick_BtnFECHAAMORTIZACION;
    FView.BtnFECHABLOQUEO.OnClick           := OnClick_BtnFECHABLOQUEO;
-   FView.BtnSearchSCTANOMSUELDO.OnClick    := OnClick_BtnSearchSCTANOMSUELDO;
-
-   FView.CBSUBCUENTA18.MaxLength := DM.QParametrosLONGITUD_SUBCUENTAS.AsInteger;
-   FView.CBSUBCUENTA19.MaxLength := DM.QParametrosLONGITUD_SUBCUENTAS.AsInteger;
-   FView.CBSUBCUENTA20.MaxLength := DM.QParametrosLONGITUD_SUBCUENTAS.AsInteger;
-   FView.CBSUBCUENTA21.MaxLength := DM.QParametrosLONGITUD_SUBCUENTAS.AsInteger;
-   FView.CBSUBCUENTA22.MaxLength := DM.QParametrosLONGITUD_SUBCUENTAS.AsInteger;
-   FView.CBSUBCUENTA23.MaxLength := DM.QParametrosLONGITUD_SUBCUENTAS.AsInteger;
-   FView.CBSUBCUENTA29.MaxLength := DM.QParametrosLONGITUD_SUBCUENTAS.AsInteger;
-   FView.CBSUBCUENTA39.MaxLength := DM.QParametrosLONGITUD_SUBCUENTAS.AsInteger;
+   FView.BtnSearchSCTANOMSUELDO.OnClick    := OnClick_BtnSearchAccount;
+   FView.BtnSearchSCTANOMSST.OnClick       := OnClick_BtnSearchAccount;
+   FView.BtnSearchSCTANOMPAGO.OnClick      := OnClick_BtnSearchAccount;
+   FView.BtnSearchSCTAOTRASREMUN.OnClick   := OnClick_BtnSearchAccount;
+   FView.BtnSearchSCTANOMIRPF.OnClick      := OnClick_BtnSearchAccount;
+   FView.BtnSearchSCTANOMCARGO.OnClick     := OnClick_BtnSearchAccount;
+   FView.BtnSearchSCTANOMSSE.OnClick       := OnClick_BtnSearchAccount;
+   FView.BtnSearchSUBCUENTA_CIERRE.OnClick := OnClick_BtnSearchAccount;
 
    { Toma el Asiento actual mediante la llamada a DMContaRef.Dame_Contador('asiento');
    { y apunta el mismo valor en AsientoOld, para luego comprobar si ha cambiado.       }
@@ -184,6 +189,15 @@ procedure TParametersEnterpriseController.OnClick_Modify(Sender :TObject);
 begin
    FView.Mode := fmEdit;
    DM.QParametros.Edit;
+
+   //if Integrity.Operation(okEdit) then begin
+   //   FormHandler.Mode  := fmEditing;
+   //   if Integrity.Preserve then begin
+   //      EditCD_FAMILIA.ccMode := fmNavigating;
+   //      EditDS_FAMILIA.SetFocus;
+   //   end                                                         
+   //   else EditCD_FAMILIA.SetFocus;
+   //end;
 
    //if FView.ListViewUsers.Selected <> nil then begin
    //   FEditUserView := TEditUserView.Create(FView);
@@ -207,7 +221,16 @@ end;
 procedure TParametersEnterpriseController.OnClick_Accept(Sender: TObject);
 var nPoscoma :Cardinal;
 begin
-   FView.Mode := fmView;
+   if FView.Validate and DM.IntegrityValidate and DM.BussinesValidate then begin
+      DM.QParametros.Post;
+      DM.QParametros.ApplyUpdates(0);
+      FView.Mode := fmView;
+   end;
+   //if not ValidData then Exit;
+   //if Integrity.Operation(okPost) then begin
+   //   FormHandler.Mode := fmNavigating;
+   //   Integrity.Operation(okRefresh);
+   //end;
 
 (*
    Perform(wm_NextDlgCtl, 0, 0);
@@ -239,7 +262,12 @@ end;
 
 procedure TParametersEnterpriseController.OnClick_Cancel(Sender: TObject);
 begin
-   FView.Mode := fmView;
+   if FView.Validate and DM.IntegrityValidate and DM.BussinesValidate then begin
+      DM.QParametros.Cancel;
+      DM.QParametros.ApplyUpdates(0);
+      FView.Mode := fmView;
+   end;
+
    //Perform(wm_NextDlgCtl, 0, 0);
 
    //if not(DM.QParametros.Modified {or DmControlRef.QControl.Modified}) then Exit;
@@ -302,12 +330,35 @@ begin
    Dialogs.ShowMessage('Esto está pendiente');
 end;
 
-procedure TParametersEnterpriseController.OnClick_BtnSearchSCTANOMSUELDO(Sender: TObject);
+procedure TParametersEnterpriseController.OnClick_BtnSearchAccount(Sender: TObject);
 begin
    with TSearchAccountController.Create(FConfiguration) do begin
       try
         ShowView;
-        DM.QParametrosSCTANOMSUELDO.AsString := SUBCUENTA;
+        if Sender = TSpeedButton(FView.BtnSearchSCTANOMSUELDO) then begin
+           DM.QParametrosSCTANOMSUELDO.AsString := SUBCUENTA;
+        end else
+        if Sender = TSpeedButton(FView.BtnSearchSCTANOMSST) then begin
+           DM.QParametrosSCTANOMSST.AsString := SUBCUENTA;
+        end else
+        if Sender = TSpeedButton(FView.BtnSearchSCTANOMPAGO) then begin
+           DM.QParametrosSCTANOMPAGO.AsString := SUBCUENTA;
+        end else
+        if Sender = TSpeedButton(FView.BtnSearchSCTAOTRASREMUN) then begin
+           DM.QParametrosSCTAOTRASREMUN.AsString := SUBCUENTA;
+        end else
+        if Sender = TSpeedButton(FView.BtnSearchSCTANOMIRPF) then begin
+           DM.QParametrosSCTANOMIRPF.AsString := SUBCUENTA;
+        end else
+        if Sender = TSpeedButton(FView.BtnSearchSCTANOMCARGO) then begin
+           DM.QParametrosSCTANOMCARGO.AsString := SUBCUENTA;
+        end else
+        if Sender = TSpeedButton(FView.BtnSearchSCTANOMSSE) then begin
+           DM.QParametrosSCTANOMSSE.AsString := SUBCUENTA;
+        end else
+        if Sender = TSpeedButton(FView.BtnSearchSUBCUENTA_CIERRE) then begin
+           DM.QParametrosSUBCUENTA_CIERRE.AsString := SUBCUENTA;
+        end else
       finally
         Free;
       end;
