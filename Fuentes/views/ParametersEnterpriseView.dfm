@@ -86,7 +86,7 @@ object ParametersEnterpriseView: TParametersEnterpriseView
     Top = 48
     Width = 769
     Height = 457
-    ActivePage = TabSheetNominas
+    ActivePage = TabSheetGeneral
     TabOrder = 1
     OnChanging = PageControlChanging
     object TabSheetGeneral: TTabSheet
@@ -1601,35 +1601,23 @@ object ParametersEnterpriseView: TParametersEnterpriseView
           NumGlyphs = 2
           ParentFont = False
         end
-        object wwDBLookupCombo55: TwwDBLookupCombo
+        object EditCTONOMT: TDBLookupComboBox
           Left = 387
           Top = 139
           Width = 346
-          Height = 21
-          AutoSize = False
+          Height = 22
+          DataField = 'CTONOMT'
+          DataSource = DataSource
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
-          CharCase = ecUpperCase
-          DropDownAlignment = taLeftJustify
-          Selected.Strings = (
-            'DESCRIPCION'#9'35'#9'DESCRIPCION'#9'F'
-            'ID_CONCEPTOS'#9'3'#9'CONCEPTO'#9'F')
-          DataField = 'CTONOMT'
-          DataSource = DataSource
-          LookupTable = DMContaRef.QConceptosDesc
-          LookupField = 'ID_CONCEPTOS'
-          Options = [loColLines, loTitles]
-          Style = csDropDownList
+          KeyField = 'ID_CONCEPTOS'
+          ListField = 'DESCRIPCION'
+          ListSource = SConceptos
           ParentFont = False
           TabOrder = 0
-          AutoDropDown = True
-          ShowButton = True
-          PreciseEditRegion = False
-          AllowClearKey = True
-          ShowMatchText = True
         end
         object CheckBoxASIENTO_NOMINA_INDIVIDUAL: TDBCheckBox
           Left = 19
@@ -1822,35 +1810,23 @@ object ParametersEnterpriseView: TParametersEnterpriseView
           NumGlyphs = 2
           ParentFont = False
         end
-        object wwDBLookupCombo61: TwwDBLookupCombo
+        object EditCTONOME: TDBLookupComboBox
           Left = 122
           Top = 126
           Width = 348
-          Height = 21
-          AutoSize = False
+          Height = 22
+          DataField = 'CTONOME'
+          DataSource = DataSource
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
-          CharCase = ecUpperCase
-          DropDownAlignment = taLeftJustify
-          Selected.Strings = (
-            'DESCRIPCION'#9'35'#9'DESCRIPCION'#9'F'
-            'ID_CONCEPTOS'#9'3'#9'CONCEPTO'#9'F')
-          DataField = 'CTONOME'
-          DataSource = DataSource
-          LookupTable = DMContaRef.QConceptosDesc
-          LookupField = 'ID_CONCEPTOS'
-          Options = [loColLines, loTitles]
-          Style = csDropDownList
+          KeyField = 'ID_CONCEPTOS'
+          ListField = 'DESCRIPCION'
+          ListSource = SConceptos
           ParentFont = False
           TabOrder = 0
-          AutoDropDown = True
-          ShowButton = True
-          PreciseEditRegion = False
-          AllowClearKey = True
-          ShowMatchText = True
         end
       end
     end
@@ -1959,7 +1935,7 @@ object ParametersEnterpriseView: TParametersEnterpriseView
             Height = 14
             Caption = 'Concepto regularizaci'#243'n Especial'
           end
-          object DBText29: TDBText
+          object TextCTO_REGULARIZACION: TDBText
             Left = 201
             Top = 19
             Width = 65
@@ -1974,7 +1950,7 @@ object ParametersEnterpriseView: TParametersEnterpriseView
             Font.Style = [fsBold]
             ParentFont = False
           end
-          object DBText30: TDBText
+          object TextCTO_REGULARIZACION_ESP: TDBText
             Left = 201
             Top = 59
             Width = 65
@@ -1989,65 +1965,41 @@ object ParametersEnterpriseView: TParametersEnterpriseView
             Font.Style = [fsBold]
             ParentFont = False
           end
-          object wwDBLookupCombo16: TwwDBLookupCombo
+          object EditCTO_REGULARIZACION: TDBLookupComboBox
             Left = 9
             Top = 32
             Width = 257
-            Height = 21
-            AutoSize = False
+            Height = 22
+            DataField = 'CTO_REGULARIZACION'
+            DataSource = DataSource
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clBlack
             Font.Height = -11
             Font.Name = 'Arial'
             Font.Style = []
-            CharCase = ecUpperCase
-            DropDownAlignment = taLeftJustify
-            Selected.Strings = (
-              'DESCRIPCION'#9'35'#9'DESCRIPCION'#9'F'
-              'ID_CONCEPTOS'#9'3'#9'CONCEPTO'#9'F')
-            DataField = 'CTO_REGULARIZACION'
-            DataSource = DataSource
-            LookupTable = DMContaRef.QConceptosDesc
-            LookupField = 'ID_CONCEPTOS'
-            Options = [loColLines, loTitles]
-            Style = csDropDownList
+            KeyField = 'ID_CONCEPTOS'
+            ListField = 'DESCRIPCION'
+            ListSource = SConceptos
             ParentFont = False
             TabOrder = 0
-            AutoDropDown = True
-            ShowButton = True
-            UseTFields = False
-            PreciseEditRegion = False
-            AllowClearKey = False
           end
-          object wwDBLookupCombo18: TwwDBLookupCombo
+          object EditCTO_REGULARIZACION_ESP: TDBLookupComboBox
             Left = 9
             Top = 72
             Width = 257
-            Height = 21
-            AutoSize = False
+            Height = 22
+            DataField = 'CTO_REGULARIZACION_ESP'
+            DataSource = DataSource
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clBlack
             Font.Height = -11
             Font.Name = 'Arial'
             Font.Style = []
-            CharCase = ecUpperCase
-            DropDownAlignment = taLeftJustify
-            Selected.Strings = (
-              'DESCRIPCION'#9'35'#9'DESCRIPCION'#9'F'
-              'ID_CONCEPTOS'#9'3'#9'CONCEPTO'#9'F')
-            DataField = 'CTO_REGULARIZACION_ESP'
-            DataSource = DataSource
-            LookupTable = DMContaRef.QConceptosDesc
-            LookupField = 'ID_CONCEPTOS'
-            Options = [loColLines, loTitles]
-            Style = csDropDownList
+            KeyField = 'ID_CONCEPTOS'
+            ListField = 'DESCRIPCION'
+            ListSource = SConceptos
             ParentFont = False
             TabOrder = 1
-            AutoDropDown = True
-            ShowButton = True
-            UseTFields = False
-            PreciseEditRegion = False
-            AllowClearKey = False
           end
         end
         object GroupBox15: TGroupBox
@@ -2071,7 +2023,7 @@ object ParametersEnterpriseView: TParametersEnterpriseView
             Height = 14
             Caption = 'Concepto apertura Especial'
           end
-          object DBText31: TDBText
+          object TextCTO_APERTURA_ESP: TDBText
             Left = 203
             Top = 60
             Width = 65
@@ -2086,7 +2038,7 @@ object ParametersEnterpriseView: TParametersEnterpriseView
             Font.Style = [fsBold]
             ParentFont = False
           end
-          object DBText32: TDBText
+          object TextCTO_APERTURA: TDBText
             Left = 203
             Top = 17
             Width = 65
@@ -2101,65 +2053,41 @@ object ParametersEnterpriseView: TParametersEnterpriseView
             Font.Style = [fsBold]
             ParentFont = False
           end
-          object wwDBLookupCombo62: TwwDBLookupCombo
+          object EditCTO_APERTURA: TDBLookupComboBox
             Left = 11
             Top = 30
             Width = 257
-            Height = 21
-            AutoSize = False
+            Height = 22
+            DataField = 'CTO_APERTURA'
+            DataSource = DataSource
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clBlack
             Font.Height = -11
             Font.Name = 'Arial'
             Font.Style = []
-            CharCase = ecUpperCase
-            DropDownAlignment = taLeftJustify
-            Selected.Strings = (
-              'DESCRIPCION'#9'35'#9'DESCRIPCION'#9'F'
-              'ID_CONCEPTOS'#9'3'#9'CONCEPTO'#9'F')
-            DataField = 'CTO_APERTURA'
-            DataSource = DataSource
-            LookupTable = DMContaRef.QConceptosDesc
-            LookupField = 'ID_CONCEPTOS'
-            Options = [loColLines, loTitles]
-            Style = csDropDownList
+            KeyField = 'ID_CONCEPTOS'
+            ListField = 'DESCRIPCION'
+            ListSource = SConceptos
             ParentFont = False
             TabOrder = 0
-            AutoDropDown = True
-            ShowButton = True
-            UseTFields = False
-            PreciseEditRegion = False
-            AllowClearKey = False
           end
-          object wwDBLookupCombo64: TwwDBLookupCombo
+          object EditCTO_APERTURA_ESP: TDBLookupComboBox
             Left = 11
             Top = 73
             Width = 257
-            Height = 21
-            AutoSize = False
+            Height = 22
+            DataField = 'CTO_APERTURA_ESP'
+            DataSource = DataSource
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clBlack
             Font.Height = -11
             Font.Name = 'Arial'
             Font.Style = []
-            CharCase = ecUpperCase
-            DropDownAlignment = taLeftJustify
-            Selected.Strings = (
-              'DESCRIPCION'#9'35'#9'DESCRIPCION'#9'F'
-              'ID_CONCEPTOS'#9'3'#9'CONCEPTO'#9'F')
-            DataField = 'CTO_APERTURA_ESP'
-            DataSource = DataSource
-            LookupTable = DMContaRef.QConceptosDesc
-            LookupField = 'ID_CONCEPTOS'
-            Options = [loColLines, loTitles]
-            Style = csDropDownList
+            KeyField = 'ID_CONCEPTOS'
+            ListField = 'DESCRIPCION'
+            ListSource = SConceptos
             ParentFont = False
             TabOrder = 1
-            AutoDropDown = True
-            ShowButton = True
-            UseTFields = False
-            PreciseEditRegion = False
-            AllowClearKey = False
           end
         end
       end
@@ -2377,6 +2305,11 @@ object ParametersEnterpriseView: TParametersEnterpriseView
   object SProvincias: TDataSource
     AutoEdit = False
     Left = 441
+    Top = 5
+  end
+  object SConceptos: TDataSource
+    AutoEdit = False
+    Left = 513
     Top = 5
   end
 end

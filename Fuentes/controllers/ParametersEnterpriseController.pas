@@ -52,6 +52,7 @@ begin
 
    FView.DataSource.DataSet  := DM.QParametros;
    FView.SProvincias.DataSet := DM.LProvincias;
+   FView.SConceptos.DataSet  := DM.LConceptos;
 
    FView.AppleIcons := [aiClose];
    FView.AppleIconsVisibles := [aiClose];
@@ -151,6 +152,13 @@ begin
    FView.ModeList.Add(TComponentMode.Create(FView.BtnSearchSCTANOMCARGO              , fmEdit));
    FView.ModeList.Add(TComponentMode.Create(FView.BtnSearchSCTANOMSSE                , fmEdit));
    FView.ModeList.Add(TComponentMode.Create(FView.BtnSearchSUBCUENTA_CIERRE          , fmEdit));
+
+   FView.ModeList.Add(TComponentMode.Create(FView.EditCTO_REGULARIZACION             , fmEdit));
+   FView.ModeList.Add(TComponentMode.Create(FView.EditCTO_REGULARIZACION_ESP         , fmEdit));
+   FView.ModeList.Add(TComponentMode.Create(FView.EditCTO_APERTURA                   , fmEdit));
+   FView.ModeList.Add(TComponentMode.Create(FView.EditCTO_APERTURA_ESP               , fmEdit));
+   FView.ModeList.Add(TComponentMode.Create(FView.EditCTONOMT                        , fmEdit));
+   FView.ModeList.Add(TComponentMode.Create(FView.EditCTONOME                        , fmEdit));
 
    FView.BtnModify.OnClick       := OnClick_Modify;
    FView.BtnAccept.OnClick       := OnClick_Accept;

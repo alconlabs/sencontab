@@ -3,8 +3,7 @@ interface
 uses Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs, StdCtrls,
      DBCtrls, ExtCtrls, DB, Buttons, ComCtrls, DBClient, Mask,
      CustomView,
-     DMParametersEnterprise, 
-     wwdblook;
+     DMParametersEnterprise;
 type
   TParametersEnterpriseView = class(TCustomView)
     OpenDialog: TOpenDialog;
@@ -94,7 +93,7 @@ type
     TextSCTANOMIRPF_DS: TDBText;
     TextSCTANOMPAGO: TDBText;
     TextSCTANOMPAGO_DS: TDBText;
-    wwDBLookupCombo55: TwwDBLookupCombo;
+    EditCTONOMT: TDBLookupComboBox;
     CheckBoxASIENTO_NOMINA_INDIVIDUAL: TDBCheckBox;
     TextSCTAOTRASREMUN: TDBText;
     TextSCTAOTRASREMUN_DS: TDBText;
@@ -107,24 +106,24 @@ type
     TextSCTANOMCARGO_DS: TDBText;
     TextSCTANOMSSE: TDBText;
     TextSCTANOMSSE_DS: TDBText;
-    wwDBLookupCombo61: TwwDBLookupCombo;
+    EditCTONOME: TDBLookupComboBox;
     TabSheetCierreEjercicio: TTabSheet;
     GroupBox12: TGroupBox;
     Label62: TLabel;
     GroupBox14: TGroupBox;
     Label63: TLabel;
     Label77: TLabel;
-    DBText29: TDBText;
-    DBText30: TDBText;
-    wwDBLookupCombo16: TwwDBLookupCombo;
-    wwDBLookupCombo18: TwwDBLookupCombo;
+    TextCTO_REGULARIZACION: TDBText;
+    TextCTO_REGULARIZACION_ESP: TDBText;
+    EditCTO_REGULARIZACION: TDBLookupComboBox;
+    EditCTO_REGULARIZACION_ESP: TDBLookupComboBox;
     GroupBox15: TGroupBox;
     Label78: TLabel;
     Label79: TLabel;
-    DBText31: TDBText;
-    DBText32: TDBText;
-    wwDBLookupCombo62: TwwDBLookupCombo;
-    wwDBLookupCombo64: TwwDBLookupCombo;
+    TextCTO_APERTURA_ESP: TDBText;
+    TextCTO_APERTURA: TDBText;
+    EditCTO_APERTURA: TDBLookupComboBox;
+    EditCTO_APERTURA_ESP: TDBLookupComboBox;
     TextSUBCUENTA_CIERRE: TDBText;
     TextSUBCUENTA_CIERRE_DS: TDBText;
     TabSheetDocumentos: TTabSheet;
@@ -159,6 +158,7 @@ type
     BtnSearchSCTANOMCARGO: TSpeedButton;
     BtnSearchSCTANOMSSE: TSpeedButton;
     BtnSearchSUBCUENTA_CIERRE: TSpeedButton;
+    SConceptos: TDataSource;
     procedure PageControlChanging(Sender: TObject; var AllowChange: Boolean);
   private
   public
@@ -174,3 +174,5 @@ begin
 end;
 
 end.
+
+
