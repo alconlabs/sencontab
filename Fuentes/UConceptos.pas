@@ -185,7 +185,7 @@ begin
    Navegador.Visible := False;
    eConcepto.SetFocus;
    QFichero.Insert;
-   Modo(Self, Edita);
+   Mode := fmEdit;
 end;
 
 procedure TWConceptos.BtnNavBorrarClick(Sender: TObject);
@@ -239,7 +239,7 @@ begin
 
    RefrescarBD;
    Navegador.Visible := True;
-   Modo(Self, Naveg);
+   Mode := fmView;
    Rejilla.SetFocus;
    if ha_insertado then  begin
       if not (TbFiltro.State in dsEditModes) then begin
@@ -262,7 +262,7 @@ begin
       try QFichero.Cancel;
       except DatabaseError('No se ha podido cancelar la operación.' + #13 + CADENA_MANUAL);
       end;
-      Modo(Self, Naveg);
+      Mode := fmView;
    end;
 end;
 
@@ -278,7 +278,7 @@ begin
          QFichero.Edit;
       except MessageDlg('No se puede editar el registro seleccionado.' + #13 + CADENA_MANUAL, mtInformation, [mbOK], 0);
       end;
-      Modo(Self, Edita);
+      Mode := fmEdit;
       eConcepto.SetFocus;
    end;
 end;
@@ -328,7 +328,7 @@ begin
    CrearFiltro;
    FCampoOrden := 'ID_CONCEPTOS';
    PrepararQuery;
-   Modo(Self, Naveg);
+   Mode := fmView;
 
    eSubcuenta.MaxLength     := DMRef.QParametros.FieldByName('LONGITUD_SUBCUENTAS').AsInteger;
    eContrapartida.MaxLength := DMRef.QParametros.FieldByName('LONGITUD_SUBCUENTAS').AsInteger;

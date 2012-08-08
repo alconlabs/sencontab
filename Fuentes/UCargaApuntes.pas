@@ -144,7 +144,7 @@ begin
       Post;
    end;
 
-   Modo(Self, Edita);
+   Mode := fmEdit;
 end;
 
 procedure TWCargaApuntes.InicializarFiltro;
@@ -330,7 +330,7 @@ begin
 
    MessageDlg('Se ha generado el asiento ' + FormatFloat('###,###,###', nAsiento), mtInformation, [mbOK], 0);
 
-   Modo(Self, Edita);
+   Mode := fmEdit;
    {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
    with QFichero do begin
       Edit;

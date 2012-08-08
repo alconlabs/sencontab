@@ -236,7 +236,7 @@ begin
    QEmpleadosSSOCIAL.DisplayFormat := '###,###,###.##';
    QEmpleadosNETO.DisplayFormat    := '###,###,###.##';
 
-   Modo(Self, Edita);
+   Mode := fmEdit;
 end;
 
 function TWCargaRapidaNominas.DatosEmpleadosValidos: Boolean;
@@ -978,7 +978,7 @@ begin
 
    // Si estamos en modo inserción, inicializar controles para un nuevo asiento.
    if FModoArranque = INSERCION then  begin
-      Modo(Self, Edita);
+      Mode := fmEdit;
       {$Message Warn 'La instrucción WITH es ofuscadora de código`'}
       with QFichero do begin
          Edit;

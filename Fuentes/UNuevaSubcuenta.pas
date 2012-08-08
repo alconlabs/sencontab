@@ -216,7 +216,7 @@ begin
    QFichero.Insert;
    QFicheroSUBCUENTA.AsString := FNuevaSubcuenta;
    OvcSubCuenta.SetFocus;
-   Modo(Self, Edita);
+   Mode := fmEdit;
 end;
 
 procedure TWNuevaSubcuenta.PrepararQuery;
@@ -257,7 +257,7 @@ begin
 
    PrepararQuery;
 
-   Modo(Self, Naveg);
+   Mode := fmView;
    OvcSubcuenta.MaxLength := DmRef.QParametros.FieldByName('Longitud_Subcuentas').AsInteger;
 
    //CargaImagenesMensaje(Mensaje);
@@ -425,7 +425,7 @@ begin
          QFichero.EnableControls;
       end;
 
-      Modo(Self, Naveg);
+      Mode := fmView;
 
       Close;
    end;
@@ -439,7 +439,7 @@ begin
       end;
       FNuevaSubcuenta      := '';
       FContrapartidaSubcta := '';
-      Modo(Self, Naveg);
+      Mode := fmView;
       Close;
    end;
 end;

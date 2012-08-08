@@ -172,7 +172,7 @@ begin
       DatabaseError('No se ha podido insertar una nueva sección.' + #13 +
          CADENA_MANUAL);
    end;
-   Modo(Self, Edita);
+   Mode := fmEdit;
 end;
 
 procedure TSectionsView.BtnNavBorrarClick(Sender: TObject);
@@ -228,7 +228,7 @@ begin
 
    RefrescarBD;
    Navegador.Visible := True;
-   Modo(Self, Naveg);
+   Mode := fmView;
    Rejilla.SetFocus;
    if ha_insertado then  begin
       if not (TbFiltro.State in dsEditModes) then begin
@@ -252,7 +252,7 @@ begin
       try QFichero.Cancel;
       except DatabaseError('No se ha podido cancelar la operación.' + #13 + CADENA_MANUAL);
       end;
-      Modo(Self, Naveg);
+      Mode := fmView;
    end;
 end;
 
@@ -267,7 +267,7 @@ begin
       try QFichero.Edit;
       except MessageDlg('No se puede editar el registro seleccionado.' + #13 + CADENA_MANUAL, mtInformation, [mbOK], 0);
       end;
-      Modo(Self, Edita);
+      Mode := fmEdit;
       eCodigo.SetFocus;
    end;
 end;
@@ -317,7 +317,7 @@ begin
    CrearFiltro;
    FCampoOrden := 'ID_SECCION';
    PrepararQuery;
-   Modo(Self, Naveg);
+   Mode := fmView;
 end;
 
 procedure TSectionsView.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
