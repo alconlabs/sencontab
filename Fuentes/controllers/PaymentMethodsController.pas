@@ -93,6 +93,7 @@ end;
 
 procedure TPaymentMethodsController.InitializeView;
 begin
+   FView.DBGrid.Columns.Clear;
    AddColumnToDBGrid(FView.DBGrid, 'FORMAPAGO', 'Código'     ,  40);
    AddColumnToDBGrid(FView.DBGrid, 'DESCRIBE' , 'Descripcion', 300);
    AddColumnToDBGrid(FView.DBGrid, 'UNIDADES' , 'Unids'      ,  40);

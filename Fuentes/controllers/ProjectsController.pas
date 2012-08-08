@@ -92,6 +92,7 @@ end;
 
 procedure TProjectsController.InitializeView;
 begin
+   FView.DBGrid.Columns.Clear;
    AddColumnToDBGrid(FView.DBGrid, 'ID_PROYECTO', 'Código'     ,  40);
    AddColumnToDBGrid(FView.DBGrid, 'NOMBRE'     , 'Descripcion', 300);
 
