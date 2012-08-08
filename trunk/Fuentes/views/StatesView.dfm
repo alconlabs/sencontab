@@ -1,10 +1,10 @@
-object WProyectos: TWProyectos
-  Left = 691
-  Top = 255
+object StatesView: TStatesView
+  Left = 514
+  Top = 215
   BorderStyle = bsSingle
-  Caption = 'Cat'#225'logo de Proyectos'
-  ClientHeight = 483
-  ClientWidth = 455
+  Caption = 'Cat'#225'logo de PAISES'
+  ClientHeight = 357
+  ClientWidth = 467
   Color = 14275008
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -23,17 +23,18 @@ object WProyectos: TWProyectos
   object Datos: TGroupBox
     Left = 0
     Top = 0
-    Width = 455
-    Height = 60
+    Width = 467
+    Height = 47
     Align = alTop
+    Color = 14275008
+    ParentColor = False
     TabOrder = 0
     object Label1: TLabel
-      Left = 7
-      Top = 16
-      Width = 88
-      Height = 17
-      AutoSize = False
-      Caption = 'Proyecto'
+      Left = 14
+      Top = 20
+      Width = 23
+      Height = 13
+      Caption = 'Pa'#237's'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clNavy
       Font.Height = -11
@@ -42,12 +43,11 @@ object WProyectos: TWProyectos
       ParentFont = False
     end
     object Label2: TLabel
-      Left = 111
-      Top = 15
-      Width = 77
-      Height = 16
-      AutoSize = False
-      Caption = 'Descripci'#243'n'
+      Left = 78
+      Top = 20
+      Width = 44
+      Height = 13
+      Caption = 'Nombre'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clNavy
       Font.Height = -11
@@ -55,53 +55,61 @@ object WProyectos: TWProyectos
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object EditDS_PROYECTO: TDBEdit
-      Left = 111
-      Top = 29
-      Width = 266
+    object EditDS_PAIS: TDBEdit
+      Left = 126
+      Top = 16
+      Width = 259
       Height = 20
       AutoSize = False
       DataField = 'NOMBRE'
       DataSource = SFichero
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
       TabOrder = 1
     end
-    object EditCD_PROYECTO: TDBEdit
-      Left = 7
-      Top = 29
-      Width = 97
-      Height = 21
+    object EditCD_PAIS: TDBEdit
+      Left = 46
+      Top = 16
+      Width = 27
+      Height = 20
       AutoSize = False
-      DataField = 'ID_PROYECTO'
+      DataField = 'PAIS'
       DataSource = SFichero
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = []
+      MaxLength = 6
       ParentFont = False
       TabOrder = 0
     end
   end
-  object Panel2: TPanel
+  object StatusBar1: TStatusBar
     Left = 0
-    Top = 60
-    Width = 455
-    Height = 404
+    Top = 338
+    Width = 467
+    Height = 19
+    Panels = <>
+  end
+  object PanelFondo: TPanel
+    Left = 0
+    Top = 47
+    Width = 467
+    Height = 291
     Align = alClient
     BevelOuter = bvNone
-    ParentColor = True
-    TabOrder = 1
+    Color = 14275008
+    TabOrder = 2
     object DataGrid: TDBGrid
       Left = 0
       Top = 0
-      Width = 350
-      Height = 404
+      Width = 362
+      Height = 291
       TabStop = False
       Align = alClient
       BorderStyle = bsNone
@@ -124,8 +132,9 @@ object WProyectos: TWProyectos
       Columns = <
         item
           Expanded = False
-          FieldName = 'ID_PROYECTO'
+          FieldName = 'PAIS'
           Title.Caption = 'C'#243'digo'
+          Width = 43
           Visible = True
         end
         item
@@ -135,16 +144,16 @@ object WProyectos: TWProyectos
           Visible = True
         end>
     end
-    object Panel1: TPanel
-      Left = 350
+    object PanelButtons: TPanel
+      Left = 362
       Top = 0
       Width = 105
-      Height = 404
+      Height = 291
       Align = alRight
       BevelOuter = bvNone
-      ParentColor = True
+      Color = 14275008
       TabOrder = 1
-      object BtnAppend: TSpeedButton
+      object BtnAdd: TSpeedButton
         Left = 10
         Top = 14
         Width = 83
@@ -157,7 +166,7 @@ object WProyectos: TWProyectos
         Font.Name = 'Tahoma'
         Font.Style = [fsBold]
         ParentFont = False
-        OnClick = BtnAppendClick
+        OnClick = BtnAddClick
       end
       object BtnDelete: TSpeedButton
         Left = 10
@@ -176,7 +185,7 @@ object WProyectos: TWProyectos
       end
       object BtnSave: TSpeedButton
         Left = 10
-        Top = 218
+        Top = 210
         Width = 83
         Height = 25
         Cursor = crHandPoint
@@ -191,7 +200,7 @@ object WProyectos: TWProyectos
       end
       object BtnCancel: TSpeedButton
         Left = 10
-        Top = 246
+        Top = 239
         Width = 83
         Height = 25
         Cursor = crHandPoint
@@ -206,7 +215,7 @@ object WProyectos: TWProyectos
       end
       object BtnReport: TSpeedButton
         Left = 10
-        Top = 114
+        Top = 108
         Width = 83
         Height = 25
         Cursor = crHandPoint
@@ -236,91 +245,90 @@ object WProyectos: TWProyectos
       end
     end
   end
-  object StatusBar1: TStatusBar
-    Left = 0
-    Top = 464
-    Width = 455
-    Height = 19
-    Panels = <>
-  end
   object SFichero: TDataSource
     AutoEdit = False
     DataSet = QFichero
-    Left = 112
-    Top = 189
+    Left = 104
+    Top = 162
   end
   object QFichero: TIBTableSet
     Transaction = Transaccion
     BufferChunks = 32
     CachedUpdates = False
     DeleteSQL.Strings = (
-      'DELETE FROM PROYECTO'
+      'DELETE FROM PAISES'
       'WHERE'
       
-        '  ID_PROYECTO                    =:old_ID_PROYECTO              ' +
+        '  PAIS                           =:old_PAIS                     ' +
         '       ')
     InsertSQL.Strings = (
-      'INSERT INTO PROYECTO'
+      'INSERT INTO PAISES'
       
-        '  (NOMBRE                         ,ID_PROYECTO                  ' +
+        '  (NOMBRE                         ,PAIS                         ' +
         '  )'
       'VALUES'
       
-        '  (:NOMBRE                         ,:ID_PROYECTO                ' +
+        '  (:NOMBRE                         ,:PAIS                       ' +
         '    )')
     RefreshSQL.Strings = (
       'SELECT'
       '  *'
-      'FROM PROYECTO'
+      'FROM PAISES'
       'WHERE'
       
-        '  ID_PROYECTO                    =?ID_PROYECTO                  ' +
+        '  PAIS                           =?PAIS                         ' +
         '   ')
     SelectSQL.Strings = (
-      'SELECT * FROM PROYECTO')
+      'SELECT * FROM PAISES')
     ModifySQL.Strings = (
-      'UPDATE PROYECTO'
+      'UPDATE PAISES'
       'SET'
       
         '  NOMBRE                         =:NOMBRE                       ' +
         '   '
       'WHERE'
       
-        '  ID_PROYECTO                    =:ID_PROYECTO                  ' +
+        '  PAIS                           =:PAIS                         ' +
         '   ')
-    TableName = 'PROYECTO'
-    Left = 67
-    Top = 188
-    object QFicheroID_PROYECTO: TIBStringField
-      DisplayLabel = 'PROYECTO'
-      DisplayWidth = 11
-      FieldName = 'ID_PROYECTO'
-      Origin = 'PROYECTO.ID_PROYECTO'
+    TableName = 'PAISES'
+    Left = 72
+    Top = 163
+    object QFicheroPAIS: TIBStringField
+      Alignment = taCenter
+      DisplayWidth = 7
+      FieldName = 'PAIS'
+      Origin = 'PAISES.PAIS'
       Required = True
-      Size = 10
+      FixedChar = True
+      Size = 2
     end
     object QFicheroNOMBRE: TIBStringField
-      DisplayWidth = 45
+      DisplayWidth = 49
       FieldName = 'NOMBRE'
-      Origin = 'PROYECTO.NOMBRE'
-      Size = 50
+      Origin = 'PAISES.NOMBRE'
+      Size = 30
     end
   end
   object Transaccion: TIBTransaction
     Active = False
     AutoStopAction = saNone
-    Left = 66
-    Top = 141
+    Left = 34
+    Top = 162
   end
   object TbFiltro: TClientDataSet
     Aggregates = <>
     Params = <>
-    Left = 64
-    Top = 237
+    Left = 48
+    Top = 202
   end
   object sFiltro: TDataSource
     DataSet = TbFiltro
-    Left = 114
-    Top = 237
+    Left = 82
+    Top = 202
+  end
+  object DataSource: TDataSource
+    AutoEdit = False
+    Left = 216
+    Top = 114
   end
 end

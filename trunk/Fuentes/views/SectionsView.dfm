@@ -1,8 +1,9 @@
-object WGrupos: TWGrupos
-  Left = 459
-  Top = 237
+object SectionsView: TSectionsView
+  Left = 457
+  Top = 213
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsNone
+  Caption = 'Archivo de SECCIONES'
   ClientHeight = 493
   ClientWidth = 789
   Color = 14275008
@@ -31,9 +32,9 @@ object WGrupos: TWGrupos
   object Label3: TLabel
     Left = 24
     Top = 13
-    Width = 148
+    Width = 170
     Height = 19
-    Caption = 'Archivo de Grupos'
+    Caption = 'Archivo de Secciones'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -16
@@ -54,16 +55,16 @@ object WGrupos: TWGrupos
   end
   object PanelSombra: TPanel
     Left = 23
-    Top = 86
-    Width = 652
-    Height = 324
+    Top = 92
+    Width = 356
+    Height = 379
     BevelOuter = bvNone
     TabOrder = 8
     object Rejilla: TwwDBGrid
       Left = 0
       Top = 0
-      Width = 652
-      Height = 324
+      Width = 356
+      Height = 379
       TabStop = False
       DittoAttributes.ShortCutDittoField = 0
       DittoAttributes.ShortCutDittoRecord = 0
@@ -71,8 +72,8 @@ object WGrupos: TWGrupos
       DisableThemesInTitle = False
       PictureMaskFromDataSet = False
       Selected.Strings = (
-        'GRUPO'#9'8'#9'GRUPO'
-        'DESCRIPCION'#9'97'#9'DESCRIPCION'#9'F')
+        'ID_SECCION'#9'10'#9'SECCI'#211'N'
+        'NOMBRE'#9'46'#9'NOMBRE'#9'F')
       IniAttributes.Delimiter = ';;'
       TitleColor = 10841401
       FixedCols = 0
@@ -89,7 +90,7 @@ object WGrupos: TWGrupos
       Options = [dgTitles, dgColumnResize, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgWordWrap]
       ParentFont = False
       TabOrder = 0
-      TitleAlignment = taLeftJustify
+      TitleAlignment = taCenter
       TitleFont.Charset = ANSI_CHARSET
       TitleFont.Color = clWhite
       TitleFont.Height = -11
@@ -104,18 +105,18 @@ object WGrupos: TWGrupos
     end
   end
   object Datos: TGroupBox
-    Left = 23
-    Top = 415
-    Width = 652
-    Height = 60
+    Left = 380
+    Top = 85
+    Width = 295
+    Height = 386
     TabOrder = 0
     object Label1: TLabel
-      Left = 28
-      Top = 12
-      Width = 34
+      Left = 15
+      Top = 120
+      Width = 88
       Height = 16
       AutoSize = False
-      Caption = 'Grupo'
+      Caption = 'Secci'#243'n'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clNavy
       Font.Height = -11
@@ -124,12 +125,12 @@ object WGrupos: TWGrupos
       ParentFont = False
     end
     object Label2: TLabel
-      Left = 76
-      Top = 12
+      Left = 15
+      Top = 167
       Width = 77
       Height = 16
       AutoSize = False
-      Caption = 'Descripci'#243'n'
+      Caption = 'Nombre'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clNavy
       Font.Height = -11
@@ -138,11 +139,11 @@ object WGrupos: TWGrupos
       ParentFont = False
     end
     object eNombre: TOvcDbPictureField
-      Left = 77
-      Top = 26
-      Width = 512
+      Left = 15
+      Top = 181
+      Width = 266
       Height = 20
-      DataField = 'DESCRIPCION'
+      DataField = 'NOMBRE'
       DataSource = SFichero
       FieldType = ftString
       AutoSize = False
@@ -163,14 +164,14 @@ object WGrupos: TWGrupos
       MaxLength = 50
       ParentFont = False
       PictureMask = '!'
-      TabOrder = 0
+      TabOrder = 1
     end
-    object eCampoInicial: TOvcDbPictureField
-      Left = 26
-      Top = 26
-      Width = 39
+    object eCodigo: TOvcDbPictureField
+      Left = 15
+      Top = 135
+      Width = 97
       Height = 20
-      DataField = 'GRUPO'
+      DataField = 'ID_SECCION'
       DataSource = SFichero
       FieldType = ftString
       AutoSize = False
@@ -188,10 +189,10 @@ object WGrupos: TWGrupos
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = []
-      MaxLength = 3
+      MaxLength = 10
       ParentFont = False
       PictureMask = '!'
-      TabOrder = 1
+      TabOrder = 0
     end
   end
   object Panel1: TPanel
@@ -932,7 +933,7 @@ object WGrupos: TWGrupos
     end
     object BtnEdtGuardar: TfcImageBtn
       Left = 10
-      Top = 215
+      Top = 218
       Width = 83
       Height = 25
       Cursor = crHandPoint
@@ -1175,7 +1176,7 @@ object WGrupos: TWGrupos
     end
     object BtnEdtCancelar: TfcImageBtn
       Left = 10
-      Top = 243
+      Top = 246
       Width = 83
       Height = 25
       Cursor = crHandPoint
@@ -1418,7 +1419,7 @@ object WGrupos: TWGrupos
     end
     object Navegador: TDBNavegadorNotarios
       Left = 6
-      Top = 163
+      Top = 164
       Width = 88
       Height = 43
       TabOrder = 5
@@ -1525,7 +1526,7 @@ object WGrupos: TWGrupos
     end
     object BtnNavImprimir: TfcImageBtn
       Left = 10
-      Top = 113
+      Top = 114
       Width = 83
       Height = 25
       Cursor = crHandPoint
@@ -2012,7 +2013,7 @@ object WGrupos: TWGrupos
     Left = 23
     Top = 37
     Width = 652
-    Height = 46
+    Height = 52
     Caption = ' Buscar '
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
@@ -2022,23 +2023,23 @@ object WGrupos: TWGrupos
     ParentFont = False
     TabOrder = 2
     object Label4: TLabel
-      Left = 166
+      Left = 224
       Top = 21
-      Width = 65
+      Width = 44
       Height = 13
-      Caption = 'Descripci'#243'n'
+      Caption = 'Nombre'
     end
     object Label5: TLabel
-      Left = 44
+      Left = 16
       Top = 21
-      Width = 34
+      Width = 43
       Height = 13
-      Caption = 'Grupo'
+      Caption = 'Secci'#243'n'
     end
-    object FiltroBDescripcion: TOvcDbPictureField
-      Left = 238
+    object FiltroBNombre: TOvcDbPictureField
+      Left = 281
       Top = 18
-      Width = 373
+      Width = 268
       Height = 20
       Cursor = crHandPoint
       DataField = 'BDescripcion'
@@ -2057,20 +2058,20 @@ object WGrupos: TWGrupos
       Font.Height = -11
       Font.Name = 'Arial'
       Font.Style = []
-      MaxLength = 30
+      MaxLength = 50
       ParentFont = False
       PictureMask = '!'
-      TabOrder = 0
+      TabOrder = 1
       OnEnter = LimpiarFiltro
     end
-    object FiltroBGrupo: TOvcDbPictureField
-      Left = 86
+    object FiltroBCodigo: TOvcDbPictureField
+      Left = 71
       Top = 18
-      Width = 39
-      Height = 21
-      DataField = 'BGrupo'
+      Width = 97
+      Height = 20
+      Cursor = crHandPoint
+      DataField = 'BCodigo'
       DataSource = sFiltro
-      FieldType = ftString
       AutoSize = False
       CaretOvr.Shape = csBlock
       Controller = OvcController1
@@ -2080,16 +2081,16 @@ object WGrupos: TWGrupos
       EFColors.Error.TextColor = clBlack
       EFColors.Highlight.BackColor = clHighlight
       EFColors.Highlight.TextColor = clHighlightText
-      Epoch = 1900
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = clBlack
       Font.Height = -11
-      Font.Name = 'Tahoma'
+      Font.Name = 'Arial'
       Font.Style = []
-      MaxLength = 3
+      MaxLength = 10
       ParentFont = False
       PictureMask = '!'
-      TabOrder = 1
+      TabOrder = 0
+      OnEnter = LimpiarFiltro
     end
   end
   object fcIBCerrar: TfcImageBtn
@@ -2285,52 +2286,55 @@ object WGrupos: TWGrupos
     BufferChunks = 32
     CachedUpdates = False
     DeleteSQL.Strings = (
-      'DELETE FROM GRUPOS'
+      'DELETE FROM SECCION'
       'WHERE'
       
-        '  GRUPO                          =:old_GRUPO                    ' +
+        '  ID_SECCION                     =:old_ID_SECCION               ' +
         '       ')
     InsertSQL.Strings = (
-      'INSERT INTO GRUPOS'
+      'INSERT INTO SECCION'
       
-        '  (DESCRIPCION                    ,GRUPO                        ' +
+        '  (NOMBRE                         ,ID_SECCION                   ' +
         '  )'
       'VALUES'
       
-        '  (:DESCRIPCION                    ,:GRUPO                      ' +
+        '  (:NOMBRE                         ,:ID_SECCION                 ' +
         '    )')
     RefreshSQL.Strings = (
       'SELECT'
       '  *'
-      'FROM GRUPOS'
+      'FROM SECCION'
       'WHERE'
       
-        '  GRUPO                          =?GRUPO                        ' +
+        '  ID_SECCION                     =?ID_SECCION                   ' +
         '   ')
     SelectSQL.Strings = (
-      'SELECT * FROM GRUPOS')
+      'SELECT * FROM SECCION')
     ModifySQL.Strings = (
-      'UPDATE GRUPOS'
+      'UPDATE SECCION'
       'SET'
       
-        '  DESCRIPCION                    =:DESCRIPCION                  ' +
+        '  NOMBRE                         =:NOMBRE                       ' +
         '   '
       'WHERE'
       
-        '  GRUPO                          =:GRUPO                        ' +
+        '  ID_SECCION                     =:ID_SECCION                   ' +
         '   ')
-    TableName = 'GRUPOS'
+    TableName = 'SECCION'
     Left = 441
     Top = 372
-    object QFicheroGRUPO: TIBStringField
-      Alignment = taCenter
-      DisplayWidth = 8
-      FieldName = 'GRUPO'
-      Size = 3
+    object QFicheroID_SECCION: TIBStringField
+      DisplayLabel = 'SECCI'#211'N'
+      DisplayWidth = 10
+      FieldName = 'ID_SECCION'
+      Origin = 'SECCION.ID_SECCION'
+      Required = True
+      Size = 10
     end
-    object QFicheroDESCRIPCION: TIBStringField
-      DisplayWidth = 97
-      FieldName = 'DESCRIPCION'
+    object QFicheroNOMBRE: TIBStringField
+      DisplayWidth = 46
+      FieldName = 'NOMBRE'
+      Origin = 'SECCION.NOMBRE'
       Size = 50
     end
   end
@@ -2350,5 +2354,10 @@ object WGrupos: TWGrupos
     DataSet = TbFiltro
     Left = 490
     Top = 421
+  end
+  object DataSource: TDataSource
+    AutoEdit = False
+    Left = 104
+    Top = 162
   end
 end

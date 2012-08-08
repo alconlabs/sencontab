@@ -1,8 +1,9 @@
-object WGrupos: TWGrupos
-  Left = 459
-  Top = 237
+object TypesOfJournalView: TTypesOfJournalView
+  Left = 231
+  Top = 186
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsNone
+  Caption = 'Archivo de TIPOS DE DIARIO'
   ClientHeight = 493
   ClientWidth = 789
   Color = 14275008
@@ -31,9 +32,9 @@ object WGrupos: TWGrupos
   object Label3: TLabel
     Left = 24
     Top = 13
-    Width = 148
+    Width = 214
     Height = 19
-    Caption = 'Archivo de Grupos'
+    Caption = 'Archivo de Tipos de Diario'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -16
@@ -54,16 +55,16 @@ object WGrupos: TWGrupos
   end
   object PanelSombra: TPanel
     Left = 23
-    Top = 86
-    Width = 652
-    Height = 324
+    Top = 92
+    Width = 354
+    Height = 378
     BevelOuter = bvNone
     TabOrder = 8
     object Rejilla: TwwDBGrid
       Left = 0
       Top = 0
-      Width = 652
-      Height = 324
+      Width = 354
+      Height = 378
       TabStop = False
       DittoAttributes.ShortCutDittoField = 0
       DittoAttributes.ShortCutDittoRecord = 0
@@ -71,8 +72,8 @@ object WGrupos: TWGrupos
       DisableThemesInTitle = False
       PictureMaskFromDataSet = False
       Selected.Strings = (
-        'GRUPO'#9'8'#9'GRUPO'
-        'DESCRIPCION'#9'97'#9'DESCRIPCION'#9'F')
+        'TIPODIARIO'#9'10'#9'TIPO'
+        'DESCRIPCION'#9'46'#9'DESCRIPCI'#211'N'#9'F')
       IniAttributes.Delimiter = ';;'
       TitleColor = 10841401
       FixedCols = 0
@@ -89,7 +90,7 @@ object WGrupos: TWGrupos
       Options = [dgTitles, dgColumnResize, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgWordWrap]
       ParentFont = False
       TabOrder = 0
-      TitleAlignment = taLeftJustify
+      TitleAlignment = taCenter
       TitleFont.Charset = ANSI_CHARSET
       TitleFont.Color = clWhite
       TitleFont.Height = -11
@@ -104,18 +105,18 @@ object WGrupos: TWGrupos
     end
   end
   object Datos: TGroupBox
-    Left = 23
-    Top = 415
-    Width = 652
-    Height = 60
+    Left = 380
+    Top = 85
+    Width = 295
+    Height = 386
     TabOrder = 0
     object Label1: TLabel
-      Left = 28
-      Top = 12
-      Width = 34
+      Left = 15
+      Top = 120
+      Width = 79
       Height = 16
       AutoSize = False
-      Caption = 'Grupo'
+      Caption = 'Tipo'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clNavy
       Font.Height = -11
@@ -124,8 +125,8 @@ object WGrupos: TWGrupos
       ParentFont = False
     end
     object Label2: TLabel
-      Left = 76
-      Top = 12
+      Left = 15
+      Top = 167
       Width = 77
       Height = 16
       AutoSize = False
@@ -137,10 +138,10 @@ object WGrupos: TWGrupos
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object eNombre: TOvcDbPictureField
-      Left = 77
-      Top = 26
-      Width = 512
+    object eDescripcion: TOvcDbPictureField
+      Left = 15
+      Top = 181
+      Width = 266
       Height = 20
       DataField = 'DESCRIPCION'
       DataSource = SFichero
@@ -160,17 +161,17 @@ object WGrupos: TWGrupos
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = []
-      MaxLength = 50
+      MaxLength = 30
       ParentFont = False
       PictureMask = '!'
-      TabOrder = 0
+      TabOrder = 1
     end
-    object eCampoInicial: TOvcDbPictureField
-      Left = 26
-      Top = 26
-      Width = 39
+    object eCodigo: TOvcDbPictureField
+      Left = 15
+      Top = 135
+      Width = 51
       Height = 20
-      DataField = 'GRUPO'
+      DataField = 'TIPODIARIO'
       DataSource = SFichero
       FieldType = ftString
       AutoSize = False
@@ -188,10 +189,10 @@ object WGrupos: TWGrupos
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = []
-      MaxLength = 3
+      MaxLength = 2
       ParentFont = False
-      PictureMask = '!'
-      TabOrder = 1
+      PictureMask = '!!'
+      TabOrder = 0
     end
   end
   object Panel1: TPanel
@@ -429,6 +430,7 @@ object WGrupos: TWGrupos
         5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
         6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
         526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
+      NumGlyphs = 0
       ParentClipping = True
       ParentFont = False
       ShadeStyle = fbsNormal
@@ -671,7 +673,6 @@ object WGrupos: TWGrupos
         5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
         6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
         526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
-      NumGlyphs = 0
       ParentClipping = True
       ParentFont = False
       ShadeStyle = fbsNormal
@@ -914,7 +915,6 @@ object WGrupos: TWGrupos
         5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
         6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
         526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
-      NumGlyphs = 0
       ParentClipping = True
       ParentFont = False
       ShadeStyle = fbsNormal
@@ -932,7 +932,7 @@ object WGrupos: TWGrupos
     end
     object BtnEdtGuardar: TfcImageBtn
       Left = 10
-      Top = 215
+      Top = 218
       Width = 83
       Height = 25
       Cursor = crHandPoint
@@ -1157,7 +1157,6 @@ object WGrupos: TWGrupos
         5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
         6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
         526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
-      NumGlyphs = 0
       ParentClipping = True
       ParentFont = False
       ShadeStyle = fbsNormal
@@ -1175,7 +1174,7 @@ object WGrupos: TWGrupos
     end
     object BtnEdtCancelar: TfcImageBtn
       Left = 10
-      Top = 243
+      Top = 246
       Width = 83
       Height = 25
       Cursor = crHandPoint
@@ -1400,7 +1399,6 @@ object WGrupos: TWGrupos
         5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
         6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
         526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
-      NumGlyphs = 0
       ParentClipping = True
       ParentFont = False
       ShadeStyle = fbsNormal
@@ -1418,7 +1416,7 @@ object WGrupos: TWGrupos
     end
     object Navegador: TDBNavegadorNotarios
       Left = 6
-      Top = 163
+      Top = 164
       Width = 88
       Height = 43
       TabOrder = 5
@@ -1510,7 +1508,6 @@ object WGrupos: TWGrupos
         00BE0000BE0000BE0000BE0000BE0000BE0000BE0000BE0000BE0000BE0000BE
         0000BE0000BE0000BE0000BE0000BE0000BE0000BE0000BE0000BE0000BE0000
         BE0000BE0000}
-      NumGlyphs = 0
       ParentClipping = True
       ShadeStyle = fbsNormal
       TabOrder = 6
@@ -1525,7 +1522,7 @@ object WGrupos: TWGrupos
     end
     object BtnNavImprimir: TfcImageBtn
       Left = 10
-      Top = 113
+      Top = 114
       Width = 83
       Height = 25
       Cursor = crHandPoint
@@ -1750,6 +1747,7 @@ object WGrupos: TWGrupos
         5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
         6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
         526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
+      NumGlyphs = 0
       ParentClipping = True
       ParentFont = False
       ShadeStyle = fbsNormal
@@ -1992,6 +1990,7 @@ object WGrupos: TWGrupos
         5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
         6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
         526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
+      NumGlyphs = 0
       ParentClipping = True
       ParentFont = False
       ShadeStyle = fbsNormal
@@ -2012,7 +2011,7 @@ object WGrupos: TWGrupos
     Left = 23
     Top = 37
     Width = 652
-    Height = 46
+    Height = 52
     Caption = ' Buscar '
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
@@ -2022,23 +2021,23 @@ object WGrupos: TWGrupos
     ParentFont = False
     TabOrder = 2
     object Label4: TLabel
-      Left = 166
+      Left = 170
       Top = 21
       Width = 65
       Height = 13
       Caption = 'Descripci'#243'n'
     end
     object Label5: TLabel
-      Left = 44
+      Left = 16
       Top = 21
-      Width = 34
+      Width = 24
       Height = 13
-      Caption = 'Grupo'
+      Caption = 'Tipo'
     end
     object FiltroBDescripcion: TOvcDbPictureField
-      Left = 238
+      Left = 247
       Top = 18
-      Width = 373
+      Width = 220
       Height = 20
       Cursor = crHandPoint
       DataField = 'BDescripcion'
@@ -2060,17 +2059,17 @@ object WGrupos: TWGrupos
       MaxLength = 30
       ParentFont = False
       PictureMask = '!'
-      TabOrder = 0
+      TabOrder = 1
       OnEnter = LimpiarFiltro
     end
-    object FiltroBGrupo: TOvcDbPictureField
-      Left = 86
+    object FiltroBCodigo: TOvcDbPictureField
+      Left = 74
       Top = 18
-      Width = 39
-      Height = 21
-      DataField = 'BGrupo'
+      Width = 43
+      Height = 20
+      Cursor = crHandPoint
+      DataField = 'BCodigo'
       DataSource = sFiltro
-      FieldType = ftString
       AutoSize = False
       CaretOvr.Shape = csBlock
       Controller = OvcController1
@@ -2080,16 +2079,16 @@ object WGrupos: TWGrupos
       EFColors.Error.TextColor = clBlack
       EFColors.Highlight.BackColor = clHighlight
       EFColors.Highlight.TextColor = clHighlightText
-      Epoch = 1900
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = clBlack
       Font.Height = -11
-      Font.Name = 'Tahoma'
+      Font.Name = 'Arial'
       Font.Style = []
-      MaxLength = 3
+      MaxLength = 2
       ParentFont = False
       PictureMask = '!'
-      TabOrder = 1
+      TabOrder = 0
+      OnEnter = LimpiarFiltro
     end
   end
   object fcIBCerrar: TfcImageBtn
@@ -2142,7 +2141,6 @@ object WGrupos: TWGrupos
       C1EBD4C5EDD2BEEACAB3E9C7B0E3C0ACC8A696A98879EBD5C9F2DBCCF8DFCFF6
       DDC9F2D5C0ECD0B8ECD1BCF0D8C2EBD5C3E6D2C0E7D5C4ECDBC8F0DAC8EED7C1
       F1DAC0F7E0CAE2CFC2E9D5CAF0D5C7F2D2BFF6D5C2F5D4C1DEBDAEC0A093}
-    NumGlyphs = 0
     ParentClipping = False
     ShadeStyle = fbsNormal
     TabOrder = 3
@@ -2236,6 +2234,7 @@ object WGrupos: TWGrupos
       BBEFCFBCF1CDBBF1CCB8F1C9B6E4BDA7C8A18BAB8670E4D7C9EEE1D3EFDFD2E3
       D3C6E2CFC0EAD7C8F0D9CAE9D2C3F3DACAF0D7C7EED6C4EED6C4EED8C6EDD7C5
       E8D5C0E6D0BEF3D9C9F7D7CAF5D4C5F5D1C1F8D1C2F5CDBBE1B9A6CBA390}
+    NumGlyphs = 0
     ParentClipping = False
     ShadeStyle = fbsNormal
     TabOrder = 7
@@ -2285,53 +2284,58 @@ object WGrupos: TWGrupos
     BufferChunks = 32
     CachedUpdates = False
     DeleteSQL.Strings = (
-      'DELETE FROM GRUPOS'
+      'DELETE FROM TIPODIARIO'
       'WHERE'
       
-        '  GRUPO                          =:old_GRUPO                    ' +
+        '  TIPODIARIO                     =:old_TIPODIARIO               ' +
         '       ')
     InsertSQL.Strings = (
-      'INSERT INTO GRUPOS'
+      'INSERT INTO TIPODIARIO'
       
-        '  (DESCRIPCION                    ,GRUPO                        ' +
+        '  (DESCRIPCION                    ,TIPODIARIO                   ' +
         '  )'
       'VALUES'
       
-        '  (:DESCRIPCION                    ,:GRUPO                      ' +
+        '  (:DESCRIPCION                    ,:TIPODIARIO                 ' +
         '    )')
     RefreshSQL.Strings = (
       'SELECT'
       '  *'
-      'FROM GRUPOS'
+      'FROM TIPODIARIO'
       'WHERE'
       
-        '  GRUPO                          =?GRUPO                        ' +
+        '  TIPODIARIO                     =?TIPODIARIO                   ' +
         '   ')
     SelectSQL.Strings = (
-      'SELECT * FROM GRUPOS')
+      'SELECT * FROM TIPODIARIO')
     ModifySQL.Strings = (
-      'UPDATE GRUPOS'
+      'UPDATE TIPODIARIO'
       'SET'
       
         '  DESCRIPCION                    =:DESCRIPCION                  ' +
         '   '
       'WHERE'
       
-        '  GRUPO                          =:GRUPO                        ' +
+        '  TIPODIARIO                     =:TIPODIARIO                   ' +
         '   ')
-    TableName = 'GRUPOS'
+    TableName = 'TIPODIARIO'
     Left = 441
     Top = 372
-    object QFicheroGRUPO: TIBStringField
-      Alignment = taCenter
-      DisplayWidth = 8
-      FieldName = 'GRUPO'
-      Size = 3
+    object QFicheroTIPODIARIO: TIBStringField
+      DisplayLabel = 'TIPO'
+      DisplayWidth = 10
+      FieldName = 'TIPODIARIO'
+      Origin = 'TIPODIARIO.TIPODIARIO'
+      Required = True
+      FixedChar = True
+      Size = 2
     end
     object QFicheroDESCRIPCION: TIBStringField
-      DisplayWidth = 97
+      DisplayLabel = 'DESCRIPCI'#211'N'
+      DisplayWidth = 46
       FieldName = 'DESCRIPCION'
-      Size = 50
+      Origin = 'TIPODIARIO.DESCRIPCION'
+      Size = 30
     end
   end
   object Transaccion: TIBTransaction
@@ -2350,5 +2354,10 @@ object WGrupos: TWGrupos
     DataSet = TbFiltro
     Left = 490
     Top = 421
+  end
+  object DataSource: TDataSource
+    AutoEdit = False
+    Left = 104
+    Top = 162
   end
 end

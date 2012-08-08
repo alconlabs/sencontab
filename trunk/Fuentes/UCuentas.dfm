@@ -193,7 +193,7 @@ object WCuentas: TWCuentas
       object FiltroBuscar: TGroupBox
         Left = 0
         Top = 0
-        Width = 0
+        Width = 652
         Height = 53
         Align = alTop
         Caption = 'BUSCAR'
@@ -361,6 +361,7 @@ object WCuentas: TWCuentas
         Font.Height = -11
         Font.Name = 'Tahoma'
         Font.Style = [fsBold]
+        NumGlyphs = 0
         ParentClipping = True
         ParentFont = False
         ShadeStyle = fbsNormal
@@ -375,7 +376,7 @@ object WCuentas: TWCuentas
       object Rejilla: TwwDBGrid
         Left = 0
         Top = 53
-        Width = 0
+        Width = 652
         Height = 354
         TabStop = False
         DittoAttributes.ShortCutDittoField = 0
@@ -699,8 +700,8 @@ object WCuentas: TWCuentas
       object PaginasInterno: TOvcNotebook
         Left = 0
         Top = 0
-        Width = 20
-        Height = 0
+        Width = 652
+        Height = 407
         ActiveTabFont.Charset = ANSI_CHARSET
         ActiveTabFont.Color = clNavy
         ActiveTabFont.Height = -11
@@ -2582,8 +2583,8 @@ object WCuentas: TWCuentas
       object PagGraficos: TOvcNotebook
         Left = 0
         Top = 0
-        Width = 20
-        Height = 0
+        Width = 652
+        Height = 407
         ActiveTabFont.Charset = ANSI_CHARSET
         ActiveTabFont.Color = clNavy
         ActiveTabFont.Height = -11
@@ -2609,8 +2610,8 @@ object WCuentas: TWCuentas
           object ChartActual: TDBChart
             Left = 0
             Top = 0
-            Width = 17
-            Height = 0
+            Width = 649
+            Height = 384
             BackWall.Brush.Color = clWhite
             BackWall.Brush.Style = bsClear
             Foot.Font.Charset = DEFAULT_CHARSET
@@ -2677,8 +2678,8 @@ object WCuentas: TWCuentas
           object ChartAnterior: TDBChart
             Left = 0
             Top = 0
-            Width = 17
-            Height = 0
+            Width = 649
+            Height = 384
             BackWall.Brush.Color = clWhite
             BackWall.Brush.Style = bsClear
             Foot.Font.Charset = DEFAULT_CHARSET
@@ -2745,8 +2746,8 @@ object WCuentas: TWCuentas
           object ChartCompara: TDBChart
             Left = 0
             Top = 0
-            Width = 17
-            Height = 0
+            Width = 649
+            Height = 384
             BackWall.Brush.Color = clWhite
             BackWall.Brush.Style = bsClear
             Foot.Font.Charset = DEFAULT_CHARSET
@@ -3049,7 +3050,6 @@ object WCuentas: TWCuentas
       5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
       6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
       526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
-    NumGlyphs = 0
     ParentClipping = False
     ParentFont = False
     ShadeStyle = fbsNormal
@@ -3292,6 +3292,7 @@ object WCuentas: TWCuentas
       5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
       6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
       526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
+    NumGlyphs = 0
     ParentClipping = False
     ParentFont = False
     ShadeStyle = fbsNormal
@@ -3534,6 +3535,7 @@ object WCuentas: TWCuentas
       5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
       6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
       526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
+    NumGlyphs = 0
     ParentClipping = False
     ParentFont = False
     ShadeStyle = fbsNormal
@@ -3776,6 +3778,7 @@ object WCuentas: TWCuentas
       5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
       6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
       526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
+    NumGlyphs = 0
     ParentClipping = False
     ParentFont = False
     ShadeStyle = fbsNormal
@@ -4018,6 +4021,7 @@ object WCuentas: TWCuentas
       5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
       6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
       526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
+    NumGlyphs = 0
     ParentClipping = False
     ParentFont = False
     ShadeStyle = fbsNormal
@@ -4260,7 +4264,6 @@ object WCuentas: TWCuentas
       5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
       6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
       526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
-    NumGlyphs = 0
     ParentClipping = False
     ParentFont = False
     ShadeStyle = fbsNormal
@@ -4366,6 +4369,7 @@ object WCuentas: TWCuentas
       BBEFCFBCF1CDBBF1CCB8F1C9B6E4BDA7C8A18BAB8670E4D7C9EEE1D3EFDFD2E3
       D3C6E2CFC0EAD7C8F0D9CAE9D2C3F3DACAF0D7C7EED6C4EED6C4EED8C6EDD7C5
       E8D5C0E6D0BEF3D9C9F7D7CAF5D4C5F5D1C1F8D1C2F5CDBBE1B9A6CBA390}
+    NumGlyphs = 0
     ParentClipping = False
     ShadeStyle = fbsNormal
     TabOrder = 11
@@ -4429,7 +4433,6 @@ object WCuentas: TWCuentas
       C1EBD4C5EDD2BEEACAB3E9C7B0E3C0ACC8A696A98879EBD5C9F2DBCCF8DFCFF6
       DDC9F2D5C0ECD0B8ECD1BCF0D8C2EBD5C3E6D2C0E7D5C4ECDBC8F0DAC8EED7C1
       F1DAC0F7E0CAE2CFC2E9D5CAF0D5C7F2D2BFF6D5C2F5D4C1DEBDAEC0A093}
-    NumGlyphs = 0
     ParentClipping = False
     ShadeStyle = fbsNormal
     TabOrder = 12
@@ -4678,7 +4681,6 @@ object WCuentas: TWCuentas
       5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
       6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
       526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
-    NumGlyphs = 0
     ParentClipping = False
     ParentFont = False
     ShadeStyle = fbsNormal
@@ -4711,7 +4713,6 @@ object WCuentas: TWCuentas
     Top = 55
   end
   object QFichero: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     AfterEdit = QFicheroAfterEdit
     AfterScroll = QFicheroAfterScroll
@@ -5280,7 +5281,6 @@ object WCuentas: TWCuentas
   end
   object Transaccion: TIBTransaction
     Active = False
-    DefaultDatabase = DMRef.IBDSiamCont
     AutoStopAction = saNone
     Left = 283
     Top = 55
@@ -5310,9 +5310,7 @@ object WCuentas: TWCuentas
     Epoch = 2000
   end
   object QAux: TIBSQL
-    Database = DMRef.IBDSiamCont
     ParamCheck = True
-    Transaction = DMRef.IBT1
     Left = 408
     Top = 55
   end

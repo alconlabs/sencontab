@@ -1,4 +1,4 @@
-object WGrupos: TWGrupos
+object GroupsView: TGroupsView
   Left = 459
   Top = 237
   BorderIcons = [biSystemMenu, biMinimize]
@@ -2350,5 +2350,10 @@ object WGrupos: TWGrupos
     DataSet = TbFiltro
     Left = 490
     Top = 421
+  end
+  object DataSource: TDataSource
+    AutoEdit = False
+    Left = 104
+    Top = 162
   end
 end
