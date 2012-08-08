@@ -72,7 +72,7 @@ end;
 function TCountysController.ShowView:Boolean;
 begin
    {Assignament of Resources}
-   FView.Caption     := 'Proyectos';
+   FView.Caption     := 'Provincias';
 
    FView.HelpType    := htKeyword;
    FView.HelpKeyword := FView.Name;
@@ -135,10 +135,10 @@ end;
 procedure TCountysController.OnClick_Delete(Sender: TObject);
 begin
    if DM.QCountys.IsEmpty then Exit;
-   if MessageDlg('¿Desea borrar este proyecto?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
+   if MessageDlg('¿Desea eliminar el elemento seleccionado?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
       try DM.QCountys.Delete;
           DM.QCountys.ApplyUpdates(0);
-      except DatabaseError('No se ha podido borrar la forma de pago seleccionada.');
+      except DatabaseError('Ha sido imposible realizar la eliminación.');
       end;
    end;
 end;

@@ -133,10 +133,10 @@ end;
 procedure TProjectsController.OnClick_Delete(Sender: TObject);
 begin
    if DM.QProjects.IsEmpty then Exit;
-   if MessageDlg('¿Desea borrar este proyecto?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
+   if MessageDlg('¿Desea eliminar el elemento seleccionado?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
       try DM.QProjects.Delete;
           DM.QProjects.ApplyUpdates(0);
-      except DatabaseError('No se ha podido borrar la forma de pago seleccionada.');
+      except DatabaseError('ha sido imposible realizar la eliminación.');
       end;
    end;
 end;

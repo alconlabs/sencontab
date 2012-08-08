@@ -1,6 +1,6 @@
 object CountysView: TCountysView
-  Left = 563
-  Top = 237
+  Left = 564
+  Top = 238
   BorderIcons = []
   BorderStyle = bsSingle
   Caption = 'Provincias'
@@ -38,66 +38,6 @@ object CountysView: TCountysView
     BevelOuter = bvNone
     Color = 14275008
     TabOrder = 0
-    object DBGrid: TDBGrid
-      Left = 0
-      Top = 57
-      Width = 400
-      Height = 289
-      Align = alClient
-      BorderStyle = bsNone
-      Color = 16773322
-      DataSource = DataSource
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Arial'
-      Font.Style = []
-      Options = [dgTitles, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete]
-      ParentFont = False
-      TabOrder = 0
-      TitleFont.Charset = DEFAULT_CHARSET
-      TitleFont.Color = clWindowText
-      TitleFont.Height = -11
-      TitleFont.Name = 'MS Sans Serif'
-      TitleFont.Style = []
-      Columns = <
-        item
-          Expanded = False
-          FieldName = 'PROVINCIA'
-          Title.Color = 5064266
-          Title.Font.Charset = DEFAULT_CHARSET
-          Title.Font.Color = clWhite
-          Title.Font.Height = -11
-          Title.Font.Name = 'MS Sans Serif'
-          Title.Font.Style = []
-          Width = 56
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'NOMBRE'
-          Title.Color = 5064266
-          Title.Font.Charset = DEFAULT_CHARSET
-          Title.Font.Color = clWhite
-          Title.Font.Height = -11
-          Title.Font.Name = 'MS Sans Serif'
-          Title.Font.Style = []
-          Width = 284
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'CODIGO'
-          Title.Color = 5064266
-          Title.Font.Charset = DEFAULT_CHARSET
-          Title.Font.Color = clWhite
-          Title.Font.Height = -11
-          Title.Font.Name = 'MS Sans Serif'
-          Title.Font.Style = []
-          Width = 39
-          Visible = True
-        end>
-    end
     object PnlBtn: TPanel
       Left = 400
       Top = 57
@@ -107,7 +47,7 @@ object CountysView: TCountysView
       BevelInner = bvLowered
       BorderStyle = bsSingle
       Color = clSilver
-      TabOrder = 1
+      TabOrder = 0
       object BtnNew: TSpeedButton
         Left = 10
         Top = 14
@@ -200,7 +140,7 @@ object CountysView: TCountysView
       Height = 57
       Align = alTop
       Color = 14275008
-      TabOrder = 2
+      TabOrder = 1
       object Label1: TLabel
         Left = 7
         Top = 13
@@ -262,6 +202,31 @@ object CountysView: TCountysView
         DataSource = DataSource
         TabOrder = 2
       end
+    end
+    object DBGrid: TDBGrid
+      Left = 0
+      Top = 57
+      Width = 400
+      Height = 289
+      TabStop = False
+      Align = alClient
+      BorderStyle = bsNone
+      Color = 14275008
+      DataSource = DataSource
+      FixedColor = 10657371
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      Options = [dgTitles, dgColumnResize, dgColLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+      ParentFont = False
+      TabOrder = 2
+      TitleFont.Charset = ANSI_CHARSET
+      TitleFont.Color = clBlack
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = [fsBold]
     end
   end
   object DataSource: TDataSource

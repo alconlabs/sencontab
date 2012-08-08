@@ -31,7 +31,6 @@ uses
   UPunteoDiario in 'Fuentes\UPunteoDiario.pas' {WPunteoDiario},
   UCarteraEfectos in 'Fuentes\UCarteraEfectos.pas' {WCarteraEfectos},
   UAmortizaciones in 'Fuentes\UAmortizaciones.pas' {WAmortizaciones},
-  UFormasPago in 'Fuentes\UFormasPago.pas' {WFormasPago},
   UEmpresas in 'Fuentes\UEmpresas.pas' {FormEnterprises},
   UDetalleIVA in 'Fuentes\UDetalleIVA.pas' {WDetalleIVA},
   UEnlaceContable in 'Fuentes\UEnlaceContable.pas' {WEnlaceContable},

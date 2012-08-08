@@ -1,6 +1,6 @@
 object ProjectsView: TProjectsView
-  Left = 551
-  Top = 202
+  Left = 552
+  Top = 203
   BorderStyle = bsSingle
   Caption = 'Cat'#225'logo de Proyectos'
   ClientHeight = 451
@@ -199,19 +199,20 @@ object ProjectsView: TProjectsView
       BorderStyle = bsNone
       Color = 14275008
       DataSource = DataSource
+      FixedColor = 10657371
       Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -12
+      Font.Color = clBlack
+      Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = []
-      Options = [dgTitles, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+      Options = [dgTitles, dgColumnResize, dgColLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
       ParentFont = False
       TabOrder = 2
       TitleFont.Charset = ANSI_CHARSET
-      TitleFont.Color = clWindowText
-      TitleFont.Height = -12
+      TitleFont.Color = clBlack
+      TitleFont.Height = -11
       TitleFont.Name = 'Tahoma'
-      TitleFont.Style = []
+      TitleFont.Style = [fsBold]
     end
   end
   object DataSource: TDataSource
