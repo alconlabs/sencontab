@@ -19,9 +19,9 @@ type
     procedure CreateMenuOptions(prmTreeView :TTreeView; prmMenuItem :TMenuItem; prmNode :TTreeNode);
     {----------------------------------------------------------------------}
     procedure MenuOptionParametersEnterprise(Sender: TObject);
-    procedure MenuOptionGrupos(Sender: TObject);
-    procedure MenuOptionProvincias(Sender: TObject);
-    procedure MenuOptionPaises(Sender: TObject);
+    procedure MenuOptionGroups(Sender: TObject);
+    procedure MenuOptionCountys(Sender: TObject);
+    procedure MenuOptionStates(Sender: TObject);
     procedure MenuOptionConceptos(Sender: TObject);
     procedure MenuOptionTitulos(Sender: TObject);
     procedure MenuOptionCuentas(Sender: TObject);
@@ -47,7 +47,7 @@ type
     procedure MenuOptionPunteoAutomaticoAsientos(Sender: TObject);
     procedure MenuOptionAmortizaciones(Sender: TObject);
     procedure MenuOptionCarteraEfectos(Sender: TObject);
-    procedure MenuOptionCuentasAnaliticas(Sender: TObject);
+    procedure MenuOptionAnalytics(Sender: TObject);
     procedure MenuOptionLibroFacturasBienesInversion(Sender: TObject);
     procedure MenuOptionOperacionesCEE(Sender: TObject);
     procedure MenuOptionEnlaceContable(Sender: TObject);
@@ -58,13 +58,13 @@ type
     procedure MenuOptionCopiaAsientosEntreEmpresas(Sender: TObject);
     procedure MenuOptionAcumulados(Sender: TObject);
     procedure MenuOptionExplotacion(Sender: TObject);
-    procedure MenuOptionTiposDiario(Sender: TObject);
-    procedure MenuOptionComerciales(Sender: TObject);
-    procedure MenuOptionDelegaciones(Sender: TObject);
-    procedure MenuOptionDepartamentos(Sender: TObject);
-    procedure MenuOptionSecciones(Sender: TObject);
-    procedure MenuOptionProyectos(Sender: TObject);
-    procedure MenuOptionFormasPago(Sender: TObject);
+    procedure MenuOptionTypesOfJournal(Sender: TObject);
+    procedure MenuOptionSalespersons(Sender: TObject);
+    procedure MenuOptionDelegations(Sender: TObject);
+    procedure MenuOptionDepartments(Sender: TObject);
+    procedure MenuOptionSections(Sender: TObject);
+    procedure MenuOptionProjects(Sender: TObject);
+    procedure MenuOptionPaymentMethods(Sender: TObject);
     procedure MenuOptionIRPF115(Sender: TObject);
     procedure MenuOptionImpresionPlanContable(Sender: TObject);
     procedure MenuOptionImpresionPlanAnalitica(Sender: TObject);
@@ -90,14 +90,56 @@ implementation
 uses Forms, Controls, SysUtils, Utilidades, CustomView, Globales,
      ParametersEnterpriseController,
      ParametersInvoicingController,
-     UAmortizaciones, UAnaliticas, UBalAcumulados, UBalExplotacion, UBorradoDiario,
-     UCargaApuntes, UCargaCobrosPagos, UCargaRapidaFacturas, UCargaRapidaNominas, UCarteraEfectos,
-     UCierreEjercicio, UComerciales, UConceptos, UCopiaAsientos, UCuentas, UDelegaciones, UDepartamentos,
-     UDiario, UEmpresas, UEnlaceContable, UEspere, UFiltro347, UFiltroBalances, UFiltroLibroFacturasEmitidas,
-     UFiltroListadosAsientos, UFiltroListadosMayor, UFiltroSitPgGg, UFormasPago, UGrupos, UImportacion,
-     UIrpf110, UIrpf115, UISoc202, UPaises,      UPlanAnalico, UPlanContable, UPreviewForm, Proyectos, UPunteoDiario, URecalculoSaldos,
-     USecciones, USubCuentas, UTiposDiario, UTitulos, UTraspasoApuntes, UTraspasoDatos,
-     Provincias, UActualizacionBD;
+     ProjectsController,
+     CountysController,
+     StatesController,
+     GroupsController,
+     PaymentMethodsController,
+     TypesOfJournalController,
+     SalespersonsController,
+     DelegationsController,
+     DepartmentsController,
+     SectionsController,
+     AnalyticsController,
+     UConceptos,          {mantenimiento}
+     UTitulos,            {mantenimiento}
+     UCuentas,            {maintenimiento complejo}
+     USubCuentas,         {mantenimiento}
+     {Carga de.... }
+     UCargaApuntes,       {Gestion}
+     UCargaCobrosPagos,   {Gestion}
+     UCargaRapidaFacturas,{Gestion}
+     UCargaRapidaNominas, {Gestion}
+     UCarteraEfectos,     {Gestion + mantenimiento}
+     UDiario,             {Gestión + Mantenimiento}
+     { VARIADO }
+     UBorradoDiario,
+     UEmpresas,
+     UCopiaAsientos,
+     UEnlaceContable,
+     UActualizacionBD,
+     UPreviewForm,
+     UImportacion,
+     URecalculoSaldos,
+     UTraspasoApuntes,
+     UTraspasoDatos,
+     { FILTROS }
+     UAmortizaciones,  {proceso}
+     UBalAcumulados,   {proceso}
+     UBalExplotacion,  {proceso}
+     UCierreEjercicio, {proceso}
+     UPlanContable,                {proceso - Informe}
+     UPlanAnalico,                 {proceso - Informe}
+     UFiltro347,                   {proceso - Informe}
+     UFiltroBalances,              {proceso - Informe}
+     UFiltroLibroFacturasEmitidas, {proceso - Informe}
+     UFiltroListadosAsientos,      {proceso - Informe}
+     UFiltroListadosMayor,         {proceso - Informe}
+     UFiltroSitPgGg,               {proceso - Informe}
+     UIrpf110,                     {proceso - Informe}
+     UIrpf115,                     {proceso - Informe}
+     UISoc202,                     {proceso - Informe}
+     UPunteoDiario;                {proceso - Informe} 
 
 constructor TMenuMainController.Create(ADBController    :TDBController;
                                        AUser            :TUser;
@@ -151,9 +193,9 @@ begin
    { Assignament of Delegates to the Menu Items.                          }
    {----------------------------------------------------------------------}
     FView.MenuItemParametersEnterprise.OnClick         := MenuOptionParametersEnterprise;
-    FView.MenuItemGrupos.OnClick                       := MenuOptionGrupos;
-    FView.MenuItemProvincias.OnClick                   := MenuOptionProvincias;
-    FView.MenuItemPaises.OnClick                       := MenuOptionPaises;
+    FView.MenuItemGroups.OnClick                       := MenuOptionGroups;
+    FView.MenuItemCountys.OnClick                      := MenuOptionCountys;
+    FView.MenuItemStates.OnClick                       := MenuOptionStates;
     FView.MenuItemConceptos.OnClick                    := MenuOptionConceptos;
     FView.MenuItemTitulos.OnClick                      := MenuOptionTitulos;
     FView.MenuItemCuentas.OnClick                      := MenuOptionCuentas;
@@ -179,7 +221,7 @@ begin
     FView.MenuItemPunteoAutomaticoAsientos.OnClick     := MenuOptionPunteoAutomaticoAsientos;
     FView.MenuItemAmortizaciones.OnClick               := MenuOptionAmortizaciones;
     FView.MenuItemCarteraEfectos.OnClick               := MenuOptionCarteraEfectos;
-    FView.MenuItemCuentasAnaliticas.OnClick            := MenuOptionCuentasAnaliticas;
+    FView.MenuItemAnalytics.OnClick                    := MenuOptionAnalytics;
     FView.MenuItemLibroFacturasBienesInversion.OnClick := MenuOptionLibroFacturasBienesInversion;
     FView.MenuItemOperacionesCEE.OnClick               := MenuOptionOperacionesCEE;
     FView.MenuItemEnlaceContable.OnClick               := MenuOptionEnlaceContable;
@@ -190,13 +232,13 @@ begin
     FView.MenuItemCopiaAsientosEntreEmpresas.OnClick   := MenuOptionCopiaAsientosEntreEmpresas;
     FView.MenuItemAcumulados.OnClick                   := MenuOptionAcumulados;
     FView.MenuItemExplotacion.OnClick                  := MenuOptionExplotacion;
-    FView.MenuItemTiposDiario.OnClick                  := MenuOptionTiposDiario;
-    FView.MenuItemComerciales.OnClick                  := MenuOptionComerciales;
-    FView.MenuItemDelegaciones.OnClick                 := MenuOptionDelegaciones;
-    FView.MenuItemDepartamentos.OnClick                := MenuOptionDepartamentos;
-    FView.MenuItemSecciones.OnClick                    := MenuOptionSecciones;
-    FView.MenuItemProyectos.OnClick                    := MenuOptionProyectos;
-    FView.MenuItemFormasPago.OnClick                   := MenuOptionFormasPago;
+    FView.MenuItemTypesOfJournal.OnClick               := MenuOptionTypesOfJournal;
+    FView.MenuItemSalespersons.OnClick                 := MenuOptionSalespersons;
+    FView.MenuItemDelegations.OnClick                  := MenuOptionDelegations;
+    FView.MenuItemDepartments.OnClick                  := MenuOptionDepartments;
+    FView.MenuItemSections.OnClick                     := MenuOptionSections;
+    FView.MenuItemProjects.OnClick                     := MenuOptionProjects;
+    FView.MenuItemPaymentMethods.OnClick               := MenuOptionPaymentMethods;
     FView.MenuItemIRPF115.OnClick                      := MenuOptionIRPF115;
     FView.MenuItemImpresionPlanContable.OnClick        := MenuOptionImpresionPlanContable;
     FView.MenuItemImpresionPlanAnalitica.OnClick       := MenuOptionImpresionPlanAnalitica;
@@ -214,37 +256,61 @@ begin
    FView.Show;
 end;
 
-procedure TMenuMainController.MenuOptionGrupos(Sender: TObject);
+procedure TMenuMainController.MenuOptionGroups(Sender: TObject);
 begin
-   {$Message Warn '1ª Ventana para Test}
+   {$Message Warn 'G R O U P S'}
+   with TGroupsController.Create(FCurrentConfig) do begin
+      try
+         ShowView;
+      finally
+         Free;
+      end;
+   end;
+   {$Message Warn '1ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WGRUPOS') then Exit;
-   if not Assigned(WGrupos) then WGrupos := TWGrupos.Create(nil);
-   WGrupos.Show;
+   //if not Assigned(WGrupos) then WGrupos := TWGrupos.Create(nil);
+   //WGrupos.Show;
 end;
 
-procedure TMenuMainController.MenuOptionProvincias(Sender: TObject);
+procedure TMenuMainController.MenuOptionCountys(Sender: TObject);
 begin
-   {$Message Warn '2ª Ventana para Test}
+   {$Message Warn 'C O U N T Y S'}
+   with TCountysController.Create(FCurrentConfig) do begin
+      try
+         ShowView;
+      finally
+         Free;
+      end;
+   end;
+   {$Message Warn '2ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WPROVINCIAS') then Exit;
    //if not Assigned(WProvincias) then WProvincias := TWProvincias.Create(nil);
    //WProvincias.Show;
 
    {<<<<<<=========>>>>>>>>>} {ccInsertForm(Self, TFormProvincias);}
-   if not Assigned(FormProvincias) then FormProvincias := TFormProvincias.Create(nil);
-   FormProvincias.Show;
+   //if not Assigned(FormProvincias) then FormProvincias := TFormProvincias.Create(nil);
+   //FormProvincias.Show;
 end;
 
-procedure TMenuMainController.MenuOptionPaises(Sender: TObject);
+procedure TMenuMainController.MenuOptionStates(Sender: TObject);
 begin
-   {$Message Warn '3ª Ventana para Test}
+   {$Message Warn 'S T A T E S'}
+   with TStatesController.Create(FCurrentConfig) do begin
+      try
+         ShowView;
+      finally
+         Free;
+      end;
+   end;
+   {$Message Warn '3ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WPAISES') then Exit;
-   if not Assigned(WPaises) then WPaises := TWPaises.Create(nil);
-   WPaises.Show;
+   //if not Assigned(WPaises) then WPaises := TWPaises.Create(nil);
+   //WPaises.Show;
 end;
 
 procedure TMenuMainController.MenuOptionConceptos(Sender: TObject);
 begin
-   {$Message Warn '4ª Ventana para Test}
+   {$Message Warn '4ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WCONCEPTOS') then Exit;
    if not Assigned(WConceptos) then WConceptos := TWConceptos.Create(nil);
    WConceptos.Show;
@@ -252,7 +318,7 @@ end;
 
 procedure TMenuMainController.MenuOptionTitulos(Sender: TObject);
 begin
-   {$Message Warn '6ª Ventana para Test}
+   {$Message Warn '6ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WTITULOS') then Exit;
    if not Assigned(WTitulos) then WTitulos := TWTitulos.Create(nil);
    WTitulos.Show;
@@ -260,7 +326,7 @@ end;
 
 procedure TMenuMainController.MenuOptionCuentas(Sender: TObject);
 begin
-   {$Message Warn '7ª Ventana para Test}
+   {$Message Warn '7ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WCUENTAS') then Exit;
    if not Assigned(WCuentas) then WCuentas := TWCuentas.Create(nil);
    WCuentas.Show;
@@ -268,7 +334,7 @@ end;
 
 procedure TMenuMainController.MenuOptionSubCuentas(Sender: TObject);
 begin
-   {$Message Warn '8ª Ventana para Test}
+   {$Message Warn '8ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WSUBCUENTAS') then Exit;
    if not Assigned(WSubcuentas) then WSubcuentas := TWSubcuentas.Create(nil);
    WSubcuentas.Show;
@@ -276,7 +342,7 @@ end;
 
 procedure TMenuMainController.MenuOptionListadoAsientos(Sender: TObject);
 begin
-   {$Message Warn '9ª Ventana para Test}
+   {$Message Warn '9ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WFILTROLISTADOSASIENTOS') then Exit;
    if not Assigned(WFiltroListadosAsientos) then WFiltroListadosAsientos := TWFiltroListadosAsientos.Create(nil);
    WFiltroListadosAsientos.TipoListado := INF_ASIENTOS;
@@ -286,7 +352,7 @@ end;
 
 procedure TMenuMainController.MenuOptionMayor(Sender: TObject);
 begin
-   {$Message Warn '10ª Ventana para Test}
+   {$Message Warn '10ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WFILTROLISTADOSMAYOR') then Exit;
    if not Assigned(WFiltroListadosMayor) then WFiltroListadosMayor := TWFiltroListadosMayor.Create(nil);
    WFiltroListadosMayor.TipoListado := INF_MAYOR;
@@ -303,7 +369,7 @@ begin
          Free;
       end;
    end;
-   {$Message Warn '11ª Ventana para Test}
+   {$Message Warn '11ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WPARAMETRIZACION') then Exit;
    //if not Assigned(WParametrizacion) then WParametrizacion := TWParametrizacion.Create(nil);
    //WParametrizacion.ShowModal;
@@ -320,7 +386,7 @@ begin
          Free;
       end;
    end;
-   {$Message Warn '12ª Ventana para Test}
+   {$Message Warn '12ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WPARAMETRIZACION') then Exit;
    //ParametersFact := TWParametrizacionFacturacion.Create(Application);
    //try
@@ -332,7 +398,7 @@ end;
 
 procedure TMenuMainController.MenuOptionRecalculoSaldos(Sender: TObject);
 begin
-   {$Message Warn '13ª Ventana para Test}
+   {$Message Warn '13ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WRECALCULOSALDOS') then Exit;
    if not Assigned(WRecalculoSaldos) then WRecalculoSaldos := TWRecalculoSaldos.Create(nil);
    WRecalculoSaldos.ShowModal;
@@ -342,7 +408,7 @@ end;
 
 procedure TMenuMainController.MenuOptionTraspasoApuntesEntreCuentas(Sender: TObject);
 begin
-   {$Message Warn '14ª Ventana para Test}
+   {$Message Warn '14ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WTRASPASOAPUNTES') then Exit;
    if not Assigned(WTraspasoApuntes) then WTraspasoApuntes := TWTraspasoApuntes.Create(nil);
    WTraspasoApuntes.ShowModal;
@@ -352,7 +418,7 @@ end;
 
 procedure TMenuMainController.MenuOptionProcesoAutomatizado(Sender: TObject);
 begin
-   {$Message Warn '15ª Ventana para Test}
+   {$Message Warn '15ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WCIERREEJERCICIO') then Exit;
    if not Assigned(WCierreEjercicio) then WCierreEjercicio := TWCierreEjercicio.Create(nil);
    WCierreEjercicio.ShowModal;
@@ -362,7 +428,7 @@ end;
 
 procedure TMenuMainController.MenuOptionModelo300(Sender: TObject);
 begin
-   {$Message Warn '16ª Ventana para Test}
+   {$Message Warn '16ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WFILTROLIBROFACTEMITIDAS') then Exit;
    if not Assigned(WFiltroLibroFactEmitidas) then WFiltroLibroFactEmitidas := TWFiltroLibroFactEmitidas.Create(nil);
    WFiltroLibroFactEmitidas.TipoListado := INF_MOD_300;
@@ -373,7 +439,7 @@ end;
 
 procedure TMenuMainController.MenuOptionLibroFacturasEmitidas(Sender: TObject);
 begin
-   {$Message Warn '17ª Ventana para Test}
+   {$Message Warn '17ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WFILTROLIBROFACTEMITIDAS') then Exit;
    if not Assigned(WFiltroLibroFactEmitidas) then WFiltroLibroFactEmitidas := TWFiltroLibroFactEmitidas.Create(nil);
    WFiltroLibroFactEmitidas.TipoListado := INF_FACTURAS_EMITIDAS;
@@ -384,7 +450,7 @@ end;
 
 procedure TMenuMainController.MenuOptionLibroFacturasRecibidas(Sender: TObject);
 begin
-   {$Message Warn '18ª Ventana para Test}
+   {$Message Warn '18ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WFILTROLIBROFACTEMITIDAS') then Exit;
    if not Assigned(WFiltroLibroFactEmitidas) then WFiltroLibroFactEmitidas := TWFiltroLibroFactEmitidas.Create(nil);
    WFiltroLibroFactEmitidas.TipoListado := INF_FACTURAS_RECIBIDAS;
@@ -395,7 +461,7 @@ end;
 
 procedure TMenuMainController.MenuOptionOperacionesTerceros347(Sender: TObject);
 begin
-   {$Message Warn '19ª Ventana para Test}
+   {$Message Warn '19ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WFILTRO347') then Exit;
    if not Assigned(WFiltro347) then WFiltro347 := TWFiltro347.Create(nil);
    WFiltro347.TipoListado := INF_MOD_347;
@@ -406,7 +472,7 @@ end;
 
 procedure TMenuMainController.MenuOptionSumasYSaldos(Sender: TObject);
 begin
-   {$Message Warn '20ª Ventana para Test}
+   {$Message Warn '20ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WFILTROBALANCES') then Exit;
    if not Assigned(WFiltroBalances) then WFiltroBalances := TWFiltroBalances.Create(nil);
    WFiltroBalances.TipoListado := INF_BALANCE_SUMAS_Y_SALDOS;
@@ -416,7 +482,7 @@ end;
 
 procedure TMenuMainController.MenuOptionSituacion(Sender: TObject);
 begin
-   {$Message Warn '21ª Ventana para Test}
+   {$Message Warn '21ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WFILTROSITPGGG') then Exit;
    if not Assigned(WFiltroSitPgGg) then WFiltroSitPgGg := TWFiltroSitPgGg.Create(nil);
    WFiltroSitPgGg.TipoListado := INF_BALANCE_SITUACION;
@@ -426,7 +492,7 @@ end;
 
 procedure TMenuMainController.MenuOptionPerdidasYGanancias(Sender: TObject);
 begin
-   {$Message Warn '22ª Ventana para Test}
+   {$Message Warn '22ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WFILTROSITPGGG') then Exit;
    if not Assigned(WFiltroSitPgGg) then WFiltroSitPgGg := TWFiltroSitPgGg.Create(nil);
    WFiltroSitPgGg.TipoListado := INF_BALANCE_PERDIDAS_Y_GANANCIAS;
@@ -436,7 +502,7 @@ end;
 
 procedure TMenuMainController.MenuOptionFacturasCompra(Sender: TObject);
 begin
-   {$Message Warn '23ª Ventana para Test}
+   {$Message Warn '23ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WCARGARAPIDAFACTURAS') then Exit;
    if not Assigned(WCargaRapidaFacturas) then WCargaRapidaFacturas := TWCargaRapidaFacturas.Create(nil);
    WCargaRapidaFacturas.TipoCarga := CARGA_FACTURAS_COMPRA;
@@ -447,7 +513,7 @@ end;
 
 procedure TMenuMainController.MenuOptionCargaSimplificada(Sender: TObject);
 begin
-   {$Message Warn '24ª Ventana para Test}
+   {$Message Warn '24ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WCARGAAPUNTES') then Exit;
    if not Assigned(WCargaApuntes) then WCargaApuntes := TWCargaApuntes.Create(nil);
    WCargaApuntes.ShowModal;
@@ -457,7 +523,7 @@ end;
 
 procedure TMenuMainController.MenuOptionCargaAsientos(Sender: TObject);
 begin
-   {$Message Warn '25ª Ventana para Test}
+   {$Message Warn '25ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WDIARIO') then Exit;
    if not Assigned(WDiario) then WDiario := TWDiario.Create(nil);
    WDiario.Show;
@@ -465,7 +531,7 @@ end;
 
 procedure TMenuMainController.MenuOptionTraspasoDatos(Sender: TObject);
 begin
-   {$Message Warn '26ª Ventana para Test}
+   {$Message Warn '26ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WTRASPASODATOS') then Exit;
    if not Assigned(WTraspasoDatos) then WTraspasoDatos := TWTraspasoDatos.Create(nil);
    WTraspasoDatos.ShowModal;
@@ -475,7 +541,7 @@ end;
 
 procedure TMenuMainController.MenuOptionBorradoGeneralAsientos(Sender: TObject);
 begin
-   {$Message Warn '27ª Ventana para Test}
+   {$Message Warn '27ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WBORRADODIARIO') then Exit;
    if not Assigned(WBorradoDiario) then WBorradoDiario := TWBorradoDiario.Create(nil);
    WBorradoDiario.ShowModal;
@@ -485,7 +551,7 @@ end;
 
 procedure TMenuMainController.MenuOptionPunteoAutomaticoAsientos(Sender: TObject);
 begin
-   {$Message Warn '28ª Ventana para Test}
+   {$Message Warn '28ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WPUNTEODIARIO') then Exit;
    if not Assigned(WPunteoDiario) then WPunteoDiario := TWPunteoDiario.Create(nil);
    WPunteoDiario.ShowModal;
@@ -495,7 +561,7 @@ end;
 
 procedure TMenuMainController.MenuOptionAmortizaciones(Sender: TObject);
 begin
-   {$Message Warn '29ª Ventana para Test}
+   {$Message Warn '29ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WAMORTIZACIONES') then Exit;
    if not Assigned(WAmortizaciones) then WAmortizaciones := TWAmortizaciones.Create(nil);
    WAmortizaciones.ShowModal;
@@ -505,23 +571,31 @@ end;
 
 procedure TMenuMainController.MenuOptionCarteraEfectos(Sender: TObject);
 begin
-   {$Message Warn '30ª Ventana para Test}
+   {$Message Warn '30ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WCARTERAEFECTOS') then Exit;
    if not Assigned(WCarteraEfectos) then WCarteraEfectos := TWCarteraEfectos.Create(nil);
    WCarteraEfectos.Show;
 end;
 
-procedure TMenuMainController.MenuOptionCuentasAnaliticas(Sender: TObject);
+procedure TMenuMainController.MenuOptionAnalytics(Sender: TObject);
 begin
-   {$Message Warn '31ª Ventana para Test}
+   {$Message Warn 'A N A L Y T I C S'}
+   with TAnalyticsController.Create(FCurrentConfig) do begin
+      try
+         ShowView;
+      finally
+         Free;
+      end;
+   end;
+   {$Message Warn '31ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WANALITICAS') then Exit;
-   if not Assigned(WAnaliticas) then WAnaliticas := TWAnaliticas.Create(nil);
-   WAnaliticas.Show;
+   //if not Assigned(WAnaliticas) then WAnaliticas := TWAnaliticas.Create(nil);
+   //WAnaliticas.Show;
 end;
 
 procedure TMenuMainController.MenuOptionLibroFacturasBienesInversion(Sender: TObject);
 begin
-   {$Message Warn '33ª Ventana para Test}
+   {$Message Warn '33ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WFILTROLIBROFACTEMITIDAS') then Exit;
    if not Assigned(WFiltroLibroFactEmitidas) then WFiltroLibroFactEmitidas := TWFiltroLibroFactEmitidas.Create(nil);
    WFiltroLibroFactEmitidas.TipoListado := INF_FACTURAS_BIENES;
@@ -532,7 +606,7 @@ end;
 
 procedure TMenuMainController.MenuOptionOperacionesCEE(Sender: TObject);
 begin
-   {$Message Warn '34ª Ventana para Test}
+   {$Message Warn '34ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WFILTRO347') then Exit;
    if not Assigned(WFiltro347) then WFiltro347 := TWFiltro347.Create(nil);
    WFiltro347.TipoListado := INF_MOD_349;
@@ -543,7 +617,7 @@ end;
 
 procedure TMenuMainController.MenuOptionEnlaceContable(Sender: TObject);
 begin
-   {$Message Warn '35ª Ventana para Test}
+   {$Message Warn '35ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WENLACECONTABLE') then Exit;
    if not Assigned(WEnlaceContable) then WEnlaceContable := TWEnlaceContable.Create(nil);
    WEnlaceContable.ShowModal;
@@ -553,7 +627,7 @@ end;
 
 procedure TMenuMainController.MenuOptionFacturasVenta(Sender: TObject);
 begin
-   {$Message Warn '36ª Ventana para Test}
+   {$Message Warn '36ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WCARGARAPIDAFACTURAS') then Exit;
    if not Assigned(WCargaRapidaFacturas) then WCargaRapidaFacturas := TWCargaRapidaFacturas.Create(nil);
    WCargaRapidaFacturas.TipoCarga := CARGA_FACTURAS_VENTA;
@@ -564,7 +638,7 @@ end;
 
 procedure TMenuMainController.MenuOptionNominas(Sender: TObject);
 begin
-   {$Message Warn '37ª Ventana para Test}
+   {$Message Warn '37ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WCARGARAPIDANOMINAS') then Exit;
    if not Assigned(WCargaRapidaNominas) then WCargaRapidaNominas := TWCargaRapidaNominas.Create(nil);
    WCargaRapidaNominas.ShowModal;
@@ -574,7 +648,7 @@ end;
 
 procedure TMenuMainController.MenuOptionIRPF110(Sender: TObject);
 begin
-   {$Message Warn '38ª Ventana para Test}
+   {$Message Warn '38ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WIRPF110') then Exit;
    if not Assigned(WIrpf110) then WIrpf110 := TWIrpf110.Create(nil);
    WIrpf110.ShowModal;
@@ -584,7 +658,7 @@ end;
 
 procedure TMenuMainController.MenuOptionImpuestoSociedades202(Sender: TObject);
 begin
-   {$Message Warn '39ª Ventana para Test}
+   {$Message Warn '39ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WISOC202') then Exit;
    if not Assigned(WISoc202) then WISoc202 := TWISoc202.Create(nil);
    WISoc202.ShowModal;
@@ -594,7 +668,7 @@ end;
 
 procedure TMenuMainController.MenuOptionCopiaAsientosEntreEmpresas(Sender: TObject);
 begin
-   {$Message Warn '40ª Ventana para Test}
+   {$Message Warn '40ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WCOPIAASIENTOS') then Exit;
    if not Assigned(WCopiaAsientos) then WCopiaAsientos := TWCopiaAsientos.Create(nil);
    WCopiaAsientos.ShowModal;
@@ -604,7 +678,7 @@ end;
 
 procedure TMenuMainController.MenuOptionAcumulados(Sender: TObject);
 begin
-   {$Message Warn '41ª Ventana para Test}
+   {$Message Warn '41ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WBALACUMULADOS') then Exit;
    if not Assigned(WBalAcumulados) then WBalAcumulados := TWBalAcumulados.Create(nil);
    WBalAcumulados.ShowModal;
@@ -614,7 +688,7 @@ end;
 
 procedure TMenuMainController.MenuOptionExplotacion(Sender: TObject);
 begin
-   {$Message Warn '42ª Ventana para Test}
+   {$Message Warn '42ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WBALEXPLOTACION') then Exit;
    if not Assigned(WBalExplotacion) then WBalExplotacion := TWBalExplotacion.Create(nil);
    WBalExplotacion.ShowModal;
@@ -622,65 +696,121 @@ begin
    WBalExplotacion := nil;
 end;
 
-procedure TMenuMainController.MenuOptionTiposDiario(Sender: TObject);
+procedure TMenuMainController.MenuOptionTypesOfJournal(Sender: TObject);
 begin
-   {$Message Warn '43ª Ventana para Test}
+   {$Message Warn 'T Y P E S   O F   J O U R N A L'}
+   with TTypesOfJournalController.Create(FCurrentConfig) do begin
+      try
+         ShowView;
+      finally
+         Free;
+      end;
+   end;
+   {$Message Warn '43ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WTIPOSDIARIO') then Exit;
-   if not Assigned(WTiposDiario) then WTiposDiario := TWTiposDiario.Create(nil);
-   WTiposDiario.Show;
+   //if not Assigned(WTiposDiario) then WTiposDiario := TWTiposDiario.Create(nil);
+   //WTiposDiario.Show;
 end;
 
-procedure TMenuMainController.MenuOptionComerciales(Sender: TObject);
+procedure TMenuMainController.MenuOptionSalespersons(Sender: TObject);
 begin
-   {$Message Warn '44ª Ventana para Test}
+   {$Message Warn 'S A L E S P E R S O N S'}
+   with TSalespersonsController.Create(FCurrentConfig) do begin
+      try
+         ShowView;
+      finally
+         Free;
+      end;
+   end;
+   {$Message Warn '44ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WCOMERCIALES') then Exit;
-   if not Assigned(WComerciales) then WComerciales := TWComerciales.Create(nil);
-   WComerciales.Show;
+   //if not Assigned(WComerciales) then WComerciales := TWComerciales.Create(nil);
+   //WComerciales.Show;
 end;
 
-procedure TMenuMainController.MenuOptionDelegaciones(Sender: TObject);
+procedure TMenuMainController.MenuOptionDelegations(Sender: TObject);
 begin
-   {$Message Warn '45ª Ventana para Test}
+   {$Message Warn 'D E L E G A T I O N S'}
+   with TDelegationsController.Create(FCurrentConfig) do begin
+      try
+         ShowView;
+      finally
+         Free;
+      end;
+   end;
+   {$Message Warn '45ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WDELEGACIONES') then Exit;
-   if not Assigned(WDelegaciones) then WDelegaciones := TWDelegaciones.Create(nil);
-   WDelegaciones.Show;
+   //if not Assigned(WDelegaciones) then WDelegaciones := TWDelegaciones.Create(nil);
+   //WDelegaciones.Show;
 end;
 
-procedure TMenuMainController.MenuOptionDepartamentos(Sender: TObject);
+procedure TMenuMainController.MenuOptionDepartments(Sender: TObject);
 begin
-   {$Message Warn '46ª Ventana para Test}
+   {$Message Warn 'D E P A R T M E N T S'}
+   with TDepartmentsController.Create(FCurrentConfig) do begin
+      try
+         ShowView;
+      finally
+         Free;
+      end;
+   end;
+   {$Message Warn '46ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WDEPARTAMENTOS') then Exit;
-   if not Assigned(WDepartamentos) then WDepartamentos := TWDepartamentos.Create(nil);
-   WDepartamentos.Show;
+   //if not Assigned(WDepartamentos) then WDepartamentos := TWDepartamentos.Create(nil);
+   //WDepartamentos.Show;
 end;
 
-procedure TMenuMainController.MenuOptionSecciones(Sender: TObject);
+procedure TMenuMainController.MenuOptionSections(Sender: TObject);
 begin
-   {$Message Warn '47ª Ventana para Test}
+   {$Message Warn 'S E C T I O N S'}
+   with TSectionsController.Create(FCurrentConfig) do begin
+      try
+         ShowView;
+      finally
+         Free;
+      end;
+   end;
+   {$Message Warn '47ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WSECCIONES') then Exit;
-   if not Assigned(WSecciones) then WSecciones := TWSecciones.Create(nil);
-   WSecciones.Show;
+   //if not Assigned(WSecciones) then WSecciones := TWSecciones.Create(nil);
+   //WSecciones.Show;
 end;
 
-procedure TMenuMainController.MenuOptionProyectos(Sender: TObject);
+procedure TMenuMainController.MenuOptionProjects(Sender: TObject);
 begin
-   {$Message Warn '48ª Ventana para Test}
+   {$Message Warn 'P R O Y E C T S'}
+   with TProjectsController.Create(FCurrentConfig) do begin
+      try
+         ShowView;
+      finally
+         Free;
+      end;
+   end;
+   {$Message Warn '48ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WPROYECTOS') then Exit;
-   if not Assigned(WProyectos) then WProyectos := TWProyectos.Create(nil);
-   WProyectos.Show;
+   //if not Assigned(WProyectos) then WProyectos := TWProyectos.Create(nil);
+   //WProyectos.Show;
 end;
 
-procedure TMenuMainController.MenuOptionFormasPago(Sender: TObject);
+procedure TMenuMainController.MenuOptionPaymentMethods(Sender: TObject);
 begin
-   {$Message Warn '49ª Ventana para Test}
+   {$Message Warn 'P A Y M E N T   M E T H O D S'}
+   with TPaymentMethodsController.Create(FCurrentConfig) do begin
+      try
+         ShowView;
+      finally
+         Free;
+      end;
+   end;
+   {$Message Warn '49ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WFORMASPAGO') then Exit;
-   if not Assigned(WFormasPago) then WFormasPago := TWFormasPago.Create(nil);
-   WFormasPago.Show;
+   //if not Assigned(WFormasPago) then WFormasPago := TWFormasPago.Create(nil);
+   //WFormasPago.Show;
 end;
 
 procedure TMenuMainController.MenuOptionIRPF115(Sender: TObject);
 begin
-   {$Message Warn '50ª Ventana para Test}
+   {$Message Warn '50ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WIRPF115') then Exit;
    if not Assigned(WIrpf115) then WIrpf115 := TWIrpf115.Create(nil);
    WIrpf115.ShowModal;
@@ -690,7 +820,7 @@ end;
 
 procedure TMenuMainController.MenuOptionImpresionPlanContable(Sender: TObject);
 begin
-   {$Message Warn '51ª Ventana para Test}
+   {$Message Warn '51ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WPLANCONTABLE') then Exit;
    if not Assigned(WPlanContable) then WPlanContable := TWPlanContable.Create(nil);
    WPlanContable.ShowModal;
@@ -700,7 +830,7 @@ end;
 
 procedure TMenuMainController.MenuOptionImpresionPlanAnalitica(Sender: TObject);
 begin
-   {$Message Warn '52ª Ventana para Test}
+   {$Message Warn '52ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WPLANANALITICO') then Exit;
    if not Assigned(WPlanAnalitico) then WPlanAnalitico := TWPlanAnalitico.Create(nil);
    WPlanAnalitico.ShowModal;
@@ -710,7 +840,7 @@ end;
 
 procedure TMenuMainController.MenuOptionCobrosPagos(Sender: TObject);
 begin
-   {$Message Warn '53ª Ventana para Test}
+   {$Message Warn '53ª Ventana para Test'}
    //if not DmControlRef.AccesoUsuario(gvId_Usuario, 'WCARGACOBROSPAGOS') then Exit;
    if not Assigned(WCargaCobrosPagos) then WCargaCobrosPagos := TWCargaCobrosPagos.Create(nil);
    WCargaCobrosPagos.ShowModal;
@@ -720,7 +850,7 @@ end;
 
 procedure TMenuMainController.MenuOptionImportacion(Sender: TObject);
 begin
-   {$Message Warn '54ª Ventana para Test}
+   {$Message Warn '54ª Ventana para Test'}
    if not Assigned(WImportacion) then WImportacion := TWImportacion.Create(nil);
    WImportacion.ShowModal;
    WImportacion.Free;
@@ -729,7 +859,7 @@ end;
 
 procedure TMenuMainController.MenuOptionActualizacion(Sender: TObject);
 begin
-   {$Message Warn '55ª Ventana para Test}
+   {$Message Warn '55ª Ventana para Test'}
    if not Assigned(WActualizacionBD) then WActualizacionBD := TWActualizacionBD.Create(nil);
    WActualizacionBD.ShowModal;
    WActualizacionBD.Free;

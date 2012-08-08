@@ -1,4 +1,4 @@
-object WProyectos: TWProyectos
+object ProjectsView: TProjectsView
   Left = 691
   Top = 255
   BorderStyle = bsSingle
@@ -322,5 +322,10 @@ object WProyectos: TWProyectos
     DataSet = TbFiltro
     Left = 114
     Top = 237
+  end
+  object DataSource: TDataSource
+    AutoEdit = False
+    Left = 240
+    Top = 109
   end
 end

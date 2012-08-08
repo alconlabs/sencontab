@@ -1,8 +1,9 @@
-object WGrupos: TWGrupos
-  Left = 459
-  Top = 237
+object AnalyticsView: TAnalyticsView
+  Left = 501
+  Top = 268
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsNone
+  Caption = 'Archivo de Cuentas analiticas'
   ClientHeight = 493
   ClientWidth = 789
   Color = 14275008
@@ -31,9 +32,9 @@ object WGrupos: TWGrupos
   object Label3: TLabel
     Left = 24
     Top = 13
-    Width = 148
+    Width = 242
     Height = 19
-    Caption = 'Archivo de Grupos'
+    Caption = 'Archivo de Cuentas Anal'#237'ticas'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -16
@@ -53,17 +54,17 @@ object WGrupos: TWGrupos
     RegionData = {00000000}
   end
   object PanelSombra: TPanel
-    Left = 23
-    Top = 86
-    Width = 652
-    Height = 324
+    Left = 24
+    Top = 96
+    Width = 650
+    Height = 239
     BevelOuter = bvNone
     TabOrder = 8
     object Rejilla: TwwDBGrid
       Left = 0
       Top = 0
-      Width = 652
-      Height = 324
+      Width = 650
+      Height = 239
       TabStop = False
       DittoAttributes.ShortCutDittoField = 0
       DittoAttributes.ShortCutDittoRecord = 0
@@ -71,8 +72,8 @@ object WGrupos: TWGrupos
       DisableThemesInTitle = False
       PictureMaskFromDataSet = False
       Selected.Strings = (
-        'GRUPO'#9'8'#9'GRUPO'
-        'DESCRIPCION'#9'97'#9'DESCRIPCION'#9'F')
+        'CUENTA'#9'20'#9'CUENTA'#9'F'
+        'NOMBRE'#9'85'#9'NOMBRE')
       IniAttributes.Delimiter = ';;'
       TitleColor = 10841401
       FixedCols = 0
@@ -89,7 +90,7 @@ object WGrupos: TWGrupos
       Options = [dgTitles, dgColumnResize, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgWordWrap]
       ParentFont = False
       TabOrder = 0
-      TitleAlignment = taLeftJustify
+      TitleAlignment = taCenter
       TitleFont.Charset = ANSI_CHARSET
       TitleFont.Color = clWhite
       TitleFont.Height = -11
@@ -105,31 +106,17 @@ object WGrupos: TWGrupos
   end
   object Datos: TGroupBox
     Left = 23
-    Top = 415
+    Top = 340
     Width = 652
-    Height = 60
+    Height = 141
     TabOrder = 0
-    object Label1: TLabel
-      Left = 28
-      Top = 12
-      Width = 34
-      Height = 16
-      AutoSize = False
-      Caption = 'Grupo'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clNavy
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
     object Label2: TLabel
-      Left = 76
+      Left = 145
       Top = 12
       Width = 77
       Height = 16
       AutoSize = False
-      Caption = 'Descripci'#243'n'
+      Caption = 'Nombre'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clNavy
       Font.Height = -11
@@ -137,12 +124,78 @@ object WGrupos: TWGrupos
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object eNombre: TOvcDbPictureField
-      Left = 77
+    object Label1: TLabel
+      Left = 28
+      Top = 12
+      Width = 55
+      Height = 16
+      AutoSize = False
+      Caption = 'Cuenta'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clNavy
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label6: TLabel
+      Left = 28
+      Top = 55
+      Width = 62
+      Height = 13
+      Caption = 'Delegaci'#243'n'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clNavy
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label7: TLabel
+      Left = 312
+      Top = 55
+      Width = 83
+      Height = 13
+      Caption = 'Departamento'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clNavy
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label8: TLabel
+      Left = 28
+      Top = 98
+      Width = 43
+      Height = 13
+      Caption = 'Secci'#243'n'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clNavy
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label9: TLabel
+      Left = 312
+      Top = 98
+      Width = 51
+      Height = 13
+      Caption = 'Proyecto'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clNavy
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object eDescripcion: TOvcDbPictureField
+      Left = 145
       Top = 26
-      Width = 512
+      Width = 415
       Height = 20
-      DataField = 'DESCRIPCION'
+      DataField = 'NOMBRE'
       DataSource = SFichero
       FieldType = ftString
       AutoSize = False
@@ -160,38 +213,146 @@ object WGrupos: TWGrupos
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = []
-      MaxLength = 50
+      MaxLength = 83
+      ParentFont = False
+      PictureMask = '!'
+      TabOrder = 1
+    end
+    object eCuenta: TOvcDbPictureField
+      Left = 28
+      Top = 26
+      Width = 93
+      Height = 20
+      DataField = 'CUENTA'
+      DataSource = SFichero
+      FieldType = ftString
+      AutoSize = False
+      CaretOvr.Shape = csBlock
+      Controller = OvcController1
+      EFColors.Disabled.BackColor = clWindow
+      EFColors.Disabled.TextColor = clGrayText
+      EFColors.Error.BackColor = clRed
+      EFColors.Error.TextColor = clBlack
+      EFColors.Highlight.BackColor = clHighlight
+      EFColors.Highlight.TextColor = clHighlightText
+      Epoch = 1900
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      MaxLength = 10
       ParentFont = False
       PictureMask = '!'
       TabOrder = 0
     end
-    object eCampoInicial: TOvcDbPictureField
-      Left = 26
-      Top = 26
-      Width = 39
+    object eDelegacion: TwwDBLookupCombo
+      Left = 28
+      Top = 69
+      Width = 248
       Height = 20
-      DataField = 'GRUPO'
-      DataSource = SFichero
-      FieldType = ftString
       AutoSize = False
-      CaretOvr.Shape = csBlock
-      Controller = OvcController1
-      EFColors.Disabled.BackColor = clWindow
-      EFColors.Disabled.TextColor = clGrayText
-      EFColors.Error.BackColor = clRed
-      EFColors.Error.TextColor = clBlack
-      EFColors.Highlight.BackColor = clHighlight
-      EFColors.Highlight.TextColor = clHighlightText
-      Epoch = 1900
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = []
-      MaxLength = 3
+      DropDownAlignment = taLeftJustify
+      Selected.Strings = (
+        'NOMBRE'#9'30'#9'NOMBRE'#9'F')
+      DataField = 'ID_DELEGACION'
+      DataSource = SFichero
+      LookupTable = DMRef.QDelegacionNom
+      LookupField = 'ID_DELEGACION'
+      Style = csDropDownList
       ParentFont = False
-      PictureMask = '!'
-      TabOrder = 1
+      TabOrder = 2
+      AutoDropDown = True
+      ShowButton = True
+      PreciseEditRegion = False
+      AllowClearKey = True
+      ShowMatchText = True
+    end
+    object eDepartamento: TwwDBLookupCombo
+      Left = 312
+      Top = 69
+      Width = 248
+      Height = 20
+      AutoSize = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      DropDownAlignment = taLeftJustify
+      Selected.Strings = (
+        'NOMBRE'#9'30'#9'NOMBRE'#9'F')
+      DataField = 'ID_DEPARTAMENTO'
+      DataSource = SFichero
+      LookupTable = DMRef.QDepartamentoNom
+      LookupField = 'ID_DEPARTAMENTO'
+      Style = csDropDownList
+      ParentFont = False
+      TabOrder = 3
+      AutoDropDown = True
+      ShowButton = True
+      PreciseEditRegion = False
+      AllowClearKey = True
+      ShowMatchText = True
+    end
+    object eSeccion: TwwDBLookupCombo
+      Left = 28
+      Top = 112
+      Width = 248
+      Height = 20
+      AutoSize = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      DropDownAlignment = taLeftJustify
+      Selected.Strings = (
+        'NOMBRE'#9'30'#9'NOMBRE'#9'F')
+      DataField = 'ID_SECCION'
+      DataSource = SFichero
+      LookupTable = DMRef.QSeccionNom
+      LookupField = 'ID_SECCION'
+      Style = csDropDownList
+      ParentFont = False
+      TabOrder = 4
+      AutoDropDown = True
+      ShowButton = True
+      PreciseEditRegion = False
+      AllowClearKey = True
+      ShowMatchText = True
+    end
+    object eProyecto: TwwDBLookupCombo
+      Left = 312
+      Top = 112
+      Width = 248
+      Height = 20
+      AutoSize = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      DropDownAlignment = taLeftJustify
+      Selected.Strings = (
+        'NOMBRE'#9'30'#9'NOMBRE'#9'F')
+      DataField = 'ID_PROYECTO'
+      DataSource = SFichero
+      LookupTable = DMRef.QProyectoNom
+      LookupField = 'ID_PROYECTO'
+      Style = csDropDownList
+      ParentFont = False
+      TabOrder = 5
+      AutoDropDown = True
+      ShowButton = True
+      PreciseEditRegion = False
+      AllowClearKey = True
+      ShowMatchText = True
     end
   end
   object Panel1: TPanel
@@ -446,7 +607,7 @@ object WGrupos: TWGrupos
     end
     object BtnNavBorrar: TfcImageBtn
       Left = 10
-      Top = 72
+      Top = 70
       Width = 83
       Height = 25
       Cursor = crHandPoint
@@ -932,7 +1093,7 @@ object WGrupos: TWGrupos
     end
     object BtnEdtGuardar: TfcImageBtn
       Left = 10
-      Top = 215
+      Top = 206
       Width = 83
       Height = 25
       Cursor = crHandPoint
@@ -1175,7 +1336,7 @@ object WGrupos: TWGrupos
     end
     object BtnEdtCancelar: TfcImageBtn
       Left = 10
-      Top = 243
+      Top = 236
       Width = 83
       Height = 25
       Cursor = crHandPoint
@@ -1418,7 +1579,7 @@ object WGrupos: TWGrupos
     end
     object Navegador: TDBNavegadorNotarios
       Left = 6
-      Top = 163
+      Top = 154
       Width = 88
       Height = 43
       TabOrder = 5
@@ -1525,7 +1686,7 @@ object WGrupos: TWGrupos
     end
     object BtnNavImprimir: TfcImageBtn
       Left = 10
-      Top = 113
+      Top = 104
       Width = 83
       Height = 25
       Cursor = crHandPoint
@@ -1767,7 +1928,7 @@ object WGrupos: TWGrupos
     end
     object BtnNavModificar: TfcImageBtn
       Left = 10
-      Top = 43
+      Top = 42
       Width = 83
       Height = 25
       Cursor = crHandPoint
@@ -2012,7 +2173,7 @@ object WGrupos: TWGrupos
     Left = 23
     Top = 37
     Width = 652
-    Height = 46
+    Height = 52
     Caption = ' Buscar '
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
@@ -2022,23 +2183,23 @@ object WGrupos: TWGrupos
     ParentFont = False
     TabOrder = 2
     object Label4: TLabel
-      Left = 166
+      Left = 198
       Top = 21
-      Width = 65
+      Width = 44
       Height = 13
-      Caption = 'Descripci'#243'n'
+      Caption = 'Nombre'
     end
     object Label5: TLabel
-      Left = 44
+      Left = 16
       Top = 21
-      Width = 34
+      Width = 40
       Height = 13
-      Caption = 'Grupo'
+      Caption = 'Cuenta'
     end
     object FiltroBDescripcion: TOvcDbPictureField
-      Left = 238
-      Top = 18
-      Width = 373
+      Left = 247
+      Top = 17
+      Width = 265
       Height = 20
       Cursor = crHandPoint
       DataField = 'BDescripcion'
@@ -2057,20 +2218,20 @@ object WGrupos: TWGrupos
       Font.Height = -11
       Font.Name = 'Arial'
       Font.Style = []
-      MaxLength = 30
+      MaxLength = 25
       ParentFont = False
       PictureMask = '!'
       TabOrder = 0
       OnEnter = LimpiarFiltro
     end
-    object FiltroBGrupo: TOvcDbPictureField
-      Left = 86
-      Top = 18
-      Width = 39
-      Height = 21
-      DataField = 'BGrupo'
+    object FiltroBcuenta: TOvcDbPictureField
+      Left = 68
+      Top = 17
+      Width = 85
+      Height = 20
+      Cursor = crHandPoint
+      DataField = 'BCuenta'
       DataSource = sFiltro
-      FieldType = ftString
       AutoSize = False
       CaretOvr.Shape = csBlock
       Controller = OvcController1
@@ -2080,16 +2241,16 @@ object WGrupos: TWGrupos
       EFColors.Error.TextColor = clBlack
       EFColors.Highlight.BackColor = clHighlight
       EFColors.Highlight.TextColor = clHighlightText
-      Epoch = 1900
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = clBlack
       Font.Height = -11
-      Font.Name = 'Tahoma'
+      Font.Name = 'Arial'
       Font.Style = []
-      MaxLength = 3
+      MaxLength = 10
       ParentFont = False
       PictureMask = '!'
       TabOrder = 1
+      OnEnter = LimpiarFiltro
     end
   end
   object fcIBCerrar: TfcImageBtn
@@ -2277,78 +2438,169 @@ object WGrupos: TWGrupos
   object SFichero: TwwDataSource
     AutoEdit = False
     DataSet = QFichero
-    Left = 488
-    Top = 373
+    Left = 568
+    Top = 53
   end
   object QFichero: TIBTableSet
     Transaction = Transaccion
+    OnCalcFields = QFicheroCalcFields
     BufferChunks = 32
     CachedUpdates = False
     DeleteSQL.Strings = (
-      'DELETE FROM GRUPOS'
+      'DELETE FROM ANALITICAS'
       'WHERE'
       
-        '  GRUPO                          =:old_GRUPO                    ' +
+        '  CUENTA                         =:old_CUENTA                   ' +
         '       ')
     InsertSQL.Strings = (
-      'INSERT INTO GRUPOS'
+      'INSERT INTO ANALITICAS'
       
-        '  (DESCRIPCION                    ,GRUPO                        ' +
+        '  (ID_PROYECTO                    ,ID_SECCION                   ' +
+        '  ,ID_DEPARTAMENTO                ,ID_DELEGACION                ' +
+        '  ,NOMBRE                         ,CUENTA                       ' +
         '  )'
       'VALUES'
       
-        '  (:DESCRIPCION                    ,:GRUPO                      ' +
-        '    )')
+        '  (:ID_PROYECTO                    ,:ID_SECCION                 ' +
+        '    ,:ID_DEPARTAMENTO                ,:ID_DELEGACION            ' +
+        '      ,:NOMBRE                         ,:CUENTA                 ' +
+        '        )')
     RefreshSQL.Strings = (
       'SELECT'
       '  *'
-      'FROM GRUPOS'
+      'FROM ANALITICAS'
       'WHERE'
       
-        '  GRUPO                          =?GRUPO                        ' +
+        '  CUENTA                         =?CUENTA                       ' +
         '   ')
     SelectSQL.Strings = (
-      'SELECT * FROM GRUPOS')
+      'SELECT * FROM ANALITICAS')
     ModifySQL.Strings = (
-      'UPDATE GRUPOS'
+      'UPDATE ANALITICAS'
       'SET'
       
-        '  DESCRIPCION                    =:DESCRIPCION                  ' +
+        '  ID_PROYECTO                    =:ID_PROYECTO                  ' +
         '   '
+      
+        '  ,ID_SECCION                     =:ID_SECCION                  ' +
+        '    '
+      
+        '  ,ID_DEPARTAMENTO                =:ID_DEPARTAMENTO             ' +
+        '    '
+      
+        '  ,ID_DELEGACION                  =:ID_DELEGACION               ' +
+        '    '
+      
+        '  ,NOMBRE                         =:NOMBRE                      ' +
+        '    '
       'WHERE'
       
-        '  GRUPO                          =:GRUPO                        ' +
+        '  CUENTA                         =:CUENTA                       ' +
         '   ')
-    TableName = 'GRUPOS'
-    Left = 441
-    Top = 372
-    object QFicheroGRUPO: TIBStringField
-      Alignment = taCenter
-      DisplayWidth = 8
-      FieldName = 'GRUPO'
-      Size = 3
+    TableName = 'analiticas'
+    Left = 625
+    Top = 52
+    object QFicheroCUENTA: TIBStringField
+      DisplayWidth = 20
+      FieldName = 'CUENTA'
+      Origin = 'ANALITICAS.CUENTA'
+      Size = 10
     end
-    object QFicheroDESCRIPCION: TIBStringField
-      DisplayWidth = 97
-      FieldName = 'DESCRIPCION'
+    object QFicheroNOMBRE: TIBStringField
+      DisplayWidth = 85
+      FieldName = 'NOMBRE'
+      Origin = 'ANALITICAS.NOMBRE'
       Size = 50
+    end
+    object QFicheroID_PROYECTO: TIBStringField
+      FieldName = 'ID_PROYECTO'
+      Origin = 'ANALITICAS.ID_PROYECTO'
+      Visible = False
+      Size = 10
+    end
+    object QFicheroID_SECCION: TIBStringField
+      FieldName = 'ID_SECCION'
+      Origin = 'ANALITICAS.ID_SECCION'
+      Visible = False
+      Size = 10
+    end
+    object QFicheroID_DEPARTAMENTO: TIBStringField
+      FieldName = 'ID_DEPARTAMENTO'
+      Origin = 'ANALITICAS.ID_DEPARTAMENTO'
+      Visible = False
+      Size = 10
+    end
+    object QFicheroID_DELEGACION: TIBStringField
+      FieldName = 'ID_DELEGACION'
+      Origin = 'ANALITICAS.ID_DELEGACION'
+      Visible = False
+      Size = 10
+    end
+    object QFicheroNombreProyecto: TStringField
+      FieldKind = fkLookup
+      FieldName = 'NombreProyecto'
+      LookupDataSet = DMRef.QProyecto
+      LookupKeyFields = 'ID_PROYECTO'
+      LookupResultField = 'NOMBRE'
+      KeyFields = 'ID_PROYECTO'
+      Visible = False
+      Size = 50
+      Lookup = True
+    end
+    object QFicheroNombreSeccion: TStringField
+      FieldKind = fkLookup
+      FieldName = 'NombreSeccion'
+      LookupDataSet = DMRef.QSeccion
+      LookupKeyFields = 'ID_SECCION'
+      LookupResultField = 'NOMBRE'
+      KeyFields = 'ID_SECCION'
+      Visible = False
+      Size = 50
+      Lookup = True
+    end
+    object QFicheroNombreDepartamento: TStringField
+      FieldKind = fkLookup
+      FieldName = 'NombreDepartamento'
+      LookupDataSet = DMRef.QDepartamento
+      LookupKeyFields = 'ID_DEPARTAMENTO'
+      LookupResultField = 'NOMBRE'
+      KeyFields = 'ID_DEPARTAMENTO'
+      Visible = False
+      Size = 50
+      Lookup = True
+    end
+    object QFicheroNombreDelegacion: TStringField
+      FieldKind = fkLookup
+      FieldName = 'NombreDelegacion'
+      LookupDataSet = DMRef.QDelegacion
+      LookupKeyFields = 'ID_DELEGACION'
+      LookupResultField = 'NOMBRE'
+      KeyFields = 'ID_DELEGACION'
+      Visible = False
+      Size = 50
+      Lookup = True
     end
   end
   object Transaccion: TIBTransaction
     Active = False
     AutoStopAction = saNone
-    Left = 442
-    Top = 325
+    Left = 602
+    Top = 53
   end
   object TbFiltro: TClientDataSet
     Aggregates = <>
     Params = <>
-    Left = 440
-    Top = 421
+    Left = 656
+    Top = 45
   end
   object sFiltro: TDataSource
     DataSet = TbFiltro
-    Left = 490
-    Top = 421
+    Left = 658
+    Top = 21
+  end
+  object DataSource: TDataSource
+    AutoEdit = False
+    Left = 104
+    Top = 162
   end
 end

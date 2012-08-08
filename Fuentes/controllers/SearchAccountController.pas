@@ -39,9 +39,6 @@ begin
 
    AddColumn('SUBCUENTA'  , 'Cuenta'     );
    AddColumn('DESCRIPCION', 'Descripcion');
-   
-   {$Message Warn 'IMPLEMENTAR EL MÉTODO ADD COLUMN'}
-   {$Message Warn 'IMPLEMENTAR LA ORDENACIÓN ON CLICK'}
 end;
 
 procedure TSearchAccountController.OnClick_Accept(Sender: TObject);
