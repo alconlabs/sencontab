@@ -9,11 +9,6 @@ type
    TProjectsView = class(TCustomView)
     DataSource: TDataSource;
     PanelBackground: TPanel;
-    Datos: TGroupBox;
-    Label1: TLabel;
-    Label2: TLabel;
-    EditNOMBRE: TDBEdit;
-    EditID_PROYECTO: TDBEdit;
     Panel1: TPanel;
     BtnNew: TSpeedButton;
     BtnDelete: TSpeedButton;
@@ -22,6 +17,11 @@ type
     BtnReport: TSpeedButton;
     BtnModify: TSpeedButton;
     DBGrid: TDBGrid;
+    Datos: TGroupBox;
+    EditNOMBRE: TDBEdit;
+    Label2: TLabel;
+    EditID_PROYECTO: TDBEdit;
+    Label1: TLabel;
    private
    public
    end;

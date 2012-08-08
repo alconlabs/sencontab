@@ -26,74 +26,6 @@ object ProjectsView: TProjectsView
     Anchors = [akLeft, akTop, akRight, akBottom]
     Color = 14275008
     TabOrder = 0
-    object Datos: TGroupBox
-      Left = 1
-      Top = 1
-      Width = 478
-      Height = 60
-      Align = alTop
-      TabOrder = 0
-      object Label1: TLabel
-        Left = 7
-        Top = 16
-        Width = 88
-        Height = 17
-        AutoSize = False
-        Caption = 'Proyecto'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clNavy
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object Label2: TLabel
-        Left = 111
-        Top = 15
-        Width = 77
-        Height = 16
-        AutoSize = False
-        Caption = 'Descripci'#243'n'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clNavy
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object EditNOMBRE: TDBEdit
-        Left = 111
-        Top = 29
-        Width = 266
-        Height = 20
-        AutoSize = False
-        DataField = 'NOMBRE'
-        DataSource = DataSource
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 1
-      end
-      object EditID_PROYECTO: TDBEdit
-        Left = 7
-        Top = 29
-        Width = 97
-        Height = 21
-        AutoSize = False
-        DataField = 'ID_PROYECTO'
-        DataSource = DataSource
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 0
-      end
-    end
     object Panel1: TPanel
       Left = 374
       Top = 61
@@ -103,7 +35,7 @@ object ProjectsView: TProjectsView
       BevelInner = bvLowered
       BevelOuter = bvLowered
       Color = clSilver
-      TabOrder = 1
+      TabOrder = 0
       object BtnNew: TSpeedButton
         Left = 10
         Top = 14
@@ -207,12 +139,80 @@ object ProjectsView: TProjectsView
       Font.Style = []
       Options = [dgTitles, dgColumnResize, dgColLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
       ParentFont = False
-      TabOrder = 2
+      TabOrder = 1
       TitleFont.Charset = ANSI_CHARSET
       TitleFont.Color = clBlack
       TitleFont.Height = -11
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = [fsBold]
+    end
+    object Datos: TGroupBox
+      Left = 1
+      Top = 1
+      Width = 478
+      Height = 60
+      Align = alTop
+      TabOrder = 2
+      object Label2: TLabel
+        Left = 111
+        Top = 15
+        Width = 77
+        Height = 16
+        AutoSize = False
+        Caption = 'Descripci'#243'n'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label1: TLabel
+        Left = 7
+        Top = 16
+        Width = 88
+        Height = 17
+        AutoSize = False
+        Caption = 'Proyecto'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object EditNOMBRE: TDBEdit
+        Left = 111
+        Top = 29
+        Width = 266
+        Height = 20
+        AutoSize = False
+        DataField = 'NOMBRE'
+        DataSource = DataSource
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 0
+      end
+      object EditID_PROYECTO: TDBEdit
+        Left = 7
+        Top = 29
+        Width = 97
+        Height = 21
+        AutoSize = False
+        DataField = 'ID_PROYECTO'
+        DataSource = DataSource
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 1
+      end
     end
   end
   object DataSource: TDataSource

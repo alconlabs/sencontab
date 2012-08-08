@@ -171,7 +171,6 @@ begin
    Action := caFree;
 end;
 
-
 procedure TProjectsController.OnCalcTitleAttributes_DBGrid(Sender: TObject;
   AFieldName: string; AFont: TFont; ABrush: TBrush;
   var ATitleAlignment: TAlignment);
@@ -183,7 +182,6 @@ begin
    end;
 end;
 
-
 procedure TProjectsController.OnClick_TitleDBGrid(Sender: TObject; AFieldName: string);
 begin
    if (UpperCase(AFieldName) = 'ID_PROYECTO') or (UpperCase(AFieldName) = 'NOMBRE') then begin
@@ -191,7 +189,6 @@ begin
    end;
    FView.DBGrid.SetFocus;
 end;
-
 
 end.
 
