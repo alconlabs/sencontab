@@ -9,8 +9,6 @@ uses
   DM in 'Fuentes\DM.pas' {DMRef: TDataModule},
   DMConta in 'Fuentes\DMConta.pas' {DMContaRef: TDataModule},
   DMBalances in 'Fuentes\DMBalances.pas' {DMBlnc: TDataModule},
-  Proyectos in 'Fuentes\Proyectos.pas' {WProyectos},
-  Provincias in 'Fuentes\Provincias.pas' {FormProvincias},
   UPaises in 'Fuentes\UPaises.pas' {WPaises},
   MenuPrincipal in 'Fuentes\MenuPrincipal.pas' {FormPrincipal},
   Globales in 'Fuentes\Globales.pas',
