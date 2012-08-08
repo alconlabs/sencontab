@@ -9,7 +9,6 @@ type
   TCountysView = class(TCustomView)
     Shape1: TShape;
     PanelBackground: TPanel;
-    DBGrid: TDBGrid;
     DataSource: TDataSource;
     PnlBtn: TPanel;
     BtnNew: TSpeedButton;
@@ -25,6 +24,7 @@ type
     Label2: TLabel;
     EditCODIGO: TDBEdit;
     Label3: TLabel;
+    DBGrid: TDBGrid;
   protected
   private
   public

@@ -1,6 +1,6 @@
 object PaymentMethodsView: TPaymentMethodsView
-  Left = 391
-  Top = 211
+  Left = 392
+  Top = 212
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsNone
   Caption = 'Formas de Pago'
