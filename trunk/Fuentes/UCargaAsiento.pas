@@ -924,7 +924,7 @@ begin
 
       QDiario.Insert;
 
-      Modo(Self, Edita);
+      Mode := fmEdit;
       EditFecha.SetFocus;
    end else
    // Si es asiento de cobro / pago, puntear asientos

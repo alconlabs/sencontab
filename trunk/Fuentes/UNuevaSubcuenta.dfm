@@ -278,6 +278,7 @@ object WNuevaSubcuenta: TWNuevaSubcuenta
       5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
       6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
       526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
+    NumGlyphs = 0
     ParentClipping = False
     ParentFont = False
     ShadeStyle = fbsFlat
@@ -520,6 +521,7 @@ object WNuevaSubcuenta: TWNuevaSubcuenta
       5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
       6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
       526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
+    NumGlyphs = 0
     ParentClipping = False
     ParentFont = False
     ShadeStyle = fbsNormal
@@ -615,7 +617,6 @@ object WNuevaSubcuenta: TWNuevaSubcuenta
       C1EBD4C5EDD2BEEACAB3E9C7B0E3C0ACC8A696A98879EBD5C9F2DBCCF8DFCFF6
       DDC9F2D5C0ECD0B8ECD1BCF0D8C2EBD5C3E6D2C0E7D5C4ECDBC8F0DAC8EED7C1
       F1DAC0F7E0CAE2CFC2E9D5CAF0D5C7F2D2BFF6D5C2F5D4C1DEBDAEC0A093}
-    NumGlyphs = 0
     ParentClipping = False
     ShadeStyle = fbsNormal
     TabOrder = 5
@@ -1417,7 +1418,6 @@ object WNuevaSubcuenta: TWNuevaSubcuenta
     Top = 5
   end
   object QFichero: TIBTableSet
-    Database = DMRef.IBDSiamCont
     Transaction = Transaccion
     OnNewRecord = QFicheroNewRecord
     BufferChunks = 32
@@ -2321,7 +2321,6 @@ object WNuevaSubcuenta: TWNuevaSubcuenta
   end
   object Transaccion: TIBTransaction
     Active = False
-    DefaultDatabase = DMRef.IBDSiamCont
     AutoStopAction = saNone
     Left = 235
     Top = 5

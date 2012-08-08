@@ -794,7 +794,7 @@ begin
    //ActivarTransacciones(Self);
    CrearFiltro;
 
-   Modo(Self, Naveg);
+   Mode := fmView;
    //CargaImagenesMensaje(Mensaje);
 
 

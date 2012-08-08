@@ -717,7 +717,7 @@ begin
    eSubcuentaCBSUBCUENTA.MaxLength   := DMRef.QParametros.FieldByName('LONGITUD_SUBCUENTAS').AsInteger;
    QCobrosPagosIMPORTE.DisplayFormat := '###,###,##0.00';
 
-   Modo(Self, Edita);
+   Mode := fmEdit;
    Paginas.Pages[0].Show;
 
    if DMRef.QParametros.FieldByName('BUSQUEDA_SUBCTAS').AsString = 'D' then   begin

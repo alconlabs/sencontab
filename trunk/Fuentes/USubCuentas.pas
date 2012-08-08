@@ -1127,7 +1127,7 @@ begin
       Open;
    end;
 
-   Modo(Self, Naveg);
+   Mode := fmView;
 
    OvcSubcuenta.MaxLength     := DmRef.QParametros.FieldByName('Longitud_Subcuentas').AsInteger;
    FiltroBSubcuenta.MaxLength := DmRef.QParametros.FieldByName('Longitud_Subcuentas').AsInteger;
@@ -1316,7 +1316,7 @@ begin
       Paginas.PageIndex   := TabDatos;
       QFichero.Insert;
       OvcSubCuenta.SetFocus;
-      Modo(Self, Edita);
+      Mode := fmEdit;
       Paginas.Pages[TabAmortiza].Pagevisible := False;
       PaginasPageChanged(Self, TabDatos);
    except
@@ -1400,7 +1400,7 @@ begin
       lAdd := False;
       try
          QFichero.Edit;
-         Modo(Self, Edita);
+         Mode := fmEdit;
          cbSubctaRet.Visible := False;
          Paginas.PageIndex   := TabDatos;
          PaginasPageChanged(self, TabDatos);
@@ -1604,7 +1604,7 @@ begin
    end;
 
    DMContaRef.RefrescarSubcuentas(Subcta);
-   Modo(Self, Naveg);
+   Mode := fmView;
    cbSubctaRet.Visible := False;
    Paginas.Pages[TabSubCuentas].Show;
    PaginasPageChanged(Self, TabSubCuentas);
@@ -1618,7 +1618,7 @@ begin
       except DatabaseError('Error al cancelar la operación');
       end;
 
-      Modo(Self, Naveg);
+      Mode := fmView;
       Paginas.PageIndex := TabSubCuentas;
       PaginasPageChanged(Self, TabSubcuentas);
       cbSubctaRet.Visible := False;
@@ -2358,7 +2358,7 @@ begin
          end;
          Paginas.PageIndex := TabDatos;
          OvcSubCuenta.SetFocus;
-         Modo(Self, Edita);
+         Mode := fmEdit;
          Paginas.Pages[TabAmortiza].Pagevisible := False;
          PaginasPageChanged(Self, TabDatos);
       except

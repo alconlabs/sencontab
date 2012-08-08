@@ -639,7 +639,7 @@ begin
       else begin
          if MessageDlg('La subcuenta del banco está en blanco.' + #13 + '¿Desea modificarla?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
             QFichero.Edit;
-            Modo(Self, Edita);
+            Mode := fmEdit;
          end;
          Exit;
       end;
@@ -767,7 +767,7 @@ begin
    end;
 
    MessageDlg('Generado el asiento nº ' + IntToStr(Asiento), mtInformation, [mbOK], 0);
-   Modo(Self, Naveg);
+   Mode := fmView;
    Paginas.Pages[TabCuentas].Show;
    Rejilla.SetFocus;
    Paginas.Update;
@@ -1163,7 +1163,7 @@ begin
       Paginas.PageIndex := TabDatos;
       QFichero.Insert;
       ccuenta.SetFocus;
-      Modo(Self, Edita);
+      Mode := fmEdit;
       PaginasPageChanged(Self, TabDatos);
    except
       raise;
@@ -1193,7 +1193,7 @@ begin
       lAdd := False;
       try
          QFichero.Edit;
-         Modo(Self, Edita);
+         Mode := fmEdit;
          Paginas.PageIndex := TabDatos;
          cCuenta.SetFocus;
       except
@@ -1276,7 +1276,7 @@ begin
    QFichero.Post;
    Transaccion.CommitRetaining;
 
-   Modo(Self, Naveg);
+   Mode := fmView;
    Paginas.Pages[TabCuentas].Show;
    Rejilla.SetFocus;
 end;
@@ -1288,7 +1288,7 @@ begin
       except DatabaseError('Error al cancelar la operación');
       end;
 
-      Modo(Self, Naveg);
+      Mode := fmView;
       Paginas.PageIndex := TabCuentas;
 
       Rejilla.SetFocus;
@@ -1324,7 +1324,7 @@ begin
 
    CampoOrden := 'FVencimiento';
    PrepararQuery;
-   Modo(Self, Naveg);
+   Mode := fmView;
 
    lbSerie.Visible     := False;
    lbEjercicio.Visible := False;

@@ -234,7 +234,7 @@ begin
       end;}
    end;
 
-   Modo(Self, Naveg);
+   Mode := fmView;
    Rejilla.SetFocus;
    if ha_insertado then  begin
       if not (TbFiltro.State in dsEditModes) then begin
@@ -256,7 +256,7 @@ begin
       try QFichero.Edit;
       except MessageDlg('No se puede editar el registro seleccionado.' + #13 + CADENA_MANUAL, mtInformation, [mbOK], 0);
       end;
-      Modo(Self, Edita);
+      Mode := fmEdit;
    end;
 end;
 
@@ -266,7 +266,7 @@ begin
    //ActivarTransacciones(self);
    FCampoOrden := 'NOMBRE';
    //PrepararQuery;
-   Modo(Self, Naveg);
+   Mode := fmView;
 end;
 
 procedure TFormEnterprises.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -413,7 +413,7 @@ begin
       QficheroNombre.AsString    := cNombre + ' duplicado';
       QficheroServidor.AsString  := cServidor;
       QficheroUbicacion.AsString := cUbicacion + Trim(QficheroNombre.AsString) + '.ib';
-      Modo(Self, Edita);
+      Mode := fmEdit;
    end;
 end;
 

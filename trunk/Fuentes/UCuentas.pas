@@ -572,7 +572,7 @@ begin
 
    CampoOrden := 'Cuenta';
    PrepararQuery;
-   Modo(Self, Naveg);
+   Mode := fmView;
 
    Paginas.Pages[TabCuentas].Show;
 end;
@@ -703,7 +703,7 @@ begin
       Paginas.PageIndex := TabDatos;
       QFichero.Insert;
       OvcCuenta.SetFocus;
-      Modo(Self, Edita);
+      Mode := fmEdit;
       PaginasPageChanged(Self, TabDatos);
    except
       raise;
@@ -734,7 +734,7 @@ begin
       lAdd := False;
       try
          QFichero.Edit;
-         Modo(Self, Edita);
+         Mode := fmEdit;
          Paginas.PageIndex := TabDatos;
          OvcDescripcion.SetFocus;
       except MessageDlg('No se puede editar el registro seleccionado.' + #13 +
@@ -820,7 +820,7 @@ begin
       QFicheroCUENTA.AsString + REPLICATE('0', DMRef.QParametros.FieldByName(
       'LONGITUD_SUBCUENTAS').AsInteger - Length(Trim(QFicheroCUENTA.AsString))));
 
-   Modo(Self, Naveg);
+   Mode := fmView;
    Paginas.Pages[TabCuentas].Show;
    Rejilla.SetFocus;
 end;
@@ -832,7 +832,7 @@ begin
       except DatabaseError('Error al cancelar la operación');
       end;
 
-      Modo(Self, Naveg);
+      Mode := fmView;
       Paginas.PageIndex := TabCuentas;
 
       Rejilla.SetFocus;

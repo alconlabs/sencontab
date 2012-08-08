@@ -1918,7 +1918,7 @@ begin
       end;
    end;
 
-   Modo(Self, Edita);
+   Mode := fmEdit;
    nFactura.SetFocus;
    Paginas.Pages[0].Show;
    PrepararQueryMovimientos;

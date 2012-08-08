@@ -388,7 +388,7 @@ end;
 procedure TWVencimientos.FormCreate(Sender: TObject);
 begin
    //ActivarTransacciones(self);
-   Modo(Self, Naveg);
+   Mode := fmView;
    Navegador.Visible := True;
 end;
 
