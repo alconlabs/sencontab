@@ -1,7 +1,7 @@
 object DataModuleProjects: TDataModuleProjects
   OldCreateOrder = False
-  Left = 801
-  Top = 628
+  Left = 583
+  Top = 372
   Height = 283
   Width = 400
   object NoUse: TCRSQLConnection
