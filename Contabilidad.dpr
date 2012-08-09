@@ -39,7 +39,6 @@ uses
   UCopiaAsientos in 'Fuentes\UCopiaAsientos.pas' {WCopiaAsientos},
   UBalAcumulados in 'Fuentes\UBalAcumulados.pas' {WBalAcumulados},
   UBalExplotacion in 'Fuentes\UBalExplotacion.pas' {WBalExplotacion},
-  USecciones in 'Fuentes\USecciones.pas' {WSecciones},
   UAnaliticas in 'Fuentes\UAnaliticas.pas' {WAnaliticas},
   UVencimientos in 'Fuentes\UVencimientos.pas' {WVencimientos},
   USubCuentas in 'Fuentes\USubCuentas.pas' {WSubCuentas},

@@ -5,6 +5,7 @@ interface
 uses Buttons, Classes, Controls, Forms, Graphics, Messages, SysUtils, DB,
      ExtCtrls, Grids, StdCtrls, DBGrids, ComCtrls, DBCtrls, Mask,
      CustomView;
+     
 type
    TProjectsView = class(TCustomView)
     DataSource: TDataSource;
