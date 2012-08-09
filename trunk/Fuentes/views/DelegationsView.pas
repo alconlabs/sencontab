@@ -1,10 +1,9 @@
 unit DelegationsView;
 interface
-uses Buttons, Classes, Controls, DB, DBClient, DBCtrls, DBTables, Dialogs, ExtCtrls, fcButton, fcImage,
-     fcimageform, fcImgBtn, Forms, Graphics, Grids, IBCustomDataSet, IBDatabase, IBTableSet, jpeg, Mask,
-     Messages, navegadorNotarios, OvcBase, OvcDbNF, OvcDbPF, OvcEF, OvcNF, OvcPB, OvcPF, StdCtrls,
-     SysUtils, WinProcs, WinTypes, Wwdatsrc, Wwdbgrid, Wwdbigrd, Wwkeycb, CustomView,
-  DBGrids;
+uses Buttons, Classes, Controls, DB, DBCtrls, Dialogs, ExtCtrls, Forms, Graphics, Grids, jpeg, Mask,
+     Messages, StdCtrls, SysUtils, WinProcs, WinTypes, DBGrids,
+     CustomView;
+     
 type
    TDelegationsView = class(TCustomView)
     DataSource: TDataSource;
