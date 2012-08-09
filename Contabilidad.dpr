@@ -39,7 +39,6 @@ uses
   UCopiaAsientos in 'Fuentes\UCopiaAsientos.pas' {WCopiaAsientos},
   UBalAcumulados in 'Fuentes\UBalAcumulados.pas' {WBalAcumulados},
   UBalExplotacion in 'Fuentes\UBalExplotacion.pas' {WBalExplotacion},
-  UTiposDiario in 'Fuentes\UTiposDiario.pas' {WTiposDiario},
   UComerciales in 'Fuentes\UComerciales.pas' {WComerciales},
   UDelegaciones in 'Fuentes\UDelegaciones.pas' {WDelegaciones},
   UDepartamentos in 'Fuentes\UDepartamentos.pas' {WDepartamentos},
