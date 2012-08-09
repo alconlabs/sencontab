@@ -4,7 +4,7 @@ interface
 
 uses Forms, Windows, Grids, DBGrids, StdCtrls, Mask, Buttons, Controls, Classes,
      ExtCtrls, DB, ComCtrls, ccResButton, DBCtrls, Messages,  Graphics,
-     CustomView, ccChildForm;
+     CustomView;
 type
   TCountysView = class(TCustomView)
     Shape1: TShape;
