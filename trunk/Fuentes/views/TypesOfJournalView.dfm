@@ -12,7 +12,6 @@ object TypesOfJournalView: TTypesOfJournalView
   Font.Height = -13
   Font.Name = 'System'
   Font.Style = []
-  FormStyle = fsStayOnTop
   KeyPreview = True
   OldCreateOrder = True
   DesignSize = (
