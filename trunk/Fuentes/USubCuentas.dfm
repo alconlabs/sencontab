@@ -193,7 +193,7 @@ object WSubCuentas: TWSubCuentas
       object Rejilla: TwwDBGrid
         Left = 0
         Top = 51
-        Width = 0
+        Width = 652
         Height = 357
         TabStop = False
         DittoAttributes.ShortCutDittoField = 0
@@ -305,7 +305,7 @@ object WSubCuentas: TWSubCuentas
       object FiltroBuscar: TGroupBox
         Left = 0
         Top = 0
-        Width = 0
+        Width = 652
         Height = 51
         Align = alTop
         Caption = ' Buscar '
@@ -512,8 +512,8 @@ object WSubCuentas: TWSubCuentas
       TextColor = clNavy
       object GroupBox1: TGroupBox
         Left = 0
-        Top = -404
-        Width = 0
+        Top = 4
+        Width = 652
         Height = 115
         Align = alBottom
         Font.Charset = ANSI_CHARSET
@@ -760,8 +760,8 @@ object WSubCuentas: TWSubCuentas
       end
       object GroupBox14: TGroupBox
         Left = 0
-        Top = -289
-        Width = 0
+        Top = 119
+        Width = 652
         Height = 175
         Align = alBottom
         Caption = ' Datos Fiscales '
@@ -1166,8 +1166,8 @@ object WSubCuentas: TWSubCuentas
       end
       object GBIVA: TGroupBox
         Left = 0
-        Top = -114
-        Width = 0
+        Top = 294
+        Width = 652
         Height = 59
         Align = alBottom
         Caption = ' Datos I.V.A.'
@@ -1290,8 +1290,8 @@ object WSubCuentas: TWSubCuentas
       end
       object GroupBox25: TGroupBox
         Left = 0
-        Top = -55
-        Width = 0
+        Top = 353
+        Width = 652
         Height = 55
         Align = alBottom
         Caption = ' Forma de Pago '
@@ -1486,8 +1486,8 @@ object WSubCuentas: TWSubCuentas
       object PaginasInterno: TOvcNotebook
         Left = 0
         Top = 0
-        Width = 20
-        Height = 0
+        Width = 652
+        Height = 408
         ActiveTabFont.Charset = ANSI_CHARSET
         ActiveTabFont.Color = clNavy
         ActiveTabFont.Height = -11
@@ -3370,8 +3370,8 @@ object WSubCuentas: TWSubCuentas
       object PagGraficos: TOvcNotebook
         Left = 0
         Top = 0
-        Width = 20
-        Height = 0
+        Width = 652
+        Height = 408
         ActiveTabFont.Charset = ANSI_CHARSET
         ActiveTabFont.Color = clNavy
         ActiveTabFont.Height = -11
@@ -3397,8 +3397,8 @@ object WSubCuentas: TWSubCuentas
           object ChartActual: TDBChart
             Left = 0
             Top = 0
-            Width = 17
-            Height = 0
+            Width = 649
+            Height = 385
             BackWall.Brush.Color = clWhite
             BackWall.Brush.Style = bsClear
             Foot.Font.Charset = DEFAULT_CHARSET
@@ -3465,8 +3465,8 @@ object WSubCuentas: TWSubCuentas
           object ChartAnterior: TDBChart
             Left = 0
             Top = 0
-            Width = 17
-            Height = 0
+            Width = 649
+            Height = 385
             BackWall.Brush.Color = clWhite
             BackWall.Brush.Style = bsClear
             Foot.Font.Charset = DEFAULT_CHARSET
@@ -3533,8 +3533,8 @@ object WSubCuentas: TWSubCuentas
           object ChartCompara: TDBChart
             Left = 0
             Top = 0
-            Width = 17
-            Height = 0
+            Width = 649
+            Height = 385
             BackWall.Brush.Color = clWhite
             BackWall.Brush.Style = bsClear
             Foot.Font.Charset = DEFAULT_CHARSET
@@ -4229,7 +4229,6 @@ object WSubCuentas: TWSubCuentas
               5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F50
               6F5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F
               506F5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F500000}
-            NumGlyphs = 0
             ParentClipping = True
             ParentFont = False
             ShadeStyle = fbsNormal
@@ -4472,7 +4471,6 @@ object WSubCuentas: TWSubCuentas
               5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F50
               6F5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F
               506F5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F506F5F500000}
-            NumGlyphs = 0
             ParentClipping = True
             ParentFont = False
             ShadeStyle = fbsNormal
@@ -5893,6 +5891,7 @@ object WSubCuentas: TWSubCuentas
       5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
       6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
       526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
+    NumGlyphs = 0
     ParentClipping = False
     ParentFont = False
     ShadeStyle = fbsNormal
@@ -6135,7 +6134,6 @@ object WSubCuentas: TWSubCuentas
       5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
       6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
       526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
-    NumGlyphs = 0
     ParentClipping = False
     ParentFont = False
     ShadeStyle = fbsNormal
@@ -6378,7 +6376,6 @@ object WSubCuentas: TWSubCuentas
       5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
       6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
       526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
-    NumGlyphs = 0
     ParentClipping = False
     ParentFont = False
     ShadeStyle = fbsNormal
@@ -6621,7 +6618,6 @@ object WSubCuentas: TWSubCuentas
       5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
       6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
       526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
-    NumGlyphs = 0
     ParentClipping = False
     ParentFont = False
     ShadeStyle = fbsNormal
@@ -6864,7 +6860,6 @@ object WSubCuentas: TWSubCuentas
       5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
       6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
       526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
-    NumGlyphs = 0
     ParentClipping = False
     ParentFont = False
     ShadeStyle = fbsNormal
@@ -7107,6 +7102,7 @@ object WSubCuentas: TWSubCuentas
       5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
       6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
       526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
+    NumGlyphs = 0
     ParentClipping = False
     ParentFont = False
     ShadeStyle = fbsNormal
@@ -7212,7 +7208,6 @@ object WSubCuentas: TWSubCuentas
       BBEFCFBCF1CDBBF1CCB8F1C9B6E4BDA7C8A18BAB8670E4D7C9EEE1D3EFDFD2E3
       D3C6E2CFC0EAD7C8F0D9CAE9D2C3F3DACAF0D7C7EED6C4EED6C4EED8C6EDD7C5
       E8D5C0E6D0BEF3D9C9F7D7CAF5D4C5F5D1C1F8D1C2F5CDBBE1B9A6CBA390}
-    NumGlyphs = 0
     ParentClipping = False
     ShadeStyle = fbsNormal
     TabOrder = 11
@@ -7276,6 +7271,7 @@ object WSubCuentas: TWSubCuentas
       C1EBD4C5EDD2BEEACAB3E9C7B0E3C0ACC8A696A98879EBD5C9F2DBCCF8DFCFF6
       DDC9F2D5C0ECD0B8ECD1BCF0D8C2EBD5C3E6D2C0E7D5C4ECDBC8F0DAC8EED7C1
       F1DAC0F7E0CAE2CFC2E9D5CAF0D5C7F2D2BFF6D5C2F5D4C1DEBDAEC0A093}
+    NumGlyphs = 0
     ParentClipping = False
     ShadeStyle = fbsNormal
     TabOrder = 12
@@ -7524,6 +7520,7 @@ object WSubCuentas: TWSubCuentas
       5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
       6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
       526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
+    NumGlyphs = 0
     ParentClipping = False
     ParentFont = False
     ShadeStyle = fbsNormal
@@ -7766,7 +7763,6 @@ object WSubCuentas: TWSubCuentas
       5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
       6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
       526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
-    NumGlyphs = 0
     ParentClipping = False
     ParentFont = False
     ShadeStyle = fbsNormal
@@ -8019,6 +8015,7 @@ object WSubCuentas: TWSubCuentas
       5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D52
       6B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D
       526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D526B5D520000}
+    NumGlyphs = 0
     ParentClipping = False
     ParentFont = False
     ShadeStyle = fbsNormal
@@ -8037,7 +8034,7 @@ object WSubCuentas: TWSubCuentas
   object DSFichero: TDataSource
     AutoEdit = False
     DataSet = QFichero
-    Left = 105
+    Left = 633
     Top = 13
   end
   object QFichero: TIBTableSet
@@ -8445,8 +8442,8 @@ object WSubCuentas: TWSubCuentas
         '  SUBCUENTA                      =:old_SUBCUENTA                ' +
         '       ')
     TableName = 'SUBCTAS'
-    Left = 71
-    Top = 12
+    Left = 343
+    Top = 188
     object QFicheroSUBCUENTA: TIBStringField
       DisplayWidth = 12
       FieldName = 'SUBCUENTA'
@@ -8952,8 +8949,8 @@ object WSubCuentas: TWSubCuentas
   object Transaccion: TIBTransaction
     Active = False
     AutoStopAction = saNone
-    Left = 35
-    Top = 13
+    Left = 443
+    Top = 205
   end
   object CDSFiltro: TClientDataSet
     Aggregates = <>
